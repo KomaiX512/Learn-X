@@ -1,0 +1,29 @@
+Note: Unnecessary use of -X or --request, POST is already inferred.
+*   Trying 127.0.0.1:3001...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to localhost (127.0.0.1) port 3001 (#0)
+> POST /api/query HTTP/1.1
+> Host: localhost:3001
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 92
+> 
+} [92 bytes data]
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< X-Powered-By: Express
+< Vary: Origin
+< Access-Control-Allow-Credentials: true
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 52
+< ETag: W/"34-ULS4H2OA0VChs0o+kQUUoBkTH4Y"
+< Date: Thu, 25 Sep 2025 12:43:45 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+{ [52 bytes data]
+100   144  100    52  100    92  11767  20819 --:--:-- --:--:-- --:--:-- 36000
+* Connection #0 to host localhost left intact
+{"sessionId":"0902d299-a65e-4aff-bece-10f5e2553611"}

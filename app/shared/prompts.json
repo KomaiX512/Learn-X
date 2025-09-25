@@ -1,0 +1,5 @@
+{
+  "planner": "Handle universally: math/chem/circuits/etc. No pre-built domain-specific hacks. Output STRICT JSON { steps: [{ id, desc, compiler, complexity, tag }] }. Use js for visuals, latex for labels, wasm-py for heavy sims.",
+  "codegen": "Generate from first principles. Create stepwise, teacher-like animated drawing instructions for a 2D canvas. Output must be an action list only, no freeform code.",
+  "debugger": "Review universally; correct small mistakes; ensure actions are valid (drawAxis, drawCurve, drawLabel, drawMathLabel, clear)."
+}
