@@ -10,7 +10,15 @@ export interface PlanStep {
 
 export interface Plan {
   title: string;
+  subtitle: string;
+  toc: TocItem[];
   steps: PlanStep[];
+}
+
+export interface TocItem {
+  minute: number;
+  title: string;
+  summary?: string;
 }
 
 export type Action =
@@ -18,7 +26,9 @@ export type Action =
   | { op: 'drawCurve'; normalized?: boolean; points: [number, number][]; color?: string; duration?: number; width?: number }
   | { op: 'drawLabel'; normalized?: boolean; text: string; x: number; y: number; color?: string }
   | { op: 'drawMathLabel'; normalized?: boolean; tex: string; x: number; y: number }
-  | { op: 'clear'; target?: 'all' | 'layer' };
+  | { op: 'clear'; target?: 'all' | 'layer' }
+  | { op: 'delay'; duration: number }
+  | { op: 'drawTitle'; text: string; y?: number; duration?: number };
 
 export interface RenderChunk {
   type: 'actions';

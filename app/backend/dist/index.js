@@ -14,34 +14,49 @@ const logger_1 = require("./logger");
 const orchestrator_1 = require("./orchestrator");
 const generative_ai_1 = require("@google/generative-ai");
 const PORT = Number(process.env.PORT || 3001);
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const FRONTEND_URLS = (process.env.FRONTEND_URL || 'http://localhost:5173,http://localhost:5174')
+    .split(',')
+    .map((s) => s.trim());
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 async function main() {
     const app = (0, express_1.default)();
-    app.use((0, cors_1.default)({ origin: FRONTEND_URL, credentials: true }));
+    app.use((0, cors_1.default)({ origin: FRONTEND_URLS, credentials: true }));
     app.use(express_1.default.json());
     const server = http_1.default.createServer(app);
     const io = new socket_io_1.Server(server, {
-        cors: { origin: FRONTEND_URL, methods: ['GET', 'POST'] }
+        cors: { origin: FRONTEND_URLS, methods: ['GET', 'POST'] }
     });
-    const redis = new ioredis_1.default(REDIS_URL);
+    const redis = new ioredis_1.default(REDIS_URL, { maxRetriesPerRequest: null });
     const orchestrator = (0, orchestrator_1.initOrchestrator)(io, redis);
     io.on('connection', (socket) => {
         socket.on('join', ({ sessionId }) => {
             if (sessionId) {
                 socket.join(sessionId);
                 logger_1.logger.debug(`socket joined session ${sessionId}`);
+                // Acknowledge to the client that it successfully joined the room
+                socket.emit('joined', { sessionId });
             }
         });
     });
     app.get('/health', (_req, res) => {
-        res.json({ ok: true, env: { PORT, FRONTEND_URL, REDIS_URL } });
+        res.json({
+            ok: true,
+            env: {
+                PORT,
+                FRONTEND_URLS,
+                REDIS_URL,
+                GEMINI_API_KEY: process.env.GEMINI_API_KEY ? '***' : undefined,
+                LOG_LEVEL: process.env.LOG_LEVEL,
+                LLM_TIMEOUT_MS: process.env.LLM_TIMEOUT_MS
+            }
+        });
     });
     app.post('/api/query', async (req, res) => {
-        const { query, params } = req.body;
+        logger_1.logger.debug('Received request on /api/query', { body: req.body });
+        const { query, params, sessionId: clientSessionId } = req.body;
         if (!query)
             return res.status(400).json({ error: 'Missing query' });
-        const sessionId = (0, uuid_1.v4)();
+        const sessionId = clientSessionId || (0, uuid_1.v4)();
         if (params) {
             await orchestrator.setParams(sessionId, params);
         }
@@ -52,6 +67,12 @@ async function main() {
         const sessionId = req.params.id;
         const params = req.body;
         await orchestrator.setParams(sessionId, params);
+        res.json({ ok: true });
+    });
+    app.post('/api/session/:id/next', async (req, res) => {
+        const sessionId = req.params.id;
+        logger_1.logger.debug(`[api] Received request on /api/session/${sessionId}/next`);
+        await orchestrator.triggerNextStep(sessionId);
         res.json({ ok: true });
     });
     // Gemini verification endpoint (optional)
@@ -72,6 +93,15 @@ async function main() {
     server.listen(PORT, () => {
         logger_1.logger.debug(`Backend listening on http://localhost:${PORT}`);
     });
+    const shutdown = () => {
+        logger_1.logger.debug('Shutting down server...');
+        server.close(() => {
+            logger_1.logger.debug('Server shut down.');
+            process.exit(0);
+        });
+    };
+    process.on('SIGTERM', shutdown);
+    process.on('SIGINT', shutdown);
 }
 main().catch((err) => {
     logger_1.logger.debug(`Fatal: ${String(err)}`);

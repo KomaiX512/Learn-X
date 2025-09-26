@@ -3,87 +3,113 @@ import { Plan } from '../types';
 import { logger } from '../logger';
 
 const MODEL = 'gemini-2.5-flash';
+const DEFAULT_TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 60000);
+
+function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
+  logger.debug(`[timeout] Setting ${ms}ms timeout for ${label}`);
+  return Promise.race([
+    p,
+    new Promise<T>((_, reject) => {
+      const timer = setTimeout(() => {
+        logger.debug(`[timeout] ${label} timed out after ${ms}ms`);
+        reject(new Error(`${label} timeout after ${ms}ms`));
+      }, ms);
+      p.finally(() => clearTimeout(timer));
+    })
+  ]) as Promise<T>;
+}
+
+function fixJsonSyntax(jsonText: string): string {
+  // Common JSON fixes
+  let fixed = jsonText
+    .replace(/,(\s*[}\]])/g, '$1')  // Remove trailing commas
+    .replace(/([{,]\s*)(\w+):/g, '$1"$2":')  // Quote unquoted keys
+    .replace(/:\s*'([^']*)'/g, ': "$1"')  // Replace single quotes with double
+    .replace(/\\n/g, ' ')  // Replace newlines with spaces
+    .replace(/\s+/g, ' ')  // Normalize whitespace
+    .trim();
+  
+  // Try to balance braces and brackets
+  const openBraces = (fixed.match(/\{/g) || []).length;
+  const closeBraces = (fixed.match(/\}/g) || []).length;
+  const openBrackets = (fixed.match(/\[/g) || []).length;
+  const closeBrackets = (fixed.match(/\]/g) || []).length;
+  
+  // Add missing closing braces/brackets
+  for (let i = 0; i < openBraces - closeBraces; i++) {
+    fixed += '}';
+  }
+  for (let i = 0; i < openBrackets - closeBrackets; i++) {
+    fixed += ']';
+  }
+  
+  return fixed;
+}
 
 export async function plannerAgent(query: string): Promise<Plan> {
   const key = process.env.GEMINI_API_KEY;
-  // ONLY use fallback if there's no API key - otherwise force Gemini generation
-  const fallbackPlan: Plan = {
-    title: 'Learning Topic',
-    steps: [
-      { id: 1, desc: 'Introduction and overview', compiler: 'js', complexity: 2, tag: 'intro' },
-      { id: 2, desc: 'Main concepts', compiler: 'js', complexity: 3, tag: 'concepts' },
-      { id: 3, desc: 'Examples and applications', compiler: 'js', complexity: 3, tag: 'examples' }
-    ]
-  };
-
   if (!key) {
-    logger.debug('plannerAgent: No GEMINI_API_KEY, using fallback plan.');
-    return fallbackPlan;
+    throw new Error('Missing GEMINI_API_KEY');
   }
 
+  const genAI = new GoogleGenerativeAI(key);
+  const model = genAI.getGenerativeModel({ model: MODEL });
+
+  const prompt = `Create 5-step plan for: ${query}
+Return JSON:
+{
+  "title": "short title",
+  "subtitle": "one line description",
+  "toc": [
+    {"minute": 1, "title": "Intro", "summary": "basics"},
+    {"minute": 2, "title": "Core", "summary": "main ideas"},
+    {"minute": 3, "title": "Examples", "summary": "demos"},
+    {"minute": 4, "title": "Practice", "summary": "apply"},
+    {"minute": 5, "title": "Review", "summary": "recap"}
+  ],
+  "steps": [
+    {"id": 1, "desc": "intro", "compiler": "js", "complexity": 1, "tag": "part_1"},
+    {"id": 2, "desc": "concepts", "compiler": "js", "complexity": 1, "tag": "part_2"},
+    {"id": 3, "desc": "examples", "compiler": "js", "complexity": 1, "tag": "part_3"},
+    {"id": 4, "desc": "practice", "compiler": "js", "complexity": 1, "tag": "part_4"},
+    {"id": 5, "desc": "summary", "compiler": "js", "complexity": 1, "tag": "part_5"}
+  ]
+}`;
+
+  const t0 = Date.now();
+  logger.debug('[planner] Sending prompt to Gemini...');
+  const res = await withTimeout(model.generateContent(prompt), DEFAULT_TIMEOUT, 'planner/gemini');
+  const t1 = Date.now();
+  logger.debug(`[planner] Received response from Gemini in ${t1 - t0}ms`);
+  const text = res.response.text();
+
+  const jsonStart = text.indexOf('{');
+  const jsonEnd = text.lastIndexOf('}');
+  if (jsonStart === -1 || jsonEnd === -1) throw new Error('Planner: no JSON in response');
+  
+  let jsonText = text.slice(jsonStart, jsonEnd + 1).replace(/```json|```/g, '').trim();
+  
+  // Try parsing, if it fails, attempt to fix and retry
+  let plan: Plan;
   try {
-    const genAI = new GoogleGenerativeAI(key);
-    const model = genAI.getGenerativeModel({ model: MODEL });
-
-    const prompt = [
-      'You are a world-class educator and planner. Your goal is to create a comprehensive, step-by-step lesson plan for any given query.',
-      'Use the "first principle" technique: break down complex topics into their fundamental concepts.',
-      'The lesson should be structured like a teacher writing on a blackboard, with each step building upon the previous one.',
-      'Output STRICT JSON with shape: { "title": string, "steps": [{ "id": number, "desc": string, "compiler": "js"|"latex"|"wasm-py", "complexity": number, "tag": string }] }',
-      'Guidelines:',
-      '- Start with a clear, bolded title for the lesson.',
-      '- The first few steps should introduce the topic and outline the parts to be discussed.',
-      '- Ensure the lesson flows logically from introduction to conclusion.',
-      '- Use "js" for visual and labeling chunks for the browser canvas.',
-      '- Use "latex" for mathematical equations (client uses MathJax).',
-      '- Use "wasm-py" for heavy numeric simulations.',
-      '- Generate a comprehensive plan with a variable number of steps as needed to fully explain the topic.',
-      `Query: ${query}`
-    ].join('\\n');
-
-    const res = await model.generateContent(prompt);
-    const text = res.response.text();
-    logger.debug(`[planner] Raw response length: ${text.length}`);
-    
-    // NUCLEAR APPROACH: Extract manually using regex instead of JSON.parse
-    const titleMatch = text.match(/"title"\s*:\s*"([^"\\]+(\\.[^"\\]*)*)"/);
-    const stepsArrayMatch = text.match(/"steps"\s*:\s*\[(.*?)\]/s);
-    
-    if (!titleMatch || !stepsArrayMatch) {
-      throw new Error('Could not extract title or steps from response');
+    plan = JSON.parse(jsonText) as Plan;
+    logger.debug('[planner] JSON parsed successfully on first attempt');
+  } catch (firstError) {
+    logger.debug(`[planner] JSON parse failed, attempting to fix: ${firstError}`);
+    const fixedJson = fixJsonSyntax(jsonText);
+    try {
+      plan = JSON.parse(fixedJson) as Plan;
+      logger.debug('[planner] JSON parsed successfully after syntax fix');
+    } catch (secondError) {
+      logger.error(`[planner] JSON parse failed completely: ${secondError}`);
+      throw new Error(`Failed to parse planner response: ${secondError}`);
     }
-    
-    const title = titleMatch[1].replace(/\\"/g, '"').replace(/\\n/g, ' ').trim();
-    logger.debug(`[planner] Extracted title: ${title}`);
-    
-    // Extract individual step objects using regex
-    const stepObjects = [];
-    const stepMatches = stepsArrayMatch[1].match(/\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}/g) || [];
-    
-    for (let i = 0; i < stepMatches.length; i++) {
-      const stepText = stepMatches[i];
-      
-      const idMatch = stepText.match(/"id"\s*:\s*(\d+)/) || [null, i + 1];
-      const descMatch = stepText.match(/"desc"\s*:\s*"([^"\\]+(\\.[^"\\]*)*)"/) || [null, `Step ${i + 1}`];
-      const compilerMatch = stepText.match(/"compiler"\s*:\s*"([^"]*)"/) || [null, 'js'];
-      const complexityMatch = stepText.match(/"complexity"\s*:\s*(\d+)/) || [null, 2];
-      const tagMatch = stepText.match(/"tag"\s*:\s*"([^"]*)"/) || [null, `step_${i + 1}`];
-      
-      stepObjects.push({
-        id: parseInt(idMatch[1] as string),
-        desc: descMatch[1].replace(/\\"/g, '"').replace(/\\n/g, ' ').trim(),
-        compiler: compilerMatch[1] as 'js' | 'latex' | 'wasm-py',
-        complexity: parseInt(complexityMatch[1] as string),
-        tag: tagMatch[1]
-      });
-    }
-    
-    const plan = { title, steps: stepObjects };
-    logger.debug(`[planner] Extracted plan with ${plan.steps.length} steps`);
-    if (!plan.steps?.length) throw new Error('Empty plan');
-    return plan;
-  } catch (err) {
-    logger.debug(`plannerAgent: Gemini error, using fallback. ${String(err)}`);
-    return fallbackPlan;
   }
+
+  if (!plan.title || !plan.subtitle) throw new Error('Planner: missing title/subtitle');
+  if (!Array.isArray(plan.toc) || plan.toc.length < 1) throw new Error('Planner: missing toc');
+  if (!Array.isArray(plan.steps) || plan.steps.length !== 5) throw new Error('Planner: steps must be exactly 5');
+  plan.steps.forEach((s, i) => { if (!s.id) s.id = i + 1; });
+
+  return plan;
 }

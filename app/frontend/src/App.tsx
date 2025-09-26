@@ -1,17 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import CanvasStage from './components/CanvasStage';
-import { getSocket } from './socket';
+import { getSocket, waitForJoin } from './socket';
 import { execChunk } from './renderer';
 
 export default function App() {
-  const [query, setQuery] = useState('Visualize the charging of an RC circuit and annotate the time constant');
+  const [query, setQuery] = useState('');
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<any>(null);
   const [planTitle, setPlanTitle] = useState<string>('');
+  const [planSubtitle, setPlanSubtitle] = useState<string>('');
+  const [toc, setToc] = useState<Array<{ minute: number; title: string; summary?: string }>>([]);
   const [isReady, setIsReady] = useState(false);
-  const [R, setR] = useState(1000); // Ohms
-  const [C, setC] = useState(0.000001); // Farads (1 uF)
-  const [V, setV] = useState(5); // Volts
+  const [isLoading, setIsLoading] = useState(false);
 
   // Ensure we have a session and that the socket has joined it before enqueuing work
   function ensureSession(): string {
@@ -46,67 +46,79 @@ export default function App() {
       console.error('[socket] Connection error:', error);
     });
     
-    const handler = (payload: any) => {
-      console.log('[socket] Received "rendered" event:', payload);
-      console.log('[socket] Payload type:', typeof payload, 'keys:', Object.keys(payload || {}));
-      if (!payload || !payload.step) {
-        console.error('[socket] Invalid payload received for "rendered" event:', payload);
-        return;
+    socket.on('rendered', (e) => {
+      console.log('=== FRONTEND RECEIVED RENDERED EVENT ===');
+      console.log('Event data:', e);
+      console.log('Step:', e.step);
+      console.log('Actions:', e.actions);
+      console.log('Plan title:', e.plan?.title);
+      console.log('Plan subtitle:', e.plan?.subtitle);
+      console.log('Plan toc:', e.plan?.toc);
+      console.log('=== END FRONTEND EVENT ===');
+      
+      // Update plan title
+      if (e.plan?.title) {
+        setPlanTitle(e.plan.title);
       }
-      console.log('[socket] About to call execChunk with:', payload);
-      execChunk(payload);
-      setCurrentStep(payload.step);
-      if (payload.plan?.title) {
-        setPlanTitle(payload.plan.title);
+      if (e.plan?.subtitle) {
+        setPlanSubtitle(e.plan.subtitle);
       }
-      if (payload.step?.id === 1) {
-        setIsReady(true);
+      if (Array.isArray(e.plan?.toc)) {
+        setToc(e.plan.toc);
       }
-    };
-    socket.on('rendered', handler);
-    
-    // Log all events for debugging
-    socket.onAny((event, ...args) => {
-      console.log('[socket] Received any event:', event, args);
+      
+      // Update current step
+      setCurrentStep(e.step);
+      
+      // Execute the rendering actions on canvas
+      execChunk(e);
+      
+      setIsReady(true);
+      setIsLoading(false);
     });
     
+    
     return () => {
-      socket.off('rendered', handler);
       socket.off('connect');
       socket.off('disconnect'); 
       socket.off('connect_error');
-      socket.offAny();
     };
   }, [socket]);
 
   // Auto-run once on mount to kick off the demo (pre-join socket to avoid race)
-  useEffect(() => {
-    (async () => {
-      try {
-        const sid = ensureSession();
-        console.log('Fetching /api/query');
-        const res = await fetch('/api/query', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query, params: { R, C, V }, sessionId: sid })
-        });
-        const data = await res.json();
-        console.log('auto-run session', data);
-        setSessionId((prev) => prev || data.sessionId || sid);
-      } catch (e) {
-        console.error('auto-run error', e);
-      }
-    })();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const sid = ensureSession();
+  //       console.log('Fetching /api/query');
+  //       const res = await fetch('/api/query', {
+  //         method: 'POST',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({ query, params: { R, C, V }, sessionId: sid })
+  //       });
+  //       const data = await res.json();
+  //       console.log('auto-run session', data);
+  //       setSessionId((prev) => prev || data.sessionId || sid);
+  //     } catch (e) {
+  //       console.error('auto-run error', e);
+  //     }
+  //   })();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   async function submit() {
     setIsReady(false);
+    setIsLoading(true);
     const sid = ensureSession();
+    try {
+      await waitForJoin(sid, 3000);
+    } catch (e) {
+      console.warn('[submit] join wait failed, proceeding anyway:', e);
+    }
     const res = await fetch('/api/query', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, params: { R, C, V }, sessionId: sid })
+      body: JSON.stringify({ query, sessionId: sid })
     });
     const data = await res.json();
     // keep existing sid if backend echoes a different one
@@ -118,65 +130,42 @@ export default function App() {
     await fetch(`/api/session/${sessionId}/next`, { method: 'POST' });
   }
 
-  async function updateParams(next: { R?: number; C?: number; V?: number }) {
-    if (!sessionId) return;
-    const body = { R, C, V, ...next };
-    await fetch(`/api/session/${sessionId}/params`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-  }
 
   return (
     <div style={{ fontFamily: 'Inter, system-ui, Arial, sans-serif', padding: 16 }}>
       <h2>Universal Interactive Learning Engine (MVP)</h2>
       {planTitle && <h3 style={{ marginTop: 0 }}>{planTitle}</h3>}
+      {planSubtitle && <div style={{ marginTop: 4, color: '#555' }}>{planSubtitle}</div>}
+      {toc.length > 0 && (
+        <div style={{ marginTop: 8, padding: 8, background: '#fafafa', border: '1px solid #eee', borderRadius: 6 }}>
+          <strong>Table of Contents (5-minute plan)</strong>
+          <ol style={{ margin: '8px 0 0 20px' }}>
+            {toc.sort((a,b)=>a.minute-b.minute).map((item) => (
+              <li key={item.minute}>
+                <span style={{ fontWeight: 600 }}>Minute {item.minute}:</span> {item.title}
+                {item.summary ? <div style={{ color: '#666' }}>{item.summary}</div> : null}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+      {planSubtitle && <h4 style={{ marginTop: 0 }}>{planSubtitle}</h4>}
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
         <div style={{ minWidth: 320 }}>
           <label style={{ display: 'block', fontWeight: 600 }}>Query</label>
-          <textarea value={query} onChange={(e) => setQuery(e.target.value)} rows={3} style={{ width: '100%' }} />
-          <button onClick={submit} style={{ marginTop: 8 }}>Run</button>
+          <textarea value={query} onChange={(e) => setQuery(e.target.value)} rows={3} style={{ width: '100%' }} placeholder="Type your topic (e.g., 'Explain H2O molecular structure and hydrogen bonding')" />
+          <button onClick={submit} style={{ marginTop: 8 }} disabled={!query.trim()}>Run</button>
           <button onClick={nextStep} style={{ marginTop: 8, marginLeft: 8 }} disabled={!isReady}>Next Step</button>
 
           {currentStep && (
             <div style={{ marginTop: 16, padding: 8, background: '#f0f0f0', borderRadius: 4 }}>
-              <strong>Current Step:</strong> {currentStep.desc}
+              <strong>Current Step:</strong> {currentStep?.desc}
             </div>
           )}
 
-          <div style={{ marginTop: 16 }}>
-            <div>
-              <label>R (Ohms): {R}</label>
-              <input type="range" min="100" max="10000" step="100" value={R}
-                     onChange={(e) => {
-                       const val = parseInt(e.target.value, 10);
-                       setR(val);
-                       updateParams({ R: val });
-                     }} />
-            </div>
-            <div>
-              <label>C (uF): {(C * 1e6).toFixed(2)}</label>
-              <input type="range" min="0.1" max="100" step="0.1" value={C * 1e6}
-                     onChange={(e) => {
-                       const val = parseFloat(e.target.value) / 1e6;
-                       setC(val);
-                       updateParams({ C: val });
-                     }} />
-            </div>
-            <div>
-              <label>V (Volts): {V}</label>
-              <input type="range" min="1" max="12" step="1" value={V}
-                     onChange={(e) => {
-                       const val = parseInt(e.target.value, 10);
-                       setV(val);
-                       updateParams({ V: val });
-                     }} />
-            </div>
-          </div>
         </div>
         <div style={{ flex: 1, minWidth: 600 }}>
-          <CanvasStage />
+          <CanvasStage title={planTitle} />
         </div>
       </div>
     </div>

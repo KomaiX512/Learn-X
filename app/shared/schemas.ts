@@ -9,7 +9,16 @@ export const PlanStepSchema = z.object({
   complexity: z.number().min(1).max(10),
   tag: z.string().optional()
 });
+export const TocItemSchema = z.object({
+  minute: z.number().int().min(1),
+  title: z.string(),
+  summary: z.string().optional()
+});
+
 export const PlanSchema = z.object({
+  title: z.string(),
+  subtitle: z.string(),
+  toc: z.array(TocItemSchema).min(1),
   steps: z.array(PlanStepSchema).min(1)
 });
 
@@ -59,6 +68,7 @@ export const RenderChunkSchema = z.object({
   stepId: z.number().optional()
 });
 
+export type TocItem = z.infer<typeof TocItemSchema>;
 export type Plan = z.infer<typeof PlanSchema>;
 export type PlanStep = z.infer<typeof PlanStepSchema>;
 export type Action = z.infer<typeof ActionSchema>;

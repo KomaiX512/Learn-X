@@ -34,12 +34,30 @@ async function main() {
       if (sessionId) {
         socket.join(sessionId);
         logger.debug(`socket joined session ${sessionId}`);
+        // Acknowledge to the client that it successfully joined the room
+        socket.emit('joined', { sessionId });
+        
+        // Test emit to the room
+        setTimeout(() => {
+          logger.debug(`[test] Emitting test message to room ${sessionId}`);
+          io.to(sessionId).emit('test', { message: 'Test emit to room', sessionId });
+        }, 1000);
       }
     });
   });
 
   app.get('/health', (_req, res) => {
-    res.json({ ok: true, env: { PORT, FRONTEND_URLS, REDIS_URL } });
+    res.json({ 
+      ok: true, 
+      env: { 
+        PORT, 
+        FRONTEND_URLS, 
+        REDIS_URL,
+        GEMINI_API_KEY: process.env.GEMINI_API_KEY ? '***' : undefined,
+        LOG_LEVEL: process.env.LOG_LEVEL,
+        LLM_TIMEOUT_MS: process.env.LLM_TIMEOUT_MS
+      } 
+    });
   });
 
   app.post('/api/query', async (req, res) => {
@@ -63,9 +81,10 @@ async function main() {
 
   app.post('/api/session/:id/next', async (req, res) => {
     const sessionId = req.params.id;
-    logger.debug(`[api] Received request on /api/session/${sessionId}/next`);
-    await orchestrator.triggerNextStep(sessionId);
-    res.json({ ok: true });
+    logger.debug(`[api] Received request on /api/session/${sessionId}/next - automatic progression is enabled`);
+    // Automatic progression is now handled by the orchestrator
+    // This endpoint is kept for backward compatibility but doesn't need to do anything
+    res.json({ ok: true, message: 'Automatic progression is enabled' });
   });
 
   // Gemini verification endpoint (optional)
@@ -85,6 +104,17 @@ async function main() {
   server.listen(PORT, () => {
     logger.debug(`Backend listening on http://localhost:${PORT}`);
   });
+
+  const shutdown = () => {
+    logger.debug('Shutting down server...');
+    server.close(() => {
+      logger.debug('Server shut down.');
+      process.exit(0);
+    });
+  };
+
+  process.on('SIGTERM', shutdown);
+  process.on('SIGINT', shutdown);
 }
 
 main().catch((err) => {

@@ -4,46 +4,108 @@ exports.plannerAgent = plannerAgent;
 const generative_ai_1 = require("@google/generative-ai");
 const logger_1 = require("../logger");
 const MODEL = 'gemini-2.5-flash';
+const DEFAULT_TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 30000);
+function withTimeout(p, ms, label) {
+    logger_1.logger.debug(`[timeout] Setting ${ms}ms timeout for ${label}`);
+    return Promise.race([
+        p,
+        new Promise((_, reject) => {
+            const timer = setTimeout(() => {
+                logger_1.logger.debug(`[timeout] ${label} timed out after ${ms}ms`);
+                reject(new Error(`${label} timeout after ${ms}ms`));
+            }, ms);
+            p.finally(() => clearTimeout(timer));
+        })
+    ]);
+}
+function fixJsonSyntax(jsonText) {
+    // Common JSON fixes
+    let fixed = jsonText
+        .replace(/,(\s*[}\]])/g, '$1') // Remove trailing commas
+        .replace(/([{,]\s*)(\w+):/g, '$1"$2":') // Quote unquoted keys
+        .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes with double
+        .replace(/\\n/g, ' ') // Replace newlines with spaces
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .trim();
+    // Try to balance braces and brackets
+    const openBraces = (fixed.match(/\{/g) || []).length;
+    const closeBraces = (fixed.match(/\}/g) || []).length;
+    const openBrackets = (fixed.match(/\[/g) || []).length;
+    const closeBrackets = (fixed.match(/\]/g) || []).length;
+    // Add missing closing braces/brackets
+    for (let i = 0; i < openBraces - closeBraces; i++) {
+        fixed += '}';
+    }
+    for (let i = 0; i < openBrackets - closeBrackets; i++) {
+        fixed += ']';
+    }
+    return fixed;
+}
 async function plannerAgent(query) {
     const key = process.env.GEMINI_API_KEY;
-    const fallbackPlan = {
-        steps: [
-            { id: 1, desc: 'Draw axes and title', compiler: 'js', complexity: 2, tag: 'rc_axes' },
-            { id: 2, desc: 'Plot RC charging curve v(t)=V(1 - e^{-t/RC})', compiler: 'js', complexity: 4, tag: 'rc_curve' },
-            { id: 3, desc: 'Annotate time constant tau=RC', compiler: 'js', complexity: 3, tag: 'rc_annotation' }
-        ]
-    };
     if (!key) {
-        logger_1.logger.debug('plannerAgent: No GEMINI_API_KEY, using fallback plan.');
-        return fallbackPlan;
+        throw new Error('Missing GEMINI_API_KEY');
     }
+    const genAI = new generative_ai_1.GoogleGenerativeAI(key);
+    const model = genAI.getGenerativeModel({ model: MODEL });
+    const prompt = [
+        'Create a simple 5-part learning plan. Output valid JSON only:',
+        '{',
+        '  "title": "Topic Name",',
+        '  "subtitle": "Brief description", ',
+        '  "toc": [',
+        '    {"minute": 1, "title": "Part 1", "summary": "Brief summary"},',
+        '    {"minute": 2, "title": "Part 2", "summary": "Brief summary"},',
+        '    {"minute": 3, "title": "Part 3", "summary": "Brief summary"},',
+        '    {"minute": 4, "title": "Part 4", "summary": "Brief summary"},',
+        '    {"minute": 5, "title": "Part 5", "summary": "Brief summary"}',
+        '  ],',
+        '  "steps": [',
+        '    {"id": 1, "desc": "Introduction", "compiler": "js", "complexity": 1, "tag": "part_1"},',
+        '    {"id": 2, "desc": "Main concepts", "compiler": "js", "complexity": 1, "tag": "part_2"},',
+        '    {"id": 3, "desc": "Examples", "compiler": "js", "complexity": 1, "tag": "part_3"},',
+        '    {"id": 4, "desc": "Applications", "compiler": "js", "complexity": 1, "tag": "part_4"},',
+        '    {"id": 5, "desc": "Summary", "compiler": "js", "complexity": 1, "tag": "part_5"}',
+        '  ]',
+        '}',
+        `Topic: ${query}`
+    ].join('\n');
+    const t0 = Date.now();
+    logger_1.logger.debug('[planner] Sending prompt to Gemini...');
+    const res = await withTimeout(model.generateContent(prompt), DEFAULT_TIMEOUT, 'planner/gemini');
+    const t1 = Date.now();
+    logger_1.logger.debug(`[planner] Received response from Gemini in ${t1 - t0}ms`);
+    const text = res.response.text();
+    const jsonStart = text.indexOf('{');
+    const jsonEnd = text.lastIndexOf('}');
+    if (jsonStart === -1 || jsonEnd === -1)
+        throw new Error('Planner: no JSON in response');
+    let jsonText = text.slice(jsonStart, jsonEnd + 1).replace(/```json|```/g, '').trim();
+    // Try parsing, if it fails, attempt to fix and retry
+    let plan;
     try {
-        const genAI = new generative_ai_1.GoogleGenerativeAI(key);
-        const model = genAI.getGenerativeModel({ model: MODEL });
-        const prompt = [
-            'Handle universally: math/chem/circuits/etc. No pre-built domain-specific hacks.',
-            'You are a Planner Agent. Output STRICT JSON with shape: { "steps": [{ "id": number, "desc": string, "compiler": "js"|"latex"|"wasm-py", "complexity": number, "tag": string }] }',
-            'Guidelines:',
-            '- Use "js" for visual and labeling chunks for browser canvas.',
-            '- Use "latex" only when rendering math labels (client uses MathJax).',
-            '- Use "wasm-py" for heavy numeric simulations (not needed for RC demo).',
-            '- Keep 3-6 steps, stepwise like a teacher writing on a board.',
-            `Query: ${query}`
-        ].join('\\n');
-        const res = await model.generateContent(prompt);
-        const text = res.response.text();
-        const jsonStart = text.indexOf('{');
-        const jsonEnd = text.lastIndexOf('}');
-        if (jsonStart === -1 || jsonEnd === -1) {
-            throw new Error('Planner did not return JSON.');
+        plan = JSON.parse(jsonText);
+        logger_1.logger.debug('[planner] JSON parsed successfully on first attempt');
+    }
+    catch (firstError) {
+        logger_1.logger.debug(`[planner] JSON parse failed, attempting to fix: ${firstError}`);
+        const fixedJson = fixJsonSyntax(jsonText);
+        try {
+            plan = JSON.parse(fixedJson);
+            logger_1.logger.debug('[planner] JSON parsed successfully after syntax fix');
         }
-        const plan = JSON.parse(text.slice(jsonStart, jsonEnd + 1));
-        if (!plan.steps?.length)
-            throw new Error('Empty plan');
-        return plan;
+        catch (secondError) {
+            logger_1.logger.error(`[planner] JSON parse failed completely: ${secondError}`);
+            throw new Error(`Failed to parse planner response: ${secondError}`);
+        }
     }
-    catch (err) {
-        logger_1.logger.debug(`plannerAgent: Gemini error, using fallback. ${String(err)}`);
-        return fallbackPlan;
-    }
+    if (!plan.title || !plan.subtitle)
+        throw new Error('Planner: missing title/subtitle');
+    if (!Array.isArray(plan.toc) || plan.toc.length < 1)
+        throw new Error('Planner: missing toc');
+    if (!Array.isArray(plan.steps) || plan.steps.length !== 5)
+        throw new Error('Planner: steps must be exactly 5');
+    plan.steps.forEach((s, i) => { if (!s.id)
+        s.id = i + 1; });
+    return plan;
 }
