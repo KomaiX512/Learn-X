@@ -12322,3 +12322,862 @@
 2025-09-26T20:20:45.297Z [debug] [gen] END: session=0c437be8-0996-46e0-9e52-ed02bb6b62d6 step=5, emitted chunk
 2025-09-26T20:20:45.298Z [debug] [orchestrator] All steps completed for session 0c437be8-0996-46e0-9e52-ed02bb6b62d6
 2025-09-26T20:28:52.275Z [debug] Shutting down server...
+2025-09-26T21:03:12.552Z [debug] NEW Plan worker created
+2025-09-26T21:03:12.553Z [debug] NEW Gen worker created
+2025-09-26T21:03:12.561Z [debug] Backend listening on http://localhost:3001
+2025-09-26T21:05:02.136Z [debug] Received request on /api/query {"body":{"query":"How does the Fourier transform work?","params":{"style":"3blue1brown","depth":"profound"}}}
+2025-09-26T21:05:02.137Z [debug] [orchestrator] Enqueuing plan for session e0b9ee8a-58d7-4020-ac45-a51ba78ef55b
+2025-09-26T21:05:02.140Z [debug] [orchestrator] Plan job added with id 2 for session e0b9ee8a-58d7-4020-ac45-a51ba78ef55b
+2025-09-26T21:05:02.144Z [debug] [planWorker] Received job: plan id=2
+2025-09-26T21:05:02.144Z [debug] [plan] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b query=How does the Fourier transform work?
+2025-09-26T21:05:02.145Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-26T21:05:02.176Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-26T21:05:02.245Z [debug] [socket] New connection: GZRlwZAhZ8hAisJ_AAAB
+2025-09-26T21:05:02.247Z [debug] [socket] Socket GZRlwZAhZ8hAisJ_AAAB joined session e0b9ee8a-58d7-4020-ac45-a51ba78ef55b
+2025-09-26T21:05:02.247Z [debug] [socket] Socket GZRlwZAhZ8hAisJ_AAAB is now in rooms: GZRlwZAhZ8hAisJ_AAAB, e0b9ee8a-58d7-4020-ac45-a51ba78ef55b
+2025-09-26T21:05:03.248Z [debug] [test] Room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b has 1 sockets
+2025-09-26T21:05:26.458Z [debug] [planner] Received response from Gemini in 24313ms
+2025-09-26T21:05:26.458Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-26T21:05:26.460Z [debug] [plan] OK: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b plan received with 5 steps
+2025-09-26T21:05:26.463Z [debug] [plan] Enqueuing first step emit: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b stepId=1
+2025-09-26T21:05:26.465Z [debug] [plan] END: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b
+2025-09-26T21:05:26.467Z [debug] [genWorker] Received job: gen id=10
+2025-09-26T21:05:26.467Z [debug] [gen] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=1 tag=hook
+2025-09-26T21:05:26.469Z [debug] [codegen] START: stepId=1 tag=hook {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:05:26.470Z [debug] [codegen] Sending prompt to Gemini for tag=hook
+2025-09-26T21:05:26.471Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:06:26.471Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:06:26.472Z [error] [gen] Codegen failed for session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=1: Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:06:26.473Z [debug] [gen] EMITTING to room: e0b9ee8a-58d7-4020-ac45-a51ba78ef55b with 3 actions
+2025-09-26T21:06:26.474Z [debug] [gen] Sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b: 0
+2025-09-26T21:06:26.474Z [warn] [gen] No sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b! Using broadcast fallback.
+2025-09-26T21:06:26.474Z [debug] [gen] END: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=1, emitted chunk
+2025-09-26T21:06:26.477Z [debug] [genWorker] Received job: gen id=11
+2025-09-26T21:06:26.477Z [debug] [gen] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=2 tag=intuition
+2025-09-26T21:06:26.480Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:06:26.480Z [debug] [codegen] Sending prompt to Gemini for tag=intuition
+2025-09-26T21:06:26.480Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:06:36.546Z [debug] [genWorker] Received job: gen id=12
+2025-09-26T21:06:36.546Z [debug] [gen] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=2 tag=intuition
+2025-09-26T21:06:36.547Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:06:36.547Z [debug] [codegen] Sending prompt to Gemini for tag=intuition
+2025-09-26T21:06:36.548Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:07:02.249Z [debug] [socket] Socket GZRlwZAhZ8hAisJ_AAAB disconnected: client namespace disconnect
+2025-09-26T21:07:26.481Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:07:26.483Z [error] [gen:failed] id=11 Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:07:36.549Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:07:36.549Z [error] [gen] Codegen failed for session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=2: Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:07:36.550Z [debug] [gen] EMITTING to room: e0b9ee8a-58d7-4020-ac45-a51ba78ef55b with 3 actions
+2025-09-26T21:07:36.551Z [debug] [gen] Sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b: 0
+2025-09-26T21:07:36.551Z [warn] [gen] No sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b! Using broadcast fallback.
+2025-09-26T21:07:36.552Z [debug] [gen] END: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=2, emitted chunk
+2025-09-26T21:07:36.554Z [debug] [genWorker] Received job: gen id=13
+2025-09-26T21:07:36.554Z [debug] [gen] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=3 tag=formalism
+2025-09-26T21:07:36.556Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:07:36.556Z [debug] [codegen] Sending prompt to Gemini for tag=formalism
+2025-09-26T21:07:36.556Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:07:46.616Z [debug] [genWorker] Received job: gen id=14
+2025-09-26T21:07:46.616Z [debug] [gen] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=3 tag=formalism
+2025-09-26T21:07:46.617Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:07:46.618Z [debug] [codegen] Sending prompt to Gemini for tag=formalism
+2025-09-26T21:07:46.618Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:07:54.260Z [debug] Shutting down server...
+2025-09-26T21:07:54.260Z [debug] Shutting down server...
+2025-09-26T21:07:54.260Z [debug] Shutting down server...
+2025-09-26T21:08:02.217Z [debug] NEW Plan worker created
+2025-09-26T21:08:02.218Z [debug] NEW Gen worker created
+2025-09-26T21:08:02.226Z [debug] Backend listening on http://localhost:3001
+2025-09-26T21:08:24.418Z [debug] Received request on /api/query {"body":{"query":"What is a derivative?","params":{"style":"3blue1brown","depth":"profound"}}}
+2025-09-26T21:08:24.419Z [debug] [orchestrator] Enqueuing plan for session dd2cf69d-5245-4fa8-9204-e74751b0d6eb
+2025-09-26T21:08:24.421Z [debug] [orchestrator] Plan job added with id 3 for session dd2cf69d-5245-4fa8-9204-e74751b0d6eb
+2025-09-26T21:08:24.425Z [debug] [planWorker] Received job: plan id=3
+2025-09-26T21:08:24.425Z [debug] [plan] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb query=What is a derivative?
+2025-09-26T21:08:24.425Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-26T21:08:24.438Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-26T21:08:36.558Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:08:36.559Z [error] [gen:failed] id=13 Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:08:45.750Z [debug] [planner] Received response from Gemini in 21325ms
+2025-09-26T21:08:45.750Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-26T21:08:45.751Z [debug] [plan] OK: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb plan received with 5 steps
+2025-09-26T21:08:45.753Z [debug] [plan] Enqueuing first step emit: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb stepId=1
+2025-09-26T21:08:45.754Z [debug] [plan] END: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb
+2025-09-26T21:08:45.754Z [debug] [genWorker] Received job: gen id=15
+2025-09-26T21:08:45.754Z [debug] [gen] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=1 tag=hook
+2025-09-26T21:08:45.755Z [debug] [codegen] START: stepId=1 tag=hook {"params":{"style":"3blue1brown","depth":"profound"},"query":"What is a derivative?"}
+2025-09-26T21:08:45.755Z [debug] [codegen] Sending prompt to Gemini for tag=hook
+2025-09-26T21:08:45.755Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:08:46.619Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:08:46.620Z [error] [gen] Codegen failed for session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=3: Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:08:46.621Z [debug] [gen] EMITTING to room: e0b9ee8a-58d7-4020-ac45-a51ba78ef55b with 3 actions
+2025-09-26T21:08:46.621Z [debug] [gen] Sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b: 0
+2025-09-26T21:08:46.621Z [warn] [gen] No sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b! Using broadcast fallback.
+2025-09-26T21:08:46.622Z [debug] [gen] END: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=3, emitted chunk
+2025-09-26T21:08:46.626Z [debug] [genWorker] Received job: gen id=16
+2025-09-26T21:08:46.626Z [debug] [gen] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=4 tag=exploration
+2025-09-26T21:08:46.630Z [debug] [codegen] START: stepId=4 tag=exploration {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:08:46.630Z [debug] [codegen] Sending prompt to Gemini for tag=exploration
+2025-09-26T21:08:46.631Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:08:56.675Z [debug] [genWorker] Received job: gen id=17
+2025-09-26T21:08:56.675Z [debug] [gen] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=4 tag=exploration
+2025-09-26T21:08:56.678Z [debug] [codegen] START: stepId=4 tag=exploration {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:08:56.678Z [debug] [codegen] Sending prompt to Gemini for tag=exploration
+2025-09-26T21:08:56.678Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:09:45.266Z [debug] [codegen] Received response from Gemini for tag=exploration, length: 13918
+2025-09-26T21:09:45.267Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:09:45.267Z [debug] [codegen] SUCCESS: Generated 65 actions for step 4
+2025-09-26T21:09:45.267Z [debug] [gen] OK: codegen completed for session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=4 in 48589ms
+2025-09-26T21:09:45.267Z [debug] compilerRouter: routing to js
+2025-09-26T21:09:45.267Z [debug] [debugger] START: Received chunk for stepId=4
+2025-09-26T21:09:45.267Z [debug] [debugger] Chunk is valid with 65 actions, allowing all for rich visualizations
+2025-09-26T21:09:45.277Z [debug] [gen] EMITTING to room: e0b9ee8a-58d7-4020-ac45-a51ba78ef55b with 65 actions
+2025-09-26T21:09:45.277Z [debug] [gen] Sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b: 0
+2025-09-26T21:09:45.277Z [warn] [gen] No sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b! Using broadcast fallback.
+2025-09-26T21:09:45.279Z [debug] [gen] END: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=4, emitted chunk
+2025-09-26T21:09:45.282Z [debug] [genWorker] Received job: gen id=18
+2025-09-26T21:09:45.282Z [debug] [gen] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=5 tag=mastery
+2025-09-26T21:09:45.284Z [debug] [codegen] START: stepId=5 tag=mastery {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:09:45.284Z [debug] [codegen] Sending prompt to Gemini for tag=mastery
+2025-09-26T21:09:45.285Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:09:45.756Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:09:45.756Z [error] [gen] Codegen failed for session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=1: Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:09:45.758Z [debug] [gen] EMITTING to room: dd2cf69d-5245-4fa8-9204-e74751b0d6eb with 3 actions
+2025-09-26T21:09:45.758Z [debug] [gen] Sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb: 0
+2025-09-26T21:09:45.758Z [warn] [gen] No sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb! Using broadcast fallback.
+2025-09-26T21:09:45.759Z [debug] [gen] END: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=1, emitted chunk
+2025-09-26T21:09:45.761Z [debug] [genWorker] Received job: gen id=20
+2025-09-26T21:09:45.761Z [debug] [gen] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=2 tag=intuition
+2025-09-26T21:09:45.763Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown","depth":"profound"},"query":"What is a derivative?"}
+2025-09-26T21:09:45.763Z [debug] [codegen] Sending prompt to Gemini for tag=intuition
+2025-09-26T21:09:45.764Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:09:53.947Z [debug] [codegen] Received response from Gemini for tag=exploration, length: 15956
+2025-09-26T21:09:53.948Z [debug] [codegen] JSON parse failed, attempting to fix: SyntaxError: Expected ',' or ']' after array element in JSON at position 263
+2025-09-26T21:09:53.952Z [error] [codegen] JSON parse failed completely: SyntaxError: Expected ',' or ']' after array element in JSON at position 241
+2025-09-26T21:09:53.993Z [error] [gen:failed] id=16 Error: Failed to parse codegen response: SyntaxError: Expected ',' or ']' after array element in JSON at position 241
+2025-09-26T21:09:55.382Z [debug] [genWorker] Received job: gen id=19
+2025-09-26T21:09:55.383Z [debug] [gen] START: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=5 tag=mastery
+2025-09-26T21:09:55.384Z [debug] [codegen] START: stepId=5 tag=mastery {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:09:55.384Z [debug] [codegen] Sending prompt to Gemini for tag=mastery
+2025-09-26T21:09:55.385Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:09:55.785Z [debug] [genWorker] Received job: gen id=21
+2025-09-26T21:09:55.785Z [debug] [gen] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=2 tag=intuition
+2025-09-26T21:09:55.787Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown","depth":"profound"},"query":"What is a derivative?"}
+2025-09-26T21:09:55.787Z [debug] [codegen] Sending prompt to Gemini for tag=intuition
+2025-09-26T21:09:55.788Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:10:00.224Z [debug] Received request on /api/query {"body":{"query":"How does the Fourier transform work?","params":{"style":"3blue1brown","depth":"profound"}}}
+2025-09-26T21:10:00.225Z [debug] [orchestrator] Enqueuing plan for session ad8f1c1a-74a9-49f7-8230-a4be9149fb50
+2025-09-26T21:10:00.227Z [debug] [orchestrator] Plan job added with id 4 for session ad8f1c1a-74a9-49f7-8230-a4be9149fb50
+2025-09-26T21:10:00.228Z [debug] [planWorker] Received job: plan id=4
+2025-09-26T21:10:00.229Z [debug] [plan] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 query=How does the Fourier transform work?
+2025-09-26T21:10:00.229Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-26T21:10:00.230Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-26T21:10:00.253Z [debug] [socket] New connection: zW9Eo8jrGnXZqTOrAAAB
+2025-09-26T21:10:00.257Z [debug] [socket] Socket zW9Eo8jrGnXZqTOrAAAB joined session ad8f1c1a-74a9-49f7-8230-a4be9149fb50
+2025-09-26T21:10:00.257Z [debug] [socket] Socket zW9Eo8jrGnXZqTOrAAAB is now in rooms: zW9Eo8jrGnXZqTOrAAAB, ad8f1c1a-74a9-49f7-8230-a4be9149fb50
+2025-09-26T21:10:01.258Z [debug] [test] Room ad8f1c1a-74a9-49f7-8230-a4be9149fb50 has 1 sockets
+2025-09-26T21:10:24.402Z [debug] [planner] Received response from Gemini in 24173ms
+2025-09-26T21:10:24.402Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-26T21:10:24.403Z [debug] [plan] OK: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 plan received with 5 steps
+2025-09-26T21:10:24.405Z [debug] [plan] Enqueuing first step emit: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 stepId=1
+2025-09-26T21:10:24.406Z [debug] [plan] END: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50
+2025-09-26T21:10:45.764Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:10:45.766Z [error] [gen:failed] id=20 Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:10:45.767Z [debug] [genWorker] Received job: gen id=22
+2025-09-26T21:10:45.767Z [debug] [gen] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=1 tag=hook
+2025-09-26T21:10:45.768Z [debug] [codegen] START: stepId=1 tag=hook {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:10:45.769Z [debug] [codegen] Sending prompt to Gemini for tag=hook
+2025-09-26T21:10:45.770Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:10:49.323Z [debug] [codegen] Received response from Gemini for tag=mastery, length: 8888
+2025-09-26T21:10:49.324Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:10:49.324Z [debug] [codegen] SUCCESS: Generated 61 actions for step 5
+2025-09-26T21:10:49.324Z [debug] [gen] OK: codegen completed for session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=5 in 53940ms
+2025-09-26T21:10:49.324Z [debug] compilerRouter: routing to js
+2025-09-26T21:10:49.324Z [debug] [debugger] START: Received chunk for stepId=5
+2025-09-26T21:10:49.324Z [debug] [debugger] Chunk is valid with 61 actions, allowing all for rich visualizations
+2025-09-26T21:10:49.329Z [debug] [gen] EMITTING to room: e0b9ee8a-58d7-4020-ac45-a51ba78ef55b with 61 actions
+2025-09-26T21:10:49.330Z [debug] [gen] Sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b: 0
+2025-09-26T21:10:49.330Z [warn] [gen] No sockets in room e0b9ee8a-58d7-4020-ac45-a51ba78ef55b! Using broadcast fallback.
+2025-09-26T21:10:49.331Z [debug] [gen] END: session=e0b9ee8a-58d7-4020-ac45-a51ba78ef55b step=5, emitted chunk
+2025-09-26T21:10:49.331Z [debug] [orchestrator] All steps completed for session e0b9ee8a-58d7-4020-ac45-a51ba78ef55b
+2025-09-26T21:11:00.243Z [debug] [codegen] Received response from Gemini for tag=mastery, length: 11432
+2025-09-26T21:11:00.244Z [debug] [codegen] JSON parse failed, attempting to fix: SyntaxError: Expected ',' or ']' after array element in JSON at position 3535
+2025-09-26T21:11:00.245Z [error] [codegen] JSON parse failed completely: SyntaxError: Expected ',' or ']' after array element in JSON at position 3401
+2025-09-26T21:11:00.247Z [error] [gen:failed] id=18 Error: Failed to parse codegen response: SyntaxError: Expected ',' or ']' after array element in JSON at position 3401
+2025-09-26T21:11:26.696Z [debug] [codegen] Received response from Gemini for tag=hook, length: 4186
+2025-09-26T21:11:26.696Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:11:26.697Z [debug] [codegen] SUCCESS: Generated 21 actions for step 1
+2025-09-26T21:11:26.697Z [debug] [gen] OK: codegen completed for session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=1 in 40929ms
+2025-09-26T21:11:26.697Z [debug] compilerRouter: routing to js
+2025-09-26T21:11:26.697Z [debug] [debugger] START: Received chunk for stepId=1
+2025-09-26T21:11:26.697Z [debug] [debugger] Chunk is valid with 21 actions, allowing all for rich visualizations
+2025-09-26T21:11:26.700Z [debug] [gen] EMITTING to room: ad8f1c1a-74a9-49f7-8230-a4be9149fb50 with 21 actions
+2025-09-26T21:11:26.700Z [debug] [gen] Sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50: 0
+2025-09-26T21:11:26.700Z [warn] [gen] No sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50! Using broadcast fallback.
+2025-09-26T21:11:26.701Z [debug] [gen] END: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=1, emitted chunk
+2025-09-26T21:11:26.704Z [debug] [genWorker] Received job: gen id=23
+2025-09-26T21:11:26.704Z [debug] [gen] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=2 tag=intuition
+2025-09-26T21:11:26.706Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:11:26.706Z [debug] [codegen] Sending prompt to Gemini for tag=intuition
+2025-09-26T21:11:26.706Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:11:36.757Z [debug] [genWorker] Received job: gen id=24
+2025-09-26T21:11:36.758Z [debug] [gen] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=2 tag=intuition
+2025-09-26T21:11:36.759Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:11:36.759Z [debug] [codegen] Sending prompt to Gemini for tag=intuition
+2025-09-26T21:11:36.759Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:11:49.249Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 12246
+2025-09-26T21:11:49.249Z [debug] [codegen] JSON parse failed, attempting to fix: SyntaxError: Unexpected token '/', ..."2 },
+
+    // 1. Setu"... is not valid JSON
+2025-09-26T21:11:49.250Z [error] [codegen] JSON parse failed completely: SyntaxError: Unexpected token '/', ..."on": 2 }, // 1. Setu"... is not valid JSON
+2025-09-26T21:11:49.250Z [error] [gen] Codegen failed for session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=2: Error: Failed to parse codegen response: SyntaxError: Unexpected token '/', ..."on": 2 }, // 1. Setu"... is not valid JSON
+2025-09-26T21:11:49.257Z [debug] [gen] EMITTING to room: dd2cf69d-5245-4fa8-9204-e74751b0d6eb with 3 actions
+2025-09-26T21:11:49.257Z [debug] [gen] Sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb: 0
+2025-09-26T21:11:49.257Z [warn] [gen] No sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb! Using broadcast fallback.
+2025-09-26T21:11:49.258Z [debug] [gen] END: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=2, emitted chunk
+2025-09-26T21:11:49.260Z [debug] [orchestrator] Progressing to step 3/5 with 12000ms delay
+2025-09-26T21:11:49.263Z [debug] [genWorker] Received job: gen id=25
+2025-09-26T21:11:49.263Z [debug] [gen] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=3 tag=formalism
+2025-09-26T21:11:49.265Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown","depth":"profound"},"query":"What is a derivative?"}
+2025-09-26T21:11:49.265Z [debug] [codegen] Sending prompt to Gemini for tag=formalism
+2025-09-26T21:11:49.266Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:12:00.296Z [debug] [socket] Socket zW9Eo8jrGnXZqTOrAAAB disconnected: client namespace disconnect
+2025-09-26T21:12:01.330Z [debug] [genWorker] Received job: gen id=26
+2025-09-26T21:12:01.331Z [debug] [gen] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=3 tag=formalism
+2025-09-26T21:12:01.332Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown","depth":"profound"},"query":"What is a derivative?"}
+2025-09-26T21:12:01.333Z [debug] [codegen] Sending prompt to Gemini for tag=formalism
+2025-09-26T21:12:01.333Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:12:23.469Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 8576
+2025-09-26T21:12:23.469Z [debug] [codegen] JSON parse failed, attempting to fix: SyntaxError: Expected ',' or ']' after array element in JSON at position 5813
+2025-09-26T21:12:23.471Z [error] [codegen] JSON parse failed completely: SyntaxError: Expected ',' or ']' after array element in JSON at position 5097
+2025-09-26T21:12:23.473Z [error] [gen:failed] id=23 Error: Failed to parse codegen response: SyntaxError: Expected ',' or ']' after array element in JSON at position 5097
+2025-09-26T21:12:36.761Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:12:36.762Z [error] [gen] Codegen failed for session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=2: Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:12:36.763Z [debug] [gen] EMITTING to room: ad8f1c1a-74a9-49f7-8230-a4be9149fb50 with 3 actions
+2025-09-26T21:12:36.763Z [debug] [gen] Sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50: 0
+2025-09-26T21:12:36.763Z [warn] [gen] No sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50! Using broadcast fallback.
+2025-09-26T21:12:36.763Z [debug] [gen] END: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=2, emitted chunk
+2025-09-26T21:12:36.766Z [debug] [genWorker] Received job: gen id=27
+2025-09-26T21:12:36.766Z [debug] [gen] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=3 tag=formalism
+2025-09-26T21:12:36.768Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:12:36.768Z [debug] [codegen] Sending prompt to Gemini for tag=formalism
+2025-09-26T21:12:36.768Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:12:46.843Z [debug] [genWorker] Received job: gen id=28
+2025-09-26T21:12:46.843Z [debug] [gen] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=3 tag=formalism
+2025-09-26T21:12:46.845Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:12:46.845Z [debug] [codegen] Sending prompt to Gemini for tag=formalism
+2025-09-26T21:12:46.845Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:13:24.624Z [debug] [codegen] Received response from Gemini for tag=formalism, length: 19311
+2025-09-26T21:13:24.625Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:13:24.625Z [debug] [codegen] SUCCESS: Generated 63 actions for step 3
+2025-09-26T21:13:24.625Z [debug] [gen] OK: codegen completed for session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=3 in 83293ms
+2025-09-26T21:13:24.626Z [debug] compilerRouter: routing to js
+2025-09-26T21:13:24.626Z [debug] [debugger] START: Received chunk for stepId=3
+2025-09-26T21:13:24.626Z [debug] [debugger] Chunk is valid with 63 actions, allowing all for rich visualizations
+2025-09-26T21:13:24.641Z [debug] [gen] EMITTING to room: dd2cf69d-5245-4fa8-9204-e74751b0d6eb with 63 actions
+2025-09-26T21:13:24.642Z [debug] [gen] Sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb: 0
+2025-09-26T21:13:24.642Z [warn] [gen] No sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb! Using broadcast fallback.
+2025-09-26T21:13:24.643Z [debug] [gen] END: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=3, emitted chunk
+2025-09-26T21:13:24.644Z [debug] [orchestrator] Progressing to step 4/5 with 15000ms delay
+2025-09-26T21:13:24.648Z [debug] [genWorker] Received job: gen id=29
+2025-09-26T21:13:24.649Z [debug] [gen] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=4 tag=exploration
+2025-09-26T21:13:24.650Z [debug] [codegen] START: stepId=4 tag=exploration {"params":{"style":"3blue1brown","depth":"profound"},"query":"What is a derivative?"}
+2025-09-26T21:13:24.651Z [debug] [codegen] Sending prompt to Gemini for tag=exploration
+2025-09-26T21:13:24.651Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:13:25.290Z [debug] [socket] New connection: 7iPKUK3erq_TQ2tCAAAD
+2025-09-26T21:13:27.821Z [debug] [codegen] Received response from Gemini for tag=formalism, length: 10377
+2025-09-26T21:13:27.821Z [debug] [codegen] JSON parse failed, attempting to fix: SyntaxError: Unexpected token '(', ...""points": (function("... is not valid JSON
+2025-09-26T21:13:27.822Z [error] [codegen] JSON parse failed completely: SyntaxError: Unexpected token '(', ...""points": (function("... is not valid JSON
+2025-09-26T21:13:27.825Z [error] [gen:failed] id=25 Error: Failed to parse codegen response: SyntaxError: Unexpected token '(', ...""points": (function("... is not valid JSON
+2025-09-26T21:13:34.579Z [debug] Received request on /api/query {"body":{"query":"What is a sine wave?","params":{"style":"3blue1brown"}}}
+2025-09-26T21:13:34.579Z [debug] [orchestrator] Enqueuing plan for session fa19c9b3-7b51-4e90-b766-01639b9c6313
+2025-09-26T21:13:34.580Z [debug] [orchestrator] Plan job added with id 5 for session fa19c9b3-7b51-4e90-b766-01639b9c6313
+2025-09-26T21:13:34.581Z [debug] [planWorker] Received job: plan id=5
+2025-09-26T21:13:34.581Z [debug] [plan] START: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 query=What is a sine wave?
+2025-09-26T21:13:34.582Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-26T21:13:34.583Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-26T21:13:36.770Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:13:36.772Z [error] [gen:failed] id=27 Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:13:39.688Z [debug] [genWorker] Received job: gen id=30
+2025-09-26T21:13:39.688Z [debug] [gen] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=4 tag=exploration
+2025-09-26T21:13:39.689Z [debug] [codegen] START: stepId=4 tag=exploration {"params":{"style":"3blue1brown","depth":"profound"},"query":"What is a derivative?"}
+2025-09-26T21:13:39.689Z [debug] [codegen] Sending prompt to Gemini for tag=exploration
+2025-09-26T21:13:39.690Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:13:46.846Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:13:46.846Z [error] [gen] Codegen failed for session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=3: Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:13:46.847Z [debug] [gen] EMITTING to room: ad8f1c1a-74a9-49f7-8230-a4be9149fb50 with 3 actions
+2025-09-26T21:13:46.848Z [debug] [gen] Sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50: 0
+2025-09-26T21:13:46.848Z [warn] [gen] No sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50! Using broadcast fallback.
+2025-09-26T21:13:46.849Z [debug] [gen] END: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=3, emitted chunk
+2025-09-26T21:13:46.852Z [debug] [genWorker] Received job: gen id=31
+2025-09-26T21:13:46.852Z [debug] [gen] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=4 tag=exploration
+2025-09-26T21:13:46.854Z [debug] [codegen] START: stepId=4 tag=exploration {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:13:46.855Z [debug] [codegen] Sending prompt to Gemini for tag=exploration
+2025-09-26T21:13:46.855Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:13:53.640Z [debug] [planner] Received response from Gemini in 19058ms
+2025-09-26T21:13:53.640Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-26T21:13:53.641Z [debug] [plan] OK: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 plan received with 5 steps
+2025-09-26T21:13:53.642Z [debug] [plan] Enqueuing first step emit: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 stepId=1
+2025-09-26T21:13:53.644Z [debug] [plan] END: session=fa19c9b3-7b51-4e90-b766-01639b9c6313
+2025-09-26T21:13:53.645Z [debug] [genWorker] Received job: gen id=33
+2025-09-26T21:13:53.646Z [debug] [gen] START: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=1 tag=hook
+2025-09-26T21:13:53.647Z [debug] [codegen] START: stepId=1 tag=hook {"params":{"style":"3blue1brown"},"query":"What is a sine wave?"}
+2025-09-26T21:13:53.647Z [debug] [codegen] Sending prompt to Gemini for tag=hook
+2025-09-26T21:13:53.647Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:14:31.363Z [debug] [codegen] Received response from Gemini for tag=hook, length: 4472
+2025-09-26T21:14:31.363Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:14:31.363Z [debug] [codegen] SUCCESS: Generated 30 actions for step 1
+2025-09-26T21:14:31.364Z [debug] [gen] OK: codegen completed for session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=1 in 37717ms
+2025-09-26T21:14:31.364Z [debug] compilerRouter: routing to js
+2025-09-26T21:14:31.364Z [debug] [debugger] START: Received chunk for stepId=1
+2025-09-26T21:14:31.364Z [debug] [debugger] Chunk is valid with 30 actions, allowing all for rich visualizations
+2025-09-26T21:14:31.367Z [debug] [gen] EMITTING to room: fa19c9b3-7b51-4e90-b766-01639b9c6313 with 30 actions
+2025-09-26T21:14:31.367Z [debug] [gen] Sockets in room fa19c9b3-7b51-4e90-b766-01639b9c6313: 0
+2025-09-26T21:14:31.367Z [warn] [gen] No sockets in room fa19c9b3-7b51-4e90-b766-01639b9c6313! Using broadcast fallback.
+2025-09-26T21:14:31.368Z [debug] [gen] END: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=1, emitted chunk
+2025-09-26T21:14:31.372Z [debug] [genWorker] Received job: gen id=34
+2025-09-26T21:14:31.372Z [debug] [gen] START: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=2 tag=intuition
+2025-09-26T21:14:31.373Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown"},"query":"What is a sine wave?"}
+2025-09-26T21:14:31.373Z [debug] [codegen] Sending prompt to Gemini for tag=intuition
+2025-09-26T21:14:31.374Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:14:39.691Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:14:39.691Z [error] [gen] Codegen failed for session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=4: Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:14:39.692Z [debug] [gen] EMITTING to room: dd2cf69d-5245-4fa8-9204-e74751b0d6eb with 3 actions
+2025-09-26T21:14:39.692Z [debug] [gen] Sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb: 0
+2025-09-26T21:14:39.692Z [warn] [gen] No sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb! Using broadcast fallback.
+2025-09-26T21:14:39.693Z [debug] [gen] END: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=4, emitted chunk
+2025-09-26T21:14:39.697Z [debug] [genWorker] Received job: gen id=32
+2025-09-26T21:14:39.697Z [debug] [gen] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=4 tag=exploration
+2025-09-26T21:14:39.698Z [debug] [codegen] START: stepId=4 tag=exploration {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:14:39.698Z [debug] [codegen] Sending prompt to Gemini for tag=exploration
+2025-09-26T21:14:39.699Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:14:41.113Z [debug] [codegen] Received response from Gemini for tag=exploration, length: 12661
+2025-09-26T21:14:41.114Z [debug] [codegen] JSON parse failed, attempting to fix: SyntaxError: Unexpected token '(', ...""points": (function("... is not valid JSON
+2025-09-26T21:14:41.115Z [error] [codegen] JSON parse failed completely: SyntaxError: Unexpected token '(', ...""points": (function("... is not valid JSON
+2025-09-26T21:14:41.116Z [error] [gen:failed] id=31 Error: Failed to parse codegen response: SyntaxError: Unexpected token '(', ...""points": (function("... is not valid JSON
+2025-09-26T21:14:41.117Z [debug] [genWorker] Received job: gen id=36
+2025-09-26T21:14:41.117Z [debug] [gen] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=5 tag=mastery
+2025-09-26T21:14:41.118Z [debug] [codegen] START: stepId=5 tag=mastery {"params":{"style":"3blue1brown","depth":"profound"},"query":"What is a derivative?"}
+2025-09-26T21:14:41.118Z [debug] [codegen] Sending prompt to Gemini for tag=mastery
+2025-09-26T21:14:41.118Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:15:14.915Z [debug] [codegen] Received response from Gemini for tag=mastery, length: 7901
+2025-09-26T21:15:14.916Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:15:14.916Z [debug] [codegen] SUCCESS: Generated 70 actions for step 5
+2025-09-26T21:15:14.916Z [debug] [gen] OK: prefetch codegen completed for session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=5 in 33798ms
+2025-09-26T21:15:14.916Z [debug] compilerRouter: routing to js
+2025-09-26T21:15:14.916Z [debug] [debugger] START: Received chunk for stepId=5
+2025-09-26T21:15:14.916Z [debug] [debugger] Chunk is valid with 70 actions, allowing all for rich visualizations
+2025-09-26T21:15:14.917Z [debug] [gen] Prefetched and cached session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=5
+2025-09-26T21:15:14.919Z [debug] [genWorker] Received job: gen id=35
+2025-09-26T21:15:14.919Z [debug] [gen] START: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=2 tag=intuition
+2025-09-26T21:15:14.921Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown"},"query":"What is a sine wave?"}
+2025-09-26T21:15:14.921Z [debug] [codegen] Sending prompt to Gemini for tag=intuition
+2025-09-26T21:15:14.922Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:15:20.599Z [debug] [codegen] Received response from Gemini for tag=exploration, length: 14321
+2025-09-26T21:15:20.600Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:15:20.600Z [debug] [codegen] SUCCESS: Generated 86 actions for step 4
+2025-09-26T21:15:20.600Z [debug] [gen] OK: prefetch codegen completed for session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=4 in 115950ms
+2025-09-26T21:15:20.600Z [debug] compilerRouter: routing to js
+2025-09-26T21:15:20.600Z [debug] [debugger] START: Received chunk for stepId=4
+2025-09-26T21:15:20.600Z [debug] [debugger] Chunk is valid with 86 actions, allowing all for rich visualizations
+2025-09-26T21:15:20.602Z [debug] [gen] Prefetched and cached session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=4
+2025-09-26T21:15:20.604Z [debug] [genWorker] Received job: gen id=37
+2025-09-26T21:15:20.604Z [debug] [gen] START: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=5 tag=mastery
+2025-09-26T21:15:20.606Z [debug] [gen] Using cached chunk for session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=5
+2025-09-26T21:15:20.611Z [debug] [gen] EMITTING to room: dd2cf69d-5245-4fa8-9204-e74751b0d6eb with 70 actions
+2025-09-26T21:15:20.611Z [debug] [gen] Sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb: 0
+2025-09-26T21:15:20.611Z [warn] [gen] No sockets in room dd2cf69d-5245-4fa8-9204-e74751b0d6eb! Using broadcast fallback.
+2025-09-26T21:15:20.613Z [debug] [gen] END: session=dd2cf69d-5245-4fa8-9204-e74751b0d6eb step=5, emitted chunk
+2025-09-26T21:15:20.613Z [debug] [orchestrator] 🎆 Learning journey completed for session dd2cf69d-5245-4fa8-9204-e74751b0d6eb
+2025-09-26T21:15:31.374Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:15:31.376Z [error] [gen:failed] id=34 Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:15:39.701Z [debug] [timeout] codegen/gemini timed out after 60000ms
+2025-09-26T21:15:39.701Z [error] [gen] Codegen failed for session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=4: Error: codegen/gemini timeout after 60000ms
+2025-09-26T21:15:39.702Z [debug] [gen] EMITTING to room: ad8f1c1a-74a9-49f7-8230-a4be9149fb50 with 3 actions
+2025-09-26T21:15:39.703Z [debug] [gen] Sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50: 0
+2025-09-26T21:15:39.703Z [warn] [gen] No sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50! Using broadcast fallback.
+2025-09-26T21:15:39.703Z [debug] [gen] END: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=4, emitted chunk
+2025-09-26T21:15:39.706Z [debug] [genWorker] Received job: gen id=38
+2025-09-26T21:15:39.706Z [debug] [gen] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=5 tag=mastery
+2025-09-26T21:15:39.708Z [debug] [codegen] START: stepId=5 tag=mastery {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:15:39.708Z [debug] [codegen] Sending prompt to Gemini for tag=mastery
+2025-09-26T21:15:39.708Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:15:49.772Z [debug] [genWorker] Received job: gen id=39
+2025-09-26T21:15:49.772Z [debug] [gen] START: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=5 tag=mastery
+2025-09-26T21:15:49.773Z [debug] [codegen] START: stepId=5 tag=mastery {"params":{"style":"3blue1brown","depth":"profound"},"query":"How does the Fourier transform work?"}
+2025-09-26T21:15:49.774Z [debug] [codegen] Sending prompt to Gemini for tag=mastery
+2025-09-26T21:15:49.774Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:16:14.583Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 5920
+2025-09-26T21:16:14.583Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:16:14.583Z [debug] [codegen] SUCCESS: Generated 42 actions for step 2
+2025-09-26T21:16:14.583Z [debug] [gen] OK: codegen completed for session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=2 in 59662ms
+2025-09-26T21:16:14.583Z [debug] compilerRouter: routing to js
+2025-09-26T21:16:14.584Z [debug] [debugger] START: Received chunk for stepId=2
+2025-09-26T21:16:14.584Z [debug] [debugger] Chunk is valid with 42 actions, allowing all for rich visualizations
+2025-09-26T21:16:14.590Z [debug] [gen] EMITTING to room: fa19c9b3-7b51-4e90-b766-01639b9c6313 with 42 actions
+2025-09-26T21:16:14.590Z [debug] [gen] Sockets in room fa19c9b3-7b51-4e90-b766-01639b9c6313: 0
+2025-09-26T21:16:14.590Z [warn] [gen] No sockets in room fa19c9b3-7b51-4e90-b766-01639b9c6313! Using broadcast fallback.
+2025-09-26T21:16:14.591Z [debug] [gen] END: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=2, emitted chunk
+2025-09-26T21:16:14.591Z [debug] [orchestrator] Progressing to step 3/5 with 12000ms delay
+2025-09-26T21:16:14.594Z [debug] [genWorker] Received job: gen id=40
+2025-09-26T21:16:14.594Z [debug] [gen] START: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=3 tag=formalism
+2025-09-26T21:16:14.596Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown"},"query":"What is a sine wave?"}
+2025-09-26T21:16:14.596Z [debug] [codegen] Sending prompt to Gemini for tag=formalism
+2025-09-26T21:16:14.596Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:16:17.147Z [debug] [codegen] Received response from Gemini for tag=mastery, length: 9344
+2025-09-26T21:16:17.147Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:16:17.148Z [debug] [codegen] SUCCESS: Generated 74 actions for step 5
+2025-09-26T21:16:17.148Z [debug] [gen] OK: prefetch codegen completed for session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=5 in 37440ms
+2025-09-26T21:16:17.148Z [debug] compilerRouter: routing to js
+2025-09-26T21:16:17.148Z [debug] [debugger] START: Received chunk for stepId=5
+2025-09-26T21:16:17.148Z [debug] [debugger] Chunk is valid with 74 actions, allowing all for rich visualizations
+2025-09-26T21:16:17.150Z [debug] [gen] Prefetched and cached session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=5
+2025-09-26T21:16:24.970Z [debug] [codegen] Received response from Gemini for tag=mastery, length: 8808
+2025-09-26T21:16:24.971Z [debug] [codegen] JSON parsed successfully on first attempt
+2025-09-26T21:16:24.971Z [debug] [codegen] SUCCESS: Generated 66 actions for step 5
+2025-09-26T21:16:24.971Z [debug] [gen] OK: codegen completed for session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=5 in 35198ms
+2025-09-26T21:16:24.971Z [debug] compilerRouter: routing to js
+2025-09-26T21:16:24.971Z [debug] [debugger] START: Received chunk for stepId=5
+2025-09-26T21:16:24.971Z [debug] [debugger] Chunk is valid with 66 actions, allowing all for rich visualizations
+2025-09-26T21:16:24.976Z [debug] [gen] EMITTING to room: ad8f1c1a-74a9-49f7-8230-a4be9149fb50 with 66 actions
+2025-09-26T21:16:24.976Z [debug] [gen] Sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50: 0
+2025-09-26T21:16:24.976Z [warn] [gen] No sockets in room ad8f1c1a-74a9-49f7-8230-a4be9149fb50! Using broadcast fallback.
+2025-09-26T21:16:24.977Z [debug] [gen] END: session=ad8f1c1a-74a9-49f7-8230-a4be9149fb50 step=5, emitted chunk
+2025-09-26T21:16:24.977Z [debug] [orchestrator] All steps completed for session ad8f1c1a-74a9-49f7-8230-a4be9149fb50
+2025-09-26T21:16:26.629Z [debug] [genWorker] Received job: gen id=41
+2025-09-26T21:16:26.630Z [debug] [gen] START: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=3 tag=formalism
+2025-09-26T21:16:26.631Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown"},"query":"What is a sine wave?"}
+2025-09-26T21:16:26.631Z [debug] [codegen] Sending prompt to Gemini for tag=formalism
+2025-09-26T21:16:26.632Z [debug] [timeout] Setting 60000ms timeout for codegen/gemini
+2025-09-26T21:21:00.652Z [debug] NEW Plan worker created
+2025-09-26T21:21:00.654Z [debug] NEW Gen worker created
+2025-09-26T21:21:00.661Z [debug] Backend listening on http://localhost:3001
+2025-09-26T21:21:19.325Z [debug] [socket] New connection: tfnhDgKSqjN-RRqQAAAB
+2025-09-26T21:21:19.337Z [debug] Received request on /api/query {"body":{"query":"What is a derivative?","params":{"style":"3blue1brown"}}}
+2025-09-26T21:21:19.339Z [debug] [orchestrator] Enqueuing plan for session 5d097fbc-9866-4c28-a95a-d45d4ad6b944
+2025-09-26T21:21:19.341Z [debug] [orchestrator] Plan job added with id 6 for session 5d097fbc-9866-4c28-a95a-d45d4ad6b944
+2025-09-26T21:21:19.345Z [debug] [planWorker] Received job: plan id=6
+2025-09-26T21:21:19.345Z [debug] [plan] START: session=5d097fbc-9866-4c28-a95a-d45d4ad6b944 query=What is a derivative?
+2025-09-26T21:21:19.346Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-26T21:21:19.366Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-26T21:21:30.681Z [debug] [genWorker] Received job: gen id=41
+2025-09-26T21:21:30.682Z [debug] [gen] START: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=3 tag=formalism
+2025-09-26T21:21:30.682Z [debug] [genWorker] Received job: gen id=40
+2025-09-26T21:21:30.683Z [debug] [gen] START: session=fa19c9b3-7b51-4e90-b766-01639b9c6313 step=3 tag=formalism
+2025-09-26T21:21:30.686Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown"},"query":"What is a sine wave?"}
+2025-09-26T21:21:30.687Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=formalism
+2025-09-26T21:21:30.687Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:21:30.692Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{"style":"3blue1brown"},"query":"What is a sine wave?"}
+2025-09-26T21:21:30.692Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=formalism
+2025-09-26T21:21:30.693Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:21:34.350Z [debug] Received request on /api/query {"body":{"query":"How does recursion work?","params":{"style":"3blue1brown"}}}
+2025-09-26T21:21:34.350Z [debug] [orchestrator] Enqueuing plan for session b427f38c-2ca6-438d-997a-cd7f27125116
+2025-09-26T21:21:34.351Z [debug] [orchestrator] Plan job added with id 7 for session b427f38c-2ca6-438d-997a-cd7f27125116
+2025-09-26T21:21:34.976Z [debug] [planner] Received response from Gemini in 15630ms
+2025-09-26T21:21:34.977Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-26T21:21:34.998Z [debug] [plan] OK: session=5d097fbc-9866-4c28-a95a-d45d4ad6b944 plan received with 5 steps
+2025-09-26T21:21:35.001Z [debug] [plan] Enqueuing first step emit: session=5d097fbc-9866-4c28-a95a-d45d4ad6b944 stepId=1
+2025-09-26T21:21:35.003Z [debug] [plan] END: session=5d097fbc-9866-4c28-a95a-d45d4ad6b944
+2025-09-26T21:21:35.006Z [debug] [planWorker] Received job: plan id=7
+2025-09-26T21:21:35.006Z [debug] [plan] START: session=b427f38c-2ca6-438d-997a-cd7f27125116 query=How does recursion work?
+2025-09-26T21:21:35.006Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-26T21:21:35.006Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-26T21:21:35.008Z [debug] Shutting down server...
+2025-09-26T21:21:53.852Z [debug] [planner] Received response from Gemini in 18846ms
+2025-09-26T21:21:53.853Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-26T21:21:53.854Z [debug] [plan] OK: session=b427f38c-2ca6-438d-997a-cd7f27125116 plan received with 5 steps
+2025-09-26T21:21:53.855Z [debug] [plan] Enqueuing first step emit: session=b427f38c-2ca6-438d-997a-cd7f27125116 stepId=1
+2025-09-26T21:21:53.857Z [debug] [plan] END: session=b427f38c-2ca6-438d-997a-cd7f27125116
+2025-09-26T21:22:34.399Z [debug] [socket] Socket tfnhDgKSqjN-RRqQAAAB disconnected: forced close
+2025-09-26T21:25:26.653Z [debug] NEW Plan worker created
+2025-09-26T21:25:26.655Z [debug] NEW Gen worker created
+2025-09-26T21:25:26.662Z [debug] Backend listening on http://localhost:3001
+2025-09-26T21:25:26.680Z [debug] [genWorker] Received job: gen id=42
+2025-09-26T21:25:26.680Z [debug] [gen] START: session=5d097fbc-9866-4c28-a95a-d45d4ad6b944 step=1 tag=hook
+2025-09-26T21:25:26.680Z [debug] [genWorker] Received job: gen id=43
+2025-09-26T21:25:26.680Z [debug] [gen] START: session=b427f38c-2ca6-438d-997a-cd7f27125116 step=1 tag=hook
+2025-09-26T21:25:26.682Z [debug] [codegen] START: stepId=1 tag=hook {"params":{"style":"3blue1brown"},"query":"What is a derivative?"}
+2025-09-26T21:25:26.682Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=hook
+2025-09-26T21:25:26.693Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:25:26.723Z [debug] [codegen] START: stepId=1 tag=hook {"params":{"style":"3blue1brown"},"query":"How does recursion work?"}
+2025-09-26T21:25:26.723Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=hook
+2025-09-26T21:25:26.723Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:25:27.443Z [debug] [socket] New connection: chJ4nkTqYuX1WxS-AAAB
+2025-09-26T21:26:03.382Z [debug] [codegen] Received response from Gemini for tag=hook, length: 3449
+2025-09-26T21:26:03.383Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:26:03.384Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:26:03.384Z [debug] [codegen] JSON parsed successfully on attempt 1
+2025-09-26T21:26:03.384Z [debug] [codegen] SUCCESS: Generated 26 actions for step 1
+2025-09-26T21:26:03.384Z [debug] [gen] OK: codegen completed for session=b427f38c-2ca6-438d-997a-cd7f27125116 step=1 in 36662ms
+2025-09-26T21:26:03.385Z [debug] compilerRouter: routing to js
+2025-09-26T21:26:03.385Z [debug] [debugger] START: Received chunk for stepId=1
+2025-09-26T21:26:03.385Z [debug] [debugger] Chunk is valid with 26 actions, allowing all for rich visualizations
+2025-09-26T21:26:03.391Z [debug] [gen] EMITTING to room: b427f38c-2ca6-438d-997a-cd7f27125116 with 26 actions
+2025-09-26T21:26:03.391Z [debug] [gen] Sockets in room b427f38c-2ca6-438d-997a-cd7f27125116: 0
+2025-09-26T21:26:03.391Z [warn] [gen] No sockets in room b427f38c-2ca6-438d-997a-cd7f27125116! Using broadcast fallback.
+2025-09-26T21:26:03.392Z [debug] [gen] END: session=b427f38c-2ca6-438d-997a-cd7f27125116 step=1, emitted chunk
+2025-09-26T21:26:03.393Z [debug] [orchestrator] Progressing to step 2/5 with 8000ms delay
+2025-09-26T21:26:03.444Z [error] [gen:failed] id=41 UnrecoverableError: job stalled more than allowable limit
+2025-09-26T21:26:03.447Z [error] [gen:failed] id=40 UnrecoverableError: job stalled more than allowable limit
+2025-09-26T21:26:03.448Z [debug] [genWorker] Received job: gen id=44
+2025-09-26T21:26:03.448Z [debug] [gen] START: session=b427f38c-2ca6-438d-997a-cd7f27125116 step=2 tag=intuition
+2025-09-26T21:26:03.449Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown"},"query":"How does recursion work?"}
+2025-09-26T21:26:03.450Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:26:03.450Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:26:06.252Z [debug] Received request on /api/query {"body":{"query":"What is Pi?","params":{"style":"3blue1brown"}}}
+2025-09-26T21:26:06.253Z [debug] [orchestrator] Enqueuing plan for session 8d5402e8-9468-4d1d-b9f0-2d14d77d066d
+2025-09-26T21:26:06.255Z [debug] [orchestrator] Plan job added with id 8 for session 8d5402e8-9468-4d1d-b9f0-2d14d77d066d
+2025-09-26T21:26:06.257Z [debug] [planWorker] Received job: plan id=8
+2025-09-26T21:26:06.257Z [debug] [plan] START: session=8d5402e8-9468-4d1d-b9f0-2d14d77d066d query=What is Pi?
+2025-09-26T21:26:06.258Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-26T21:26:06.258Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-26T21:26:17.103Z [debug] [planner] Received response from Gemini in 10845ms
+2025-09-26T21:26:17.103Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-26T21:26:17.105Z [debug] [plan] OK: session=8d5402e8-9468-4d1d-b9f0-2d14d77d066d plan received with 5 steps
+2025-09-26T21:26:17.107Z [debug] [plan] Enqueuing first step emit: session=8d5402e8-9468-4d1d-b9f0-2d14d77d066d stepId=1
+2025-09-26T21:26:17.108Z [debug] [plan] END: session=8d5402e8-9468-4d1d-b9f0-2d14d77d066d
+2025-09-26T21:26:34.321Z [debug] [codegen] Received response from Gemini for tag=hook, length: 3661
+2025-09-26T21:26:34.322Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:26:34.322Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:26:34.323Z [debug] [codegen] JSON parsed successfully on attempt 1
+2025-09-26T21:26:34.323Z [debug] [codegen] SUCCESS: Generated 24 actions for step 1
+2025-09-26T21:26:34.323Z [debug] [gen] OK: codegen completed for session=5d097fbc-9866-4c28-a95a-d45d4ad6b944 step=1 in 67642ms
+2025-09-26T21:26:34.323Z [debug] compilerRouter: routing to js
+2025-09-26T21:26:34.323Z [debug] [debugger] START: Received chunk for stepId=1
+2025-09-26T21:26:34.323Z [debug] [debugger] Chunk is valid with 24 actions, allowing all for rich visualizations
+2025-09-26T21:26:34.329Z [debug] [gen] EMITTING to room: 5d097fbc-9866-4c28-a95a-d45d4ad6b944 with 24 actions
+2025-09-26T21:26:34.329Z [debug] [gen] Sockets in room 5d097fbc-9866-4c28-a95a-d45d4ad6b944: 0
+2025-09-26T21:26:34.329Z [warn] [gen] No sockets in room 5d097fbc-9866-4c28-a95a-d45d4ad6b944! Using broadcast fallback.
+2025-09-26T21:26:34.330Z [debug] [gen] END: session=5d097fbc-9866-4c28-a95a-d45d4ad6b944 step=1, emitted chunk
+2025-09-26T21:26:34.331Z [debug] [orchestrator] Progressing to step 2/5 with 8000ms delay
+2025-09-26T21:26:34.335Z [debug] [genWorker] Received job: gen id=46
+2025-09-26T21:26:34.335Z [debug] [gen] START: session=8d5402e8-9468-4d1d-b9f0-2d14d77d066d step=1 tag=hook
+2025-09-26T21:26:34.337Z [debug] [codegen] START: stepId=1 tag=hook {"params":{"style":"3blue1brown"},"query":"What is Pi?"}
+2025-09-26T21:26:34.337Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=hook
+2025-09-26T21:26:34.338Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:27:36.239Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 13248
+2025-09-26T21:27:36.239Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:27:36.241Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:27:36.241Z [warn] [codegen] Attempt 1 failed: SyntaxError: Bad escaped character in JSON at position 1627
+2025-09-26T21:27:37.243Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:27:37.243Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:28:34.338Z [debug] [timeout] codegen/gemini timed out after 120000ms
+2025-09-26T21:28:34.339Z [warn] [codegen] Attempt 1 failed completely: Error: codegen/gemini timeout after 120000ms
+2025-09-26T21:28:35.340Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=hook
+2025-09-26T21:28:35.341Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:29:06.387Z [debug] [codegen] Received response from Gemini for tag=hook, length: 4142
+2025-09-26T21:29:06.387Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:29:06.388Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:29:06.389Z [debug] [codegen] JSON parsed successfully on attempt 2
+2025-09-26T21:29:06.389Z [debug] [codegen] SUCCESS: Generated 39 actions for step 1
+2025-09-26T21:29:06.389Z [debug] [gen] OK: codegen completed for session=8d5402e8-9468-4d1d-b9f0-2d14d77d066d step=1 in 152052ms
+2025-09-26T21:29:06.389Z [debug] compilerRouter: routing to js
+2025-09-26T21:29:06.389Z [debug] [debugger] START: Received chunk for stepId=1
+2025-09-26T21:29:06.389Z [debug] [debugger] Chunk is valid with 39 actions, allowing all for rich visualizations
+2025-09-26T21:29:06.394Z [debug] [gen] EMITTING to room: 8d5402e8-9468-4d1d-b9f0-2d14d77d066d with 39 actions
+2025-09-26T21:29:06.394Z [debug] [gen] Sockets in room 8d5402e8-9468-4d1d-b9f0-2d14d77d066d: 0
+2025-09-26T21:29:06.394Z [warn] [gen] No sockets in room 8d5402e8-9468-4d1d-b9f0-2d14d77d066d! Using broadcast fallback.
+2025-09-26T21:29:06.395Z [debug] [gen] END: session=8d5402e8-9468-4d1d-b9f0-2d14d77d066d step=1, emitted chunk
+2025-09-26T21:29:06.395Z [debug] [orchestrator] Progressing to step 2/5 with 8000ms delay
+2025-09-26T21:29:06.399Z [debug] [genWorker] Received job: gen id=47
+2025-09-26T21:29:06.399Z [debug] [gen] START: session=5d097fbc-9866-4c28-a95a-d45d4ad6b944 step=2 tag=intuition
+2025-09-26T21:29:06.400Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown"},"query":"What is a derivative?"}
+2025-09-26T21:29:06.400Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:29:06.401Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:29:37.245Z [debug] [timeout] codegen/gemini timed out after 120000ms
+2025-09-26T21:29:37.245Z [warn] [codegen] Attempt 2 failed completely: Error: codegen/gemini timeout after 120000ms
+2025-09-26T21:29:38.247Z [debug] [codegen] Attempt 3/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:29:38.248Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:29:54.939Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 5813
+2025-09-26T21:29:54.940Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:29:54.940Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:29:54.941Z [warn] [codegen] Attempt 1 failed: SyntaxError: Bad escaped character in JSON at position 5149
+2025-09-26T21:29:55.942Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:29:55.943Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:31:12.236Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 12671
+2025-09-26T21:31:12.236Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:31:12.239Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:31:12.239Z [warn] [codegen] Attempt 3 failed: SyntaxError: Expected ',' or '}' after property value in JSON at position 514
+2025-09-26T21:31:12.239Z [warn] [codegen] Attempt 3 failed completely: SyntaxError: Expected ',' or '}' after property value in JSON at position 514
+2025-09-26T21:31:12.239Z [error] [codegen] All 3 attempts failed for step 2
+2025-09-26T21:31:12.252Z [error] [gen:failed] id=44 Error: Failed after 3 attempts: Expected ',' or '}' after property value in JSON at position 514
+2025-09-26T21:31:12.253Z [debug] [genWorker] Received job: gen id=45
+2025-09-26T21:31:12.253Z [debug] [gen] START: session=b427f38c-2ca6-438d-997a-cd7f27125116 step=2 tag=intuition
+2025-09-26T21:31:12.255Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown"},"query":"How does recursion work?"}
+2025-09-26T21:31:12.256Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:31:12.256Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:31:35.566Z [debug] Shutting down server...
+2025-09-26T21:31:36.145Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 9262
+2025-09-26T21:31:36.145Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:31:36.146Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:31:36.146Z [warn] [codegen] Attempt 2 failed: SyntaxError: Bad escaped character in JSON at position 3801
+2025-09-26T21:31:37.147Z [debug] [codegen] Attempt 3/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:31:37.147Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:32:00.989Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 7865
+2025-09-26T21:32:00.989Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:32:00.990Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:32:00.990Z [warn] [codegen] Attempt 1 failed: SyntaxError: Expected ',' or '}' after property value in JSON at position 792
+2025-09-26T21:32:01.992Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:32:01.993Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:32:03.177Z [debug] [socket] Socket chJ4nkTqYuX1WxS-AAAB disconnected: forced close
+2025-09-26T21:32:22.241Z [debug] NEW Plan worker created
+2025-09-26T21:32:22.242Z [debug] NEW Gen worker created
+2025-09-26T21:32:22.250Z [debug] Backend listening on http://localhost:3001
+2025-09-26T21:32:22.282Z [debug] [genWorker] Received job: gen id=49
+2025-09-26T21:32:22.283Z [debug] [gen] START: session=8d5402e8-9468-4d1d-b9f0-2d14d77d066d step=2 tag=intuition
+2025-09-26T21:32:22.283Z [debug] [genWorker] Received job: gen id=48
+2025-09-26T21:32:22.283Z [debug] [gen] START: session=5d097fbc-9866-4c28-a95a-d45d4ad6b944 step=2 tag=intuition
+2025-09-26T21:32:22.286Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown"},"query":"What is Pi?"}
+2025-09-26T21:32:22.286Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:32:22.302Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:32:22.333Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown"},"query":"What is a derivative?"}
+2025-09-26T21:32:22.333Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:32:22.334Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:33:24.386Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 5565
+2025-09-26T21:33:24.387Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:33:24.388Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:33:24.388Z [warn] [codegen] Attempt 1 failed: SyntaxError: Expected ',' or '}' after property value in JSON at position 3264
+2025-09-26T21:33:25.390Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:33:25.391Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:33:52.801Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 9206
+2025-09-26T21:33:52.802Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:33:52.803Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:33:52.803Z [warn] [codegen] Attempt 1 failed: SyntaxError: Bad escaped character in JSON at position 8650
+2025-09-26T21:33:53.803Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:33:53.804Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:34:34.014Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 5851
+2025-09-26T21:34:34.014Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:34:34.016Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:34:34.016Z [warn] [codegen] Attempt 2 failed: SyntaxError: Unexpected token 'c', ..." 0.5, "x2"calculated"... is not valid JSON
+2025-09-26T21:34:35.018Z [debug] [codegen] Attempt 3/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:34:35.019Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:35:03.662Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 7527
+2025-09-26T21:35:03.663Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:35:03.664Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:35:03.664Z [warn] [codegen] Attempt 2 failed: SyntaxError: Bad escaped character in JSON at position 3966
+2025-09-26T21:35:04.666Z [debug] [codegen] Attempt 3/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:35:04.667Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:35:36.431Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 3928
+2025-09-26T21:35:36.431Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:35:36.432Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:35:36.432Z [warn] [codegen] Attempt 3 failed: SyntaxError: Bad escaped character in JSON at position 3334
+2025-09-26T21:35:36.432Z [warn] [codegen] Attempt 3 failed completely: SyntaxError: Bad escaped character in JSON at position 3334
+2025-09-26T21:35:36.433Z [error] [codegen] All 3 attempts failed for step 2
+2025-09-26T21:35:36.481Z [error] [gen:failed] id=49 Error: Failed after 3 attempts: Bad escaped character in JSON at position 3334
+2025-09-26T21:35:36.481Z [debug] [genWorker] Received job: gen id=47
+2025-09-26T21:35:36.481Z [debug] [gen] START: session=5d097fbc-9866-4c28-a95a-d45d4ad6b944 step=2 tag=intuition
+2025-09-26T21:35:36.482Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown"},"query":"What is a derivative?"}
+2025-09-26T21:35:36.482Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:35:36.483Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:36:30.459Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 8122
+2025-09-26T21:36:30.459Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:36:30.460Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:36:30.460Z [warn] [codegen] Attempt 3 failed: SyntaxError: Bad escaped character in JSON at position 3412
+2025-09-26T21:36:30.460Z [warn] [codegen] Attempt 3 failed completely: SyntaxError: Bad escaped character in JSON at position 3412
+2025-09-26T21:36:30.460Z [error] [codegen] All 3 attempts failed for step 2
+2025-09-26T21:36:30.461Z [error] [gen:failed] id=48 Error: Failed after 3 attempts: Bad escaped character in JSON at position 3412
+2025-09-26T21:36:30.461Z [debug] [genWorker] Received job: gen id=45
+2025-09-26T21:36:30.461Z [debug] [gen] START: session=b427f38c-2ca6-438d-997a-cd7f27125116 step=2 tag=intuition
+2025-09-26T21:36:30.462Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{"style":"3blue1brown"},"query":"How does recursion work?"}
+2025-09-26T21:36:30.462Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:36:30.462Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:37:12.022Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 8527
+2025-09-26T21:37:12.023Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:37:12.024Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:37:12.024Z [warn] [codegen] Attempt 1 failed: SyntaxError: Bad escaped character in JSON at position 7851
+2025-09-26T21:37:13.025Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:37:13.025Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:37:20.572Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 6998
+2025-09-26T21:37:20.573Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:37:20.575Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:37:20.575Z [debug] [codegen] JSON parsed successfully on attempt 1
+2025-09-26T21:37:20.576Z [warn] [codegen] Attempt 1 failed: Error: JavaScript expressions detected in actions
+2025-09-26T21:37:21.575Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:37:21.576Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:38:10.424Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 9663
+2025-09-26T21:38:10.424Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:38:10.425Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:38:10.426Z [debug] [codegen] JSON parsed successfully on attempt 2
+2025-09-26T21:38:10.426Z [warn] [codegen] Attempt 2 failed: Error: JavaScript expressions detected in actions
+2025-09-26T21:38:11.427Z [debug] [codegen] Attempt 3/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:38:11.428Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:38:22.979Z [debug] Shutting down server...
+2025-09-26T21:39:55.402Z [debug] NEW Plan worker created
+2025-09-26T21:39:55.404Z [debug] NEW Gen worker created
+2025-09-26T21:39:55.411Z [debug] Backend listening on http://localhost:3001
+2025-09-26T21:40:24.642Z [debug] Received request on /api/query {"body":{"query":"What is addition?","params":{"style":"3blue1brown"}}}
+2025-09-26T21:40:24.644Z [debug] [orchestrator] Enqueuing plan for session 3e26d070-1ac1-432a-b122-50a598da138d
+2025-09-26T21:40:24.648Z [debug] [orchestrator] Plan job added with id 1 for session 3e26d070-1ac1-432a-b122-50a598da138d
+2025-09-26T21:40:24.650Z [debug] [planWorker] Received job: plan id=1
+2025-09-26T21:40:24.650Z [debug] [plan] START: session=3e26d070-1ac1-432a-b122-50a598da138d query=What is addition?
+2025-09-26T21:40:24.651Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-26T21:40:24.665Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-26T21:40:42.963Z [debug] [planner] Received response from Gemini in 18312ms
+2025-09-26T21:40:42.964Z [debug] [planner] JSON parse failed, attempting to fix: SyntaxError: Unexpected token ']', ..."nge."},
+  ],
+  "step"... is not valid JSON
+2025-09-26T21:40:42.965Z [debug] [planner] JSON parsed successfully after syntax fix
+2025-09-26T21:40:42.971Z [debug] [plan] OK: session=3e26d070-1ac1-432a-b122-50a598da138d plan received with 5 steps
+2025-09-26T21:40:42.975Z [debug] [plan] Enqueuing first step emit: session=3e26d070-1ac1-432a-b122-50a598da138d stepId=1
+2025-09-26T21:40:42.977Z [debug] [plan] END: session=3e26d070-1ac1-432a-b122-50a598da138d
+2025-09-26T21:40:42.981Z [debug] [genWorker] Received job: gen id=1
+2025-09-26T21:40:42.981Z [debug] [gen] START: session=3e26d070-1ac1-432a-b122-50a598da138d step=1 tag=hook
+2025-09-26T21:40:42.984Z [debug] [codegen] START: stepId=1 tag=hook {"params":{"style":"3blue1brown"},"query":"What is addition?"}
+2025-09-26T21:40:42.984Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=hook
+2025-09-26T21:40:42.984Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:41:33.248Z [debug] Shutting down server...
+2025-09-26T21:41:37.178Z [debug] NEW Plan worker created
+2025-09-26T21:41:37.179Z [debug] NEW Gen worker created
+2025-09-26T21:41:37.187Z [debug] Backend listening on http://localhost:3001
+2025-09-26T21:42:07.404Z [debug] [socket] New connection: e9rS49pYjq1H9dBkAAAB
+2025-09-26T21:42:07.406Z [debug] [socket] Socket e9rS49pYjq1H9dBkAAAB joined session bd4f43f0-62e1-465d-8cea-fcd536f70f43
+2025-09-26T21:42:07.407Z [debug] [socket] Socket e9rS49pYjq1H9dBkAAAB is now in rooms: e9rS49pYjq1H9dBkAAAB, bd4f43f0-62e1-465d-8cea-fcd536f70f43
+2025-09-26T21:42:07.437Z [debug] Received request on /api/query {"body":{"query":"tell me H20 structure and draw Graph between the intermolecular force between OH and H","sessionId":"bd4f43f0-62e1-465d-8cea-fcd536f70f43"}}
+2025-09-26T21:42:07.438Z [debug] [orchestrator] Enqueuing plan for session bd4f43f0-62e1-465d-8cea-fcd536f70f43
+2025-09-26T21:42:07.444Z [debug] [orchestrator] Plan job added with id 1 for session bd4f43f0-62e1-465d-8cea-fcd536f70f43
+2025-09-26T21:42:07.452Z [debug] [planWorker] Received job: plan id=1
+2025-09-26T21:42:07.452Z [debug] [plan] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 query=tell me H20 structure and draw Graph between the intermolecular force between OH and H
+2025-09-26T21:42:07.453Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-26T21:42:07.479Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-26T21:42:08.410Z [debug] [test] Room bd4f43f0-62e1-465d-8cea-fcd536f70f43 has 1 sockets
+2025-09-26T21:42:34.835Z [debug] [planner] Received response from Gemini in 27382ms
+2025-09-26T21:42:34.836Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-26T21:42:34.839Z [debug] [plan] OK: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 plan received with 5 steps
+2025-09-26T21:42:34.841Z [debug] [plan] Enqueuing first step emit: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 stepId=1
+2025-09-26T21:42:34.843Z [debug] [plan] END: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43
+2025-09-26T21:42:34.847Z [debug] [genWorker] Received job: gen id=1
+2025-09-26T21:42:34.847Z [debug] [gen] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=1 tag=hook
+2025-09-26T21:42:34.852Z [debug] [codegen] START: stepId=1 tag=hook {"params":{},"query":"tell me H20 structure and draw Graph between the intermolecular force between OH and H"}
+2025-09-26T21:42:34.852Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=hook
+2025-09-26T21:42:34.853Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:43:32.969Z [debug] [codegen] Received response from Gemini for tag=hook, length: 6060
+2025-09-26T21:43:32.969Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:43:32.971Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:43:32.972Z [debug] [codegen] JSON parsed successfully on attempt 1
+2025-09-26T21:43:32.972Z [debug] [codegen] SUCCESS: Generated 53 actions for step 1
+2025-09-26T21:43:32.972Z [debug] [gen] OK: codegen completed for session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=1 in 58122ms
+2025-09-26T21:43:32.973Z [debug] compilerRouter: routing to js
+2025-09-26T21:43:32.973Z [debug] [debugger] START: Received chunk for stepId=1
+2025-09-26T21:43:32.973Z [debug] [debugger] Chunk is valid with 53 actions, allowing all for rich visualizations
+2025-09-26T21:43:32.983Z [debug] [gen] EMITTING to room: bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 53 actions
+2025-09-26T21:43:32.983Z [debug] [gen] Sockets in room bd4f43f0-62e1-465d-8cea-fcd536f70f43: 1
+2025-09-26T21:43:32.984Z [debug] [gen] Emitted to room bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 1 sockets
+2025-09-26T21:43:32.984Z [debug] [gen] END: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=1, emitted chunk
+2025-09-26T21:43:32.987Z [debug] [genWorker] Received job: gen id=2
+2025-09-26T21:43:32.988Z [debug] [gen] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=2 tag=intuition
+2025-09-26T21:43:32.990Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{},"query":"tell me H20 structure and draw Graph between the intermolecular force between OH and H"}
+2025-09-26T21:43:32.991Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:43:32.991Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:43:41.070Z [debug] [genWorker] Received job: gen id=3
+2025-09-26T21:43:41.070Z [debug] [gen] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=2 tag=intuition
+2025-09-26T21:43:41.072Z [debug] [codegen] START: stepId=2 tag=intuition {"params":{},"query":"tell me H20 structure and draw Graph between the intermolecular force between OH and H"}
+2025-09-26T21:43:41.073Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=intuition
+2025-09-26T21:43:41.073Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:44:08.098Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 7125
+2025-09-26T21:44:08.098Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:44:08.099Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:44:08.099Z [debug] [codegen] JSON parsed successfully on attempt 1
+2025-09-26T21:44:08.100Z [debug] [codegen] SUCCESS: Generated 66 actions for step 2
+2025-09-26T21:44:08.100Z [debug] [gen] OK: codegen completed for session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=2 in 27028ms
+2025-09-26T21:44:08.100Z [debug] compilerRouter: routing to js
+2025-09-26T21:44:08.100Z [debug] [debugger] START: Received chunk for stepId=2
+2025-09-26T21:44:08.100Z [debug] [debugger] Chunk is valid with 66 actions, allowing all for rich visualizations
+2025-09-26T21:44:08.107Z [debug] [gen] EMITTING to room: bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 66 actions
+2025-09-26T21:44:08.107Z [debug] [gen] Sockets in room bd4f43f0-62e1-465d-8cea-fcd536f70f43: 1
+2025-09-26T21:44:08.108Z [debug] [gen] Emitted to room bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 1 sockets
+2025-09-26T21:44:08.109Z [debug] [gen] END: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=2, emitted chunk
+2025-09-26T21:44:08.112Z [debug] [genWorker] Received job: gen id=4
+2025-09-26T21:44:08.113Z [debug] [gen] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=3 tag=formalism
+2025-09-26T21:44:08.115Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{},"query":"tell me H20 structure and draw Graph between the intermolecular force between OH and H"}
+2025-09-26T21:44:08.115Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=formalism
+2025-09-26T21:44:08.115Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:44:46.666Z [debug] [codegen] Received response from Gemini for tag=intuition, length: 9508
+2025-09-26T21:44:46.666Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:44:46.666Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:44:46.667Z [debug] [codegen] JSON parsed successfully on attempt 1
+2025-09-26T21:44:46.667Z [debug] [codegen] SUCCESS: Generated 88 actions for step 2
+2025-09-26T21:44:46.667Z [debug] [gen] OK: prefetch codegen completed for session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=2 in 73677ms
+2025-09-26T21:44:46.667Z [debug] compilerRouter: routing to js
+2025-09-26T21:44:46.667Z [debug] [debugger] START: Received chunk for stepId=2
+2025-09-26T21:44:46.667Z [debug] [debugger] Chunk is valid with 88 actions, allowing all for rich visualizations
+2025-09-26T21:44:46.667Z [debug] [gen] Prefetched and cached session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=2
+2025-09-26T21:44:46.669Z [debug] [genWorker] Received job: gen id=5
+2025-09-26T21:44:46.669Z [debug] [gen] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=3 tag=formalism
+2025-09-26T21:44:46.670Z [debug] [codegen] START: stepId=3 tag=formalism {"params":{},"query":"tell me H20 structure and draw Graph between the intermolecular force between OH and H"}
+2025-09-26T21:44:46.670Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=formalism
+2025-09-26T21:44:46.670Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:45:23.469Z [debug] [codegen] Received response from Gemini for tag=formalism, length: 11363
+2025-09-26T21:45:23.469Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:45:23.471Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:45:23.471Z [warn] [codegen] Attempt 1 failed: SyntaxError: Expected ',' or '}' after property value in JSON at position 8360
+2025-09-26T21:45:24.471Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=formalism
+2025-09-26T21:45:24.472Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:46:08.117Z [debug] [timeout] codegen/gemini timed out after 120000ms
+2025-09-26T21:46:08.117Z [warn] [codegen] Attempt 1 failed completely: Error: codegen/gemini timeout after 120000ms
+2025-09-26T21:46:09.119Z [debug] [codegen] Attempt 2/3 - Sending prompt to Gemini for tag=formalism
+2025-09-26T21:46:09.120Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:46:51.670Z [debug] [codegen] Received response from Gemini for tag=formalism, length: 7794
+2025-09-26T21:46:51.671Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:46:51.672Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:46:51.673Z [debug] [codegen] JSON parsed successfully on attempt 2
+2025-09-26T21:46:51.673Z [debug] [codegen] SUCCESS: Generated 53 actions for step 3
+2025-09-26T21:46:51.673Z [debug] [gen] OK: codegen completed for session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=3 in 125003ms
+2025-09-26T21:46:51.673Z [debug] compilerRouter: routing to js
+2025-09-26T21:46:51.673Z [debug] [debugger] START: Received chunk for stepId=3
+2025-09-26T21:46:51.673Z [debug] [debugger] Chunk is valid with 53 actions, allowing all for rich visualizations
+2025-09-26T21:46:51.679Z [debug] [gen] EMITTING to room: bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 53 actions
+2025-09-26T21:46:51.680Z [debug] [gen] Sockets in room bd4f43f0-62e1-465d-8cea-fcd536f70f43: 1
+2025-09-26T21:46:51.681Z [debug] [gen] Emitted to room bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 1 sockets
+2025-09-26T21:46:51.681Z [debug] [gen] END: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=3, emitted chunk
+2025-09-26T21:46:51.685Z [debug] [genWorker] Received job: gen id=6
+2025-09-26T21:46:51.686Z [debug] [gen] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=4 tag=exploration
+2025-09-26T21:46:51.688Z [debug] [codegen] START: stepId=4 tag=exploration {"params":{},"query":"tell me H20 structure and draw Graph between the intermolecular force between OH and H"}
+2025-09-26T21:46:51.688Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=exploration
+2025-09-26T21:46:51.689Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:47:35.498Z [debug] [codegen] Received response from Gemini for tag=exploration, length: 13549
+2025-09-26T21:47:35.498Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:47:35.501Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:47:35.501Z [debug] [codegen] JSON parsed successfully on attempt 1
+2025-09-26T21:47:35.502Z [debug] [codegen] SUCCESS: Generated 112 actions for step 4
+2025-09-26T21:47:35.502Z [debug] [gen] OK: prefetch codegen completed for session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=4 in 43814ms
+2025-09-26T21:47:35.502Z [debug] compilerRouter: routing to js
+2025-09-26T21:47:35.502Z [debug] [debugger] START: Received chunk for stepId=4
+2025-09-26T21:47:35.502Z [debug] [debugger] Chunk is valid with 112 actions, allowing all for rich visualizations
+2025-09-26T21:47:35.503Z [debug] [gen] Prefetched and cached session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=4
+2025-09-26T21:47:35.505Z [debug] [genWorker] Received job: gen id=7
+2025-09-26T21:47:35.506Z [debug] [gen] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=4 tag=exploration
+2025-09-26T21:47:35.508Z [debug] [gen] Using cached chunk for session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=4
+2025-09-26T21:47:35.516Z [debug] [gen] EMITTING to room: bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 112 actions
+2025-09-26T21:47:35.516Z [debug] [gen] Sockets in room bd4f43f0-62e1-465d-8cea-fcd536f70f43: 1
+2025-09-26T21:47:35.517Z [debug] [gen] Emitted to room bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 1 sockets
+2025-09-26T21:47:35.518Z [debug] [gen] END: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=4, emitted chunk
+2025-09-26T21:47:35.522Z [debug] [genWorker] Received job: gen id=8
+2025-09-26T21:47:35.522Z [debug] [gen] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=5 tag=mastery
+2025-09-26T21:47:35.524Z [debug] [codegen] START: stepId=5 tag=mastery {"params":{},"query":"tell me H20 structure and draw Graph between the intermolecular force between OH and H"}
+2025-09-26T21:47:35.524Z [debug] [codegen] Attempt 1/3 - Sending prompt to Gemini for tag=mastery
+2025-09-26T21:47:35.524Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:48:09.120Z [debug] [timeout] codegen/gemini timed out after 120000ms
+2025-09-26T21:48:09.121Z [warn] [codegen] Attempt 2 failed completely: Error: codegen/gemini timeout after 120000ms
+2025-09-26T21:48:10.120Z [debug] [codegen] Attempt 3/3 - Sending prompt to Gemini for tag=formalism
+2025-09-26T21:48:10.121Z [debug] [timeout] Setting 120000ms timeout for codegen/gemini
+2025-09-26T21:48:32.651Z [debug] [codegen] Received response from Gemini for tag=mastery, length: 19177
+2025-09-26T21:48:32.652Z [debug] [sanitizer] Starting aggressive JSON sanitization
+2025-09-26T21:48:32.654Z [debug] [sanitizer] Sanitization complete
+2025-09-26T21:48:32.654Z [debug] [codegen] JSON parsed successfully on attempt 1
+2025-09-26T21:48:32.655Z [debug] [codegen] SUCCESS: Generated 168 actions for step 5
+2025-09-26T21:48:32.655Z [debug] [gen] OK: prefetch codegen completed for session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=5 in 57132ms
+2025-09-26T21:48:32.655Z [debug] compilerRouter: routing to js
+2025-09-26T21:48:32.655Z [debug] [debugger] START: Received chunk for stepId=5
+2025-09-26T21:48:32.655Z [debug] [debugger] Chunk is valid with 168 actions, allowing all for rich visualizations
+2025-09-26T21:48:32.657Z [debug] [gen] Prefetched and cached session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=5
+2025-09-26T21:48:32.658Z [debug] [genWorker] Received job: gen id=9
+2025-09-26T21:48:32.658Z [debug] [gen] START: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=5 tag=mastery
+2025-09-26T21:48:32.659Z [debug] [gen] Using cached chunk for session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=5
+2025-09-26T21:48:32.662Z [debug] [gen] EMITTING to room: bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 168 actions
+2025-09-26T21:48:32.662Z [debug] [gen] Sockets in room bd4f43f0-62e1-465d-8cea-fcd536f70f43: 1
+2025-09-26T21:48:32.663Z [debug] [gen] Emitted to room bd4f43f0-62e1-465d-8cea-fcd536f70f43 with 1 sockets
+2025-09-26T21:48:32.663Z [debug] [gen] END: session=bd4f43f0-62e1-465d-8cea-fcd536f70f43 step=5, emitted chunk
+2025-09-26T21:48:32.663Z [debug] [orchestrator] All steps completed for session bd4f43f0-62e1-465d-8cea-fcd536f70f43
+2025-09-26T21:49:09.737Z [debug] Shutting down server...
+2025-09-26T21:50:10.122Z [debug] [timeout] codegen/gemini timed out after 120000ms
+2025-09-26T21:50:10.122Z [warn] [codegen] Attempt 3 failed completely: Error: codegen/gemini timeout after 120000ms
+2025-09-26T21:50:10.122Z [error] [codegen] All 3 attempts failed for step 3
+2025-09-26T21:50:10.172Z [error] [gen:failed] id=4 Error: Failed after 3 attempts: codegen/gemini timeout after 120000ms

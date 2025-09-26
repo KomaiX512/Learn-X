@@ -3,7 +3,7 @@ import Konva from 'konva';
 type Action =
   | { op: 'drawAxis'; normalized?: boolean; x0?: number; y0?: number; width?: number; height?: number; xLabel?: string; yLabel?: string }
   | { op: 'drawCurve'; normalized?: boolean; points: [number, number][]; color?: string; duration?: number; width?: number }
-  | { op: 'drawLabel'; normalized?: boolean; text: string; x: number; y: number; color?: string }
+  | { op: 'drawLabel'; normalized?: boolean; text: string; x: number; y: number; color?: string; isTitle?: boolean; isDefinition?: boolean; isImportant?: boolean; fontSize?: number; bold?: boolean; italic?: boolean; align?: string; bgColor?: string }
   | { op: 'drawMathLabel'; normalized?: boolean; tex: string; x: number; y: number }
   | { op: 'clear'; target?: 'all' | 'layer' }
   | { op: 'delay'; duration: number }
@@ -13,7 +13,7 @@ type Action =
   | { op: 'drawRect'; normalized?: boolean; x: number; y: number; width: number; height: number; color?: string; fill?: boolean }
   | { op: 'highlight'; targetId: string; color?: string; duration?: number }
   // New 3Blue1Brown-style animations
-  | { op: 'orbit'; centerX: number; centerY: number; radius: number; period: number; objectRadius: number; color?: string; trail?: boolean }
+  | { op: 'orbit'; centerX: number; centerY: number; radius: number; period: number; objectRadius: number; color?: string; trail?: boolean; centerColor?: string; showCenterArrow?: boolean }
   | { op: 'wave'; startX: number; startY: number; width: number; amplitude: number; frequency: number; speed: number; color?: string }
   | { op: 'particle'; x: number; y: number; count: number; spread: number; speed: number; color?: string; lifetime: number }
   | { op: 'arrow'; x: number; y: number; angle: number; length: number; color?: string; animated?: boolean }
@@ -21,7 +21,18 @@ type Action =
   | { op: 'morph'; fromShape: any; toShape: any; duration: number }
   | { op: 'rotate'; targetId: string; angle: number; duration: number; centerX?: number; centerY?: number }
   | { op: 'pulse'; targetId: string; scale: number; duration: number; repeat?: number }
-  | { op: 'flow'; path: [number, number][]; particleCount: number; speed: number; color?: string };
+  | { op: 'flow'; path: [number, number][]; particleCount: number; speed: number; color?: string }
+  // Enhanced educational animations
+  | { op: 'transform'; targetId: string; matrix: number[]; duration: number; description?: string }
+  | { op: 'trace'; path: [number, number][]; color?: string; width?: number; speed?: number; showHead?: boolean }
+  | { op: 'spotlight'; x: number; y: number; radius: number; intensity?: number; color?: string }
+  | { op: 'fadeIn'; targetId: string; duration: number; delay?: number }
+  | { op: 'fadeOut'; targetId: string; duration: number; delay?: number }
+  | { op: 'parallel'; actions: Action[]; syncDelay?: number }
+  | { op: 'sequence'; actions: Action[]; stepDelay?: number }
+  | { op: 'pendulum'; x: number; y: number; length: number; angle: number; period: number; color?: string }
+  | { op: 'spring'; x1: number; y1: number; x2: number; y2: number; coils: number; amplitude: number; color?: string }
+  | { op: 'graph3d'; func: string; xRange: [number, number]; yRange: [number, number]; resolution: number };
 
 export interface RenderChunk {
   type: 'actions';
@@ -45,16 +56,17 @@ const MAX_CANVAS_HEIGHT = 50000; // Maximum canvas height to prevent memory issu
 const pendingChunks: RenderChunk[] = [];
 // Track sub-steps to ensure each part gets its own layer
 const subStepCounters: Map<number, number> = new Map();
+// Track content progression for smooth learning experience
+const contentProgression: Map<number, { concepts: string[], depth: number }> = new Map();
+// Enhanced layer management for continuous content accumulation
 function ensureLayer(stepId: number, forceNew: boolean = false): Konva.Layer {
   if (!stage) throw new Error('Stage not initialized');
   
-  // Generate unique layer ID for sub-steps
+  // Generate unique layer ID for sub-steps - ALWAYS create new layers for content accumulation
   let layerId = stepId;
-  if (forceNew) {
-    const subStepCount = subStepCounters.get(stepId) || 0;
-    subStepCounters.set(stepId, subStepCount + 1);
-    layerId = stepId * 1000 + subStepCount; // Create unique ID for sub-step
-  }
+  const subStepCount = subStepCounters.get(stepId) || 0;
+  subStepCounters.set(stepId, subStepCount + 1);
+  layerId = stepId * 10000 + subStepCount; // Larger multiplier for more unique IDs
   
   let layer = layers.get(layerId) || null;
 
@@ -233,23 +245,25 @@ function drawLabel(layer: Konva.Layer, text: string, x: number, y: number, norma
   
   console.log(`[renderer] drawLabel: "${text}" at (${x},${y}) normalized=${normalized} -> canvas (${px},${py}) [${options?.isTitle ? 'TITLE' : options?.isDefinition ? 'DEFINITION' : 'TEXT'}]`);
   
-  // Add background for important text
+  // Add background for important text with gradient for 3Blue1Brown style
   if (options?.isDefinition || options?.isImportant || options?.isTitle) {
-    const padding = options?.isTitle ? 15 : 10;
-    const bg = new Konva.Rect({
+    const padding = options?.isTitle ? 20 : 12;
+    const gradientBg = new Konva.Rect({
       x: px - padding,
-      y: py - padding,
-      width: text.length * fontSize * 0.6 + padding * 2, // Estimate width
-      height: fontSize * 1.5 + padding * 2,
-      fill: options?.bgColor || 'rgba(0, 0, 0, 0.7)',
-      cornerRadius: 5,
-      opacity: 0
+      y: py - padding / 2, // Fix Y position for proper text alignment
+      width: text.length * fontSize * 0.65 + padding * 2, // Better width estimation
+      height: fontSize * 1.8 + padding,
+      fill: options?.bgColor || 'rgba(0, 0, 0, 0.85)',
+      cornerRadius: 8,
+      opacity: 0,
+      strokeWidth: options?.isTitle ? 2 : 1,
+      stroke: options?.isTitle ? '#FFD700' : 'rgba(255, 255, 255, 0.1)'
     });
-    layer.add(bg);
+    layer.add(gradientBg);
     
     // Fade in background
     const bgFade = new Konva.Tween({
-      node: bg,
+      node: gradientBg,
       duration: 0.3,
       opacity: 0.8
     });
@@ -322,24 +336,32 @@ function drawMathLabel(tex: string, x: number, y: number, normalized?: boolean, 
   const px = normalized ? nx(x) : x;
   const py = normalized ? ny(y) : y;
   
-  // Get the layer's Y position for this step
-  const layer = stepId !== undefined ? layers.get(stepId) : null;
-  const layerY = layer ? layer.y() : 0;
+  // Get the actual layer for correct positioning - FIX for text disposition
+  let actualLayerY = 0;
+  if (stepId !== undefined) {
+    // Find the most recent layer for this step
+    for (const [key, layer] of layers) {
+      if (Math.floor(key / 10000) === stepId) {
+        actualLayerY = layer.y();
+      }
+    }
+  }
   
   const div = document.createElement('div');
   div.style.position = 'absolute';
   div.style.left = px + 'px';
-  // Position relative to the layer's position
-  div.style.top = (layerY + py) + 'px';
-  div.style.color = '#2c3e50';
-  div.style.fontSize = '18px';
-  div.style.fontFamily = 'KaTeX_Main, serif';
+  // Correct positioning - no subtraction needed
+  div.style.top = (actualLayerY + py) + 'px';
+  div.style.color = '#FFE4B5';
+  div.style.fontSize = '20px';
+  div.style.fontFamily = 'Computer Modern, KaTeX_Main, serif';
   div.style.opacity = '0';
   div.style.transition = 'opacity 0.8s ease-in';
-  div.style.background = 'rgba(255,255,255,0.9)';
-  div.style.padding = '4px 8px';
-  div.style.borderRadius = '4px';
-  div.style.border = '1px solid #e0e0e0';
+  div.style.background = 'linear-gradient(135deg, rgba(30,30,40,0.95) 0%, rgba(40,40,55,0.95) 100%)';
+  div.style.padding = '8px 12px';
+  div.style.borderRadius = '6px';
+  div.style.border = '1px solid rgba(255, 215, 0, 0.3)';
+  div.style.boxShadow = '0 4px 6px rgba(0,0,0,0.3), 0 0 20px rgba(255, 215, 0, 0.1)';
   
   // Improved LaTeX-like rendering with ^{...}/_{...}
   let rendered = tex.replace(/\$\$/g, '');
@@ -555,7 +577,7 @@ function drawCircle(layer: Konva.Layer, x: number, y: number, radius: number, no
   console.log(`[renderer] Circle drawn at (${px},${py}) with radius ${pr}`);
 }
 
-// Create orbital animation (for planets, electrons, etc.) - OPTIMIZED
+// Create orbital animation (for planets, electrons, etc.) - ENHANCED
 function createOrbit(layer: Konva.Layer, action: any) {
   if (!stage) return;
   
@@ -565,17 +587,26 @@ function createOrbit(layer: Konva.Layer, action: any) {
   const objectRadius = action.objectRadius * 50; // Scale object size
   const color = action.color || '#3498db';
   
-  // Add center object (sun/nucleus) with label
+  // Add center object (sun/nucleus) with gradient and pulsing
   const center = new Konva.Circle({
     x: centerX,
     y: centerY,
     radius: objectRadius * 1.5,
     fill: action.centerColor || '#FFD700',
     shadowColor: action.centerColor || '#FFD700',
-    shadowBlur: 20,
-    shadowOpacity: 0.8
+    shadowBlur: 30,
+    shadowOpacity: 0.9
   });
   layer.add(center);
+  
+  // Add pulsing animation to center
+  const centerPulse = new Konva.Animation((frame) => {
+    if (!frame) return;
+    const scale = 1 + Math.sin(frame.time * 0.002) * 0.1;
+    center.scaleX(scale);
+    center.scaleY(scale);
+  }, layer);
+  centerPulse.start();
   
   // Add pointer arrow to center if specified
   if (action.showCenterArrow) {
@@ -798,7 +829,7 @@ function createParticles(layer: Konva.Layer, action: any) {
   return particleAnimation;
 }
 
-// Create animated arrow with PRECISE positioning
+// Create animated arrow with ENHANCED educational features
 function createAnimatedArrow(layer: Konva.Layer, action: any) {
   if (!stage) return;
   
@@ -807,6 +838,29 @@ function createAnimatedArrow(layer: Konva.Layer, action: any) {
   const length = action.length * 100;
   const angle = action.angle || 0;
   const color = action.color || '#00ff88';
+  
+  // Add glow effect for emphasis
+  const glowCircle = new Konva.Circle({
+    x: x,
+    y: y,
+    radius: 15,
+    fill: color,
+    opacity: 0.2,
+    shadowColor: color,
+    shadowBlur: 25,
+    shadowOpacity: 0.5
+  });
+  layer.add(glowCircle);
+  
+  // Animate glow expansion
+  const glowTween = new Konva.Tween({
+    node: glowCircle,
+    duration: 0.5,
+    radius: 30,
+    opacity: 0,
+    onFinish: () => glowCircle.destroy()
+  });
+  glowTween.play();
   
   // Calculate end point PRECISELY
   const endX = x + Math.cos(angle) * length;
@@ -968,6 +1022,12 @@ export async function initRenderer(s: Konva.Stage, overlayDiv: HTMLDivElement) {
   stage = s;
   overlay = overlayDiv;
   console.log(`[renderer] initRenderer: stage size ${stage.width()}x${stage.height()}`);
+  
+  // Fix purple/colorful blinking - set proper background
+  const container = stage.container();
+  container.style.background = 'linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)';
+  container.style.transition = 'none'; // Remove transition that causes blinking
+  
   clear('all');
   // Flush any chunks that arrived before init
   if (pendingChunks.length) {

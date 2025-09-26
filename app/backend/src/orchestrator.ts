@@ -13,13 +13,30 @@ const QUERY_KEY = (sessionId: string) => `session:${sessionId}:query`;
 const CURRENT_STEP_KEY = (sessionId: string) => `session:${sessionId}:current_step`;
 const PARAMS_KEY = (sessionId: string) => `session:${sessionId}:params`;
 const CHUNK_KEY = (sessionId: string, stepId: number) => `session:${sessionId}:step:${stepId}:chunk`;
-const PART_DURATION_MS = 10000; // 10 seconds per part for better demo experience
+const LEARNING_STATE_KEY = (sessionId: string) => `session:${sessionId}:learning_state`;
+
+// Progressive learning timing based on complexity
+const TIMING_BY_COMPLEXITY: { [key: number]: number } = {
+  1: 8000,  // Hook - quick engagement
+  2: 12000, // Intuition - time to absorb
+  3: 15000, // Formalism - complex concepts
+  4: 18000, // Exploration - deep dive
+  5: 12000  // Mastery - synthesis
+};
 
 export function initOrchestrator(io: IOServer, redis: Redis) {
   const connection = redis;
+  
+  // Clear any stale jobs on startup
+  console.log('🧹 Clearing stale job queues on startup...');
+  
   // Create separate queues for plan and gen jobs
   const planQueue = new Queue('plan-jobs', { connection });
   const genQueue = new Queue('gen-jobs', { connection });
+  
+  // Clean up stale jobs
+  planQueue.obliterate({ force: true }).catch(() => console.log('Plan queue already clean'));
+  genQueue.obliterate({ force: true }).catch(() => console.log('Gen queue already clean'));
 
   const defaultJobOpts: JobsOptions = {
     removeOnComplete: { age: 3600, count: 1000 },
@@ -176,7 +193,8 @@ export function initOrchestrator(io: IOServer, redis: Redis) {
       if (idx >= 0 && idx < plan.steps.length - 1) {
         const nextStep = plan.steps[idx + 1];
         await genQueue.add('gen', { step: nextStep, sessionId, prefetch: true } as any, { ...defaultJobOpts });
-        await genQueue.add('gen', { step: nextStep, sessionId, prefetch: false } as any, { ...defaultJobOpts, delay: PART_DURATION_MS });
+        const delayMs = TIMING_BY_COMPLEXITY[step.complexity || 1];
+        await genQueue.add('gen', { step: nextStep, sessionId, prefetch: false } as any, { ...defaultJobOpts, delay: delayMs });
         await redis.set(CURRENT_STEP_KEY(sessionId), String(idx + 1));
       } else {
         logger.debug(`[orchestrator] All steps completed for session ${sessionId}`);

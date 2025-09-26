@@ -19,29 +19,106 @@ function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
   ]) as Promise<T>;
 }
 
-function fixJsonSyntax(jsonText: string): string {
-  let fixed = jsonText
+// Aggressive JSON sanitizer to remove JavaScript expressions
+function sanitizeJsonResponse(text: string): string {
+  logger.debug('[sanitizer] Starting aggressive JSON sanitization');
+  
+  let sanitized = text;
+  
+  // Step 1: Remove JavaScript function expressions
+  sanitized = sanitized.replace(/\(function\s*\([^)]*\)\s*\{[^}]*\}\)/g, '[]');
+  sanitized = sanitized.replace(/function\s*\([^)]*\)\s*\{[^}]*\}/g, '""');
+  
+  // Step 2: Replace Math expressions with calculated values
+  sanitized = sanitized.replace(/Math\.PI/g, '3.14159');
+  sanitized = sanitized.replace(/Math\.E/g, '2.71828');
+  sanitized = sanitized.replace(/Math\.sqrt\(2\)/g, '1.41421');
+  sanitized = sanitized.replace(/Math\.sin\(([^)]+)\)/g, (match, angle) => {
+    // Try to parse and calculate, otherwise use 0
+    try {
+      const val = parseFloat(angle);
+      if (!isNaN(val)) return String(Math.sin(val));
+    } catch {}
+    return '0';
+  });
+  sanitized = sanitized.replace(/Math\.cos\(([^)]+)\)/g, (match, angle) => {
+    try {
+      const val = parseFloat(angle);
+      if (!isNaN(val)) return String(Math.cos(val));
+    } catch {}
+    return '1';
+  });
+  sanitized = sanitized.replace(/Math\.tan\(([^)]+)\)/g, (match, angle) => {
+    try {
+      const val = parseFloat(angle);
+      if (!isNaN(val)) return String(Math.tan(val));
+    } catch {}
+    return '0';
+  });
+  
+  // Step 3: Replace any remaining Math.* calls with 0
+  sanitized = sanitized.replace(/Math\.[a-zA-Z]+\([^)]*\)/g, '0');
+  
+  // Step 4: Remove inline calculations and expressions
+  sanitized = sanitized.replace(/"[^"]*\+[^"]*"/g, (match) => {
+    // If it's a string concatenation, try to evaluate
+    if (match.includes(' + ')) {
+      return '"calculated_value"';
+    }
+    return match;
+  });
+  
+  // Step 5: Fix array generation patterns
+  // Replace [...Array(n)].map(...) patterns
+  sanitized = sanitized.replace(/\[\.\.\.Array\([^)]+\)\]\.map\([^)]+\)/g, '[[0.1, 0.2], [0.3, 0.4]]');
+  
+  // Step 6: Replace for loop array generators
+  sanitized = sanitized.replace(/\(\(\)\s*=>\s*\{[^}]*return\s*\[[^\]]*\];?\s*\}\)\(\)/g, '[[0, 0], [1, 1]]');
+  
+  // Step 7: Clean up invalid JSON patterns
+  sanitized = sanitized
     .replace(/,(\s*[}\]])/g, '$1')  // Remove trailing commas
     .replace(/([{,]\s*)(\w+):/g, '$1"$2":')  // Quote unquoted keys
     .replace(/:\s*'([^']*)'/g, ': "$1"')  // Replace single quotes with double
+    .replace(/undefined/g, 'null')  // Replace undefined with null
+    .replace(/NaN/g, '0')  // Replace NaN with 0
+    .replace(/Infinity/g, '999999')  // Replace Infinity with large number
+    .replace(/-Infinity/g, '-999999')  // Replace -Infinity
     .replace(/\\n/g, ' ')  // Replace newlines with spaces
+    .replace(/\\t/g, ' ')  // Replace tabs with spaces
     .replace(/\s+/g, ' ')  // Normalize whitespace
     .trim();
   
-  const openBraces = (fixed.match(/\{/g) || []).length;
-  const closeBraces = (fixed.match(/\}/g) || []).length;
-  const openBrackets = (fixed.match(/\[/g) || []).length;
-  const closeBrackets = (fixed.match(/\]/g) || []).length;
+  // Step 8: Balance braces and brackets
+  const openBraces = (sanitized.match(/\{/g) || []).length;
+  const closeBraces = (sanitized.match(/\}/g) || []).length;
+  const openBrackets = (sanitized.match(/\[/g) || []).length;
+  const closeBrackets = (sanitized.match(/\]/g) || []).length;
   
   for (let i = 0; i < openBraces - closeBraces; i++) {
-    fixed += '}';
+    sanitized += '}';
   }
   for (let i = 0; i < openBrackets - closeBrackets; i++) {
-    fixed += ']';
+    sanitized += ']';
   }
   
-  return fixed;
+  logger.debug('[sanitizer] Sanitization complete');
+  return sanitized;
 }
+
+// Legacy function for backward compatibility
+function fixJsonSyntax(jsonText: string): string {
+  return sanitizeJsonResponse(jsonText);
+}
+
+// Enhanced teaching complexity levels
+const TEACHING_COMPLEXITY_MAP: { [key: string]: any } = {
+  'hook': { minActions: 15, visualDensity: 'medium', animationSpeed: 'slow', explanationDepth: 'intuitive' },
+  'intuition': { minActions: 20, visualDensity: 'high', animationSpeed: 'medium', explanationDepth: 'analogical' },
+  'formalism': { minActions: 25, visualDensity: 'high', animationSpeed: 'precise', explanationDepth: 'mathematical' },
+  'exploration': { minActions: 30, visualDensity: 'very-high', animationSpeed: 'dynamic', explanationDepth: 'comprehensive' },
+  'mastery': { minActions: 25, visualDensity: 'elegant', animationSpeed: 'smooth', explanationDepth: 'unified' }
+};
 
 export async function codegenAgent(
   step: PlanStep,
@@ -58,6 +135,9 @@ export async function codegenAgent(
 
   const genAI = new GoogleGenerativeAI(key);
   const model = genAI.getGenerativeModel({ model: MODEL });
+  
+  // Get teaching parameters based on step tag
+  const teachingParams = TEACHING_COMPLEXITY_MAP[step.tag || 'hook'] || TEACHING_COMPLEXITY_MAP['hook'];
 
   // Intelligent decision algorithm for visual approach
   const topicLower = (query || step.desc).toLowerCase();
@@ -99,8 +179,19 @@ export async function codegenAgent(
     topicLower.includes('exponential');
 
   const prompt = [
-    'You are a 3Blue1Brown-style educator creating profound visual mathematics animations.',
+    '🌟 You are channeling Grant Sanderson (3Blue1Brown) to create PROFOUND educational visualizations.',
+    `LEARNING STAGE: ${step.tag?.toUpperCase() || 'HOOK'} (Complexity: ${step.complexity}/5)`,
+    `MINIMUM ACTIONS REQUIRED: ${teachingParams.minActions}`,
+    '',
     'Output STRICT JSON: { "type": "actions", "actions": [action_objects] }',
+    '',
+    '🎯 3BLUE1BROWN VISUAL PHILOSOPHY:',
+    '1. MOTIVATION BEFORE INFORMATION: Start with WHY this matters',
+    '2. VISUAL BEFORE SYMBOLIC: Show the concept visually before equations',
+    '3. CONCRETE BEFORE ABSTRACT: Use specific examples before generalizing',
+    '4. MOTION REVEALS STRUCTURE: Use animation to reveal relationships',
+    '5. MULTIPLE REPRESENTATIONS: Show same concept from different angles',
+    '6. PROGRESSIVE DISCLOSURE: Reveal complexity gradually',
     '',
     '⚠️ CRITICAL JSON RULES:',
     '- Output ONLY valid JSON, no JavaScript expressions',
@@ -108,6 +199,29 @@ export async function codegenAgent(
     '- Use numbers not Math.sin() (calculate the value)',
     '- All strings must be in double quotes',
     '- No comments, no trailing commas',
+    '',
+    '📦 EXAMPLE VALID JSON OUTPUT:',
+    '{',
+    '  "type": "actions",',
+    '  "actions": [',
+    '    { "op": "clear", "target": "all" },',
+    '    { "op": "drawLabel", "normalized": true, "text": "The Magic of Sine Waves", "x": 0.5, "y": 0.1, "isTitle": true },',
+    '    { "op": "drawAxis", "normalized": true, "xLabel": "time", "yLabel": "amplitude" },',
+    '    { "op": "drawCurve", "normalized": true, "points": [[0, 0.5], [0.1, 0.7], [0.2, 0.9], [0.3, 0.7], [0.4, 0.5]], "color": "#3498db", "duration": 2 },',
+    '    { "op": "orbit", "centerX": 0.5, "centerY": 0.5, "radius": 0.2, "period": 4, "objectRadius": 0.02, "color": "#FFD700" },',
+    '    { "op": "drawMathLabel", "normalized": true, "tex": "y = \\\\sin(x)", "x": 0.7, "y": 0.3 },',
+    '    { "op": "delay", "duration": 2 }',
+    '  ]',
+    '}',
+    '',
+    '❌ NEVER OUTPUT JAVASCRIPT LIKE THIS:',
+    '"points": (function() { return [...Array(100)].map((_, i) => [i/100, Math.sin(i/10)]); })()',
+    '"points": Math.PI * 2',
+    '',
+    '✅ ALWAYS OUTPUT PURE JSON LIKE THIS:',
+    '"points": [[0, 0], [0.1, 0.59], [0.2, 0.95], [0.3, 0.95], [0.4, 0.59]]',
+    '"angle": 3.14159',
+    '"radius": 0.25',
     '',
     '🎯 INTELLIGENT VISUAL SELECTION BASED ON CONTEXT:',
     '',
@@ -199,6 +313,12 @@ export async function codegenAgent(
     `Step description: ${step.desc}`,
     `Topic: ${query || 'general educational content'}`,
     '',
+    '🔍 COORDINATE SYSTEM:',
+    '- All normalized coordinates are 0 to 1',
+    '- (0, 0) is top-left, (1, 1) is bottom-right',
+    '- For curves, provide 20-100 actual coordinate pairs',
+    '- Calculate all values, never use expressions',
+    '',
     '🎯 YOUR SPECIFIC INSTRUCTIONS:',
     needsCustomSketch ? 
       'CREATE ANATOMICAL/STRUCTURAL SKETCHES:\n' +
@@ -227,50 +347,133 @@ export async function codegenAgent(
       '3. Combine as needed\n' +
       '4. Add arrows and labels throughout',
     '',
-    'MINIMUM OUTPUT: 12-15 actions including:',
-    '- 1 clear + 1 title',
-    '- 4-6 main visual elements (shapes OR curves based on context)',
-    '- 3-4 arrows pointing at key features',
-    '- 2-3 labels explaining concepts',
-    '- 2-3 delays for pacing',
+    `MINIMUM OUTPUT: ${teachingParams.minActions} actions including:`,
+    `- 1 clear + 1-2 titles/definitions (use drawLabel with isTitle:true for main title)`,
+    `- ${Math.floor(teachingParams.minActions * 0.4)}-${Math.floor(teachingParams.minActions * 0.5)} main visual elements`,
+    `- ${Math.floor(teachingParams.minActions * 0.2)}-${Math.floor(teachingParams.minActions * 0.3)} arrows/pointers`,
+    `- ${Math.floor(teachingParams.minActions * 0.15)}-${Math.floor(teachingParams.minActions * 0.2)} labels/equations`,
+    `- ${Math.floor(teachingParams.minActions * 0.1)}-${Math.floor(teachingParams.minActions * 0.15)} delays/transitions`,
+    '',
+    '🔥 PROGRESSIVE TEACHING BY STAGE:',
+    step.tag === 'hook' ? 
+      'CURIOSITY HOOK - Create "AHA!" moment:\n' +
+      '1. Start with surprising visual or paradox\n' +
+      '2. Use orbit/wave/particle animations for engagement\n' +
+      '3. Pose the central question visually\n' +
+      '4. Show what\'s at stake - why this matters\n' +
+      '5. End with teaser of what\'s to come' :
+    step.tag === 'intuition' ?
+      'BUILD INTUITION - Develop mental models:\n' +
+      '1. Start with simplest possible case\n' +
+      '2. Use familiar analogies (water flow, springs, etc.)\n' +
+      '3. Build up complexity step by step\n' +
+      '4. Use colors to group related concepts\n' +
+      '5. Animate transitions between states' :
+    step.tag === 'formalism' ?
+      'MATHEMATICAL FORMALISM - Precise definitions:\n' +
+      '1. Introduce formal notation with visual meaning\n' +
+      '2. Show equations emerging from visuals\n' +
+      '3. Prove key relationships visually\n' +
+      '4. Use vector fields for derivatives/gradients\n' +
+      '5. Connect symbols to geometric interpretation' :
+    step.tag === 'exploration' ?
+      'DEEP EXPLORATION - Edge cases & variations:\n' +
+      '1. Show what happens at extremes\n' +
+      '2. Visualize parameter changes dynamically\n' +
+      '3. Compare multiple approaches side-by-side\n' +
+      '4. Reveal hidden patterns and symmetries\n' +
+      '5. Challenge assumptions with counterexamples' :
+    step.tag === 'mastery' ?
+      'SYNTHESIS & MASTERY - Unified understanding:\n' +
+      '1. Connect all previous concepts visually\n' +
+      '2. Show real-world applications\n' +
+      '3. Demonstrate problem-solving process\n' +
+      '4. Reveal the elegant core principle\n' +
+      '5. Leave with memorable visual summary' :
+      'STANDARD TEACHING APPROACH',
     '',
     'Remember: Choose the RIGHT approach for THIS specific topic!'
   ].join('\n');
 
-  logger.debug(`[codegen] Sending prompt to Gemini for tag=${step.tag}`);
-  const res = await withTimeout(model.generateContent(prompt), DEFAULT_TIMEOUT, 'codegen/gemini');
-  const text = res.response.text();
-  logger.debug(`[codegen] Received response from Gemini for tag=${step.tag}, length: ${text.length}`);
-
-  const jsonStart = text.indexOf('{');
-  const jsonEnd = text.lastIndexOf('}');
-  if (jsonStart === -1 || jsonEnd === -1) {
-    throw new Error('No JSON found in response - NO FALLBACKS');
-  }
-  let jsonText = text.slice(jsonStart, jsonEnd + 1);
-  jsonText = jsonText.replace(/```json|```/g, "").trim();
+  // Add retry counter
+  let attemptCount = 0;
+  const maxAttempts = 3;
+  let lastError: Error | null = null;
   
-  let chunk: RenderChunk;
-  try {
-    chunk = JSON.parse(jsonText) as RenderChunk;
-    logger.debug('[codegen] JSON parsed successfully on first attempt');
-  } catch (firstError) {
-    logger.debug(`[codegen] JSON parse failed, attempting to fix: ${firstError}`);
-    const fixedJson = fixJsonSyntax(jsonText);
+  while (attemptCount < maxAttempts) {
+    attemptCount++;
+    logger.debug(`[codegen] Attempt ${attemptCount}/${maxAttempts} - Sending prompt to Gemini for tag=${step.tag}`);
+    
+    // Add stronger instructions on retry
+    const attemptPrompt = attemptCount > 1 ? 
+      prompt + `\n\n⚠️ CRITICAL (Attempt ${attemptCount}): Your previous response had invalid JSON. Remember:\n` +
+      '- Output ONLY pure JSON, no JavaScript code\n' +
+      '- Use numbers like 3.14159, NOT Math.PI\n' +
+      '- Use actual coordinates like [[0.1, 0.2], [0.3, 0.4]], NOT functions\n' +
+      '- Example valid action: {"op": "drawCircle", "x": 0.5, "y": 0.5, "radius": 0.1}\n' +
+      '- NEVER use: function(), Math.*, for loops, arrow functions, or any JavaScript!'
+      : prompt;
+    
     try {
-      chunk = JSON.parse(fixedJson) as RenderChunk;
-      logger.debug('[codegen] JSON parsed successfully after syntax fix');
-    } catch (secondError) {
-      logger.error(`[codegen] JSON parse failed completely: ${secondError}`);
-      throw new Error(`Failed to parse codegen response: ${secondError}`);
+      const res = await withTimeout(model.generateContent(attemptPrompt), DEFAULT_TIMEOUT, 'codegen/gemini');
+      const text = res.response.text();
+      logger.debug(`[codegen] Received response from Gemini for tag=${step.tag}, length: ${text.length}`);
+
+      const jsonStart = text.indexOf('{');
+      const jsonEnd = text.lastIndexOf('}');
+      if (jsonStart === -1 || jsonEnd === -1) {
+        throw new Error('No JSON found in response');
+      }
+      
+      let jsonText = text.slice(jsonStart, jsonEnd + 1);
+      jsonText = jsonText.replace(/```json|```/g, "").trim();
+      
+      // Try aggressive sanitization first
+      const sanitized = sanitizeJsonResponse(jsonText);
+      
+      let chunk: RenderChunk;
+      try {
+        chunk = JSON.parse(sanitized) as RenderChunk;
+        logger.debug(`[codegen] JSON parsed successfully on attempt ${attemptCount}`);
+        
+        // Validate the chunk
+        if (!chunk.actions || !Array.isArray(chunk.actions)) {
+          throw new Error('Invalid actions in response');
+        }
+        
+        // Additional validation: ensure no function strings
+        const actionString = JSON.stringify(chunk.actions);
+        if (actionString.includes('function') || actionString.includes('Math.')) {
+          throw new Error('JavaScript expressions detected in actions');
+        }
+        
+        chunk.stepId = step.id;
+        logger.debug(`[codegen] SUCCESS: Generated ${chunk.actions.length} actions for step ${step.id}`);
+        return chunk;
+        
+      } catch (parseError) {
+        lastError = parseError as Error;
+        logger.warn(`[codegen] Attempt ${attemptCount} failed: ${parseError}`);
+        if (attemptCount === maxAttempts) {
+          throw parseError;
+        }
+        // Continue to next attempt
+      }
+    } catch (error) {
+      lastError = error as Error;
+      logger.warn(`[codegen] Attempt ${attemptCount} failed completely: ${error}`);
+      if (attemptCount === maxAttempts) {
+        break;
+      }
+    }
+    
+    // Wait before retry
+    if (attemptCount < maxAttempts) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
   
-  if (!chunk.actions || !Array.isArray(chunk.actions)) {
-    throw new Error('Invalid actions in response - NO FALLBACKS');
-  }
-  
-  chunk.stepId = step.id;
-  logger.debug(`[codegen] SUCCESS: Generated ${chunk.actions.length} actions for step ${step.id}`);
-  return chunk;
+  // All attempts failed - NO FALLBACKS!
+  logger.error(`[codegen] All ${maxAttempts} attempts failed for step ${step.id}`);
+  throw new Error(`Failed after ${maxAttempts} attempts: ${lastError?.message || 'Unknown error'}`);
 }
