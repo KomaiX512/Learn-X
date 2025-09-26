@@ -23,8 +23,8 @@ export class EnhancedRenderer {
   private animationEngine: AnimationEngine;
   private stage: Konva.Stage;
   private overlay: HTMLDivElement;
-  // Per-section simple flow-layout state to avoid overlaps
-  private layouts: Map<string, { cursorY: number; spacing: number; marginX: number; contentTop: number }>; 
+  // Per-section simple flow-layout state to avoid overlaps (with recorded segments)
+  private layouts: Map<string, { cursorY: number; spacing: number; marginX: number; contentTop: number; segments: Array<{ y1: number; y2: number }> }>; 
   
   constructor(stage: Konva.Stage, overlay: HTMLDivElement) {
     this.stage = stage;
@@ -34,21 +34,29 @@ export class EnhancedRenderer {
     this.layouts = new Map();
   }
 
+  private stepPartCounters: Map<string, number> = new Map();
+  
   async renderStep(context: RenderContext): Promise<void> {
     console.log('[EnhancedRenderer] Rendering step:', context.stepId);
     
-    // Create or get section for this step
+    // Generate unique section ID for each part of the step
+    const partCount = this.stepPartCounters.get(context.stepId) || 0;
+    this.stepPartCounters.set(context.stepId, partCount + 1);
+    const sectionId = `${context.stepId}_part${partCount}`;
+    
+    // Create a new section for this part of the step
     const section = this.canvasManager.createSection(
-      context.stepId,
-      context.stepTitle || `Step ${context.stepId}`
+      sectionId,
+      context.stepTitle || `Step ${context.stepId} - Part ${String.fromCharCode(65 + partCount)}` // Part A, B, C...
     );
     // Initialize flow layout for this section if missing
-    if (!this.layouts.has(context.stepId)) {
-      this.layouts.set(context.stepId, {
+    if (!this.layouts.has(sectionId)) {
+      this.layouts.set(sectionId, {
         cursorY: 60,        // leave space for the section title/separator
         spacing: 12,
         marginX: 24,
-        contentTop: 60
+        contentTop: 60,
+        segments: []
       });
     }
     
@@ -147,14 +155,16 @@ export class EnhancedRenderer {
     await this.handleDelay(0.3);
   }
 
-  private async drawAnimatedAxis(action: EnhancedAction, layer: Konva.Layer): Promise<void> {
+  private async drawAnimatedAxis(action: EnhancedAction, layer: Konva.Layer, section: any): Promise<void> {
     const w = this.stage.width();
-    const h = 400; // Section height
+    const h = 400; // block height reserved for axis region
     const margin = 50;
+    // Reserve vertical space using flow layout (prevents overlap)
+    const baseY = this.placeBlock(section, h, undefined);
     const x0 = margin;
-    const y0 = h - margin;
+    const y0 = baseY + h - margin;
     const x1 = w - margin;
-    const y1 = margin;
+    const y1 = baseY + margin;
 
     // Create axis lines with animation
     const xAxis = new Konva.Line({
@@ -278,19 +288,30 @@ export class EnhancedRenderer {
     layer.batchDraw();
   }
 
-  private async drawAnimatedCurve(action: EnhancedAction, layer: Konva.Layer): Promise<void> {
+  private async drawAnimatedCurve(action: EnhancedAction, layer: Konva.Layer, section: any): Promise<void> {
     const points = action.points as [number, number][];
     const normalized = action.normalized !== false;
     const color = action.color || '#0b82f0';
     const width = action.width || 2;
     const duration = action.duration || 2;
+    // Estimate required height based on point range when normalized
+    let estimatedHeight = 240;
+    if (normalized) {
+      let minY = 1, maxY = 0;
+      for (const [, y] of points) {
+        minY = Math.min(minY, y);
+        maxY = Math.max(maxY, y);
+      }
+      estimatedHeight = Math.max(160, (maxY - minY) * 400 + 60);
+    }
+    const baseY = this.placeBlock(section, estimatedHeight, undefined);
     
-    // Convert points if normalized
+    // Convert points if normalized and apply vertical offset
     const pts = points.map(([x, y]) => {
       if (normalized) {
-        return [x * this.stage.width(), y * 400]; // Use section height
+        return [x * this.stage.width(), baseY + y * 400];
       }
-      return [x, y];
+      return [x, baseY + y];
     }).flat();
     
     // Create the curve line
@@ -371,10 +392,10 @@ export class EnhancedRenderer {
     });
   }
 
-  private async drawAnimatedLabel(action: EnhancedAction, layer: Konva.Layer): Promise<void> {
+  private async drawAnimatedLabel(action: EnhancedAction, layer: Konva.Layer, section: any): Promise<void> {
     const text = action.text || '';
     const color = action.color || '#333';
-    const layout = this.layouts.get((layer.getParent() as any).id()) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
+    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
 
     // Measure text to decide placement (use word-wrapped width)
     const maxWidth = Math.max(200, this.stage.width() - layout.marginX * 2);
@@ -385,7 +406,7 @@ export class EnhancedRenderer {
     const absolute = action.absolute === true;
     const preferredX = action.x !== undefined ? (action.normalized ? action.x * this.stage.width() : action.x) : layout.marginX;
     const preferredY = absolute && action.y !== undefined ? (action.normalized ? action.y * 400 : action.y) : undefined;
-    const finalY = this.placeBlock((layer.getParent() as any), estimatedHeight, preferredY);
+    const finalY = this.placeBlock(section, estimatedHeight, preferredY);
 
     // Create the label at computed position
     const label = new Konva.Text({
@@ -419,9 +440,9 @@ export class EnhancedRenderer {
     await this.animationEngine.createPulse(label, { scale: 1.05, duration: 0.25, repeat: 1 });
   }
 
-  private async drawEnhancedMathLabel(action: EnhancedAction, layer: Konva.Layer): Promise<void> {
+  private async drawEnhancedMathLabel(action: EnhancedAction, layer: Konva.Layer, section: any): Promise<void> {
     const tex = action.tex || '';
-    const layout = this.layouts.get((layer.getParent() as any).id()) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
+    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
     const padding = 10;
 
     // Prepare text to measure
@@ -525,39 +546,41 @@ export class EnhancedRenderer {
     // Handle text
     result = result.replace(/\\text\{([^}]+)\}/g, '$1');
     
-    // Handle subscripts and superscripts
-    result = result.replace(/_\{([^}]+)\}/g, (_, sub) => {
-      const subMap: { [key: string]: string } = {
-        '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
-        '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
-        '+': '₊', '-': '₋', '=': '₌', '(': '₍', ')': '₎',
-        'a': 'ₐ', 'e': 'ₑ', 'o': 'ₒ', 'x': 'ₓ', 'h': 'ₕ',
-        'k': 'ₖ', 'l': 'ₗ', 'm': 'ₘ', 'n': 'ₙ', 'p': 'ₚ',
-        's': 'ₛ', 't': 'ₜ'
-      };
-      return sub.split('').map(c => subMap[c] || c).join('');
-    });
-    
-    result = result.replace(/\^([0-9+\-=()]+)/g, (_, sup) => {
-      const supMap: { [key: string]: string } = {
-        '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
-        '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
-        '+': '⁺', '-': '⁻', '=': '⁼', '(': '⁽', ')': '⁾'
-      };
-      return sup.split('').map((c: string) => supMap[c] || c).join('');
-    });
+    // Subscript and superscript helpers
+    const subMap: { [key: string]: string } = {
+      '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+      '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
+      '+': '₊', '-': '₋', '=': '₌', '(': '₍', ')': '₎',
+      'a': 'ₐ', 'e': 'ₑ', 'o': 'ₒ', 'x': 'ₓ', 'h': 'ₕ',
+      'k': 'ₖ', 'l': 'ₗ', 'm': 'ₘ', 'n': 'ₙ', 'p': 'ₚ',
+      's': 'ₛ', 't': 'ₜ'
+    };
+    const supMap: { [key: string]: string } = {
+      '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+      '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+      '+': '⁺', '-': '⁻', '=': '⁼', '(': '⁽', ')': '⁾'
+    };
+    const toSub = (s: string) => s.split('').map(c => subMap[c] || c).join('');
+    const toSup = (s: string) => s.split('').map(c => supMap[c] || c).join('');
+
+    // Braced forms: _{...} and ^{...}
+    result = result.replace(/_\{([^}]+)\}/g, (_, sub) => toSub(sub));
+    result = result.replace(/\^\{([^}]+)\}/g, (_, sup) => toSup(sup));
+    // Simple single-char forms: _x and ^x
+    result = result.replace(/_([a-zA-Z0-9+\-=()])/g, (_, sub) => toSub(sub));
+    result = result.replace(/\^([a-zA-Z0-9+\-=()])/g, (_, sup) => toSup(sup));
     
     return result;
   }
 
-  private async drawAnimatedTitle(action: EnhancedAction, layer: Konva.Layer): Promise<void> {
+  private async drawAnimatedTitle(action: EnhancedAction, layer: Konva.Layer, section: any): Promise<void> {
     const text = action.text || '';
     // Use flow layout unless absolute is requested
     const absolute = action.absolute === true;
-    const layout = this.layouts.get((layer.getParent() as any).id()) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
+    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
     const estimatedHeight = 36;
-    const preferredY = absolute && action.y !== undefined ? action.y * 400 : undefined;
-    const y = this.placeBlock((layer.getParent() as any), estimatedHeight, preferredY);
+    const preferredY = absolute && action.y !== undefined ? (action.normalized ? action.y * 400 : action.y) : undefined;
+    const y = this.placeBlock(section, estimatedHeight, preferredY);
     const duration = action.duration || 1;
     
     // Create title with gradient effect
@@ -717,8 +740,10 @@ export class EnhancedRenderer {
 
   // ===== Layout helpers to prevent overlapping =====
   private placeBlock(section: any, estimatedHeight: number, preferredY?: number): number {
-    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
-    let y = preferredY !== undefined ? preferredY : layout.cursorY;
+    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60, segments: [] };
+    // Never place a block above the current cursor to avoid overlap.
+    // If a preferredY is given (absolute intent), clamp it to be at least cursorY.
+    let y = preferredY !== undefined ? Math.max(preferredY, layout.cursorY) : layout.cursorY;
     // Ensure y is below section title area
     y = Math.max(y, layout.contentTop);
 
@@ -728,8 +753,31 @@ export class EnhancedRenderer {
       this.canvasManager.resizeSection(section.id, needed);
     }
 
+    // Collision avoidance: nudge below any overlapping recorded segments
+    const overlaps = (a1: number, a2: number, b1: number, b2: number) => a1 < b2 && a2 > b1;
+    let moved = false;
+    while (true) {
+      let collided = false;
+      for (const seg of layout.segments) {
+        if (overlaps(y, y + estimatedHeight, seg.y1, seg.y2)) {
+          y = seg.y2 + layout.spacing;
+          collided = true;
+          moved = true;
+        }
+      }
+      if (!collided) break;
+    }
+
+    // Grow section if nudged beyond current height
+    const neededAfterNudge = y + estimatedHeight + layout.spacing + 20;
+    if (neededAfterNudge > section.height) {
+      this.canvasManager.resizeSection(section.id, neededAfterNudge);
+    }
+
     // Update cursor for subsequent blocks
-    layout.cursorY = y + estimatedHeight + layout.spacing;
+    layout.cursorY = Math.max(layout.cursorY, y + estimatedHeight + layout.spacing);
+    // Record segment for this block
+    layout.segments.push({ y1: y, y2: y + estimatedHeight });
     this.layouts.set(section.id, layout);
     return y;
   }

@@ -6,16 +6,38 @@ import { EnhancedRenderer } from '../renderer/EnhancedRenderer';
 export default function CanvasStage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<Konva.Stage | null>(null);
   const enhancedRendererRef = useRef<EnhancedRenderer | null>(null);
-  const [size, setSize] = useState({ w: 800, h: 500 });
+  // Fixed aspect ratio canvas dimensions
+  const ASPECT_RATIO = 16 / 10; // 16:10 aspect ratio
+  const MIN_WIDTH = 800;
+  const MIN_HEIGHT = 500;
+  const MAX_WIDTH = 1400;
+  const MAX_HEIGHT = 875;
+  const [size, setSize] = useState({ w: MIN_WIDTH, h: MIN_HEIGHT });
 
-  // Window resize handler: updates size state only
+  // Window resize handler: maintains aspect ratio
   useEffect(() => {
     function handleResize() {
-      const w = Math.min(window.innerWidth - 40, 1200);
-      const h = Math.min(window.innerHeight - 200, 800);
-      setSize({ w: Math.max(800, w), h: Math.max(600, h) });
+      const availableWidth = window.innerWidth - 60;
+      const availableHeight = window.innerHeight - 250;
+      
+      // Calculate dimensions maintaining aspect ratio
+      let w = Math.min(availableWidth, MAX_WIDTH);
+      let h = w / ASPECT_RATIO;
+      
+      // If height exceeds available space, scale based on height
+      if (h > availableHeight || h > MAX_HEIGHT) {
+        h = Math.min(availableHeight, MAX_HEIGHT);
+        w = h * ASPECT_RATIO;
+      }
+      
+      // Ensure minimum dimensions
+      w = Math.max(MIN_WIDTH, w);
+      h = Math.max(MIN_HEIGHT, h);
+      
+      setSize({ w: Math.round(w), h: Math.round(h) });
     }
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -61,21 +83,33 @@ export default function CanvasStage() {
   }, [size.w, size.h]);
 
   return (
-    <div style={{ 
-      position: 'relative', 
-      border: '1px solid #ddd', 
-      borderRadius: 8, 
-      height: size.h,
-      overflowY: 'auto',
-      overflowX: 'hidden',
-      background: 'linear-gradient(to bottom, #fafafa, #ffffff)'
-    }}>
-      <div ref={containerRef} style={{ width: '100%', minHeight: '100%' }} />
+    <div 
+      ref={scrollContainerRef}
+      style={{ 
+        position: 'relative', 
+        border: '2px solid #e0e0e0', 
+        borderRadius: 12, 
+        width: size.w,
+        height: size.h,
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        background: 'white',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+        margin: '0 auto'
+      }}>
+      <div 
+        ref={containerRef} 
+        style={{ 
+          width: size.w, 
+          minHeight: size.h,
+          background: 'white'
+        }} 
+      />
       <div ref={overlayRef} style={{ 
         position: 'absolute', 
         left: 0, 
         top: 0, 
-        width: '100%', 
+        width: size.w, 
         height: '100%', 
         pointerEvents: 'none',
         zIndex: 10
