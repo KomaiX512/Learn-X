@@ -34,24 +34,22 @@ export class EnhancedRenderer {
     this.layouts = new Map();
   }
 
-  private stepPartCounters: Map<string, number> = new Map();
-  
   async renderStep(context: RenderContext): Promise<void> {
     console.log('[EnhancedRenderer] Rendering step:', context.stepId);
     
-    // Generate unique section ID for each part of the step
-    const partCount = this.stepPartCounters.get(context.stepId) || 0;
-    this.stepPartCounters.set(context.stepId, partCount + 1);
-    const sectionId = `${context.stepId}_part${partCount}`;
-    
-    // Create a new section for this part of the step
+    // Create or get section for this step
     const section = this.canvasManager.createSection(
-      sectionId,
-      context.stepTitle || `Step ${context.stepId} - Part ${String.fromCharCode(65 + partCount)}` // Part A, B, C...
+      context.stepId,
+      context.stepTitle || `Step ${context.stepId}`
     );
+    
+    // Ensure section.id matches context.stepId for layout lookup
+    console.log('[EnhancedRenderer] Section created with id:', section.id, 'Expected:', context.stepId);
+    
     // Initialize flow layout for this section if missing
-    if (!this.layouts.has(sectionId)) {
-      this.layouts.set(sectionId, {
+    if (!this.layouts.has(context.stepId)) {
+      console.log('[EnhancedRenderer] Initializing layout for section:', context.stepId);
+      this.layouts.set(context.stepId, {
         cursorY: 60,        // leave space for the section title/separator
         spacing: 12,
         marginX: 24,
@@ -61,6 +59,7 @@ export class EnhancedRenderer {
     }
     
     // Process each action with enhanced animations
+    console.log('[EnhancedRenderer] Processing', context.actions.length, 'actions for section:', context.stepId);
     for (const action of context.actions) {
       await this.processAction(action, section);
     }
@@ -395,7 +394,8 @@ export class EnhancedRenderer {
   private async drawAnimatedLabel(action: EnhancedAction, layer: Konva.Layer, section: any): Promise<void> {
     const text = action.text || '';
     const color = action.color || '#333';
-    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
+    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60, segments: [] };
+    console.log('[drawAnimatedLabel] Section:', section.id, 'Layout cursor:', layout.cursorY, 'Segments:', layout.segments.length);
 
     // Measure text to decide placement (use word-wrapped width)
     const maxWidth = Math.max(200, this.stage.width() - layout.marginX * 2);
@@ -442,7 +442,7 @@ export class EnhancedRenderer {
 
   private async drawEnhancedMathLabel(action: EnhancedAction, layer: Konva.Layer, section: any): Promise<void> {
     const tex = action.tex || '';
-    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
+    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60, segments: [] };
     const padding = 10;
 
     // Prepare text to measure
@@ -577,7 +577,7 @@ export class EnhancedRenderer {
     const text = action.text || '';
     // Use flow layout unless absolute is requested
     const absolute = action.absolute === true;
-    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60 };
+    const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60, segments: [] };
     const estimatedHeight = 36;
     const preferredY = absolute && action.y !== undefined ? (action.normalized ? action.y * 400 : action.y) : undefined;
     const y = this.placeBlock(section, estimatedHeight, preferredY);
@@ -741,6 +741,7 @@ export class EnhancedRenderer {
   // ===== Layout helpers to prevent overlapping =====
   private placeBlock(section: any, estimatedHeight: number, preferredY?: number): number {
     const layout = this.layouts.get(section.id) || { cursorY: 60, spacing: 12, marginX: 24, contentTop: 60, segments: [] };
+    console.log('[placeBlock] Section:', section.id, 'Current cursor:', layout.cursorY, 'EstimatedHeight:', estimatedHeight, 'PreferredY:', preferredY);
     // Never place a block above the current cursor to avoid overlap.
     // If a preferredY is given (absolute intent), clamp it to be at least cursorY.
     let y = preferredY !== undefined ? Math.max(preferredY, layout.cursorY) : layout.cursorY;
@@ -779,6 +780,7 @@ export class EnhancedRenderer {
     // Record segment for this block
     layout.segments.push({ y1: y, y2: y + estimatedHeight });
     this.layouts.set(section.id, layout);
+    console.log('[placeBlock] Placed at Y:', y, 'New cursor:', layout.cursorY, 'Total segments:', layout.segments.length);
     return y;
   }
 

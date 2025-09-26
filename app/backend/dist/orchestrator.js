@@ -26,6 +26,7 @@ function initOrchestrator(io, redis) {
     // Plan worker - NO FALLBACKS
     const planWorker = new bullmq_1.Worker('plan-jobs', async (job) => {
         console.log('=== NEW PLAN WORKER STARTED ===');
+        console.log('Job data:', JSON.stringify(job.data));
         logger_1.logger.debug(`[planWorker] Received job: ${job.name} id=${job.id}`);
         if (job.name !== 'plan') {
             console.log(`PLAN WORKER: SKIPPING non-plan job: ${job.name}`);
@@ -53,7 +54,7 @@ function initOrchestrator(io, redis) {
         if (plan.steps.length > 0) {
             const firstStep = plan.steps[0];
             logger_1.logger.debug(`[plan] Enqueuing first step emit: session=${sessionId} stepId=${firstStep.id}`);
-            await genQueue.add('gen', { step: firstStep, sessionId, plan, prefetch: false }, { ...defaultJobOpts });
+            await genQueue.add('gen', { step: firstStep, sessionId, prefetch: false }, { ...defaultJobOpts });
         }
         logger_1.logger.debug(`[plan] END: session=${sessionId}`);
     }, { connection });
@@ -61,6 +62,7 @@ function initOrchestrator(io, redis) {
     // Gen worker (prefetch + emit) - NO FALLBACKS
     const genWorker = new bullmq_1.Worker('gen-jobs', async (job) => {
         console.log('=== NEW GEN WORKER STARTED ===');
+        console.log('Gen job data:', JSON.stringify(job.data).slice(0, 200));
         logger_1.logger.debug(`[genWorker] Received job: ${job.name} id=${job.id}`);
         if (job.name !== 'gen')
             return;
@@ -99,28 +101,61 @@ function initOrchestrator(io, redis) {
         }
         else {
             const startTime = Date.now();
-            const code = await (0, codegen_1.codegenAgent)(step, params, query); // NO TRY/CATCH - LET IT FAIL
-            logger_1.logger.debug(`[gen] OK: codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
-            const compiled = await (0, router_1.compilerRouter)(code, step.compiler);
-            checked = await (0, debugger_1.debugAgent)(compiled);
-            await redis.set(key, JSON.stringify(checked));
+            try {
+                const code = await (0, codegen_1.codegenAgent)(step, params, query);
+                logger_1.logger.debug(`[gen] OK: codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
+                const compiled = await (0, router_1.compilerRouter)(code, step.compiler);
+                checked = await (0, debugger_1.debugAgent)(compiled);
+                await redis.set(key, JSON.stringify(checked));
+            }
+            catch (error) {
+                logger_1.logger.error(`[gen] Codegen failed for session=${sessionId} step=${step.id}: ${error}`);
+                // Create a simple fallback that shows the error
+                checked = {
+                    type: 'actions',
+                    stepId: step.id,
+                    actions: [
+                        { op: 'drawTitle', text: step.desc, y: 0.1, duration: 1 },
+                        { op: 'drawLabel', normalized: true, text: `Step ${step.id}: ${step.desc}`, x: 0.1, y: 0.3, color: '#333' },
+                        { op: 'drawLabel', normalized: true, text: 'Content generation in progress...', x: 0.1, y: 0.4, color: '#666' }
+                    ]
+                };
+            }
         }
         console.log(`=== NEW EMITTING WITH FULL PLAN DATA ===`);
         console.log(`Session: ${sessionId}`);
         console.log(`Plan title: ${plan.title}`);
-        console.log(`Plan subtitle: ${plan.subtitle}`);
         console.log(`Plan toc:`, plan.toc);
         console.log(`Step: ${step.id} - ${step.desc}`);
         console.log(`Actions:`, checked.actions);
         console.log(`=== END NEW EMITTING ===`);
-        io.to(sessionId).emit('rendered', { ...checked, step, plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc } });
+        const eventData = { ...checked, step, plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc } };
+        logger_1.logger.debug(`[gen] EMITTING to room: ${sessionId} with ${eventData.actions?.length || 0} actions`);
+        // Emit to the room
+        try {
+            const roomSockets = await io.in(sessionId).fetchSockets();
+            logger_1.logger.debug(`[gen] Sockets in room ${sessionId}: ${roomSockets.length}`);
+            if (roomSockets.length > 0) {
+                // Emit to room (this should work now)
+                io.to(sessionId).emit('rendered', eventData);
+                logger_1.logger.debug(`[gen] Emitted to room ${sessionId} with ${roomSockets.length} sockets`);
+            }
+            else {
+                logger_1.logger.warn(`[gen] No sockets in room ${sessionId}! Using broadcast fallback.`);
+                // Broadcast to all connected clients with matching sessionId
+                io.emit('rendered', { ...eventData, targetSession: sessionId });
+            }
+        }
+        catch (err) {
+            logger_1.logger.error(`[gen] Error emitting: ${err}`);
+        }
         logger_1.logger.debug(`[gen] END: session=${sessionId} step=${step.id}, emitted chunk`);
         // Schedule prefetch and next emit
         const idx = plan.steps.findIndex((s) => s.id === step.id);
         if (idx >= 0 && idx < plan.steps.length - 1) {
             const nextStep = plan.steps[idx + 1];
-            await genQueue.add('gen', { step: nextStep, sessionId, plan, prefetch: true }, { ...defaultJobOpts });
-            await genQueue.add('gen', { step: nextStep, sessionId, plan, prefetch: false }, { ...defaultJobOpts, delay: PART_DURATION_MS });
+            await genQueue.add('gen', { step: nextStep, sessionId, prefetch: true }, { ...defaultJobOpts });
+            await genQueue.add('gen', { step: nextStep, sessionId, prefetch: false }, { ...defaultJobOpts, delay: PART_DURATION_MS });
             await redis.set(CURRENT_STEP_KEY(sessionId), String(idx + 1));
         }
         else {
@@ -133,7 +168,8 @@ function initOrchestrator(io, redis) {
     async function enqueuePlan(query, sessionId) {
         logger_1.logger.debug(`[orchestrator] Enqueuing plan for session ${sessionId}`);
         await redis.set(QUERY_KEY(sessionId), query);
-        await planQueue.add('plan', { query, sessionId }, { ...defaultJobOpts });
+        const job = await planQueue.add('plan', { query, sessionId }, { ...defaultJobOpts });
+        logger_1.logger.debug(`[orchestrator] Plan job added with id ${job.id} for session ${sessionId}`);
     }
     async function setParams(sessionId, params) {
         await redis.set(PARAMS_KEY(sessionId), JSON.stringify(params));

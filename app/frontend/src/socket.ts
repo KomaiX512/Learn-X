@@ -29,6 +29,10 @@ export function getSocket(sessionId: string) {
   socket.on('connect', () => {
     console.log('[socket] Socket connected, joining session:', sessionId);
     socket!.emit('join', { sessionId });
+    
+    // Re-join on reconnection
+    currentSession = sessionId;
+    joinedSession = null;
   });
 
   socket.on('joined', (e: { sessionId: string }) => {

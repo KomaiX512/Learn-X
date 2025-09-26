@@ -29,13 +29,26 @@ async function main() {
     const redis = new ioredis_1.default(REDIS_URL, { maxRetriesPerRequest: null });
     const orchestrator = (0, orchestrator_1.initOrchestrator)(io, redis);
     io.on('connection', (socket) => {
+        logger_1.logger.debug(`[socket] New connection: ${socket.id}`);
         socket.on('join', ({ sessionId }) => {
             if (sessionId) {
                 socket.join(sessionId);
-                logger_1.logger.debug(`socket joined session ${sessionId}`);
+                logger_1.logger.debug(`[socket] Socket ${socket.id} joined session ${sessionId}`);
+                // Verify the socket is in the room
+                const rooms = Array.from(socket.rooms);
+                logger_1.logger.debug(`[socket] Socket ${socket.id} is now in rooms: ${rooms.join(', ')}`);
                 // Acknowledge to the client that it successfully joined the room
                 socket.emit('joined', { sessionId });
+                // Test emit to the room after a delay
+                setTimeout(async () => {
+                    const roomSockets = await io.in(sessionId).fetchSockets();
+                    logger_1.logger.debug(`[test] Room ${sessionId} has ${roomSockets.length} sockets`);
+                    io.to(sessionId).emit('test', { message: 'Test emit to room', sessionId });
+                }, 1000);
             }
+        });
+        socket.on('disconnect', (reason) => {
+            logger_1.logger.debug(`[socket] Socket ${socket.id} disconnected: ${reason}`);
         });
     });
     app.get('/health', (_req, res) => {
@@ -71,9 +84,10 @@ async function main() {
     });
     app.post('/api/session/:id/next', async (req, res) => {
         const sessionId = req.params.id;
-        logger_1.logger.debug(`[api] Received request on /api/session/${sessionId}/next`);
-        await orchestrator.triggerNextStep(sessionId);
-        res.json({ ok: true });
+        logger_1.logger.debug(`[api] Received request on /api/session/${sessionId}/next - automatic progression is enabled`);
+        // Automatic progression is now handled by the orchestrator
+        // This endpoint is kept for backward compatibility but doesn't need to do anything
+        res.json({ ok: true, message: 'Automatic progression is enabled' });
     });
     // Gemini verification endpoint (optional)
     app.get('/api/gemini-test', async (_req, res) => {

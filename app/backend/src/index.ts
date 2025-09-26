@@ -30,19 +30,31 @@ async function main() {
   const orchestrator = initOrchestrator(io, redis);
 
   io.on('connection', (socket) => {
+    logger.debug(`[socket] New connection: ${socket.id}`);
+    
     socket.on('join', ({ sessionId }) => {
       if (sessionId) {
         socket.join(sessionId);
-        logger.debug(`socket joined session ${sessionId}`);
+        logger.debug(`[socket] Socket ${socket.id} joined session ${sessionId}`);
+        
+        // Verify the socket is in the room
+        const rooms = Array.from(socket.rooms);
+        logger.debug(`[socket] Socket ${socket.id} is now in rooms: ${rooms.join(', ')}`);
+        
         // Acknowledge to the client that it successfully joined the room
         socket.emit('joined', { sessionId });
         
-        // Test emit to the room
-        setTimeout(() => {
-          logger.debug(`[test] Emitting test message to room ${sessionId}`);
+        // Test emit to the room after a delay
+        setTimeout(async () => {
+          const roomSockets = await io.in(sessionId).fetchSockets();
+          logger.debug(`[test] Room ${sessionId} has ${roomSockets.length} sockets`);
           io.to(sessionId).emit('test', { message: 'Test emit to room', sessionId });
         }, 1000);
       }
+    });
+    
+    socket.on('disconnect', (reason) => {
+      logger.debug(`[socket] Socket ${socket.id} disconnected: ${reason}`);
     });
   });
 

@@ -47,10 +47,17 @@ export default function App() {
     });
     
     socket.on('rendered', (e) => {
+      // Check if this event is for our session (handle broadcast fallback)
+      if (e.targetSession && e.targetSession !== sessionId) {
+        console.log('[socket] Ignoring event for different session:', e.targetSession);
+        return;
+      }
+      
       console.log('=== FRONTEND RECEIVED RENDERED EVENT ===');
       console.log('Event data:', e);
+      console.log('Session match:', e.targetSession === sessionId || !e.targetSession);
       console.log('Step:', e.step);
-      console.log('Actions:', e.actions);
+      console.log('Actions:', e.actions?.length || 0, 'actions');
       console.log('Plan title:', e.plan?.title);
       console.log('Plan subtitle:', e.plan?.subtitle);
       console.log('Plan toc:', e.plan?.toc);
@@ -71,7 +78,9 @@ export default function App() {
       setCurrentStep(e.step);
       
       // Execute the rendering actions on canvas
-      execChunk(e);
+      if (e.actions && e.actions.length > 0) {
+        execChunk(e);
+      }
       
       setIsReady(true);
       setIsLoading(false);

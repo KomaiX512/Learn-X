@@ -11,7 +11,17 @@ type Action =
   | { op: 'drawVector'; normalized?: boolean; x1: number; y1: number; x2: number; y2: number; color?: string; label?: string }
   | { op: 'drawCircle'; normalized?: boolean; x: number; y: number; radius: number; color?: string; fill?: boolean }
   | { op: 'drawRect'; normalized?: boolean; x: number; y: number; width: number; height: number; color?: string; fill?: boolean }
-  | { op: 'highlight'; targetId: string; color?: string; duration?: number };
+  | { op: 'highlight'; targetId: string; color?: string; duration?: number }
+  // New 3Blue1Brown-style animations
+  | { op: 'orbit'; centerX: number; centerY: number; radius: number; period: number; objectRadius: number; color?: string; trail?: boolean }
+  | { op: 'wave'; startX: number; startY: number; width: number; amplitude: number; frequency: number; speed: number; color?: string }
+  | { op: 'particle'; x: number; y: number; count: number; spread: number; speed: number; color?: string; lifetime: number }
+  | { op: 'arrow'; x: number; y: number; angle: number; length: number; color?: string; animated?: boolean }
+  | { op: 'field'; type: 'vector' | 'electric' | 'magnetic'; gridSize: number; strength: number }
+  | { op: 'morph'; fromShape: any; toShape: any; duration: number }
+  | { op: 'rotate'; targetId: string; angle: number; duration: number; centerX?: number; centerY?: number }
+  | { op: 'pulse'; targetId: string; scale: number; duration: number; repeat?: number }
+  | { op: 'flow'; path: [number, number][]; particleCount: number; speed: number; color?: string };
 
 export interface RenderChunk {
   type: 'actions';
@@ -29,13 +39,12 @@ let stage: Konva.Stage | null = null;
 const layers: Map<number, Konva.Layer> = new Map();
 let overlay: HTMLDivElement | null = null;
 let currentY = 0;
-const stepHeight = 500; // Height of each step/layer
-const MAX_CANVAS_HEIGHT = 10000; // Increased to allow more content
+const stepHeight = 800; // Increased height to prevent overlapping
+const MAX_CANVAS_HEIGHT = 50000; // Maximum canvas height to prevent memory issues
 // Queue chunks that arrive before the stage is initialized
 const pendingChunks: RenderChunk[] = [];
 // Track sub-steps to ensure each part gets its own layer
 const subStepCounters: Map<number, number> = new Map();
-
 function ensureLayer(stepId: number, forceNew: boolean = false): Konva.Layer {
   if (!stage) throw new Error('Stage not initialized');
   
@@ -211,26 +220,68 @@ function drawAxis(layer: Konva.Layer, opts: { xLabel?: string; yLabel?: string }
   console.log(`[renderer] drawAxis: Starting animated axis drawing`);
 }
 
-function drawLabel(layer: Konva.Layer, text: string, x: number, y: number, normalized?: boolean, color?: string) {
+function drawLabel(layer: Konva.Layer, text: string, x: number, y: number, normalized?: boolean, color?: string, options?: any) {
   const px = normalized ? nx(x) : x;
   const py = normalized ? ny(y) : y;
-  console.log(`[renderer] drawLabel: "${text}" at (${x},${y}) normalized=${normalized} -> canvas (${px},${py})`);
+  
+  // Enhanced options for production-quality rendering
+  const fontSize = options?.fontSize || (options?.isTitle ? 28 : options?.isDefinition ? 20 : 16);
+  const fontWeight = options?.bold || options?.isTitle ? 'bold' : 'normal';
+  const fontStyle = options?.italic ? 'italic' : 'normal';
+  const align = options?.align || 'left';
+  const actualColor = color || (options?.isTitle ? '#FFD700' : options?.isDefinition ? '#00FF88' : '#ffffff');
+  
+  console.log(`[renderer] drawLabel: "${text}" at (${x},${y}) normalized=${normalized} -> canvas (${px},${py}) [${options?.isTitle ? 'TITLE' : options?.isDefinition ? 'DEFINITION' : 'TEXT'}]`);
+  
+  // Add background for important text
+  if (options?.isDefinition || options?.isImportant || options?.isTitle) {
+    const padding = options?.isTitle ? 15 : 10;
+    const bg = new Konva.Rect({
+      x: px - padding,
+      y: py - padding,
+      width: text.length * fontSize * 0.6 + padding * 2, // Estimate width
+      height: fontSize * 1.5 + padding * 2,
+      fill: options?.bgColor || 'rgba(0, 0, 0, 0.7)',
+      cornerRadius: 5,
+      opacity: 0
+    });
+    layer.add(bg);
+    
+    // Fade in background
+    const bgFade = new Konva.Tween({
+      node: bg,
+      duration: 0.3,
+      opacity: 0.8
+    });
+    bgFade.play();
+  }
   
   const label = new Konva.Text({ 
     text: '', // Start empty for typewriter effect
     x: px, 
     y: py, 
-    fill: color || '#111', 
-    fontSize: 16,
-    opacity: 1
+    fill: actualColor,
+    fontSize: fontSize,
+    fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+    fontStyle: fontStyle,
+    fontWeight: fontWeight,
+    align: align,
+    opacity: 1,
+    // Add shadow for better readability
+    shadowColor: 'black',
+    shadowBlur: options?.isTitle ? 15 : 8,
+    shadowOpacity: 0.5,
+    shadowOffsetX: 2,
+    shadowOffsetY: 2
   });
   
   layer.add(label);
   layer.draw();
   
-  // Typewriter animation
+  // Typewriter animation with variable speed
   const fullText = text;
   let currentIndex = 0;
+  const typeSpeed = options?.isTitle ? 50 : 30; // Slower for titles
   
   const typeInterval = setInterval(() => {
     if (currentIndex <= fullText.length) {
@@ -240,9 +291,9 @@ function drawLabel(layer: Konva.Layer, text: string, x: number, y: number, norma
     } else {
       clearInterval(typeInterval);
     }
-  }, 30); // 30ms per character for smooth typewriter effect
+  }, typeSpeed);
   
-  console.log(`[renderer] drawLabel: Starting typewriter animation for "${text}"`);
+  console.log(`[renderer] drawLabel: Starting typewriter animation for "${text}" with speed ${typeSpeed}ms`);
 }
 
 function drawTitle(layer: Konva.Layer, text: string, y?: number, durationSec?: number) {
@@ -504,6 +555,381 @@ function drawCircle(layer: Konva.Layer, x: number, y: number, radius: number, no
   console.log(`[renderer] Circle drawn at (${px},${py}) with radius ${pr}`);
 }
 
+// Create orbital animation (for planets, electrons, etc.) - OPTIMIZED
+function createOrbit(layer: Konva.Layer, action: any) {
+  if (!stage) return;
+  
+  const centerX = action.centerX * (stage.width() || 800);
+  const centerY = action.centerY * (stage.height() || 600);
+  const orbitRadius = action.radius * Math.min(stage.width() || 800, stage.height() || 600);
+  const objectRadius = action.objectRadius * 50; // Scale object size
+  const color = action.color || '#3498db';
+  
+  // Add center object (sun/nucleus) with label
+  const center = new Konva.Circle({
+    x: centerX,
+    y: centerY,
+    radius: objectRadius * 1.5,
+    fill: action.centerColor || '#FFD700',
+    shadowColor: action.centerColor || '#FFD700',
+    shadowBlur: 20,
+    shadowOpacity: 0.8
+  });
+  layer.add(center);
+  
+  // Add pointer arrow to center if specified
+  if (action.showCenterArrow) {
+    const arrow = new Konva.Arrow({
+      points: [centerX - 100, centerY - 100, centerX - 20, centerY - 20],
+      pointerLength: 10,
+      pointerWidth: 10,
+      fill: '#FF0000',
+      stroke: '#FF0000',
+      strokeWidth: 2,
+      opacity: 0
+    });
+    layer.add(arrow);
+    
+    const arrowFade = new Konva.Tween({
+      node: arrow,
+      duration: 0.5,
+      opacity: 0.8
+    });
+    arrowFade.play();
+  }
+  
+  // Create orbit path
+  const orbitPath = new Konva.Circle({
+    x: centerX,
+    y: centerY,
+    radius: orbitRadius,
+    stroke: 'rgba(255, 255, 255, 0.2)',
+    strokeWidth: 1,
+    dash: [5, 5],
+    opacity: 0
+  });
+  layer.add(orbitPath);
+  
+  // Fade in orbit path
+  const pathFade = new Konva.Tween({
+    node: orbitPath,
+    duration: 0.5,
+    opacity: 1
+  });
+  pathFade.play();
+  
+  // Create orbiting object
+  const object = new Konva.Circle({
+    x: centerX + orbitRadius,
+    y: centerY,
+    radius: 0,
+    fill: color,
+    shadowColor: color,
+    shadowBlur: 20,
+    shadowOpacity: 0.6
+  });
+  layer.add(object);
+  
+  // Animate object appearance
+  const objectAppear = new Konva.Tween({
+    node: object,
+    duration: 0.5,
+    radius: objectRadius,
+    easing: Konva.Easings.BackEaseOut
+  });
+  objectAppear.play();
+  
+  // Create trail if requested
+  let trail: Konva.Line | null = null;
+  const trailPoints: number[] = [];
+  if (action.trail) {
+    trail = new Konva.Line({
+      points: [],
+      stroke: color,
+      strokeWidth: 2,
+      opacity: 0.3,
+      lineCap: 'round',
+      lineJoin: 'round'
+    });
+    layer.add(trail);
+    trail.moveToBottom();
+    orbitPath.moveToBottom();
+  }
+  
+  // Create orbital motion
+  const orbitAnimation = new Konva.Animation((frame) => {
+    if (!frame) return;
+    const angle = (frame.time / (action.period * 1000)) * Math.PI * 2;
+    const x = centerX + Math.cos(angle) * orbitRadius;
+    const y = centerY + Math.sin(angle) * orbitRadius;
+    object.position({ x, y });
+    
+    // Update trail
+    if (trail && action.trail) {
+      trailPoints.push(x, y);
+      if (trailPoints.length > 200) { // Keep last 100 points
+        trailPoints.splice(0, 2);
+      }
+      trail.points(trailPoints);
+    }
+  }, layer);
+  
+  // Start animation after appearance
+  setTimeout(() => orbitAnimation.start(), 500);
+  
+  return orbitAnimation;
+}
+
+// Create wave animation
+function createWave(layer: Konva.Layer, action: any) {
+  if (!stage) return;
+  
+  const startX = action.startX * (stage.width() || 800);
+  const startY = action.startY * (stage.height() || 600);
+  const width = action.width * (stage.width() || 800);
+  const amplitude = action.amplitude * 100;
+  const color = action.color || '#00bbff';
+  
+  const waveLine = new Konva.Line({
+    points: [],
+    stroke: color,
+    strokeWidth: 3,
+    lineCap: 'round',
+    lineJoin: 'round',
+    tension: 0.5,
+    opacity: 0,
+    shadowColor: color,
+    shadowBlur: 10,
+    shadowOpacity: 0.5
+  });
+  layer.add(waveLine);
+  
+  // Fade in
+  const fadeIn = new Konva.Tween({
+    node: waveLine,
+    duration: 0.5,
+    opacity: 1
+  });
+  fadeIn.play();
+  
+  // Wave animation
+  const waveAnimation = new Konva.Animation((frame) => {
+    if (!frame) return;
+    const time = frame.time * 0.001 * action.speed;
+    const points: number[] = [];
+    
+    for (let x = 0; x <= width; x += 2) {
+      const normalizedX = x / width;
+      const y = Math.sin(2 * Math.PI * action.frequency * normalizedX - time) * amplitude;
+      points.push(startX + x, startY + y);
+    }
+    
+    waveLine.points(points);
+  }, layer);
+  
+  waveAnimation.start();
+  return waveAnimation;
+}
+
+// Create particle system
+function createParticles(layer: Konva.Layer, action: any) {
+  if (!stage) return;
+  
+  const centerX = action.x * (stage.width() || 800);
+  const centerY = action.y * (stage.height() || 600);
+  const particles: any[] = [];
+  const particleGroup = new Konva.Group();
+  layer.add(particleGroup);
+  
+  // Create particles
+  for (let i = 0; i < action.count; i++) {
+    const angle = (Math.PI * 2 * i) / action.count + Math.random() * action.spread;
+    const speed = action.speed * (0.5 + Math.random());
+    
+    const particle = {
+      node: new Konva.Circle({
+        x: centerX,
+        y: centerY,
+        radius: 2 + Math.random() * 2,
+        fill: action.color || '#FFD700',
+        opacity: 1,
+        shadowColor: action.color || '#FFD700',
+        shadowBlur: 10,
+        shadowOpacity: 0.8
+      }),
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: action.lifetime
+    };
+    
+    particleGroup.add(particle.node);
+    particles.push(particle);
+  }
+  
+  // Animate particles
+  const particleAnimation = new Konva.Animation((frame) => {
+    if (!frame) return;
+    const dt = frame.timeDiff * 0.001;
+    
+    particles.forEach(particle => {
+      particle.life -= dt;
+      if (particle.life <= 0) {
+        particle.node.opacity(0);
+        return;
+      }
+      
+      const opacity = Math.max(0, particle.life / action.lifetime);
+      particle.node.opacity(opacity);
+      
+      const x = particle.node.x() + particle.vx * dt;
+      const y = particle.node.y() + particle.vy * dt;
+      particle.node.position({ x, y });
+    });
+  }, layer);
+  
+  particleAnimation.start();
+  
+  // Clean up after lifetime
+  setTimeout(() => {
+    particleAnimation.stop();
+    particleGroup.destroy();
+  }, action.lifetime * 1000);
+  
+  return particleAnimation;
+}
+
+// Create animated arrow with PRECISE positioning
+function createAnimatedArrow(layer: Konva.Layer, action: any) {
+  if (!stage) return;
+  
+  const x = action.x * (stage.width() || 800);
+  const y = action.y * (stage.height() || 600);
+  const length = action.length * 100;
+  const angle = action.angle || 0;
+  const color = action.color || '#00ff88';
+  
+  // Calculate end point PRECISELY
+  const endX = x + Math.cos(angle) * length;
+  const endY = y + Math.sin(angle) * length;
+  
+  const arrow = new Konva.Arrow({
+    points: [x, y, x, y], // Start collapsed
+    pointerLength: 12,
+    pointerWidth: 12,
+    fill: color,
+    stroke: color,
+    strokeWidth: 3,
+    opacity: 0,
+    shadowColor: color,
+    shadowBlur: 15,
+    shadowOpacity: 0.5
+  });
+  layer.add(arrow);
+  
+  // Fade in and extend
+  const fadeIn = new Konva.Tween({
+    node: arrow,
+    duration: 0.3,
+    opacity: 1
+  });
+  
+  const extend = new Konva.Tween({
+    node: arrow,
+    duration: 0.8,
+    points: [x, y, endX, endY],
+    easing: Konva.Easings.EaseInOut
+  });
+  
+  fadeIn.play();
+  setTimeout(() => extend.play(), 300);
+  
+  // Add pulsing animation if requested
+  if (action.animated) {
+    // Create SUBTLE pulsing animation (not wild vibration!)
+    const pulseAnimation = new Konva.Animation((frame) => {
+      if (!frame) return;
+      // Much smaller amplitude for precise pointing
+      const scale = 1 + Math.sin(frame.time * 0.003) * 0.05; // Only 5% variation
+      arrow.scaleX(scale);
+      arrow.scaleY(scale);
+      // Slight position adjustment for pointing effect
+      const offsetX = Math.sin(frame.time * 0.002) * 2; // Max 2px movement
+      const offsetY = Math.cos(frame.time * 0.002) * 2;
+      arrow.points([x + offsetX, y + offsetY, endX, endY]);
+    }, layer);
+    pulseAnimation.start();
+    return pulseAnimation;
+  }
+}
+
+// Create vector field
+function createVectorField(layer: Konva.Layer, action: any) {
+  if (!stage) return;
+  
+  const width = stage.width() || 800;
+  const height = stage.height() || 600;
+  const gridSize = action.gridSize;
+  const arrows: Konva.Arrow[] = [];
+  
+  // Create grid of arrows
+  for (let x = gridSize; x < width; x += gridSize) {
+    for (let y = gridSize; y < height; y += gridSize) {
+      const arrow = new Konva.Arrow({
+        points: [x, y, x, y],
+        pointerLength: 5,
+        pointerWidth: 5,
+        fill: '#10b981',
+        stroke: '#10b981',
+        strokeWidth: 1,
+        opacity: 0.4
+      });
+      layer.add(arrow);
+      arrows.push(arrow);
+    }
+  }
+  
+  // Animate field
+  const fieldAnimation = new Konva.Animation((frame) => {
+    if (!frame) return;
+    const time = frame.time * 0.001;
+    
+    arrows.forEach(arrow => {
+      const points = arrow.points();
+      const x = points[0];
+      const y = points[1];
+      
+      let vx = 0, vy = 0;
+      
+      switch (action.type) {
+        case 'vector':
+          // Circular vector field
+          vx = -(y - height/2) / 100;
+          vy = (x - width/2) / 100;
+          break;
+        case 'electric':
+          // Radial field from center
+          const dx = x - width/2;
+          const dy = y - height/2;
+          const dist = Math.sqrt(dx*dx + dy*dy) + 1;
+          vx = (dx / dist) * action.strength;
+          vy = (dy / dist) * action.strength;
+          break;
+        case 'magnetic':
+          // Rotating field
+          vx = Math.sin(time + x * 0.01) * action.strength;
+          vy = Math.cos(time + y * 0.01) * action.strength;
+          break;
+      }
+      
+      const scale = 20;
+      arrow.points([x, y, x + vx * scale, y + vy * scale]);
+    });
+  }, layer);
+  
+  fieldAnimation.start();
+  return fieldAnimation;
+}
+
 // Draw rectangle with animation
 function drawRect(layer: Konva.Layer, x: number, y: number, width: number, height: number, normalized?: boolean, color?: string, fill?: boolean) {
   const px = normalized ? nx(x) : x;
@@ -602,7 +1028,16 @@ export async function execChunk(chunk: RenderChunk) {
         drawAxis(layer, { xLabel: action.xLabel, yLabel: action.yLabel });
         break;
       case 'drawLabel':
-        drawLabel(layer, action.text, action.x, action.y, action.normalized, action.color);
+        drawLabel(layer, action.text, action.x, action.y, action.normalized, action.color, {
+          isTitle: action.isTitle,
+          isDefinition: action.isDefinition,
+          isImportant: action.isImportant,
+          fontSize: action.fontSize,
+          bold: action.bold,
+          italic: action.italic,
+          align: action.align,
+          bgColor: action.bgColor
+        });
         break;
       case 'drawMathLabel':
         drawMathLabel(action.tex, action.x, action.y, action.normalized, chunk.stepId);
@@ -627,6 +1062,123 @@ export async function execChunk(chunk: RenderChunk) {
         break;
       case 'drawTitle':
         drawTitle(layer, action.text, (action as any).y, (action as any).duration);
+        break;
+      // New 3Blue1Brown-style animations
+      case 'orbit':
+        createOrbit(layer, action);
+        // Let orbit animation run for at least one full cycle
+        await new Promise(resolve => setTimeout(resolve, Math.min(action.period * 1000, 5000)));
+        break;
+      case 'wave':
+        createWave(layer, action);
+        // Let wave animation establish pattern
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        break;
+      case 'particle':
+        createParticles(layer, action);
+        // Let particles spread and be visible
+        await new Promise(resolve => setTimeout(resolve, Math.min(action.lifetime * 500, 2000)));
+        break;
+      case 'arrow':
+        createAnimatedArrow(layer, action);
+        // Ensure arrow is fully extended and visible
+        await new Promise(resolve => setTimeout(resolve, action.animated ? 2000 : 1500));
+        break;
+      case 'field':
+        createVectorField(layer, action);
+        // Let field pattern establish
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        break;
+      case 'pulse':
+        // Pulse animation for existing objects
+        if (action.targetId) {
+          const target = layer.findOne(`#${action.targetId}`);
+          if (target) {
+            const pulseAnim = new Konva.Animation((frame) => {
+              if (!frame) return;
+              const scale = 1 + Math.sin(frame.time * 0.003) * (action.scale - 1);
+              target.scaleX(scale);
+              target.scaleY(scale);
+            }, layer);
+            pulseAnim.start();
+            if (action.repeat && action.repeat > 0) {
+              setTimeout(() => pulseAnim.stop(), action.duration * 1000);
+            }
+          }
+        }
+        break;
+      case 'rotate':
+        // Rotation animation for existing objects
+        if (action.targetId) {
+          const target = layer.findOne(`#${action.targetId}`);
+          if (target) {
+            const rotateTween = new Konva.Tween({
+              node: target,
+              duration: action.duration,
+              rotation: action.angle,
+              easing: Konva.Easings.EaseInOut
+            });
+            rotateTween.play();
+            await new Promise(resolve => setTimeout(resolve, action.duration * 1000));
+          }
+        }
+        break;
+      case 'flow':
+        // Particle flow along a path
+        const flowParticles: any[] = [];
+        const flowGroup = new Konva.Group();
+        layer.add(flowGroup);
+        
+        // Create flow path visualization
+        const flowPath = new Konva.Line({
+          points: action.path.flat(),
+          stroke: 'rgba(255, 255, 255, 0.1)',
+          strokeWidth: 2,
+          dash: [5, 5]
+        });
+        layer.add(flowPath);
+        flowPath.moveToBottom();
+        
+        // Create flowing particles
+        for (let i = 0; i < action.particleCount; i++) {
+          const particle = new Konva.Circle({
+            x: action.path[0][0],
+            y: action.path[0][1],
+            radius: 3,
+            fill: action.color || '#00bbff',
+            opacity: 0.8,
+            shadowColor: action.color || '#00bbff',
+            shadowBlur: 10,
+            shadowOpacity: 0.5
+          });
+          flowGroup.add(particle);
+          flowParticles.push({
+            node: particle,
+            pathIndex: 0,
+            progress: i * (1 / action.particleCount)
+          });
+        }
+        
+        // Animate flow
+        const flowAnimation = new Konva.Animation((frame) => {
+          if (!frame) return;
+          const dt = frame.timeDiff * 0.001;
+          
+          flowParticles.forEach(p => {
+            p.progress += action.speed * dt * 0.1;
+            if (p.progress >= 1) {
+              p.progress = 0;
+              p.pathIndex = (p.pathIndex + 1) % (action.path.length - 1);
+            }
+            
+            const start = action.path[p.pathIndex];
+            const end = action.path[p.pathIndex + 1] || action.path[0];
+            const x = start[0] + (end[0] - start[0]) * p.progress;
+            const y = start[1] + (end[1] - start[1]) * p.progress;
+            p.node.position({ x, y });
+          });
+        }, layer);
+        flowAnimation.start();
         break;
       default:
         console.warn('[renderer] Unknown action operation:', action);
