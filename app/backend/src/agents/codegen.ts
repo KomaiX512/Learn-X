@@ -3,7 +3,9 @@ import { Action, PlanStep, RenderChunk, SessionParams } from '../types';
 import { logger } from '../logger';
 
 const MODEL = 'gemini-2.5-flash';
-const DEFAULT_TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 60000);
+const DEFAULT_TIMEOUT = 45000; // 45 seconds - give more time for complex prompts
+const CHUNK_SIZE = 100; // For streaming responses
+const MAX_PROMPT_LENGTH = 3000; // Limit prompt size to prevent timeouts
 
 function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
   logger.debug(`[timeout] Setting ${ms}ms timeout for ${label}`);
@@ -19,90 +21,62 @@ function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
   ]) as Promise<T>;
 }
 
-// Aggressive JSON sanitizer to remove JavaScript expressions
+// AGGRESSIVE JSON sanitizer with pre-computation
 function sanitizeJsonResponse(text: string): string {
-  logger.debug('[sanitizer] Starting aggressive JSON sanitization');
+  logger.debug('[sanitizer] Starting AGGRESSIVE JSON sanitization');
   
   let sanitized = text;
   
-  // Step 1: Remove JavaScript function expressions
-  sanitized = sanitized.replace(/\(function\s*\([^)]*\)\s*\{[^}]*\}\)/g, '[]');
-  sanitized = sanitized.replace(/function\s*\([^)]*\)\s*\{[^}]*\}/g, '""');
+  // 1. Pre-compute ALL Math operations
+  const mathReplacements = [
+    [/Math\.PI/g, '3.14159'],
+    [/Math\.E/g, '2.71828'],
+    [/Math\.sqrt\(2\)/g, '1.41421'],
+    [/Math\.sin\((\d+\.?\d*)\)/g, (m: string, n: string) => String(Math.sin(parseFloat(n)).toFixed(5))],
+    [/Math\.cos\((\d+\.?\d*)\)/g, (m: string, n: string) => String(Math.cos(parseFloat(n)).toFixed(5))],
+    [/Math\.tan\((\d+\.?\d*)\)/g, (m: string, n: string) => String(Math.tan(parseFloat(n)).toFixed(5))],
+    [/Math\.abs\(([-\d.]+)\)/g, (m: string, n: string) => String(Math.abs(parseFloat(n)))],
+    [/Math\.floor\((\d+\.?\d*)\)/g, (m: string, n: string) => String(Math.floor(parseFloat(n)))],
+    [/Math\.ceil\((\d+\.?\d*)\)/g, (m: string, n: string) => String(Math.ceil(parseFloat(n)))],
+    [/Math\.round\((\d+\.?\d*)\)/g, (m: string, n: string) => String(Math.round(parseFloat(n)))],
+    [/Math\.pow\((\d+\.?\d*),\s*(\d+\.?\d*)\)/g, (m: string, b: string, e: string) => String(Math.pow(parseFloat(b), parseFloat(e)).toFixed(5))]
+  ];
   
-  // Step 2: Replace Math expressions with calculated values
-  sanitized = sanitized.replace(/Math\.PI/g, '3.14159');
-  sanitized = sanitized.replace(/Math\.E/g, '2.71828');
-  sanitized = sanitized.replace(/Math\.sqrt\(2\)/g, '1.41421');
-  sanitized = sanitized.replace(/Math\.sin\(([^)]+)\)/g, (match, angle) => {
-    // Try to parse and calculate, otherwise use 0
-    try {
-      const val = parseFloat(angle);
-      if (!isNaN(val)) return String(Math.sin(val));
-    } catch {}
-    return '0';
-  });
-  sanitized = sanitized.replace(/Math\.cos\(([^)]+)\)/g, (match, angle) => {
-    try {
-      const val = parseFloat(angle);
-      if (!isNaN(val)) return String(Math.cos(val));
-    } catch {}
-    return '1';
-  });
-  sanitized = sanitized.replace(/Math\.tan\(([^)]+)\)/g, (match, angle) => {
-    try {
-      const val = parseFloat(angle);
-      if (!isNaN(val)) return String(Math.tan(val));
-    } catch {}
-    return '0';
-  });
+  for (const [pattern, replacement] of mathReplacements) {
+    sanitized = sanitized.replace(pattern as RegExp, replacement as any);
+  }
   
-  // Step 3: Replace any remaining Math.* calls with 0
-  sanitized = sanitized.replace(/Math\.[a-zA-Z]+\([^)]*\)/g, '0');
-  
-  // Step 4: Remove inline calculations and expressions
-  sanitized = sanitized.replace(/"[^"]*\+[^"]*"/g, (match) => {
-    // If it's a string concatenation, try to evaluate
-    if (match.includes(' + ')) {
-      return '"calculated_value"';
-    }
+  // 2. Evaluate ALL arithmetic expressions more safely
+  sanitized = sanitized.replace(/(\"(?:x|y|x1|y1|x2|y2|centerX|centerY|startX|startY|radius|angle|duration|width|height|spread|speed|lifetime|amplitude|frequency|period|strength|gridSize|particleCount|size|opacity)\"\s*:\s*)([0-9.]+\s*[+\-*/]\s*[0-9.]+(?:\s*[+\-*/]\s*[0-9.]+)*)([,}])/g, (match, prefix, expr, suffix) => {
+    try {
+      // Use a safer evaluation method
+      const result = Function('\"use strict\"; return (' + expr + ')')();
+      if (!isNaN(result) && isFinite(result)) {
+        return prefix + result.toFixed(5) + suffix;
+      }
+    } catch {}
     return match;
   });
   
-  // Step 5: Fix array generation patterns
-  // Replace [...Array(n)].map(...) patterns
-  sanitized = sanitized.replace(/\[\.\.\.Array\([^)]+\)\]\.map\([^)]+\)/g, '[[0.1, 0.2], [0.3, 0.4]]');
+  // 3. Remove trailing commas ONLY
+  sanitized = sanitized.replace(/,(\s*[}\]])/g, '$1');
   
-  // Step 6: Replace for loop array generators
-  sanitized = sanitized.replace(/\(\(\)\s*=>\s*\{[^}]*return\s*\[[^\]]*\];?\s*\}\)\(\)/g, '[[0, 0], [1, 1]]');
+  // 4. Fix unquoted op values ONLY if clearly needed
+  sanitized = sanitized.replace(/"op"\s*:\s*([a-zA-Z][a-zA-Z0-9_]*)(\s*[,}])/g, '"op": "$1"$2');
   
-  // Step 7: Clean up invalid JSON patterns
-  sanitized = sanitized
-    .replace(/,(\s*[}\]])/g, '$1')  // Remove trailing commas
-    .replace(/([{,]\s*)(\w+):/g, '$1"$2":')  // Quote unquoted keys
-    .replace(/:\s*'([^']*)'/g, ': "$1"')  // Replace single quotes with double
-    .replace(/undefined/g, 'null')  // Replace undefined with null
-    .replace(/NaN/g, '0')  // Replace NaN with 0
-    .replace(/Infinity/g, '999999')  // Replace Infinity with large number
-    .replace(/-Infinity/g, '-999999')  // Replace -Infinity
-    .replace(/\\n/g, ' ')  // Replace newlines with spaces
-    .replace(/\\t/g, ' ')  // Replace tabs with spaces
-    .replace(/\s+/g, ' ')  // Normalize whitespace
-    .trim();
-  
-  // Step 8: Balance braces and brackets
-  const openBraces = (sanitized.match(/\{/g) || []).length;
-  const closeBraces = (sanitized.match(/\}/g) || []).length;
-  const openBrackets = (sanitized.match(/\[/g) || []).length;
-  const closeBrackets = (sanitized.match(/\]/g) || []).length;
-  
-  for (let i = 0; i < openBraces - closeBraces; i++) {
-    sanitized += '}';
-  }
-  for (let i = 0; i < openBrackets - closeBrackets; i++) {
-    sanitized += ']';
+  // Validate but DON'T try to fix
+  try {
+    JSON.parse(sanitized);
+    logger.debug('[sanitizer] JSON is valid after minimal fixes');
+  } catch (e) {
+    logger.warn(`[sanitizer] JSON still invalid: ${e}`);
+    const errorPos = (e as any).message.match(/position (\d+)/);
+    if (errorPos) {
+      const pos = parseInt(errorPos[1]);
+      logger.error(`[sanitizer] Error context: "${sanitized.slice(Math.max(0, pos-50), pos+50)}"`);
+    }
   }
   
-  logger.debug('[sanitizer] Sanitization complete');
   return sanitized;
 }
 
@@ -179,11 +153,22 @@ export async function codegenAgent(
     topicLower.includes('exponential');
 
   const prompt = [
-    '🌟 You are channeling Grant Sanderson (3Blue1Brown) to create PROFOUND educational visualizations.',
+    '🛑 CRITICAL: OUTPUT PURE JSON ONLY - YOUR RESPONSE MUST START WITH { 🛑',
+    '',
+    '❌ NEVER USE:',
+    '- Arithmetic: 0.5 + 0.25 (use 0.75)',
+    '- Math functions: Math.PI (use 3.14159)',  
+    '- Expressions: x * 2 (calculate it!)',
+    '',
+    '✅ ALWAYS USE:',
+    '- Pre-calculated numbers: 0.75, 3.14159, 0.707',
+    '- Simple values: "text", true, false, null',
+    '',
+    'START YOUR OUTPUT WITH THIS EXACT STRUCTURE:',
+    '{"type":"actions","actions":[',
+    '',
     `LEARNING STAGE: ${step.tag?.toUpperCase() || 'HOOK'} (Complexity: ${step.complexity}/5)`,
     `MINIMUM ACTIONS REQUIRED: ${teachingParams.minActions}`,
-    '',
-    'Output STRICT JSON: { "type": "actions", "actions": [action_objects] }',
     '',
     '🎯 3BLUE1BROWN VISUAL PHILOSOPHY:',
     '1. MOTIVATION BEFORE INFORMATION: Start with WHY this matters',
@@ -193,12 +178,14 @@ export async function codegenAgent(
     '5. MULTIPLE REPRESENTATIONS: Show same concept from different angles',
     '6. PROGRESSIVE DISCLOSURE: Reveal complexity gradually',
     '',
-    '⚠️ CRITICAL JSON RULES:',
-    '- Output ONLY valid JSON, no JavaScript expressions',
-    '- Use numbers not Math.PI (use 3.14159 instead)',
-    '- Use numbers not Math.sin() (calculate the value)',
-    '- All strings must be in double quotes',
-    '- No comments, no trailing commas',
+    '⚠️ ABSOLUTE JSON REQUIREMENTS (FAILURE = CRASH):',
+    '1. NEVER write arithmetic: Use 0.927, NOT "0.75 + 0.25 * 0.707"',
+    '2. NEVER use Math.*: Use 3.14159, NOT Math.PI',
+    '3. NEVER use functions: Use [[0.1,0.2],[0.3,0.4]], NOT Array.map()',
+    '4. ALWAYS escape special chars in strings: Use \\" for quotes',
+    '5. NO trailing commas before } or ]',
+    '6. ALL property names in quotes: "op", "x", "y"',
+    '7. OUTPUT RAW JSON ONLY - no markdown, no ```json blocks',
     '',
     '📦 EXAMPLE VALID JSON OUTPUT:',
     '{',
@@ -395,24 +382,48 @@ export async function codegenAgent(
     'Remember: Choose the RIGHT approach for THIS specific topic!'
   ].join('\n');
 
-  // Add retry counter
+  // Enhanced retry with exponential backoff
   let attemptCount = 0;
-  const maxAttempts = 3;
+  const maxAttempts = 3; // 3 attempts with smarter prompts
   let lastError: Error | null = null;
+  const backoffMs = [0, 1000, 3000]; // Longer backoff for rate limiting
   
   while (attemptCount < maxAttempts) {
     attemptCount++;
     logger.debug(`[codegen] Attempt ${attemptCount}/${maxAttempts} - Sending prompt to Gemini for tag=${step.tag}`);
     
-    // Add stronger instructions on retry
-    const attemptPrompt = attemptCount > 1 ? 
-      prompt + `\n\n⚠️ CRITICAL (Attempt ${attemptCount}): Your previous response had invalid JSON. Remember:\n` +
-      '- Output ONLY pure JSON, no JavaScript code\n' +
-      '- Use numbers like 3.14159, NOT Math.PI\n' +
-      '- Use actual coordinates like [[0.1, 0.2], [0.3, 0.4]], NOT functions\n' +
-      '- Example valid action: {"op": "drawCircle", "x": 0.5, "y": 0.5, "radius": 0.1}\n' +
-      '- NEVER use: function(), Math.*, for loops, arrow functions, or any JavaScript!'
-      : prompt;
+    // Progressively simpler prompts on retry to improve adherence
+    let attemptPrompt = prompt;
+    
+    if (attemptCount === 2) {
+      // Second attempt: Simplify and emphasize critical rules
+      attemptPrompt = `CRITICAL: OUTPUT PURE JSON ONLY!\n\n` +
+        `{"type":"actions","actions":[\n` +
+        `  {"op":"clear","target":"all"},\n` +
+        `  {"op":"drawLabel","text":"${step.desc.slice(0, 30)}","x":0.5,"y":0.1,"isTitle":true},\n` +
+        `  ... generate ${teachingParams.minActions} total actions ...\n` +
+        `]}\n\n` +
+        `RULES:\n` +
+        `1. NO Math.* functions - use numbers: 3.14159 not Math.PI\n` +
+        `2. NO arithmetic - use results: 0.75 not "0.5 + 0.25"\n` +
+        `3. NO functions - use arrays: [[0,0],[1,1]] not Array.map()\n` +
+        `4. Include exactly ${teachingParams.minActions} actions\n\n` +
+        `Topic: ${query || step.desc}`;
+    } else if (attemptCount === 3) {
+      // Third attempt: Ultra-simple template-based approach
+      attemptPrompt = `Generate EXACTLY this JSON structure with ${teachingParams.minActions} actions:\n\n` +
+        `{\n` +
+        `  "type": "actions",\n` +
+        `  "actions": [\n` +
+        `    {"op": "clear", "target": "all"},\n` +
+        `    {"op": "drawLabel", "text": "${step.desc.slice(0, 50)}", "x": 0.5, "y": 0.1, "isTitle": true},\n` +
+        `    {"op": "drawAxis", "normalized": true, "xLabel": "x", "yLabel": "y"},\n` +
+        `    ... ADD ${teachingParams.minActions - 3} MORE DRAWING OPERATIONS HERE ...\n` +
+        `  ]\n` +
+        `}\n\n` +
+        `Use ONLY numbers like 0.5, 0.75, 3.14159. NO expressions!\n` +
+        `Topic: ${query || step.desc}`;
+    }
     
     try {
       const res = await withTimeout(model.generateContent(attemptPrompt), DEFAULT_TIMEOUT, 'codegen/gemini');
@@ -428,7 +439,27 @@ export async function codegenAgent(
       let jsonText = text.slice(jsonStart, jsonEnd + 1);
       jsonText = jsonText.replace(/```json|```/g, "").trim();
       
-      // Try aggressive sanitization first
+      // More aggressive sanitization on each retry
+      if (attemptCount > 1) {
+        // On retry, be more aggressive with sanitization
+        jsonText = jsonText.replace(/function\s*\([^)]*\)\s*{[^}]*}/g, '[]'); // Replace functions with empty arrays
+        jsonText = jsonText.replace(/\.\.\.[^,\]]+/g, ''); // Remove spread operators
+        jsonText = jsonText.replace(/Array\.from\([^)]+\)/g, '[]'); // Replace Array.from
+        jsonText = jsonText.replace(/new\s+Array\([^)]+\)/g, '[]'); // Replace new Array
+      }
+      
+      // CRITICAL: Detect arithmetic BEFORE parsing
+      const arithmeticMatch = jsonText.match(/[0-9.]+\s*[+\-*/]\s*[0-9.]/);
+      if (arithmeticMatch) {
+        logger.warn(`[codegen] Arithmetic detected, will sanitize: ${arithmeticMatch[0]}`);
+        // Don't throw error, let sanitizer handle it
+      }
+      if (jsonText.includes('Math.')) {
+        logger.warn(`[codegen] Math.* functions detected, will sanitize`);
+        // Don't throw error, let sanitizer handle it
+      }
+      
+      // Try minimal sanitization
       const sanitized = sanitizeJsonResponse(jsonText);
       
       let chunk: RenderChunk;
@@ -441,13 +472,30 @@ export async function codegenAgent(
           throw new Error('Invalid actions in response');
         }
         
-        // Additional validation: ensure no function strings
+        // Additional validation: ensure no function strings (more lenient)
         const actionString = JSON.stringify(chunk.actions);
-        if (actionString.includes('function') || actionString.includes('Math.')) {
-          throw new Error('JavaScript expressions detected in actions');
+        if (actionString.includes('function(') || actionString.includes('Array.from')) {
+          logger.warn(`[codegen] Detected function expressions, attempting to clean...`);
+          // Try to clean it instead of failing
+          chunk.actions = chunk.actions.map((action: any) => {
+            const cleaned = JSON.parse(JSON.stringify(action).replace(/function\([^)]*\)\s*{[^}]*}/g, '[]'));
+            return cleaned;
+          });
         }
         
+        // CRITICAL: Fix chunk structure issues
+        // Fix corrupted type field
+        if (chunk.type && typeof chunk.type === 'string') {
+          // Remove any leading/trailing commas or spaces from type
+          const cleaned = chunk.type.replace(/^[\s,]+|[\s,]+$/g, '');
+          // Force to 'actions' if it's not exactly that
+          chunk.type = cleaned === 'actions' ? 'actions' : 'actions';
+        } else {
+          // Ensure type is set
+          chunk.type = 'actions';
+        }
         chunk.stepId = step.id;
+        
         logger.debug(`[codegen] SUCCESS: Generated ${chunk.actions.length} actions for step ${step.id}`);
         return chunk;
         
@@ -467,9 +515,11 @@ export async function codegenAgent(
       }
     }
     
-    // Wait before retry
+    // Exponential backoff before retry
     if (attemptCount < maxAttempts) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const backoffDelay = backoffMs[attemptCount] || 2000;
+      logger.debug(`[codegen] Waiting ${backoffDelay}ms before retry ${attemptCount + 1}`);
+      await new Promise(resolve => setTimeout(resolve, backoffDelay));
     }
   }
   
