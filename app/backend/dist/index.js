@@ -89,6 +89,34 @@ async function main() {
         // This endpoint is kept for backward compatibility but doesn't need to do anything
         res.json({ ok: true, message: 'Automatic progression is enabled' });
     });
+    // Monitoring & Management Endpoints
+    app.get('/api/performance', async (_req, res) => {
+        try {
+            const report = orchestrator.getPerformanceReport();
+            res.type('text/plain').send(report);
+        }
+        catch (err) {
+            res.status(500).json({ error: String(err) });
+        }
+    });
+    app.get('/api/cache/stats', async (_req, res) => {
+        try {
+            const stats = await orchestrator.getCacheStats();
+            res.json(stats);
+        }
+        catch (err) {
+            res.status(500).json({ error: String(err) });
+        }
+    });
+    app.post('/api/cache/clear', async (_req, res) => {
+        try {
+            await orchestrator.clearCache();
+            res.json({ success: true, message: 'Cache cleared successfully' });
+        }
+        catch (err) {
+            res.status(500).json({ error: String(err) });
+        }
+    });
     // Gemini verification endpoint (optional)
     app.get('/api/gemini-test', async (_req, res) => {
         try {

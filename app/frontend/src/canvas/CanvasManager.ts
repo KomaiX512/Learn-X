@@ -31,14 +31,19 @@ export class CanvasManager {
     // Find or create scroll container
     const parent = this.container.parentElement;
     if (parent) {
-      // Enable smooth scrolling
-      parent.style.overflowY = 'auto';
-      parent.style.scrollBehavior = 'smooth';
+      // DISABLE horizontal scrolling - single static view
+      parent.style.overflowX = 'hidden';
+      parent.style.overflowY = 'hidden'; // Also disable vertical for now
       parent.style.position = 'relative';
-      this.scrollContainer = parent;
+      parent.style.width = '100%';
+      parent.style.height = '100vh';
+      this.scrollContainer = parent as HTMLDivElement;
       
-      // Add scroll event listener for lazy loading
-      parent.addEventListener('scroll', this.handleScroll.bind(this));
+      // Center the canvas
+      this.container.style.position = 'absolute';
+      this.container.style.left = '50%';
+      this.container.style.top = '50%';
+      this.container.style.transform = 'translate(-50%, -50%)';
     }
   }
 
@@ -88,67 +93,43 @@ export class CanvasManager {
   }
 
   createSection(id: string, title?: string, customHeight?: number): CanvasSection {
-    // Check if section already exists
-    if (this.sections.has(id)) {
-      return this.sections.get(id)!;
+    // ALWAYS REUSE SINGLE SECTION - Keep everything in one viewport
+    if (this.sections.has('main')) {
+      const mainSection = this.sections.get('main')!;
+      // DON'T CLEAR - Let content accumulate for the full lesson
+      // mainSection.layer.destroyChildren();
+      // mainSection.layer.batchDraw();
+      return mainSection;
     }
-
-    const height = customHeight || this.minSectionHeight;
-    const yPosition = this.currentHeight;
     
-    // Create new layer for this section
+    // Create single main layer
     const layer = new Konva.Layer({
-      y: yPosition,
-      visible: false // Start invisible, will be shown when scrolled into view
+      y: 0,
+      visible: true
     });
     
     this.stage.add(layer);
     
-    // Add section title if provided
-    if (title) {
-      const titleText = new Konva.Text({
-        text: title,
-        x: 10,
-        y: 10,
-        fontSize: 24,
-        fontStyle: 'bold',
-        fill: '#333',
-        width: this.stage.width() - 20,
-        align: 'center'
-      });
-      layer.add(titleText);
-      
-      // Add separator line
-      const separator = new Konva.Line({
-        points: [10, 40, this.stage.width() - 10, 40],
-        stroke: '#ddd',
-        strokeWidth: 1
-      });
-      layer.add(separator);
-    }
-    
     const section: CanvasSection = {
-      id,
+      id: 'main',
       layer,
-      height,
-      yPosition,
+      height: this.stage.height(),
+      yPosition: 0,
       title,
-      isVisible: false
+      isVisible: true
     };
     
-    this.sections.set(id, section);
+    this.sections.set('main', section);
     
-    // Update total canvas height
-    this.currentHeight = yPosition + height + this.sectionSpacing;
-    this.updateCanvasHeight();
-    
-    // Check initial visibility
-    this.handleScroll();
+    // NO HEIGHT UPDATES - Keep fixed viewport
+    // NO SCROLLING - Everything in one view
     
     return section;
   }
 
   private updateCanvasHeight(): void {
+    // NO HEIGHT UPDATES - Keep fixed viewport
+    // NO SCROLLING - Everything in one view
     this.stage.height(this.currentHeight);
     
     // Update container height to enable scrolling

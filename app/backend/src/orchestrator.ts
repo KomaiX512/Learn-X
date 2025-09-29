@@ -1,14 +1,17 @@
-import { Queue, Worker, JobsOptions } from 'bullmq';
+import { Queue, Worker, Job, JobsOptions } from 'bullmq';
 import { Server as IOServer } from 'socket.io';
 import Redis from 'ioredis';
 import { logger } from './logger';
-import { GenJobData, Plan, PlanJobData, PlanStep, RenderChunk, SessionParams } from './types';
 import { plannerAgent } from './agents/planner';
 import { codegenAgent } from './agents/codegen';
-import { debugAgent } from './agents/debugger';
 import { compilerRouter } from './compiler/router';
+import { debugAgent } from './agents/debugger';
+import { SessionParams, Plan, RenderChunk } from './types';
 import { CacheManager } from './services/cache-manager';
 import { PerformanceMonitor } from './services/performance-monitor';
+
+type PlanJobData = { query: string; sessionId: string };
+type GenJobData = { step: any; sessionId: string; prefetch?: boolean };
 
 const PLAN_KEY = (sessionId: string) => `session:${sessionId}:plan`;
 const QUERY_KEY = (sessionId: string) => `session:${sessionId}:query`;
@@ -18,34 +21,39 @@ const CHUNK_KEY = (sessionId: string, stepId: number) => `session:${sessionId}:s
 const LEARNING_STATE_KEY = (sessionId: string) => `session:${sessionId}:learning_state`;
 
 // Progressive learning timing based on complexity
-// INCREASED to prevent race conditions with generation
+// REDUCED for immediate delivery - content is already generated
 const TIMING_BY_COMPLEXITY: { [key: number]: number } = {
-  1: 10000,  // Hook - quick engagement
-  2: 15000,  // Intuition - time to absorb
-  3: 20000,  // Formalism - complex concepts
-  4: 25000,  // Exploration - deep dive (MORE TIME)
-  5: 20000   // Mastery - synthesis (MORE TIME)
+  1: 2000,   // Hook - quick engagement
+  2: 2500,   // Intuition - time to absorb
+  3: 3000,   // Formalism - complex concepts
+  4: 3500,   // Exploration - deep dive
+  5: 3000    // Mastery - synthesis
 };
 
-export function initOrchestrator(io: IOServer, redis: Redis) {
-  const connection = redis;
+export async function initOrchestrator(io: IOServer, redis: Redis) {
+  // BullMQ requires separate Redis connections for queues and workers
+  const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
   
-  // Initialize services
+  // Create separate connections for BullMQ
+  const queueConnection = new Redis(REDIS_URL, { maxRetriesPerRequest: null });
+  const workerConnection = new Redis(REDIS_URL, { maxRetriesPerRequest: null });
+  
+  // Initialize services with original redis connection
   const cacheManager = new CacheManager(redis);
   const perfMonitor = new PerformanceMonitor();
   
   // Clear any stale jobs on startup
   console.log('🧹 Clearing stale job queues on startup...');
   
-  // Create separate queues for plan and gen jobs
-  const planQueue = new Queue('plan-jobs', { connection });
-  const genQueue = new Queue('gen-jobs', { connection });
-  const parallelQueue = new Queue('parallel-gen-jobs', { connection }); // New parallel generation queue
+  // Create queues with queue connection
+  const planQueue = new Queue('plan-jobs', { connection: queueConnection });
+  const genQueue = new Queue('gen-jobs', { connection: queueConnection });
+  const parallelQueue = new Queue('parallel-gen-jobs', { connection: queueConnection });
   
-  // Clean up stale jobs
-  planQueue.obliterate({ force: true }).catch(() => console.log('Plan queue already clean'));
-  genQueue.obliterate({ force: true }).catch(() => console.log('Gen queue already clean'));
-  parallelQueue.obliterate({ force: true }).catch(() => console.log('Parallel queue already clean'));
+  // Clean up stale jobs ONLY on startup, not continuously
+  // await planQueue.obliterate({ force: true }).catch(() => {});
+  // await genQueue.obliterate({ force: true }).catch(() => {});
+  // await parallelQueue.obliterate({ force: true }).catch(() => {});
   
   // Performance monitoring updates
   perfMonitor.on('metrics-updated', (metrics) => {
@@ -130,7 +138,7 @@ export function initOrchestrator(io: IOServer, redis: Redis) {
       }
       logger.debug(`[plan] END: session=${sessionId}`);
     },
-    { connection }
+    { connection: workerConnection }
   );
   logger.debug('NEW Plan worker created');
 
@@ -164,7 +172,7 @@ export function initOrchestrator(io: IOServer, redis: Redis) {
           return;
         }
         const startTime = Date.now();
-        const code = await codegenAgent(step, params, query); // NO TRY/CATCH - LET IT FAIL
+        const code = await codegenAgent(step, query); // NO TRY/CATCH - LET IT FAIL
         logger.debug(`[gen] OK: prefetch codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
         const compiled: RenderChunk = await compilerRouter(code, step.compiler);
         const checked: RenderChunk = await debugAgent(compiled);
@@ -182,7 +190,7 @@ export function initOrchestrator(io: IOServer, redis: Redis) {
       } else {
         const startTime = Date.now();
         try {
-          const code = await codegenAgent(step, params, query);
+          const code = await codegenAgent(step, query);
           logger.debug(`[gen] OK: codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
           const compiled: RenderChunk = await compilerRouter(code, step.compiler);
           checked = await debugAgent(compiled);
@@ -247,7 +255,7 @@ export function initOrchestrator(io: IOServer, redis: Redis) {
         logger.debug(`[orchestrator] All steps completed for session ${sessionId}`);
       }
     },
-    { connection, concurrency: 2 }
+    { connection: workerConnection, concurrency: 2 }
   );
   logger.debug('NEW Gen worker created');
 
@@ -255,7 +263,14 @@ export function initOrchestrator(io: IOServer, redis: Redis) {
   const parallelWorker = new Worker(
     'parallel-gen-jobs',
     async (job) => {
-      if (job.name !== 'parallel-generate') return;
+      console.log('=== PARALLEL WORKER CALLED ===');
+      console.log('Job name:', job.name);
+      console.log('Job data keys:', Object.keys(job.data || {}));
+      
+      if (job.name !== 'parallel-generate') {
+        console.log('SKIPPING: Not a parallel-generate job');
+        return;
+      }
       const { sessionId, plan, query } = job.data as any;
       logger.debug(`[parallel] Starting parallel generation for ${plan.steps.length} steps`);
       
@@ -294,8 +309,8 @@ export function initOrchestrator(io: IOServer, redis: Redis) {
                   message: `Generating ${step.tag}: ${step.desc.slice(0, 50)}...`
                 });
                 
-                // Generate the step
-                const code = await codegenAgent(step, params, query);
+                // Generate the step (new signature without params)
+                const code = await codegenAgent(step, query);
                 const compiled: RenderChunk = await compilerRouter(code, step.compiler);
                 checked = await debugAgent(compiled);
                 
@@ -367,59 +382,59 @@ export function initOrchestrator(io: IOServer, redis: Redis) {
         }
       });
       
-      // Start streaming the first successful step immediately
+      // EMIT ALL STEPS QUICKLY FOR DEBUGGING
       if (successful > 0) {
-        const firstStep = plan.steps[0];
-        const cached = await redis.get(CHUNK_KEY(sessionId, firstStep.id));
-        if (cached) {
-          const chunk = JSON.parse(cached);
-          const eventData = { 
-            ...chunk, 
-            step: firstStep, 
-            plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc } 
-          };
-          io.to(sessionId).emit('rendered', eventData);
-          logger.debug(`[parallel] Emitted first step immediately`);
+        // First, emit the plan immediately
+        io.to(sessionId).emit('rendered', {
+          type: 'actions',
+          actions: [], // Empty actions for plan-only event
+          plan: {
+            title: plan.title,
+            subtitle: plan.subtitle,
+            toc: plan.toc
+          }
+        });
+        logger.debug(`[parallel] Emitted plan for session ${sessionId}`);
+        
+        // Emit all steps with small delays to test canvas rendering
+        let delay = 2000; // Start after 2 seconds
+        
+        for (let i = 0; i < plan.steps.length; i++) {
+          const step = plan.steps[i];
+          const cached = await redis.get(CHUNK_KEY(sessionId, step.id));
           
-          // Schedule remaining steps with proper timing
-          for (let i = 1; i < plan.steps.length; i++) {
-            const step = plan.steps[i];
-            const delayMs = TIMING_BY_COMPLEXITY[step.complexity || 1];
-            await genQueue.add('emit-cached', { step, sessionId, plan }, { 
-              ...defaultJobOpts, 
-              delay: delayMs * i // Stagger the emissions
-            });
+          if (cached) {
+            const chunk = JSON.parse(cached);
+            
+            const eventData = { 
+              type: 'actions', // CRITICAL: Must be 'actions'
+              actions: chunk.actions, // Frontend expects this
+              stepId: step.id,
+              step: step, 
+              plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc }
+            };
+            
+            // Emit each step with 3 second delay
+            setTimeout(() => {
+              io.to(sessionId).emit('rendered', eventData);
+              logger.debug(`[parallel] Emitted step ${step.id} at ${delay}ms`);
+            }, delay);
+            
+            delay += 3000; // 3 seconds between steps for debugging
           }
         }
+        
+        logger.debug(`[parallel] All steps scheduled for emission`);
       }
       
       logger.debug(`[parallel] Job complete for session ${sessionId}`);
     },
-    { connection, concurrency: 2 } // Reduced to 2 parallel to avoid API overload
+    { connection: workerConnection, concurrency: 2 } // Reduced to 2 parallel to avoid API overload
   );
   logger.debug('NEW Parallel worker created');
   
-  // NEW: Worker to emit pre-generated cached steps
-  const emitWorker = new Worker(
-    'gen-jobs',
-    async (job) => {
-      if (job.name !== 'emit-cached') return;
-      const { sessionId, step, plan } = job.data as any;
-      
-      const cached = await redis.get(CHUNK_KEY(sessionId, step.id));
-      if (cached) {
-        const chunk = JSON.parse(cached);
-        const eventData = { 
-          ...chunk, 
-          step, 
-          plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc } 
-        };
-        io.to(sessionId).emit('rendered', eventData);
-        logger.debug(`[emit] Emitted cached step ${step.id} for session ${sessionId}`);
-      }
-    },
-    { connection, concurrency: 2 }
-  );
+  // REMOVED: Old emit worker - we now emit directly from parallel worker
+  // const emitWorker = new Worker(...);
 
   planWorker.on('failed', (job, err) => logger.error(`[plan:failed] id=${job?.id} ${String(err)}`));
   genWorker.on('failed', (job, err) => logger.error(`[gen:failed] id=${job?.id} ${String(err)}`));

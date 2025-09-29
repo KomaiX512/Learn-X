@@ -20,7 +20,7 @@ export function getSocket(sessionId: string) {
   }
 
   console.log('[socket] Creating new socket connection');
-  socket = io('/', { transports: ['websocket'] });
+  socket = io('http://localhost:3001', { transports: ['websocket'] });
   
   // Reset join tracking
   joinedSession = null;

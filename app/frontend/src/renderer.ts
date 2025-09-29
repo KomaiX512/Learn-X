@@ -12,20 +12,23 @@ type Action =
   | { op: 'drawCircle'; normalized?: boolean; x: number; y: number; radius: number; color?: string; fill?: boolean }
   | { op: 'drawRect'; normalized?: boolean; x: number; y: number; width: number; height: number; color?: string; fill?: boolean }
   | { op: 'highlight'; targetId: string; color?: string; duration?: number }
-  // New 3Blue1Brown-style animations
   | { op: 'orbit'; centerX: number; centerY: number; radius: number; period: number; objectRadius: number; color?: string; trail?: boolean; centerColor?: string; showCenterArrow?: boolean }
   | { op: 'wave'; startX: number; startY: number; width: number; amplitude: number; frequency: number; speed: number; color?: string }
   | { op: 'particle'; x: number; y: number; count: number; spread: number; speed: number; color?: string; lifetime: number }
   | { op: 'arrow'; x: number; y: number; angle: number; length: number; color?: string; animated?: boolean }
   | { op: 'field'; type: 'vector' | 'electric' | 'magnetic'; gridSize: number; strength: number }
-  | { op: 'morph'; fromShape: any; toShape: any; duration: number }
-  | { op: 'rotate'; targetId: string; angle: number; duration: number; centerX?: number; centerY?: number }
   | { op: 'pulse'; targetId: string; scale: number; duration: number; repeat?: number }
+  | { op: 'rotate'; targetId: string; angle: number; duration: number }
   | { op: 'flow'; path: [number, number][]; particleCount: number; speed: number; color?: string }
-  // Enhanced educational animations
-  | { op: 'transform'; targetId: string; matrix: number[]; duration: number; description?: string }
-  | { op: 'trace'; path: [number, number][]; color?: string; width?: number; speed?: number; showHead?: boolean }
-  | { op: 'spotlight'; x: number; y: number; radius: number; intensity?: number; color?: string }
+  // Advanced educational animations
+  | { op: 'transform'; from: any; to: any; duration: number }
+  | { op: 'morph'; shape1: any; shape2: any; duration: number }
+  | { op: 'trace'; path: [number, number][]; color?: string; width?: number; duration?: number }
+  | { op: 'graph3d'; func: (x: number, y: number) => number; domain: { x: [number, number]; y: [number, number] } }
+  // Custom complex visualizations
+  | { op: 'customPath'; path: string; x?: number; y?: number; fill?: string; stroke?: string; strokeWidth?: number; scale?: number; glow?: boolean }
+  | { op: 'drawGraph'; func: string; domain: [number, number]; color?: string; scale?: number }
+  | { op: 'drawDiagram'; type: 'neuralNetwork' | 'molecule' | 'circuit' | 'anatomy'; x?: number; y?: number; layers?: number[]; atoms?: any[]; bonds?: any[] }
   | { op: 'fadeIn'; targetId: string; duration: number; delay?: number }
   | { op: 'fadeOut'; targetId: string; duration: number; delay?: number }
   | { op: 'parallel'; actions: Action[]; syncDelay?: number }
@@ -43,6 +46,10 @@ export interface RenderChunk {
     title?: string;
     subtitle?: string;
     toc?: Array<{ minute: number; title: string; summary?: string }>;
+  };
+  timing?: {
+    stepDuration?: number;
+    nextStepDelay?: number;
   };
 }
 
@@ -141,6 +148,12 @@ function clear(target?: 'all' | 'layer') {
     const initialHeight = Math.min(stepHeight, stage.container().parentElement?.clientHeight || stepHeight);
     stage.height(initialHeight);
     
+    // CRITICAL: Add a base layer to ensure canvas is created
+    const baseLayer = new Konva.Layer();
+    stage.add(baseLayer);
+    baseLayer.draw();
+    console.log('[renderer] clear: Added base layer to ensure canvas exists');
+    
     stage.container().parentElement?.scrollTo({ top: 0 });
     console.log(`[renderer] clear: Reset complete - stage now ${stage.width()}x${initialHeight}`);
     return;
@@ -236,12 +249,13 @@ function drawLabel(layer: Konva.Layer, text: string, x: number, y: number, norma
   const px = normalized ? nx(x) : x;
   const py = normalized ? ny(y) : y;
   
-  // Enhanced options for production-quality rendering
-  const fontSize = options?.fontSize || (options?.isTitle ? 28 : options?.isDefinition ? 20 : 16);
-  const fontWeight = options?.bold || options?.isTitle ? 'bold' : 'normal';
+  // 3Blue1Brown-style typography
+  const fontSize = options?.fontSize || (options?.isTitle ? 32 : options?.isDefinition ? 24 : 18);
+  const fontWeight = options?.bold || options?.isTitle ? 'bold' : options?.isDefinition ? '600' : 'normal';
   const fontStyle = options?.italic ? 'italic' : 'normal';
   const align = options?.align || 'left';
-  const actualColor = color || (options?.isTitle ? '#FFD700' : options?.isDefinition ? '#00FF88' : '#ffffff');
+  const fontFamily = 'Inter, Helvetica, Arial, sans-serif';
+  const actualColor = color || (options?.isTitle ? '#3b82f6' : options?.isDefinition ? '#10b981' : '#e5e7eb');
   
   console.log(`[renderer] drawLabel: "${text}" at (${x},${y}) normalized=${normalized} -> canvas (${px},${py}) [${options?.isTitle ? 'TITLE' : options?.isDefinition ? 'DEFINITION' : 'TEXT'}]`);
   
@@ -312,23 +326,73 @@ function drawLabel(layer: Konva.Layer, text: string, x: number, y: number, norma
 
 function drawTitle(layer: Konva.Layer, text: string, y?: number, durationSec?: number) {
   if (!stage) return;
-  const py = typeof y === 'number' ? ny(y) : ny(0.06);
-  // Centered title across the full stage width
+  const py = typeof y === 'number' ? ny(y) : ny(0.08);
+  
+  // Create a beautiful title box like 3Blue1Brown
+  const padding = 20;
+  const boxWidth = stage.width() * 0.8;
+  const boxX = (stage.width() - boxWidth) / 2;
+  
+  // Background box with gradient
+  const titleBox = new Konva.Rect({
+    x: boxX,
+    y: py - padding,
+    width: boxWidth,
+    height: 80,
+    fill: '#1a1a2e',
+    stroke: '#16213e',
+    strokeWidth: 2,
+    cornerRadius: 10,
+    shadowColor: 'black',
+    shadowBlur: 20,
+    shadowOpacity: 0.3,
+    shadowOffsetY: 5
+  });
+  
+  // Title text with better typography
   const title = new Konva.Text({
     text,
-    x: 0,
+    x: boxX,
     y: py,
-    width: stage.width(),
+    width: boxWidth,
+    height: 60,
     align: 'center',
-    fill: '#111',
+    verticalAlign: 'middle',
+    fill: '#ffffff',
+    fontFamily: 'Inter, Helvetica, Arial, sans-serif',
     fontStyle: 'bold',
-    fontSize: 28
+    fontSize: 32,
+    letterSpacing: 1
   });
+  
+  // Add accent line
+  const accentLine = new Konva.Rect({
+    x: boxX + boxWidth/2 - 50,
+    y: py + 55,
+    width: 100,
+    height: 3,
+    fill: '#3b82f6',
+    cornerRadius: 2
+  });
+  
+  // Set initial opacity
+  titleBox.opacity(0);
   title.opacity(0);
+  accentLine.opacity(0);
+  
+  // Add to layer
+  layer.add(titleBox);
   layer.add(title);
+  layer.add(accentLine);
   layer.draw();
-  const tween = new Konva.Tween({ node: title, duration: Math.max(0.2, durationSec || 0.5), opacity: 1 });
-  tween.play();
+  
+  // Animate in sequence
+  const duration = Math.max(0.5, durationSec || 1);
+  new Konva.Tween({ node: titleBox, duration: duration * 0.6, opacity: 1 }).play();
+  setTimeout(() => {
+    new Konva.Tween({ node: title, duration: duration * 0.4, opacity: 1 }).play();
+    new Konva.Tween({ node: accentLine, duration: duration * 0.4, opacity: 1 }).play();
+  }, duration * 300);
 }
 
 function drawMathLabel(tex: string, x: number, y: number, normalized?: boolean, stepId?: number) {
@@ -1045,22 +1109,17 @@ export async function execChunk(chunk: RenderChunk) {
     return;
   }
   
-  // Try to use enhanced renderer if available
-  const enhancedRenderer = (window as any).enhancedRenderer;
-  if (enhancedRenderer) {
-    console.log('[renderer] Using enhanced renderer for step:', chunk.stepId);
-    try {
-      await enhancedRenderer.renderStep({
-        stepId: String(chunk.stepId),
-        stepTitle: chunk.step?.desc,
-        actions: chunk.actions || [],
-        plan: chunk.plan
-      });
-      return;
-    } catch (error) {
-      console.warn('[renderer] Enhanced renderer failed, falling back to standard:', error);
-    }
+  // Check if we should wait for previous step to complete
+  const currentStepId = parseInt(String(chunk.stepId));
+  
+  // Store step start time for tracking
+  if (!(window as any).stepStartTimes) {
+    (window as any).stepStartTimes = {};
   }
+  (window as any).stepStartTimes[currentStepId] = Date.now();
+  
+  console.log('[renderer] Starting step:', chunk.stepId, 'with', chunk.actions?.length, 'actions');
+  console.log('[renderer] Timing info:', chunk.timing);
   
   if (!stage) {
     console.warn('[renderer] Stage not initialized yet; queuing chunk for later flush:', {
@@ -1074,20 +1133,59 @@ export async function execChunk(chunk: RenderChunk) {
   // Always create a new layer for each chunk to accumulate content
   // This ensures each part (Part A, Part B, etc.) gets its own layer
   let layer = ensureLayer(chunk.stepId, true);
+  
+  // CINEMATIC TIMING: Process actions with proper delays
+  const startTime = Date.now();
+  const actionDelay = 800; // 800ms between each action for cinematic effect
+  
+  for (let i = 0; i < chunk.actions.length; i++) {
+    const action = chunk.actions[i];
+    
+    // Process the action
+    await processActionImpl(action, layer, chunk);
+    
+    // Add delay between actions (except for delay actions themselves)
+    if (action.op !== 'delay' && i < chunk.actions.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, actionDelay));
+    }
+  }
+  
+  // Use timing from backend or calculate defaults
+  const stepDuration = chunk.timing?.stepDuration || 45000; // Default 45 seconds per step
+  const nextStepDelay = chunk.timing?.nextStepDelay || 5000; // Default 5 seconds pause
+  
+  // Calculate how long we've already spent
+  const actualDuration = Date.now() - startTime;
+  
+  // If we haven't reached minimum duration, wait
+  if (actualDuration < stepDuration) {
+    const waitTime = stepDuration - actualDuration;
+    console.log(`[renderer] Step ${chunk.stepId} completed in ${actualDuration}ms, waiting ${waitTime}ms to reach ${stepDuration}ms total`);
+    await new Promise(resolve => setTimeout(resolve, waitTime));
+  }
+  
+  // Add pause time for comprehension before next step
+  console.log(`[renderer] Adding ${nextStepDelay}ms pause before next step`);
+  await new Promise(resolve => setTimeout(resolve, nextStepDelay));
+  
+  const totalTime = Date.now() - startTime;
+  console.log(`[renderer] Completed step ${chunk.stepId} in ${totalTime}ms (${(totalTime/1000).toFixed(1)}s)`);
+}
 
-  for (const action of chunk.actions) {
-    switch (action.op) {
-      case 'clear':
-        // Clearing the stage destroys all children, including our current layer.
-        // Recreate/re-ensure the layer immediately after clearing so subsequent
-        // draw operations render to a live layer attached to the stage.
-        clear(action.target);
-        layer = ensureLayer(chunk.stepId, true);
-        break;
-      case 'drawAxis':
-        drawAxis(layer, { xLabel: action.xLabel, yLabel: action.yLabel });
-        break;
-      case 'drawLabel':
+// Move processAction outside of execChunk
+async function processActionImpl(action: Action, layer: Konva.Layer, chunk: RenderChunk) {
+  switch (action.op) {
+    case 'clear':
+      if (action.target === 'all') {
+        stage.find('Layer').forEach(l => (l as Konva.Layer).destroyChildren());
+      } else {
+        layer.destroyChildren();
+      }
+      break;
+    case 'drawAxis':
+      drawAxis(layer, { xLabel: action.xLabel, yLabel: action.yLabel });
+      break;
+    case 'drawLabel':
         drawLabel(layer, action.text, action.x, action.y, action.normalized, action.color, {
           isTitle: action.isTitle,
           isDefinition: action.isDefinition,
@@ -1183,6 +1281,260 @@ export async function execChunk(chunk: RenderChunk) {
           }
         }
         break;
+      case 'customPath':
+        // Custom SVG path for complex drawings (anatomy, circuits, molecules, etc.)
+        if (action.path) {
+          const customPath = new Konva.Path({
+            data: action.path,
+            fill: action.fill || 'transparent',
+            stroke: action.stroke || '#ffffff',
+            strokeWidth: action.strokeWidth || 2,
+            x: (action.x || 0) * (stage?.width() || 800),
+            y: (action.y || 0) * (stage?.height() || 600),
+            scale: { x: action.scale || 1, y: action.scale || 1 },
+            opacity: 0
+          });
+          
+          layer.add(customPath);
+          
+          // Animate appearance
+          const fadeIn = new Konva.Tween({
+            node: customPath,
+            duration: 1,
+            opacity: 1,
+            easing: Konva.Easings.EaseInOut
+          });
+          fadeIn.play();
+          
+          // Add glow effect for emphasis
+          if (action.glow) {
+            customPath.shadowColor(action.stroke || '#ffffff');
+            customPath.shadowBlur(20);
+            customPath.shadowOpacity(0.5);
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+        break;
+        
+      case 'drawGraph':
+        // Draw a mathematical function graph
+        if (action.func && action.domain) {
+          const points: number[] = [];
+          const [xMin, xMax] = action.domain;
+          const steps = 100;
+          const dx = (xMax - xMin) / steps;
+          
+          for (let i = 0; i <= steps; i++) {
+            const x = xMin + i * dx;
+            let y;
+            try {
+              // Safely evaluate the function
+              y = eval(action.func.replace(/x/g, `(${x})`));
+            } catch {
+              y = 0;
+            }
+            
+            // Convert to screen coordinates
+            const screenX = ((x - xMin) / (xMax - xMin)) * (stage?.width() || 800) * 0.8 + (stage?.width() || 800) * 0.1;
+            const screenY = (stage?.height() || 600) * 0.5 - y * (action.scale || 50);
+            
+            points.push(screenX, screenY);
+          }
+          
+          const graph = new Konva.Line({
+            points: points,
+            stroke: action.color || '#00ff88',
+            strokeWidth: 3,
+            lineCap: 'round',
+            lineJoin: 'round',
+            tension: 0.1,
+            opacity: 0
+          });
+          
+          layer.add(graph);
+          
+          // Animate drawing
+          const len = points.length * 2; // Approximate length
+          graph.dashEnabled(true);
+          graph.dash([len, len]);
+          graph.dashOffset(len);
+          graph.opacity(1);
+          
+          const anim = new Konva.Tween({
+            node: graph,
+            duration: 2,
+            dashOffset: 0,
+            easing: Konva.Easings.EaseInOut
+          });
+          anim.play();
+          
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
+        break;
+        
+      case 'drawDiagram':
+        // Complex educational diagrams (neural network, circuit, molecule, etc.)
+        const diagramGroup = new Konva.Group({
+          x: (action.x || 0.5) * (stage?.width() || 800),
+          y: (action.y || 0.5) * (stage?.height() || 600)
+        });
+        
+        layer.add(diagramGroup);
+        
+        switch(action.type) {
+          case 'neuralNetwork':
+            // Draw a simple neural network diagram
+            const layers = action.layers || [3, 4, 2];
+            const spacing = 80;
+            const nodeRadius = 15;
+            
+            for (let l = 0; l < layers.length; l++) {
+              const layerX = l * spacing - (layers.length - 1) * spacing / 2;
+              const nodesInLayer = layers[l];
+              
+              for (let n = 0; n < nodesInLayer; n++) {
+                const nodeY = n * 40 - (nodesInLayer - 1) * 20;
+                
+                // Draw node
+                const node = new Konva.Circle({
+                  x: layerX,
+                  y: nodeY,
+                  radius: nodeRadius,
+                  fill: l === 0 ? '#3498db' : l === layers.length - 1 ? '#e74c3c' : '#2ecc71',
+                  stroke: '#ffffff',
+                  strokeWidth: 2,
+                  opacity: 0
+                });
+                
+                diagramGroup.add(node);
+                
+                // Animate appearance
+                const appear = new Konva.Tween({
+                  node: node,
+                  duration: 0.3,
+                  opacity: 1,
+                  delay: (l * nodesInLayer + n) * 0.05
+                });
+                appear.play();
+                
+                // Draw connections to next layer
+                if (l < layers.length - 1) {
+                  const nextLayerNodes = layers[l + 1];
+                  for (let nn = 0; nn < nextLayerNodes; nn++) {
+                    const nextX = (l + 1) * spacing - (layers.length - 1) * spacing / 2;
+                    const nextY = nn * 40 - (nextLayerNodes - 1) * 20;
+                    
+                    const connection = new Konva.Line({
+                      points: [layerX, nodeY, nextX, nextY],
+                      stroke: 'rgba(255, 255, 255, 0.3)',
+                      strokeWidth: 1,
+                      opacity: 0
+                    });
+                    
+                    diagramGroup.add(connection);
+                    connection.moveToBottom();
+                    
+                    // Animate connection
+                    const connectAnim = new Konva.Tween({
+                      node: connection,
+                      duration: 0.5,
+                      opacity: 1,
+                      delay: (l * nodesInLayer + n) * 0.05 + 0.3
+                    });
+                    connectAnim.play();
+                  }
+                }
+              }
+            }
+            break;
+            
+          case 'molecule':
+            // Draw a simple molecule structure
+            const atoms = action.atoms || [
+              { element: 'C', x: 0, y: 0 },
+              { element: 'H', x: -30, y: -30 },
+              { element: 'H', x: 30, y: -30 },
+              { element: 'H', x: -30, y: 30 },
+              { element: 'H', x: 30, y: 30 }
+            ];
+            
+            const bonds = action.bonds || [
+              [0, 1], [0, 2], [0, 3], [0, 4]
+            ];
+            
+            // Draw bonds first
+            bonds.forEach(([a1, a2], i) => {
+              const atom1 = atoms[a1];
+              const atom2 = atoms[a2];
+              
+              const bond = new Konva.Line({
+                points: [atom1.x, atom1.y, atom2.x, atom2.y],
+                stroke: '#666666',
+                strokeWidth: 2,
+                opacity: 0
+              });
+              
+              diagramGroup.add(bond);
+              
+              const bondAnim = new Konva.Tween({
+                node: bond,
+                duration: 0.3,
+                opacity: 1,
+                delay: i * 0.1
+              });
+              bondAnim.play();
+            });
+            
+            // Draw atoms
+            atoms.forEach((atom, i) => {
+              const atomGroup = new Konva.Group({
+                x: atom.x,
+                y: atom.y
+              });
+              
+              const circle = new Konva.Circle({
+                radius: 20,
+                fill: atom.element === 'C' ? '#333333' : 
+                      atom.element === 'H' ? '#ffffff' :
+                      atom.element === 'O' ? '#ff0000' :
+                      atom.element === 'N' ? '#0000ff' : '#999999',
+                stroke: '#ffffff',
+                strokeWidth: 2,
+                opacity: 0
+              });
+              
+              const label = new Konva.Text({
+                text: atom.element,
+                fontSize: 16,
+                fontFamily: 'Arial',
+                fill: atom.element === 'C' ? '#ffffff' : '#000000',
+                align: 'center',
+                verticalAlign: 'middle',
+                offsetX: 8,
+                offsetY: 8,
+                opacity: 0
+              });
+              
+              atomGroup.add(circle);
+              atomGroup.add(label);
+              diagramGroup.add(atomGroup);
+              
+              // Animate appearance
+              const atomAnim = new Konva.Tween({
+                node: atomGroup,
+                duration: 0.5,
+                opacity: 1,
+                delay: bonds.length * 0.1 + i * 0.1
+              });
+              atomAnim.play();
+            });
+            break;
+        }
+        
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        break;
+        
       case 'flow':
         // Particle flow along a path
         const flowParticles: any[] = [];
@@ -1245,4 +1597,3 @@ export async function execChunk(chunk: RenderChunk) {
         break;
     }
   }
-}

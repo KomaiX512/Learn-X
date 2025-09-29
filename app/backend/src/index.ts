@@ -23,19 +23,28 @@ async function main() {
 
   const server = http.createServer(app);
   const io = new IOServer(server, {
-    cors: { origin: FRONTEND_URLS, methods: ['GET', 'POST'] }
+    cors: { origin: FRONTEND_URLS, methods: ['GET', 'POST'] },
+    // Keep connections alive
+    pingTimeout: 60000,
+    pingInterval: 25000,
+    transports: ['websocket', 'polling']
   });
 
   const redis = new Redis(REDIS_URL, { maxRetriesPerRequest: null });
-  const orchestrator = initOrchestrator(io, redis);
+  const orchestrator = await initOrchestrator(io, redis);
 
   io.on('connection', (socket) => {
     logger.debug(`[socket] New connection: ${socket.id}`);
     
-    socket.on('join', ({ sessionId }) => {
+    socket.on('join', async (data) => {
+      // Handle both string and object formats
+      const sessionId = typeof data === 'string' ? data : data?.sessionId;
       if (sessionId) {
         socket.join(sessionId);
         logger.debug(`[socket] Socket ${socket.id} joined session ${sessionId}`);
+        
+        // Store session in socket data for delivery manager
+        socket.data.sessionId = sessionId;
         
         // Verify the socket is in the room
         const rooms = Array.from(socket.rooms);
@@ -44,13 +53,52 @@ async function main() {
         // Acknowledge to the client that it successfully joined the room
         socket.emit('joined', { sessionId });
         
-        // Test emit to the room after a delay
-        setTimeout(async () => {
-          const roomSockets = await io.in(sessionId).fetchSockets();
-          logger.debug(`[test] Room ${sessionId} has ${roomSockets.length} sockets`);
-          io.to(sessionId).emit('test', { message: 'Test emit to room', sessionId });
-        }, 1000);
+        // Check if there's already a plan and steps generated for this session
+        try {
+          const planKey = `session:${sessionId}:plan`;
+          const planData = await redis.get(planKey);
+          
+          if (planData) {
+            const plan = JSON.parse(planData);
+            // Emit the plan immediately to the newly joined socket
+            socket.emit('plan', {
+              title: plan.title,
+              subtitle: plan.subtitle,
+              toc: plan.toc,
+              steps: plan.steps.map(s => ({ id: s.id, tag: s.tag, desc: s.desc }))
+            });
+            logger.debug(`[socket] Sent cached plan to newly joined socket ${socket.id}`);
+            
+            // Check for any generated steps and emit them
+            for (const step of plan.steps) {
+              const chunkKey = `session:${sessionId}:step:${step.id}:chunk`;
+              const chunkData = await redis.get(chunkKey);
+              if (chunkData) {
+                const chunk = JSON.parse(chunkData);
+                socket.emit('rendered', {
+                  ...chunk,
+                  step,
+                  plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc }
+                });
+                logger.debug(`[socket] Sent cached step ${step.id} to newly joined socket ${socket.id}`);
+              }
+            }
+          }
+        } catch (error) {
+          logger.error(`[socket] Error checking for cached data: ${error}`);
+        }
       }
+    });
+    
+    // Add acknowledgment handler
+    socket.on('step-received', (data) => {
+      const { sessionId, stepId } = data;
+      logger.debug(`[socket] Client acknowledged step ${stepId} for session ${sessionId}`);
+    });
+    
+    // Keep-alive handler
+    socket.on('ping', () => {
+      socket.emit('pong');
     });
     
     socket.on('disconnect', (reason) => {

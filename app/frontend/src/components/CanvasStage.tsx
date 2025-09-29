@@ -44,35 +44,87 @@ export default function CanvasStage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Initialize stage once on mount; destroy on unmount
+  // Initialize stage when both container and size are ready
   useEffect(() => {
-    if (!containerRef.current || !overlayRef.current) return;
-    if (stageRef.current) return; // already initialized
-
-    const stage = new Konva.Stage({
-      container: containerRef.current,
-      width: size.w,
-      height: size.h
-    });
-    stageRef.current = stage;
-    
-    // Initialize both renderers
-    initRenderer(stage, overlayRef.current);
-    enhancedRendererRef.current = new EnhancedRenderer(stage, overlayRef.current);
-    
-    // Export enhanced renderer for external use
-    (window as any).enhancedRenderer = enhancedRendererRef.current;
-
-    return () => {
+    // Clean up previous stage if it exists
+    if (stageRef.current) {
+      console.log('[CanvasStage] Cleaning up previous stage');
       if (enhancedRendererRef.current) {
         enhancedRendererRef.current.cleanup();
       }
-      stage.destroy();
+      stageRef.current.destroy();
       stageRef.current = null;
       enhancedRendererRef.current = null;
       delete (window as any).enhancedRenderer;
-    };
-  }, []);
+    }
+
+    // Check prerequisites
+    if (!containerRef.current || !overlayRef.current) {
+      console.log('[CanvasStage] Container not ready');
+      return;
+    }
+    if (size.w === 0 || size.h === 0) {
+      console.log('[CanvasStage] Size not set yet');
+      return;
+    }
+
+    console.log('[CanvasStage] Creating Konva stage');
+    console.log('[CanvasStage] Container:', containerRef.current);
+    console.log('[CanvasStage] Size:', size.w, 'x', size.h);
+    
+    // Create a unique ID for the container
+    const containerId = 'konva-stage-' + Date.now();
+    containerRef.current.id = containerId;
+    
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+      if (!containerRef.current) return;
+      
+      try {
+        // Create stage using the container ID
+        const stage = new Konva.Stage({
+          container: containerId,
+          width: size.w,
+          height: size.h
+        });
+        
+        stageRef.current = stage;
+        console.log('[CanvasStage] Stage created successfully');
+        
+        // Create a layer and add a test circle
+        const layer = new Konva.Layer();
+        const testCircle = new Konva.Circle({
+          x: size.w / 2,
+          y: size.h / 2,
+          radius: 30,
+          fill: 'blue',
+          stroke: 'black',
+          strokeWidth: 2
+        });
+        layer.add(testCircle);
+        stage.add(layer);
+        layer.draw();
+        
+        console.log('[CanvasStage] Test circle added');
+        console.log('[CanvasStage] Canvas element exists:', !!document.querySelector(`#${containerId} canvas`));
+        
+        // Initialize renderers
+        initRenderer(stage, overlayRef.current);
+        
+        // Skip enhanced renderer for now - it's causing issues
+        // enhancedRendererRef.current = new EnhancedRenderer(stage, overlayRef.current);
+        // (window as any).enhancedRenderer = enhancedRendererRef.current;
+        
+        console.log('[CanvasStage] Standard renderer initialized');
+        
+        // Force initial draw to ensure canvas is visible
+        stage.batchDraw();
+        console.log('[CanvasStage] Initial draw complete');
+      } catch (error) {
+        console.error('[CanvasStage] Failed to create stage:', error);
+      }
+    }, 100); // Small delay to ensure DOM is ready
+  }, [size.w, size.h]); // Re-run when size changes
 
   // Apply size updates to existing stage without recreating
   useEffect(() => {

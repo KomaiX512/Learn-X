@@ -124,7 +124,7 @@ export default function App() {
     } catch (e) {
       console.warn('[submit] join wait failed, proceeding anyway:', e);
     }
-    const res = await fetch('/api/query', {
+    const res = await fetch('http://localhost:3001/api/query', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query, sessionId: sid })

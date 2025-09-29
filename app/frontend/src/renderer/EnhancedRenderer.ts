@@ -1,6 +1,7 @@
 import Konva from 'konva';
 import { CanvasManager } from '../canvas/CanvasManager';
 import { AnimationEngine } from '../animations/AnimationEngine';
+import { AnimationQueue } from './AnimationQueue';
 
 export interface EnhancedAction {
   op: string;
@@ -21,6 +22,7 @@ export interface RenderContext {
 export class EnhancedRenderer {
   private canvasManager: CanvasManager;
   private animationEngine: AnimationEngine;
+  private animationQueue: AnimationQueue;
   private stage: Konva.Stage;
   private overlay: HTMLDivElement;
   // Per-section simple flow-layout state to avoid overlaps (with recorded segments)
@@ -30,12 +32,18 @@ export class EnhancedRenderer {
     this.stage = stage;
     this.overlay = overlay;
     this.canvasManager = new CanvasManager(stage, stage.container());
-    this.animationEngine = this.canvasManager.getAnimationEngine();
+    this.animationQueue = new AnimationQueue(this);
     this.layouts = new Map();
   }
 
   async renderStep(context: RenderContext): Promise<void> {
-    console.log('[EnhancedRenderer] Rendering step:', context.stepId);
+    console.log('[EnhancedRenderer] Rendering step:', context.stepId, 'with', context.actions?.length || 0, 'actions');
+    
+    // CRITICAL FIX: Clear the queue before adding new step to prevent overflow
+    if (this.animationQueue.getStatus().total > 100) {
+      console.log('[EnhancedRenderer] Queue overflow detected, clearing old animations');
+      this.animationQueue.clear();
+    }
     
     // Create or get section for this step
     const section = this.canvasManager.createSection(
@@ -45,33 +53,31 @@ export class EnhancedRenderer {
     
     // Ensure section.id matches context.stepId for layout lookup
     console.log('[EnhancedRenderer] Section created with id:', section.id, 'Expected:', context.stepId);
+    console.log('[EnhancedRenderer] Processing actions for step:', context.stepId);
     
     // Initialize flow layout for this section if missing
     if (!this.layouts.has(context.stepId)) {
-      console.log('[EnhancedRenderer] Initializing layout for section:', context.stepId);
       this.layouts.set(context.stepId, {
-        cursorY: 60,        // leave space for the section title/separator
-        spacing: 12,
-        marginX: 24,
-        contentTop: 60,
+        cursorY: 100, // Start 100px from top
+        spacing: 20,
+        marginX: 50,
+        contentTop: 100,
         segments: []
       });
     }
     
-    // Process each action with enhanced animations
-    console.log('[EnhancedRenderer] Processing', context.actions.length, 'actions for section:', context.stepId);
-    for (const action of context.actions) {
-      await this.processAction(action, section);
-    }
+    // ADD TO QUEUE instead of processing immediately
+    // This decouples frontend speed from backend
+    console.log('[EnhancedRenderer] Adding', context.actions.length, 'actions to queue');
+    this.animationQueue.enqueue(context.actions, section);
     
-    // Auto-scroll to show new content
-    this.canvasManager.autoScrollWithContent(section);
+    // NO AUTO-SCROLLING - Keep canvas completely static
+    // NO IMMEDIATE PROCESSING - Let queue handle at human pace
     
-    // Draw the section
-    section.layer.batchDraw();
+    // Draw will happen as queue processes
   }
 
-  private async processAction(action: EnhancedAction, section: any): Promise<void> {
+  public async processAction(action: EnhancedAction, section: any): Promise<void> {
     const layer = section.layer;
     
     switch (action.op) {
@@ -134,6 +140,43 @@ export class EnhancedRenderer {
         
       case 'drawFlowchart':
         await this.drawFlowchart(action, layer);
+        break;
+      
+      // NEW VISUAL OPERATIONS FOR 3BLUE1BROWN STYLE
+      case 'drawCircle':
+        await this.drawCircle(action, layer, section);
+        break;
+      
+      case 'drawRect':
+        await this.drawRect(action, layer, section);
+        break;
+      
+      case 'drawVector':
+        await this.drawVector(action, layer, section);
+        break;
+      
+      case 'orbit':
+        await this.drawOrbit(action, layer, section);
+        break;
+      
+      case 'wave':
+        await this.drawWave(action, layer, section);
+        break;
+      
+      case 'particle':
+        await this.drawParticleSystem(action, layer, section);
+        break;
+      
+      case 'arrow':
+        await this.drawArrow(action, layer, section);
+        break;
+      
+      case 'field':
+        await this.drawField(action, layer, section);
+        break;
+      
+      case 'flow':
+        await this.drawFlow(action, layer, section);
         break;
         
       default:
@@ -790,6 +833,489 @@ export class EnhancedRenderer {
 
   scrollToStep(stepId: string): void {
     this.canvasManager.scrollToSection(stepId);
+  }
+
+  // NEW VISUAL OPERATIONS IMPLEMENTATIONS
+
+  private async drawCircle(action: any, layer: Konva.Layer, section: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    const padding = 50; // Keep animations away from edges
+    
+    // Clamp positions to visible area
+    const rawX = action.normalized ? action.x * w : action.x;
+    const rawY = action.normalized ? action.y * h : action.y;
+    
+    const x = Math.max(padding, Math.min(w - padding, rawX));
+    const y = Math.max(padding, Math.min(h - padding, rawY));
+    const radius = action.normalized ? action.radius * Math.min(w, h) : action.radius;
+    
+    const circle = new Konva.Circle({
+      x: x,
+      y: y,
+      radius: 0,
+      fill: action.fill ? (action.color || '#3498db') : undefined,
+      stroke: !action.fill ? (action.color || '#3498db') : undefined,
+      strokeWidth: 2,
+      shadowColor: action.color || '#3498db',
+      shadowBlur: 10,
+      shadowOpacity: 0.3
+    });
+    
+    layer.add(circle);
+    console.log('[drawCircle] Added circle to layer at', x, y, 'with radius', radius);
+    
+    // IMMEDIATE DRAW - Don't animate for now to ensure visibility
+    circle.radius(radius);
+    layer.batchDraw();
+    console.log('[drawCircle] Circle drawn immediately');
+    
+    // Skip animation for now to ensure content is visible
+    await this.handleDelay(0.1);
+  }
+
+  private async drawRect(action: any, layer: Konva.Layer, section: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    
+    const x = action.normalized ? action.x * w : action.x;
+    const y = action.normalized ? action.y * h : action.y;
+    const width = action.normalized ? action.width * w : action.width;
+    const height = action.normalized ? action.height * h : action.height;
+    
+    const rect = new Konva.Rect({
+      x: x,
+      y: y,
+      width: 0,
+      height: 0,
+      fill: action.fill ? (action.color || '#2ecc71') : undefined,
+      stroke: !action.fill ? (action.color || '#2ecc71') : undefined,
+      strokeWidth: 2,
+      shadowColor: action.color || '#2ecc71',
+      shadowBlur: 8,
+      shadowOpacity: 0.2
+    });
+    
+    layer.add(rect);
+    
+    // Animate rectangle expansion
+    await new Promise<void>(resolve => {
+      const anim = new Konva.Animation((frame) => {
+        const progress = Math.min(frame.time / 500, 1);
+        rect.width(width * progress);
+        rect.height(height * progress);
+        if (progress >= 1) {
+          anim.stop();
+          resolve();
+        }
+      }, layer);
+      anim.start();
+    });
+  }
+
+  private async drawVector(action: any, layer: Konva.Layer, section: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    
+    const x1 = action.normalized ? action.x1 * w : action.x1;
+    const y1 = action.normalized ? action.y1 * h : action.y1;
+    const x2 = action.normalized ? action.x2 * w : action.x2;
+    const y2 = action.normalized ? action.y2 * h : action.y2;
+    
+    const arrow = new Konva.Arrow({
+      points: [x1, y1, x1, y1],
+      pointerLength: 10,
+      pointerWidth: 10,
+      fill: action.color || '#9b59b6',
+      stroke: action.color || '#9b59b6',
+      strokeWidth: action.width || 3,
+      shadowColor: action.color || '#9b59b6',
+      shadowBlur: 10,
+      shadowOpacity: 0.4
+    });
+    
+    layer.add(arrow);
+    
+    // Animate vector drawing
+    await new Promise<void>(resolve => {
+      const anim = new Konva.Animation((frame) => {
+        const progress = Math.min(frame.time / 600, 1);
+        const currentX = x1 + (x2 - x1) * progress;
+        const currentY = y1 + (y2 - y1) * progress;
+        arrow.points([x1, y1, currentX, currentY]);
+        if (progress >= 1) {
+          anim.stop();
+          resolve();
+        }
+      }, layer);
+      anim.start();
+    });
+  }
+
+  private async drawOrbit(action: any, layer: Konva.Layer, section: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    
+    const centerX = action.centerX * w;
+    const centerY = action.centerY * h;
+    const radius = action.radius * Math.min(w, h);
+    const objectRadius = action.objectRadius * Math.min(w, h);
+    
+    // Draw orbit path
+    const orbitPath = new Konva.Circle({
+      x: centerX,
+      y: centerY,
+      radius: radius,
+      stroke: '#444',
+      strokeWidth: 1,
+      dash: [5, 5],
+      opacity: 0.3
+    });
+    layer.add(orbitPath);
+    
+    // Draw center point
+    const center = new Konva.Circle({
+      x: centerX,
+      y: centerY,
+      radius: 3,
+      fill: '#fff',
+      stroke: action.color || '#FFD700',
+      strokeWidth: 2
+    });
+    layer.add(center);
+    
+    // Draw orbiting object
+    const object = new Konva.Circle({
+      x: centerX + radius,
+      y: centerY,
+      radius: objectRadius,
+      fill: action.color || '#FFD700',
+      shadowColor: action.color || '#FFD700',
+      shadowBlur: 20,
+      shadowOpacity: 0.8
+    });
+    layer.add(object);
+    
+    // Add trail if requested
+    let trail: Konva.Line | null = null;
+    const trailPoints: number[] = [];
+    if (action.trail) {
+      trail = new Konva.Line({
+        points: [],
+        stroke: action.color || '#FFD700',
+        strokeWidth: 1,
+        opacity: 0.3,
+        lineCap: 'round',
+        lineJoin: 'round'
+      });
+      layer.add(trail);
+      trail.moveToBottom();
+      orbitPath.moveToBottom();
+    }
+    
+    // Animate orbit
+    const anim = new Konva.Animation((frame) => {
+      const angle = (frame.time / (action.period * 1000)) * Math.PI * 2;
+      const x = centerX + Math.cos(angle) * radius;
+      const y = centerY + Math.sin(angle) * radius;
+      object.x(x);
+      object.y(y);
+      
+      // Update trail
+      if (trail && action.trail) {
+        trailPoints.push(x, y);
+        if (trailPoints.length > 200) {
+          trailPoints.splice(0, 2);
+        }
+        trail.points(trailPoints);
+      }
+    }, layer);
+    anim.start();
+    
+    // Store animation for cleanup
+    (layer as any).orbitAnim = anim;
+  }
+
+  private async drawWave(action: any, layer: Konva.Layer, section: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    
+    const startX = action.startX * w;
+    const startY = action.startY * h;
+    const width = action.width * w;
+    const amplitude = action.amplitude * h;
+    
+    const wave = new Konva.Line({
+      points: [],
+      stroke: action.color || '#00bbff',
+      strokeWidth: 2,
+      lineCap: 'round',
+      lineJoin: 'round',
+      shadowColor: action.color || '#00bbff',
+      shadowBlur: 10,
+      shadowOpacity: 0.5
+    });
+    layer.add(wave);
+    
+    // Animate wave
+    const anim = new Konva.Animation((frame) => {
+      const points: number[] = [];
+      const segments = 100;
+      const phase = (frame.time / 1000) * action.speed;
+      
+      for (let i = 0; i <= segments; i++) {
+        const x = startX + (width * i / segments);
+        const angle = (i / segments) * Math.PI * 2 * action.frequency + phase;
+        const y = startY + Math.sin(angle) * amplitude;
+        points.push(x, y);
+      }
+      
+      wave.points(points);
+    }, layer);
+    anim.start();
+    
+    // Store animation for cleanup
+    (layer as any).waveAnim = anim;
+  }
+
+  private async drawParticleSystem(action: any, layer: Konva.Layer, section: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    
+    const centerX = action.x * w;
+    const centerY = action.y * h;
+    const spread = action.spread * Math.min(w, h);
+    
+    const particles: Konva.Circle[] = [];
+    
+    // Create particles
+    for (let i = 0; i < action.count; i++) {
+      const particle = new Konva.Circle({
+        x: centerX,
+        y: centerY,
+        radius: Math.random() * 3 + 1,
+        fill: action.color || '#FFD700',
+        opacity: 1
+      });
+      layer.add(particle);
+      particles.push(particle);
+      
+      // Random velocity
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * action.speed + action.speed / 2;
+      (particle as any).vx = Math.cos(angle) * speed;
+      (particle as any).vy = Math.sin(angle) * speed;
+      (particle as any).life = 0;
+    }
+    
+    // Animate particles
+    const anim = new Konva.Animation((frame) => {
+      const dt = frame.timeDiff / 1000;
+      
+      particles.forEach(particle => {
+        const vx = (particle as any).vx;
+        const vy = (particle as any).vy;
+        let life = (particle as any).life;
+        
+        particle.x(particle.x() + vx * dt);
+        particle.y(particle.y() + vy * dt);
+        
+        life += dt;
+        (particle as any).life = life;
+        
+        // Fade out
+        const opacity = Math.max(0, 1 - life / action.lifetime);
+        particle.opacity(opacity);
+        
+        // Reset particle
+        if (life > action.lifetime) {
+          particle.x(centerX);
+          particle.y(centerY);
+          particle.opacity(1);
+          (particle as any).life = 0;
+          
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * action.speed + action.speed / 2;
+          (particle as any).vx = Math.cos(angle) * speed;
+          (particle as any).vy = Math.sin(angle) * speed;
+        }
+      });
+    }, layer);
+    anim.start();
+    
+    // Store animation for cleanup
+    (layer as any).particleAnim = anim;
+  }
+
+  private async drawArrow(action: any, layer: Konva.Layer, section: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    
+    const x = action.x * w;
+    const y = action.y * h;
+    const length = action.length * Math.min(w, h);
+    const angle = action.angle;
+    
+    const x2 = x + Math.cos(angle) * length;
+    const y2 = y + Math.sin(angle) * length;
+    
+    const arrow = new Konva.Arrow({
+      points: [x, y, x2, y2],
+      pointerLength: 15,
+      pointerWidth: 15,
+      fill: action.color || '#00ff88',
+      stroke: action.color || '#00ff88',
+      strokeWidth: 3,
+      shadowColor: action.color || '#00ff88',
+      shadowBlur: 15,
+      shadowOpacity: 0.6
+    });
+    
+    layer.add(arrow);
+    
+    if (action.animated) {
+      // Pulsing animation
+      const anim = new Konva.Animation((frame) => {
+        const scale = 1 + Math.sin(frame.time / 200) * 0.1;
+        arrow.scaleX(scale);
+        arrow.scaleY(scale);
+      }, layer);
+      anim.start();
+      
+      // Store animation for cleanup
+      (layer as any).arrowAnim = anim;
+    }
+  }
+
+  private async drawField(action: any, layer: Konva.Layer, section: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    
+    const gridSize = action.gridSize;
+    const cellWidth = w / gridSize;
+    const cellHeight = h / gridSize;
+    
+    const arrows: Konva.Arrow[] = [];
+    
+    // Create field vectors
+    for (let i = 0; i < gridSize; i++) {
+      for (let j = 0; j < gridSize; j++) {
+        const x = (i + 0.5) * cellWidth;
+        const y = (j + 0.5) * cellHeight;
+        
+        let angle = 0;
+        let magnitude = action.strength / 10;
+        
+        if (action.type === 'electric') {
+          // Radial field from center
+          const dx = x - w / 2;
+          const dy = y - h / 2;
+          angle = Math.atan2(dy, dx);
+          magnitude = Math.min(1, action.strength / (Math.sqrt(dx * dx + dy * dy) + 1));
+        } else if (action.type === 'magnetic') {
+          // Circular field
+          const dx = x - w / 2;
+          const dy = y - h / 2;
+          angle = Math.atan2(dy, dx) + Math.PI / 2;
+          magnitude = action.strength / 10;
+        } else {
+          // Vector field
+          angle = Math.sin(x / 100) * Math.cos(y / 100) * Math.PI;
+          magnitude = action.strength / 10;
+        }
+        
+        const arrow = new Konva.Arrow({
+          points: [x, y, x + Math.cos(angle) * magnitude * 20, y + Math.sin(angle) * magnitude * 20],
+          pointerLength: 5,
+          pointerWidth: 5,
+          fill: '#0b82f0',
+          stroke: '#0b82f0',
+          strokeWidth: 1,
+          opacity: 0.3
+        });
+        
+        layer.add(arrow);
+        arrows.push(arrow);
+      }
+    }
+    
+    // Animate field
+    const anim = new Konva.Animation((frame) => {
+      const time = frame.time / 1000;
+      arrows.forEach((arrow, index) => {
+        const opacity = 0.2 + Math.sin(time + index * 0.1) * 0.1;
+        arrow.opacity(opacity);
+      });
+    }, layer);
+    anim.start();
+    
+    // Store animation for cleanup
+    (layer as any).fieldAnim = anim;
+  }
+
+  private async drawFlow(action: any, layer: Konva.Layer, section: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    
+    // Convert path points
+    const path = action.path.map((p: [number, number]) => [p[0] * w, p[1] * h]);
+    
+    // Draw path line
+    const pathLine = new Konva.Line({
+      points: path.flat(),
+      stroke: '#333',
+      strokeWidth: 2,
+      dash: [10, 5],
+      opacity: 0.3
+    });
+    layer.add(pathLine);
+    
+    // Create flow particles
+    const particles: Konva.Circle[] = [];
+    for (let i = 0; i < action.particleCount; i++) {
+      const particle = new Konva.Circle({
+        x: path[0][0],
+        y: path[0][1],
+        radius: 4,
+        fill: action.color || '#00bbff',
+        shadowColor: action.color || '#00bbff',
+        shadowBlur: 10,
+        shadowOpacity: 0.8
+      });
+      layer.add(particle);
+      particles.push(particle);
+      
+      // Stagger particle positions
+      (particle as any).pathProgress = i / action.particleCount;
+    }
+    
+    // Animate flow
+    const anim = new Konva.Animation((frame) => {
+      const dt = frame.timeDiff / 1000;
+      
+      particles.forEach(particle => {
+        let progress = (particle as any).pathProgress;
+        progress += dt * action.speed / 10;
+        if (progress > 1) progress -= 1;
+        (particle as any).pathProgress = progress;
+        
+        // Interpolate position along path
+        const segmentCount = path.length - 1;
+        const segment = Math.floor(progress * segmentCount);
+        const segmentProgress = (progress * segmentCount) - segment;
+        
+        if (segment < segmentCount) {
+          const x = path[segment][0] + (path[segment + 1][0] - path[segment][0]) * segmentProgress;
+          const y = path[segment][1] + (path[segment + 1][1] - path[segment][1]) * segmentProgress;
+          particle.x(x);
+          particle.y(y);
+        }
+      });
+    }, layer);
+    anim.start();
+    
+    // Store animation for cleanup
+    (layer as any).flowAnim = anim;
   }
 
   cleanup(): void {
