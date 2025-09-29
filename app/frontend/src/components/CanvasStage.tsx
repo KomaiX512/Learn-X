@@ -1,14 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react';
 import Konva from 'konva';
 import { initRenderer } from '../renderer';
-import { EnhancedRenderer } from '../renderer/EnhancedRenderer';
+import { SequentialRenderer } from '../renderer/SequentialRenderer';
 
-export default function CanvasStage() {
+export interface CanvasStageRef {
+  pause: () => void;
+  resume: () => void;
+  nextStep: () => void;
+  previousStep: () => void;
+  processChunk: (chunk: any) => void;
+}
+
+const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<Konva.Stage | null>(null);
-  const enhancedRendererRef = useRef<EnhancedRenderer | null>(null);
+  const sequentialRendererRef = useRef<SequentialRenderer | null>(null);
+  
+  // Expose methods to parent component
+  useImperativeHandle(ref, () => ({
+    pause: () => sequentialRendererRef.current?.pause(),
+    resume: () => sequentialRendererRef.current?.resume(),
+    nextStep: () => sequentialRendererRef.current?.nextStep(),
+    previousStep: () => sequentialRendererRef.current?.previousStep(),
+    processChunk: (chunk: any) => sequentialRendererRef.current?.processChunk(chunk)
+  }));
   // Fixed aspect ratio canvas dimensions
   const ASPECT_RATIO = 16 / 10; // 16:10 aspect ratio
   const MIN_WIDTH = 800;
@@ -49,13 +66,13 @@ export default function CanvasStage() {
     // Clean up previous stage if it exists
     if (stageRef.current) {
       console.log('[CanvasStage] Cleaning up previous stage');
-      if (enhancedRendererRef.current) {
-        enhancedRendererRef.current.cleanup();
+      if (sequentialRendererRef.current) {
+        sequentialRendererRef.current.cleanup?.();
       }
       stageRef.current.destroy();
       stageRef.current = null;
-      enhancedRendererRef.current = null;
-      delete (window as any).enhancedRenderer;
+      sequentialRendererRef.current = null;
+      delete (window as any).sequentialRenderer;
     }
 
     // Check prerequisites
@@ -108,14 +125,25 @@ export default function CanvasStage() {
         console.log('[CanvasStage] Test circle added');
         console.log('[CanvasStage] Canvas element exists:', !!document.querySelector(`#${containerId} canvas`));
         
-        // Initialize renderers
+        // Initialize sequential renderer for optimized playback
+        sequentialRendererRef.current = new SequentialRenderer({
+          canvasId: containerId,
+          width: size.w,
+          height: size.h,
+          onStepComplete: (stepId) => {
+            console.log(`[CanvasStage] Step ${stepId} complete`);
+          },
+          onProgress: (progress) => {
+            console.log(`[CanvasStage] Progress: ${progress}%`);
+          }
+        });
+        
+        (window as any).sequentialRenderer = sequentialRendererRef.current;
+        
+        // Also initialize standard renderer for compatibility
         initRenderer(stage, overlayRef.current);
         
-        // Skip enhanced renderer for now - it's causing issues
-        // enhancedRendererRef.current = new EnhancedRenderer(stage, overlayRef.current);
-        // (window as any).enhancedRenderer = enhancedRendererRef.current;
-        
-        console.log('[CanvasStage] Standard renderer initialized');
+        console.log('[CanvasStage] Sequential renderer initialized');
         
         // Force initial draw to ensure canvas is visible
         stage.batchDraw();
@@ -168,4 +196,8 @@ export default function CanvasStage() {
       }} />
     </div>
   );
-}
+});
+
+CanvasStage.displayName = 'CanvasStage';
+
+export default CanvasStage;

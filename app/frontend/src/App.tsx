@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import CanvasStage from './components/CanvasStage';
 import { getSocket, waitForJoin } from './socket';
 import { execChunk } from './renderer';
@@ -12,6 +12,17 @@ export default function App() {
   const [toc, setToc] = useState<Array<{ minute: number; title: string; summary?: string }>>([]);
   const [isReady, setIsReady] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Navigation and playback state
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [totalSteps, setTotalSteps] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [lectureComplete, setLectureComplete] = useState(false);
+  const [progress, setProgress] = useState(0);
+  
+  // Canvas reference for control
+  const canvasRef = useRef<any>(null);
 
   // Ensure we have a session and that the socket has joined it before enqueuing work
   function ensureSession(): string {
@@ -80,6 +91,8 @@ export default function App() {
       // Execute the rendering actions on canvas
       if (e.actions && e.actions.length > 0) {
         execChunk(e);
+        setCurrentStep(e.stepId || 0);
+        setIsPlaying(true);
       }
       
       setIsReady(true);
@@ -161,20 +174,165 @@ export default function App() {
       {planSubtitle && <h4 style={{ marginTop: 0 }}>{planSubtitle}</h4>}
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
         <div style={{ minWidth: 320 }}>
-          <label style={{ display: 'block', fontWeight: 600 }}>Query</label>
-          <textarea value={query} onChange={(e) => setQuery(e.target.value)} rows={3} style={{ width: '100%' }} placeholder="Type your topic (e.g., 'Explain H2O molecular structure and hydrogen bonding')" />
-          <button onClick={submit} style={{ marginTop: 8 }} disabled={!query.trim()}>Run</button>
-          <button onClick={nextStep} style={{ marginTop: 8, marginLeft: 8 }} disabled={!isReady}>Next Step</button>
+          <label style={{ display: 'block', fontWeight: 600, marginBottom: 4 }}>Query</label>
+          <textarea 
+            value={query} 
+            onChange={(e) => setQuery(e.target.value)} 
+            rows={3} 
+            style={{ 
+              width: '100%', 
+              fontFamily: 'Inter, system-ui, sans-serif',
+              fontSize: 14,
+              padding: 8,
+              borderRadius: 4,
+              border: '1px solid #ddd'
+            }} 
+            placeholder="Type your topic (e.g., 'Explain binary search algorithm')" 
+          />
+          
+          {/* Control Buttons */}
+          <div style={{ marginTop: 12, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <button 
+              onClick={submit} 
+              disabled={!query.trim() || isLoading}
+              style={{
+                padding: '8px 16px',
+                background: isLoading ? '#ccc' : '#3b82f6',
+                color: 'white',
+                border: 'none',
+                borderRadius: 4,
+                cursor: isLoading ? 'not-allowed' : 'pointer',
+                fontWeight: 600
+              }}
+            >
+              {isLoading ? 'Generating...' : 'Start Lecture'}
+            </button>
+          </div>
 
-          {currentStep && (
-            <div style={{ marginTop: 16, padding: 8, background: '#f0f0f0', borderRadius: 4 }}>
-              <strong>Current Step:</strong> {currentStep?.desc}
+          {/* Navigation Controls */}
+          {isReady && (
+            <div style={{ 
+              marginTop: 16, 
+              padding: 12, 
+              background: '#f8f9fa', 
+              borderRadius: 8,
+              border: '1px solid #e0e0e0'
+            }}>
+              <h4 style={{ margin: '0 0 12px 0', color: '#333' }}>Playback Controls</h4>
+              
+              <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+                <button 
+                  onClick={() => {
+                    canvasRef.current?.previousStep();
+                    setCurrentStepIndex(Math.max(0, currentStepIndex - 1));
+                  }}
+                  disabled={currentStepIndex === 0 || !lectureComplete}
+                  style={{
+                    padding: '6px 12px',
+                    background: currentStepIndex === 0 || !lectureComplete ? '#e0e0e0' : '#6c757d',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: 4,
+                    cursor: currentStepIndex === 0 || !lectureComplete ? 'not-allowed' : 'pointer'
+                  }}
+                >
+                  ← Previous
+                </button>
+                
+                <button 
+                  onClick={() => {
+                    if (isPaused) {
+                      canvasRef.current?.resume();
+                      setIsPaused(false);
+                      setIsPlaying(true);
+                    } else if (isPlaying) {
+                      canvasRef.current?.pause();
+                      setIsPaused(true);
+                      setIsPlaying(false);
+                    } else {
+                      canvasRef.current?.resume();
+                      setIsPlaying(true);
+                    }
+                  }}
+                  style={{
+                    padding: '6px 12px',
+                    background: '#28a745',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: 4,
+                    cursor: 'pointer'
+                  }}
+                >
+                  {isPaused ? '▶ Resume' : isPlaying ? '⏸ Pause' : '▶ Play'}
+                </button>
+                
+                <button 
+                  onClick={() => {
+                    canvasRef.current?.nextStep();
+                    setCurrentStepIndex(Math.min(totalSteps - 1, currentStepIndex + 1));
+                  }}
+                  disabled={currentStepIndex >= totalSteps - 1}
+                  style={{
+                    padding: '6px 12px',
+                    background: currentStepIndex >= totalSteps - 1 ? '#e0e0e0' : '#6c757d',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: 4,
+                    cursor: currentStepIndex >= totalSteps - 1 ? 'not-allowed' : 'pointer'
+                  }}
+                >
+                  Next →
+                </button>
+              </div>
+              
+              {/* Progress Bar */}
+              <div style={{ marginBottom: 8 }}>
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  fontSize: 12, 
+                  color: '#666',
+                  marginBottom: 4
+                }}>
+                  <span>Step {currentStepIndex + 1} of {totalSteps || 5}</span>
+                  <span>{progress.toFixed(0)}%</span>
+                </div>
+                <div style={{ 
+                  width: '100%', 
+                  height: 8, 
+                  background: '#e0e0e0', 
+                  borderRadius: 4,
+                  overflow: 'hidden'
+                }}>
+                  <div style={{ 
+                    width: `${progress}%`, 
+                    height: '100%', 
+                    background: 'linear-gradient(90deg, #3b82f6, #10b981)',
+                    transition: 'width 0.3s ease'
+                  }} />
+                </div>
+              </div>
             </div>
           )}
 
+          {/* Current Step Info */}
+          {currentStep && (
+            <div style={{ 
+              marginTop: 16, 
+              padding: 12, 
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              borderRadius: 8,
+              color: 'white'
+            }}>
+              <h4 style={{ margin: '0 0 4px 0' }}>Current Step</h4>
+              <div style={{ fontSize: 14, opacity: 0.95 }}>{currentStep?.desc}</div>
+            </div>
+          )}
         </div>
+        
+        {/* Canvas Container */}
         <div style={{ flex: 1, minWidth: 600 }}>
-          <CanvasStage title={planTitle} />
+          <CanvasStage ref={canvasRef} />
         </div>
       </div>
     </div>

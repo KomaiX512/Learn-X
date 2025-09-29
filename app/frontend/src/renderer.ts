@@ -1109,18 +1109,17 @@ export async function execChunk(chunk: RenderChunk) {
     return;
   }
   
-  // Check if we should wait for previous step to complete
-  const currentStepId = parseInt(String(chunk.stepId));
-  
-  // Store step start time for tracking
-  if (!(window as any).stepStartTimes) {
-    (window as any).stepStartTimes = {};
-  }
-  (window as any).stepStartTimes[currentStepId] = Date.now();
-  
   console.log('[renderer] Starting step:', chunk.stepId, 'with', chunk.actions?.length, 'actions');
-  console.log('[renderer] Timing info:', chunk.timing);
   
+  // Use SequentialRenderer if available for TRUE 3Blue1Brown experience
+  const sequentialRenderer = (window as any).sequentialRenderer;
+  if (sequentialRenderer) {
+    console.log('[renderer] Using SequentialRenderer for cinematic experience');
+    sequentialRenderer.processChunk(chunk);
+    return;
+  }
+  
+  // Fallback to standard renderer if SequentialRenderer not available
   if (!stage) {
     console.warn('[renderer] Stage not initialized yet; queuing chunk for later flush:', {
       stepId: chunk.stepId,
@@ -1136,7 +1135,7 @@ export async function execChunk(chunk: RenderChunk) {
   
   // CINEMATIC TIMING: Process actions with proper delays
   const startTime = Date.now();
-  const actionDelay = 800; // 800ms between each action for cinematic effect
+  const actionDelay = 1500; // 1.5 seconds between actions for TRUE comprehension
   
   for (let i = 0; i < chunk.actions.length; i++) {
     const action = chunk.actions[i];
