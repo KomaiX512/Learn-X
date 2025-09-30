@@ -19,8 +19,15 @@ export function getSocket(sessionId: string) {
     socket = null;
   }
 
-  console.log('[socket] Creating new socket connection');
-  socket = io('http://localhost:3001', { transports: ['websocket'] });
+  console.log('[socket] Creating new socket connection with reliability enhancements');
+  socket = io('http://localhost:3001', { 
+    transports: ['websocket'],
+    reconnection: true,
+    reconnectionAttempts: 10,
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 5000,
+    timeout: 20000
+  });
   
   // Reset join tracking
   joinedSession = null;
@@ -33,6 +40,26 @@ export function getSocket(sessionId: string) {
     // Re-join on reconnection
     currentSession = sessionId;
     joinedSession = null;
+  });
+  
+  socket.on('reconnect', (attemptNumber) => {
+    console.log(`[socket] Reconnected after ${attemptNumber} attempts`);
+    // Re-join room after reconnection
+    if (currentSession) {
+      socket!.emit('join', { sessionId: currentSession });
+    }
+  });
+  
+  socket.on('reconnect_attempt', (attemptNumber) => {
+    console.log(`[socket] Reconnection attempt ${attemptNumber}`);
+  });
+  
+  socket.on('reconnect_error', (error) => {
+    console.error('[socket] Reconnection error:', error.message);
+  });
+  
+  socket.on('reconnect_failed', () => {
+    console.error('[socket] Reconnection failed after all attempts');
   });
 
   socket.on('joined', (e: { sessionId: string }) => {

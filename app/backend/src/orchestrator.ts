@@ -4,6 +4,7 @@ import Redis from 'ioredis';
 import { logger } from './logger';
 import { plannerAgent } from './agents/planner';
 import { codegenAgent } from './agents/codegen';
+import codegenAgentV2 from './agents/codegenV2';
 import { compilerRouter } from './compiler/router';
 import { debugAgent } from './agents/debugger';
 import { SessionParams, Plan, RenderChunk } from './types';
@@ -172,7 +173,8 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
           return;
         }
         const startTime = Date.now();
-        const code = await codegenAgent(step, query); // NO TRY/CATCH - LET IT FAIL
+        const useV2 = process.env.USE_VISUAL_V2 !== 'false';
+        const code = useV2 ? await codegenAgentV2(step, query) : await codegenAgent(step, query); // NO TRY/CATCH - LET IT FAIL
         logger.debug(`[gen] OK: prefetch codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
         const compiled: RenderChunk = await compilerRouter(code, step.compiler);
         const checked: RenderChunk = await debugAgent(compiled);
@@ -190,7 +192,8 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
       } else {
         const startTime = Date.now();
         try {
-          const code = await codegenAgent(step, query);
+          const useV2 = process.env.USE_VISUAL_V2 !== 'false';
+          const code = useV2 ? await codegenAgentV2(step, query) : await codegenAgent(step, query);
           logger.debug(`[gen] OK: codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
           const compiled: RenderChunk = await compilerRouter(code, step.compiler);
           checked = await debugAgent(compiled);
@@ -309,8 +312,10 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
                   message: `Generating ${step.tag}: ${step.desc.slice(0, 50)}...`
                 });
                 
-                // Generate the step (new signature without params)
-                const code = await codegenAgent(step, query);
+                // Generate the step using V2 (intelligent tool selection + layout)
+                // Use V2 by default, fallback to V1 if env var set
+                const useV2 = process.env.USE_VISUAL_V2 !== 'false';
+                const code = useV2 ? await codegenAgentV2(step, query) : await codegenAgent(step, query);
                 const compiled: RenderChunk = await compilerRouter(code, step.compiler);
                 checked = await debugAgent(compiled);
                 
@@ -396,9 +401,7 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
         });
         logger.debug(`[parallel] Emitted plan for session ${sessionId}`);
         
-        // Emit all steps with small delays to test canvas rendering
-        let delay = 2000; // Start after 2 seconds
-        
+        // Emit all steps IMMEDIATELY - no artificial delays
         for (let i = 0; i < plan.steps.length; i++) {
           const step = plan.steps[i];
           const cached = await redis.get(CHUNK_KEY(sessionId, step.id));
@@ -414,13 +417,9 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
               plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc }
             };
             
-            // Emit each step with 3 second delay
-            setTimeout(() => {
-              io.to(sessionId).emit('rendered', eventData);
-              logger.debug(`[parallel] Emitted step ${step.id} at ${delay}ms`);
-            }, delay);
-            
-            delay += 3000; // 3 seconds between steps for debugging
+            // Emit immediately - frontend AnimationQueue handles pacing
+            io.to(sessionId).emit('rendered', eventData);
+            logger.debug(`[parallel] Emitted step ${step.id} immediately`);
           }
         }
         

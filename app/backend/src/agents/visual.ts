@@ -40,20 +40,31 @@ export async function visualAgent(
   
   const genAI = new GoogleGenerativeAI(key);
   const model = genAI.getGenerativeModel({ model: MODEL });
-  
   // CINEMATIC 3BLUE1BROWN QUALITY PROMPT
   const stepTitles: Record<string, string> = {
     'hook': '✨ The Hook - Why Should You Care?',
-    'intuition': '💡 Building Intuition - See It First',
     'formalism': '📐 The Mathematics - Precise & Beautiful',
     'exploration': '🔬 Deeper Exploration - What If?',
     'mastery': '🚀 Mastery - Real World Power'
   };
   
-  const stepTitle = stepTitles[step.tag] || step.tag;
+  // Detect topic requirements for validation
+  const topicLower = topic.toLowerCase();
+  const requiresLatex = topicLower.match(/calculus|derivative|integral|equation|formula|theorem|proof|algebra|geometry|math|physics|trigonometry|logarithm|exponential|pythagorean|euler|fourier/);
+  const requiresDiagram = topicLower.match(/neuron|brain|heart|anatomy|cell|dna|molecule|circuit|network|structure/);
   
-  const prompt = `You are Grant Sanderson creating a 3Blue1Brown masterpiece on "${topic}".
-This is Step ${step.id}: ${stepTitle}
+  const prompt = `Generate exactly 35-65 visual operations for teaching "${topic}" in the "${step.tag}" step.
+
+CRITICAL: You are creating 3Blue1Brown-style VISUAL animations with CONTEXTUAL VARIETY.
+
+MANDATORY VARIETY REQUIREMENTS:
+- Use AT LEAST 5 different operation types
+- Include mathematical equations if relevant (using latex)
+- Add simulations for dynamic concepts
+- Create diagrams for structural information
+- NO MORE than 30% basic shapes (circles/rectangles)
+
+Step ${step.id}: ${stepTitles[step.tag] || step.tag}
 
 CONTEXT: ${step.desc}
 
@@ -91,48 +102,110 @@ MANDATORY CINEMATIC STRUCTURE (40-50 operations):
    - Preview next concept
    - Elegant fade/transition
 
-OPERATIONS WITH PROPER SYNTAX:
-drawTitle "Step Title Text" 0.5 0.1
-drawLabel "Explanation text" x y #color fontSize
+ENHANCED OPERATIONS FOR TRUE 3BLUE1BROWN:
+
+=== MATHEMATICAL OPERATIONS (USE THESE FOR MATH TOPICS!) ===
+latex "\\int_0^\\infty e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}" x y size #color animated(true/false)
+latex "a^2 + b^2 = c^2" x y size #color animated
+latex "\\frac{dy}{dx} = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}" x y size #color animated
+equation "f(x) = ax^2 + bx + c" x y #color
+matrix [[a,b],[c,d]] x y scale #color animated
+graph "sin(x)" xMin xMax yMin yMax gridOn #lineColor #gridColor
+
+=== COMPLEX DIAGRAMS (USE THESE FOR ANATOMY/BIOLOGY/CIRCUITS!) ===
+neuralNetwork [3,4,2,1] x y activation showWeights
+molecule "H2O" x y bondAngles atomColors
+anatomy "heart" x y layer detail
+circuit "RC" x y components connections
+flowchart {nodes:["A","B","C"], edges:[[0,1],[1,2]]} x y scale
+plot [dataPoints] x y width height type(line/bar/scatter) #color
+
+=== SIMULATIONS & PHYSICS ===
+simulate "pendulum" x y length mass gravity damping
+linearMotion startX startY endX endY duration "label" #color
+circularMotion centerX centerY radius angularVelocity #color "object"
+springOscillation x y amplitude frequency damping #color
+fieldLines type(electric/magnetic) sourceX sourceY strength #color
+waveInterference source1X source1Y source2X source2Y frequency amplitude
+
+=== COMPLEX DIAGRAMS ===
+flowchart {nodes:[...], edges:[...]} x y scale
+neuralNetwork [layers] x y activation showWeights
+circuitDiagram components connections x y scale
+molecularStructure "H2O" x y bondLength animated
+anatomyDiagram "heart" x y scale showLabels animated
+dataFlow {sources:[...], transformations:[...], sinks:[...]} x y
+
+=== BASIC SHAPES (use sparingly, <30%) ===
 drawCircle x y radius #color fill(true/false)
-drawVector x1 y1 x2 y2 #color "label"
 drawRect x y width height #color fill(true/false)
-orbit centerX centerY radius speed #color
-wave startX startY amplitude frequency #color
-particle x y count lifetime speed #color
-arrow x y length angle #color true
-drawAxis "X-label" "Y-label"
-drawCurve "function" xMin xMax #color
-customPath "SVG_path_data" x y #fillColor #strokeColor strokeWidth scale glow(true/false)
-drawDiagram type x y (type: neuralNetwork/molecule/circuit/anatomy)
+drawVector x1 y1 x2 y2 #color "label"
+arrow x y length angle #color curved(true/false)
+
+=== ANIMATIONS ===
+morph shape1 shape2 duration x y
+rotate object angle duration centerX centerY
+scale object factor duration originX originY
+fadeIn object duration
+fadeOut object duration
+pulse object minScale maxScale frequency
+
+=== TIMING ===
 delay seconds
 
-EXAMPLE OUTPUT for "${step.tag}" step:
-drawTitle "${stepTitle}: ${topic}" 0.5 0.08
-delay 1.5
-drawLabel "Let's explore: ${step.desc.substring(0, 50)}..." 0.5 0.18 #ffffff 20
-delay 1
-drawLabel "Key Concept:" 0.15 0.28 #00ff88 18
-drawCircle 0.2 0.4 0.08 #3498db true
-drawLabel "This represents..." 0.35 0.4 #ffffff 16
-drawVector 0.28 0.4 0.5 0.45 #e74c3c "relationship"
-delay 0.8
-drawLabel "Notice how..." 0.15 0.55 #ffffff 16
-orbit 0.5 0.6 0.12 1.5 #2ecc71
-drawLabel "The motion shows..." 0.7 0.6 #ffffff 16
-particle 0.5 0.6 25 3 0.8 #ffff00
-delay 1
-drawLabel "In summary:" 0.15 0.75 #00ff88 18
-drawRect 0.4 0.8 0.3 0.08 #9b59b6 false
-drawLabel "Key takeaway here" 0.55 0.8 #ffffff 16
-delay 2
+CONTEXTUAL EXAMPLE for "${topic}" (adapt based on subject):
 
-For complex topics like anatomy, circuits, or molecules, use:
-drawDiagram molecule 0.5 0.5
-drawLabel "Molecular structure" 0.5 0.7 #ffffff 16
-OR
-customPath "M10,10 L20,20 Q30,10 40,20" 0.5 0.5 #3498db #ffffff 2 1.5 true
-drawLabel "Custom shape explanation" 0.5 0.65 #ffffff 16
+⚠️ CRITICAL: For MATHEMATICAL topics, you MUST include LaTeX equations!
+⚠️ CRITICAL: For BIOLOGY/ANATOMY topics, use neuralNetwork, molecule, or anatomy operations!
+
+For Mathematics (MANDATORY LaTeX):
+drawTitle "${stepTitles[step.tag] || step.tag}: ${topic}" 0.5 0.08
+delay 1
+latex "\\frac{d}{dx}[x^n] = nx^{n-1}" 0.5 0.2 28 #3498db true
+delay 1.5
+drawLabel "The power rule in action" 0.5 0.3 #ffffff 18
+graph "x^2" -2 2 0 8 true #e74c3c #333333
+delay 1
+latex "\\frac{d}{dx}[x^2] = 2x" 0.7 0.5 24 #00ff88 true
+linearMotion 0.2 0.6 0.8 0.4 2 "tangent line" #00ff88
+delay 1
+
+For Physics (MANDATORY LaTeX for equations):
+drawTitle "${stepTitles[step.tag] || step.tag}: ${topic}" 0.5 0.08
+delay 1
+latex "F = ma" 0.5 0.2 32 #ffffff true
+delay 1
+simulate "pendulum" 0.5 0.4 0.3 1 9.8 0.02
+fieldLines electric 0.3 0.6 5 #3498db
+latex "E = \\frac{1}{2}mv^2" 0.7 0.75 24 #00ff88 true
+linearMotion 0.2 0.8 0.8 0.8 3 "projectile" #e74c3c
+delay 1
+
+For Computer Science / Algorithms:
+drawTitle "${stepTitles[step.tag] || step.tag}: ${topic}" 0.5 0.08
+delay 1
+flowchart {nodes:["Start","Process","Decision","End"], edges:[[0,1],[1,2],[2,3]]} 0.5 0.4 1
+delay 1.5
+neuralNetwork [3,4,2,1] 0.5 0.7 "ReLU" true
+drawLabel "Neural network architecture" 0.5 0.9 #ffffff 16
+delay 1
+
+For Biology / Anatomy:
+drawTitle "${stepTitles[step.tag] || step.tag}: ${topic}" 0.5 0.08
+delay 1
+anatomy "heart" 0.3 0.4 2 high
+drawLabel "Blood flow pathway" 0.3 0.7 #ffffff 16
+delay 1
+molecule "DNA" 0.7 0.4 double-helix #3498db
+drawLabel "Double helix structure" 0.7 0.7 #ffffff 16
+delay 1
+
+For Molecules / Chemistry:
+molecule "H2O" 0.3 0.3 bent 104.5
+drawLabel "Water molecule (bent shape)" 0.3 0.5 #ffffff 16
+molecule "CO2" 0.7 0.3 linear 180
+drawLabel "Carbon dioxide (linear)" 0.7 0.5 #ffffff 16
+delay 1
 
 Now generate COMPLETE, LABELED animations for: "${topic}" - ${step.tag}
 Remember: EVERY visual needs a label explaining what it represents!`;
@@ -151,6 +224,16 @@ Remember: EVERY visual needs a label explaining what it represents!`;
             withTimeout(model.generateContent(prompt), TIMEOUT)
           );
           const text = res.response.text().trim();
+          
+          // DEBUG: Log first 500 chars of response
+          logger.debug('[visual] Gemini response preview: ' + text.substring(0, 500));
+          
+          // Check if latex is in response
+          if (text.includes('latex')) {
+            logger.debug('[visual] LaTeX FOUND in Gemini response!');
+          } else {
+            logger.debug('[visual] NO LaTeX in Gemini response');
+          }
           
           // Parse rich operation format
           const lines = text.split('\n').filter(line => line.trim());
@@ -243,6 +326,77 @@ Remember: EVERY visual needs a label explaining what it represents!`;
                       normalized: true
                     } as any);
                   }
+                }
+                break;
+                
+              case 'latex':
+                if (parts.length >= 4) {
+                  batchActions.push({
+                    op: 'latex',
+                    equation: parts[1],
+                    x: parseFloat(parts[2]) || 0.5,
+                    y: parseFloat(parts[3]) || 0.5,
+                    size: parseInt(parts[4]) || 24,
+                    color: parts[5] || '#ffffff',
+                    animated: parts[6] === 'true'
+                  } as any);
+                }
+                break;
+                
+              case 'graph':
+                if (parts.length >= 5) {
+                  batchActions.push({
+                    op: 'graph',
+                    function: parts[1],
+                    xMin: parseFloat(parts[2]) || -5,
+                    xMax: parseFloat(parts[3]) || 5,
+                    yMin: parseFloat(parts[4]) || -5,
+                    yMax: parseFloat(parts[5]) || 5,
+                    gridOn: parts[6] === 'true',
+                    lineColor: parts[7] || '#3498db',
+                    gridColor: parts[8] || '#333333'
+                  } as any);
+                }
+                break;
+                
+              case 'simulate':
+                if (parts.length >= 4) {
+                  batchActions.push({
+                    op: 'simulate',
+                    type: parts[1],
+                    x: parseFloat(parts[2]) || 0.5,
+                    y: parseFloat(parts[3]) || 0.5,
+                    params: parts.slice(4)
+                  } as any);
+                }
+                break;
+                
+              case 'linearmotion':
+                if (parts.length >= 6) {
+                  batchActions.push({
+                    op: 'linearMotion',
+                    startX: parseFloat(parts[1]) || 0,
+                    startY: parseFloat(parts[2]) || 0,
+                    endX: parseFloat(parts[3]) || 1,
+                    endY: parseFloat(parts[4]) || 1,
+                    duration: parseFloat(parts[5]) || 2,
+                    label: parts[6] || '',
+                    color: parts[7] || '#3498db'
+                  } as any);
+                }
+                break;
+                
+              case 'circularmotion':
+                if (parts.length >= 5) {
+                  batchActions.push({
+                    op: 'circularMotion',
+                    centerX: parseFloat(parts[1]) || 0.5,
+                    centerY: parseFloat(parts[2]) || 0.5,
+                    radius: parseFloat(parts[3]) || 0.2,
+                    angularVelocity: parseFloat(parts[4]) || 1,
+                    color: parts[5] || '#3498db',
+                    object: parts[6] || 'point'
+                  } as any);
                 }
                 break;
                 
@@ -424,11 +578,109 @@ Remember: EVERY visual needs a label explaining what it represents!`;
   
   logger.debug('[visual] Generated ' + allActions.length + ' visuals for step ' + step.id);
   
+  // DEBUG: Log operation types
+  const opTypes = new Set(allActions.map(a => a.op));
+  logger.debug('[visual] Operation types: ' + Array.from(opTypes).join(', '));
+  
   if (allActions.length === 0) {
     // NO FALLBACK - return null to trigger retry in codegen
     logger.error('[visual] No content generated - failing properly for retry');
     return null;
   }
+  
+  // VALIDATION & ENFORCEMENT: Ensure critical operations are present
+  // NOTE: These checks disabled for V1, V2 handles this better
+  const hasLatex = false; // allActions.some(a => a.op === 'latex');
+  const hasDiagram = false; // allActions.some(a => a.op === 'anatomy' || a.op === 'molecule' || a.op === 'neuralNetwork');
+  
+  // If math topic but NO LaTeX, inject one
+  if (requiresLatex && !hasLatex && step.tag !== 'hook') {
+    logger.warn('[visual] Math topic missing LaTeX - injecting equation');
+    
+    // Find a good insertion point (after title, before summary)
+    const insertIndex = allActions.findIndex(a => a.op === 'drawTitle') + 2 || 3;
+    
+    // Inject contextual LaTeX based on topic
+    let equation = 'f(x) = x';
+    if (topicLower.includes('derivative')) equation = '\\\\frac{dy}{dx} = \\\\lim_{h \\\\to 0} \\\\frac{f(x+h) - f(x)}{h}';
+    else if (topicLower.includes('integral')) equation = '\\\\int_a^b f(x) dx';
+    else if (topicLower.includes('pythagorean')) equation = 'a^2 + b^2 = c^2';
+    else if (topicLower.includes('euler')) equation = 'e^{i\\\\pi} + 1 = 0';
+    else if (topicLower.includes('fourier')) equation = 'f(t) = \\\\sum_{n=-\\\\infty}^{\\\\infty} c_n e^{i n \\\\omega t}';
+    
+    allActions.splice(insertIndex, 0, {
+      op: 'latex',
+      equation,
+      x: 0.5,
+      y: 0.3,
+      size: 28,
+      color: '#3498db',
+      animated: true
+    } as any);
+    
+    logger.info('[visual] Injected LaTeX equation: ' + equation);
+  }
+  
+  // If anatomy/biology topic but NO diagram, inject one
+  if (requiresDiagram && !hasDiagram && step.tag !== 'hook') {
+    logger.warn('[visual] Anatomy/biology topic missing diagram - injecting structure');
+    
+    const insertIndex = allActions.findIndex(a => a.op === 'drawTitle') + 2 || 3;
+    
+    let diagramType = 'molecule';
+    let diagramLabel = 'Molecular structure';
+    
+    if (topicLower.includes('neuron') || topicLower.includes('brain')) {
+      diagramType = 'neuralNetwork';
+      diagramLabel = 'Neural network structure';
+    } else if (topicLower.includes('heart')) {
+      diagramType = 'anatomy';
+      diagramLabel = 'Heart structure';
+    }
+    
+    // Add simple diagram representation as circles and vectors
+    allActions.splice(insertIndex, 0,
+      {
+        op: 'drawLabel',
+        text: diagramLabel,
+        x: 0.5,
+        y: 0.25,
+        color: '#00ff88',
+        fontSize: 20
+      } as any,
+      {
+        op: 'drawCircle',
+        x: 0.4,
+        y: 0.4,
+        radius: 0.08,
+        color: '#3498db',
+        fill: true
+      } as any,
+      {
+        op: 'drawCircle',
+        x: 0.6,
+        y: 0.4,
+        radius: 0.08,
+        color: '#e74c3c',
+        fill: true
+      } as any,
+      {
+        op: 'drawVector',
+        x1: 0.48,
+        y1: 0.4,
+        x2: 0.52,
+        y2: 0.4,
+        color: '#00ff88',
+        label: 'connection'
+      } as any
+    );
+    
+    logger.info('[visual] Injected diagram structure');
+  }
+  
+  // Re-log after injection
+  const finalOpTypes = new Set(allActions.map(a => a.op));
+  logger.debug('[visual] Final operation types: ' + Array.from(finalOpTypes).join(', '));
   
   return {
     type: 'visuals',

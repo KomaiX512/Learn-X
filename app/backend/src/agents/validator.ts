@@ -16,12 +16,35 @@ export interface ValidationResult {
 }
 
 const VISUAL_OPS = [
+  // V1 Operations (legacy)
   'drawCircle', 'drawRect', 'drawVector', 'drawCurve', 'drawAxis',
   'orbit', 'wave', 'particle', 'arrow', 'field', 'flow',
   'pulse', 'rotate', 'transform', 'trace', 'spotlight',
   'fadeIn', 'fadeOut', 'pendulum', 'spring', 'morph',
   'drawParticles', 'drawSpiral', 'drawRipple', 'drawDiagram',
-  'drawGraph', 'drawMolecule', 'drawFlowchart'
+  'drawGraph', 'drawMolecule', 'drawFlowchart',
+  
+  // V2 Operations (domain-specific)
+  // Electrical & Electronics
+  'drawCircuitElement', 'drawSignalWaveform', 'drawConnection',
+  
+  // Physics & Mechanics
+  'drawForceVector', 'drawPhysicsObject', 'drawTrajectory', 'drawFieldLines',
+  
+  // Biology & Anatomy
+  'drawCellStructure', 'drawOrganSystem', 'drawMolecularStructure', 'drawMembrane',
+  
+  // Chemistry
+  'drawAtom', 'drawBond', 'drawReaction',
+  
+  // Mathematics
+  'drawGeometry', 'drawCoordinateSystem',
+  
+  // Computer Science
+  'drawDataStructure', 'drawNeuralNetwork', 'drawAlgorithmStep',
+  
+  // General
+  'drawAnnotation', 'animate', 'createSimulation'
 ];
 
 const TEXT_OPS = ['drawLabel', 'drawTitle', 'drawMathLabel'];
