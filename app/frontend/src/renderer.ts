@@ -178,14 +178,14 @@ function drawAxis(layer: Konva.Layer, opts: { xLabel?: string; yLabel?: string }
   // Animated axis drawing - start as points, then expand
   const xAxis = new Konva.Line({
     points: [x0, y0, x0, y0], // Start as point
-    stroke: '#333',
-    strokeWidth: 2
+    stroke: '#00d9ff', // Bright cyan - highly visible
+    strokeWidth: 3
   });
   
   const yAxis = new Konva.Line({
     points: [x0, y0, x0, y0], // Start as point
-    stroke: '#333',
-    strokeWidth: 2
+    stroke: '#00d9ff', // Bright cyan - highly visible
+    strokeWidth: 3
   });
   
   layer.add(xAxis);
@@ -215,7 +215,7 @@ function drawAxis(layer: Konva.Layer, opts: { xLabel?: string; yLabel?: string }
       text: opts.xLabel || 'x', 
       x: x1 - 30, 
       y: y0 + 8, 
-      fill: '#333', 
+      fill: '#ffffff', // White - highly visible
       fontSize: 16,
       opacity: 0
     });
@@ -224,7 +224,7 @@ function drawAxis(layer: Konva.Layer, opts: { xLabel?: string; yLabel?: string }
       x: x0 - 35, 
       y: y1 - 20, 
       rotation: -90, 
-      fill: '#333', 
+      fill: '#ffffff', // White - highly visible
       fontSize: 16,
       opacity: 0
     });
@@ -482,8 +482,8 @@ async function drawCurve(layer: Konva.Layer, points: [number, number][], normali
   // Create the line with initial opacity 0
   const line = new Konva.Line({
     points: [],
-    stroke: color || '#3b82f6',
-    strokeWidth: width || 3,
+    stroke: color || '#ff3d71', // Bright red/pink - highly visible
+    strokeWidth: width || 4,
     lineCap: 'round',
     lineJoin: 'round',
     opacity: 0,
@@ -620,10 +620,10 @@ function drawCircle(layer: Konva.Layer, x: number, y: number, radius: number, no
     x: px,
     y: py,
     radius: 0, // Start with radius 0
-    stroke: color || '#10b981',
-    strokeWidth: 2,
-    fill: fill ? (color || '#10b981') : undefined,
-    opacity: fill ? 0.3 : 1
+    stroke: color || '#00d9ff', // Bright cyan - highly visible
+    strokeWidth: 3,
+    fill: fill ? (color || '#00d9ff') : undefined,
+    opacity: fill ? 0.4 : 1
   });
   
   layer.add(circle);
@@ -1060,10 +1060,10 @@ function drawRect(layer: Konva.Layer, x: number, y: number, width: number, heigh
     y: py,
     width: 0,
     height: 0,
-    stroke: color || '#f59e0b',
-    strokeWidth: 2,
-    fill: fill ? (color || '#f59e0b') : undefined,
-    opacity: fill ? 0.2 : 1
+    stroke: color || '#00ff88', // Bright green - highly visible
+    strokeWidth: 3,
+    fill: fill ? (color || '#00ff88') : undefined,
+    opacity: fill ? 0.3 : 1
   });
   
   layer.add(rect);

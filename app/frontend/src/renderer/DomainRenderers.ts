@@ -32,8 +32,9 @@ export class DomainRenderers {
       rotation: params.rotation || 0
     });
     
-    const color = '#2c3e50';
-    const strokeWidth = 2;
+    // BRIGHT COLORS FOR DARK BACKGROUND
+    const color = '#00d9ff'; // Bright cyan - highly visible
+    const strokeWidth = 3;
     
     switch (params.type) {
       case 'op_amp':
@@ -280,8 +281,8 @@ export class DomainRenderers {
     
     const line = new Konva.Line({
       points,
-      stroke: '#3498db',
-      strokeWidth: 2,
+      stroke: '#ff3d71', // Bright red/pink - highly visible
+      strokeWidth: 3,
       lineCap: 'round',
       lineJoin: 'round'
     });
@@ -294,7 +295,7 @@ export class DomainRenderers {
         (params.x + params.width) * this.stage.width(),
         params.y * this.stage.height()
       ],
-      stroke: '#95a5a6',
+      stroke: '#7dd3fc', // Light blue - visible but subtle
       strokeWidth: 1,
       dash: [5, 5]
     });
@@ -372,8 +373,8 @@ export class DomainRenderers {
     
     const line = new Konva.Line({
       points: [fromX, fromY, toX, toY],
-      stroke: params.color || '#34495e',
-      strokeWidth: params.type === 'thick' ? 3 : 2,
+      stroke: params.color || '#00ff88', // Bright green - highly visible
+      strokeWidth: params.type === 'thick' ? 4 : 3,
       lineCap: 'round'
     });
     
@@ -381,15 +382,15 @@ export class DomainRenderers {
     const startDot = new Konva.Circle({
       x: fromX,
       y: fromY,
-      radius: 3,
-      fill: params.color || '#34495e'
+      radius: 4,
+      fill: params.color || '#00ff88'
     });
     
     const endDot = new Konva.Circle({
       x: toX,
       y: toY,
-      radius: 3,
-      fill: params.color || '#34495e'
+      radius: 4,
+      fill: params.color || '#00ff88'
     });
     
     // Animate connection drawing
