@@ -1,0 +1,131 @@
+{
+  "query": "teach me about DNA replication 1759240858423",
+  "sessionId": "final-validation-1759240858423",
+  "timestamp": "2025-09-30T14:00:58.423Z",
+  "backend": {
+    "stepsGenerated": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "totalOperations": 164,
+    "v2Operations": 134,
+    "v2ByStep": {
+      "1": 26,
+      "2": 27,
+      "3": 26,
+      "4": 26,
+      "5": 29
+    },
+    "operationsByStep": {
+      "1": {
+        "drawTitle": 1,
+        "drawCellStructure": 3,
+        "animate": 4,
+        "drawMolecularStructure": 2,
+        "drawMolecule": 3,
+        "drawReaction": 2,
+        "drawMembrane": 2,
+        "drawLabel": 2,
+        "drawAtom": 1,
+        "drawConnection": 1,
+        "drawFieldLines": 1,
+        "drawCoordinateSystem": 1,
+        "drawGeometry": 1,
+        "delay": 2,
+        "drawPhysicsObject": 2,
+        "drawTrajectory": 1,
+        "drawForceVector": 1,
+        "drawSignalWaveform": 1,
+        "drawLatex": 1
+      },
+      "2": {
+        "drawTitle": 1,
+        "drawMolecularStructure": 5,
+        "animate": 9,
+        "drawMolecule": 8,
+        "drawReaction": 2,
+        "drawLabel": 4,
+        "drawBond": 2,
+        "delay": 2,
+        "drawMembrane": 1
+      },
+      "3": {
+        "drawTitle": 1,
+        "drawMolecularStructure": 5,
+        "drawMolecule": 6,
+        "drawCellStructure": 2,
+        "drawReaction": 1,
+        "drawLabel": 3,
+        "drawConnection": 4,
+        "animate": 2,
+        "delay": 2,
+        "drawAtom": 4,
+        "drawMembrane": 2
+      },
+      "4": {
+        "drawTitle": 1,
+        "drawMolecularStructure": 3,
+        "drawMolecule": 9,
+        "animate": 8,
+        "drawReaction": 2,
+        "drawMembrane": 2,
+        "drawCellStructure": 2,
+        "drawLabel": 4,
+        "delay": 1
+      },
+      "5": {
+        "drawTitle": 1,
+        "drawMolecularStructure": 8,
+        "drawReaction": 2,
+        "drawMolecule": 7,
+        "animate": 5,
+        "drawCellStructure": 3,
+        "drawMembrane": 2,
+        "drawLabel": 2,
+        "delay": 2,
+        "drawAtom": 2
+      }
+    },
+    "generationTimes": {}
+  },
+  "quality": {
+    "v2Ratio": 81.70731707317073,
+    "v2RatioByStep": {
+      "1": 81.25,
+      "2": 79.41176470588235,
+      "3": 81.25,
+      "4": 81.25,
+      "5": 85.29411764705883
+    },
+    "averageOpsPerStep": 32.8,
+    "usedFallbacks": false,
+    "usedHardcoding": false
+  },
+  "compliance": {
+    "maxTitles": {
+      "limit": 1,
+      "violations": []
+    },
+    "maxLabels": {
+      "limit": 5,
+      "violations": []
+    },
+    "maxDelays": {
+      "limit": 3,
+      "violations": []
+    },
+    "minV2Operations": {
+      "limit": 25,
+      "violations": []
+    }
+  },
+  "production": {
+    "beats3Blue1Brown": true,
+    "productionReady": true,
+    "score": 100,
+    "issues": []
+  }
+}

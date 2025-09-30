@@ -266,16 +266,20 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
   const parallelWorker = new Worker(
     'parallel-gen-jobs',
     async (job) => {
-      console.log('=== PARALLEL WORKER CALLED ===');
+      console.log('\n' + '='.repeat(100));
+      console.log('🔥 PARALLEL WORKER CALLED');
+      console.log('='.repeat(100));
+      console.log('Job ID:', job.id);
       console.log('Job name:', job.name);
       console.log('Job data keys:', Object.keys(job.data || {}));
+      console.log('='.repeat(100) + '\n');
       
       if (job.name !== 'parallel-generate') {
-        console.log('SKIPPING: Not a parallel-generate job');
+        logger.error(`[parallel] SKIPPING: Job name is '${job.name}', expected 'parallel-generate'`);
         return;
       }
       const { sessionId, plan, query } = job.data as any;
-      logger.debug(`[parallel] Starting parallel generation for ${plan.steps.length} steps`);
+      logger.info(`[parallel] ⚡ STARTING parallel generation for ${plan.steps.length} steps (session: ${sessionId})`);
       
       const paramsRaw = await redis.get(PARAMS_KEY(sessionId));
       const params: SessionParams = paramsRaw ? JSON.parse(paramsRaw) : {};
@@ -404,10 +408,15 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
         // Emit all steps with small delays to ensure delivery
         for (let i = 0; i < plan.steps.length; i++) {
           const step = plan.steps[i];
-          const cached = await redis.get(CHUNK_KEY(sessionId, step.id));
+          const cacheKey = CHUNK_KEY(sessionId, step.id);
+          logger.debug(`[parallel] Checking cache for step ${step.id}: ${cacheKey}`);
+          
+          const cached = await redis.get(cacheKey);
+          logger.debug(`[parallel] Step ${step.id} cached: ${cached ? 'YES' : 'NO'} (length: ${cached?.length || 0})`);
           
           if (cached) {
             const chunk = JSON.parse(cached);
+            logger.debug(`[parallel] Step ${step.id} has ${chunk.actions?.length || 0} actions`);
             
             const eventData = { 
               type: 'actions', // CRITICAL: Must be 'actions'
@@ -422,9 +431,9 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
             
             // Emit to specific session room
             const emitted = io.to(sessionId).emit('rendered', eventData);
-            logger.debug(`[parallel] Emitted step ${step.id} to session ${sessionId} (emitted: ${emitted})`);
+            logger.info(`[parallel] ✅ Emitted step ${step.id} with ${chunk.actions?.length} actions to session ${sessionId}`);
           } else {
-            logger.warn(`[parallel] Step ${step.id} not cached for session ${sessionId}`);
+            logger.error(`[parallel] ❌ Step ${step.id} NOT CACHED - Cannot emit! Key: ${cacheKey}`);
           }
         }
         
@@ -442,6 +451,11 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
 
   planWorker.on('failed', (job, err) => logger.error(`[plan:failed] id=${job?.id} ${String(err)}`));
   genWorker.on('failed', (job, err) => logger.error(`[gen:failed] id=${job?.id} ${String(err)}`));
+  parallelWorker.on('failed', (job, err) => {
+    logger.error(`[parallel:FAILED] id=${job?.id} session=${job?.data?.sessionId}`);
+    logger.error(`[parallel:FAILED] Error: ${String(err)}`);
+    logger.error(`[parallel:FAILED] Stack: ${err.stack}`);
+  });
 
   async function enqueuePlan(query: string, sessionId: string) {
     logger.debug(`[orchestrator] Enqueuing plan for session ${sessionId}`);

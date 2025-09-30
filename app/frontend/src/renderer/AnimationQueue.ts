@@ -84,10 +84,12 @@ export class AnimationQueue {
       }
       
       console.log(`[AnimationQueue] Action ${this.currentIndex + 1}/${this.queue.length}: ${item.action.op}`);
+      console.log(`[AnimationQueue] Action details:`, JSON.stringify(item.action).substring(0, 200));
       
       try {
-        // Process the action with smooth animation
+        console.log(`[AnimationQueue] Starting processAction for ${item.action.op}...`);
         await this.renderer.processAction(item.action, item.section);
+        console.log(`[AnimationQueue] ✅ Completed ${item.action.op}`);
         
         // Force immediate visual update
         if (item.section?.layer) {
@@ -99,7 +101,9 @@ export class AnimationQueue {
           this.renderer.stage.batchDraw();
         }
       } catch (error) {
-        console.error('[AnimationQueue] Error processing action:', error);
+        console.error(`[AnimationQueue] ❌ ERROR processing ${item.action.op}:`, error);
+        console.error('[AnimationQueue] Error stack:', error.stack);
+        // CRITICAL: Continue despite error
       }
       
       // Get appropriate delay for this action type

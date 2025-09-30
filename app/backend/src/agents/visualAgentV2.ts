@@ -236,21 +236,71 @@ Return ONLY valid JSON array of operations (no markdown, no explanations):
   ...
 ]
 
-CRITICAL REQUIREMENTS:
-- 30-50 operations for rich visualization
-- **MINIMUM 70% DOMAIN-SPECIFIC OPERATIONS** (not generic shapes!)
-- Use domain-specific tools AGGRESSIVELY:
+CRITICAL REQUIREMENTS (STRICTLY ENFORCED):
+
+🚨 OPERATION LIMITS (WILL BE VALIDATED):
+- **EXACTLY 1 drawTitle** - One title at the start ONLY
+- **MAXIMUM 5 drawLabel** - More visuals, less text!
+- **MAXIMUM 3 delay** - Keep it flowing, not pausing
+- **MINIMUM 25 V2 operations** - Domain-specific tools are MANDATORY
+
+📊 V2 RATIO TARGET: 70%+ (Your output WILL be scored)
+- 30-40 total operations per step
+- At least 25 MUST be domain-specific (V2)
+- Maximum 5 can be text/delays (V1)
+
+⚡ DOMAIN-SPECIFIC TOOLS (Use these AGGRESSIVELY):
   * Electrical → drawCircuitElement, drawSignalWaveform, drawConnection
-  * Physics → drawForceVector, drawPhysicsObject, drawTrajectory
-  * Biology → drawCellStructure, drawOrganSystem, drawMembrane, drawReaction
+  * Physics → drawForceVector, drawPhysicsObject, drawTrajectory, drawFieldLines
+  * Biology → drawCellStructure, drawOrganSystem, drawMembrane, drawMolecularStructure
   * Chemistry → drawMolecule, drawAtom, drawReaction, drawBond
   * CS → drawDataStructure, drawNeuralNetwork, drawAlgorithmStep
-- MAXIMUM 10 drawLabel operations (focus on visuals, not text!)
-- ALL text labels must have avoidOverlap: true
-- Include drawLatex for equations only when necessary
-- Add delay (1500-2000ms) between major visual sequences
-- AVOID generic drawDiagram - use specific domain tools instead
-- Every visual element should teach something, not just decorate
+  * Math → drawCoordinateSystem (NOT drawGraph!), drawGeometry
+  * Animations → animate (use for motion, transformation, emphasis)
+
+❌ WHAT TO AVOID:
+- DO NOT use multiple drawTitle operations
+- DO NOT use drawGraph (use drawCoordinateSystem + drawCurve instead)
+- DO NOT use generic drawDiagram (use domain-specific alternatives)
+- DO NOT overuse drawLabel (maximum 5!)
+- DO NOT add many delays (maximum 3!)
+
+✅ GOOD EXAMPLE (70% V2):
+[
+  { "op": "drawTitle", ... },                    // 1 title ✓
+  { "op": "drawPhysicsObject", ... },            // V2 ✓
+  { "op": "drawPhysicsObject", ... },            // V2 ✓
+  { "op": "drawForceVector", ... },              // V2 ✓
+  { "op": "drawForceVector", ... },              // V2 ✓
+  { "op": "drawTrajectory", ... },               // V2 ✓
+  { "op": "animate", ... },                      // V2 ✓
+  { "op": "drawLabel", ... },                    // V1
+  { "op": "drawPhysicsObject", ... },            // V2 ✓
+  { "op": "animate", ... },                      // V2 ✓
+  { "op": "drawLabel", ... },                    // V1
+  { "op": "delay", ... }                         // V1
+  // Result: 8 V2 / 12 total = 67% (acceptable)
+]
+
+❌ BAD EXAMPLE (30% V2):
+[
+  { "op": "drawTitle", ... },
+  { "op": "drawTitle", ... },                    // ❌ Too many titles!
+  { "op": "drawLabel", ... },
+  { "op": "drawLabel", ... },
+  { "op": "drawLabel", ... },
+  { "op": "drawLabel", ... },
+  { "op": "drawLabel", ... },
+  { "op": "drawLabel", ... },                    // ❌ Too many labels!
+  { "op": "drawGraph", ... },                    // ❌ Use drawCoordinateSystem!
+  { "op": "delay", ... },
+  { "op": "delay", ... },
+  { "op": "delay", ... },                        // ❌ Too many delays!
+  { "op": "drawPhysicsObject", ... }             // Only 1 V2 operation!
+  // Result: 1 V2 / 12 total = 8% (REJECTED!)
+]
+
+🎯 YOUR GOAL: Generate 30-40 operations with 70%+ being domain-specific V2 tools
 
 Generate the visualization now:`;
 }
@@ -293,27 +343,78 @@ function parseAndValidate(response: string, context: ToolSelectionContext): Acti
     
     logger.info(`[visualV2] Generated ${validated.length} valid operations`);
     
-    // Check for domain-specific tools usage
-    const domainOps = validated.filter(op => 
-      ['drawCircuitElement', 'drawSignalWaveform', 'drawConnection',
-       'drawForceVector', 'drawPhysicsObject', 'drawTrajectory', 'drawFieldLines',
-       'drawCellStructure', 'drawOrganSystem', 'drawMembrane', 'drawMolecule', 
-       'drawAtom', 'drawReaction', 'drawBond',
-       'drawDataStructure', 'drawNeuralNetwork', 'drawAlgorithmStep',
-       'drawGeometry', 'drawCoordinateSystem'].includes(op.op)
-    );
+    // STRICT ENFORCEMENT: Limit operation counts
+    let titleCount = 0;
+    let labelCount = 0;
+    let delayCount = 0;
     
-    const v2Ratio = validated.length > 0 ? (domainOps.length / validated.length) : 0;
-    logger.info(`[visualV2] Domain-specific operations: ${domainOps.length}/${validated.length} (${Math.round(v2Ratio*100)}%)`);
+    const enforced = validated.filter(op => {
+      // Count and limit drawTitle (max 1)
+      if (op.op === 'drawTitle') {
+        titleCount++;
+        if (titleCount > 1) {
+          logger.warn(`[visualV2] 🚫 Removing extra drawTitle (limit: 1)`);
+          return false;
+        }
+      }
+      
+      // Count and limit drawLabel (max 5)
+      if (op.op === 'drawLabel') {
+        labelCount++;
+        if (labelCount > 5) {
+          logger.warn(`[visualV2] 🚫 Removing extra drawLabel (limit: 5, got ${labelCount})`);
+          return false;
+        }
+      }
+      
+      // Count and limit delay (max 3)
+      if (op.op === 'delay') {
+        delayCount++;
+        if (delayCount > 3) {
+          logger.warn(`[visualV2] 🚫 Removing extra delay (limit: 3, got ${delayCount})`);
+          return false;
+        }
+      }
+      
+      // Remove generic drawGraph (should use drawCoordinateSystem)
+      if (op.op === 'drawGraph') {
+        logger.warn(`[visualV2] 🚫 Removing drawGraph (use drawCoordinateSystem instead)`);
+        return false;
+      }
+      
+      return true;
+    });
+    
+    if (enforced.length < validated.length) {
+      logger.info(`[visualV2] 🔧 Enforced limits: ${validated.length} → ${enforced.length} operations`);
+    }
+    
+    // Check for domain-specific tools usage
+    const V2_OPS = [
+      'drawCircuitElement', 'drawSignalWaveform', 'drawConnection',
+      'drawForceVector', 'drawPhysicsObject', 'drawTrajectory', 'drawFieldLines',
+      'drawCellStructure', 'drawOrganSystem', 'drawMembrane', 'drawMolecule', 
+      'drawAtom', 'drawReaction', 'drawBond', 'drawMolecularStructure',
+      'drawDataStructure', 'drawNeuralNetwork', 'drawAlgorithmStep',
+      'drawGeometry', 'drawCoordinateSystem', 'animate'
+    ];
+    
+    const domainOps = enforced.filter(op => V2_OPS.includes(op.op));
+    const v2Ratio = enforced.length > 0 ? (domainOps.length / enforced.length) : 0;
+    
+    logger.info(`[visualV2] Domain-specific operations: ${domainOps.length}/${enforced.length} (${Math.round(v2Ratio*100)}%)`);
+    logger.info(`[visualV2] Limits: titles=${titleCount}/1, labels=${labelCount}/5, delays=${delayCount}/3`);
     
     // QUALITY CHECK: Warn if V2 ratio is too low
     if (v2Ratio < 0.5) {
       logger.warn(`[visualV2] ⚠️  V2 ratio ${Math.round(v2Ratio*100)}% is below target 70%! Generated too many generic operations.`);
     } else if (v2Ratio >= 0.7) {
       logger.info(`[visualV2] ✅ Successfully generated ${Math.round(v2Ratio*100)}% domain-specific operations`);
+    } else {
+      logger.info(`[visualV2] 🎯 V2 ratio ${Math.round(v2Ratio*100)}% (target: 70%+)`);
     }
     
-    return validated as Action[];
+    return enforced as Action[];
     
   } catch (error) {
     logger.error(`[visualV2] Failed to parse response:`, error);
