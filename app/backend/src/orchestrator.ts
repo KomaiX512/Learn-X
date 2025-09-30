@@ -401,7 +401,7 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
         });
         logger.debug(`[parallel] Emitted plan for session ${sessionId}`);
         
-        // Emit all steps IMMEDIATELY - no artificial delays
+        // Emit all steps with small delays to ensure delivery
         for (let i = 0; i < plan.steps.length; i++) {
           const step = plan.steps[i];
           const cached = await redis.get(CHUNK_KEY(sessionId, step.id));
@@ -417,9 +417,14 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
               plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc }
             };
             
-            // Emit immediately - frontend AnimationQueue handles pacing
-            io.to(sessionId).emit('rendered', eventData);
-            logger.debug(`[parallel] Emitted step ${step.id} immediately`);
+            // Small delay between emissions to prevent socket congestion
+            await new Promise(resolve => setTimeout(resolve, 100 * i));
+            
+            // Emit to specific session room
+            const emitted = io.to(sessionId).emit('rendered', eventData);
+            logger.debug(`[parallel] Emitted step ${step.id} to session ${sessionId} (emitted: ${emitted})`);
+          } else {
+            logger.warn(`[parallel] Step ${step.id} not cached for session ${sessionId}`);
           }
         }
         

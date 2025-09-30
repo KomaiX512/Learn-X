@@ -105,6 +105,21 @@ export class SequentialRenderer {
   public async processAction(action: any, section: any): Promise<void> {
     if (!this.stage || !this.currentLayer) return;
     
+    // ERROR HANDLING: Wrap in try-catch to prevent one error from stopping all rendering
+    try {
+      await this.processActionInternal(action, section);
+    } catch (error) {
+      console.error(`[SequentialRenderer] Error processing action ${action.op}:`, error);
+      // Continue to next action instead of stopping
+    }
+  }
+  
+  /**
+   * Internal action processing with error boundary
+   */
+  private async processActionInternal(action: any, section: any): Promise<void> {
+    if (!this.stage || !this.currentLayer) return;
+    
     switch (action.op) {
       case 'clear':
         await this.clearCanvas(action.target);
@@ -182,6 +197,30 @@ export class SequentialRenderer {
       case 'drawNeuralNetwork':
         if (this.domainRenderers) {
           await this.domainRenderers.drawNeuralNetwork(action);
+        }
+        break;
+        
+      case 'drawOrganSystem':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawOrganSystem(action);
+        }
+        break;
+        
+      case 'drawMembrane':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawMembrane(action);
+        }
+        break;
+        
+      case 'drawReaction':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawReaction(action);
+        }
+        break;
+        
+      case 'animate':
+        if (this.domainRenderers) {
+          await this.domainRenderers.animate(action);
         }
         break;
         

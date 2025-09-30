@@ -73,10 +73,10 @@ export class AnimationQueue {
       
       // Check if we're starting a new step
       if (item.section?.stepId !== this.currentStepId) {
-        // Clear canvas before new step
+        // DON'T clear canvas - accumulate content like 3Blue1Brown lectures
         if (this.currentStepId !== null) {
-          console.log(`[AnimationQueue] Step ${this.currentStepId} complete, clearing canvas`);
-          await this.clearCanvas();
+          console.log(`[AnimationQueue] Step ${this.currentStepId} complete, moving to next step`);
+          // Just pause between steps, don't clear
           await this.wait(this.DELAYS.betweenSteps);
         }
         this.currentStepId = item.section?.stepId;

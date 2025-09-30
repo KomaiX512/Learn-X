@@ -812,6 +812,402 @@ export class DomainRenderers {
   }
   
   /**
+   * Draw organ system (heart, lungs, digestive system, etc.)
+   */
+  async drawOrganSystem(params: {
+    type: string;
+    x: number;
+    y: number;
+    size?: number;
+    showLabels?: boolean;
+  }): Promise<void> {
+    const baseX = params.x * this.stage.width();
+    const baseY = params.y * this.stage.height();
+    const size = (params.size || 0.3) * this.stage.width();
+    
+    const group = new Konva.Group({ x: baseX, y: baseY });
+    
+    switch (params.type.toLowerCase()) {
+      case 'heart':
+        // Draw stylized heart shape
+        const heartPath = new Konva.Path({
+          data: 'M0,-20 C-25,-40 -40,-20 -40,0 C-40,20 0,40 0,50 C0,40 40,20 40,0 C40,-20 25,-40 0,-20 Z',
+          fill: '#e74c3c',
+          stroke: '#c0392b',
+          strokeWidth: 2,
+          scale: { x: size / 80, y: size / 80 }
+        });
+        group.add(heartPath);
+        
+        // Add chambers
+        group.add(new Konva.Line({
+          points: [-20, -10, -20, 20],
+          stroke: '#95a5a6',
+          strokeWidth: 2,
+          dash: [5, 5]
+        }));
+        
+        group.add(new Konva.Line({
+          points: [20, -10, 20, 20],
+          stroke: '#95a5a6',
+          strokeWidth: 2,
+          dash: [5, 5]
+        }));
+        break;
+        
+      case 'lungs':
+        // Draw lung shapes
+        const leftLung = new Konva.Shape({
+          sceneFunc: (context, shape) => {
+            context.beginPath();
+            context.ellipse(-size/3, 0, size/4, size/2, 0, 0, Math.PI * 2);
+            context.fillStrokeShape(shape);
+          },
+          fill: '#3498db',
+          stroke: '#2980b9',
+          strokeWidth: 2,
+          opacity: 0.7
+        });
+        
+        const rightLung = new Konva.Shape({
+          sceneFunc: (context, shape) => {
+            context.beginPath();
+            context.ellipse(size/3, 0, size/4, size/2, 0, 0, Math.PI * 2);
+            context.fillStrokeShape(shape);
+          },
+          fill: '#3498db',
+          stroke: '#2980b9',
+          strokeWidth: 2,
+          opacity: 0.7
+        });
+        
+        group.add(leftLung, rightLung);
+        
+        // Add trachea
+        group.add(new Konva.Rect({
+          x: -10,
+          y: -size/2,
+          width: 20,
+          height: size/3,
+          fill: '#95a5a6',
+          cornerRadius: 5
+        }));
+        break;
+        
+      case 'plant':
+      case 'leaf':
+        // Draw leaf shape for photosynthesis
+        const leaf = new Konva.Shape({
+          sceneFunc: (context, shape) => {
+            context.beginPath();
+            context.moveTo(0, -size/2);
+            context.quadraticCurveTo(size/2, -size/4, size/2, 0);
+            context.quadraticCurveTo(size/2, size/4, 0, size/2);
+            context.quadraticCurveTo(-size/2, size/4, -size/2, 0);
+            context.quadraticCurveTo(-size/2, -size/4, 0, -size/2);
+            context.fillStrokeShape(shape);
+          },
+          fill: '#27ae60',
+          stroke: '#229954',
+          strokeWidth: 2
+        });
+        group.add(leaf);
+        
+        // Add veins
+        group.add(new Konva.Line({
+          points: [0, -size/2, 0, size/2],
+          stroke: '#1e8449',
+          strokeWidth: 2
+        }));
+        break;
+        
+      default:
+        // Generic organ shape
+        const organ = new Konva.Circle({
+          radius: size/2,
+          fill: '#e67e22',
+          stroke: '#d35400',
+          strokeWidth: 2,
+          opacity: 0.8
+        });
+        group.add(organ);
+    }
+    
+    group.opacity(0);
+    this.layer.add(group);
+    
+    await new Promise<void>(resolve => {
+      new Konva.Tween({
+        node: group,
+        opacity: 1,
+        duration: 0.5,
+        onFinish: resolve
+      }).play();
+    });
+  }
+  
+  /**
+   * Draw membrane structure
+   */
+  async drawMembrane(params: {
+    type: string;
+    x: number;
+    y: number;
+    width: number;
+    showChannels?: boolean;
+  }): Promise<void> {
+    const baseX = params.x * this.stage.width();
+    const baseY = params.y * this.stage.height();
+    const width = params.width * this.stage.width();
+    
+    const group = new Konva.Group({ x: baseX, y: baseY });
+    
+    // Draw phospholipid bilayer
+    const lipidCount = Math.floor(width / 20);
+    
+    // Top layer (heads pointing up)
+    for (let i = 0; i < lipidCount; i++) {
+      const x = (i - lipidCount/2) * 20;
+      
+      // Head (circle)
+      group.add(new Konva.Circle({
+        x,
+        y: -15,
+        radius: 5,
+        fill: '#f39c12',
+        stroke: '#e67e22',
+        strokeWidth: 1
+      }));
+      
+      // Tail (lines)
+      group.add(new Konva.Line({
+        points: [x, -10, x - 3, 0],
+        stroke: '#95a5a6',
+        strokeWidth: 2
+      }));
+      
+      group.add(new Konva.Line({
+        points: [x, -10, x + 3, 0],
+        stroke: '#95a5a6',
+        strokeWidth: 2
+      }));
+    }
+    
+    // Bottom layer (heads pointing down)
+    for (let i = 0; i < lipidCount; i++) {
+      const x = (i - lipidCount/2) * 20;
+      
+      // Tail
+      group.add(new Konva.Line({
+        points: [x, 0, x - 3, 10],
+        stroke: '#95a5a6',
+        strokeWidth: 2
+      }));
+      
+      group.add(new Konva.Line({
+        points: [x, 0, x + 3, 10],
+        stroke: '#95a5a6',
+        strokeWidth: 2
+      }));
+      
+      // Head
+      group.add(new Konva.Circle({
+        x,
+        y: 15,
+        radius: 5,
+        fill: '#f39c12',
+        stroke: '#e67e22',
+        strokeWidth: 1
+      }));
+    }
+    
+    // Add protein channels if requested
+    if (params.showChannels) {
+      const channelCount = 2;
+      for (let i = 0; i < channelCount; i++) {
+        const x = (i - channelCount/2 + 0.5) * (width / channelCount);
+        
+        group.add(new Konva.Rect({
+          x: x - 10,
+          y: -20,
+          width: 20,
+          height: 40,
+          fill: '#9b59b6',
+          stroke: '#8e44ad',
+          strokeWidth: 2,
+          cornerRadius: 5,
+          opacity: 0.8
+        }));
+      }
+    }
+    
+    group.opacity(0);
+    this.layer.add(group);
+    
+    await new Promise<void>(resolve => {
+      new Konva.Tween({
+        node: group,
+        opacity: 1,
+        duration: 0.5,
+        onFinish: resolve
+      }).play();
+    });
+  }
+  
+  /**
+   * Draw chemical reaction
+   */
+  async drawReaction(params: {
+    reactants: string[];
+    products: string[];
+    x: number;
+    y: number;
+    type?: string;
+  }): Promise<void> {
+    const baseX = params.x * this.stage.width();
+    const baseY = params.y * this.stage.height();
+    
+    const group = new Konva.Group({ x: baseX, y: baseY });
+    
+    // Draw reactants
+    const reactantSpacing = 80;
+    params.reactants.forEach((reactant, i) => {
+      const x = (i - params.reactants.length/2 + 0.5) * reactantSpacing - 100;
+      
+      // Molecule representation
+      group.add(new Konva.Circle({
+        x,
+        y: 0,
+        radius: 25,
+        fill: '#3498db',
+        stroke: '#2980b9',
+        strokeWidth: 2
+      }));
+      
+      group.add(new Konva.Text({
+        x: x - 20,
+        y: -8,
+        text: reactant,
+        fontSize: 14,
+        fill: '#fff',
+        fontStyle: 'bold',
+        width: 40,
+        align: 'center'
+      }));
+    });
+    
+    // Draw arrow
+    group.add(new Konva.Arrow({
+      points: [-50, 0, 50, 0],
+      stroke: '#e74c3c',
+      strokeWidth: 3,
+      fill: '#e74c3c',
+      pointerLength: 15,
+      pointerWidth: 15
+    }));
+    
+    // Add energy label if exothermic/endothermic
+    if (params.type === 'exothermic') {
+      group.add(new Konva.Text({
+        x: -25,
+        y: -30,
+        text: '+ Energy',
+        fontSize: 12,
+        fill: '#e74c3c',
+        fontStyle: 'italic'
+      }));
+    } else if (params.type === 'endothermic') {
+      group.add(new Konva.Text({
+        x: -25,
+        y: -30,
+        text: '- Energy',
+        fontSize: 12,
+        fill: '#3498db',
+        fontStyle: 'italic'
+      }));
+    }
+    
+    // Draw products
+    params.products.forEach((product, i) => {
+      const x = (i - params.products.length/2 + 0.5) * reactantSpacing + 100;
+      
+      // Molecule representation
+      group.add(new Konva.Circle({
+        x,
+        y: 0,
+        radius: 25,
+        fill: '#27ae60',
+        stroke: '#229954',
+        strokeWidth: 2
+      }));
+      
+      group.add(new Konva.Text({
+        x: x - 20,
+        y: -8,
+        text: product,
+        fontSize: 14,
+        fill: '#fff',
+        fontStyle: 'bold',
+        width: 40,
+        align: 'center'
+      }));
+    });
+    
+    group.opacity(0);
+    this.layer.add(group);
+    
+    await new Promise<void>(resolve => {
+      new Konva.Tween({
+        node: group,
+        opacity: 1,
+        duration: 0.5,
+        onFinish: resolve
+      }).play();
+    });
+  }
+  
+  /**
+   * Generic animate operation
+   */
+  async animate(params: {
+    target?: string;
+    type: string;
+    duration?: number;
+    x?: number;
+    y?: number;
+  }): Promise<void> {
+    // For now, create a simple animated indicator
+    const x = (params.x || 0.5) * this.stage.width();
+    const y = (params.y || 0.5) * this.stage.height();
+    const duration = params.duration || 1000;
+    
+    const shape = new Konva.Circle({
+      x,
+      y,
+      radius: 30,
+      fill: '#3498db',
+      opacity: 0.5
+    });
+    
+    this.layer.add(shape);
+    
+    // Pulse animation
+    await new Promise<void>(resolve => {
+      const anim = new Konva.Tween({
+        node: shape,
+        radius: 50,
+        opacity: 0,
+        duration: duration / 1000,
+        onFinish: () => {
+          shape.destroy();
+          resolve();
+        }
+      });
+      anim.play();
+    });
+  }
+  
+  /**
    * Draw molecule structure
    */
   async drawMolecule(params: {

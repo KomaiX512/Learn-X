@@ -40949,3 +40949,589 @@ drawLabel "Amplifier Circui
 2025-09-30T10:23:46.484Z [debug] [monitor] Metrics updated:
 2025-09-30T10:24:46.495Z [debug] [monitor] Metrics updated:
 2025-09-30T10:25:46.505Z [debug] [monitor] Metrics updated:
+2025-09-30T10:26:46.511Z [debug] [monitor] Metrics updated:
+2025-09-30T10:27:46.517Z [debug] [monitor] Metrics updated:
+2025-09-30T10:28:04.929Z [debug] [socket] Socket 8xLECjMyVcUAZ1BDAAAB disconnected: transport close
+2025-09-30T10:28:20.051Z [debug] [socket] New connection: p3qd9PqwdusZJtygAAAD
+2025-09-30T10:28:20.053Z [debug] [socket] Socket p3qd9PqwdusZJtygAAAD joined session e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:28:20.053Z [debug] [socket] Socket p3qd9PqwdusZJtygAAAD is now in rooms: p3qd9PqwdusZJtygAAAD, e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:28:20.060Z [debug] Received request on /api/query {"body":{"query":"teach me about RLC circuits\n","sessionId":"e60fe8be-624a-42db-b99a-0b1448ecdd2c"}}
+2025-09-30T10:28:20.060Z [debug] [orchestrator] Enqueuing plan for session e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:28:20.062Z [debug] [orchestrator] Plan job added with id 77 for session e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:28:20.065Z [debug] [planWorker] Received job: plan id=77
+2025-09-30T10:28:20.065Z [debug] [plan] START: session=e60fe8be-624a-42db-b99a-0b1448ecdd2c query=teach me about RLC circuits
+
+2025-09-30T10:28:20.065Z [debug] [monitor] Started tracking request e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:28:20.066Z [debug] [cache] MISS - No cached plan for query: "teach me about RLC circuits
+..."
+2025-09-30T10:28:20.066Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-30T10:28:20.067Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-30T10:28:38.341Z [debug] [planner] Received response from Gemini in 18275ms
+2025-09-30T10:28:38.341Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-30T10:28:38.341Z [debug] [monitor] Plan generation for e60fe8be-624a-42db-b99a-0b1448ecdd2c took 18276ms
+2025-09-30T10:28:38.342Z [debug] [cache] Cached plan for query: "teach me about RLC circuits
+..."
+2025-09-30T10:28:38.344Z [debug] [plan] OK: session=e60fe8be-624a-42db-b99a-0b1448ecdd2c plan received with 5 steps
+2025-09-30T10:28:38.345Z [debug] [plan] Enqueuing PARALLEL generation of all 5 steps
+2025-09-30T10:28:38.347Z [debug] [plan] END: session=e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:28:38.349Z [debug] [parallel] Starting parallel generation for 5 steps
+2025-09-30T10:28:38.350Z [debug] [cache] MISS - No cached chunk for step 1
+2025-09-30T10:28:38.351Z [debug] [cache] MISS - No cached chunk for step 2
+2025-09-30T10:28:38.351Z [debug] [cache] MISS - No cached chunk for step 3
+2025-09-30T10:28:38.351Z [debug] [cache] MISS - No cached chunk for step 4
+2025-09-30T10:28:38.351Z [info] [codegenV2] Starting generation for step 1: hook
+2025-09-30T10:28:38.351Z [debug] [codegenV2] Attempt 1/3 for step 1
+2025-09-30T10:28:38.351Z [info] [visualV2] Generating visualization for step 1: hook
+2025-09-30T10:28:38.351Z [info] [visualV2] Topic: "teach me about RLC circuits
+"
+2025-09-30T10:28:38.351Z [debug] [visualV2] Attempt 1/2
+2025-09-30T10:28:38.352Z [info] [codegenV2] Starting generation for step 2: intuition
+2025-09-30T10:28:38.352Z [debug] [codegenV2] Attempt 1/3 for step 2
+2025-09-30T10:28:38.352Z [info] [visualV2] Generating visualization for step 2: intuition
+2025-09-30T10:28:38.352Z [info] [visualV2] Topic: "teach me about RLC circuits
+"
+2025-09-30T10:28:38.352Z [debug] [visualV2] Attempt 1/2
+2025-09-30T10:28:38.354Z [info] [codegenV2] Starting generation for step 3: formalism
+2025-09-30T10:28:38.354Z [debug] [codegenV2] Attempt 1/3 for step 3
+2025-09-30T10:28:38.354Z [info] [visualV2] Generating visualization for step 3: formalism
+2025-09-30T10:28:38.354Z [info] [visualV2] Topic: "teach me about RLC circuits
+"
+2025-09-30T10:28:38.354Z [debug] [visualV2] Attempt 1/2
+2025-09-30T10:28:38.355Z [info] [codegenV2] Starting generation for step 4: exploration
+2025-09-30T10:28:38.355Z [debug] [codegenV2] Attempt 1/3 for step 4
+2025-09-30T10:28:38.356Z [info] [visualV2] Generating visualization for step 4: exploration
+2025-09-30T10:28:38.356Z [info] [visualV2] Topic: "teach me about RLC circuits
+"
+2025-09-30T10:28:38.356Z [debug] [visualV2] Attempt 1/2
+2025-09-30T10:28:38.371Z [debug] [cache] MISS - No cached chunk for step 5
+2025-09-30T10:28:38.371Z [info] [codegenV2] Starting generation for step 5: mastery
+2025-09-30T10:28:38.371Z [debug] [codegenV2] Attempt 1/3 for step 5
+2025-09-30T10:28:38.371Z [info] [visualV2] Generating visualization for step 5: mastery
+2025-09-30T10:28:38.371Z [info] [visualV2] Topic: "teach me about RLC circuits
+"
+2025-09-30T10:28:38.371Z [debug] [visualV2] Attempt 1/2
+2025-09-30T10:28:46.517Z [debug] [monitor] Metrics updated:
+2025-09-30T10:28:52.511Z [debug] [visualV2] Received response (5038 chars)
+2025-09-30T10:28:52.511Z [info] [visualV2] Generated 24 valid operations
+2025-09-30T10:28:52.511Z [info] [visualV2] Domain-specific operations: 5/24 (21%)
+2025-09-30T10:28:52.512Z [info] [visualV2] ✅ Successfully generated 24 operations for step 2
+2025-09-30T10:28:52.512Z [debug] [codegenV2] Generated 24 operations
+2025-09-30T10:28:52.512Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T10:28:52.515Z [info] [codegenV2] ✅ Successfully generated 24 operations for step 2
+2025-09-30T10:28:52.515Z [debug] compilerRouter: routing to js
+2025-09-30T10:28:52.515Z [debug] [debugger] START: Received chunk for stepId=2
+2025-09-30T10:28:52.515Z [debug] [debugger] Chunk type: actions
+2025-09-30T10:28:52.515Z [debug] [debugger] Has actions: true
+2025-09-30T10:28:52.515Z [debug] [debugger] Actions count: 24
+2025-09-30T10:28:52.515Z [debug] [debugger] Chunk is valid with 24 actions, allowing all for rich visualizations
+2025-09-30T10:28:52.517Z [debug] [cache] Cached chunk for query step 2
+2025-09-30T10:28:52.517Z [debug] [monitor] Step 2 generation for e60fe8be-624a-42db-b99a-0b1448ecdd2c took 14167ms
+2025-09-30T10:28:52.517Z [debug] [parallel] Step 2 generated in 14167ms
+2025-09-30T10:28:54.043Z [debug] [visualV2] Received response (4920 chars)
+2025-09-30T10:28:54.044Z [info] [visualV2] Generated 35 valid operations
+2025-09-30T10:28:54.044Z [info] [visualV2] Domain-specific operations: 12/35 (34%)
+2025-09-30T10:28:54.044Z [info] [visualV2] ✅ Successfully generated 35 operations for step 4
+2025-09-30T10:28:54.044Z [debug] [codegenV2] Generated 35 operations
+2025-09-30T10:28:54.044Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T10:28:54.045Z [info] [codegenV2] ✅ Successfully generated 35 operations for step 4
+2025-09-30T10:28:54.045Z [debug] compilerRouter: routing to js
+2025-09-30T10:28:54.045Z [debug] [debugger] START: Received chunk for stepId=4
+2025-09-30T10:28:54.045Z [debug] [debugger] Chunk type: actions
+2025-09-30T10:28:54.045Z [debug] [debugger] Has actions: true
+2025-09-30T10:28:54.045Z [debug] [debugger] Actions count: 35
+2025-09-30T10:28:54.046Z [debug] [debugger] Chunk is valid with 35 actions, allowing all for rich visualizations
+2025-09-30T10:28:54.048Z [debug] [cache] Cached chunk for query step 4
+2025-09-30T10:28:54.048Z [debug] [monitor] Step 4 generation for e60fe8be-624a-42db-b99a-0b1448ecdd2c took 15698ms
+2025-09-30T10:28:54.048Z [debug] [parallel] Step 4 generated in 15698ms
+2025-09-30T10:28:54.979Z [debug] [visualV2] Received response (5570 chars)
+2025-09-30T10:28:54.979Z [info] [visualV2] Generated 43 valid operations
+2025-09-30T10:28:54.979Z [info] [visualV2] Domain-specific operations: 16/43 (37%)
+2025-09-30T10:28:54.979Z [info] [visualV2] ✅ Successfully generated 43 operations for step 1
+2025-09-30T10:28:54.979Z [debug] [codegenV2] Generated 43 operations
+2025-09-30T10:28:54.979Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T10:28:54.980Z [info] [codegenV2] ✅ Successfully generated 43 operations for step 1
+2025-09-30T10:28:54.980Z [debug] compilerRouter: routing to js
+2025-09-30T10:28:54.981Z [debug] [debugger] START: Received chunk for stepId=1
+2025-09-30T10:28:54.981Z [debug] [debugger] Chunk type: actions
+2025-09-30T10:28:54.981Z [debug] [debugger] Has actions: true
+2025-09-30T10:28:54.981Z [debug] [debugger] Actions count: 43
+2025-09-30T10:28:54.981Z [debug] [debugger] Chunk is valid with 43 actions, allowing all for rich visualizations
+2025-09-30T10:28:54.985Z [debug] [cache] Cached chunk for query step 1
+2025-09-30T10:28:54.985Z [debug] [monitor] Step 1 generation for e60fe8be-624a-42db-b99a-0b1448ecdd2c took 16635ms
+2025-09-30T10:28:54.985Z [debug] [parallel] Step 1 generated in 16635ms
+2025-09-30T10:28:56.084Z [debug] [visualV2] Received response (5185 chars)
+2025-09-30T10:28:56.084Z [info] [visualV2] Generated 39 valid operations
+2025-09-30T10:28:56.085Z [info] [visualV2] Domain-specific operations: 20/39 (51%)
+2025-09-30T10:28:56.085Z [info] [visualV2] ✅ Successfully generated 39 operations for step 3
+2025-09-30T10:28:56.085Z [debug] [codegenV2] Generated 39 operations
+2025-09-30T10:28:56.085Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T10:28:56.086Z [info] [codegenV2] ✅ Successfully generated 39 operations for step 3
+2025-09-30T10:28:56.086Z [debug] compilerRouter: routing to js
+2025-09-30T10:28:56.086Z [debug] [debugger] START: Received chunk for stepId=3
+2025-09-30T10:28:56.086Z [debug] [debugger] Chunk type: actions
+2025-09-30T10:28:56.087Z [debug] [debugger] Has actions: true
+2025-09-30T10:28:56.087Z [debug] [debugger] Actions count: 39
+2025-09-30T10:28:56.087Z [debug] [debugger] Chunk is valid with 39 actions, allowing all for rich visualizations
+2025-09-30T10:28:56.088Z [debug] [cache] Cached chunk for query step 3
+2025-09-30T10:28:56.088Z [debug] [monitor] Step 3 generation for e60fe8be-624a-42db-b99a-0b1448ecdd2c took 17738ms
+2025-09-30T10:28:56.089Z [debug] [parallel] Step 3 generated in 17738ms
+2025-09-30T10:28:57.836Z [debug] [visualV2] Received response (6678 chars)
+2025-09-30T10:28:57.837Z [info] [visualV2] Generated 47 valid operations
+2025-09-30T10:28:57.837Z [info] [visualV2] Domain-specific operations: 16/47 (34%)
+2025-09-30T10:28:57.837Z [info] [visualV2] ✅ Successfully generated 47 operations for step 5
+2025-09-30T10:28:57.837Z [debug] [codegenV2] Generated 47 operations
+2025-09-30T10:28:57.837Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T10:28:57.842Z [info] [codegenV2] ✅ Successfully generated 47 operations for step 5
+2025-09-30T10:28:57.842Z [debug] compilerRouter: routing to js
+2025-09-30T10:28:57.842Z [debug] [debugger] START: Received chunk for stepId=5
+2025-09-30T10:28:57.842Z [debug] [debugger] Chunk type: actions
+2025-09-30T10:28:57.842Z [debug] [debugger] Has actions: true
+2025-09-30T10:28:57.843Z [debug] [debugger] Actions count: 47
+2025-09-30T10:28:57.843Z [debug] [debugger] Chunk is valid with 47 actions, allowing all for rich visualizations
+2025-09-30T10:28:57.844Z [debug] [cache] Cached chunk for query step 5
+2025-09-30T10:28:57.844Z [debug] [monitor] Step 5 generation for e60fe8be-624a-42db-b99a-0b1448ecdd2c took 19494ms
+2025-09-30T10:28:57.844Z [debug] [parallel] Step 5 generated in 19494ms
+2025-09-30T10:28:57.845Z [debug] [parallel] Parallel generation complete: 5/5 successful in 19495ms
+2025-09-30T10:28:57.845Z [debug] [monitor] Completed request e60fe8be-624a-42db-b99a-0b1448ecdd2c in 37780ms (success: true)
+2025-09-30T10:28:57.845Z [debug] [parallel] Emitted plan for session e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:28:57.846Z [debug] [parallel] Emitted step 1 immediately
+2025-09-30T10:28:57.848Z [debug] [parallel] Emitted step 2 immediately
+2025-09-30T10:28:57.849Z [debug] [parallel] Emitted step 3 immediately
+2025-09-30T10:28:57.850Z [debug] [parallel] Emitted step 4 immediately
+2025-09-30T10:28:57.851Z [debug] [parallel] Emitted step 5 immediately
+2025-09-30T10:28:57.851Z [debug] [parallel] All steps scheduled for emission
+2025-09-30T10:28:57.851Z [debug] [parallel] Job complete for session e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:29:46.518Z [debug] [monitor] Metrics updated:
+2025-09-30T10:30:46.522Z [debug] [monitor] Metrics updated:
+2025-09-30T10:31:46.525Z [debug] [monitor] Metrics updated:
+2025-09-30T10:32:26.050Z [debug] Shutting down server...
+2025-09-30T10:32:26.481Z [debug] NEW Plan worker created
+2025-09-30T10:32:26.482Z [debug] NEW Gen worker created
+2025-09-30T10:32:26.483Z [debug] NEW Parallel worker created
+2025-09-30T10:32:26.491Z [debug] Backend listening on http://localhost:3001
+2025-09-30T10:32:46.527Z [debug] [monitor] Metrics updated:
+2025-09-30T10:33:26.491Z [debug] [monitor] Metrics updated:
+2025-09-30T10:33:46.527Z [debug] [monitor] Metrics updated:
+2025-09-30T10:34:26.506Z [debug] [monitor] Metrics updated:
+2025-09-30T10:34:40.090Z [debug] NEW Plan worker created
+2025-09-30T10:34:40.091Z [debug] NEW Gen worker created
+2025-09-30T10:34:40.091Z [debug] NEW Parallel worker created
+2025-09-30T10:34:40.100Z [debug] Backend listening on http://localhost:3001
+2025-09-30T10:34:40.591Z [debug] [socket] New connection: Y4rvu4_3Fuoke3jIAAAB
+2025-09-30T10:34:40.593Z [debug] [socket] Socket Y4rvu4_3Fuoke3jIAAAB joined session e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:34:40.593Z [debug] [socket] Socket Y4rvu4_3Fuoke3jIAAAB is now in rooms: Y4rvu4_3Fuoke3jIAAAB, e60fe8be-624a-42db-b99a-0b1448ecdd2c
+2025-09-30T10:34:40.596Z [debug] [socket] Sent cached plan to newly joined socket Y4rvu4_3Fuoke3jIAAAB
+2025-09-30T10:34:40.598Z [debug] [socket] Sent cached step 1 to newly joined socket Y4rvu4_3Fuoke3jIAAAB
+2025-09-30T10:34:40.600Z [debug] [socket] Sent cached step 2 to newly joined socket Y4rvu4_3Fuoke3jIAAAB
+2025-09-30T10:34:40.602Z [debug] [socket] Sent cached step 3 to newly joined socket Y4rvu4_3Fuoke3jIAAAB
+2025-09-30T10:34:40.603Z [debug] [socket] Sent cached step 4 to newly joined socket Y4rvu4_3Fuoke3jIAAAB
+2025-09-30T10:34:40.605Z [debug] [socket] Sent cached step 5 to newly joined socket Y4rvu4_3Fuoke3jIAAAB
+2025-09-30T10:35:40.105Z [debug] [monitor] Metrics updated:
+2025-09-30T10:36:40.109Z [debug] [monitor] Metrics updated:
+2025-09-30T10:37:40.111Z [debug] [monitor] Metrics updated:
+2025-09-30T10:38:40.114Z [debug] [monitor] Metrics updated:
+2025-09-30T10:39:40.123Z [debug] [monitor] Metrics updated:
+2025-09-30T10:40:40.130Z [debug] [monitor] Metrics updated:
+2025-09-30T10:41:40.136Z [debug] [monitor] Metrics updated:
+2025-09-30T10:42:40.139Z [debug] [monitor] Metrics updated:
+2025-09-30T10:43:40.140Z [debug] [monitor] Metrics updated:
+2025-09-30T10:44:40.145Z [debug] [monitor] Metrics updated:
+2025-09-30T10:45:40.147Z [debug] [monitor] Metrics updated:
+2025-09-30T10:46:40.161Z [debug] [monitor] Metrics updated:
+2025-09-30T10:47:40.181Z [debug] [monitor] Metrics updated:
+2025-09-30T10:48:40.182Z [debug] [monitor] Metrics updated:
+2025-09-30T10:49:40.195Z [debug] [monitor] Metrics updated:
+2025-09-30T10:50:40.207Z [debug] [monitor] Metrics updated:
+2025-09-30T10:51:40.217Z [debug] [monitor] Metrics updated:
+2025-09-30T10:52:40.225Z [debug] [monitor] Metrics updated:
+2025-09-30T10:53:40.226Z [debug] [monitor] Metrics updated:
+2025-09-30T10:54:40.229Z [debug] [monitor] Metrics updated:
+2025-09-30T10:55:40.229Z [debug] [monitor] Metrics updated:
+2025-09-30T10:56:40.234Z [debug] [monitor] Metrics updated:
+2025-09-30T10:57:40.235Z [debug] [monitor] Metrics updated:
+2025-09-30T10:58:40.236Z [debug] [monitor] Metrics updated:
+2025-09-30T10:59:40.255Z [debug] [monitor] Metrics updated:
+2025-09-30T11:00:40.257Z [debug] [monitor] Metrics updated:
+2025-09-30T11:01:40.271Z [debug] [monitor] Metrics updated:
+2025-09-30T11:02:40.283Z [debug] [monitor] Metrics updated:
+2025-09-30T11:03:40.293Z [debug] [monitor] Metrics updated:
+2025-09-30T11:04:40.300Z [debug] [monitor] Metrics updated:
+2025-09-30T11:05:40.307Z [debug] [monitor] Metrics updated:
+2025-09-30T11:06:40.310Z [debug] [monitor] Metrics updated:
+2025-09-30T11:07:40.311Z [debug] [monitor] Metrics updated:
+2025-09-30T11:08:40.315Z [debug] [monitor] Metrics updated:
+2025-09-30T11:09:40.317Z [debug] [monitor] Metrics updated:
+2025-09-30T11:10:40.318Z [debug] [monitor] Metrics updated:
+2025-09-30T11:11:40.336Z [debug] [monitor] Metrics updated:
+2025-09-30T11:12:40.358Z [debug] [monitor] Metrics updated:
+2025-09-30T11:13:40.367Z [debug] [monitor] Metrics updated:
+2025-09-30T11:14:40.378Z [debug] [monitor] Metrics updated:
+2025-09-30T11:15:40.382Z [debug] [monitor] Metrics updated:
+2025-09-30T11:16:40.389Z [debug] [monitor] Metrics updated:
+2025-09-30T11:17:40.396Z [debug] [monitor] Metrics updated:
+2025-09-30T11:18:40.396Z [debug] [monitor] Metrics updated:
+2025-09-30T11:19:40.398Z [debug] [monitor] Metrics updated:
+2025-09-30T11:20:40.402Z [debug] [monitor] Metrics updated:
+2025-09-30T11:21:40.403Z [debug] [monitor] Metrics updated:
+2025-09-30T11:22:40.404Z [debug] [monitor] Metrics updated:
+2025-09-30T11:23:40.422Z [debug] [monitor] Metrics updated:
+2025-09-30T11:24:40.439Z [debug] [monitor] Metrics updated:
+2025-09-30T11:25:40.453Z [debug] [monitor] Metrics updated:
+2025-09-30T11:26:40.465Z [debug] [monitor] Metrics updated:
+2025-09-30T11:27:31.765Z [debug] [socket] Socket Y4rvu4_3Fuoke3jIAAAB disconnected: transport close
+2025-09-30T11:27:40.477Z [debug] [monitor] Metrics updated:
+2025-09-30T11:28:31.633Z [debug] [socket] New connection: izGZXyw1uhsVV1BjAAAD
+2025-09-30T11:28:31.635Z [debug] [socket] Socket izGZXyw1uhsVV1BjAAAD joined session c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:28:31.635Z [debug] [socket] Socket izGZXyw1uhsVV1BjAAAD is now in rooms: izGZXyw1uhsVV1BjAAAD, c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:28:31.665Z [debug] Received request on /api/query {"body":{"query":"teach me about leplace transformation in engineering and how it  is being used there","sessionId":"c8e6f505-22e1-43f1-b466-8546e82f97cc"}}
+2025-09-30T11:28:31.665Z [debug] [orchestrator] Enqueuing plan for session c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:28:31.670Z [debug] [orchestrator] Plan job added with id 78 for session c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:28:31.677Z [debug] [planWorker] Received job: plan id=78
+2025-09-30T11:28:31.678Z [debug] [plan] START: session=c8e6f505-22e1-43f1-b466-8546e82f97cc query=teach me about leplace transformation in engineering and how it  is being used there
+2025-09-30T11:28:31.678Z [debug] [monitor] Started tracking request c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:28:31.679Z [debug] [cache] MISS - No cached plan for query: "teach me about leplace transformation in engineeri..."
+2025-09-30T11:28:31.680Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-30T11:28:31.707Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-30T11:28:40.478Z [debug] [monitor] Metrics updated:
+2025-09-30T11:28:58.186Z [debug] [planner] Received response from Gemini in 26506ms
+2025-09-30T11:28:58.187Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-30T11:28:58.187Z [debug] [monitor] Plan generation for c8e6f505-22e1-43f1-b466-8546e82f97cc took 26509ms
+2025-09-30T11:28:58.189Z [debug] [cache] Cached plan for query: "teach me about leplace transformation in engineeri..."
+2025-09-30T11:28:58.192Z [debug] [plan] OK: session=c8e6f505-22e1-43f1-b466-8546e82f97cc plan received with 5 steps
+2025-09-30T11:28:58.193Z [debug] [plan] Enqueuing PARALLEL generation of all 5 steps
+2025-09-30T11:28:58.196Z [debug] [plan] END: session=c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:28:58.199Z [debug] [parallel] Starting parallel generation for 5 steps
+2025-09-30T11:28:58.200Z [debug] [cache] MISS - No cached chunk for step 1
+2025-09-30T11:28:58.200Z [debug] [cache] MISS - No cached chunk for step 2
+2025-09-30T11:28:58.200Z [debug] [cache] MISS - No cached chunk for step 3
+2025-09-30T11:28:58.201Z [debug] [cache] MISS - No cached chunk for step 4
+2025-09-30T11:28:58.201Z [debug] [cache] MISS - No cached chunk for step 5
+2025-09-30T11:28:58.201Z [info] [codegenV2] Starting generation for step 1: hook
+2025-09-30T11:28:58.201Z [debug] [codegenV2] Attempt 1/3 for step 1
+2025-09-30T11:28:58.201Z [info] [visualV2] Generating visualization for step 1: hook
+2025-09-30T11:28:58.201Z [info] [visualV2] Topic: "teach me about leplace transformation in engineering and how it  is being used there"
+2025-09-30T11:28:58.201Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:28:58.202Z [info] [codegenV2] Starting generation for step 2: intuition
+2025-09-30T11:28:58.202Z [debug] [codegenV2] Attempt 1/3 for step 2
+2025-09-30T11:28:58.202Z [info] [visualV2] Generating visualization for step 2: intuition
+2025-09-30T11:28:58.202Z [info] [visualV2] Topic: "teach me about leplace transformation in engineering and how it  is being used there"
+2025-09-30T11:28:58.202Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:28:58.203Z [info] [codegenV2] Starting generation for step 3: formalism
+2025-09-30T11:28:58.203Z [debug] [codegenV2] Attempt 1/3 for step 3
+2025-09-30T11:28:58.203Z [info] [visualV2] Generating visualization for step 3: formalism
+2025-09-30T11:28:58.203Z [info] [visualV2] Topic: "teach me about leplace transformation in engineering and how it  is being used there"
+2025-09-30T11:28:58.203Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:28:58.203Z [info] [codegenV2] Starting generation for step 4: exploration
+2025-09-30T11:28:58.203Z [debug] [codegenV2] Attempt 1/3 for step 4
+2025-09-30T11:28:58.203Z [info] [visualV2] Generating visualization for step 4: exploration
+2025-09-30T11:28:58.203Z [info] [visualV2] Topic: "teach me about leplace transformation in engineering and how it  is being used there"
+2025-09-30T11:28:58.203Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:28:58.204Z [info] [codegenV2] Starting generation for step 5: mastery
+2025-09-30T11:28:58.204Z [debug] [codegenV2] Attempt 1/3 for step 5
+2025-09-30T11:28:58.204Z [info] [visualV2] Generating visualization for step 5: mastery
+2025-09-30T11:28:58.204Z [info] [visualV2] Topic: "teach me about leplace transformation in engineering and how it  is being used there"
+2025-09-30T11:28:58.204Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:29:12.105Z [debug] [visualV2] Received response (4882 chars)
+2025-09-30T11:29:12.106Z [info] [visualV2] Generated 28 valid operations
+2025-09-30T11:29:12.106Z [info] [visualV2] Domain-specific operations: 9/28 (32%)
+2025-09-30T11:29:12.106Z [info] [visualV2] ✅ Successfully generated 28 operations for step 5
+2025-09-30T11:29:12.106Z [debug] [codegenV2] Generated 28 operations
+2025-09-30T11:29:12.107Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:29:12.108Z [info] [codegenV2] ✅ Successfully generated 28 operations for step 5
+2025-09-30T11:29:12.108Z [debug] compilerRouter: routing to js
+2025-09-30T11:29:12.109Z [debug] [debugger] START: Received chunk for stepId=5
+2025-09-30T11:29:12.109Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:29:12.109Z [debug] [debugger] Has actions: true
+2025-09-30T11:29:12.109Z [debug] [debugger] Actions count: 28
+2025-09-30T11:29:12.109Z [debug] [debugger] Chunk is valid with 28 actions, allowing all for rich visualizations
+2025-09-30T11:29:12.110Z [debug] [visualV2] Received response (4903 chars)
+2025-09-30T11:29:12.111Z [info] [visualV2] Generated 26 valid operations
+2025-09-30T11:29:12.111Z [info] [visualV2] Domain-specific operations: 8/26 (31%)
+2025-09-30T11:29:12.111Z [info] [visualV2] ✅ Successfully generated 26 operations for step 3
+2025-09-30T11:29:12.111Z [debug] [codegenV2] Generated 26 operations
+2025-09-30T11:29:12.111Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:29:12.120Z [info] [codegenV2] ✅ Successfully generated 26 operations for step 3
+2025-09-30T11:29:12.120Z [debug] compilerRouter: routing to js
+2025-09-30T11:29:12.121Z [debug] [debugger] START: Received chunk for stepId=3
+2025-09-30T11:29:12.121Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:29:12.121Z [debug] [debugger] Has actions: true
+2025-09-30T11:29:12.121Z [debug] [debugger] Actions count: 26
+2025-09-30T11:29:12.121Z [debug] [debugger] Chunk is valid with 26 actions, allowing all for rich visualizations
+2025-09-30T11:29:12.122Z [debug] [cache] Cached chunk for query step 5
+2025-09-30T11:29:12.123Z [debug] [monitor] Step 5 generation for c8e6f505-22e1-43f1-b466-8546e82f97cc took 13922ms
+2025-09-30T11:29:12.123Z [debug] [parallel] Step 5 generated in 13922ms
+2025-09-30T11:29:12.123Z [debug] [cache] Cached chunk for query step 3
+2025-09-30T11:29:12.123Z [debug] [monitor] Step 3 generation for c8e6f505-22e1-43f1-b466-8546e82f97cc took 13923ms
+2025-09-30T11:29:12.123Z [debug] [parallel] Step 3 generated in 13923ms
+2025-09-30T11:29:12.315Z [debug] [visualV2] Received response (5410 chars)
+2025-09-30T11:29:12.316Z [info] [visualV2] Generated 32 valid operations
+2025-09-30T11:29:12.317Z [info] [visualV2] Domain-specific operations: 7/32 (22%)
+2025-09-30T11:29:12.317Z [info] [visualV2] ✅ Successfully generated 32 operations for step 1
+2025-09-30T11:29:12.317Z [debug] [codegenV2] Generated 32 operations
+2025-09-30T11:29:12.317Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:29:12.327Z [info] [codegenV2] ✅ Successfully generated 32 operations for step 1
+2025-09-30T11:29:12.327Z [debug] compilerRouter: routing to js
+2025-09-30T11:29:12.327Z [debug] [debugger] START: Received chunk for stepId=1
+2025-09-30T11:29:12.327Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:29:12.327Z [debug] [debugger] Has actions: true
+2025-09-30T11:29:12.327Z [debug] [debugger] Actions count: 32
+2025-09-30T11:29:12.327Z [debug] [debugger] Chunk is valid with 32 actions, allowing all for rich visualizations
+2025-09-30T11:29:12.329Z [debug] [cache] Cached chunk for query step 1
+2025-09-30T11:29:12.329Z [debug] [monitor] Step 1 generation for c8e6f505-22e1-43f1-b466-8546e82f97cc took 14129ms
+2025-09-30T11:29:12.329Z [debug] [parallel] Step 1 generated in 14129ms
+2025-09-30T11:29:14.039Z [debug] [visualV2] Received response (5042 chars)
+2025-09-30T11:29:14.039Z [info] [visualV2] Generated 38 valid operations
+2025-09-30T11:29:14.039Z [info] [visualV2] Domain-specific operations: 7/38 (18%)
+2025-09-30T11:29:14.039Z [info] [visualV2] ✅ Successfully generated 38 operations for step 4
+2025-09-30T11:29:14.040Z [debug] [codegenV2] Generated 38 operations
+2025-09-30T11:29:14.040Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:29:14.044Z [info] [codegenV2] ✅ Successfully generated 38 operations for step 4
+2025-09-30T11:29:14.044Z [debug] compilerRouter: routing to js
+2025-09-30T11:29:14.044Z [debug] [debugger] START: Received chunk for stepId=4
+2025-09-30T11:29:14.045Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:29:14.045Z [debug] [debugger] Has actions: true
+2025-09-30T11:29:14.045Z [debug] [debugger] Actions count: 38
+2025-09-30T11:29:14.045Z [debug] [debugger] Chunk is valid with 38 actions, allowing all for rich visualizations
+2025-09-30T11:29:14.046Z [debug] [cache] Cached chunk for query step 4
+2025-09-30T11:29:14.047Z [debug] [monitor] Step 4 generation for c8e6f505-22e1-43f1-b466-8546e82f97cc took 15847ms
+2025-09-30T11:29:14.047Z [debug] [parallel] Step 4 generated in 15847ms
+2025-09-30T11:29:15.395Z [debug] [visualV2] Received response (5028 chars)
+2025-09-30T11:29:15.396Z [info] [visualV2] Generated 32 valid operations
+2025-09-30T11:29:15.396Z [info] [visualV2] Domain-specific operations: 9/32 (28%)
+2025-09-30T11:29:15.396Z [info] [visualV2] ✅ Successfully generated 32 operations for step 2
+2025-09-30T11:29:15.396Z [debug] [codegenV2] Generated 32 operations
+2025-09-30T11:29:15.396Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:29:15.403Z [info] [codegenV2] ✅ Successfully generated 32 operations for step 2
+2025-09-30T11:29:15.403Z [debug] compilerRouter: routing to js
+2025-09-30T11:29:15.403Z [debug] [debugger] START: Received chunk for stepId=2
+2025-09-30T11:29:15.403Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:29:15.403Z [debug] [debugger] Has actions: true
+2025-09-30T11:29:15.403Z [debug] [debugger] Actions count: 32
+2025-09-30T11:29:15.403Z [debug] [debugger] Chunk is valid with 32 actions, allowing all for rich visualizations
+2025-09-30T11:29:15.405Z [debug] [cache] Cached chunk for query step 2
+2025-09-30T11:29:15.405Z [debug] [monitor] Step 2 generation for c8e6f505-22e1-43f1-b466-8546e82f97cc took 17205ms
+2025-09-30T11:29:15.405Z [debug] [parallel] Step 2 generated in 17205ms
+2025-09-30T11:29:15.406Z [debug] [parallel] Parallel generation complete: 5/5 successful in 17206ms
+2025-09-30T11:29:15.406Z [debug] [monitor] Completed request c8e6f505-22e1-43f1-b466-8546e82f97cc in 43728ms (success: true)
+2025-09-30T11:29:15.407Z [debug] [parallel] Emitted plan for session c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:29:15.408Z [debug] [parallel] Emitted step 1 to session c8e6f505-22e1-43f1-b466-8546e82f97cc (emitted: true)
+2025-09-30T11:29:15.511Z [debug] [parallel] Emitted step 2 to session c8e6f505-22e1-43f1-b466-8546e82f97cc (emitted: true)
+2025-09-30T11:29:15.713Z [debug] [parallel] Emitted step 3 to session c8e6f505-22e1-43f1-b466-8546e82f97cc (emitted: true)
+2025-09-30T11:29:16.016Z [debug] [parallel] Emitted step 4 to session c8e6f505-22e1-43f1-b466-8546e82f97cc (emitted: true)
+2025-09-30T11:29:16.419Z [debug] [parallel] Emitted step 5 to session c8e6f505-22e1-43f1-b466-8546e82f97cc (emitted: true)
+2025-09-30T11:29:16.419Z [debug] [parallel] All steps scheduled for emission
+2025-09-30T11:29:16.420Z [debug] [parallel] Job complete for session c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:29:40.485Z [debug] [monitor] Metrics updated:
+2025-09-30T11:30:40.489Z [debug] [monitor] Metrics updated:
+2025-09-30T11:31:40.492Z [debug] [monitor] Metrics updated:
+2025-09-30T11:32:40.495Z [debug] [monitor] Metrics updated:
+2025-09-30T11:33:08.524Z [debug] [socket] New connection: Olr6e3YZ39etDRTiAAAF
+2025-09-30T11:33:08.526Z [debug] [socket] Socket Olr6e3YZ39etDRTiAAAF joined session brutal-1759231988481
+2025-09-30T11:33:08.526Z [debug] [socket] Socket Olr6e3YZ39etDRTiAAAF is now in rooms: Olr6e3YZ39etDRTiAAAF, brutal-1759231988481
+2025-09-30T11:33:09.049Z [debug] Received request on /api/query {"body":{"query":"explain photosynthesis in detail 1759231988481","sessionId":"brutal-1759231988481"}}
+2025-09-30T11:33:09.049Z [debug] [orchestrator] Enqueuing plan for session brutal-1759231988481
+2025-09-30T11:33:09.051Z [debug] [orchestrator] Plan job added with id 79 for session brutal-1759231988481
+2025-09-30T11:33:09.053Z [debug] [planWorker] Received job: plan id=79
+2025-09-30T11:33:09.053Z [debug] [plan] START: session=brutal-1759231988481 query=explain photosynthesis in detail 1759231988481
+2025-09-30T11:33:09.054Z [debug] [monitor] Started tracking request brutal-1759231988481
+2025-09-30T11:33:09.054Z [debug] [cache] MISS - No cached plan for query: "explain photosynthesis in detail 1759231988481..."
+2025-09-30T11:33:09.055Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-09-30T11:33:09.055Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-09-30T11:33:26.157Z [debug] [planner] Received response from Gemini in 17102ms
+2025-09-30T11:33:26.157Z [debug] [planner] JSON parsed successfully on first attempt
+2025-09-30T11:33:26.157Z [debug] [monitor] Plan generation for brutal-1759231988481 took 17103ms
+2025-09-30T11:33:26.158Z [debug] [cache] Cached plan for query: "explain photosynthesis in detail 1759231988481..."
+2025-09-30T11:33:26.160Z [debug] [plan] OK: session=brutal-1759231988481 plan received with 5 steps
+2025-09-30T11:33:26.161Z [debug] [plan] Enqueuing PARALLEL generation of all 5 steps
+2025-09-30T11:33:26.164Z [debug] [plan] END: session=brutal-1759231988481
+2025-09-30T11:33:26.166Z [debug] [parallel] Starting parallel generation for 5 steps
+2025-09-30T11:33:26.168Z [debug] [cache] MISS - No cached chunk for step 1
+2025-09-30T11:33:26.168Z [debug] [cache] MISS - No cached chunk for step 2
+2025-09-30T11:33:26.168Z [debug] [cache] MISS - No cached chunk for step 3
+2025-09-30T11:33:26.168Z [debug] [cache] MISS - No cached chunk for step 4
+2025-09-30T11:33:26.169Z [info] [codegenV2] Starting generation for step 1: hook
+2025-09-30T11:33:26.169Z [debug] [codegenV2] Attempt 1/3 for step 1
+2025-09-30T11:33:26.169Z [info] [visualV2] Generating visualization for step 1: hook
+2025-09-30T11:33:26.169Z [info] [visualV2] Topic: "explain photosynthesis in detail 1759231988481"
+2025-09-30T11:33:26.169Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:33:26.170Z [info] [codegenV2] Starting generation for step 2: intuition
+2025-09-30T11:33:26.170Z [debug] [codegenV2] Attempt 1/3 for step 2
+2025-09-30T11:33:26.170Z [info] [visualV2] Generating visualization for step 2: intuition
+2025-09-30T11:33:26.170Z [info] [visualV2] Topic: "explain photosynthesis in detail 1759231988481"
+2025-09-30T11:33:26.170Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:33:26.170Z [info] [codegenV2] Starting generation for step 3: formalism
+2025-09-30T11:33:26.171Z [debug] [codegenV2] Attempt 1/3 for step 3
+2025-09-30T11:33:26.171Z [info] [visualV2] Generating visualization for step 3: formalism
+2025-09-30T11:33:26.171Z [info] [visualV2] Topic: "explain photosynthesis in detail 1759231988481"
+2025-09-30T11:33:26.171Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:33:26.171Z [info] [codegenV2] Starting generation for step 4: exploration
+2025-09-30T11:33:26.171Z [debug] [codegenV2] Attempt 1/3 for step 4
+2025-09-30T11:33:26.171Z [info] [visualV2] Generating visualization for step 4: exploration
+2025-09-30T11:33:26.172Z [info] [visualV2] Topic: "explain photosynthesis in detail 1759231988481"
+2025-09-30T11:33:26.172Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:33:26.188Z [debug] [cache] MISS - No cached chunk for step 5
+2025-09-30T11:33:26.188Z [info] [codegenV2] Starting generation for step 5: mastery
+2025-09-30T11:33:26.188Z [debug] [codegenV2] Attempt 1/3 for step 5
+2025-09-30T11:33:26.188Z [info] [visualV2] Generating visualization for step 5: mastery
+2025-09-30T11:33:26.189Z [info] [visualV2] Topic: "explain photosynthesis in detail 1759231988481"
+2025-09-30T11:33:26.189Z [debug] [visualV2] Attempt 1/2
+2025-09-30T11:33:38.628Z [debug] [visualV2] Received response (4270 chars)
+2025-09-30T11:33:38.628Z [info] [visualV2] Generated 23 valid operations
+2025-09-30T11:33:38.628Z [info] [visualV2] Domain-specific operations: 6/23 (26%)
+2025-09-30T11:33:38.628Z [info] [visualV2] ✅ Successfully generated 23 operations for step 1
+2025-09-30T11:33:38.629Z [debug] [codegenV2] Generated 23 operations
+2025-09-30T11:33:38.629Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:33:38.633Z [info] [codegenV2] ✅ Successfully generated 23 operations for step 1
+2025-09-30T11:33:38.633Z [debug] compilerRouter: routing to js
+2025-09-30T11:33:38.633Z [debug] [debugger] START: Received chunk for stepId=1
+2025-09-30T11:33:38.633Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:33:38.633Z [debug] [debugger] Has actions: true
+2025-09-30T11:33:38.634Z [debug] [debugger] Actions count: 23
+2025-09-30T11:33:38.634Z [debug] [debugger] Chunk is valid with 23 actions, allowing all for rich visualizations
+2025-09-30T11:33:38.636Z [debug] [cache] Cached chunk for query step 1
+2025-09-30T11:33:38.636Z [debug] [monitor] Step 1 generation for brutal-1759231988481 took 12469ms
+2025-09-30T11:33:38.636Z [debug] [parallel] Step 1 generated in 12469ms
+2025-09-30T11:33:39.019Z [debug] [visualV2] Received response (4031 chars)
+2025-09-30T11:33:39.019Z [info] [visualV2] Generated 25 valid operations
+2025-09-30T11:33:39.019Z [info] [visualV2] Domain-specific operations: 8/25 (32%)
+2025-09-30T11:33:39.019Z [info] [visualV2] ✅ Successfully generated 25 operations for step 4
+2025-09-30T11:33:39.019Z [debug] [codegenV2] Generated 25 operations
+2025-09-30T11:33:39.019Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:33:39.024Z [info] [codegenV2] ✅ Successfully generated 25 operations for step 4
+2025-09-30T11:33:39.025Z [debug] compilerRouter: routing to js
+2025-09-30T11:33:39.025Z [debug] [debugger] START: Received chunk for stepId=4
+2025-09-30T11:33:39.025Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:33:39.025Z [debug] [debugger] Has actions: true
+2025-09-30T11:33:39.025Z [debug] [debugger] Actions count: 25
+2025-09-30T11:33:39.025Z [debug] [debugger] Chunk is valid with 25 actions, allowing all for rich visualizations
+2025-09-30T11:33:39.026Z [debug] [cache] Cached chunk for query step 4
+2025-09-30T11:33:39.026Z [debug] [monitor] Step 4 generation for brutal-1759231988481 took 12859ms
+2025-09-30T11:33:39.026Z [debug] [parallel] Step 4 generated in 12859ms
+2025-09-30T11:33:40.496Z [debug] [monitor] Metrics updated:
+2025-09-30T11:33:41.331Z [debug] [visualV2] Received response (4853 chars)
+2025-09-30T11:33:41.332Z [info] [visualV2] Generated 24 valid operations
+2025-09-30T11:33:41.332Z [info] [visualV2] Domain-specific operations: 8/24 (33%)
+2025-09-30T11:33:41.332Z [info] [visualV2] ✅ Successfully generated 24 operations for step 2
+2025-09-30T11:33:41.332Z [debug] [codegenV2] Generated 24 operations
+2025-09-30T11:33:41.332Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:33:41.333Z [info] [codegenV2] ✅ Successfully generated 24 operations for step 2
+2025-09-30T11:33:41.333Z [debug] compilerRouter: routing to js
+2025-09-30T11:33:41.333Z [debug] [debugger] START: Received chunk for stepId=2
+2025-09-30T11:33:41.333Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:33:41.333Z [debug] [debugger] Has actions: true
+2025-09-30T11:33:41.333Z [debug] [debugger] Actions count: 24
+2025-09-30T11:33:41.333Z [debug] [debugger] Chunk is valid with 24 actions, allowing all for rich visualizations
+2025-09-30T11:33:41.336Z [debug] [cache] Cached chunk for query step 2
+2025-09-30T11:33:41.336Z [debug] [monitor] Step 2 generation for brutal-1759231988481 took 15169ms
+2025-09-30T11:33:41.336Z [debug] [parallel] Step 2 generated in 15169ms
+2025-09-30T11:33:46.248Z [debug] [visualV2] Received response (7264 chars)
+2025-09-30T11:33:46.249Z [info] [visualV2] Generated 24 valid operations
+2025-09-30T11:33:46.249Z [info] [visualV2] Domain-specific operations: 5/24 (21%)
+2025-09-30T11:33:46.249Z [info] [visualV2] ✅ Successfully generated 24 operations for step 5
+2025-09-30T11:33:46.249Z [debug] [codegenV2] Generated 24 operations
+2025-09-30T11:33:46.250Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:33:46.250Z [info] [codegenV2] ✅ Successfully generated 24 operations for step 5
+2025-09-30T11:33:46.250Z [debug] compilerRouter: routing to js
+2025-09-30T11:33:46.250Z [debug] [debugger] START: Received chunk for stepId=5
+2025-09-30T11:33:46.250Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:33:46.250Z [debug] [debugger] Has actions: true
+2025-09-30T11:33:46.250Z [debug] [debugger] Actions count: 24
+2025-09-30T11:33:46.250Z [debug] [debugger] Chunk is valid with 24 actions, allowing all for rich visualizations
+2025-09-30T11:33:46.252Z [debug] [cache] Cached chunk for query step 5
+2025-09-30T11:33:46.252Z [debug] [monitor] Step 5 generation for brutal-1759231988481 took 20084ms
+2025-09-30T11:33:46.252Z [debug] [parallel] Step 5 generated in 20084ms
+2025-09-30T11:33:52.762Z [debug] [visualV2] Received response (9348 chars)
+2025-09-30T11:33:52.762Z [info] [visualV2] Generated 16 valid operations
+2025-09-30T11:33:52.762Z [info] [visualV2] Domain-specific operations: 6/16 (38%)
+2025-09-30T11:33:52.762Z [info] [visualV2] ✅ Successfully generated 16 operations for step 3
+2025-09-30T11:33:52.762Z [debug] [codegenV2] Generated 16 operations
+2025-09-30T11:33:52.763Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-09-30T11:33:52.763Z [info] [codegenV2] ✅ Successfully generated 16 operations for step 3
+2025-09-30T11:33:52.763Z [debug] compilerRouter: routing to js
+2025-09-30T11:33:52.763Z [debug] [debugger] START: Received chunk for stepId=3
+2025-09-30T11:33:52.764Z [debug] [debugger] Chunk type: actions
+2025-09-30T11:33:52.764Z [debug] [debugger] Has actions: true
+2025-09-30T11:33:52.764Z [debug] [debugger] Actions count: 16
+2025-09-30T11:33:52.764Z [debug] [debugger] Chunk is valid with 16 actions, allowing all for rich visualizations
+2025-09-30T11:33:52.765Z [debug] [cache] Cached chunk for query step 3
+2025-09-30T11:33:52.765Z [debug] [monitor] Step 3 generation for brutal-1759231988481 took 26598ms
+2025-09-30T11:33:52.765Z [debug] [parallel] Step 3 generated in 26598ms
+2025-09-30T11:33:52.766Z [debug] [parallel] Parallel generation complete: 5/5 successful in 26599ms
+2025-09-30T11:33:52.766Z [debug] [monitor] Completed request brutal-1759231988481 in 43712ms (success: true)
+2025-09-30T11:33:52.766Z [debug] [parallel] Emitted plan for session brutal-1759231988481
+2025-09-30T11:33:52.769Z [debug] [parallel] Emitted step 1 to session brutal-1759231988481 (emitted: true)
+2025-09-30T11:33:52.871Z [debug] [parallel] Emitted step 2 to session brutal-1759231988481 (emitted: true)
+2025-09-30T11:33:53.074Z [debug] [parallel] Emitted step 3 to session brutal-1759231988481 (emitted: true)
+2025-09-30T11:33:53.376Z [debug] [parallel] Emitted step 4 to session brutal-1759231988481 (emitted: true)
+2025-09-30T11:33:53.780Z [debug] [parallel] Emitted step 5 to session brutal-1759231988481 (emitted: true)
+2025-09-30T11:33:53.780Z [debug] [parallel] All steps scheduled for emission
+2025-09-30T11:33:53.780Z [debug] [parallel] Job complete for session brutal-1759231988481
+2025-09-30T11:34:08.555Z [debug] [socket] Socket Olr6e3YZ39etDRTiAAAF disconnected: client namespace disconnect
+2025-09-30T11:34:40.497Z [debug] [monitor] Metrics updated:
+2025-09-30T11:35:40.502Z [debug] [monitor] Metrics updated:
+2025-09-30T11:36:40.513Z [debug] [monitor] Metrics updated:
+2025-09-30T11:37:40.521Z [debug] [monitor] Metrics updated:
+2025-09-30T11:38:40.525Z [debug] [monitor] Metrics updated:
+2025-09-30T11:39:40.528Z [debug] [monitor] Metrics updated:
+2025-09-30T11:40:40.530Z [debug] [monitor] Metrics updated:
+2025-09-30T11:41:40.534Z [debug] [monitor] Metrics updated:
+2025-09-30T11:41:51.430Z [debug] Shutting down server...
+2025-09-30T11:41:51.743Z [debug] NEW Plan worker created
+2025-09-30T11:41:51.745Z [debug] NEW Gen worker created
+2025-09-30T11:41:51.745Z [debug] NEW Parallel worker created
+2025-09-30T11:41:51.754Z [debug] Backend listening on http://localhost:3001
+2025-09-30T11:42:16.928Z [debug] Shutting down server...
+2025-09-30T11:42:17.262Z [debug] NEW Plan worker created
+2025-09-30T11:42:17.263Z [debug] NEW Gen worker created
+2025-09-30T11:42:17.264Z [debug] NEW Parallel worker created
+2025-09-30T11:42:17.272Z [debug] Backend listening on http://localhost:3001
+2025-09-30T11:42:40.537Z [debug] [monitor] Metrics updated:
+2025-09-30T11:43:17.274Z [debug] [monitor] Metrics updated:
+2025-09-30T11:43:22.353Z [debug] NEW Plan worker created
+2025-09-30T11:43:22.354Z [debug] NEW Gen worker created
+2025-09-30T11:43:22.355Z [debug] NEW Parallel worker created
+2025-09-30T11:43:22.363Z [debug] Backend listening on http://localhost:3001
+2025-09-30T11:43:22.687Z [debug] [socket] New connection: clhTuW8rZ6uSzPCtAAAB
+2025-09-30T11:43:22.689Z [debug] [socket] Socket clhTuW8rZ6uSzPCtAAAB joined session c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:43:22.689Z [debug] [socket] Socket clhTuW8rZ6uSzPCtAAAB is now in rooms: clhTuW8rZ6uSzPCtAAAB, c8e6f505-22e1-43f1-b466-8546e82f97cc
+2025-09-30T11:43:22.691Z [debug] [socket] Sent cached plan to newly joined socket clhTuW8rZ6uSzPCtAAAB
+2025-09-30T11:43:22.692Z [debug] [socket] Sent cached step 1 to newly joined socket clhTuW8rZ6uSzPCtAAAB
+2025-09-30T11:43:22.693Z [debug] [socket] Sent cached step 2 to newly joined socket clhTuW8rZ6uSzPCtAAAB
+2025-09-30T11:43:22.694Z [debug] [socket] Sent cached step 3 to newly joined socket clhTuW8rZ6uSzPCtAAAB
+2025-09-30T11:43:22.695Z [debug] [socket] Sent cached step 4 to newly joined socket clhTuW8rZ6uSzPCtAAAB
+2025-09-30T11:43:22.696Z [debug] [socket] Sent cached step 5 to newly joined socket clhTuW8rZ6uSzPCtAAAB
+2025-09-30T11:44:22.360Z [debug] [monitor] Metrics updated:
+2025-09-30T11:45:22.364Z [debug] [monitor] Metrics updated:
+2025-09-30T11:46:22.377Z [debug] [monitor] Metrics updated:
+2025-09-30T11:47:22.390Z [debug] [monitor] Metrics updated:
+2025-09-30T11:48:22.400Z [debug] [monitor] Metrics updated:
+2025-09-30T11:49:22.407Z [debug] [monitor] Metrics updated:
+2025-09-30T11:50:22.412Z [debug] [monitor] Metrics updated:
+2025-09-30T11:51:22.416Z [debug] [monitor] Metrics updated:
+2025-09-30T11:52:22.418Z [debug] [monitor] Metrics updated:
+2025-09-30T11:53:22.422Z [debug] [monitor] Metrics updated:
+2025-09-30T11:54:22.424Z [debug] [monitor] Metrics updated:
+2025-09-30T11:55:22.445Z [debug] [monitor] Metrics updated:
+2025-09-30T11:56:22.468Z [debug] [monitor] Metrics updated:
+2025-09-30T11:57:22.485Z [debug] [monitor] Metrics updated:
+2025-09-30T11:58:22.494Z [debug] [monitor] Metrics updated:
+2025-09-30T11:59:22.506Z [debug] [monitor] Metrics updated:
+2025-09-30T12:00:22.516Z [debug] [monitor] Metrics updated:
+2025-09-30T12:01:22.524Z [debug] [monitor] Metrics updated:
+2025-09-30T12:02:22.530Z [debug] [monitor] Metrics updated:
+2025-09-30T12:03:22.533Z [debug] [monitor] Metrics updated:
+2025-09-30T12:04:22.534Z [debug] [monitor] Metrics updated:
+2025-09-30T12:05:22.537Z [debug] [monitor] Metrics updated:
+2025-09-30T12:06:22.540Z [debug] [monitor] Metrics updated:
+2025-09-30T12:07:22.540Z [debug] [monitor] Metrics updated:
+2025-09-30T12:08:22.559Z [debug] [monitor] Metrics updated:
+2025-09-30T12:09:22.563Z [debug] [monitor] Metrics updated:
+2025-09-30T12:10:22.576Z [debug] [monitor] Metrics updated:
+2025-09-30T12:11:22.588Z [debug] [monitor] Metrics updated:
+2025-09-30T12:12:06.324Z [debug] Shutting down server...
+2025-09-30T12:12:22.597Z [debug] [monitor] Metrics updated:
+2025-09-30T12:13:05.562Z [debug] [socket] Socket clhTuW8rZ6uSzPCtAAAB disconnected: forced close
+2025-09-30T12:13:05.772Z [debug] NEW Plan worker created
+2025-09-30T12:13:05.773Z [debug] NEW Gen worker created
+2025-09-30T12:13:05.773Z [debug] NEW Parallel worker created
+2025-09-30T12:13:05.782Z [debug] Backend listening on http://localhost:3001

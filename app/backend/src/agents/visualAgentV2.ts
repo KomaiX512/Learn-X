@@ -238,11 +238,19 @@ Return ONLY valid JSON array of operations (no markdown, no explanations):
 
 CRITICAL REQUIREMENTS:
 - 30-50 operations for rich visualization
-- Use domain-specific tools (drawCircuitElement for circuits, drawForceVector for physics, etc.)
+- **MINIMUM 70% DOMAIN-SPECIFIC OPERATIONS** (not generic shapes!)
+- Use domain-specific tools AGGRESSIVELY:
+  * Electrical → drawCircuitElement, drawSignalWaveform, drawConnection
+  * Physics → drawForceVector, drawPhysicsObject, drawTrajectory
+  * Biology → drawCellStructure, drawOrganSystem, drawMembrane, drawReaction
+  * Chemistry → drawMolecule, drawAtom, drawReaction, drawBond
+  * CS → drawDataStructure, drawNeuralNetwork, drawAlgorithmStep
+- MAXIMUM 10 drawLabel operations (focus on visuals, not text!)
 - ALL text labels must have avoidOverlap: true
-- Include drawLatex for any equations
-- Add delay (1500-2000ms) between major concepts
-- NO generic circles/rectangles unless actually needed for that domain
+- Include drawLatex for equations only when necessary
+- Add delay (1500-2000ms) between major visual sequences
+- AVOID generic drawDiagram - use specific domain tools instead
+- Every visual element should teach something, not just decorate
 
 Generate the visualization now:`;
 }
@@ -287,12 +295,23 @@ function parseAndValidate(response: string, context: ToolSelectionContext): Acti
     
     // Check for domain-specific tools usage
     const domainOps = validated.filter(op => 
-      ['drawCircuitElement', 'drawSignalWaveform', 'drawForceVector', 'drawPhysicsObject',
-       'drawCellStructure', 'drawOrganSystem', 'drawMolecule', 'drawAtom', 
-       'drawGraph', 'drawLatex', 'drawDataStructure', 'drawNeuralNetwork'].includes(op.op)
+      ['drawCircuitElement', 'drawSignalWaveform', 'drawConnection',
+       'drawForceVector', 'drawPhysicsObject', 'drawTrajectory', 'drawFieldLines',
+       'drawCellStructure', 'drawOrganSystem', 'drawMembrane', 'drawMolecule', 
+       'drawAtom', 'drawReaction', 'drawBond',
+       'drawDataStructure', 'drawNeuralNetwork', 'drawAlgorithmStep',
+       'drawGeometry', 'drawCoordinateSystem'].includes(op.op)
     );
     
-    logger.info(`[visualV2] Domain-specific operations: ${domainOps.length}/${validated.length} (${Math.round(domainOps.length/validated.length*100)}%)`);
+    const v2Ratio = validated.length > 0 ? (domainOps.length / validated.length) : 0;
+    logger.info(`[visualV2] Domain-specific operations: ${domainOps.length}/${validated.length} (${Math.round(v2Ratio*100)}%)`);
+    
+    // QUALITY CHECK: Warn if V2 ratio is too low
+    if (v2Ratio < 0.5) {
+      logger.warn(`[visualV2] ⚠️  V2 ratio ${Math.round(v2Ratio*100)}% is below target 70%! Generated too many generic operations.`);
+    } else if (v2Ratio >= 0.7) {
+      logger.info(`[visualV2] ✅ Successfully generated ${Math.round(v2Ratio*100)}% domain-specific operations`);
+    }
     
     return validated as Action[];
     
