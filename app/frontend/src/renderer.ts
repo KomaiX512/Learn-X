@@ -1,4 +1,5 @@
 import Konva from 'konva';
+import { DomainRenderers } from './renderer/DomainRenderers';
 
 type Action =
   | { op: 'drawAxis'; normalized?: boolean; x0?: number; y0?: number; width?: number; height?: number; xLabel?: string; yLabel?: string }
@@ -35,7 +36,31 @@ type Action =
   | { op: 'sequence'; actions: Action[]; stepDelay?: number }
   | { op: 'pendulum'; x: number; y: number; length: number; angle: number; period: number; color?: string }
   | { op: 'spring'; x1: number; y1: number; x2: number; y2: number; coils: number; amplitude: number; color?: string }
-  | { op: 'graph3d'; func: string; xRange: [number, number]; yRange: [number, number]; resolution: number };
+  | { op: 'graph3d'; func: string; xRange: [number, number]; yRange: [number, number]; resolution: number }
+  // V2 Domain-Specific Operations
+  | { op: 'drawCircuitElement'; type?: string; x?: number; y?: number; rotation?: number; label?: string; value?: string; [key: string]: any }
+  | { op: 'drawSignalWaveform'; waveform?: string; amplitude?: number; frequency?: number; phase?: number; x?: number; y?: number; width?: number; label?: string; animate?: boolean; [key: string]: any }
+  | { op: 'drawConnection'; from?: [number, number]; to?: [number, number]; type?: string; color?: string; label?: string; [key: string]: any }
+  | { op: 'drawNeuralNetwork'; [key: string]: any }
+  | { op: 'drawDataStructure'; [key: string]: any }
+  | { op: 'drawPhysicsObject'; [key: string]: any }
+  | { op: 'drawForceVector'; [key: string]: any }
+  | { op: 'drawTrajectory'; [key: string]: any }
+  | { op: 'drawFieldLines'; [key: string]: any }
+  | { op: 'drawCellStructure'; [key: string]: any }
+  | { op: 'drawOrganSystem'; [key: string]: any }
+  | { op: 'drawMembrane'; [key: string]: any }
+  | { op: 'drawMolecule'; [key: string]: any }
+  | { op: 'drawAtom'; [key: string]: any }
+  | { op: 'drawReaction'; [key: string]: any }
+  | { op: 'drawBond'; [key: string]: any }
+  | { op: 'drawMolecularStructure'; [key: string]: any }
+  | { op: 'drawAlgorithmStep'; [key: string]: any }
+  | { op: 'drawCoordinateSystem'; [key: string]: any }
+  | { op: 'drawGeometry'; [key: string]: any }
+  | { op: 'drawFlowchart'; [key: string]: any }
+  | { op: 'drawLatex'; [key: string]: any }
+  | { op: 'animate'; [key: string]: any };
 
 export interface RenderChunk {
   type: 'actions';
@@ -57,6 +82,7 @@ let stage: Konva.Stage | null = null;
 const layers: Map<number, Konva.Layer> = new Map();
 let overlay: HTMLDivElement | null = null;
 let currentY = 0;
+let domainRenderers: DomainRenderers | null = null;
 const stepHeight = 800; // Increased height to prevent overlapping
 const MAX_CANVAS_HEIGHT = 50000; // Maximum canvas height to prevent memory issues
 // Queue chunks that arrive before the stage is initialized
@@ -1133,39 +1159,26 @@ export async function execChunk(chunk: RenderChunk) {
   // This ensures each part (Part A, Part B, etc.) gets its own layer
   let layer = ensureLayer(chunk.stepId, true);
   
-  // CINEMATIC TIMING: Process actions with proper delays
+  // FAST RENDERING: Process actions with minimal delays for instant feedback
   const startTime = Date.now();
-  const actionDelay = 1500; // 1.5 seconds between actions for TRUE comprehension
+  const actionDelay = 200; // 0.2 seconds - fast but visible
   
   for (let i = 0; i < chunk.actions.length; i++) {
     const action = chunk.actions[i];
     
-    // Process the action
-    await processActionImpl(action, layer, chunk);
+    try {
+      // Process the action
+      await processActionImpl(action, layer, chunk);
+    } catch (error) {
+      console.error(`[renderer] Error processing action ${i}:`, action.op, error);
+      // Continue with other actions even if one fails
+    }
     
-    // Add delay between actions (except for delay actions themselves)
+    // Add minimal delay between actions (except for delay actions themselves)
     if (action.op !== 'delay' && i < chunk.actions.length - 1) {
       await new Promise(resolve => setTimeout(resolve, actionDelay));
     }
   }
-  
-  // Use timing from backend or calculate defaults
-  const stepDuration = chunk.timing?.stepDuration || 45000; // Default 45 seconds per step
-  const nextStepDelay = chunk.timing?.nextStepDelay || 5000; // Default 5 seconds pause
-  
-  // Calculate how long we've already spent
-  const actualDuration = Date.now() - startTime;
-  
-  // If we haven't reached minimum duration, wait
-  if (actualDuration < stepDuration) {
-    const waitTime = stepDuration - actualDuration;
-    console.log(`[renderer] Step ${chunk.stepId} completed in ${actualDuration}ms, waiting ${waitTime}ms to reach ${stepDuration}ms total`);
-    await new Promise(resolve => setTimeout(resolve, waitTime));
-  }
-  
-  // Add pause time for comprehension before next step
-  console.log(`[renderer] Adding ${nextStepDelay}ms pause before next step`);
-  await new Promise(resolve => setTimeout(resolve, nextStepDelay));
   
   const totalTime = Date.now() - startTime;
   console.log(`[renderer] Completed step ${chunk.stepId} in ${totalTime}ms (${(totalTime/1000).toFixed(1)}s)`);
@@ -1173,6 +1186,91 @@ export async function execChunk(chunk: RenderChunk) {
 
 // Move processAction outside of execChunk
 async function processActionImpl(action: Action, layer: Konva.Layer, chunk: RenderChunk) {
+  // Initialize/Update domain renderers with current layer
+  if (stage) {
+    domainRenderers = new DomainRenderers(stage, layer);
+  }
+  
+  // Handle V2 domain-specific operations FIRST
+  if (domainRenderers && stage) {
+    try {
+      const act = action as any;
+      
+      switch (action.op) {
+        case 'drawCircuitElement':
+          await domainRenderers.drawCircuitElement({
+            type: act.type || 'resistor',
+            x: act.x || 0.5,
+            y: act.y || 0.5,
+            rotation: act.rotation,
+            label: act.label,
+            value: act.value
+          });
+          return;
+        
+        case 'drawSignalWaveform':
+          await domainRenderers.drawSignalWaveform({
+            waveform: act.waveform || 'sine',
+            amplitude: act.amplitude || 1,
+            frequency: act.frequency,
+            phase: act.phase,
+            x: act.x || 0.1,
+            y: act.y || 0.5,
+            width: act.width || 0.8,
+            label: act.label,
+            animate: act.animate
+          });
+          return;
+        
+        case 'drawConnection':
+          await domainRenderers.drawConnection({
+            from: act.from || [0.2, 0.5],
+            to: act.to || [0.8, 0.5],
+            type: act.type,
+            color: act.color,
+            label: act.label
+          });
+          return;
+        
+        // Render other V2 operations as placeholders for now (to be implemented)
+        case 'drawNeuralNetwork':
+        case 'drawDataStructure':
+        case 'drawPhysicsObject':
+        case 'drawForceVector':
+        case 'drawTrajectory':
+        case 'drawFieldLines':
+        case 'drawCellStructure':
+        case 'drawOrganSystem':
+        case 'drawMembrane':
+        case 'drawMolecule':
+        case 'drawAtom':
+        case 'drawReaction':
+        case 'drawBond':
+        case 'drawMolecularStructure':
+        case 'drawAlgorithmStep':
+        case 'drawCoordinateSystem':
+        case 'drawGeometry':
+        case 'drawFlowchart':
+        case 'drawLatex':
+        case 'animate':
+          console.log(`[renderer] V2 operation ${action.op} (rendering as circle+label)`);
+          // Draw a visual placeholder that's actually visible
+          const x = act.x || 0.5;
+          const y = act.y || 0.5;
+          drawCircle(layer, x, y, 0.03, true, '#00ff88', true);
+          if (act.label) {
+            drawLabel(layer, act.label, x, y + 0.05, true, '#ffffff');
+          }
+          return;
+      }
+    } catch (error) {
+      console.error(`[renderer] Error rendering V2 operation ${action.op}:`, error);
+      // Draw error indicator
+      drawLabel(layer, `⚠️ ${action.op}`, 0.5, 0.5, true, '#ff0000');
+    }
+  }
+  
+  // Handle V1 operations
   switch (action.op) {
     case 'clear':
       if (action.target === 'all') {
