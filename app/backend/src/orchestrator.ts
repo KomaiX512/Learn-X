@@ -394,12 +394,12 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
         }
       });
       
-      // EMIT ALL STEPS QUICKLY FOR DEBUGGING
+      // SEQUENTIAL STEP DELIVERY - Quality over speed!
       if (successful > 0) {
         // First, emit the plan immediately
         io.to(sessionId).emit('rendered', {
-          type: 'actions',
-          actions: [], // Empty actions for plan-only event
+          type: 'plan',
+          actions: [],
           plan: {
             title: plan.title,
             subtitle: plan.subtitle,
@@ -408,39 +408,58 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
         });
         logger.debug(`[parallel] Emitted plan for session ${sessionId}`);
         
-        // Emit all steps with small delays to ensure delivery
+        // SEQUENTIAL: Emit first step immediately, queue others with proper delays
         for (let i = 0; i < plan.steps.length; i++) {
           const step = plan.steps[i];
           const cacheKey = CHUNK_KEY(sessionId, step.id);
-          logger.debug(`[parallel] Checking cache for step ${step.id}: ${cacheKey}`);
           
           const cached = await redis.get(cacheKey);
-          logger.debug(`[parallel] Step ${step.id} cached: ${cached ? 'YES' : 'NO'} (length: ${cached?.length || 0})`);
           
           if (cached) {
             const chunk = JSON.parse(cached);
             logger.debug(`[parallel] Step ${step.id} has ${chunk.actions?.length || 0} actions`);
             
             const eventData = { 
-              type: 'actions', // CRITICAL: Must be 'actions'
-              actions: chunk.actions, // Frontend expects this
+              type: 'actions',
+              actions: chunk.actions,
               stepId: step.id,
               step: step, 
-              plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc }
+              plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc },
+              isFirstStep: i === 0,
+              isLastStep: i === plan.steps.length - 1,
+              totalSteps: plan.steps.length
             };
             
-            // Small delay between emissions to prevent socket congestion
-            await new Promise(resolve => setTimeout(resolve, 100 * i));
-            
-            // Emit to specific session room
-            const emitted = io.to(sessionId).emit('rendered', eventData);
-            logger.info(`[parallel] ✅ Emitted step ${step.id} with ${chunk.actions?.length} actions to session ${sessionId}`);
+            // CRITICAL: Sequential delivery with proper delays
+            // First step immediately, subsequent steps with 45-60 second delays
+            if (i === 0) {
+              // Emit first step immediately
+              io.to(sessionId).emit('rendered', eventData);
+              logger.info(`[parallel] ✅ Emitted FIRST step ${step.id} immediately with ${chunk.actions?.length} actions`);
+            } else {
+              // Queue subsequent steps with delays based on complexity
+              // Hook=45s, Intuition=50s, Formalism=55s, Exploration=60s, Mastery=50s
+              const stepDelays: { [key: string]: number } = {
+                'hook': 45000,
+                'intuition': 50000,
+                'formalism': 55000,
+                'exploration': 60000,
+                'mastery': 50000
+              };
+              const delay = stepDelays[step.tag] || 50000;
+              const cumulativeDelay = delay * i; // Each step waits for all previous steps
+              
+              setTimeout(() => {
+                io.to(sessionId).emit('rendered', eventData);
+                logger.info(`[parallel] ✅ Emitted step ${step.id} (${i+1}/${plan.steps.length}) with ${chunk.actions?.length} actions after ${cumulativeDelay}ms delay`);
+              }, cumulativeDelay);
+            }
           } else {
             logger.error(`[parallel] ❌ Step ${step.id} NOT CACHED - Cannot emit! Key: ${cacheKey}`);
           }
         }
         
-        logger.debug(`[parallel] All steps scheduled for emission`);
+        logger.debug(`[parallel] Sequential step delivery scheduled`);
       }
       
       logger.debug(`[parallel] Job complete for session ${sessionId}`);

@@ -125,6 +125,12 @@ async function main() {
     const { query, params, sessionId: clientSessionId } = req.body as { query: string; params?: SessionParams; sessionId?: string };
     if (!query) return res.status(400).json({ error: 'Missing query' });
     const sessionId = clientSessionId || uuidv4();
+    
+    // Store query in Redis for clarification endpoint
+    const queryKey = `session:${sessionId}:query`;
+    await redis.set(queryKey, query);
+    logger.debug(`[api] Stored query for session ${sessionId}: "${query}"`);
+    
     if (params) {
       await orchestrator.setParams(sessionId, params);
     }

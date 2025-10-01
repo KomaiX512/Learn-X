@@ -125,19 +125,81 @@ export class SequentialRenderer {
       return;
     }
     
-    console.log(`[SequentialRenderer] Processing ${chunk.actions.length} actions for step ${chunk.stepId}`);
-    // Create new layer for this step to accumulate content
-    if (this.currentStepId !== chunk.stepId) {
-      this.currentStepId = chunk.stepId;
-      this.currentLayer = new Konva.Layer();
-      this.stage?.add(this.currentLayer);
-      // Re-bind domain renderers to the new layer to ensure domain ops draw into the current step
-      if (this.stage && this.currentLayer) {
-        this.domainRenderers = new DomainRenderers(this.stage, this.currentLayer);
+    console.log(`[SequentialRenderer] 🎬 Processing ${chunk.actions.length} actions for step ${chunk.stepId}`);
+    
+    // CRITICAL: When starting a NEW step, clear previous step's content
+    if (this.currentStepId !== null && this.currentStepId !== chunk.stepId) {
+      console.log(`[SequentialRenderer] 🔄 NEW STEP DETECTED: ${this.currentStepId} → ${chunk.stepId}`);
+      console.log(`[SequentialRenderer] 🧹 CLEARING previous step content...`);
+      
+      // Clear all previous layers with smooth fade
+      if (this.stage) {
+        const allLayers = this.stage.getLayers();
+        console.log(`[SequentialRenderer] Found ${allLayers.length} layers to clear`);
+        
+        allLayers.forEach((layer, idx) => {
+          // Fade out and destroy old layers
+          new Konva.Tween({
+            node: layer,
+            duration: 0.5,
+            opacity: 0,
+            onFinish: () => {
+              layer.destroy();
+              console.log(`[SequentialRenderer] ✅ Cleared old layer ${idx}`);
+            }
+          }).play();
+        });
       }
-      console.log(`[SequentialRenderer] Created new layer for step ${chunk.stepId}`);
+      
+      // Clear math overlay as well
+      if (this.overlay) {
+        this.overlay.innerHTML = '';
+        console.log('[SequentialRenderer] ✅ Cleared math overlay');
+      }
+      
+      // Wait for fade to complete before creating new layer
+      setTimeout(() => {
+        this.createNewStepLayer(chunk.stepId);
+        this.enqueueActions(chunk);
+      }, 600); // Wait for fade + buffer
+      
+    } else {
+      // First step or continuing same step - just create layer if needed
+      if (this.currentStepId !== chunk.stepId) {
+        this.createNewStepLayer(chunk.stepId);
+      }
+      this.enqueueActions(chunk);
+    }
+  }
+  
+  /**
+   * Create a new layer for a step
+   */
+  private createNewStepLayer(stepId: number): void {
+    this.currentStepId = stepId;
+    this.currentLayer = new Konva.Layer();
+    this.currentLayer.opacity(0); // Start invisible
+    this.stage?.add(this.currentLayer);
+    
+    // Re-bind domain renderers to the new layer
+    if (this.stage && this.currentLayer) {
+      this.domainRenderers = new DomainRenderers(this.stage, this.currentLayer);
     }
     
+    // Fade in the new layer
+    new Konva.Tween({
+      node: this.currentLayer,
+      duration: 0.5,
+      opacity: 1
+    }).play();
+    
+    console.log(`[SequentialRenderer] ✅ Created fresh layer for step ${stepId}`);
+  }
+  
+  /**
+   * Enqueue actions for playback
+   */
+  private enqueueActions(chunk: any): void {
     // Add to animation queue for sequential playback
     this.animationQueue.enqueue(chunk.actions, {
       stepId: chunk.stepId,

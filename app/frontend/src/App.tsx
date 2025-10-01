@@ -305,6 +305,14 @@ export default function App() {
     try {
       console.log('[App] Submitting question:', question);
       
+      // Ensure socket is connected and joined to session
+      try {
+        await waitForJoin(sessionId, 3000);
+        console.log('[App] Socket connection verified');
+      } catch (e) {
+        console.warn('[App] Socket join timeout, proceeding anyway:', e);
+      }
+      
       const response = await fetch('http://localhost:3001/api/clarify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -315,14 +323,22 @@ export default function App() {
         })
       });
       
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
       const data = await response.json();
       console.log('[App] Clarification response:', data);
       
+      if (!data.success) {
+        throw new Error(data.error || 'Clarification request failed');
+      }
+      
       // Clarification will arrive via socket.on('clarification')
-    } catch (error) {
+    } catch (error: any) {
       console.error('[App] Error submitting question:', error);
       setIsGeneratingClarification(false);
-      alert('Failed to get clarification. Please try again.');
+      alert(`Failed to get clarification: ${error.message || 'Unknown error'}. Please try again.`);
     }
   };
 
