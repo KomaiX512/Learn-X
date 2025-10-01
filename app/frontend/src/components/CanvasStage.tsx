@@ -163,14 +163,14 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
       ref={scrollContainerRef}
       style={{ 
         position: 'relative', 
-        border: '2px solid #e0e0e0', 
+        border: '2px solid #2d2d44', 
         borderRadius: 12, 
         width: size.w,
         height: size.h,
         overflowY: 'auto',
         overflowX: 'hidden',
-        background: 'white',
-        boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+        background: '#1a1a2e',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
         margin: '0 auto'
       }}>
       <div 
@@ -178,7 +178,7 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
         style={{ 
           width: size.w, 
           minHeight: size.h,
-          background: 'white'
+          background: '#1a1a2e'
         }} 
       />
       <div ref={overlayRef} style={{ 

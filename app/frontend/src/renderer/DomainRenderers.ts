@@ -1752,11 +1752,22 @@ export class DomainRenderers {
         points.push(this.toNum(pt.y || pt[1], 0.5) * h);
       });
     } else if (params.path) {
-      // Parse path string if provided
-      const pathPoints = params.path.split(' ');
-      for (let i = 0; i < pathPoints.length; i += 2) {
-        points.push(parseFloat(pathPoints[i]) * w);
-        points.push(parseFloat(pathPoints[i + 1]) * h);
+      // Handle path - can be string or array of points
+      if (typeof params.path === 'string') {
+        // Parse path string if provided
+        const pathPoints = params.path.split(' ');
+        for (let i = 0; i < pathPoints.length; i += 2) {
+          points.push(parseFloat(pathPoints[i]) * w);
+          points.push(parseFloat(pathPoints[i + 1]) * h);
+        }
+      } else if (Array.isArray(params.path)) {
+        // Path is already an array of points
+        params.path.forEach((pt: any) => {
+          if (Array.isArray(pt)) {
+            points.push(this.toNum(pt[0], 0.5) * w);
+            points.push(this.toNum(pt[1], 0.5) * h);
+          }
+        });
       }
     }
     

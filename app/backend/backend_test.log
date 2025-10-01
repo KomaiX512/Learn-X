@@ -1,0 +1,60 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 17:01:11 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+🧹 Clearing stale job queues on startup...
+2025-10-01T12:01:12.463Z [debug] NEW Plan worker created
+2025-10-01T12:01:12.466Z [debug] NEW Gen worker created
+2025-10-01T12:01:12.467Z [debug] NEW Parallel worker created
+Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at main (/home/komail/LeaF/app/backend/src/index.ts:272:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:01:12 Error: listen EADDRINUSE: address already in use :::3001
+2025-10-01T12:01:12.497Z [debug] Shutting down server...
+2025-10-01T12:01:12.498Z [debug] Server shut down.
+[INFO] 17:14:46 Restarting: /home/komail/LeaF/app/backend/src/agents/visualAgentV2.ts has been modified
+🧹 Clearing stale job queues on startup...
+2025-10-01T12:14:47.292Z [debug] NEW Plan worker created
+2025-10-01T12:14:47.294Z [debug] NEW Gen worker created
+2025-10-01T12:14:47.294Z [debug] NEW Parallel worker created
+2025-10-01T12:14:47.303Z [debug] Backend listening on http://localhost:3001
+[INFO] 17:15:04 Restarting: /home/komail/LeaF/app/backend/src/agents/qualityEnforcer.ts has been modified
+2025-10-01T12:15:04.223Z [debug] Shutting down server...
+2025-10-01T12:15:04.225Z [debug] Server shut down.
+🧹 Clearing stale job queues on startup...
+2025-10-01T12:15:04.564Z [debug] NEW Plan worker created
+2025-10-01T12:15:04.566Z [debug] NEW Gen worker created
+2025-10-01T12:15:04.566Z [debug] NEW Parallel worker created
+Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at main (/home/komail/LeaF/app/backend/src/index.ts:272:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:15:04 Error: listen EADDRINUSE: address already in use :::3001
+2025-10-01T12:15:04.594Z [debug] Shutting down server...
+2025-10-01T12:15:04.595Z [debug] Server shut down.
+[INFO] 17:15:25 Restarting: /home/komail/LeaF/app/backend/src/agents/visualAgentV2.ts has been modified
+🧹 Clearing stale job queues on startup...
+2025-10-01T12:15:25.890Z [debug] NEW Plan worker created
+2025-10-01T12:15:25.891Z [debug] NEW Gen worker created
+2025-10-01T12:15:25.891Z [debug] NEW Parallel worker created
+Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at main (/home/komail/LeaF/app/backend/src/index.ts:272:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:15:25 Error: listen EADDRINUSE: address already in use :::3001
+2025-10-01T12:15:25.918Z [debug] Shutting down server...
+2025-10-01T12:15:25.918Z [debug] Server shut down.
+[INFO] 17:15:44 Restarting: /home/komail/LeaF/app/backend/src/agents/visualAgentV2.ts has been modified
+🧹 Clearing stale job queues on startup...
+2025-10-01T12:15:44.954Z [debug] NEW Plan worker created
+2025-10-01T12:15:44.955Z [debug] NEW Gen worker created
+2025-10-01T12:15:44.956Z [debug] NEW Parallel worker created
+2025-10-01T12:15:44.965Z [debug] Backend listening on http://localhost:3001

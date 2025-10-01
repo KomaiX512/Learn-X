@@ -32,13 +32,16 @@ export class QualityEnforcer {
     const recommendations: string[] = [];
     let score = 100;
 
-    // 1. CHECK QUANTITY (20+ operations minimum for delivery)
-    if (actions.length < 5) {
-      issues.push(`CRITICAL: Only ${actions.length} operations (need 20+)`);
-      score -= 50;
-    } else if (actions.length < 15) {
+    // 1. CHECK QUANTITY (50-70 operations for professional multi-diagram content)
+    if (actions.length < 20) {
+      issues.push(`CRITICAL: Only ${actions.length} operations (need 50-70 for professional diagrams)`);
+      score -= 40;
+    } else if (actions.length < 40) {
       issues.push(`WARNING: Only ${actions.length} operations (target 50-70)`);
-      score -= 15;
+      score -= 20;
+    } else if (actions.length >= 50 && actions.length <= 70) {
+      // Perfect range
+      recommendations.push(`Excellent: ${actions.length} operations in optimal range`);
     }
 
     // 2. CHECK STORYTELLING (must start with title/engaging content)
@@ -57,29 +60,57 @@ export class QualityEnforcer {
       recommendations.push('Add drawLabel in first 5 operations for context');
     }
 
-    // 3. CHECK LABELING (need 5+ labels for complete story)
+    // 3. CHECK LABELING (need 8-12 labels for professional multi-diagram content)
     const labelCount = actions.filter(a => a.op === 'drawLabel').length;
-    if (labelCount < 3) {
-      issues.push(`CRITICAL: Only ${labelCount} labels (need 5+)`);
+    if (labelCount < 5) {
+      issues.push(`CRITICAL: Only ${labelCount} labels (need 8-12)`);
       score -= 30;
-      recommendations.push('Add more drawLabel operations to explain visuals');
-    } else if (labelCount < 5) {
-      issues.push(`WARNING: Only ${labelCount} labels (need 5+)`);
+      recommendations.push('Add more drawLabel operations to explain ALL visual elements');
+    } else if (labelCount < 8) {
+      issues.push(`WARNING: Only ${labelCount} labels (target 8-12)`);
       score -= 15;
+    } else if (labelCount >= 8 && labelCount <= 12) {
+      recommendations.push(`Excellent: ${labelCount} labels provide complete explanations`);
+    } else if (labelCount > 15) {
+      issues.push(`WARNING: Too many labels (${labelCount}) - may be text-heavy`);
+      score -= 5;
     }
 
-    // 4. CHECK PACING (need 3+ delays for human-readable pace)
+    // 4. CHECK PACING (need 3-5 delays for human-readable multi-diagram pace)
     const delayCount = actions.filter(a => a.op === 'delay').length;
     if (delayCount < 2) {
-      issues.push(`CRITICAL: Only ${delayCount} delays (need 3+)`);
+      issues.push(`CRITICAL: Only ${delayCount} delays (need 3-5)`);
       score -= 20;
-      recommendations.push('Add delay operations between major concepts');
+      recommendations.push('Add delay operations between each diagram/concept');
     } else if (delayCount < 3) {
-      issues.push(`WARNING: Only ${delayCount} delays (need 3+)`);
+      issues.push(`WARNING: Only ${delayCount} delays (target 3-5)`);
       score -= 10;
+    } else if (delayCount >= 3 && delayCount <= 5) {
+      recommendations.push(`Good pacing: ${delayCount} delays`);
+    } else if (delayCount > 7) {
+      issues.push(`WARNING: Too many delays (${delayCount}) - may feel sluggish`);
+      score -= 5;
     }
 
-    // 5. CHECK TOPIC-SPECIFIC REQUIREMENTS
+    // 5. CHECK SECTION MARKERS (need 4-5 for professional organization)
+    const sectionMarkers = actions.filter(a => {
+      if (a.op !== 'drawLabel') return false;
+      const text = (a as any).text || '';
+      return text.match(/^[①②③④⑤⑥]/);
+    });
+    
+    if (sectionMarkers.length < 3) {
+      issues.push(`CRITICAL: Only ${sectionMarkers.length} section markers (need 4-5 for professional organization)`);
+      score -= 25;
+      recommendations.push('Add section labels using ① ② ③ ④ ⑤ symbols to organize content');
+    } else if (sectionMarkers.length < 4) {
+      issues.push(`WARNING: Only ${sectionMarkers.length} section markers (target 4-5)`);
+      score -= 10;
+    } else {
+      recommendations.push(`Excellent: ${sectionMarkers.length} section markers provide clear organization`);
+    }
+
+    // 6. CHECK TOPIC-SPECIFIC REQUIREMENTS
     const topicLower = topic.toLowerCase();
     
     // Math topics MUST have LaTeX
@@ -155,8 +186,8 @@ export class QualityEnforcer {
       }
     }
 
-    // FINAL VERDICT - More lenient to allow content delivery
-    const passed = score >= 40; // Minimum 40% to pass (was 60%)
+    // FINAL VERDICT - Require quality for professional diagrams
+    const passed = score >= 50; // Minimum 50% to pass
 
     return {
       passed,

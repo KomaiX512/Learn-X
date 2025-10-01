@@ -25,6 +25,10 @@ export class SequentialRenderer {
   private overlay: HTMLDivElement | null = null;
   private currentStepId: number | null = null;
   private domainRenderers: DomainRenderers | null = null;
+  // Track all active animations for cleanup
+  private activeAnimations: Konva.Animation[] = [];
+  // Track failed actions for reporting (but continue anyway)
+  private failedActions: Array<{ op: string; error: string }> = [];
   
   constructor(config: RendererConfig) {
     this.initializeStage(config);
@@ -151,6 +155,10 @@ export class SequentialRenderer {
         });
       }
       
+      // CRITICAL: Stop all active animations to prevent memory leaks
+      this.stopAllAnimations();
+      console.log('[SequentialRenderer] ✅ Stopped all animations');
+      
       // Clear math overlay as well
       if (this.overlay) {
         this.overlay.innerHTML = '';
@@ -197,6 +205,39 @@ export class SequentialRenderer {
   }
   
   /**
+   * Stop all active animations to prevent memory leaks
+   */
+  private stopAllAnimations(): void {
+    console.log(`[SequentialRenderer] Stopping ${this.activeAnimations.length} active animations`);
+    
+    // Stop all tracked animations
+    this.activeAnimations.forEach(anim => {
+      try {
+        anim.stop();
+      } catch (error) {
+        console.error('[SequentialRenderer] Error stopping animation:', error);
+      }
+    });
+    
+    // Clear the array
+    this.activeAnimations = [];
+    
+    // Also stop any global Konva animations not in our tracker
+    if (typeof Konva !== 'undefined' && Konva.Animation) {
+      const globalAnimations = (Konva.Animation as any).animations || [];
+      globalAnimations.forEach((anim: Konva.Animation) => {
+        try {
+          anim.stop();
+        } catch (error) {
+          // Silent fail for animations we don't control
+        }
+      });
+    }
+    
+    console.log('[SequentialRenderer] ✅ All animations stopped and cleaned up');
+  }
+  
+  /**
    * Enqueue actions for playback
    */
   private enqueueActions(chunk: any): void {
@@ -222,27 +263,26 @@ export class SequentialRenderer {
       console.log(`[SequentialRenderer] 🎬 Processing: ${action.op}`);
       await this.processActionInternal(action, section);
       console.log(`[SequentialRenderer] ✅ Completed: ${action.op}`);
-    } catch (error) {
+    } catch (error: any) {
       console.error(`[SequentialRenderer] ❌ ERROR processing ${action.op}:`, error);
-      console.error(`[SequentialRenderer] Error stack:`, error.stack);
+      console.error(`[SequentialRenderer] Error stack:`, error?.stack);
       console.error(`[SequentialRenderer] Action data:`, JSON.stringify(action).substring(0, 200));
       
-      // Show error placeholder on canvas so user knows something failed
-      try {
-        const errorText = new (window as any).Konva.Text({
-          x: this.stage!.width() * 0.1,
-          y: this.currentLayer!.y() + 50,
-          text: `⚠️ Failed to render: ${action.op}`,
-          fontSize: 12,
-          fill: '#ff6b6b',
-          opacity: 0.7
-        });
-        this.currentLayer!.add(errorText);
-        this.currentLayer!.batchDraw();
-      } catch {}
+      // Track failed action for reporting
+      this.failedActions.push({
+        op: action.op,
+        error: error?.message || String(error)
+      });
       
-      // CRITICAL: Continue to next action instead of stopping entire lecture
-      console.log(`[SequentialRenderer] ⏭️  Continuing despite error...`);
+      // CRITICAL: Don't show error on canvas (too distracting)
+      // Just log it and continue - lecture quality > perfect rendering
+      console.log(`[SequentialRenderer] ⏭️  Skipping failed action and continuing...`);
+      console.log(`[SequentialRenderer] Total failures so far: ${this.failedActions.length}`);
+      
+      // If too many failures, report once
+      if (this.failedActions.length === 5) {
+        console.warn(`[SequentialRenderer] ⚠️  5 actions failed - system continues but quality may be affected`);
+      }
     }
   }
   
@@ -422,6 +462,7 @@ export class SequentialRenderer {
         break;
         
       case 'delay':
+      case 'drawDelay':
         // Duration is ALREADY in milliseconds from backend, use directly
         const delayMs = action.duration || 1000;
         console.log(`[SequentialRenderer] ⏱️  Delaying for ${delayMs}ms (${(delayMs/1000).toFixed(1)}s)`);
@@ -877,8 +918,9 @@ export class SequentialRenderer {
     
     anim.start();
     
-    // Store animation for cleanup
-    (orbiter as any)._orbitAnim = anim;
+    // CRITICAL: Track animation for cleanup to prevent memory leaks
+    this.activeAnimations.push(anim);
+    console.log(`[SequentialRenderer] Tracking orbit animation (total: ${this.activeAnimations.length})`);
   }
   
   /**
@@ -887,10 +929,22 @@ export class SequentialRenderer {
   private async createWaveAnimation(action: any): Promise<void> {
     if (!this.stage || !this.currentLayer) return;
     
+    // CRITICAL FIX: Validate all required properties to prevent NaN
+    const amplitude = (action.amplitude || 0.05) * this.stage.height();
+    const frequency = action.frequency || 2;
+    const speed = action.speed || 1;
+    
+    // Support both old format (y) and new format (startY)
+    const startY = action.startY !== undefined ? action.startY : action.y || 0.5;
+    const y = startY * this.stage.height();
+    
+    // Validate numbers
+    if (isNaN(amplitude) || isNaN(frequency) || isNaN(y) || isNaN(speed)) {
+      console.error('[SequentialRenderer] Invalid wave parameters:', { amplitude, frequency, y, speed });
+      return;
+    }
+    
     const points: number[] = [];
-    const amplitude = action.amplitude * this.stage.height();
-    const frequency = action.frequency;
-    const y = action.y * this.stage.height();
     
     const line = new Konva.Line({
       points: points,
@@ -914,20 +968,28 @@ export class SequentialRenderer {
     const anim = new Konva.Animation((frame) => {
       if (!frame) return;
       const newPoints: number[] = [];
-      const phase = frame.time * 0.001 * action.speed;
+      const phase = frame.time * 0.001 * speed;
       
       for (let x = 0; x <= this.stage!.width(); x += 5) {
         const waveY = y + Math.sin((x / this.stage!.width()) * frequency * Math.PI * 2 + phase) * amplitude;
-        newPoints.push(x, waveY);
+        
+        // CRITICAL: Validate before pushing to prevent NaN pollution
+        if (!isNaN(waveY)) {
+          newPoints.push(x, waveY);
+        }
       }
       
-      line.points(newPoints);
+      // Only update if we have valid points
+      if (newPoints.length > 0) {
+        line.points(newPoints);
+      }
     }, this.currentLayer);
     
     anim.start();
     
-    // Store animation for cleanup
-    (line as any)._waveAnim = anim;
+    // CRITICAL: Track animation for cleanup to prevent memory leaks
+    this.activeAnimations.push(anim);
+    console.log(`[SequentialRenderer] Tracking wave animation (total: ${this.activeAnimations.length})`);
   }
   
   /**
@@ -936,9 +998,26 @@ export class SequentialRenderer {
   private async createParticleAnimation(action: any): Promise<void> {
     if (!this.stage || !this.currentLayer) return;
     
+    // CRITICAL FIX: Handle both center format and x/y format
+    let centerX, centerY;
+    if (action.center && Array.isArray(action.center) && action.center.length === 2) {
+      centerX = action.center[0] * this.stage.width();
+      centerY = action.center[1] * this.stage.height();
+    } else if (action.x !== undefined && action.y !== undefined) {
+      centerX = action.x * this.stage.width();
+      centerY = action.y * this.stage.height();
+    } else {
+      console.error('[SequentialRenderer] Invalid particle action - missing center or x/y:', action);
+      return;
+    }
+    
+    // Validate numbers
+    if (isNaN(centerX) || isNaN(centerY)) {
+      console.error('[SequentialRenderer] Invalid particle center:', { centerX, centerY });
+      return;
+    }
+    
     const particles: Konva.Circle[] = [];
-    const centerX = action.center[0] * this.stage.width();
-    const centerY = action.center[1] * this.stage.height();
     
     for (let i = 0; i < action.count; i++) {
       const particle = new Konva.Circle({
@@ -975,8 +1054,9 @@ export class SequentialRenderer {
     
     anim.start();
     
-    // Store animation for cleanup
-    (particles as any)._particleAnim = anim;
+    // CRITICAL: Track animation for cleanup to prevent memory leaks
+    this.activeAnimations.push(anim);
+    console.log(`[SequentialRenderer] Tracking particle animation (total: ${this.activeAnimations.length})`);
   }
   
   /**

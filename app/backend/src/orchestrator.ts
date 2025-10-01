@@ -290,6 +290,19 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
       const generationPromises: Promise<any>[] = [];
       const startTime = Date.now();
       
+      // CRITICAL FIX: Store results in memory for direct emit (don't rely on cache)
+      const stepResults = new Map<number, RenderChunk | null>();
+      
+      // Emit initial progress
+      io.to(sessionId).emit('generation_progress', {
+        phase: 'starting',
+        totalSteps: plan.steps.length,
+        completedSteps: 0,
+        message: `🚀 Starting generation of ${plan.steps.length} steps...`
+      });
+      
+      let completedCount = 0;
+      
       // Generate all steps in parallel
       for (const step of plan.steps) {
         generationPromises.push(
@@ -336,7 +349,14 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
               perfMonitor.endStepGeneration(sessionId, step.id, true);
               logger.debug(`[parallel] Step ${step.id} generated in ${genTime}ms`);
               
+              // CRITICAL FIX: Store in memory for direct emit
+              stepResults.set(step.id, checked);
+              logger.info(`[parallel] ✅ Stored step ${step.id} in memory (${checked.actions?.length || 0} actions)`);
+              
               // Emit progress for this specific step completed
+              completedCount++;
+              const progressPercent = Math.round((completedCount / plan.steps.length) * 100);
+              
               io.to(sessionId).emit('progress', {
                 stepId: step.id,
                 status: 'ready',
@@ -345,11 +365,23 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
                 message: `Step ${step.id} ready (${checked.actions?.length || 0} actions)`
               });
               
+              io.to(sessionId).emit('generation_progress', {
+                phase: 'generating',
+                totalSteps: plan.steps.length,
+                completedSteps: completedCount,
+                progress: progressPercent,
+                message: `✅ Generated ${completedCount}/${plan.steps.length} steps (${progressPercent}%)`
+              });
+              
               return { stepId: step.id, success: true, time: genTime, actions: checked.actions?.length };
             } catch (error) {
               const genTime = Date.now() - stepStartTime;
               perfMonitor.endStepGeneration(sessionId, step.id, false);
               logger.error(`[parallel] Step ${step.id} failed: ${error}`);
+              
+              // CRITICAL FIX: Store null for failed steps (so we know it was attempted)
+              stepResults.set(step.id, null);
+              logger.warn(`[parallel] ⚠️ Stored step ${step.id} as failed in memory`);
               
               // Emit error for this step
               io.to(sessionId).emit('progress', {
@@ -378,6 +410,15 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
       
       // Complete performance tracking
       perfMonitor.completeRequest(sessionId, successful > 0);
+      
+      // Emit final progress update
+      io.to(sessionId).emit('generation_progress', {
+        phase: 'complete',
+        totalSteps: plan.steps.length,
+        completedSteps: successful,
+        progress: 100,
+        message: `🎉 Generation complete! ${successful}/${plan.steps.length} steps ready in ${(totalTime/1000).toFixed(1)}s`
+      });
       
       // Emit overall status with performance metrics
       const metrics = perfMonitor.getMetrics();
@@ -409,14 +450,26 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
         logger.debug(`[parallel] Emitted plan for session ${sessionId}`);
         
         // SEQUENTIAL: Emit first step immediately, queue others with proper delays
+        // CRITICAL FIX: Use in-memory results instead of cache
         for (let i = 0; i < plan.steps.length; i++) {
           const step = plan.steps[i];
-          const cacheKey = CHUNK_KEY(sessionId, step.id);
           
-          const cached = await redis.get(cacheKey);
+          // Try memory first (direct result from generation)
+          let chunk = stepResults.get(step.id);
           
-          if (cached) {
-            const chunk = JSON.parse(cached);
+          // Fallback to cache if not in memory (e.g., cached from previous run)
+          if (!chunk) {
+            const cacheKey = CHUNK_KEY(sessionId, step.id);
+            const cached = await redis.get(cacheKey);
+            if (cached) {
+              chunk = JSON.parse(cached);
+              logger.info(`[parallel] 📦 Step ${step.id} retrieved from cache fallback`);
+            }
+          } else {
+            logger.info(`[parallel] 💾 Step ${step.id} retrieved from memory`);
+          }
+          
+          if (chunk) {
             logger.debug(`[parallel] Step ${step.id} has ${chunk.actions?.length || 0} actions`);
             
             const eventData = { 
@@ -455,7 +508,15 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
               }, cumulativeDelay);
             }
           } else {
-            logger.error(`[parallel] ❌ Step ${step.id} NOT CACHED - Cannot emit! Key: ${cacheKey}`);
+            // Step failed and has no data - emit explicit error
+            logger.error(`[parallel] ❌ Step ${step.id} FAILED - No data available (generation failed)`);
+            io.to(sessionId).emit('rendered', {
+              type: 'error',
+              stepId: step.id,
+              step: step,
+              message: `Step ${step.id} (${step.tag}) failed to generate. This may be due to API rate limits.`,
+              isPartialFailure: true
+            });
           }
         }
         

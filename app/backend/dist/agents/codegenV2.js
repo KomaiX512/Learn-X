@@ -14,6 +14,7 @@ exports.codegenAgentV2 = codegenAgentV2;
 const logger_1 = require("../logger");
 const visualAgentV2_1 = __importDefault(require("./visualAgentV2"));
 const layoutEngine_1 = require("../lib/layoutEngine");
+const compositionValidator_1 = require("../lib/compositionValidator");
 /**
  * Generate code/actions for a step using intelligent visual agent
  */
@@ -33,6 +34,14 @@ async function codegenAgentV2(step, topic) {
             // Apply layout engine to fix label overlap
             logger_1.logger.debug(`[codegenV2] Applying anti-overlap layout...`);
             const layoutedActions = (0, layoutEngine_1.fixLabelOverlap)(visualResult.actions);
+            // Validate composition quality (optional - doesn't block delivery)
+            const compositionReport = compositionValidator_1.CompositionValidator.validate(layoutedActions, topic);
+            compositionValidator_1.CompositionValidator.logReport(compositionReport, step.id);
+            if (!compositionReport.passed) {
+                logger_1.logger.warn(`[codegenV2] ⚠️ Composition quality below professional standards (${compositionReport.score}%)`);
+                // Note: We don't reject here, just log for monitoring
+                // The quality enforcer already handled rejection of truly bad content
+            }
             logger_1.logger.info(`[codegenV2] ✅ Successfully generated ${layoutedActions.length} operations for step ${step.id}`);
             return {
                 type: 'actions',

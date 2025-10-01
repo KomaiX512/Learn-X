@@ -1,4 +1,37 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -114,6 +147,10 @@ async function main() {
         if (!query)
             return res.status(400).json({ error: 'Missing query' });
         const sessionId = clientSessionId || (0, uuid_1.v4)();
+        // Store query in Redis for clarification endpoint
+        const queryKey = `session:${sessionId}:query`;
+        await redis.set(queryKey, query);
+        logger_1.logger.debug(`[api] Stored query for session ${sessionId}: "${query}"`);
         if (params) {
             await orchestrator.setParams(sessionId, params);
         }
@@ -173,6 +210,67 @@ async function main() {
             res.json({ text: result.response.text() });
         }
         catch (err) {
+            res.status(500).json({ error: String(err) });
+        }
+    });
+    // Clarification endpoint - student asks question during lecture
+    app.post('/api/clarify', async (req, res) => {
+        try {
+            const { sessionId, question, screenshot } = req.body;
+            if (!sessionId || !question) {
+                return res.status(400).json({ error: 'Missing sessionId or question' });
+            }
+            logger_1.logger.info(`[api] Clarification request for session ${sessionId}: "${question}"`);
+            // Retrieve context from Redis
+            const planKey = `session:${sessionId}:plan`;
+            const currentStepKey = `session:${sessionId}:current_step`;
+            const [planData, currentStepIndex] = await Promise.all([
+                redis.get(planKey),
+                redis.get(currentStepKey)
+            ]);
+            if (!planData) {
+                return res.status(404).json({ error: 'Session not found or plan not available' });
+            }
+            const plan = JSON.parse(planData);
+            const stepIndex = parseInt(currentStepIndex || '0', 10);
+            const currentStep = plan.steps[stepIndex];
+            if (!currentStep) {
+                return res.status(404).json({ error: 'Current step not found' });
+            }
+            // Get query from session
+            const queryKey = `session:${sessionId}:query`;
+            const query = await redis.get(queryKey) || 'Unknown topic';
+            // Import clarifier agent
+            const { clarifierAgent } = await Promise.resolve().then(() => __importStar(require('./agents/clarifier')));
+            // Generate clarification
+            const clarification = await clarifierAgent({
+                query,
+                step: currentStep,
+                question,
+                screenshot,
+                plan
+            });
+            logger_1.logger.info(`[api] Clarification generated: ${clarification.actions.length} actions`);
+            // Emit clarification to the session
+            io.to(sessionId).emit('clarification', {
+                type: 'clarification',
+                title: clarification.title,
+                explanation: clarification.explanation,
+                actions: clarification.actions,
+                question,
+                stepId: `clarification-${Date.now()}`
+            });
+            res.json({
+                success: true,
+                clarification: {
+                    title: clarification.title,
+                    explanation: clarification.explanation,
+                    actionsCount: clarification.actions.length
+                }
+            });
+        }
+        catch (err) {
+            logger_1.logger.error(`[api] Error in clarification: ${err}`);
             res.status(500).json({ error: String(err) });
         }
     });
