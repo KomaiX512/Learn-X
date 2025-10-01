@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeaF Production Monitor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 10px;
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      margin: 8px 0;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .metric:hover {
+      background: rgba(0, 0, 0, 0.3);
+      transform: translateX(5px);
+    }
+
+    .metric-label {
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .metric-value {
+      font-size: 1.3rem;
+      font-weight: bold;
+      padding: 5px 15px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .status.connected {
+      background: #10b981;
+      color: white;
+    }
+
+    .status.disconnected {
+      background: #ef4444;
+      color: white;
+    }
+
+    .status.generating {
+      background: #f59e0b;
+      color: white;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .log-container {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+
+    .log-entry {
+      padding: 8px;
+      margin: 4px 0;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .log-entry.info {
+      border-left-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .log-entry.success {
+      border-left-color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .log-entry.warning {
+      border-left-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.1);
+    }
+
+    .log-entry.error {
+      border-left-color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .timestamp {
+      opacity: 0.6;
+      font-size: 0.85rem;
+      margin-right: 10px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 30px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      overflow: hidden;
+      margin: 15px 0;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #3b82f6);
+      transition: width 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .action-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .action-badge {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .action-badge:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.05);
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .test-controls {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      min-width: 300px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.15);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 LeaF Production Monitor</h1>
+
+    <div class="test-controls">
+      <input type="text" id="queryInput" placeholder="Enter test query (e.g., 'What is a derivative?')" />
+      <button onclick="runTest()">🧪 Run Test</button>
+      <button onclick="clearLogs()">🗑️ Clear Logs</button>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>📊 System Status</h2>
+        <div class="metric">
+          <span class="metric-label">Connection</span>
+          <span class="status disconnected" id="connectionStatus">Disconnected</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Current Step</span>
+          <span class="metric-value" id="currentStep">-</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Total Actions</span>
+          <span class="metric-value" id="totalActions">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Elapsed Time</span>
+          <span class="metric-value" id="elapsedTime">0s</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>⚡ Performance</h2>
+        <div class="metric">
+          <span class="metric-label">Steps Completed</span>
+          <span class="metric-value" id="stepsCompleted">0 / 5</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%">
+            <span id="progressText">0%</span>
+          </div>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Avg Actions/Step</span>
+          <span class="metric-value" id="avgActions">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Agent Type</span>
+          <span class="metric-value" id="agentType">-</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📝 Live Logs</h2>
+      <div class="log-container" id="logContainer">
+        <div class="log-entry info">
+          <span class="timestamp">[00:00:00]</span>
+          Waiting for test query...
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🎨 Recent Actions</h2>
+      <div class="action-list" id="actionList">
+        <div class="action-badge">Waiting for data...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    let socket = null;
+    let sessionId = null;
+    let startTime = null;
+    let receivedSteps = [];
+    let totalActions = 0;
+    let timerInterval = null;
+    let recentActions = [];
+
+    function log(message, type = 'info') {
+      const container = document.getElementById('logContainer');
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${type}`;
+      
+      const now = new Date();
+      const timestamp = now.toTimeString().split(' ')[0];
+      
+      entry.innerHTML = `<span class="timestamp">[${timestamp}]</span>${message}`;
+      container.appendChild(entry);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function clearLogs() {
+      document.getElementById('logContainer').innerHTML = '';
+      log('Logs cleared', 'info');
+    }
+
+    function updateMetric(id, value) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.textContent = value;
+        element.style.animation = 'none';
+        setTimeout(() => element.style.animation = '', 10);
+      }
+    }
+
+    function updateProgress() {
+      const progress = (receivedSteps.length / 5) * 100;
+      const fill = document.getElementById('progressFill');
+      const text = document.getElementById('progressText');
+      
+      fill.style.width = `${progress}%`;
+      text.textContent = `${Math.round(progress)}%`;
+      updateMetric('stepsCompleted', `${receivedSteps.length} / 5`);
+    }
+
+    function updateTimer() {
+      if (startTime) {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        updateMetric('elapsedTime', `${elapsed}s`);
+      }
+    }
+
+    function updateActionList() {
+      const container = document.getElementById('actionList');
+      container.innerHTML = '';
+      
+      const actionsToShow = recentActions.slice(-20);
+      actionsToShow.forEach(action => {
+        const badge = document.createElement('div');
+        badge.className = 'action-badge';
+        badge.textContent = action;
+        container.appendChild(badge);
+      });
+    }
+
+    async function runTest() {
+      const query = document.getElementById('queryInput').value.trim();
+      if (!query) {
+        log('Please enter a query!', 'error');
+        return;
+      }
+
+      // Reset state
+      receivedSteps = [];
+      totalActions = 0;
+      recentActions = [];
+      startTime = Date.now();
+      sessionId = `monitor-${Date.now()}`;
+
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(updateTimer, 1000);
+
+      log(`🚀 Starting test with query: "${query}"`, 'success');
+      log(`📋 Session ID: ${sessionId}`, 'info');
+
+      // Connect socket
+      if (socket) {
+        socket.disconnect();
+      }
+
+      socket = io('http://localhost:3001', {
+        transports: ['websocket']
+      });
+
+      socket.on('connect', async () => {
+        updateMetric('connectionStatus', 'Connected');
+        document.getElementById('connectionStatus').className = 'status connected';
+        log('✅ Socket connected', 'success');
+
+        try {
+          const response = await fetch('http://localhost:3001/api/query', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query, sessionId })
+          });
+
+          if (response.ok) {
+            log('✅ Query submitted successfully', 'success');
+          } else {
+            throw new Error(`HTTP ${response.status}`);
+          }
+        } catch (error) {
+          log(`❌ Query submission failed: ${error.message}`, 'error');
+        }
+      });
+
+      socket.on('rendered', (data) => {
+        log(`📦 Received step ${data.stepId || data.step?.id}`, 'success');
+        
+        if (data.actions && data.actions.length > 0) {
+          const stepId = data.stepId || data.step?.id;
+          const actionCount = data.actions.length;
+          
+          receivedSteps.push({ stepId, actionCount });
+          totalActions += actionCount;
+          
+          // Extract unique operations
+          const ops = [...new Set(data.actions.map(a => a.op))];
+          recentActions.push(...ops);
+          
+          updateMetric('currentStep', stepId);
+          updateMetric('totalActions', totalActions);
+          updateMetric('avgActions', Math.round(totalActions / receivedSteps.length));
+          updateProgress();
+          updateActionList();
+          
+          log(`   └─ ${actionCount} actions: ${ops.join(', ')}`, 'info');
+          
+          // Check for LaTeX
+          const hasLatex = data.actions.some(a => a.op === 'latex' || a.op === 'drawLatex');
+          if (hasLatex) {
+            log('   └─ ✅ LaTeX operations detected!', 'success');
+          }
+          
+          // Check for domain operations
+          const domainOps = ['drawCircuitElement', 'drawNeuralNetwork', 'drawMolecule', 'drawFieldLines'];
+          const hasDomain = ops.some(op => domainOps.includes(op));
+          if (hasDomain) {
+            log('   └─ ✅ Domain-specific operations detected!', 'success');
+          }
+        }
+
+        if (receivedSteps.length === 5) {
+          const totalTime = Math.floor((Date.now() - startTime) / 1000);
+          log('', 'info');
+          log('🎉 COMPLETE LECTURE RECEIVED!', 'success');
+          log(`   └─ Total time: ${totalTime}s`, 'success');
+          log(`   └─ Total actions: ${totalActions}`, 'success');
+          log(`   └─ Avg actions/step: ${Math.round(totalActions / 5)}`, 'success');
+          
+          if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+          }
+        }
+      });
+
+      socket.on('status', (data) => {
+        log(`📊 Status: ${data.message || data.type}`, 'info');
+      });
+
+      socket.on('progress', (data) => {
+        log(`⏳ Progress: Step ${data.stepId} - ${data.status}`, 'info');
+        
+        // Try to detect agent type from logs
+        if (data.message && data.message.includes('visualAgent')) {
+          const agentType = data.message.includes('V2') ? 'V2 (Intelligent)' : 'V1 (Generic)';
+          updateMetric('agentType', agentType);
+        }
+      });
+
+      socket.on('disconnect', () => {
+        updateMetric('connectionStatus', 'Disconnected');
+        document.getElementById('connectionStatus').className = 'status disconnected';
+        log('🔌 Socket disconnected', 'warning');
+      });
+
+      socket.on('connect_error', (error) => {
+        log(`❌ Connection error: ${error.message}`, 'error');
+      });
+    }
+
+    // Initialize
+    log('🚀 LeaF Production Monitor ready', 'success');
+    log('Enter a test query and click "Run Test" to begin', 'info');
+  </script>
+</body>
+</html>

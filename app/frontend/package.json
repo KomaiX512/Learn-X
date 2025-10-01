@@ -10,6 +10,8 @@
     "test": "echo \"Add frontend tests later\""
   },
   "dependencies": {
+    "@types/katex": "^0.16.7",
+    "katex": "^0.16.22",
     "konva": "^9.3.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

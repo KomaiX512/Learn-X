@@ -1,7 +1,10 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import CanvasStage from './components/CanvasStage';
 import { getSocket, waitForJoin } from './socket';
-import { execChunk } from './renderer';
+import { LectureStateManager } from './services/LectureStateManager';
+import { InterruptionPanel } from './components/InterruptionPanel';
+import { captureCanvasScreenshot, setupDoubleClickScreenshot, showScreenshotFlash } from './utils/canvasScreenshot';
+import type { ScreenshotResult } from './utils/canvasScreenshot';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -21,8 +24,15 @@ export default function App() {
   const [lectureComplete, setLectureComplete] = useState(false);
   const [progress, setProgress] = useState(0);
   
+  // Interruption and question state
+  const [isInterrupted, setIsInterrupted] = useState(false);
+  const [interruptionVisible, setInterruptionVisible] = useState(false);
+  const [screenshot, setScreenshot] = useState<string | null>(null);
+  const [isGeneratingClarification, setIsGeneratingClarification] = useState(false);
+  
   // Canvas reference for control
   const canvasRef = useRef<any>(null);
+  const lectureStateRef = useRef<LectureStateManager | null>(null);
 
   // Ensure we have a session and that the socket has joined it before enqueuing work
   function ensureSession(): string {
@@ -41,6 +51,23 @@ export default function App() {
 
   const socket = useMemo(() => (sessionId ? getSocket(sessionId) : null), [sessionId]);
 
+  // Initialize lecture state manager when session starts
+  useEffect(() => {
+    if (sessionId && !lectureStateRef.current) {
+      lectureStateRef.current = new LectureStateManager(sessionId);
+      
+      // Subscribe to state changes
+      lectureStateRef.current.subscribe((state) => {
+        setLectureComplete(state.isCompleted);
+        setTotalSteps(state.totalSteps);
+        setCurrentStepIndex(state.currentStepIndex);
+        setProgress(lectureStateRef.current?.getProgress() || 0);
+      });
+      
+      console.log('[App] LectureStateManager initialized');
+    }
+  }, [sessionId]);
+
   useEffect(() => {
     if (!socket) return;
     
@@ -55,6 +82,39 @@ export default function App() {
     
     socket.on('connect_error', (error) => {
       console.error('[socket] Connection error:', error);
+    });
+    
+    // Handle clarification responses
+    socket.on('clarification', (e) => {
+      console.log('[App] Received clarification:', e.title);
+      
+      if (e.actions && e.actions.length > 0 && canvasRef.current) {
+        // Process clarification actions
+        canvasRef.current.processChunk({
+          type: 'clarification',
+          actions: e.actions,
+          stepId: e.stepId,
+          title: e.title,
+          explanation: e.explanation
+        });
+      }
+      
+      setIsGeneratingClarification(false);
+      setInterruptionVisible(false);
+      
+      // Resume lecture after clarification
+      setTimeout(() => {
+        if (lectureStateRef.current) {
+          lectureStateRef.current.endClarification();
+          lectureStateRef.current.resume();
+        }
+        if (canvasRef.current) {
+          canvasRef.current.resume();
+        }
+        setIsInterrupted(false);
+        setIsPaused(false);
+        setIsPlaying(true);
+      }, 1000);
     });
     
     socket.on('rendered', (e) => {
@@ -88,9 +148,32 @@ export default function App() {
       // Update current step
       setCurrentStep(e.step);
       
-      // Execute the rendering actions on canvas
+      // Add step to lecture state
+      if (lectureStateRef.current && e.step) {
+        lectureStateRef.current.addStep(
+          e.stepId || e.step?.id,
+          e.step?.desc || `Step ${e.stepId}`,
+          e.actions || []
+        );
+      }
+      
+      // CRITICAL FIX: Use SequentialRenderer instead of old execChunk
       if (e.actions && e.actions.length > 0) {
-        execChunk(e);
+        console.log('[App] Routing', e.actions.length, 'actions to SequentialRenderer');
+        
+        // Route to SequentialRenderer via CanvasStage ref
+        if (canvasRef.current) {
+          canvasRef.current.processChunk({
+            type: 'actions',
+            actions: e.actions,
+            stepId: e.stepId || e.step?.id,
+            step: e.step,
+            plan: e.plan
+          });
+        } else {
+          console.error('[App] CanvasRef not available - cannot render!');
+        }
+        
         setCurrentStep(e.stepId || 0);
         setIsPlaying(true);
       }
@@ -104,6 +187,7 @@ export default function App() {
       socket.off('connect');
       socket.off('disconnect'); 
       socket.off('connect_error');
+      socket.off('clarification');
     };
   }, [socket]);
 
@@ -151,6 +235,116 @@ export default function App() {
     if (!sessionId) return;
     await fetch(`/api/session/${sessionId}/next`, { method: 'POST' });
   }
+
+  // Setup double-click screenshot when canvas is ready
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    
+    const stage = canvasRef.current.getStage();
+    const container = canvasRef.current.getContainer();
+    
+    if (!stage || !container) return;
+    
+    const cleanup = setupDoubleClickScreenshot(
+      stage,
+      container,
+      (capturedScreenshot: ScreenshotResult) => {
+        console.log('[App] Screenshot captured:', capturedScreenshot.width, 'x', capturedScreenshot.height);
+        setScreenshot(capturedScreenshot.dataUrl);
+        
+        // Show notification
+        const notification = document.createElement('div');
+        notification.textContent = '📸 Screenshot captured!';
+        notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 12px 20px;
+          border-radius: 8px;
+          font-weight: 600;
+          z-index: 10000;
+          animation: slideIn 0.3s ease-out;
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 2000);
+      }
+    );
+    
+    return cleanup;
+  }, [canvasRef.current]);
+
+  // Handle interruption
+  const handleInterrupt = () => {
+    if (!lectureStateRef.current) return;
+    
+    // Pause the lecture
+    if (canvasRef.current) {
+      canvasRef.current.pause();
+    }
+    
+    setIsInterrupted(true);
+    setIsPaused(true);
+    setIsPlaying(false);
+    setInterruptionVisible(true);
+    
+    // Mark as interrupted in state
+    lectureStateRef.current.interrupt(currentStep?.id || 'unknown');
+    lectureStateRef.current.startClarification();
+    
+    console.log('[App] Lecture interrupted for question');
+  };
+
+  // Handle question submission
+  const handleSubmitQuestion = async (question: string, screenshotData: string | null) => {
+    if (!sessionId) return;
+    
+    setIsGeneratingClarification(true);
+    
+    try {
+      console.log('[App] Submitting question:', question);
+      
+      const response = await fetch('http://localhost:3001/api/clarify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sessionId,
+          question,
+          screenshot: screenshotData
+        })
+      });
+      
+      const data = await response.json();
+      console.log('[App] Clarification response:', data);
+      
+      // Clarification will arrive via socket.on('clarification')
+    } catch (error) {
+      console.error('[App] Error submitting question:', error);
+      setIsGeneratingClarification(false);
+      alert('Failed to get clarification. Please try again.');
+    }
+  };
+
+  // Handle cancel interruption
+  const handleCancelInterruption = () => {
+    setInterruptionVisible(false);
+    setScreenshot(null);
+    
+    // Resume lecture
+    if (lectureStateRef.current) {
+      lectureStateRef.current.endClarification();
+      lectureStateRef.current.resume();
+    }
+    
+    if (canvasRef.current) {
+      canvasRef.current.resume();
+    }
+    
+    setIsInterrupted(false);
+    setIsPaused(false);
+    setIsPlaying(true);
+  };
 
 
   return (
@@ -223,17 +417,26 @@ export default function App() {
               <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
                 <button 
                   onClick={() => {
-                    canvasRef.current?.previousStep();
-                    setCurrentStepIndex(Math.max(0, currentStepIndex - 1));
+                    if (lectureStateRef.current?.canNavigate()) {
+                      const prevStep = lectureStateRef.current.navigateToStep(currentStepIndex - 1);
+                      if (prevStep && canvasRef.current) {
+                        canvasRef.current.processChunk({
+                          type: 'actions',
+                          actions: prevStep.actions,
+                          stepId: prevStep.stepId,
+                          stepTitle: prevStep.stepTitle
+                        });
+                      }
+                    }
                   }}
-                  disabled={currentStepIndex === 0 || !lectureComplete}
+                  disabled={currentStepIndex === 0 || !lectureStateRef.current?.canNavigate()}
                   style={{
                     padding: '6px 12px',
-                    background: currentStepIndex === 0 || !lectureComplete ? '#e0e0e0' : '#6c757d',
+                    background: currentStepIndex === 0 || !lectureStateRef.current?.canNavigate() ? '#e0e0e0' : '#6c757d',
                     color: 'white',
                     border: 'none',
                     borderRadius: 4,
-                    cursor: currentStepIndex === 0 || !lectureComplete ? 'not-allowed' : 'pointer'
+                    cursor: currentStepIndex === 0 || !lectureStateRef.current?.canNavigate() ? 'not-allowed' : 'pointer'
                   }}
                 >
                   ← Previous
@@ -268,20 +471,45 @@ export default function App() {
                 
                 <button 
                   onClick={() => {
-                    canvasRef.current?.nextStep();
-                    setCurrentStepIndex(Math.min(totalSteps - 1, currentStepIndex + 1));
+                    if (lectureStateRef.current?.canNavigate()) {
+                      const nextStep = lectureStateRef.current.navigateToStep(currentStepIndex + 1);
+                      if (nextStep && canvasRef.current) {
+                        canvasRef.current.processChunk({
+                          type: 'actions',
+                          actions: nextStep.actions,
+                          stepId: nextStep.stepId,
+                          stepTitle: nextStep.stepTitle
+                        });
+                      }
+                    }
                   }}
-                  disabled={currentStepIndex >= totalSteps - 1}
+                  disabled={currentStepIndex >= totalSteps - 1 || !lectureStateRef.current?.canNavigate()}
                   style={{
                     padding: '6px 12px',
-                    background: currentStepIndex >= totalSteps - 1 ? '#e0e0e0' : '#6c757d',
+                    background: currentStepIndex >= totalSteps - 1 || !lectureStateRef.current?.canNavigate() ? '#e0e0e0' : '#6c757d',
                     color: 'white',
                     border: 'none',
                     borderRadius: 4,
-                    cursor: currentStepIndex >= totalSteps - 1 ? 'not-allowed' : 'pointer'
+                    cursor: currentStepIndex >= totalSteps - 1 || !lectureStateRef.current?.canNavigate() ? 'not-allowed' : 'pointer'
                   }}
                 >
                   Next →
+                </button>
+                
+                <button 
+                  onClick={handleInterrupt}
+                  disabled={!isPlaying || isInterrupted}
+                  style={{
+                    padding: '6px 12px',
+                    background: !isPlaying || isInterrupted ? '#e0e0e0' : '#dc3545',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: 4,
+                    cursor: !isPlaying || isInterrupted ? 'not-allowed' : 'pointer',
+                    marginLeft: 'auto'
+                  }}
+                >
+                  ❓ Ask Question
                 </button>
               </div>
               
@@ -333,6 +561,16 @@ export default function App() {
         {/* Canvas Container */}
         <div style={{ flex: 1, minWidth: 600 }}>
           <CanvasStage ref={canvasRef} />
+          
+          {/* Interruption Panel */}
+          <InterruptionPanel
+            visible={interruptionVisible}
+            currentStep={currentStep?.desc || 'Unknown step'}
+            screenshot={screenshot}
+            onSubmitQuestion={handleSubmitQuestion}
+            onCancel={handleCancelInterruption}
+            isGenerating={isGeneratingClarification}
+          />
         </div>
       </div>
     </div>

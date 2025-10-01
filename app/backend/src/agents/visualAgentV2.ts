@@ -9,6 +9,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Action, PlanStep } from '../types';
 import { logger } from '../logger';
 import { VISUAL_TOOL_LIBRARY } from '../lib/visualTools';
+import { QualityEnforcer } from './qualityEnforcer';
 
 const MODEL = 'gemini-2.0-flash-exp';
 const TIMEOUT = 45000; // Allow time for intelligent tool selection
@@ -86,17 +87,19 @@ Tools for atoms, molecules, reactions:
 
 ### 5. MATHEMATICS
 Tools for graphs, geometry, equations:
-- drawGraph: Function plotting
-  Example: { op: "drawGraph", function: "sin(x)", xMin: -3.14, xMax: 3.14, yMin: -1, yMax: 1, showGrid: true, lineColor: "#3498db" }
+- drawCoordinateSystem: 2D/3D axes with grid (REQUIRED for graphs!)
+  Example: { op: "drawCoordinateSystem", type: "cartesian", xRange: [-5,5], yRange: [-5,5], showGrid: true, x: 0.5, y: 0.5 }
   
 - drawGeometry: Geometric shapes with measurements
   Example: { op: "drawGeometry", shape: "triangle", vertices: [[0.3,0.6], [0.7,0.6], [0.5,0.3]], showAngles: true, showSides: true }
   
-- drawLatex: Mathematical equations
+- drawLatex: Mathematical equations (beautifully rendered)
   Example: { op: "drawLatex", equation: "\\\\frac{dy}{dx} = \\\\lim_{h \\\\to 0} \\\\frac{f(x+h)-f(x)}{h}", x: 0.5, y: 0.3, size: 24 }
   
-- drawCoordinateSystem: 2D/3D axes
-  Example: { op: "drawCoordinateSystem", type: "cartesian", xRange: [-5,5], yRange: [-5,5], showGrid: true }
+- animate: For highlighting, transforming, or morphing math objects
+  Example: { op: "animate", target: "equation1", type: "highlight", duration: 1000 }
+
+NOTE: To plot functions, use drawCoordinateSystem + multiple drawCircle/drawRect to mark points, NOT drawGraph!
 
 ### 6. COMPUTER SCIENCE
 Tools for algorithms, data structures:
@@ -322,7 +325,38 @@ function parseAndValidate(response: string, context: ToolSelectionContext): Acti
   jsonStr = jsonStr.trim();
   
   try {
-    const operations = JSON.parse(jsonStr);
+    let operations;
+    
+    try {
+      // Try normal parsing first
+      operations = JSON.parse(jsonStr);
+    } catch (parseError) {
+      // JSON is incomplete - try to repair it
+      logger.warn(`[visualV2] JSON parse failed, attempting repair...`);
+      
+      // Common issue: Truncated array - missing closing bracket
+      if (jsonStr.startsWith('[') && !jsonStr.endsWith(']')) {
+        // Find the last complete object
+        let lastCompleteIdx = jsonStr.lastIndexOf('}');
+        if (lastCompleteIdx > 0) {
+          // Truncate to last complete object and close array
+          const repairedJson = jsonStr.substring(0, lastCompleteIdx + 1) + ']';
+          logger.info(`[visualV2] Attempting to parse ${repairedJson.length} chars (truncated from ${jsonStr.length})`);
+          
+          try {
+            operations = JSON.parse(repairedJson);
+            logger.info(`[visualV2] ✅ Successfully repaired truncated JSON! Recovered ${operations.length} operations.`);
+          } catch (repairError) {
+            logger.error(`[visualV2] Repair failed:`, repairError);
+            throw parseError; // Throw original error
+          }
+        } else {
+          throw parseError;
+        }
+      } else {
+        throw parseError;
+      }
+    }
     
     if (!Array.isArray(operations)) {
       throw new Error('Response is not an array');
@@ -442,7 +476,7 @@ export async function visualAgentV2(
       temperature: 0.9, // Higher creativity for better tool selection
       topP: 0.95,
       topK: 40,
-      maxOutputTokens: 8192,
+      maxOutputTokens: 16384, // ✅ INCREASED to prevent truncation!
     }
   });
   
@@ -480,6 +514,18 @@ export async function visualAgentV2(
         throw new Error('No valid operations generated');
       }
       
+      // QUALITY ENFORCEMENT - Validate 3Blue1Brown standards
+      const qualityReport = QualityEnforcer.validateActions(operations, step, topic);
+      QualityEnforcer.logReport(qualityReport, step, topic);
+      
+      if (!qualityReport.passed) {
+        // REJECT poor quality - force retry with feedback
+        logger.error(`[visualV2] Quality check FAILED (${qualityReport.score}%) - rejecting for retry`);
+        logger.error(`[visualV2] Issues: ${qualityReport.issues.join('; ')}`);
+        throw new Error(`Quality check failed: ${qualityReport.score}% (need 60%+)`);
+      }
+      
+      logger.info(`[visualV2] ✅ Quality check PASSED (${qualityReport.score}%) - excellent content!`);
       logger.info(`[visualV2] ✅ Successfully generated ${operations.length} operations for step ${step.id}`);
       
       return {

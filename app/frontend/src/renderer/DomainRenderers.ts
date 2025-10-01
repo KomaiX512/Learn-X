@@ -15,6 +15,23 @@ export class DomainRenderers {
     this.layer = layer;
   }
   
+  // ===== Helpers to keep coordinates safe =====
+  private toNum(v: any, fallback: number = 0): number {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : fallback;
+  }
+  private clamp(n: number, min: number, max: number): number {
+    return Math.max(min, Math.min(max, n));
+  }
+  
+  /**
+   * Update the layer to render to (CRITICAL for multi-step rendering)
+   */
+  public setLayer(layer: Konva.Layer): void {
+    this.layer = layer;
+    console.log('[DomainRenderers] Layer updated for new step');
+  }
+  
   /**
    * Draw a circuit element (op-amp, resistor, capacitor, etc.)
    */
@@ -215,17 +232,32 @@ export class DomainRenderers {
       group.add(value);
     }
     
-    // Animate appearance
+    // Animate appearance with timeout safety
     group.opacity(0);
     this.layer.add(group);
     
     await new Promise<void>(resolve => {
-      new Konva.Tween({
-        node: group,
-        opacity: 1,
-        duration: 0.3,
-        onFinish: resolve
-      }).play();
+      let resolved = false;
+      const safeResolve = () => {
+        if (!resolved) {
+          resolved = true;
+          resolve();
+        }
+      };
+      
+      setTimeout(safeResolve, 400); // 0.3s + buffer
+      
+      try {
+        const tween = new Konva.Tween({
+          node: group,
+          opacity: 1,
+          duration: 0.3,
+          onFinish: safeResolve
+        });
+        tween.play();
+      } catch (error) {
+        safeResolve();
+      }
     });
   }
   
@@ -302,40 +334,16 @@ export class DomainRenderers {
     
     this.layer.add(axis);
     
-    // Animate waveform drawing
+    // Animate waveform drawing with simple opacity fade instead of clip
     if (params.animate !== false) {
-      const clipPath = new Konva.Rect({
-        x: params.x * this.stage.width(),
-        y: (params.y - params.amplitude * 0.15) * this.stage.height(),
-        width: 0,
-        height: params.amplitude * 0.3 * this.stage.height()
-      });
-      
-      // TypeScript fix: use type assertion
-      (line as any).clipFunc((ctx: CanvasRenderingContext2D) => {
-        ctx.rect(
-          params.x * this.stage.width(),
-          (params.y - params.amplitude * 0.15) * this.stage.height(),
-          clipPath.width(),
-          params.amplitude * 0.3 * this.stage.height()
-        );
-      });
-      
+      line.opacity(0);
       this.layer.add(line);
       
       await new Promise<void>(resolve => {
         new Konva.Tween({
-          node: clipPath,
-          width: params.width * this.stage.width(),
-          duration: 0.8,
-          onUpdate: () => (line as any).clipFunc((ctx: CanvasRenderingContext2D) => {
-            ctx.rect(
-              params.x * this.stage.width(),
-              (params.y - params.amplitude * 0.15) * this.stage.height(),
-              clipPath.width(),
-              params.amplitude * 0.3 * this.stage.height()
-            );
-          }),
+          node: line,
+          opacity: 1,
+          duration: 0.5,
           onFinish: resolve
         }).play();
       });
@@ -443,42 +451,88 @@ export class DomainRenderers {
   }
   
   /**
-   * Draw force vector
+   * Draw force vector (supports both angle and dx/dy formats)
    */
   async drawForceVector(params: {
     x: number;
     y: number;
-    magnitude: number;
-    angle: number;
+    magnitude?: number;
+    angle?: number;
+    dx?: number;
+    dy?: number;
     label?: string;
     color?: string;
   }): Promise<void> {
-    const startX = params.x * this.stage.width();
-    const startY = params.y * this.stage.height();
-    const length = params.magnitude * this.stage.width() * 0.1;
-    const endX = startX + length * Math.cos(params.angle * Math.PI / 180);
-    const endY = startY - length * Math.sin(params.angle * Math.PI / 180);
+    const w = this.stage.width();
+    const h = this.stage.height();
+    // Defensive: coerce and validate coordinates (normalized input expected)
+    const sx = this.toNum(params.x, 0.5);
+    const sy = this.toNum(params.y, 0.5);
+    let startX = sx * w;
+    let startY = sy * h;
+    
+    let endX: number;
+    let endY: number;
+    
+    // Support both angle-based and dx/dy-based vectors
+    if (params.dx !== undefined && params.dy !== undefined) {
+      const dxn = this.toNum(params.dx, 0); // normalized delta in width units
+      const dyn = this.toNum(params.dy, 0); // normalized delta in height units
+      endX = startX + dxn * w;
+      endY = startY + dyn * h;
+    } else if (params.angle !== undefined) {
+      const length = this.toNum(params.magnitude, 1) * (Math.min(w, h)) * 0.1;
+      const ang = this.toNum(params.angle, 0) * Math.PI / 180;
+      endX = startX + length * Math.cos(ang);
+      endY = startY - length * Math.sin(ang);
+    } else {
+      // Fallback: short rightwards vector
+      endX = startX + Math.max(30, Math.min(80, w * 0.05));
+      endY = startY;
+    }
+    
+    // Clamp to stage bounds to avoid NaN/inf propagations
+    startX = this.clamp(startX, 0, w);
+    startY = this.clamp(startY, 0, h);
+    endX = this.clamp(endX, 0, w);
+    endY = this.clamp(endY, 0, h);
     
     const arrow = new Konva.Arrow({
       points: [startX, startY, endX, endY],
-      stroke: params.color || '#e74c3c',
-      strokeWidth: 3,
-      fill: params.color || '#e74c3c',
-      pointerLength: 10,
-      pointerWidth: 10
+      stroke: params.color || '#00ff00', // Bright green - highly visible
+      strokeWidth: 4,
+      fill: params.color || '#00ff00',
+      pointerLength: 12,
+      pointerWidth: 12
     });
     
     arrow.opacity(0);
     this.layer.add(arrow);
     
-    // Animate appearance
+    // Animate appearance with timeout safety
     await new Promise<void>(resolve => {
-      new Konva.Tween({
-        node: arrow,
-        opacity: 1,
-        duration: 0.3,
-        onFinish: resolve
-      }).play();
+      let resolved = false;
+      const safeResolve = () => {
+        if (!resolved) {
+          resolved = true;
+          resolve();
+        }
+      };
+      
+      setTimeout(safeResolve, 400); // 0.3s + buffer
+      
+      try {
+        const tween = new Konva.Tween({
+          node: arrow,
+          opacity: 1,
+          duration: 0.3,
+          onFinish: safeResolve
+        });
+        tween.play();
+      } catch (error) {
+        console.error('[DomainRenderers] Tween error:', error);
+        safeResolve();
+      }
     });
     
     // Add label
@@ -487,9 +541,11 @@ export class DomainRenderers {
         x: endX + 5,
         y: endY - 20,
         text: params.label,
-        fontSize: 14,
-        fill: params.color || '#e74c3c',
-        fontStyle: 'bold'
+        fontSize: 16,
+        fill: '#ffffff', // White text!
+        fontStyle: 'bold',
+        shadowColor: 'black',
+        shadowBlur: 4
       });
       this.layer.add(label);
     }
@@ -744,31 +800,51 @@ export class DomainRenderers {
   }
   
   /**
-   * Draw neural network visualization
+   * Draw neural network visualization (flexible params)
    */
   async drawNeuralNetwork(params: {
-    layers: number[];
+    layers: number[] | number[][];
     x: number;
     y: number;
-    width: number;
-    height: number;
+    width?: number;
+    height?: number;
+    showWeights?: boolean;
+    label?: string;
   }): Promise<void> {
-    const baseX = params.x * this.stage.width();
-    const baseY = params.y * this.stage.height();
-    const width = params.width * this.stage.width();
-    const height = params.height * this.stage.height();
+    // Defensive: validate and provide defaults
+    const baseX = (isNaN(params.x) ? 0.5 : params.x) * this.stage.width();
+    const baseY = (isNaN(params.y) ? 0.5 : params.y) * this.stage.height();
+    const width = (params.width || 0.3) * this.stage.width();  // Default 30% width
+    const height = (params.height || 0.2) * this.stage.height(); // Default 20% height
+    
+    // Handle nested array format [[5,5,1],[3,3,6]] → flatten to [5,3,12,10]
+    let layerSizes: number[];
+    if (params.layers.length > 0 && Array.isArray(params.layers[0])) {
+      // Nested format - take first element of each sub-array or sum
+      layerSizes = (params.layers as number[][]).map(layer => 
+        Array.isArray(layer) ? (layer.length > 0 ? layer[0] : 1) : layer
+      );
+    } else {
+      layerSizes = params.layers as number[];
+    }
+    
+    // Validate layer sizes
+    if (!layerSizes || layerSizes.length === 0) {
+      console.error('[DomainRenderers] Invalid layers for neural network:', params.layers);
+      return; // Skip rendering
+    }
     
     const group = new Konva.Group({ x: baseX, y: baseY });
     
-    const layerSpacing = width / (params.layers.length + 1);
+    const layerSpacing = width / (layerSizes.length + 1);
     
-    params.layers.forEach((neurons, layerIdx) => {
+    layerSizes.forEach((neurons, layerIdx) => {
       const x = layerSpacing * (layerIdx + 1);
       const nodeSpacing = height / (neurons + 1);
       
       // Draw connections to next layer
-      if (layerIdx < params.layers.length - 1) {
-        const nextNeurons = params.layers[layerIdx + 1];
+      if (layerIdx < layerSizes.length - 1) {
+        const nextNeurons = layerSizes[layerIdx + 1];
         const nextX = layerSpacing * (layerIdx + 2);
         
         for (let i = 0; i < neurons; i++) {
@@ -777,9 +853,9 @@ export class DomainRenderers {
             const y2 = height / (nextNeurons + 1) * (j + 1);
             group.add(new Konva.Line({
               points: [x, y1, nextX, y2],
-              stroke: '#bdc3c7',
-              strokeWidth: 1,
-              opacity: 0.3
+              stroke: '#00d9ff',  // Bright cyan - visible!
+              strokeWidth: 2,
+              opacity: 0.5
             }));
           }
         }
@@ -791,24 +867,56 @@ export class DomainRenderers {
         group.add(new Konva.Circle({
           x,
           y,
-          radius: 12,
-          fill: layerIdx === 0 ? '#3498db' : layerIdx === params.layers.length - 1 ? '#e74c3c' : '#95a5a6',
-          stroke: '#2c3e50',
+          radius: 15,  // Larger for visibility
+          fill: layerIdx === 0 ? '#00d9ff' : layerIdx === layerSizes.length - 1 ? '#00ff88' : '#ff6b9d',  // Bright colors!
+          stroke: '#ffffff',
           strokeWidth: 2
         }));
       }
     });
     
+    // Add label if provided
+    if (params.label) {
+      const label = new Konva.Text({
+        x: -width / 2,
+        y: height + 20,
+        text: params.label,
+        fontSize: 16,
+        fill: '#ffffff',  // White text!
+        fontStyle: 'bold',
+        width: width,
+        align: 'center'
+      });
+      group.add(label);
+    }
+    
     group.opacity(0);
     this.layer.add(group);
     
+    // Animate with timeout safety
     await new Promise<void>(resolve => {
-      new Konva.Tween({
-        node: group,
-        opacity: 1,
-        duration: 0.5,
-        onFinish: resolve
-      }).play();
+      let resolved = false;
+      const safeResolve = () => {
+        if (!resolved) {
+          resolved = true;
+          resolve();
+        }
+      };
+      
+      setTimeout(safeResolve, 600); // 0.5s + buffer
+      
+      try {
+        const tween = new Konva.Tween({
+          node: group,
+          opacity: 1,
+          duration: 0.5,
+          onFinish: safeResolve
+        });
+        tween.play();
+      } catch (error) {
+        console.error('[DomainRenderers] drawNeuralNetwork tween error:', error);
+        safeResolve();
+      }
     });
   }
   
@@ -1324,5 +1432,562 @@ export class DomainRenderers {
         onFinish: resolve
       }).play();
     });
+  }
+  
+  // ===================== MISSING V2 OPERATIONS - IMPLEMENT NOW =====================
+  
+  /**
+   * Draw a flowchart with nodes and connections
+   */
+  async drawFlowchart(params: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    const x = this.toNum(params.x, 0.5) * w;
+    const y = this.toNum(params.y, 0.5) * h;
+    
+    const group = new Konva.Group({ x, y });
+    
+    // Draw nodes
+    if (params.nodes && Array.isArray(params.nodes)) {
+      params.nodes.forEach((node: any, i: number) => {
+        const nodeX = this.toNum(node.x, 0.5) * w;
+        const nodeY = this.toNum(node.y, 0.5) * h;
+        
+        // Node rectangle
+        const rect = new Konva.Rect({
+          x: nodeX - 40,
+          y: nodeY - 20,
+          width: 80,
+          height: 40,
+          fill: node.type === 'decision' ? '#f39c12' : '#3498db',
+          stroke: '#2c3e50',
+          strokeWidth: 2,
+          cornerRadius: node.type === 'decision' ? 0 : 5
+        });
+        group.add(rect);
+        
+        // Label
+        if (node.label) {
+          const text = new Konva.Text({
+            x: nodeX - 35,
+            y: nodeY - 8,
+            text: node.label,
+            fontSize: 12,
+            fill: 'white',
+            width: 70,
+            align: 'center'
+          });
+          group.add(text);
+        }
+      });
+      
+      // Draw connections
+      if (params.connections && Array.isArray(params.connections)) {
+        params.connections.forEach((conn: any) => {
+          const fromNode = params.nodes[conn.from];
+          const toNode = params.nodes[conn.to];
+          if (fromNode && toNode) {
+            const arrow = new Konva.Arrow({
+              points: [
+                this.toNum(fromNode.x, 0.5) * w,
+                this.toNum(fromNode.y, 0.5) * h + 20,
+                this.toNum(toNode.x, 0.5) * w,
+                this.toNum(toNode.y, 0.5) * h - 20
+              ],
+              stroke: '#34495e',
+              strokeWidth: 2,
+              pointerLength: 8,
+              pointerWidth: 8,
+              fill: '#34495e'
+            });
+            group.add(arrow);
+          }
+        });
+      }
+    }
+    
+    this.layer.add(group);
+    this.layer.batchDraw();
+  }
+  
+  /**
+   * Draw a coordinate system (cartesian, polar, 3D)
+   */
+  async drawCoordinateSystem(params: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    const x = this.toNum(params.x, 0.5) * w;
+    const y = this.toNum(params.y, 0.5) * h;
+    const width = this.toNum(params.width, 0.3) * w;
+    const height = this.toNum(params.height, 0.3) * h;
+    
+    const group = new Konva.Group({ x, y });
+    
+    // Draw axes
+    const xAxis = new Konva.Line({
+      points: [0, height / 2, width, height / 2],
+      stroke: '#2c3e50',
+      strokeWidth: 2
+    });
+    group.add(xAxis);
+    
+    const yAxis = new Konva.Line({
+      points: [width / 2, 0, width / 2, height],
+      stroke: '#2c3e50',
+      strokeWidth: 2
+    });
+    group.add(yAxis);
+    
+    // Add grid if specified
+    if (params.showGrid !== false) {
+      const gridSpacing = width / 10;
+      for (let i = 1; i < 10; i++) {
+        // Vertical lines
+        const vLine = new Konva.Line({
+          points: [i * gridSpacing, 0, i * gridSpacing, height],
+          stroke: '#ecf0f1',
+          strokeWidth: 1
+        });
+        group.add(vLine);
+        
+        // Horizontal lines
+        const hLine = new Konva.Line({
+          points: [0, i * gridSpacing, width, i * gridSpacing],
+          stroke: '#ecf0f1',
+          strokeWidth: 1
+        });
+        group.add(hLine);
+      }
+    }
+    
+    // Add axis labels
+    if (params.xLabel) {
+      const xLabel = new Konva.Text({
+        x: width - 20,
+        y: height / 2 + 10,
+        text: params.xLabel,
+        fontSize: 14,
+        fill: '#2c3e50'
+      });
+      group.add(xLabel);
+    }
+    
+    if (params.yLabel) {
+      const yLabel = new Konva.Text({
+        x: width / 2 + 10,
+        y: 5,
+        text: params.yLabel,
+        fontSize: 14,
+        fill: '#2c3e50'
+      });
+      group.add(yLabel);
+    }
+    
+    this.layer.add(group);
+    this.layer.batchDraw();
+  }
+  
+  /**
+   * Draw geometric shapes (triangles, polygons, etc.)
+   */
+  async drawGeometry(params: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    const x = this.toNum(params.x, 0.5) * w;
+    const y = this.toNum(params.y, 0.5) * h;
+    const size = this.toNum(params.size, 50);
+    
+    let shape: Konva.Shape;
+    
+    switch (params.type) {
+      case 'triangle':
+        shape = new Konva.RegularPolygon({
+          x, y,
+          sides: 3,
+          radius: size,
+          fill: params.fill || 'transparent',
+          stroke: params.color || '#3498db',
+          strokeWidth: 3
+        });
+        break;
+      case 'square':
+        shape = new Konva.Rect({
+          x: x - size / 2,
+          y: y - size / 2,
+          width: size,
+          height: size,
+          fill: params.fill || 'transparent',
+          stroke: params.color || '#3498db',
+          strokeWidth: 3
+        });
+        break;
+      case 'pentagon':
+        shape = new Konva.RegularPolygon({
+          x, y,
+          sides: 5,
+          radius: size,
+          fill: params.fill || 'transparent',
+          stroke: params.color || '#3498db',
+          strokeWidth: 3
+        });
+        break;
+      case 'hexagon':
+        shape = new Konva.RegularPolygon({
+          x, y,
+          sides: 6,
+          radius: size,
+          fill: params.fill || 'transparent',
+          stroke: params.color || '#3498db',
+          strokeWidth: 3
+        });
+        break;
+      default:
+        shape = new Konva.Circle({
+          x, y,
+          radius: size,
+          fill: params.fill || 'transparent',
+          stroke: params.color || '#3498db',
+          strokeWidth: 3
+        });
+    }
+    
+    if (params.label) {
+      const group = new Konva.Group();
+      group.add(shape);
+      
+      const text = new Konva.Text({
+        x: x - 20,
+        y: y + size + 10,
+        text: params.label,
+        fontSize: 14,
+        fill: '#2c3e50',
+        width: 40,
+        align: 'center'
+      });
+      group.add(text);
+      
+      this.layer.add(group);
+    } else {
+      this.layer.add(shape);
+    }
+    
+    this.layer.batchDraw();
+  }
+  
+  /**
+   * Draw algorithm step visualization
+   */
+  async drawAlgorithmStep(params: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    const x = this.toNum(params.x, 0.5) * w;
+    const y = this.toNum(params.y, 0.5) * h;
+    
+    const group = new Konva.Group({ x, y });
+    
+    // Step box
+    const box = new Konva.Rect({
+      x: 0,
+      y: 0,
+      width: 200,
+      height: 60,
+      fill: '#ecf0f1',
+      stroke: '#3498db',
+      strokeWidth: 2,
+      cornerRadius: 5
+    });
+    group.add(box);
+    
+    // Step number
+    if (params.stepNumber) {
+      const num = new Konva.Circle({
+        x: 20,
+        y: 30,
+        radius: 15,
+        fill: '#3498db'
+      });
+      group.add(num);
+      
+      const numText = new Konva.Text({
+        x: 13,
+        y: 22,
+        text: String(params.stepNumber),
+        fontSize: 16,
+        fill: 'white',
+        fontStyle: 'bold'
+      });
+      group.add(numText);
+    }
+    
+    // Description
+    if (params.description) {
+      const desc = new Konva.Text({
+        x: 45,
+        y: 20,
+        text: params.description,
+        fontSize: 12,
+        fill: '#2c3e50',
+        width: 145,
+        wrap: 'word'
+      });
+      group.add(desc);
+    }
+    
+    this.layer.add(group);
+    this.layer.batchDraw();
+  }
+  
+  /**
+   * Draw trajectory path
+   */
+  async drawTrajectory(params: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    
+    // Build points array from params
+    const points: number[] = [];
+    if (params.points && Array.isArray(params.points)) {
+      params.points.forEach((pt: any) => {
+        points.push(this.toNum(pt.x || pt[0], 0.5) * w);
+        points.push(this.toNum(pt.y || pt[1], 0.5) * h);
+      });
+    } else if (params.path) {
+      // Parse path string if provided
+      const pathPoints = params.path.split(' ');
+      for (let i = 0; i < pathPoints.length; i += 2) {
+        points.push(parseFloat(pathPoints[i]) * w);
+        points.push(parseFloat(pathPoints[i + 1]) * h);
+      }
+    }
+    
+    if (points.length < 4) {
+      // Need at least 2 points
+      console.warn('[DomainRenderers] drawTrajectory: insufficient points');
+      return;
+    }
+    
+    const line = new Konva.Line({
+      points,
+      stroke: params.color || '#e74c3c',
+      strokeWidth: 3,
+      lineCap: 'round',
+      lineJoin: 'round',
+      dash: params.dashed ? [10, 5] : undefined
+    });
+    
+    this.layer.add(line);
+    
+    // Add arrow at end if specified
+    if (params.showArrow !== false) {
+      const lastIdx = points.length - 2;
+      const prevIdx = points.length - 4;
+      
+      const angle = Math.atan2(
+        points[lastIdx + 1] - points[prevIdx + 1],
+        points[lastIdx] - points[prevIdx]
+      );
+      
+      const arrowSize = 10;
+      const arrow = new Konva.Line({
+        points: [
+          points[lastIdx], points[lastIdx + 1],
+          points[lastIdx] - arrowSize * Math.cos(angle - Math.PI / 6), points[lastIdx + 1] - arrowSize * Math.sin(angle - Math.PI / 6),
+          points[lastIdx], points[lastIdx + 1],
+          points[lastIdx] - arrowSize * Math.cos(angle + Math.PI / 6), points[lastIdx + 1] - arrowSize * Math.sin(angle + Math.PI / 6)
+        ],
+        stroke: params.color || '#e74c3c',
+        strokeWidth: 3,
+        lineCap: 'round',
+        fill: params.color || '#e74c3c',
+        closed: true
+      });
+      this.layer.add(arrow);
+    }
+    
+    this.layer.batchDraw();
+  }
+  
+  /**
+   * Draw field lines (electric, magnetic, etc.)
+   */
+  async drawFieldLines(params: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    const centerX = this.toNum(params.x, 0.5) * w;
+    const centerY = this.toNum(params.y, 0.5) * h;
+    const numLines = params.numLines || 8;
+    const length = this.toNum(params.length, 0.2) * Math.min(w, h);
+    
+    const group = new Konva.Group({ x: centerX, y: centerY });
+    
+    for (let i = 0; i < numLines; i++) {
+      const angle = (i / numLines) * 2 * Math.PI;
+      const endX = length * Math.cos(angle);
+      const endY = length * Math.sin(angle);
+      
+      const line = new Konva.Arrow({
+        points: [0, 0, endX, endY],
+        stroke: params.color || '#f39c12',
+        strokeWidth: 2,
+        pointerLength: 8,
+        pointerWidth: 8,
+        fill: params.color || '#f39c12'
+      });
+      
+      group.add(line);
+    }
+    
+    // Add source circle
+    const source = new Konva.Circle({
+      x: 0,
+      y: 0,
+      radius: 10,
+      fill: params.color || '#f39c12',
+      stroke: '#2c3e50',
+      strokeWidth: 2
+    });
+    group.add(source);
+    
+    this.layer.add(group);
+    this.layer.batchDraw();
+  }
+  
+  /**
+   * Draw cell structure (biology)
+   */
+  async drawCellStructure(params: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    const x = this.toNum(params.x, 0.5) * w;
+    const y = this.toNum(params.y, 0.5) * h;
+    const radius = this.toNum(params.radius, 80);
+    
+    const group = new Konva.Group({ x, y });
+    
+    // Cell membrane
+    const membrane = new Konva.Circle({
+      x: 0,
+      y: 0,
+      radius,
+      stroke: '#27ae60',
+      strokeWidth: 3,
+      fill: 'rgba(39, 174, 96, 0.1)'
+    });
+    group.add(membrane);
+    
+    // Nucleus
+    const nucleus = new Konva.Circle({
+      x: 0,
+      y: 0,
+      radius: radius * 0.4,
+      fill: 'rgba(52, 152, 219, 0.3)',
+      stroke: '#3498db',
+      strokeWidth: 2
+    });
+    group.add(nucleus);
+    
+    // Mitochondria
+    for (let i = 0; i < 3; i++) {
+      const angle = (i / 3) * 2 * Math.PI;
+      const dist = radius * 0.6;
+      const mito = new Konva.Ellipse({
+        x: dist * Math.cos(angle),
+        y: dist * Math.sin(angle),
+        radiusX: 15,
+        radiusY: 8,
+        fill: 'rgba(231, 76, 60, 0.3)',
+        stroke: '#e74c3c',
+        strokeWidth: 1,
+        rotation: angle * 180 / Math.PI
+      });
+      group.add(mito);
+    }
+    
+    // Label
+    if (params.label) {
+      const text = new Konva.Text({
+        x: -radius,
+        y: radius + 15,
+        text: params.label,
+        fontSize: 14,
+        fill: '#2c3e50',
+        width: radius * 2,
+        align: 'center'
+      });
+      group.add(text);
+    }
+    
+    this.layer.add(group);
+    this.layer.batchDraw();
+  }
+  
+  /**
+   * Draw molecular structure
+   */
+  async drawMolecularStructure(params: any): Promise<void> {
+    // Similar to drawMolecule but with more complex structures
+    await this.drawMolecule(params);
+  }
+  
+  /**
+   * Draw chemical bond
+   */
+  async drawBond(params: any): Promise<void> {
+    const w = this.stage.width();
+    const h = this.stage.height();
+    const x1 = this.toNum(params.from?.[0] || params.x1, 0.3) * w;
+    const y1 = this.toNum(params.from?.[1] || params.y1, 0.5) * h;
+    const x2 = this.toNum(params.to?.[0] || params.x2, 0.7) * w;
+    const y2 = this.toNum(params.to?.[1] || params.y2, 0.5) * h;
+    
+    const bondType = params.type || params.bondType || 'single';
+    
+    if (bondType === 'double') {
+      // Double bond - two parallel lines
+      const offset = 3;
+      const line1 = new Konva.Line({
+        points: [x1, y1 - offset, x2, y2 - offset],
+        stroke: '#34495e',
+        strokeWidth: 2
+      });
+      const line2 = new Konva.Line({
+        points: [x1, y1 + offset, x2, y2 + offset],
+        stroke: '#34495e',
+        strokeWidth: 2
+      });
+      this.layer.add(line1);
+      this.layer.add(line2);
+    } else if (bondType === 'triple') {
+      // Triple bond
+      const offset = 4;
+      const line1 = new Konva.Line({
+        points: [x1, y1 - offset, x2, y2 - offset],
+        stroke: '#34495e',
+        strokeWidth: 2
+      });
+      const line2 = new Konva.Line({
+        points: [x1, y1, x2, y2],
+        stroke: '#34495e',
+        strokeWidth: 2
+      });
+      const line3 = new Konva.Line({
+        points: [x1, y1 + offset, x2, y2 + offset],
+        stroke: '#34495e',
+        strokeWidth: 2
+      });
+      this.layer.add(line1);
+      this.layer.add(line2);
+      this.layer.add(line3);
+    } else {
+      // Single bond
+      const line = new Konva.Line({
+        points: [x1, y1, x2, y2],
+        stroke: '#34495e',
+        strokeWidth: 3
+      });
+      this.layer.add(line);
+    }
+    
+    this.layer.batchDraw();
   }
 }

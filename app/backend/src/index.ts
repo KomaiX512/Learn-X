@@ -189,6 +189,80 @@ async function main() {
     }
   });
 
+  // Clarification endpoint - student asks question during lecture
+  app.post('/api/clarify', async (req, res) => {
+    try {
+      const { sessionId, question, screenshot } = req.body;
+      
+      if (!sessionId || !question) {
+        return res.status(400).json({ error: 'Missing sessionId or question' });
+      }
+
+      logger.info(`[api] Clarification request for session ${sessionId}: "${question}"`);
+
+      // Retrieve context from Redis
+      const planKey = `session:${sessionId}:plan`;
+      const currentStepKey = `session:${sessionId}:current_step`;
+      
+      const [planData, currentStepIndex] = await Promise.all([
+        redis.get(planKey),
+        redis.get(currentStepKey)
+      ]);
+
+      if (!planData) {
+        return res.status(404).json({ error: 'Session not found or plan not available' });
+      }
+
+      const plan = JSON.parse(planData);
+      const stepIndex = parseInt(currentStepIndex || '0', 10);
+      const currentStep = plan.steps[stepIndex];
+
+      if (!currentStep) {
+        return res.status(404).json({ error: 'Current step not found' });
+      }
+
+      // Get query from session
+      const queryKey = `session:${sessionId}:query`;
+      const query = await redis.get(queryKey) || 'Unknown topic';
+
+      // Import clarifier agent
+      const { clarifierAgent } = await import('./agents/clarifier');
+
+      // Generate clarification
+      const clarification = await clarifierAgent({
+        query,
+        step: currentStep,
+        question,
+        screenshot,
+        plan
+      });
+
+      logger.info(`[api] Clarification generated: ${clarification.actions.length} actions`);
+
+      // Emit clarification to the session
+      io.to(sessionId).emit('clarification', {
+        type: 'clarification',
+        title: clarification.title,
+        explanation: clarification.explanation,
+        actions: clarification.actions,
+        question,
+        stepId: `clarification-${Date.now()}`
+      });
+
+      res.json({ 
+        success: true, 
+        clarification: {
+          title: clarification.title,
+          explanation: clarification.explanation,
+          actionsCount: clarification.actions.length
+        }
+      });
+    } catch (err: any) {
+      logger.error(`[api] Error in clarification: ${err}`);
+      res.status(500).json({ error: String(err) });
+    }
+  });
+
   server.listen(PORT, () => {
     logger.debug(`Backend listening on http://localhost:${PORT}`);
   });

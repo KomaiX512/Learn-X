@@ -1,0 +1,268 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 13:13:11 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+🧹 Clearing stale job queues on startup...
+2025-10-01T08:13:12.773Z [debug] NEW Plan worker created
+2025-10-01T08:13:12.775Z [debug] NEW Gen worker created
+2025-10-01T08:13:12.775Z [debug] NEW Parallel worker created
+2025-10-01T08:13:12.788Z [debug] Backend listening on http://localhost:3001
+2025-10-01T08:14:12.788Z [debug] [monitor] Metrics updated:
+2025-10-01T08:14:58.657Z [debug] Received request on /api/query {"body":{"query":"What is nodal analysis?","sessionId":"debug_1759306498601"}}
+2025-10-01T08:14:58.657Z [debug] [orchestrator] Enqueuing plan for session debug_1759306498601
+2025-10-01T08:14:58.661Z [debug] [socket] New connection: UFu82mWRuNDSeynbAAAB
+2025-10-01T08:14:58.663Z [debug] [socket] Socket UFu82mWRuNDSeynbAAAB joined session debug_1759306498601
+2025-10-01T08:14:58.663Z [debug] [socket] Socket UFu82mWRuNDSeynbAAAB is now in rooms: UFu82mWRuNDSeynbAAAB, debug_1759306498601
+2025-10-01T08:14:58.665Z [debug] [orchestrator] Plan job added with id 104 for session debug_1759306498601
+=== NEW PLAN WORKER STARTED ===
+Job data: {"query":"What is nodal analysis?","sessionId":"debug_1759306498601"}
+2025-10-01T08:14:58.667Z [debug] [planWorker] Received job: plan id=104
+2025-10-01T08:14:58.667Z [debug] [plan] START: session=debug_1759306498601 query=What is nodal analysis?
+2025-10-01T08:14:58.667Z [debug] [monitor] Started tracking request debug_1759306498601
+2025-10-01T08:14:58.669Z [debug] [cache] MISS - No cached plan for query: "What is nodal analysis?..."
+2025-10-01T08:14:58.670Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-01T08:14:58.695Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-01T08:15:12.789Z [debug] [monitor] Metrics updated:
+2025-10-01T08:15:21.863Z [debug] [planner] Received response from Gemini in 23193ms
+2025-10-01T08:15:21.864Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-01T08:15:21.864Z [debug] [monitor] Plan generation for debug_1759306498601 took 23196ms
+2025-10-01T08:15:21.866Z [debug] [cache] Cached plan for query: "What is nodal analysis?..."
+=== NEW STRUCTURED PLAN ===
+Session: debug_1759306498601
+Query: What is nodal analysis?
+Plan title: The GPS for Electricity: Understanding Nodal Analysis
+Plan subtitle: Discover how a simple idea about conservation can unravel the mysteries of any electrical circuit.
+Plan toc: [
+  {
+    minute: 1,
+    title: "The Circuit's Secret Map",
+    summary: 'Why complex circuits seem unsolvable and why we need a systematic approach.'
+  },
+  {
+    minute: 2,
+    title: 'Flow & Pressure: The Intuition',
+    summary: 'Building core mental models with analogies of water flow and elevation.'
+  },
+  {
+    minute: 3,
+    title: 'Equations of Balance',
+    summary: "Formalizing KCL and Ohm's Law into solvable systems of equations."
+  },
+  {
+    minute: 4,
+    title: 'Navigating Tricky Terrain',
+    summary: 'Exploring supernodes, voltage sources, and advanced circuit elements.'
+  },
+  {
+    minute: 5,
+    title: 'From Theory to Real World',
+    summary: 'Connecting all concepts into a unified understanding for practical circuit design.'
+  }
+]
+Plan steps count: 5
+Step 0: id=1, tag=hook, desc="Imagine a bewildering spaghetti of wires, resistors, and batteries – an electronic circuit so complex you can't possibly 'see' how much current flows through any given branch or what the voltage is at an arbitrary point. How do engineers design everything from microchips to power grids without guessing? We need a universal 'GPS' for electricity, a method to systematically map the exact 'electrical altitude' (voltage) at every critical junction. This initial visual presents a chaotic, dense circuit diagram, emphasizing the overwhelming number of unknowns and the perceived impossibility of solving it by intuition alone, sparking the 'why' for a better method."
+Step 1: id=2, tag=intuition, desc="Let's build intuition from first principles. Think of electricity like water flowing through pipes. The 'pipes' are wires, and 'pumps' are voltage sources. Junctions are where pipes meet. The fundamental idea is simple: water flowing *into* a junction must equal water flowing *out* of it – water doesn't just disappear! Similarly, electric charge is conserved. This visual uses animated water flow through a simple network of pipes and valves (resistors), showing how flow balances at junctions. Then, it transitions to a basic electrical circuit, highlighting nodes as points where multiple components connect, establishing the reference node (ground) as 'sea level' (0V potential)."
+Step 2: id=3, tag=formalism, desc="Now, let's turn our water analogy into precise mathematics. For every 'junction' (node) in our circuit, we apply Kirchhoff's Current Law (KCL): the sum of currents entering a node equals the sum of currents leaving it (or, all currents *leaving* a node sum to zero). We then use Ohm's Law (I = V/R) to express these currents in terms of the unknown node voltages and known resistances. This step visually walks through a small circuit, highlighting an unknown node. It animates the formulation of the KCL equation for that node, showing how each current term transforms into (V_node - V_neighbor) / R. Finally, it demonstrates how these individual KCL equations combine into a solvable system of linear equations, possibly hinting at a matrix representation."
+Step 3: id=4, tag=exploration, desc="What happens when the circuit presents challenges, like a voltage source *between* two unknown nodes instead of connected to ground? This introduces the elegant concept of a 'supernode,' where we treat multiple nodes connected by a voltage source as a single, larger node for KCL purposes. We also explore how to handle current sources, and delve into scenarios with dependent sources or non-ideal components. Visualizations will dynamically adjust the circuit for each scenario: highlighting a supernode by enclosing it with a dashed line, showing how current sources directly add to the KCL equation, and briefly demonstrating the power of nodal analysis for more complex, non-linear element modeling, hinting at its use in advanced circuit simulation software."
+Step 4: id=5, tag=mastery, desc="We've journeyed from a tangled mess to a systematic solution. Nodal analysis is more than just a calculation method; it's a powerful framework for understanding and designing virtually any electrical circuit. By consistently applying KCL and Ohm's Law, we transform a seemingly intractable physical problem into a well-defined set of linear equations, revealing all the critical voltages. This final synthesis revisits the initial complex circuit and visually applies the nodal analysis process step-by-step, showing how the matrix solution provides all the unknown node voltages. It then connects this mastery to real-world applications: from the design of integrated circuits in your smartphone to the vast power grids that light our cities, illustrating how this elegant mathematical tool underpins modern electrical engineering."
+=== END NEW STRUCTURED PLAN ===
+2025-10-01T08:15:21.868Z [debug] [plan] OK: session=debug_1759306498601 plan received with 5 steps
+2025-10-01T08:15:21.870Z [debug] [plan] Enqueuing PARALLEL generation of all 5 steps
+2025-10-01T08:15:21.874Z [debug] [plan] END: session=debug_1759306498601
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 104
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+2025-10-01T08:15:21.881Z [info] [parallel] ⚡ STARTING parallel generation for 5 steps (session: debug_1759306498601)
+2025-10-01T08:15:21.884Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-01T08:15:21.885Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-01T08:15:21.885Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-01T08:15:21.885Z [debug] [cache] MISS - No cached chunk for step 4
+2025-10-01T08:15:21.885Z [debug] [cache] MISS - No cached chunk for step 5
+2025-10-01T08:15:21.886Z [info] [codegenV2] Starting generation for step 1: hook
+2025-10-01T08:15:21.886Z [debug] [codegenV2] Attempt 1/3 for step 1
+2025-10-01T08:15:21.887Z [info] [visualV2] Generating visualization for step 1: hook
+2025-10-01T08:15:21.887Z [info] [visualV2] Topic: "What is nodal analysis?"
+2025-10-01T08:15:21.887Z [debug] [visualV2] Attempt 1/2
+2025-10-01T08:15:21.890Z [info] [codegenV2] Starting generation for step 2: intuition
+2025-10-01T08:15:21.890Z [debug] [codegenV2] Attempt 1/3 for step 2
+2025-10-01T08:15:21.890Z [info] [visualV2] Generating visualization for step 2: intuition
+2025-10-01T08:15:21.890Z [info] [visualV2] Topic: "What is nodal analysis?"
+2025-10-01T08:15:21.890Z [debug] [visualV2] Attempt 1/2
+2025-10-01T08:15:21.891Z [info] [codegenV2] Starting generation for step 3: formalism
+2025-10-01T08:15:21.891Z [debug] [codegenV2] Attempt 1/3 for step 3
+2025-10-01T08:15:21.891Z [info] [visualV2] Generating visualization for step 3: formalism
+2025-10-01T08:15:21.892Z [info] [visualV2] Topic: "What is nodal analysis?"
+2025-10-01T08:15:21.892Z [debug] [visualV2] Attempt 1/2
+2025-10-01T08:15:21.893Z [info] [codegenV2] Starting generation for step 4: exploration
+2025-10-01T08:15:21.893Z [debug] [codegenV2] Attempt 1/3 for step 4
+2025-10-01T08:15:21.893Z [info] [visualV2] Generating visualization for step 4: exploration
+2025-10-01T08:15:21.893Z [info] [visualV2] Topic: "What is nodal analysis?"
+2025-10-01T08:15:21.893Z [debug] [visualV2] Attempt 1/2
+2025-10-01T08:15:21.894Z [info] [codegenV2] Starting generation for step 5: mastery
+2025-10-01T08:15:21.894Z [debug] [codegenV2] Attempt 1/3 for step 5
+2025-10-01T08:15:21.894Z [info] [visualV2] Generating visualization for step 5: mastery
+2025-10-01T08:15:21.894Z [info] [visualV2] Topic: "What is nodal analysis?"
+2025-10-01T08:15:21.894Z [debug] [visualV2] Attempt 1/2
+2025-10-01T08:15:32.971Z [debug] [visualV2] Received response (4091 chars)
+2025-10-01T08:15:32.972Z [info] [visualV2] Generated 32 valid operations
+2025-10-01T08:15:32.972Z [info] [visualV2] Domain-specific operations: 28/32 (88%)
+2025-10-01T08:15:32.972Z [info] [visualV2] Limits: titles=1/1, labels=2/5, delays=1/3
+2025-10-01T08:15:32.973Z [info] [visualV2] ✅ Successfully generated 88% domain-specific operations
+2025-10-01T08:15:32.973Z [info] [visualV2] ✅ Successfully generated 32 operations for step 1
+2025-10-01T08:15:32.973Z [debug] [codegenV2] Generated 32 operations
+2025-10-01T08:15:32.973Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-10-01T08:15:32.974Z [info] [codegenV2] ✅ Successfully generated 32 operations for step 1
+2025-10-01T08:15:32.974Z [debug] compilerRouter: routing to js
+2025-10-01T08:15:32.975Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-01T08:15:32.975Z [debug] [debugger] Chunk type: actions
+2025-10-01T08:15:32.975Z [debug] [debugger] Has actions: true
+2025-10-01T08:15:32.975Z [debug] [debugger] Actions count: 32
+2025-10-01T08:15:32.975Z [debug] [debugger] Chunk is valid with 32 actions, allowing all for rich visualizations
+2025-10-01T08:15:32.977Z [debug] [cache] Cached chunk for query step 1
+2025-10-01T08:15:32.977Z [debug] [monitor] Step 1 generation for debug_1759306498601 took 11094ms
+2025-10-01T08:15:32.977Z [debug] [parallel] Step 1 generated in 11094ms
+2025-10-01T08:15:33.648Z [debug] [visualV2] Received response (4387 chars)
+2025-10-01T08:15:33.648Z [info] [visualV2] Generated 34 valid operations
+2025-10-01T08:15:33.648Z [info] [visualV2] Domain-specific operations: 26/34 (76%)
+2025-10-01T08:15:33.648Z [info] [visualV2] Limits: titles=1/1, labels=4/5, delays=1/3
+2025-10-01T08:15:33.648Z [info] [visualV2] ✅ Successfully generated 76% domain-specific operations
+2025-10-01T08:15:33.648Z [info] [visualV2] ✅ Successfully generated 34 operations for step 5
+2025-10-01T08:15:33.648Z [debug] [codegenV2] Generated 34 operations
+2025-10-01T08:15:33.648Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-10-01T08:15:33.649Z [info] [codegenV2] ✅ Successfully generated 34 operations for step 5
+2025-10-01T08:15:33.649Z [debug] compilerRouter: routing to js
+2025-10-01T08:15:33.649Z [debug] [debugger] START: Received chunk for stepId=5
+2025-10-01T08:15:33.649Z [debug] [debugger] Chunk type: actions
+2025-10-01T08:15:33.649Z [debug] [debugger] Has actions: true
+2025-10-01T08:15:33.649Z [debug] [debugger] Actions count: 34
+2025-10-01T08:15:33.649Z [debug] [debugger] Chunk is valid with 34 actions, allowing all for rich visualizations
+2025-10-01T08:15:33.651Z [debug] [cache] Cached chunk for query step 5
+2025-10-01T08:15:33.651Z [debug] [monitor] Step 5 generation for debug_1759306498601 took 11767ms
+2025-10-01T08:15:33.651Z [debug] [parallel] Step 5 generated in 11767ms
+2025-10-01T08:15:34.900Z [debug] [visualV2] Received response (4647 chars)
+2025-10-01T08:15:34.901Z [info] [visualV2] Generated 34 valid operations
+2025-10-01T08:15:34.901Z [info] [visualV2] Domain-specific operations: 29/34 (85%)
+2025-10-01T08:15:34.901Z [info] [visualV2] Limits: titles=1/1, labels=4/5, delays=0/3
+2025-10-01T08:15:34.901Z [info] [visualV2] ✅ Successfully generated 85% domain-specific operations
+2025-10-01T08:15:34.901Z [info] [visualV2] ✅ Successfully generated 34 operations for step 4
+2025-10-01T08:15:34.901Z [debug] [codegenV2] Generated 34 operations
+2025-10-01T08:15:34.901Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-10-01T08:15:34.902Z [info] [codegenV2] ✅ Successfully generated 34 operations for step 4
+2025-10-01T08:15:34.902Z [debug] compilerRouter: routing to js
+2025-10-01T08:15:34.902Z [debug] [debugger] START: Received chunk for stepId=4
+2025-10-01T08:15:34.902Z [debug] [debugger] Chunk type: actions
+2025-10-01T08:15:34.902Z [debug] [debugger] Has actions: true
+2025-10-01T08:15:34.902Z [debug] [debugger] Actions count: 34
+2025-10-01T08:15:34.902Z [debug] [debugger] Chunk is valid with 34 actions, allowing all for rich visualizations
+2025-10-01T08:15:34.903Z [debug] [cache] Cached chunk for query step 4
+2025-10-01T08:15:34.904Z [debug] [monitor] Step 4 generation for debug_1759306498601 took 13020ms
+2025-10-01T08:15:34.904Z [debug] [parallel] Step 4 generated in 13020ms
+2025-10-01T08:15:36.847Z [debug] [visualV2] Received response (5192 chars)
+2025-10-01T08:15:36.848Z [info] [visualV2] Generated 39 valid operations
+2025-10-01T08:15:36.848Z [info] [visualV2] Domain-specific operations: 29/39 (74%)
+2025-10-01T08:15:36.848Z [info] [visualV2] Limits: titles=1/1, labels=5/5, delays=2/3
+2025-10-01T08:15:36.848Z [info] [visualV2] ✅ Successfully generated 74% domain-specific operations
+2025-10-01T08:15:36.848Z [info] [visualV2] ✅ Successfully generated 39 operations for step 3
+2025-10-01T08:15:36.848Z [debug] [codegenV2] Generated 39 operations
+2025-10-01T08:15:36.848Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-10-01T08:15:36.848Z [info] [codegenV2] ✅ Successfully generated 39 operations for step 3
+2025-10-01T08:15:36.848Z [debug] compilerRouter: routing to js
+2025-10-01T08:15:36.848Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-01T08:15:36.848Z [debug] [debugger] Chunk type: actions
+2025-10-01T08:15:36.849Z [debug] [debugger] Has actions: true
+2025-10-01T08:15:36.849Z [debug] [debugger] Actions count: 39
+2025-10-01T08:15:36.849Z [debug] [debugger] Chunk is valid with 39 actions, allowing all for rich visualizations
+2025-10-01T08:15:36.850Z [debug] [cache] Cached chunk for query step 3
+2025-10-01T08:15:36.850Z [debug] [monitor] Step 3 generation for debug_1759306498601 took 14967ms
+2025-10-01T08:15:36.850Z [debug] [parallel] Step 3 generated in 14967ms
+2025-10-01T08:15:37.686Z [debug] [visualV2] Received response (6019 chars)
+2025-10-01T08:15:37.687Z [info] [visualV2] Generated 41 valid operations
+2025-10-01T08:15:37.687Z [info] [visualV2] Domain-specific operations: 36/41 (88%)
+2025-10-01T08:15:37.687Z [info] [visualV2] Limits: titles=1/1, labels=3/5, delays=1/3
+2025-10-01T08:15:37.687Z [info] [visualV2] ✅ Successfully generated 88% domain-specific operations
+2025-10-01T08:15:37.687Z [info] [visualV2] ✅ Successfully generated 41 operations for step 2
+2025-10-01T08:15:37.687Z [debug] [codegenV2] Generated 41 operations
+2025-10-01T08:15:37.687Z [debug] [codegenV2] Applying anti-overlap layout...
+2025-10-01T08:15:37.688Z [info] [codegenV2] ✅ Successfully generated 41 operations for step 2
+2025-10-01T08:15:37.688Z [debug] compilerRouter: routing to js
+2025-10-01T08:15:37.688Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-01T08:15:37.688Z [debug] [debugger] Chunk type: actions
+2025-10-01T08:15:37.688Z [debug] [debugger] Has actions: true
+2025-10-01T08:15:37.688Z [debug] [debugger] Actions count: 41
+2025-10-01T08:15:37.688Z [debug] [debugger] Chunk is valid with 41 actions, allowing all for rich visualizations
+2025-10-01T08:15:37.689Z [debug] [cache] Cached chunk for query step 2
+2025-10-01T08:15:37.689Z [debug] [monitor] Step 2 generation for debug_1759306498601 took 15806ms
+2025-10-01T08:15:37.689Z [debug] [parallel] Step 2 generated in 15806ms
+2025-10-01T08:15:37.689Z [debug] [parallel] Parallel generation complete: 5/5 successful in 15806ms
+2025-10-01T08:15:37.690Z [debug] [monitor] Completed request debug_1759306498601 in 39023ms (success: true)
+2025-10-01T08:15:37.690Z [debug] [parallel] Emitted plan for session debug_1759306498601
+2025-10-01T08:15:37.690Z [debug] [parallel] Checking cache for step 1: session:debug_1759306498601:step:1:chunk
+2025-10-01T08:15:37.691Z [debug] [parallel] Step 1 cached: YES (length: 2392)
+2025-10-01T08:15:37.691Z [debug] [parallel] Step 1 has 32 actions
+2025-10-01T08:15:37.693Z [info] [parallel] ✅ Emitted step 1 with 32 actions to session debug_1759306498601
+2025-10-01T08:15:37.693Z [debug] [parallel] Checking cache for step 2: session:debug_1759306498601:step:2:chunk
+2025-10-01T08:15:37.693Z [debug] [parallel] Step 2 cached: YES (length: 3648)
+2025-10-01T08:15:37.694Z [debug] [parallel] Step 2 has 41 actions
+2025-10-01T08:15:37.795Z [info] [parallel] ✅ Emitted step 2 with 41 actions to session debug_1759306498601
+2025-10-01T08:15:37.795Z [debug] [parallel] Checking cache for step 3: session:debug_1759306498601:step:3:chunk
+2025-10-01T08:15:37.795Z [debug] [parallel] Step 3 cached: YES (length: 2970)
+2025-10-01T08:15:37.795Z [debug] [parallel] Step 3 has 39 actions
+2025-10-01T08:15:37.996Z [info] [parallel] ✅ Emitted step 3 with 39 actions to session debug_1759306498601
+2025-10-01T08:15:37.996Z [debug] [parallel] Checking cache for step 4: session:debug_1759306498601:step:4:chunk
+2025-10-01T08:15:37.997Z [debug] [parallel] Step 4 cached: YES (length: 2654)
+2025-10-01T08:15:37.997Z [debug] [parallel] Step 4 has 34 actions
+2025-10-01T08:15:38.298Z [info] [parallel] ✅ Emitted step 4 with 34 actions to session debug_1759306498601
+2025-10-01T08:15:38.299Z [debug] [parallel] Checking cache for step 5: session:debug_1759306498601:step:5:chunk
+2025-10-01T08:15:38.299Z [debug] [parallel] Step 5 cached: YES (length: 2699)
+2025-10-01T08:15:38.300Z [debug] [parallel] Step 5 has 34 actions
+2025-10-01T08:15:38.703Z [info] [parallel] ✅ Emitted step 5 with 34 actions to session debug_1759306498601
+2025-10-01T08:15:38.703Z [debug] [parallel] All steps scheduled for emission
+2025-10-01T08:15:38.704Z [debug] [parallel] Job complete for session debug_1759306498601
+2025-10-01T08:16:12.791Z [debug] [monitor] Metrics updated:
+2025-10-01T08:17:12.792Z [debug] [monitor] Metrics updated:
+2025-10-01T08:18:12.798Z [debug] [monitor] Metrics updated:
+2025-10-01T08:19:12.806Z [debug] [monitor] Metrics updated:
+[INFO] 13:19:24 Restarting: /home/komail/LeaF/app/backend/src/agents/visual.ts has been modified
+2025-10-01T08:19:24.874Z [debug] Shutting down server...
+2025-10-01T08:20:12.812Z [debug] [monitor] Metrics updated:
+2025-10-01T08:21:12.817Z [debug] [monitor] Metrics updated:
+2025-10-01T08:22:12.820Z [debug] [monitor] Metrics updated:
+2025-10-01T08:23:12.821Z [debug] [monitor] Metrics updated:
+2025-10-01T08:24:12.824Z [debug] [monitor] Metrics updated:
+2025-10-01T08:24:58.729Z [debug] [socket] Socket UFu82mWRuNDSeynbAAAB disconnected: client namespace disconnect
+2025-10-01T08:24:58.735Z [debug] Server shut down.
+🧹 Clearing stale job queues on startup...
+2025-10-01T08:24:59.148Z [debug] NEW Plan worker created
+2025-10-01T08:24:59.150Z [debug] NEW Gen worker created
+2025-10-01T08:24:59.150Z [debug] NEW Parallel worker created
+2025-10-01T08:24:59.158Z [debug] Backend listening on http://localhost:3001
+2025-10-01T08:25:59.164Z [debug] [monitor] Metrics updated:
+2025-10-01T08:26:59.180Z [debug] [monitor] Metrics updated:
+[INFO] 13:27:23 Restarting: /home/komail/LeaF/app/backend/src/agents/visual.ts has been modified
+2025-10-01T08:27:23.662Z [debug] Shutting down server...
+2025-10-01T08:27:23.662Z [debug] Server shut down.
+🧹 Clearing stale job queues on startup...
+2025-10-01T08:27:24.077Z [debug] NEW Plan worker created
+2025-10-01T08:27:24.078Z [debug] NEW Gen worker created
+2025-10-01T08:27:24.078Z [debug] NEW Parallel worker created
+2025-10-01T08:27:24.087Z [debug] Backend listening on http://localhost:3001
+[INFO] 13:28:16 Restarting: /home/komail/LeaF/app/backend/src/agents/visual.ts has been modified
+2025-10-01T08:28:16.271Z [debug] Shutting down server...
+2025-10-01T08:28:16.272Z [debug] Server shut down.
+🧹 Clearing stale job queues on startup...
+2025-10-01T08:28:16.656Z [debug] NEW Plan worker created
+2025-10-01T08:28:16.657Z [debug] NEW Gen worker created
+2025-10-01T08:28:16.658Z [debug] NEW Parallel worker created
+2025-10-01T08:28:16.667Z [debug] Backend listening on http://localhost:3001
+2025-10-01T08:29:16.672Z [debug] [monitor] Metrics updated:
+2025-10-01T08:30:16.687Z [debug] [monitor] Metrics updated:
+2025-10-01T08:31:16.701Z [debug] [monitor] Metrics updated:
+2025-10-01T08:32:06.533Z [debug] Shutting down server...
+2025-10-01T08:32:06.534Z [debug] Server shut down.

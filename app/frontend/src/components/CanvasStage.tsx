@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react';
 import Konva from 'konva';
-import { initRenderer } from '../renderer';
 import { SequentialRenderer } from '../renderer/SequentialRenderer';
 
 export interface CanvasStageRef {
@@ -9,6 +8,8 @@ export interface CanvasStageRef {
   nextStep: () => void;
   previousStep: () => void;
   processChunk: (chunk: any) => void;
+  getStage: () => Konva.Stage | null;
+  getContainer: () => HTMLDivElement | null;
 }
 
 const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
@@ -24,7 +25,9 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
     resume: () => sequentialRendererRef.current?.resume(),
     nextStep: () => sequentialRendererRef.current?.nextStep(),
     previousStep: () => sequentialRendererRef.current?.previousStep(),
-    processChunk: (chunk: any) => sequentialRendererRef.current?.processChunk(chunk)
+    processChunk: (chunk: any) => sequentialRendererRef.current?.processChunk(chunk),
+    getStage: () => stageRef.current,
+    getContainer: () => scrollContainerRef.current
   }));
   // Fixed aspect ratio canvas dimensions
   const ASPECT_RATIO = 16 / 10; // 16:10 aspect ratio
@@ -61,20 +64,8 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Initialize stage when both container and size are ready
+  // Initialize stage ONCE when component mounts - NEVER destroy during rendering!
   useEffect(() => {
-    // Clean up previous stage if it exists
-    if (stageRef.current) {
-      console.log('[CanvasStage] Cleaning up previous stage');
-      if (sequentialRendererRef.current) {
-        sequentialRendererRef.current.cleanup?.();
-      }
-      stageRef.current.destroy();
-      stageRef.current = null;
-      sequentialRendererRef.current = null;
-      delete (window as any).sequentialRenderer;
-    }
-
     // Check prerequisites
     if (!containerRef.current || !overlayRef.current) {
       console.log('[CanvasStage] Container not ready');
@@ -85,7 +76,13 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
       return;
     }
 
-    console.log('[CanvasStage] Creating Konva stage');
+    // CRITICAL: Only create stage if it doesn't exist
+    if (stageRef.current) {
+      console.log('[CanvasStage] Stage already exists - skipping recreation');
+      return;
+    }
+
+    console.log('[CanvasStage] Creating Konva stage (ONCE)');
     console.log('[CanvasStage] Container:', containerRef.current);
     console.log('[CanvasStage] Size:', size.w, 'x', size.h);
     
@@ -107,27 +104,13 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
         
         stageRef.current = stage;
         console.log('[CanvasStage] Stage created successfully');
-        
-        // Create a layer and add a test circle
-        const layer = new Konva.Layer();
-        const testCircle = new Konva.Circle({
-          x: size.w / 2,
-          y: size.h / 2,
-          radius: 30,
-          fill: 'blue',
-          stroke: 'black',
-          strokeWidth: 2
-        });
-        layer.add(testCircle);
-        stage.add(layer);
-        layer.draw();
-        
-        console.log('[CanvasStage] Test circle added');
         console.log('[CanvasStage] Canvas element exists:', !!document.querySelector(`#${containerId} canvas`));
         
         // Initialize sequential renderer for optimized playback
         sequentialRendererRef.current = new SequentialRenderer({
-          canvasId: containerId,
+          // Reuse the stage we just created; do NOT create a second stage
+          stage: stage,
+          overlay: overlayRef.current!,
           width: size.w,
           height: size.h,
           onStepComplete: (stepId) => {
@@ -140,9 +123,6 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
         
         (window as any).sequentialRenderer = sequentialRendererRef.current;
         
-        // Also initialize standard renderer for compatibility
-        initRenderer(stage, overlayRef.current);
-        
         console.log('[CanvasStage] Sequential renderer initialized');
         
         // Force initial draw to ensure canvas is visible
@@ -152,13 +132,29 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
         console.error('[CanvasStage] Failed to create stage:', error);
       }
     }, 100); // Small delay to ensure DOM is ready
-  }, [size.w, size.h]); // Re-run when size changes
+    
+    // Cleanup ONLY on unmount
+    return () => {
+      console.log('[CanvasStage] Component unmounting - cleaning up stage');
+      if (sequentialRendererRef.current) {
+        sequentialRendererRef.current.cleanup?.();
+      }
+      if (stageRef.current) {
+        stageRef.current.destroy();
+        stageRef.current = null;
+      }
+      sequentialRendererRef.current = null;
+      delete (window as any).sequentialRenderer;
+    };
+  }, []); // ← EMPTY DEPS - RUN ONCE!
 
-  // Apply size updates to existing stage without recreating
+  // Apply size updates to existing stage WITHOUT recreating
   useEffect(() => {
     if (stageRef.current) {
+      console.log('[CanvasStage] Updating stage size:', size.w, 'x', size.h);
       stageRef.current.width(size.w);
       stageRef.current.height(size.h);
+      stageRef.current.batchDraw();
     }
   }, [size.w, size.h]);
 

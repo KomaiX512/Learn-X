@@ -2,10 +2,11 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Action, PlanStep } from '../types';
 import { logger } from '../logger';
 import { CircuitBreaker } from '../services/circuit-breaker';
+import { QualityEnforcer } from './qualityEnforcer';
 
 const MODEL = 'gemini-2.0-flash-exp';
-const TIMEOUT = 30000; // 30 seconds for QUALITY generation
-const BATCH_SIZE = 20; // Generate comprehensive visual story with labels
+const TIMEOUT = 90000; // 90 seconds for RICH QUALITY generation (not speed)
+const BATCH_SIZE = 60; // Generate COMPLETE educational narrative with storytelling
 const MAX_RETRIES = 2; // Allow retries for quality
 
 // Circuit breaker for Gemini API
@@ -53,54 +54,84 @@ export async function visualAgent(
   const requiresLatex = topicLower.match(/calculus|derivative|integral|equation|formula|theorem|proof|algebra|geometry|math|physics|trigonometry|logarithm|exponential|pythagorean|euler|fourier/);
   const requiresDiagram = topicLower.match(/neuron|brain|heart|anatomy|cell|dna|molecule|circuit|network|structure/);
   
-  const prompt = `Generate exactly 35-65 visual operations for teaching "${topic}" in the "${step.tag}" step.
+  const prompt = `Generate exactly 50-70 operations for creating a COMPLETE EDUCATIONAL EXPERIENCE about "${topic}" in the "${step.tag}" step.
 
-CRITICAL: You are creating 3Blue1Brown-style VISUAL animations with CONTEXTUAL VARIETY.
+YOU ARE GRANT SANDERSON (3Blue1Brown). Create an engaging, story-driven lesson that builds understanding progressively.
 
-MANDATORY VARIETY REQUIREMENTS:
-- Use AT LEAST 5 different operation types
-- Include mathematical equations if relevant (using latex)
-- Add simulations for dynamic concepts
-- Create diagrams for structural information
-- NO MORE than 30% basic shapes (circles/rectangles)
+⚠️ CRITICAL PHILOSOPHY:
+- STORYTELLING FIRST: Every visual appears in a narrative context
+- MOTIVATION before information: Explain WHY before WHAT
+- BUILD CURIOSITY: Hook the learner emotionally before teaching
+- LABEL EVERYTHING: No unlabeled diagrams or visuals
+- SIMULATE, DON'T SHOW: Animate processes, don't display static diagrams
+- INTERACT WITH DIAGRAMS: Zoom, highlight, point to specific parts
 
 Step ${step.id}: ${stepTitles[step.tag] || step.tag}
+Context: ${step.desc}
 
-CONTEXT: ${step.desc}
+🎬 MANDATORY NARRATIVE STRUCTURE (50-70 operations):
 
-CINEMATIC REQUIREMENTS FOR 3BLUE1BROWN QUALITY:
-1. START with elegant title in a box: drawTitle
-2. EVERY concept needs visual + label explanation
-3. Generate 40-50 operations for RICH cinematic experience
-4. Use delays (1-2 seconds) between major concepts
-5. ALL content MUST be about "${topic}" specifically
+=== ACT 1: HOOK & MOTIVATION (10-12 operations) ===
+Purpose: Create emotional engagement BEFORE teaching
 
-MANDATORY CINEMATIC STRUCTURE (40-50 operations):
-1. Title Sequence (3-4 ops):
-   - drawTitle with elegant formatting
-   - drawLabel with subtitle/question
-   - Visual accent (particles or glow)
+1-2. drawTitle "${stepTitles[step.tag] || step.tag}" 0.5 0.08
+3. delay 1
+4-6. drawLabel with ENGAGING QUESTION or SURPRISING FACT (not dry definition!)
+   Example: "Ever wondered how your phone amplifies weak signals?" NOT "An amplifier increases amplitude"
+7-9. Teaser visual that creates curiosity
+10-11. drawLabel connecting to learner's experience
+12. delay 1.5
 
-2. Opening Visual Hook (8-10 ops):
-   - Start with surprising visual
-   - Build curiosity with animation
-   - Label key observations
+=== ACT 2: VISUAL INTRODUCTION (15-18 operations) ===
+Purpose: Build the main concept step-by-step with full labeling
 
-3. Core Concept Development (15-20 ops):
-   - Progressive visual building
-   - Each visual has explanatory label
-   - Use colors to show relationships
-   - Animate transformations
+13. BUILD diagram/circuit/anatomy STEP-BY-STEP (not all at once!):
+   - For circuits: Start with one component, add connections, show flow
+   - For anatomy: Start with outline, add organs, show function
+   - For graphs: Draw axes first, then curves, then annotations
+   
+14-20. drawLabel for EACH major part (with coordinates pointing to specific elements)
+   Example: drawLabel "This is the base" 0.3 0.5
+            drawLabel "Collector current flows here" 0.6 0.4
+            
+21-25. HIGHLIGHT/POINT to specific parts using drawCircle or drawVector
+   Example: drawCircle 0.35 0.5 0.02 #ff0000 false  (points to specific part)
+            drawVector 0.2 0.3 0.33 0.48 #ffaa00 "Key connection" (arrow pointing)
+            
+26-28. SIMULATE process (orbit, wave, particle for flow/movement)
+29-30. delay 1.5
 
-4. Deep Insight Moment (8-10 ops):
-   - The "aha!" visualization
-   - Connect to bigger picture
-   - Mathematical beauty revealed
+=== ACT 3: DEEP UNDERSTANDING (15-20 operations) ===
+Purpose: Show HOW and WHY it works
 
-5. Conclusion & Transition (5-6 ops):
-   - Summarize visually
-   - Preview next concept
-   - Elegant fade/transition
+31-33. drawLabel explaining the MECHANISM (how it works)
+34-40. Interactive simulation showing the process in action:
+   - For circuits: Animate current flow with particles
+   - For biology: Animate blood flow, neuron firing
+   - For physics: Show forces, trajectories, field lines
+   - For math: Animate function transformations
+   
+41-44. Mathematical relationships (if applicable):
+   latex equations showing key formulas
+   graph showing relationships
+   
+45-48. drawLabel explaining deeper insights
+49-50. delay 2
+
+=== ACT 4: SYNTHESIS & APPLICATION (8-10 operations) ===
+Purpose: Connect to bigger picture and real world
+
+51-53. drawLabel showing connection to broader concept
+54-57. Real-world application example visual
+58-60. drawLabel with practical implications
+
+=== ACT 5: CONCLUSION & PREVIEW (5-8 operations) ===
+Purpose: Solidify understanding and transition
+
+61-63. Summary drawLabel of key takeaways
+64-66. Visual callback to opening hook (full circle)
+67-68. Preview of next step
+69-70. delay 1
 
 ENHANCED OPERATIONS FOR TRUE 3BLUE1BROWN:
 
@@ -207,8 +238,26 @@ molecule "CO2" 0.7 0.3 linear 180
 drawLabel "Carbon dioxide (linear)" 0.7 0.5 #ffffff 16
 delay 1
 
-Now generate COMPLETE, LABELED animations for: "${topic}" - ${step.tag}
-Remember: EVERY visual needs a label explaining what it represents!`;
+Now generate the COMPLETE NARRATIVE for: "${topic}" - ${step.tag}
+
+⚠️ CRITICAL REQUIREMENTS YOU MUST FOLLOW:
+1. 📝 STORYTELLING: Start with WHY this matters, not WHAT it is
+2. 🏷️ LABEL EVERYTHING: Every diagram component must have drawLabel pointing to it
+3. 🎬 SIMULATE: Use orbit/wave/particle to show motion and flow
+4. 🔍 INTERACT: Use drawCircle/drawVector to point and highlight specific parts
+5. ⏱️ PACE: Use delay (1-2 seconds) between major concepts for comprehension
+6. 📊 SHOW MATH: Use latex for equations (if math/physics/engineering topic)
+7. 🔎 ZOOM IN: Build diagrams step-by-step, don't dump everything at once
+
+🚫 FORBIDDEN MISTAKES:
+- ❌ Unlabeled diagrams (every part needs a label!)
+- ❌ Static displays without simulation
+- ❌ Showing complete diagram at once (build it step-by-step!)
+- ❌ Starting with definition (start with curiosity/question!)
+- ❌ Missing delays between concepts
+- ❌ Generic visuals not specific to "${topic}"
+
+Generate ${requiresLatex ? "WITH LaTeX equations" : ""} ${requiresDiagram ? "WITH detailed labeled diagrams" : ""}.`;
 
   const allActions: Action[] = [];
   const targetBatches = 1; // Single comprehensive generation
@@ -588,99 +637,23 @@ Remember: EVERY visual needs a label explaining what it represents!`;
     return null;
   }
   
-  // VALIDATION & ENFORCEMENT: Ensure critical operations are present
-  // NOTE: These checks disabled for V1, V2 handles this better
-  const hasLatex = false; // allActions.some(a => a.op === 'latex');
-  const hasDiagram = false; // allActions.some(a => a.op === 'anatomy' || a.op === 'molecule' || a.op === 'neuralNetwork');
+  // QUALITY ENFORCEMENT - Validate content meets 3Blue1Brown standards
+  const qualityReport = QualityEnforcer.validateActions(allActions, step, topic);
+  QualityEnforcer.logReport(qualityReport, step, topic);
   
-  // If math topic but NO LaTeX, inject one
-  if (requiresLatex && !hasLatex && step.tag !== 'hook') {
-    logger.warn('[visual] Math topic missing LaTeX - injecting equation');
+  if (!qualityReport.passed) {
+    // REJECT poor quality - return null to trigger retry with enhanced prompt
+    logger.error(`[visual] Quality check FAILED (${qualityReport.score}%) - rejecting for retry`);
+    logger.error('[visual] Issues: ' + qualityReport.issues.join('; '));
     
-    // Find a good insertion point (after title, before summary)
-    const insertIndex = allActions.findIndex(a => a.op === 'drawTitle') + 2 || 3;
-    
-    // Inject contextual LaTeX based on topic
-    let equation = 'f(x) = x';
-    if (topicLower.includes('derivative')) equation = '\\\\frac{dy}{dx} = \\\\lim_{h \\\\to 0} \\\\frac{f(x+h) - f(x)}{h}';
-    else if (topicLower.includes('integral')) equation = '\\\\int_a^b f(x) dx';
-    else if (topicLower.includes('pythagorean')) equation = 'a^2 + b^2 = c^2';
-    else if (topicLower.includes('euler')) equation = 'e^{i\\\\pi} + 1 = 0';
-    else if (topicLower.includes('fourier')) equation = 'f(t) = \\\\sum_{n=-\\\\infty}^{\\\\infty} c_n e^{i n \\\\omega t}';
-    
-    allActions.splice(insertIndex, 0, {
-      op: 'latex',
-      equation,
-      x: 0.5,
-      y: 0.3,
-      size: 28,
-      color: '#3498db',
-      animated: true
-    } as any);
-    
-    logger.info('[visual] Injected LaTeX equation: ' + equation);
+    // Return null to trigger retry in parent (codegenV2 will retry with better prompt)
+    return null;
   }
   
-  // If anatomy/biology topic but NO diagram, inject one
-  if (requiresDiagram && !hasDiagram && step.tag !== 'hook') {
-    logger.warn('[visual] Anatomy/biology topic missing diagram - injecting structure');
-    
-    const insertIndex = allActions.findIndex(a => a.op === 'drawTitle') + 2 || 3;
-    
-    let diagramType = 'molecule';
-    let diagramLabel = 'Molecular structure';
-    
-    if (topicLower.includes('neuron') || topicLower.includes('brain')) {
-      diagramType = 'neuralNetwork';
-      diagramLabel = 'Neural network structure';
-    } else if (topicLower.includes('heart')) {
-      diagramType = 'anatomy';
-      diagramLabel = 'Heart structure';
-    }
-    
-    // Add simple diagram representation as circles and vectors
-    allActions.splice(insertIndex, 0,
-      {
-        op: 'drawLabel',
-        text: diagramLabel,
-        x: 0.5,
-        y: 0.25,
-        color: '#00ff88',
-        fontSize: 20
-      } as any,
-      {
-        op: 'drawCircle',
-        x: 0.4,
-        y: 0.4,
-        radius: 0.08,
-        color: '#3498db',
-        fill: true
-      } as any,
-      {
-        op: 'drawCircle',
-        x: 0.6,
-        y: 0.4,
-        radius: 0.08,
-        color: '#e74c3c',
-        fill: true
-      } as any,
-      {
-        op: 'drawVector',
-        x1: 0.48,
-        y1: 0.4,
-        x2: 0.52,
-        y2: 0.4,
-        color: '#00ff88',
-        label: 'connection'
-      } as any
-    );
-    
-    logger.info('[visual] Injected diagram structure');
-  }
+  logger.info(`[visual] Quality check PASSED (${qualityReport.score}%) - excellent content!`);
   
-  // Re-log after injection
-  const finalOpTypes = new Set(allActions.map(a => a.op));
-  logger.debug('[visual] Final operation types: ' + Array.from(finalOpTypes).join(', '));
+  // NO INJECTIONS - Trust validated Gemini content
+  logger.debug('[visual] NO injections - trusting validated generated content');
   
   return {
     type: 'visuals',

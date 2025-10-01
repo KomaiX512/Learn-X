@@ -20,18 +20,18 @@ export class AnimationQueue {
   private onStepComplete?: (stepId: number) => void;
   private onProgress?: (progress: number) => void;
   
-  // Enhanced timing for better student comprehension
+  // FAST RESPONSIVE TIMING - User can see progress immediately
   private readonly DELAYS = {
-    afterTitle: 3000,      // 3 seconds after title for reading
-    afterLabel: 2000,      // 2 seconds after label for comprehension
-    afterVisual: 1500,     // 1.5 seconds after visual for observation
-    betweenSteps: 5000,    // 5 seconds between steps for absorption
-    afterClear: 1500,      // 1.5 seconds after clear
-    afterOrbit: 2000,      // 2 seconds for orbit animation
-    afterParticle: 1500,   // 1.5 seconds for particles
-    afterWave: 1500,       // 1.5 seconds for wave
-    afterDrawing: 2000,    // 2 seconds after drawing operations
-    default: 1000          // 1 second default (increased from 400ms)
+    afterTitle: 500,       // 0.5 seconds after title (fast)
+    afterLabel: 300,       // 0.3 seconds after label (fast)
+    afterVisual: 200,      // 0.2 seconds after visual (fast)
+    betweenSteps: 1000,    // 1 second between steps (reasonable pause)
+    afterClear: 200,       // 0.2 seconds after clear
+    afterOrbit: 500,       // 0.5 seconds for orbit animation
+    afterParticle: 300,    // 0.3 seconds for particles
+    afterWave: 300,        // 0.3 seconds for wave
+    afterDrawing: 300,     // 0.3 seconds after drawing operations
+    default: 200           // 0.2 seconds default (fast but visible)
   };
   
   constructor(renderer: any) {
@@ -52,82 +52,124 @@ export class AnimationQueue {
       });
     });
     
+    console.log(`[AnimationQueue] Queue now has ${this.queue.length} total actions`);
+    console.log(`[AnimationQueue] Current status: isPlaying=${this.isPlaying}, isPaused=${this.isPaused}, currentIndex=${this.currentIndex}`);
+    
     // Start playing if not already
-    if (!this.isPlaying) {
+    // The play() loop will automatically process new actions as they arrive
+    if (!this.isPlaying && !this.isPaused) {
+      console.log('[AnimationQueue] Starting playback...');
       this.play();
+    } else {
+      console.log('[AnimationQueue] Playback already active, new actions will be processed automatically');
     }
   }
   
   /**
-   * Play animations sequentially with proper timing
+   * Play all animations in queue sequentially
    */
   async play(): Promise<void> {
-    if (this.isPlaying && !this.isPaused) return;
-    
-    this.isPlaying = true;
-    this.isPaused = false;
-    console.log('[AnimationQueue] Starting sequential playback');
-    
-    while (this.currentIndex < this.queue.length && !this.isPaused) {
-      const item = this.queue[this.currentIndex];
-      
-      // Check if we're starting a new step
-      if (item.section?.stepId !== this.currentStepId) {
-        // DON'T clear canvas - accumulate content like 3Blue1Brown lectures
-        if (this.currentStepId !== null) {
-          console.log(`[AnimationQueue] Step ${this.currentStepId} complete, moving to next step`);
-          // Just pause between steps, don't clear
-          await this.wait(this.DELAYS.betweenSteps);
-        }
-        this.currentStepId = item.section?.stepId;
-        console.log(`[AnimationQueue] Starting Step ${this.currentStepId}`);
-      }
-      
-      console.log(`[AnimationQueue] Action ${this.currentIndex + 1}/${this.queue.length}: ${item.action.op}`);
-      console.log(`[AnimationQueue] Action details:`, JSON.stringify(item.action).substring(0, 200));
-      
-      try {
-        console.log(`[AnimationQueue] Starting processAction for ${item.action.op}...`);
-        await this.renderer.processAction(item.action, item.section);
-        console.log(`[AnimationQueue] ✅ Completed ${item.action.op}`);
-        
-        // Force immediate visual update
-        if (item.section?.layer) {
-          item.section.layer.batchDraw();
-        }
-        
-        // Update stage if needed
-        if (this.renderer.stage) {
-          this.renderer.stage.batchDraw();
-        }
-      } catch (error) {
-        console.error(`[AnimationQueue] ❌ ERROR processing ${item.action.op}:`, error);
-        console.error('[AnimationQueue] Error stack:', error.stack);
-        // CRITICAL: Continue despite error
-      }
-      
-      // Get appropriate delay for this action type
-      const delay = this.getDelay(item.action);
-      
-      // Wait for student comprehension
-      await this.wait(delay * this.playbackSpeed);
-      
-      this.currentIndex++;
-      
-      // Update progress callback
-      const progress = (this.currentIndex / this.queue.length) * 100;
-      if (this.onProgress) {
-        this.onProgress(progress);
-      }
-      console.log(`[AnimationQueue] Progress: ${progress.toFixed(1)}%`);
+    // If already playing, the existing loop will process new items
+    if (this.isPlaying) {
+      console.log('[AnimationQueue] Already playing, existing loop will process new items');
+      return;
     }
     
+    // Don't start if paused
+    if (this.isPaused) {
+      console.log('[AnimationQueue] Currently paused, call resume() to continue');
+      return;
+    }
+    
+    this.isPlaying = true;
+    console.log(`[AnimationQueue] 🚀 Starting sequential playback - ${this.queue.length} actions in queue`);
+    console.log(`[AnimationQueue] Starting at index: ${this.currentIndex}`);
+    
+    // CRITICAL: Keep looping as long as there are items in the queue
+    // New items can be added while we're processing, the loop will handle them
+    while (this.currentIndex < this.queue.length && this.isPlaying && !this.isPaused) {
+      try {
+        const item = this.queue[this.currentIndex];
+        
+        // Check if we're starting a new step
+        if (item.section?.stepId !== this.currentStepId) {
+          // DON'T clear canvas - accumulate content like 3Blue1Brown lectures
+          if (this.currentStepId !== null) {
+            console.log(`[AnimationQueue] Step ${this.currentStepId} complete, moving to next step`);
+            // Just pause between steps, don't clear
+            await this.wait(this.DELAYS.betweenSteps);
+          }
+          this.currentStepId = item.section?.stepId;
+          console.log(`[AnimationQueue] Starting Step ${this.currentStepId}`);
+        }
+        
+        console.log(`[AnimationQueue] Action ${this.currentIndex + 1}/${this.queue.length}: ${item.action.op}`);
+        console.log(`[AnimationQueue] Action details:`, JSON.stringify(item.action).substring(0, 200));
+        
+        try {
+          console.log(`[AnimationQueue] Starting processAction for ${item.action.op}...`);
+          
+          // Add timeout to prevent hanging forever on a single action
+          const processWithTimeout = Promise.race([
+            this.renderer.processAction(item.action, item.section),
+            new Promise((_, reject) => 
+              setTimeout(() => reject(new Error('Action timeout after 10 seconds')), 10000)
+            )
+          ]);
+          
+          await processWithTimeout;
+          console.log(`[AnimationQueue] ✅ Completed ${item.action.op}`);
+          
+          // Force immediate visual update
+          if (item.section?.layer) {
+            item.section.layer.batchDraw();
+          }
+          
+          // Update stage if needed
+          if (this.renderer.stage) {
+            this.renderer.stage.batchDraw();
+          }
+        } catch (error) {
+          console.error(`[AnimationQueue] ❌ ERROR processing ${item.action.op}:`, error);
+          console.error('[AnimationQueue] Error stack:', error?.stack);
+          console.error('[AnimationQueue] Error details:', error);
+          console.error(`[AnimationQueue] Skipping action ${this.currentIndex} and continuing...`);
+          // CRITICAL: Continue despite error - DO NOT STOP PLAYBACK!
+        }
+        
+        // Get appropriate delay for this action type
+        const delay = this.getDelay(item.action);
+        console.log(`[AnimationQueue] Waiting ${delay}ms before next action...`);
+        
+        // Wait for student comprehension
+        await this.wait(delay * this.playbackSpeed);
+        
+        this.currentIndex++;
+        
+        // Update progress callback
+        const progress = (this.currentIndex / this.queue.length) * 100;
+        if (this.onProgress) {
+          this.onProgress(progress);
+        }
+        console.log(`[AnimationQueue] Progress: ${progress.toFixed(1)}% (${this.currentIndex}/${this.queue.length})`);
+      } catch (loopError) {
+        console.error(`[AnimationQueue] 🔥 CRITICAL ERROR in main loop:`, loopError);
+        console.error('[AnimationQueue] Loop error stack:', loopError?.stack);
+        console.error('[AnimationQueue] Attempting to continue...');
+        this.currentIndex++; // Skip problematic action
+      }
+    }
+    
+    console.log(`[AnimationQueue] Loop ended. isPaused: ${this.isPaused}, currentIndex: ${this.currentIndex}, queueLength: ${this.queue.length}`);
+    
     if (!this.isPaused) {
-      console.log('[AnimationQueue] Playback complete');
+      console.log('[AnimationQueue] 🎉 Playback complete - ALL ACTIONS RENDERED!');
       this.isPlaying = false;
       if (this.currentStepId && this.onStepComplete) {
         this.onStepComplete(this.currentStepId);
       }
+    } else {
+      console.log('[AnimationQueue] Playback paused');
     }
   }
   
@@ -144,8 +186,8 @@ export class AnimationQueue {
       case 'drawMathLabel':
         return this.DELAYS.afterLabel;
       case 'delay':
-        // Use the specified delay duration
-        return (action.duration || 1) * 1000;
+        // Delay is already handled by renderer, no additional wait needed
+        return 0; // Don't wait again after delay operation
       case 'drawCircle':
       case 'drawRect':
       case 'drawVector':

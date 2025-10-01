@@ -8,7 +8,10 @@ import { AnimationQueue } from './AnimationQueue';
 import { DomainRenderers } from './DomainRenderers';
 
 export interface RendererConfig {
-  canvasId: string;
+  // Either provide an existing stage/overlay (preferred) or a canvasId to create one
+  canvasId?: string;
+  stage?: Konva.Stage;
+  overlay?: HTMLDivElement;
   width?: number;
   height?: number;
   onStepComplete?: (stepId: number) => void;
@@ -34,26 +37,70 @@ export class SequentialRenderer {
   }
   
   private initializeStage(config: RendererConfig): void {
-    const container = document.getElementById(config.canvasId);
+    // Reuse provided stage/overlay to avoid dual-stage conflicts
+    if (config.stage) {
+      this.stage = config.stage;
+      // Apply provided size without re-creation
+      if (config.width) this.stage.width(config.width);
+      if (config.height) this.stage.height(config.height);
+
+      // Ensure at least one layer exists for initial drawings
+      this.currentLayer = new Konva.Layer();
+      this.stage.add(this.currentLayer);
+
+      // Initialize domain renderers bound to current layer
+      this.domainRenderers = new DomainRenderers(this.stage, this.currentLayer);
+
+      // Overlay handling
+      const container = this.stage.container();
+      container.style.position = 'relative';
+      if (config.overlay) {
+        this.overlay = config.overlay;
+        // Normalize overlay styling
+        this.overlay.style.position = 'absolute';
+        this.overlay.style.top = '0';
+        this.overlay.style.left = '0';
+        this.overlay.style.width = '100%';
+        this.overlay.style.height = '100%';
+        this.overlay.style.pointerEvents = 'none';
+        this.overlay.style.zIndex = '10';
+        if (this.overlay.parentElement !== container) {
+          try { container.appendChild(this.overlay); } catch {}
+        }
+      } else {
+        // Create overlay if not provided
+        this.overlay = document.createElement('div');
+        this.overlay.style.position = 'absolute';
+        this.overlay.style.top = '0';
+        this.overlay.style.left = '0';
+        this.overlay.style.width = '100%';
+        this.overlay.style.height = '100%';
+        this.overlay.style.pointerEvents = 'none';
+        this.overlay.style.zIndex = '10';
+        container.appendChild(this.overlay);
+      }
+
+      console.log('[SequentialRenderer] Stage initialized (reused external stage)');
+      return;
+    }
+
+    // Otherwise create a new stage by canvasId
+    const container = config.canvasId ? document.getElementById(config.canvasId) : null;
     if (!container) {
       console.error(`[SequentialRenderer] Container ${config.canvasId} not found`);
       return;
     }
-    
-    // Create stage with smooth rendering
+
     this.stage = new Konva.Stage({
-      container: config.canvasId,
+      container: config.canvasId!,
       width: config.width || container.clientWidth,
       height: config.height || container.clientHeight
     });
-    
-    // Create initial layer
+
     this.currentLayer = new Konva.Layer();
     this.stage.add(this.currentLayer);
-    
-    // Initialize domain renderers
     this.domainRenderers = new DomainRenderers(this.stage, this.currentLayer);
-    
+
     // Create overlay for math labels
     this.overlay = document.createElement('div');
     this.overlay.style.position = 'absolute';
@@ -65,8 +112,8 @@ export class SequentialRenderer {
     this.overlay.style.zIndex = '10';
     container.style.position = 'relative';
     container.appendChild(this.overlay);
-    
-    console.log('[SequentialRenderer] Stage initialized');
+
+    console.log('[SequentialRenderer] Stage initialized (created new)');
   }
   
   /**
@@ -79,12 +126,15 @@ export class SequentialRenderer {
     }
     
     console.log(`[SequentialRenderer] Processing ${chunk.actions.length} actions for step ${chunk.stepId}`);
-    
     // Create new layer for this step to accumulate content
     if (this.currentStepId !== chunk.stepId) {
       this.currentStepId = chunk.stepId;
       this.currentLayer = new Konva.Layer();
       this.stage?.add(this.currentLayer);
+      // Re-bind domain renderers to the new layer to ensure domain ops draw into the current step
+      if (this.stage && this.currentLayer) {
+        this.domainRenderers = new DomainRenderers(this.stage, this.currentLayer);
+      }
       console.log(`[SequentialRenderer] Created new layer for step ${chunk.stepId}`);
     }
     
@@ -105,12 +155,32 @@ export class SequentialRenderer {
   public async processAction(action: any, section: any): Promise<void> {
     if (!this.stage || !this.currentLayer) return;
     
-    // ERROR HANDLING: Wrap in try-catch to prevent one error from stopping all rendering
+    // CRITICAL ERROR HANDLING: Wrap in try-catch to prevent one error from stopping all rendering
     try {
+      console.log(`[SequentialRenderer] 🎬 Processing: ${action.op}`);
       await this.processActionInternal(action, section);
+      console.log(`[SequentialRenderer] ✅ Completed: ${action.op}`);
     } catch (error) {
-      console.error(`[SequentialRenderer] Error processing action ${action.op}:`, error);
-      // Continue to next action instead of stopping
+      console.error(`[SequentialRenderer] ❌ ERROR processing ${action.op}:`, error);
+      console.error(`[SequentialRenderer] Error stack:`, error.stack);
+      console.error(`[SequentialRenderer] Action data:`, JSON.stringify(action).substring(0, 200));
+      
+      // Show error placeholder on canvas so user knows something failed
+      try {
+        const errorText = new (window as any).Konva.Text({
+          x: this.stage!.width() * 0.1,
+          y: this.currentLayer!.y() + 50,
+          text: `⚠️ Failed to render: ${action.op}`,
+          fontSize: 12,
+          fill: '#ff6b6b',
+          opacity: 0.7
+        });
+        this.currentLayer!.add(errorText);
+        this.currentLayer!.batchDraw();
+      } catch {}
+      
+      // CRITICAL: Continue to next action instead of stopping entire lecture
+      console.log(`[SequentialRenderer] ⏭️  Continuing despite error...`);
     }
   }
   
@@ -118,7 +188,18 @@ export class SequentialRenderer {
    * Internal action processing with error boundary
    */
   private async processActionInternal(action: any, section: any): Promise<void> {
-    if (!this.stage || !this.currentLayer) return;
+    if (!this.stage || !this.currentLayer) {
+      console.warn(`[SequentialRenderer] No stage or layer for ${action.op}`);
+      return;
+    }
+    
+    // Validate action has required operation
+    if (!action.op) {
+      console.error('[SequentialRenderer] Action missing "op" field:', action);
+      return;
+    }
+    
+    console.log(`[SequentialRenderer] 🔍 Routing ${action.op} to handler`);
     
     switch (action.op) {
       case 'clear':
@@ -148,7 +229,10 @@ export class SequentialRenderer {
       // V2 Domain-specific operations
       case 'drawCircuitElement':
         if (this.domainRenderers) {
+          console.log('[SequentialRenderer] 🔌 Rendering circuit element:', action.type);
           await this.domainRenderers.drawCircuitElement(action);
+        } else {
+          console.warn('[SequentialRenderer] ⚠️ No domain renderers available for circuit element');
         }
         break;
         
@@ -196,7 +280,10 @@ export class SequentialRenderer {
         
       case 'drawNeuralNetwork':
         if (this.domainRenderers) {
+          console.log('[SequentialRenderer] 🧠 Rendering neural network:', action.layers);
           await this.domainRenderers.drawNeuralNetwork(action);
+        } else {
+          console.warn('[SequentialRenderer] ⚠️ No domain renderers available for neural network');
         }
         break;
         
@@ -273,11 +360,95 @@ export class SequentialRenderer {
         break;
         
       case 'delay':
-        await new Promise(resolve => setTimeout(resolve, (action.duration || 1) * 1000));
+        // Duration is ALREADY in milliseconds from backend, use directly
+        const delayMs = action.duration || 1000;
+        console.log(`[SequentialRenderer] ⏱️  Delaying for ${delayMs}ms (${(delayMs/1000).toFixed(1)}s)`);
+        await new Promise(resolve => setTimeout(resolve, delayMs));
+        console.log(`[SequentialRenderer] ✅ Delay complete`);
+        break;
+        
+      case 'drawFlowchart':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawFlowchart(action);
+        } else {
+          console.warn('[SequentialRenderer] drawFlowchart: DomainRenderers not available');
+        }
+        break;
+        
+      case 'drawCoordinateSystem':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawCoordinateSystem(action);
+        } else {
+          console.warn('[SequentialRenderer] drawCoordinateSystem: DomainRenderers not available');
+        }
+        break;
+        
+      case 'drawGeometry':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawGeometry(action);
+        } else {
+          console.warn('[SequentialRenderer] drawGeometry: DomainRenderers not available');
+        }
+        break;
+        
+      case 'drawAlgorithmStep':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawAlgorithmStep(action);
+        } else {
+          console.warn('[SequentialRenderer] drawAlgorithmStep: DomainRenderers not available');
+        }
+        break;
+        
+      case 'drawTrajectory':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawTrajectory(action);
+        } else {
+          console.warn('[SequentialRenderer] drawTrajectory: DomainRenderers not available');
+        }
+        break;
+        
+      case 'drawFieldLines':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawFieldLines(action);
+        } else {
+          console.warn('[SequentialRenderer] drawFieldLines: DomainRenderers not available');
+        }
+        break;
+        
+      case 'drawCellStructure':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawCellStructure(action);
+        } else {
+          console.warn('[SequentialRenderer] drawCellStructure: DomainRenderers not available');
+        }
+        break;
+        
+      case 'drawMolecularStructure':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawMolecularStructure(action);
+        } else {
+          console.warn('[SequentialRenderer] drawMolecularStructure: DomainRenderers not available');
+        }
+        break;
+        
+      case 'drawBond':
+        if (this.domainRenderers) {
+          await this.domainRenderers.drawBond(action);
+        } else {
+          console.warn('[SequentialRenderer] drawBond: DomainRenderers not available');
+        }
+        break;
+        
+      case 'drawLatex':
+        // Render LaTeX equation
+        await this.renderLatex(action.equation || action.text, action.x, action.y, action.size, action.color, action.animated);
         break;
         
       default:
-        console.warn('[SequentialRenderer] Unknown action:', action.op);
+        console.error(`[SequentialRenderer] ❌ UNIMPLEMENTED OPERATION: ${action.op}`);
+        console.error(`[SequentialRenderer] Action data:`, JSON.stringify(action).substring(0, 200));
+        // Don't silently fail - render a placeholder
+        await this.renderPlaceholder(action.op, action.x || 0.5, action.y || 0.5);
     }
     
     // Force redraw after each action
@@ -342,7 +513,7 @@ export class SequentialRenderer {
       y: -padding,
       width: 400,
       height: 60,
-      fill: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      fill: '#667eea',
       cornerRadius: 8,
       shadowColor: 'black',
       shadowBlur: 15,
@@ -367,17 +538,36 @@ export class SequentialRenderer {
     titleGroup.add(titleBg);
     titleGroup.add(titleText);
     this.currentLayer.add(titleGroup);
+    this.currentLayer.batchDraw();
     
-    // Animate in
+    // Animate in with TIMEOUT SAFETY
     return new Promise(resolve => {
-      new Konva.Tween({
-        node: titleGroup,
-        duration,
-        opacity: 1,
-        y: titleGroup.y() + 10,
-        easing: Konva.Easings.EaseOut,
-        onFinish: resolve
-      }).play();
+      let resolved = false;
+      const safeResolve = () => {
+        if (!resolved) {
+          resolved = true;
+          console.log('[SequentialRenderer] drawTitle animation completed');
+          resolve();
+        }
+      };
+      
+      // Safety timeout - resolve after duration + buffer
+      setTimeout(safeResolve, (duration * 1000) + 100);
+      
+      try {
+        const tween = new Konva.Tween({
+          node: titleGroup,
+          duration,
+          opacity: 1,
+          y: titleGroup.y() + 10,
+          easing: Konva.Easings.EaseOut,
+          onFinish: safeResolve
+        });
+        tween.play();
+      } catch (error) {
+        console.error('[SequentialRenderer] Tween error:', error);
+        safeResolve();
+      }
     });
   }
   
@@ -393,15 +583,27 @@ export class SequentialRenderer {
       y: y * this.stage.height(),
       fontSize: options?.fontSize || 18,
       fontFamily: 'Inter, Helvetica Neue, sans-serif',
-      fill: color || '#333',
+      fill: color || '#ffffff',  // WHITE text for visibility!
       fontStyle: options?.italic ? 'italic' : 'normal',
       fontWeight: options?.bold ? 'bold' : 'normal'
     });
     
     this.currentLayer.add(label);
     
-    // Typewriter effect
+    // Typewriter effect with TIMEOUT SAFETY
     return new Promise(resolve => {
+      let resolved = false;
+      const safeResolve = () => {
+        if (!resolved) {
+          resolved = true;
+          console.log('[SequentialRenderer] drawLabel typewriter completed');
+          resolve();
+        }
+      };
+      
+      // Safety timeout - 30ms per character + buffer
+      setTimeout(safeResolve, (text.length * 30) + 100);
+      
       let currentIndex = 0;
       const typeInterval = setInterval(() => {
         if (currentIndex <= text.length) {
@@ -410,7 +612,7 @@ export class SequentialRenderer {
           currentIndex++;
         } else {
           clearInterval(typeInterval);
-          resolve();
+          safeResolve();
         }
       }, 30); // 30ms per character for smooth typing
     });
@@ -426,23 +628,40 @@ export class SequentialRenderer {
       x: x * this.stage.width(),
       y: y * this.stage.height(),
       radius: 0,
-      stroke: color || '#3b82f6',
-      strokeWidth: 2,
-      fill: fill ? (color || '#3b82f6') : undefined,
+      stroke: color || '#00d9ff',  // Bright cyan!
+      strokeWidth: 3,
+      fill: fill ? (color || '#00d9ff') : undefined,
       opacity: fill ? 0.3 : 1
     });
     
     this.currentLayer.add(circle);
+    this.currentLayer.batchDraw();
     
-    // Animate radius expansion
+    // Animate radius expansion with TIMEOUT SAFETY
     return new Promise(resolve => {
-      new Konva.Tween({
-        node: circle,
-        duration: 0.5,
-        radius: radius * Math.min(this.stage!.width(), this.stage!.height()),
-        easing: Konva.Easings.EaseOut,
-        onFinish: resolve
-      }).play();
+      let resolved = false;
+      const safeResolve = () => {
+        if (!resolved) {
+          resolved = true;
+          resolve();
+        }
+      };
+      
+      setTimeout(safeResolve, 600);  // 0.5s + buffer
+      
+      try {
+        const tween = new Konva.Tween({
+          node: circle,
+          duration: 0.5,
+          radius: radius * Math.min(this.stage!.width(), this.stage!.height()),
+          easing: Konva.Easings.EaseOut,
+          onFinish: safeResolve
+        });
+        tween.play();
+      } catch (error) {
+        console.error('[SequentialRenderer] drawCircle tween error:', error);
+        safeResolve();
+      }
     });
   }
   
@@ -457,25 +676,42 @@ export class SequentialRenderer {
       y: y * this.stage.height(),
       width: 0,
       height: 0,
-      stroke: color || '#10b981',
-      strokeWidth: 2,
-      fill: fill ? (color || '#10b981') : undefined,
+      stroke: color || '#00ff88',  // Bright green!
+      strokeWidth: 3,
+      fill: fill ? (color || '#00ff88') : undefined,
       opacity: fill ? 0.3 : 1,
       cornerRadius: 4
     });
     
     this.currentLayer.add(rect);
+    this.currentLayer.batchDraw();
     
-    // Animate size expansion
+    // Animate size expansion with TIMEOUT SAFETY
     return new Promise(resolve => {
-      new Konva.Tween({
-        node: rect,
-        duration: 0.6,
-        width: width * this.stage!.width(),
-        height: height * this.stage!.height(),
-        easing: Konva.Easings.EaseOut,
-        onFinish: resolve
-      }).play();
+      let resolved = false;
+      const safeResolve = () => {
+        if (!resolved) {
+          resolved = true;
+          resolve();
+        }
+      };
+      
+      setTimeout(safeResolve, 700);  // 0.6s + buffer
+      
+      try {
+        const tween = new Konva.Tween({
+          node: rect,
+          duration: 0.6,
+          width: width * this.stage!.width(),
+          height: height * this.stage!.height(),
+          easing: Konva.Easings.EaseOut,
+          onFinish: safeResolve
+        });
+        tween.play();
+      } catch (error) {
+        console.error('[SequentialRenderer] drawRect tween error:', error);
+        safeResolve();
+      }
     });
   }
   
@@ -772,37 +1008,196 @@ export class SequentialRenderer {
   }
   
   /**
-   * Render LaTeX equation using KaTeX
+   * Render LaTeX equation using KaTeX - PRODUCTION GRADE
    */
   private async renderLatex(equation: string, x: number, y: number, size: number, color: string, animated: boolean): Promise<void> {
     if (!this.stage || !this.overlay) return;
     
-    // Create a div for the LaTeX
-    const latexDiv = document.createElement('div');
-    latexDiv.className = 'latex-equation';
-    latexDiv.style.position = 'absolute';
-    latexDiv.style.left = `${x * this.stage.width()}px`;
-    latexDiv.style.top = `${y * this.stage.height()}px`;
-    latexDiv.style.color = color;
-    latexDiv.style.fontSize = `${size}px`;
-    latexDiv.style.opacity = '0';
+    console.log(`[SequentialRenderer] 🔢 Rendering LaTeX: "${equation}"`);
     
-    // Render with KaTeX (requires KaTeX to be loaded)
-    latexDiv.innerHTML = equation; // For now, just display the equation
-    // TODO: Use KaTeX.render(equation, latexDiv) when KaTeX is loaded
+    // Create container for the LaTeX
+    const latexContainer = document.createElement('div');
+    latexContainer.className = 'latex-equation';
+    latexContainer.style.position = 'absolute';
+    latexContainer.style.left = `${x * this.stage.width()}px`;
+    latexContainer.style.top = `${y * this.stage.height()}px`;
+    latexContainer.style.fontSize = `${size}px`;
+    latexContainer.style.opacity = '0';
+    latexContainer.style.padding = '12px 16px';
+    latexContainer.style.background = 'rgba(0, 0, 0, 0.85)';
+    latexContainer.style.borderRadius = '8px';
+    latexContainer.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+    latexContainer.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.5)';
+    latexContainer.style.backdropFilter = 'blur(10px)';
+    latexContainer.style.transform = 'translateY(-10px)';
+    latexContainer.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     
-    this.overlay.appendChild(latexDiv);
-    
-    // Animate in if requested
-    if (animated) {
-      return new Promise(resolve => {
-        latexDiv.style.transition = 'opacity 0.5s';
-        setTimeout(() => {
-          latexDiv.style.opacity = '1';
-          setTimeout(resolve, 500);
-        }, 100);
-      });
+    try {
+      // Try to use KaTeX for proper rendering
+      if (typeof (window as any).katex !== 'undefined') {
+        console.log('[SequentialRenderer] ✅ KaTeX available, rendering...');
+        (window as any).katex.render(equation, latexContainer, {
+          throwOnError: false,
+          displayMode: true,
+          output: 'html',
+          trust: true,
+          macros: {
+            "\\RR": "\\mathbb{R}",
+            "\\NN": "\\mathbb{N}",
+            "\\ZZ": "\\mathbb{Z}",
+            "\\QQ": "\\mathbb{Q}"
+          }
+        });
+        
+        // Apply custom color to KaTeX output
+        const katexHtml = latexContainer.querySelector('.katex');
+        if (katexHtml) {
+          (katexHtml as HTMLElement).style.color = color || '#ffffff';
+          (katexHtml as HTMLElement).style.fontSize = `${size}px`;
+        }
+      } else {
+        // KaTeX not loaded - try dynamic import
+        console.log('[SequentialRenderer] ⚠️ KaTeX not loaded, attempting dynamic import...');
+        
+        try {
+          const katex = await import('katex');
+          
+          // Also import KaTeX CSS if not already loaded
+          if (!document.querySelector('link[href*="katex.min.css"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
+            document.head.appendChild(link);
+          }
+          
+          katex.default.render(equation, latexContainer, {
+            throwOnError: false,
+            displayMode: true,
+            output: 'html',
+            trust: true
+          });
+          
+          console.log('[SequentialRenderer] ✅ KaTeX dynamically imported and rendered!');
+          
+          // Apply custom color
+          const katexHtml = latexContainer.querySelector('.katex');
+          if (katexHtml) {
+            (katexHtml as HTMLElement).style.color = color || '#ffffff';
+            (katexHtml as HTMLElement).style.fontSize = `${size}px`;
+          }
+        } catch (importError) {
+          // Fallback to enhanced plain text rendering
+          console.warn('[SequentialRenderer] ⚠️ KaTeX import failed, using enhanced fallback:', importError);
+          this.renderLatexFallback(equation, latexContainer, color, size);
+        }
+      }
+    } catch (error) {
+      console.error('[SequentialRenderer] ❌ KaTeX rendering error:', error);
+      // Fallback to enhanced plain text
+      this.renderLatexFallback(equation, latexContainer, color, size);
     }
+    
+    this.overlay.appendChild(latexContainer);
+    
+    // Animate in
+    return new Promise(resolve => {
+      setTimeout(() => {
+        latexContainer.style.opacity = '1';
+        latexContainer.style.transform = 'translateY(0)';
+        setTimeout(resolve, animated ? 500 : 100);
+      }, 100);
+    });
+  }
+  
+  /**
+   * Enhanced fallback for LaTeX when KaTeX is unavailable
+   */
+  private renderLatexFallback(equation: string, container: HTMLElement, color: string, size: number): void {
+    console.log('[SequentialRenderer] 📝 Using enhanced LaTeX fallback');
+    
+    // Clean up LaTeX syntax for better readability
+    let cleaned = equation
+      .replace(/\\\\/g, '\n')
+      .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1) / ($2)')
+      .replace(/\\sqrt\{([^}]+)\}/g, '√($1)')
+      .replace(/\\int/g, '∫')
+      .replace(/\\sum/g, '∑')
+      .replace(/\\prod/g, '∏')
+      .replace(/\\lim/g, 'lim')
+      .replace(/\\to/g, '→')
+      .replace(/\\infty/g, '∞')
+      .replace(/\\pi/g, 'π')
+      .replace(/\\theta/g, 'θ')
+      .replace(/\\alpha/g, 'α')
+      .replace(/\\beta/g, 'β')
+      .replace(/\\gamma/g, 'γ')
+      .replace(/\\delta/g, 'δ')
+      .replace(/\\epsilon/g, 'ε')
+      .replace(/\\lambda/g, 'λ')
+      .replace(/\\mu/g, 'μ')
+      .replace(/\\sigma/g, 'σ')
+      .replace(/\\omega/g, 'ω')
+      .replace(/\\Delta/g, 'Δ')
+      .replace(/\\Sigma/g, 'Σ')
+      .replace(/\\leq/g, '≤')
+      .replace(/\\geq/g, '≥')
+      .replace(/\\neq/g, '≠')
+      .replace(/\\approx/g, '≈')
+      .replace(/\\times/g, '×')
+      .replace(/\\div/g, '÷')
+      .replace(/\\cdot/g, '·')
+      .replace(/\^\{([^}]+)\}/g, (_, sup) => this.toSuperscript(sup))
+      .replace(/\_\{([^}]+)\}/g, (_, sub) => this.toSubscript(sub))
+      .replace(/\{([^}]+)\}/g, '$1')
+      .replace(/\\/g, '');
+    
+    container.innerHTML = `<pre style="
+      font-family: 'Times New Roman', 'Computer Modern', serif;
+      font-size: ${size}px;
+      color: ${color || '#ffffff'};
+      margin: 0;
+      white-space: pre-wrap;
+      line-height: 1.4;
+      text-align: center;
+      font-style: italic;
+    ">${cleaned}</pre>`;
+    
+    // Add notice that KaTeX is recommended
+    const notice = document.createElement('div');
+    notice.style.fontSize = '10px';
+    notice.style.color = 'rgba(255, 255, 255, 0.5)';
+    notice.style.marginTop = '4px';
+    notice.style.textAlign = 'center';
+    notice.textContent = '(Enhanced text mode - KaTeX recommended for best quality)';
+    container.appendChild(notice);
+  }
+  
+  /**
+   * Convert to superscript unicode
+   */
+  private toSuperscript(text: string): string {
+    const map: Record<string, string> = {
+      '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+      '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+      '+': '⁺', '-': '⁻', '=': '⁼', '(': '⁽', ')': '⁾',
+      'n': 'ⁿ', 'i': 'ⁱ'
+    };
+    return text.split('').map(c => map[c] || c).join('');
+  }
+  
+  /**
+   * Convert to subscript unicode
+   */
+  private toSubscript(text: string): string {
+    const map: Record<string, string> = {
+      '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+      '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
+      '+': '₊', '-': '₋', '=': '₌', '(': '₍', ')': '₎',
+      'a': 'ₐ', 'e': 'ₑ', 'o': 'ₒ', 'x': 'ₓ', 'h': 'ₕ',
+      'k': 'ₖ', 'l': 'ₗ', 'm': 'ₘ', 'n': 'ₙ', 'p': 'ₚ',
+      's': 'ₛ', 't': 'ₜ'
+    };
+    return text.split('').map(c => map[c] || c).join('');
   }
   
   /**
@@ -1053,6 +1448,45 @@ export class SequentialRenderer {
       
       this.currentLayer.add(text);
     }
+  }
+  
+  /**
+   * Render placeholder for unimplemented operations
+   */
+  private async renderPlaceholder(operation: string, x: number, y: number): Promise<void> {
+    if (!this.stage || !this.currentLayer) return;
+    
+    const px = x * this.stage.width();
+    const py = y * this.stage.height();
+    
+    // Warning box
+    const box = new Konva.Rect({
+      x: px - 60,
+      y: py - 20,
+      width: 120,
+      height: 40,
+      fill: '#fff3cd',
+      stroke: '#ffc107',
+      strokeWidth: 2,
+      cornerRadius: 5
+    });
+    
+    // Warning text
+    const text = new Konva.Text({
+      x: px - 55,
+      y: py - 8,
+      text: `TODO: ${operation}`,
+      fontSize: 12,
+      fill: '#856404',
+      width: 110,
+      align: 'center'
+    });
+    
+    this.currentLayer.add(box);
+    this.currentLayer.add(text);
+    this.currentLayer.batchDraw();
+    
+    console.warn(`[SequentialRenderer] ⚠️ Placeholder rendered for: ${operation}`);
   }
   
   /**

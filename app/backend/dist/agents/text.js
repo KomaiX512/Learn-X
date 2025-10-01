@@ -4,7 +4,7 @@ exports.textAgent = textAgent;
 const generative_ai_1 = require("@google/generative-ai");
 const logger_1 = require("../logger");
 const MODEL = 'gemini-2.5-flash';
-const TIMEOUT = 20000; // 20 seconds for text generation
+const TIMEOUT = 30000; // 30 seconds for reliable text generation
 function withTimeout(p, ms) {
     return Promise.race([
         p,
@@ -19,52 +19,71 @@ async function textAgent(step, topic) {
         throw new Error('GEMINI_API_KEY not set');
     const genAI = new generative_ai_1.GoogleGenerativeAI(key);
     const model = genAI.getGenerativeModel({ model: MODEL });
-    // ULTRA-SIMPLE TEXT PROMPT - 3Blue1Brown style minimal text
-    const prompt = `{"type":"text","actions":[
+    // RICH EDUCATIONAL TEXT - 3Blue1Brown style with depth
+    const prompt = `Generate RICH EDUCATIONAL TEXT for teaching "${topic}"
+Step ${step.id}: ${step.tag} - ${step.desc}
 
-CRITICAL: OUTPUT ONLY JSON. NO EXPLANATIONS.
-TOPIC: ${topic}
-STEP: ${step.desc}
+You are creating beautiful, structured text that complements animations.
+Generate text that builds understanding progressively.
 
-Generate STRUCTURED text for ${step.tag}:
-
+REQUIRED STRUCTURE for ${step.tag}:
 ${step.tag === 'hook' ?
-        `1. TITLE: Clear, engaging title
-2. QUESTION: "But why...?" or "What if...?"
-3. LABEL: Key observation` :
+        `1. MAIN TITLE: Beautiful, engaging title for the section
+2. HOOK QUESTION: Thought-provoking "But why...?" or "What if...?" 
+3. CONTEXT: Brief setup of the problem
+4. TEASER: Hint at what's coming` :
         step.tag === 'intuition' ?
-            `1. LABEL: "Let's start simple"
-2. LABEL: "Notice how..."
-3. LABEL: Key insight` :
+            `1. SECTION TITLE: "Building Intuition"
+2. SIMPLE START: "Let's start with something simple..."
+3. KEY OBSERVATION: "Notice how..." with specific insight
+4. ANALOGY: Real-world comparison
+5. DEFINITION: Clear, simple definition` :
             step.tag === 'formalism' ?
-                `1. TITLE: Mathematical concept
-2. EQUATION: Key formula
-3. LABEL: What it means` :
+                `1. SECTION TITLE: "The Mathematics"
+2. FORMAL DEFINITION: Precise mathematical statement
+3. KEY EQUATION: Central formula with LaTeX
+4. EXPLANATION: What each part means
+5. PROPERTIES: Important characteristics` :
                 step.tag === 'exploration' ?
-                    `1. LABEL: "What happens if..."
-2. LABEL: Edge case
-3. LABEL: Pattern emerges` :
-                    `1. TITLE: Big picture
-2. LABEL: Connection
-3. LABEL: Application`}
+                    `1. SECTION TITLE: "Exploring Further"
+2. VARIATION 1: "What happens if we change..."
+3. VARIATION 2: "Consider this edge case..."
+4. PATTERN: "A pattern emerges..."
+5. GENERALIZATION: Broader principle` :
+                    `1. SECTION TITLE: "Bringing It Together"
+2. SYNTHESIS: How everything connects
+3. KEY TAKEAWAY: Main insight
+4. APPLICATIONS: Real-world uses
+5. NEXT STEPS: Where to go from here`}
 
-Available:
-{"op":"drawTitle","text":"Title","x":0.5,"y":0.1,"size":24,"color":"#FFD700"}
-{"op":"drawLabel","text":"Label","x":0.5,"y":0.8}
-{"op":"drawMathLabel","tex":"equation","x":0.5,"y":0.5}
-4. Position text to not overlap (spread out y values)
+OUTPUT FORMAT (JSON array):
+[
+  {"op":"drawTitle","text":"Beautiful Title Here","y":0.05,"duration":2},
+  {"op":"drawLabel","text":"Explanatory text","x":0.5,"y":0.2,"color":"#ffffff","fontSize":18,"isImportant":true},
+  {"op":"drawMathLabel","tex":"\\\\frac{d}{dx}f(x)","x":0.5,"y":0.4,"normalized":true},
+  {"op":"drawLabel","text":"Definition: ...","x":0.2,"y":0.6,"color":"#FFD700","fontSize":16,"isDefinition":true}
+]
 
-${step.tag === 'hook' ? 'One title + one key question' :
-        step.tag === 'intuition' ? 'Label key concepts only' :
-            step.tag === 'formalism' ? 'Show key equation + definition' :
-                step.tag === 'exploration' ? 'Label variations briefly' :
-                    'Final insight or formula'}
+GUIDELINES:
+- Use drawTitle for main headings (large, gold color)
+- Use drawLabel for explanations (white for normal, gold for definitions)
+- Use drawMathLabel for ALL mathematical expressions (proper LaTeX)
+- Position text thoughtfully (y: 0.05-0.95, avoid overlaps)
+- Add isImportant:true for key concepts
+- Add isDefinition:true for definitions
+- Use fontSize: 20-24 for titles, 16-18 for body, 14 for details
 
-Example:
-{"op":"drawTitle","text":"The Derivative","y":0.05,"duration":1},
-{"op":"drawMathLabel","tex":"f'(x) = \\\\lim_{h \\\\to 0} \\\\frac{f(x+h)-f(x)}{h}","x":0.5,"y":0.9}
+EXAMPLE for "Derivatives":
+[
+  {"op":"drawTitle","text":"The Instantaneous Rate of Change","y":0.05,"duration":2},
+  {"op":"drawLabel","text":"But what does it mean to find the slope at a single point?","x":0.5,"y":0.15,"color":"#00ff88","fontSize":18,"italic":true},
+  {"op":"drawLabel","text":"Definition: The derivative measures how fast something changes","x":0.5,"y":0.25,"color":"#FFD700","fontSize":16,"isDefinition":true},
+  {"op":"drawMathLabel","tex":"f'(x) = \\\\lim_{h \\\\to 0} \\\\frac{f(x+h)-f(x)}{h}","x":0.5,"y":0.4,"normalized":true},
+  {"op":"drawLabel","text":"This limit captures the instantaneous rate of change","x":0.5,"y":0.55,"color":"#ffffff","fontSize":16}
+]
 
-]}`;
+Now generate rich text for: "${topic}" - ${step.tag}
+OUTPUT ONLY THE JSON ARRAY:`;
     try {
         const res = await withTimeout(model.generateContent(prompt), TIMEOUT);
         let text = res.response.text().trim();

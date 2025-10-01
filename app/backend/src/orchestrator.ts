@@ -174,6 +174,7 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
         }
         const startTime = Date.now();
         const useV2 = process.env.USE_VISUAL_V2 !== 'false';
+        logger.info(`[orchestrator] 🤖 Using ${useV2 ? 'visualAgentV2 (INTELLIGENT domain-specific)' : 'visualAgent (GENERIC rich content)'} for step ${step.id}`);
         const code = useV2 ? await codegenAgentV2(step, query) : await codegenAgent(step, query); // NO TRY/CATCH - LET IT FAIL
         logger.debug(`[gen] OK: prefetch codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
         const compiled: RenderChunk = await compilerRouter(code, step.compiler);
@@ -193,6 +194,7 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
         const startTime = Date.now();
         try {
           const useV2 = process.env.USE_VISUAL_V2 !== 'false';
+          logger.info(`[orchestrator] 🤖 Using ${useV2 ? 'visualAgentV2 (INTELLIGENT domain-specific)' : 'visualAgent (GENERIC rich content)'} for step ${step.id}`);
           const code = useV2 ? await codegenAgentV2(step, query) : await codegenAgent(step, query);
           logger.debug(`[gen] OK: codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
           const compiled: RenderChunk = await compilerRouter(code, step.compiler);
@@ -319,6 +321,7 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
                 // Generate the step using V2 (intelligent tool selection + layout)
                 // Use V2 by default, fallback to V1 if env var set
                 const useV2 = process.env.USE_VISUAL_V2 !== 'false';
+                logger.info(`[parallel] 🤖 Step ${step.id}: Using ${useV2 ? 'visualAgentV2 (INTELLIGENT)' : 'visualAgent (GENERIC)'}`);
                 const code = useV2 ? await codegenAgentV2(step, query) : await codegenAgent(step, query);
                 const compiled: RenderChunk = await compilerRouter(code, step.compiler);
                 checked = await debugAgent(compiled);
