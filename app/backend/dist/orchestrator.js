@@ -10,6 +10,7 @@ const logger_1 = require("./logger");
 const planner_1 = require("./agents/planner");
 const codegen_1 = require("./agents/codegen");
 const codegenV2_1 = __importDefault(require("./agents/codegenV2"));
+const codegenV3WithRetry_1 = require("./agents/codegenV3WithRetry");
 const router_1 = require("./compiler/router");
 const debugger_1 = require("./agents/debugger");
 const cache_manager_1 = require("./services/cache-manager");
@@ -145,9 +146,17 @@ async function initOrchestrator(io, redis) {
                 return;
             }
             const startTime = Date.now();
-            const useV2 = process.env.USE_VISUAL_V2 !== 'false';
-            logger_1.logger.info(`[orchestrator] 🤖 Using ${useV2 ? 'visualAgentV2 (INTELLIGENT domain-specific)' : 'visualAgent (GENERIC rich content)'} for step ${step.id}`);
-            const code = useV2 ? await (0, codegenV2_1.default)(step, query) : await (0, codegen_1.codegenAgent)(step, query); // NO TRY/CATCH - LET IT FAIL
+            const version = process.env.USE_VISUAL_VERSION || 'v3';
+            logger_1.logger.info(`[orchestrator] 🚀 Using ${version} pipeline for step ${step.id}`);
+            // Use retry wrapper for V3
+            const code = version === 'v3' ? await (0, codegenV3WithRetry_1.codegenV3WithRetry)(step, query) :
+                version === 'v2' ? await (0, codegenV2_1.default)(step, query) :
+                    await (0, codegen_1.codegenAgent)(step, query);
+            // CRITICAL: Handle null from codegen
+            if (!code) {
+                logger_1.logger.error(`[gen] ❌ PREFETCH FAILED: codegen returned null for step ${step.id}`);
+                return; // Skip caching, will retry on actual emit
+            }
             logger_1.logger.debug(`[gen] OK: prefetch codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
             const compiled = await (0, router_1.compilerRouter)(code, step.compiler);
             const checked = await (0, debugger_1.debugAgent)(compiled);
@@ -165,9 +174,17 @@ async function initOrchestrator(io, redis) {
         else {
             const startTime = Date.now();
             try {
-                const useV2 = process.env.USE_VISUAL_V2 !== 'false';
-                logger_1.logger.info(`[orchestrator] 🤖 Using ${useV2 ? 'visualAgentV2 (INTELLIGENT domain-specific)' : 'visualAgent (GENERIC rich content)'} for step ${step.id}`);
-                const code = useV2 ? await (0, codegenV2_1.default)(step, query) : await (0, codegen_1.codegenAgent)(step, query);
+                const version = process.env.USE_VISUAL_VERSION || 'v3';
+                logger_1.logger.info(`[orchestrator] 🚀 Using ${version} pipeline for step ${step.id}`);
+                // Use retry wrapper for V3
+                const code = version === 'v3' ? await (0, codegenV3WithRetry_1.codegenV3WithRetry)(step, query) :
+                    version === 'v2' ? await (0, codegenV2_1.default)(step, query) :
+                        await (0, codegen_1.codegenAgent)(step, query);
+                // CRITICAL: Handle null from codegen
+                if (!code) {
+                    logger_1.logger.error(`[gen] ❌ GENERATION FAILED: codegen returned null after all retries for step ${step.id}`);
+                    throw new Error(`Generation failed after ${3} retry attempts for step ${step.id}`);
+                }
                 logger_1.logger.debug(`[gen] OK: codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
                 const compiled = await (0, router_1.compilerRouter)(code, step.compiler);
                 checked = await (0, debugger_1.debugAgent)(compiled);
@@ -175,7 +192,7 @@ async function initOrchestrator(io, redis) {
             }
             catch (error) {
                 logger_1.logger.error(`[gen] CRITICAL FAILURE for session=${sessionId} step=${step.id}: ${error}`);
-                // NO FALLBACKS - Let it fail properly
+                // Let it fail but with better error message
                 throw new Error(`Generation failed for step ${step.id}: ${error}`);
             }
         }
@@ -249,6 +266,8 @@ async function initOrchestrator(io, redis) {
         // Track generation progress
         const generationPromises = [];
         const startTime = Date.now();
+        // CRITICAL FIX: Store results in memory for direct emit (don't rely on cache)
+        const stepResults = new Map();
         // Emit initial progress
         io.to(sessionId).emit('generation_progress', {
             phase: 'starting',
@@ -280,11 +299,18 @@ async function initOrchestrator(io, redis) {
                             status: 'generating',
                             message: `Generating ${step.tag}: ${step.desc.slice(0, 50)}...`
                         });
-                        // Generate the step using V2 (intelligent tool selection + layout)
-                        // Use V2 by default, fallback to V1 if env var set
-                        const useV2 = process.env.USE_VISUAL_V2 !== 'false';
-                        logger_1.logger.info(`[parallel] 🤖 Step ${step.id}: Using ${useV2 ? 'visualAgentV2 (INTELLIGENT)' : 'visualAgent (GENERIC)'}`);
-                        const code = useV2 ? await (0, codegenV2_1.default)(step, query) : await (0, codegen_1.codegenAgent)(step, query);
+                        // Generate the step with retry strategy for V3
+                        const version = process.env.USE_VISUAL_VERSION || 'v3';
+                        logger_1.logger.info(`[parallel] 🚀 Step ${step.id}: Using ${version} TRUE GENERATION`);
+                        // Use retry wrapper for V3
+                        const code = version === 'v3' ? await (0, codegenV3WithRetry_1.codegenV3WithRetry)(step, query) :
+                            version === 'v2' ? await (0, codegenV2_1.default)(step, query) :
+                                await (0, codegen_1.codegenAgent)(step, query);
+                        // CRITICAL: Handle null from codegen
+                        if (!code) {
+                            logger_1.logger.error(`[parallel] ❌ Step ${step.id} codegen returned null after all retries`);
+                            throw new Error(`Step ${step.id} generation failed after all retry attempts`);
+                        }
                         const compiled = await (0, router_1.compilerRouter)(code, step.compiler);
                         checked = await (0, debugger_1.debugAgent)(compiled);
                         // Cache the result in both places
@@ -295,6 +321,9 @@ async function initOrchestrator(io, redis) {
                     const genTime = Date.now() - stepStartTime;
                     perfMonitor.endStepGeneration(sessionId, step.id, true);
                     logger_1.logger.debug(`[parallel] Step ${step.id} generated in ${genTime}ms`);
+                    // CRITICAL FIX: Store in memory for direct emit
+                    stepResults.set(step.id, checked);
+                    logger_1.logger.info(`[parallel] ✅ Stored step ${step.id} in memory (${checked.actions?.length || 0} actions)`);
                     // Emit progress for this specific step completed
                     completedCount++;
                     const progressPercent = Math.round((completedCount / plan.steps.length) * 100);
@@ -318,6 +347,9 @@ async function initOrchestrator(io, redis) {
                     const genTime = Date.now() - stepStartTime;
                     perfMonitor.endStepGeneration(sessionId, step.id, false);
                     logger_1.logger.error(`[parallel] Step ${step.id} failed: ${error}`);
+                    // CRITICAL FIX: Store null for failed steps (so we know it was attempted)
+                    stepResults.set(step.id, null);
+                    logger_1.logger.warn(`[parallel] ⚠️ Stored step ${step.id} as failed in memory`);
                     // Emit error for this step
                     io.to(sessionId).emit('progress', {
                         stepId: step.id,
@@ -375,12 +407,24 @@ async function initOrchestrator(io, redis) {
             });
             logger_1.logger.debug(`[parallel] Emitted plan for session ${sessionId}`);
             // SEQUENTIAL: Emit first step immediately, queue others with proper delays
+            // CRITICAL FIX: Use in-memory results instead of cache
             for (let i = 0; i < plan.steps.length; i++) {
                 const step = plan.steps[i];
-                const cacheKey = CHUNK_KEY(sessionId, step.id);
-                const cached = await redis.get(cacheKey);
-                if (cached) {
-                    const chunk = JSON.parse(cached);
+                // Try memory first (direct result from generation)
+                let chunk = stepResults.get(step.id);
+                // Fallback to cache if not in memory (e.g., cached from previous run)
+                if (!chunk) {
+                    const cacheKey = CHUNK_KEY(sessionId, step.id);
+                    const cached = await redis.get(cacheKey);
+                    if (cached) {
+                        chunk = JSON.parse(cached);
+                        logger_1.logger.info(`[parallel] 📦 Step ${step.id} retrieved from cache fallback`);
+                    }
+                }
+                else {
+                    logger_1.logger.info(`[parallel] 💾 Step ${step.id} retrieved from memory`);
+                }
+                if (chunk) {
                     logger_1.logger.debug(`[parallel] Step ${step.id} has ${chunk.actions?.length || 0} actions`);
                     const eventData = {
                         type: 'actions',
@@ -400,16 +444,15 @@ async function initOrchestrator(io, redis) {
                         logger_1.logger.info(`[parallel] ✅ Emitted FIRST step ${step.id} immediately with ${chunk.actions?.length} actions`);
                     }
                     else {
-                        // Queue subsequent steps with delays based on complexity
-                        // Hook=45s, Intuition=50s, Formalism=55s, Exploration=60s, Mastery=50s
+                        // Queue subsequent steps with REDUCED delays (20s each for faster UX)
                         const stepDelays = {
-                            'hook': 45000,
-                            'intuition': 50000,
-                            'formalism': 55000,
-                            'exploration': 60000,
-                            'mastery': 50000
+                            'hook': 20000,
+                            'intuition': 20000,
+                            'formalism': 20000,
+                            'exploration': 20000,
+                            'mastery': 20000
                         };
-                        const delay = stepDelays[step.tag] || 50000;
+                        const delay = stepDelays[step.tag] || 20000;
                         const cumulativeDelay = delay * i; // Each step waits for all previous steps
                         setTimeout(() => {
                             io.to(sessionId).emit('rendered', eventData);
@@ -418,7 +461,15 @@ async function initOrchestrator(io, redis) {
                     }
                 }
                 else {
-                    logger_1.logger.error(`[parallel] ❌ Step ${step.id} NOT CACHED - Cannot emit! Key: ${cacheKey}`);
+                    // Step failed and has no data - emit explicit error
+                    logger_1.logger.error(`[parallel] ❌ Step ${step.id} FAILED - No data available (generation failed)`);
+                    io.to(sessionId).emit('rendered', {
+                        type: 'error',
+                        stepId: step.id,
+                        step: step,
+                        message: `Step ${step.id} (${step.tag}) failed to generate. This may be due to API rate limits.`,
+                        isPartialFailure: true
+                    });
                 }
             }
             logger_1.logger.debug(`[parallel] Sequential step delivery scheduled`);

@@ -32,16 +32,19 @@ export class QualityEnforcer {
     const recommendations: string[] = [];
     let score = 100;
 
-    // 1. CHECK QUANTITY (50-70 operations for professional multi-diagram content)
-    if (actions.length < 20) {
-      issues.push(`CRITICAL: Only ${actions.length} operations (need 50-70 for professional diagrams)`);
+    // 1. CHECK QUANTITY (65-85 operations for professional multi-diagram content)
+    if (actions.length < 30) {
+      issues.push(`CRITICAL: Only ${actions.length} operations (need 65-85 for professional diagrams)`);
       score -= 40;
-    } else if (actions.length < 40) {
-      issues.push(`WARNING: Only ${actions.length} operations (target 50-70)`);
+    } else if (actions.length < 55) {
+      issues.push(`WARNING: Only ${actions.length} operations (target 65-85)`);
       score -= 20;
-    } else if (actions.length >= 50 && actions.length <= 70) {
+    } else if (actions.length >= 65 && actions.length <= 85) {
       // Perfect range
       recommendations.push(`Excellent: ${actions.length} operations in optimal range`);
+    } else if (actions.length >= 55 && actions.length < 65) {
+      issues.push(`INFO: ${actions.length} operations (acceptable but below target 65-85)`);
+      score -= 5;
     }
 
     // 2. CHECK STORYTELLING (must start with title/engaging content)
@@ -60,18 +63,18 @@ export class QualityEnforcer {
       recommendations.push('Add drawLabel in first 5 operations for context');
     }
 
-    // 3. CHECK LABELING (need 8-12 labels for professional multi-diagram content)
+    // 3. CHECK LABELING (need 10-15 labels for professional multi-diagram content with narrative flow)
     const labelCount = actions.filter(a => a.op === 'drawLabel').length;
-    if (labelCount < 5) {
-      issues.push(`CRITICAL: Only ${labelCount} labels (need 8-12)`);
+    if (labelCount < 6) {
+      issues.push(`CRITICAL: Only ${labelCount} labels (need 10-15 for narrative flow)`);
       score -= 30;
-      recommendations.push('Add more drawLabel operations to explain ALL visual elements');
-    } else if (labelCount < 8) {
-      issues.push(`WARNING: Only ${labelCount} labels (target 8-12)`);
+      recommendations.push('Add more drawLabel operations: section markers + narrative hooks + explanations');
+    } else if (labelCount < 10) {
+      issues.push(`WARNING: Only ${labelCount} labels (target 10-15)`);
       score -= 15;
-    } else if (labelCount >= 8 && labelCount <= 12) {
-      recommendations.push(`Excellent: ${labelCount} labels provide complete explanations`);
-    } else if (labelCount > 15) {
+    } else if (labelCount >= 10 && labelCount <= 15) {
+      recommendations.push(`Excellent: ${labelCount} labels provide complete narrative flow`);
+    } else if (labelCount > 18) {
       issues.push(`WARNING: Too many labels (${labelCount}) - may be text-heavy`);
       score -= 5;
     }

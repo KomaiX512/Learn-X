@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Plan } from '../types';
 import { logger } from '../logger';
 
-const MODEL = 'gemini-2.5-flash';
+const MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 const DEFAULT_TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 60000);
 
 function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {

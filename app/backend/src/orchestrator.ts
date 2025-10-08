@@ -5,6 +5,8 @@ import { logger } from './logger';
 import { plannerAgent } from './agents/planner';
 import { codegenAgent } from './agents/codegen';
 import codegenAgentV2 from './agents/codegenV2';
+import codegenV3 from './agents/codegenV3';
+import { codegenV3WithRetry } from './agents/codegenV3WithRetry';
 import { compilerRouter } from './compiler/router';
 import { debugAgent } from './agents/debugger';
 import { SessionParams, Plan, RenderChunk } from './types';
@@ -173,9 +175,20 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
           return;
         }
         const startTime = Date.now();
-        const useV2 = process.env.USE_VISUAL_V2 !== 'false';
-        logger.info(`[orchestrator] 🤖 Using ${useV2 ? 'visualAgentV2 (INTELLIGENT domain-specific)' : 'visualAgent (GENERIC rich content)'} for step ${step.id}`);
-        const code = useV2 ? await codegenAgentV2(step, query) : await codegenAgent(step, query); // NO TRY/CATCH - LET IT FAIL
+        const version = process.env.USE_VISUAL_VERSION || 'v3';
+        logger.info(`[orchestrator] 🚀 Using ${version} pipeline for step ${step.id}`);
+        
+        // Use retry wrapper for V3
+        const code = version === 'v3' ? await codegenV3WithRetry(step, query) : 
+                     version === 'v2' ? await codegenAgentV2(step, query) : 
+                     await codegenAgent(step, query);
+        
+        // CRITICAL: Handle null from codegen
+        if (!code) {
+          logger.error(`[gen] ❌ PREFETCH FAILED: codegen returned null for step ${step.id}`);
+          return; // Skip caching, will retry on actual emit
+        }
+        
         logger.debug(`[gen] OK: prefetch codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
         const compiled: RenderChunk = await compilerRouter(code, step.compiler);
         const checked: RenderChunk = await debugAgent(compiled);
@@ -193,16 +206,27 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
       } else {
         const startTime = Date.now();
         try {
-          const useV2 = process.env.USE_VISUAL_V2 !== 'false';
-          logger.info(`[orchestrator] 🤖 Using ${useV2 ? 'visualAgentV2 (INTELLIGENT domain-specific)' : 'visualAgent (GENERIC rich content)'} for step ${step.id}`);
-          const code = useV2 ? await codegenAgentV2(step, query) : await codegenAgent(step, query);
+          const version = process.env.USE_VISUAL_VERSION || 'v3';
+          logger.info(`[orchestrator] 🚀 Using ${version} pipeline for step ${step.id}`);
+          
+          // Use retry wrapper for V3
+          const code = version === 'v3' ? await codegenV3WithRetry(step, query) : 
+                       version === 'v2' ? await codegenAgentV2(step, query) : 
+                       await codegenAgent(step, query);
+          
+          // CRITICAL: Handle null from codegen
+          if (!code) {
+            logger.error(`[gen] ❌ GENERATION FAILED: codegen returned null after all retries for step ${step.id}`);
+            throw new Error(`Generation failed after ${3} retry attempts for step ${step.id}`);
+          }
+          
           logger.debug(`[gen] OK: codegen completed for session=${sessionId} step=${step.id} in ${Date.now() - startTime}ms`);
           const compiled: RenderChunk = await compilerRouter(code, step.compiler);
           checked = await debugAgent(compiled);
           await redis.set(key, JSON.stringify(checked));
         } catch (error) {
           logger.error(`[gen] CRITICAL FAILURE for session=${sessionId} step=${step.id}: ${error}`);
-          // NO FALLBACKS - Let it fail properly
+          // Let it fail but with better error message
           throw new Error(`Generation failed for step ${step.id}: ${error}`);
         }
       }
@@ -331,11 +355,21 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
                   message: `Generating ${step.tag}: ${step.desc.slice(0, 50)}...`
                 });
                 
-                // Generate the step using V2 (intelligent tool selection + layout)
-                // Use V2 by default, fallback to V1 if env var set
-                const useV2 = process.env.USE_VISUAL_V2 !== 'false';
-                logger.info(`[parallel] 🤖 Step ${step.id}: Using ${useV2 ? 'visualAgentV2 (INTELLIGENT)' : 'visualAgent (GENERIC)'}`);
-                const code = useV2 ? await codegenAgentV2(step, query) : await codegenAgent(step, query);
+                // Generate the step with retry strategy for V3
+                const version = process.env.USE_VISUAL_VERSION || 'v3';
+                logger.info(`[parallel] 🚀 Step ${step.id}: Using ${version} TRUE GENERATION`);
+                
+                // Use retry wrapper for V3
+                const code = version === 'v3' ? await codegenV3WithRetry(step, query) : 
+                             version === 'v2' ? await codegenAgentV2(step, query) : 
+                             await codegenAgent(step, query);
+                
+                // CRITICAL: Handle null from codegen
+                if (!code) {
+                  logger.error(`[parallel] ❌ Step ${step.id} codegen returned null after all retries`);
+                  throw new Error(`Step ${step.id} generation failed after all retry attempts`);
+                }
+                
                 const compiled: RenderChunk = await compilerRouter(code, step.compiler);
                 checked = await debugAgent(compiled);
                 
@@ -490,16 +524,15 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
               io.to(sessionId).emit('rendered', eventData);
               logger.info(`[parallel] ✅ Emitted FIRST step ${step.id} immediately with ${chunk.actions?.length} actions`);
             } else {
-              // Queue subsequent steps with delays based on complexity
-              // Hook=45s, Intuition=50s, Formalism=55s, Exploration=60s, Mastery=50s
+              // Queue subsequent steps with REDUCED delays (20s each for faster UX)
               const stepDelays: { [key: string]: number } = {
-                'hook': 45000,
-                'intuition': 50000,
-                'formalism': 55000,
-                'exploration': 60000,
-                'mastery': 50000
+                'hook': 20000,
+                'intuition': 20000,
+                'formalism': 20000,
+                'exploration': 20000,
+                'mastery': 20000
               };
-              const delay = stepDelays[step.tag] || 50000;
+              const delay = stepDelays[step.tag] || 20000;
               const cumulativeDelay = delay * i; // Each step waits for all previous steps
               
               setTimeout(() => {

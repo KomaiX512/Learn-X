@@ -9,9 +9,9 @@
 import { Action } from '../types';
 import { logger } from '../logger';
 
-const MIN_OPS = 50;
-const MAX_OPS = 70;
-const TARGET_OPS = 55;
+const MIN_OPS = 65;
+const MAX_OPS = 85;
+const TARGET_OPS = 72;
 
 /**
  * Identify visual gaps and opportunities for expansion
@@ -246,26 +246,16 @@ function generateComplementaryVisuals(
         strokeWidth: 2
       } as any);
     } else {
-      // Generic: Add animations (still better than drawCircle/drawRect)
+      // NO GENERIC FALLBACK ANIMATIONS - Let LLM handle animations contextually
+      // Instead, add domain-neutral structural elements
       additions.push({
-        op: 'orbit',
-        centerX: x,
-        centerY: y,
-        radius: 0.04,
-        period: 3000,
-        objectRadius: 0.015,
+        op: 'drawLabel',
+        text: '•',
+        x: x,
+        y: y,
+        fontSize: 12,
         color: '#3498db',
-        trail: true
-      } as any);
-      
-      additions.push({
-        op: 'particle',
-        center: [x, y],  // FIXED: Frontend expects 'center', not 'source/target'
-        count: 10,
-        spread: 0.05,
-        speed: 1.5,
-        lifetime: 2000,
-        color: '#e67e22'
+        avoidOverlap: true
       } as any);
     }
   });

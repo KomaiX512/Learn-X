@@ -74,13 +74,13 @@ export function snapAllToGrid(actions: Action[]): Action[] {
   
   actions.forEach((original, idx) => {
     const snap = snapped[idx];
-    if ('x' in original) {
+    if ('x' in original && 'x' in snap) {
       totalPositions++;
-      if (original.x !== snap.x) snappedPositions++;
+      if ((original as any).x !== (snap as any).x) snappedPositions++;
     }
-    if ('y' in original) {
+    if ('y' in original && 'y' in snap) {
       totalPositions++;
-      if (original.y !== snap.y) snappedPositions++;
+      if ((original as any).y !== (snap as any).y) snappedPositions++;
     }
   });
   

@@ -134,42 +134,17 @@ export class SequentialRenderer {
     // CRITICAL: When starting a NEW step, clear previous step's content
     if (this.currentStepId !== null && this.currentStepId !== chunk.stepId) {
       console.log(`[SequentialRenderer] 🔄 NEW STEP DETECTED: ${this.currentStepId} → ${chunk.stepId}`);
-      console.log(`[SequentialRenderer] 🧹 CLEARING previous step content...`);
+      console.log(`[SequentialRenderer] 🧹 CLEARING previous step content SYNCHRONOUSLY...`);
       
-      // Clear all previous layers with smooth fade
-      if (this.stage) {
-        const allLayers = this.stage.getLayers();
-        console.log(`[SequentialRenderer] Found ${allLayers.length} layers to clear`);
-        
-        allLayers.forEach((layer, idx) => {
-          // Fade out and destroy old layers
-          new Konva.Tween({
-            node: layer,
-            duration: 0.5,
-            opacity: 0,
-            onFinish: () => {
-              layer.destroy();
-              console.log(`[SequentialRenderer] ✅ Cleared old layer ${idx}`);
-            }
-          }).play();
-        });
-      }
+      // HARD RESET the animation queue immediately (stops everything)
+      this.animationQueue.hardReset();
       
-      // CRITICAL: Stop all active animations to prevent memory leaks
-      this.stopAllAnimations();
-      console.log('[SequentialRenderer] ✅ Stopped all animations');
-      
-      // Clear math overlay as well
-      if (this.overlay) {
-        this.overlay.innerHTML = '';
-        console.log('[SequentialRenderer] ✅ Cleared math overlay');
-      }
-      
-      // Wait for fade to complete before creating new layer
-      setTimeout(() => {
+      // SYNCHRONOUS cleanup (no setTimeout race conditions)
+      this.clearStepSynchronously().then(() => {
+        console.log('[SequentialRenderer] ✅ Cleanup complete, creating new layer');
         this.createNewStepLayer(chunk.stepId);
         this.enqueueActions(chunk);
-      }, 600); // Wait for fade + buffer
+      });
       
     } else {
       // First step or continuing same step - just create layer if needed
@@ -235,6 +210,51 @@ export class SequentialRenderer {
     }
     
     console.log('[SequentialRenderer] ✅ All animations stopped and cleaned up');
+  }
+  
+  /**
+   * Synchronously clear all content for step transition (Promise-based, no setTimeout race conditions)
+   */
+  private async clearStepSynchronously(): Promise<void> {
+    console.log('[SequentialRenderer] 🧹 Starting synchronous step cleanup...');
+    
+    // 1. Stop all animations FIRST
+    this.stopAllAnimations();
+    console.log('[SequentialRenderer] ✅ Animations stopped');
+    
+    // 2. Clear math overlay
+    if (this.overlay) {
+      this.overlay.innerHTML = '';
+      console.log('[SequentialRenderer] ✅ Overlay cleared');
+    }
+    
+    // 3. Destroy all layers with Promise-based fade
+    if (this.stage) {
+      const allLayers = this.stage.getLayers();
+      console.log(`[SequentialRenderer] Fading out ${allLayers.length} layers...`);
+      
+      const fadePromises = allLayers.map((layer, idx) => {
+        return new Promise<void>(resolve => {
+          const tween = new Konva.Tween({
+            node: layer,
+            duration: 0.3, // Faster fade for smoother transitions
+            opacity: 0,
+            onFinish: () => {
+              layer.destroyChildren(); // Clean up all children first
+              layer.destroy();
+              console.log(`[SequentialRenderer] ✅ Destroyed layer ${idx}`);
+              resolve();
+            }
+          });
+          tween.play();
+        });
+      });
+      
+      await Promise.all(fadePromises);
+      console.log('[SequentialRenderer] ✅ All layers destroyed');
+    }
+    
+    console.log('[SequentialRenderer] ✅ Synchronous cleanup complete');
   }
   
   /**

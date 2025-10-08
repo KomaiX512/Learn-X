@@ -318,7 +318,22 @@ export class AnimationQueue {
     this.queue = [];
     this.currentIndex = 0;
     this.isPlaying = false;
-    console.log('[AnimationQueue] Queue cleared');
+    this.isPaused = false;
+    this.currentStepId = null;
+    console.log('[AnimationQueue] Queue cleared and reset');
+  }
+  
+  /**
+   * Hard reset for step transitions (clears everything and stops playback)
+   */
+  hardReset(): void {
+    console.log('[AnimationQueue] 🔄 HARD RESET for step transition');
+    this.isPaused = true; // Pause immediately
+    this.isPlaying = false; // Stop playback
+    this.queue = []; // Clear queue
+    this.currentIndex = 0; // Reset index
+    this.currentStepId = null; // Clear step tracking
+    console.log('[AnimationQueue] ✅ Hard reset complete');
   }
   
   /**

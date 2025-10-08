@@ -1,0 +1,29 @@
+
+> backend@0.1.0 start
+> node dist/index.js
+
+🧹 Clearing stale job queues on startup...
+2025-10-07T15:29:56.317Z [debug] NEW Plan worker created
+2025-10-07T15:29:56.317Z [debug] NEW Gen worker created
+2025-10-07T15:29:56.318Z [debug] NEW Parallel worker created
+node:events:495
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/dist/index.js:277:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1844:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3001
+}
+
+Node.js v18.20.8

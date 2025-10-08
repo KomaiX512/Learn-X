@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.plannerAgent = plannerAgent;
 const generative_ai_1 = require("@google/generative-ai");
 const logger_1 = require("../logger");
-const MODEL = 'gemini-2.5-flash';
+const MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 const DEFAULT_TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 60000);
 function withTimeout(p, ms, label) {
     logger_1.logger.debug(`[timeout] Setting ${ms}ms timeout for ${label}`);

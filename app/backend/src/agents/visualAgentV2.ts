@@ -11,7 +11,7 @@ import { logger } from '../logger';
 import { VISUAL_TOOL_LIBRARY } from '../lib/visualTools';
 import { QualityEnforcer } from './qualityEnforcer';
 
-const MODEL = 'gemini-2.0-flash-exp';
+const MODEL = 'gemini-2.5-flash'; // DO NOT CHANGE - PRODUCTION MODEL
 const TIMEOUT = 60000; // Allow time for complex multi-diagram generation
 const MAX_RETRIES = 2;
 
@@ -32,12 +32,13 @@ function generateToolDocumentation(): string {
 You are an expert visualization engineer creating PROFESSIONAL EDUCATIONAL DIAGRAMS.
 Your output should look like a polished textbook or technical presentation.
 
-🎯 YOUR MISSION: Generate 50-70 operations that form 4-5 COMPLETE DIAGRAMS with:
+🎯 YOUR MISSION: Generate 65-85 operations that form 4-5 COMPLETE DIAGRAMS with:
   - Perfect alignment on invisible grid (use 0.1, 0.2, 0.3... positions)
   - Clear sectioning (multiple distinct visual concepts)
   - Rich labeling (every visual element explained)
   - Visual relationships (arrows connecting related elements)
   - Professional spacing (not cramped, not sparse)
+  - Narrative flow: Brief explanatory labels BEFORE each visual section
 
 # COMPREHENSIVE VISUAL TOOL LIBRARY
 
@@ -203,99 +204,27 @@ Each mini-diagram = 10-15 operations:
 ✓ **Storytelling Flow**: Title → Section ① → Section ② → Section ③ → Section ④ → Summary
 ✓ **Proper Delays**: 3-5 delays to pace the learning (1500-2000ms each)
 
-## EXAMPLES OF GOOD TOOL SELECTION:
+## PATTERN FOR NARRATIVE FLOW:
 
-### Example 1: "Amplifier increases signal amplitude" (50+ Operations)
-DOMAIN: Electrical
-ANALYSIS: Need 4 sections: (1) Input, (2) Circuit, (3) Output, (4) Analysis
-GRID LAYOUT:
-  - Section ① (x=0.1-0.3): Input stage
-  - Section ② (x=0.35-0.55): Amplifier circuit
-  - Section ③ (x=0.6-0.85): Output stage
-  - Section ④ (y=0.75): Mathematical analysis
-SELECTED TOOLS (55 operations total):
-[
-  { "op": "drawTitle", "text": "Signal Amplification", "x": 0.5, "y": 0.05, "size": 28 },
-  
-  // SECTION ① - Input (12 operations)
-  { "op": "drawLabel", "text": "① INPUT STAGE", "x": 0.2, "y": 0.15, "fontSize": 18, "bold": true },
-  { "op": "drawSignalWaveform", "waveform": "sine", "amplitude": 0.08, "x": 0.05, "y": 0.4, "width": 0.25, "label": "Vin", "frequency": "1kHz" },
-  { "op": "drawLabel", "text": "Small amplitude", "x": 0.15, "y": 0.55, "fontSize": 14, "avoidOverlap": true },
-  { "op": "drawLabel", "text": "1V peak", "x": 0.15, "y": 0.6, "fontSize": 12 },
-  { "op": "drawCircuitElement", "type": "resistor", "x": 0.25, "y": 0.35, "rotation": 0 },
-  { "op": "drawLabel", "text": "1kΩ", "x": 0.25, "y": 0.3, "fontSize": 11 },
-  { "op": "drawConnection", "from": [0.3, 0.4], "to": [0.35, 0.4], "type": "wire" },
-  { "op": "delay", "duration": 1500 },
-  
-  // SECTION ② - Amplifier (18 operations)
-  { "op": "drawLabel", "text": "② AMPLIFIER", "x": 0.45, "y": 0.15, "fontSize": 18, "bold": true },
-  { "op": "drawCircuitElement", "type": "op_amp", "x": 0.45, "y": 0.4, "rotation": 0, "label": "LM741" },
-  { "op": "drawCircuitElement", "type": "resistor", "x": 0.4, "y": 0.35, "rotation": 90, "label": "R1" },
-  { "op": "drawCircuitElement", "type": "resistor", "x": 0.45, "y": 0.3, "rotation": 0, "label": "Rf=10kΩ" },
-  { "op": "drawConnection", "from": [0.35, 0.4], "to": [0.4, 0.38], "type": "wire", "showArrow": true },
-  { "op": "drawConnection", "from": [0.5, 0.4], "to": [0.55, 0.4], "type": "wire" },
-  { "op": "drawConnection", "from": [0.45, 0.3], "to": [0.45, 0.35], "type": "wire" },
-  { "op": "drawLabel", "text": "Inverting config", "x": 0.45, "y": 0.55, "fontSize": 13, "avoidOverlap": true },
-  { "op": "drawLatex", "equation": "A_v = -\\\\frac{R_f}{R_{in}}", "x": 0.45, "y": 0.62, "size": 16 },
-  { "op": "delay", "duration": 2000 },
-  
-  // SECTION ③ - Output (13 operations)
-  { "op": "drawLabel", "text": "③ OUTPUT STAGE", "x": 0.7, "y": 0.15, "fontSize": 18, "bold": true },
-  { "op": "drawSignalWaveform", "waveform": "sine", "amplitude": 0.25, "x": 0.6, "y": 0.4, "width": 0.25, "label": "Vout", "frequency": "1kHz", "phase": 180 },
-  { "op": "drawLabel", "text": "Amplified 10×", "x": 0.7, "y": 0.55, "fontSize": 14, "avoidOverlap": true },
-  { "op": "drawLabel", "text": "10V peak", "x": 0.7, "y": 0.6, "fontSize": 12 },
-  { "op": "drawLabel", "text": "Phase inverted", "x": 0.7, "y": 0.65, "fontSize": 12, "color": "#e74c3c" },
-  { "op": "drawConnection", "from": [0.55, 0.4], "to": [0.6, 0.4], "type": "wire", "showArrow": true },
-  { "op": "delay", "duration": 1500 },
-  
-  // SECTION ④ - Analysis (12 operations)
-  { "op": "drawLabel", "text": "④ GAIN ANALYSIS", "x": 0.5, "y": 0.72, "fontSize": 18, "bold": true },
-  { "op": "drawLatex", "equation": "V_{out} = A_v \\\\times V_{in}", "x": 0.3, "y": 0.8, "size": 18 },
-  { "op": "drawLatex", "equation": "10V = -10 \\\\times 1V", "x": 0.3, "y": 0.87, "size": 16, "color": "#27ae60" },
-  { "op": "drawLatex", "equation": "P_{out} = \\\\frac{V_{out}^2}{R_L}", "x": 0.65, "y": 0.8, "size": 16 },
-  { "op": "drawLabel", "text": "Power gain: 100×", "x": 0.65, "y": 0.87, "fontSize": 14 },
-  { "op": "delay", "duration": 2000 }
-]
-// ✅ Total: 55 operations (within 50-70 target)
-// ✅ 4 section markers (① ② ③ ④)
-// ✅ ~75% domain-specific operations (circuits, waveforms, connections)
+Each section MUST follow this structure:
+1. Section marker (① ② ③ ④ ⑤)
+2. Brief narrative label explaining WHAT you're about to see
+3. Then the actual visual operations
+4. Then explanatory labels about the visual
 
-### Example 2: "Newton's Third Law" (Multi-Diagram Composition)
-DOMAIN: Physics  
-ANALYSIS: Need 4 diagrams: (1) Setup, (2) Force pairs, (3) Free body diagrams, (4) Real example
-GRID LAYOUT:
-  - Top-left (0.2, 0.25): Two blocks pushing
-  - Top-right (0.7, 0.25): Force vectors
-  - Bottom-left (0.2, 0.65): Free body diagram A
-  - Bottom-right (0.7, 0.65): Free body diagram B
-SELECTED TOOLS:
+EXAMPLE PATTERN:
 [
-  { "op": "drawTitle", "text": "Newton's Third Law", "x": 0.5, "y": 0.1, "size": 28 },
-  { "op": "drawPhysicsObject", "shape": "box", "x": 0.3, "y": 0.5, "width": 0.12, "height": 0.12, "mass": 10, "label": "Block A", "color": "#3498db" },
-  { "op": "drawPhysicsObject", "shape": "box", "x": 0.7, "y": 0.5, "width": 0.12, "height": 0.12, "mass": 10, "label": "Block B", "color": "#e74c3c" },
-  { "op": "drawForceVector", "x": 0.42, "y": 0.5, "dx": 0.15, "dy": 0, "magnitude": 5, "label": "F_{AB} = 5N", "color": "#ff0000" },
-  { "op": "drawForceVector", "x": 0.58, "y": 0.5, "dx": -0.15, "dy": 0, "magnitude": 5, "label": "F_{BA} = 5N", "color": "#0000ff" },
-  { "op": "drawLatex", "equation": "F_{AB} = -F_{BA}", "x": 0.5, "y": 0.25, "size": 24 },
-  { "op": "drawLabel", "text": "Forces are equal in magnitude", "x": 0.5, "y": 0.75, "fontSize": 14, "avoidOverlap": true },
-  { "op": "drawLabel", "text": "Forces are opposite in direction", "x": 0.5, "y": 0.82, "fontSize": 14, "avoidOverlap": true },
-  { "op": "delay", "duration": 2000 }
+  { "op": "drawLabel", "text": "① CONCEPT NAME", "x": 0.2, "y": 0.15, "fontSize": 18, "bold": true },
+  { "op": "drawLabel", "text": "Let's visualize how [concept] works...", "x": 0.2, "y": 0.22, "fontSize": 14, "color": "#00d9ff", "italic": true },
+  // NOW draw the actual visual
+  { "op": "[domain-specific-tool]", ... },
+  // THEN explain what we're seeing
+  { "op": "drawLabel", "text": "Notice how...", "x": 0.2, "y": 0.5, "fontSize": 13, "avoidOverlap": true }
 ]
 
-### Example 3: "Neuron cell structure and function"
-DOMAIN: Biology
-ANALYSIS: Need detailed cell structure with labeled parts
-SELECTED TOOLS:
-[
-  { "op": "drawTitle", "text": "Neuron Structure", "x": 0.5, "y": 0.1, "size": 28 },
-  { "op": "drawCellStructure", "type": "neuron", "x": 0.5, "y": 0.5, "size": 0.4, "showOrganelles": true, "organelles": ["nucleus", "dendrites", "axon", "synapses"], "detail": "high", "labels": true },
-  { "op": "drawLabel", "text": "Dendrites: Receive signals", "x": 0.15, "y": 0.3, "fontSize": 14, "avoidOverlap": true, "connectedTo": {"x": 0.35, "y": 0.4} },
-  { "op": "drawLabel", "text": "Soma: Cell body with nucleus", "x": 0.15, "y": 0.5, "fontSize": 14, "avoidOverlap": true, "connectedTo": {"x": 0.4, "y": 0.5} },
-  { "op": "drawLabel", "text": "Axon: Transmits signals", "x": 0.15, "y": 0.7, "fontSize": 14, "avoidOverlap": true, "connectedTo": {"x": 0.6, "y": 0.5} },
-  { "op": "drawForceVector", "x": 0.35, "y": 0.5, "dx": 0.3, "dy": 0, "magnitude": 1, "label": "Signal Flow", "color": "#00ff00" },
-  { "op": "delay", "duration": 2000 }
-]
+This creates NARRATIVE FLOW so users understand WHY each visual appears.
 
-Now generate the visualization for this step using INTELLIGENT TOOL SELECTION.
+Now generate 65-85 operations for this step using INTELLIGENT TOOL SELECTION with NARRATIVE FLOW.
 `;
 }
 
@@ -325,11 +254,13 @@ Description: ${stepDescription}
 
 1. ANALYZE the topic and step to understand what needs to be visualized
 2. IDENTIFY which domain(s) this belongs to (electrical, physics, biology, chemistry, math, CS)
-3. SELECT 50-70 operations from the appropriate tool categories (NOT 30-50!)
+3. SELECT 65-85 operations from the appropriate tool categories
 4. CREATE 4-5 SECTIONS with markers (① ② ③ ④ ⑤) - MANDATORY!
-5. COMPOSE them in a logical sequence (title → section① → section② → section③ → section④ → summary)
-6. ENSURE all labels use avoidOverlap: true to prevent text overlap
-7. PRIORITIZE domain-specific tools (60-70% of operations MUST be V2 tools)
+5. ADD NARRATIVE labels before EACH section explaining what you'll show
+6. COMPOSE them in logical sequence (title → narrative → visuals → explanation → repeat)
+7. ENSURE all labels use avoidOverlap: true to prevent text overlap
+8. PRIORITIZE domain-specific tools (65-75% of operations MUST be V2 tools)
+9. ADD PRECISION: All math equations must have proper scales, units, axis labels
 
 ## OUTPUT FORMAT:
 
@@ -342,11 +273,11 @@ Return ONLY valid JSON array of operations (no markdown, no explanations):
 
 🔥 CRITICAL REQUIREMENTS (STRICTLY ENFORCED - REJECTION IF NOT MET):
 
-🚨 OPERATION COUNT: Generate EXACTLY 50-70 operations
+🚨 OPERATION COUNT: Generate EXACTLY 65-85 operations
    - Count your operations as you generate!
-   - Less than 50 = AUTOMATIC REJECTION
-   - More than 70 = AUTOMATIC REJECTION
-   - Aim for 55-60 for safety
+   - Less than 65 = AUTOMATIC REJECTION
+   - More than 85 = AUTOMATIC REJECTION
+   - Aim for 72-75 for safety
 
 🚨 SECTION MARKERS: Include 4-5 labels with ① ② ③ ④ ⑤ symbols
    - Example: { "op": "drawLabel", "text": "① INPUT STAGE", "x": 0.2, "y": 0.15, "bold": true }
@@ -357,12 +288,12 @@ Return ONLY valid JSON array of operations (no markdown, no explanations):
    - **TARGET: 60-70% V2 operations (not just 35%!)**
    - **MINIMUM: 35% to pass, but AIM FOR 60-70%**
    
-   ⛔ BANNED (Use <20% total - ONLY for pure geometry/counting):
+   ⛔ BANNED (Use <15% total - ONLY for pure geometry/counting):
    ❌ drawCircle - forbidden except for pure circular shapes
    ❌ drawRect - forbidden except for generic containers
    ❌ drawLine - forbidden except for basic connections
    
-   ✅ REQUIRED (Use 60-70% total - THIS IS YOUR PRIMARY TOOLBOX):
+   ✅ REQUIRED (Use 65-75% total - THIS IS YOUR PRIMARY TOOLBOX):
    ✅ drawCircuitElement - ALL electrical components (resistor, capacitor, transistor)
    ✅ drawMolecule - ALL chemistry (atoms, bonds, structures)
    ✅ drawCellStructure - ALL biology (organelles, membranes, proteins)
@@ -412,34 +343,44 @@ Example:
   * Chemistry → drawMolecule + drawAtom + drawReaction (show transformations!)
   * CS → drawDataStructure + drawAlgorithmStep + highlight (step-by-step!)
   * Math → drawCoordinateSystem + drawGeometry + drawLatex (prove visually!)
+
+📐 MATHEMATICAL PRECISION REQUIREMENTS (FOR MATH/PHYSICS/ENGINEERING TOPICS):
+  When drawing graphs, equations, or coordinate systems:
   
-🎬 ANIMATIONS (15-20% MANDATORY - MUST INCLUDE 8-12 ANIMATION OPERATIONS):
+  ✅ ALWAYS include axis labels with units (e.g., "Time (s)", "Distance (m)")
+  ✅ ALWAYS show scale markers (tick marks at regular intervals)
+  ✅ ALWAYS label important points with coordinates (e.g., "(3, 9)")
+  ✅ ALWAYS use proper mathematical notation in LaTeX
+  ✅ ALWAYS show relationships with arrows and annotations
   
-  **YOU MUST USE AT LEAST 8-12 ANIMATIONS PER STEP:**
-  ✅ orbit (use 4-6 times) - electrons, planets, cycles, rotation
-  ✅ wave (use 2-3 times) - signals, oscillations, propagation
-  ✅ particle (use 2-3 times) - flow, transfer, emission, diffusion
+  Example of PRECISE math visualization:
+  { "op": "drawCoordinateSystem", "xRange": [-5, 5], "yRange": [-5, 5], "xLabel": "x", "yLabel": "f(x)", "showGrid": true },
+  { "op": "drawLabel", "text": "x = 0", "x": 0.5, "y": 0.48 },
+  { "op": "drawLabel", "text": "(2, 4)", "x": 0.7, "y": 0.4 },
+  { "op": "drawLatex", "equation": "f(x) = x^2", "x": 0.7, "y": 0.2 }
   
-  ORBIT EXAMPLES:
-  { "op": "orbit", "center": [0.3, 0.5], "radius": 0.08, "count": 6, "speed": 2, "color": "#3498db", "label": "Electrons orbiting" }
-  { "op": "orbit", "center": [0.7, 0.5], "radius": 0.12, "count": 8, "speed": 1.5, "color": "#e74c3c", "label": "Planet rotation" }
+🎬 CONTEXTUAL ANIMATIONS (ONLY WHEN RELEVANT TO TOPIC):
   
-  WAVE EXAMPLES:
-  { "op": "wave", "points": [[0.2,0.4], [0.5,0.4], [0.8,0.4]], "amplitude": 0.05, "frequency": 2, "color": "#f39c12" }
-  { "op": "wave", "points": [[0.2,0.6], [0.5,0.6], [0.8,0.6]], "amplitude": 0.03, "frequency": 3, "color": "#9b59b6" }
+  **USE ANIMATIONS ONLY WHEN THEY ADD MEANING TO THE CONCEPT:**
+  ✅ orbit - ONLY for: electrons orbiting atoms, planets, circular motion, cycles
+  ✅ wave - ONLY for: signals, oscillations, wave propagation, sound, light
+  ✅ particle - ONLY for: diffusion, flow, transfer, emission, molecular motion
   
-  PARTICLE EXAMPLES:
-  { "op": "particle", "source": [0.2, 0.5], "target": [0.5, 0.5], "count": 20, "speed": 1.5, "color": "#27ae60", "size": 3 }
-  { "op": "particle", "source": [0.5, 0.5], "target": [0.8, 0.5], "count": 15, "speed": 2, "color": "#e67e22", "size": 2 }
+  ❌ DO NOT add random animations just to fill space
+  ❌ DO NOT use orbit/wave/particle for unrelated topics (e.g., philosophy, history)
+  ✅ DO use contextual animations that enhance understanding
   
-  **EVERY CONCEPT NEEDS ANIMATION. NO STATIC DIAGRAMS ONLY!**
-  Use animations to show:
-  - Energy transfer (particle systems)
-  - Periodic motion (waves, orbits)
-  - Molecular dynamics (electrons orbiting atoms)
-  - Signal propagation (waves through circuits)
-  - Process flow (particles between components)
-  - Time evolution (orbits showing cycles)
+  WHEN TO USE EACH ANIMATION:
+  
+  orbit → Atoms (electrons), Solar systems (planets), Circular motion, Cycles
+  wave → Signals (electrical/sound/light), Oscillations, Wave phenomena
+  particle → Diffusion, Flow (blood/fluids), Molecular motion, Energy transfer
+  
+  WHEN NOT TO USE:
+  - Philosophy topics: Use diagrams, NOT animations
+  - History topics: Use timelines, NOT particles
+  - Abstract concepts: Use symbolic visuals, NOT random orbits
+  - Pure mathematics: Use geometric transformations, NOT generic waves
 
 ❌ WHAT TO AVOID:
 - DO NOT use multiple drawTitle operations (1 only!)
