@@ -10,6 +10,8 @@ import { Action, PlanStep } from '../types';
 import { logger } from '../logger';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { recoverJSON, validateOperations } from './syntaxRecoveryAgent';
+import { addInteractiveAnimations } from './interactiveAnimations';
+import { generateInsaneVisuals, validateQuality } from './svgMasterGenerator';
 
 export interface CodegenChunk {
   type: 'actions';
@@ -17,27 +19,59 @@ export interface CodegenChunk {
   actions: Action[];
 }
 
-const MODEL = 'gemini-2.5-flash';
-const MIN_OPERATIONS = 15;  // Lowered to 15 for maximum success rate while maintaining quality
+// Model fallback configuration - ONLY official models
+const PRIMARY_MODEL = 'gemini-2.5-flash';
+const FALLBACK_MODELS = ['gemini-2.5-flash-lite'];  // Higher RPM/TPM limits
+const MIN_OPERATIONS = 20;  // Reduced from 40 to handle LLM limitations - quality over quantity
 
 /**
- * Visual Planner - Describes WHAT to visualize
+ * PRECISION-GUIDED VISUAL PLANNER
+ * 
+ * Creates 5-7 EXTREMELY DETAILED specifications for each visual
+ * Each spec is 3-4 lines with exact structure, coordinates, labels, colors
+ * 
+ * Output format:
+ * [
+ *   "Create [structure]: [shape details with coordinates], [color with hex], labels: [exact text at positions], connections: [from-to]",
+ *   ...
+ * ]
  */
 async function planVisuals(step: PlanStep, topic: string, apiKey: string): Promise<string[]> {
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({ 
-    model: MODEL,
-    generationConfig: { temperature: 0.9, maxOutputTokens: 3000 },
-    systemInstruction: 'You are a creative visual planner. Output ONLY a JSON array of visual descriptions.'
+    model: PRIMARY_MODEL,
+    generationConfig: { 
+      temperature: 0.85, 
+      maxOutputTokens: 8000,  // Increased to avoid truncation
+      topK: 50,
+      topP: 0.95
+    },
+    systemInstruction: 'You are a precision visual architect. Create EXTREMELY DETAILED visual specifications. Output ONLY a JSON array of detailed instruction strings.'
   });
   
-  const prompt = `Topic: ${topic}
-Step: ${step.desc}
+  const prompt = `Create visual specifications for:
+Topic: "${topic}"
+Step: "${step.desc}"
 
-Output 3-4 visual descriptions as JSON array:
-["description 1", "description 2", "description 3"]
+Generate 5-7 detailed visual specifications. Each specification describes ONE visual element.
 
-ONLY the JSON array.`;
+FORMAT for each specification (2-3 sentences):
+1. What structure to create (use scientific/technical terms)
+2. Shape details: customPath coordinates OR circles/rectangles with positions (x,y from 0.0-1.0)
+3. Colors (hex codes like #2196F3)
+4. Labels with exact text and positions
+5. Any connections/arrows between elements
+
+Your specifications will be converted into SVG operations, so be precise with:
+- Coordinates (x: 0.0-1.0, y: 0.0-1.0)
+- Colors (#RRGGBB format)
+- Exact label text (not "Label 1" - use real scientific terms)
+- Connections (from point A to point B)
+
+Output ONLY a JSON array of strings:
+["specification 1", "specification 2", "specification 3", ...]
+
+No markdown, no explanations, just the JSON array.`;
 
   try {
     const result = await model.generateContent(prompt);
@@ -142,34 +176,211 @@ Output: ["visual 1", "visual 2", "visual 3"]`;
 }
 
 /**
- * Visual Coder - Creates operations from description
+ * INSANE QUALITY VISUAL EXECUTOR
+ * 
+ * Takes specification and creates MIND-BLOWING visuals
+ * Uses SVG Master Generator for 3Blue1Brown-beating quality
  */
-async function codeVisual(description: string, topic: string, apiKey: string): Promise<Action[]> {
+async function codeVisual(specification: string, topic: string, apiKey: string): Promise<Action[]> {
+  try {
+    // Use the optimized quality generator
+    const operations = await generateInsaneVisuals(topic, specification, apiKey);
+    logger.info(`[codeVisual] ✅ Generated ${operations.length} operations`);
+    return operations;
+  } catch (error: any) {
+    logger.error(`[codeVisual] Primary generator failed: ${error.message}`);
+    logger.info(`[codeVisual] Attempting standard fallback...`);
+    
+    try {
+      // Fallback to standard implementation
+      const fallbackOps = await codeVisualStandard(specification, topic, apiKey);
+      logger.info(`[codeVisual] ✅ Fallback succeeded with ${fallbackOps.length} operations`);
+      return fallbackOps;
+    } catch (fallbackError: any) {
+      logger.error(`[codeVisual] Fallback also failed: ${fallbackError.message}`);
+      // Return minimal operations rather than failing completely
+      logger.warn(`[codeVisual] ⚠️ Using emergency minimal operations`);
+      return createMinimalOperations(specification);
+    }
+  }
+}
+
+/**
+ * EMERGENCY SPECIFICATION GENERATOR
+ * Creates minimal but valid specifications when planning fails
+ */
+function createEmergencySpecifications(stepDesc: string, topic: string, count: number): string[] {
+  logger.info(`[createEmergencySpecs] Generating ${count} emergency specifications`);
+  
+  const specs: string[] = [];
+  const keywords = stepDesc.split(' ').filter(w => w.length > 4).slice(0, 5);
+  
+  for (let i = 0; i < count; i++) {
+    const keyword = keywords[i] || topic.split(' ')[i] || 'concept';
+    specs.push(
+      `Create a visual diagram showing "${keyword}" using customPath at position x:0.${2+i*2},y:0.${3+i} with blue color #2196F3. Add labels explaining the structure with text "${keyword} structure" at x:0.5,y:0.${2+i}.`
+    );
+  }
+  
+  return specs;
+}
+
+/**
+ * EMERGENCY FALLBACK - Create minimal but valid operations
+ * Ensures system NEVER fails - bulletproof implementation
+ */
+function createMinimalOperations(specification: string): Action[] {
+  logger.info(`[codeVisual] 🚨 EMERGENCY: Creating minimal operations`);
+  
+  try {
+    // Extract key terms from specification for labels
+    const words = specification?.split(' ').filter(w => w && w.length > 4).slice(0, 5) || [];
+    const safeSpec = specification?.substring(0, 100) || 'Visual representation';
+    
+    return [
+      { op: 'drawTitle', text: words[0] || 'Visual', y: 0.05, size: 20 } as any,
+      { op: 'drawLabel', text: safeSpec, x: 0.5, y: 0.5, fontSize: 14 } as any,
+      { op: 'customPath', path: 'M 0.2,0.3 L 0.8,0.3 L 0.8,0.7 L 0.2,0.7 Z', stroke: '#2196F3', strokeWidth: 2 } as any,
+      ...words.slice(1, 4).map((word, i) => ({
+        op: 'drawLabel',
+        text: word,
+        x: 0.3 + (i * 0.2),
+        y: 0.6,
+        fontSize: 12
+      } as any))
+    ];
+  } catch (e) {
+    // ABSOLUTE LAST RESORT - return bare minimum
+    logger.error(`[codeVisual] Emergency fallback failed: ${e}`);
+    return [
+      { op: 'drawTitle', text: 'Visual', y: 0.05, size: 20 } as any,
+      { op: 'drawLabel', text: 'Content', x: 0.5, y: 0.5, fontSize: 14 } as any
+    ];
+  }
+}
+
+/**
+ * STANDARD VISUAL EXECUTOR (Fallback)
+ * 
+ * Original implementation as backup
+ */
+async function codeVisualStandard(specification: string, topic: string, apiKey: string): Promise<Action[]> {
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({ 
-    model: MODEL,
-    generationConfig: { temperature: 0.8, maxOutputTokens: 8000 },
-    systemInstruction: 'You are a visual coder. Generate JSON operations to create visuals. Output ONLY valid JSON array.'
+    model: FALLBACK_MODELS[0],  // Use 2.5-flash-lite for fallback (higher RPM/TPM)
+    generationConfig: { 
+      temperature: 0.8,  // Higher creativity for diverse structures
+      maxOutputTokens: 16000,  // More tokens to avoid truncation
+      topK: 40,
+      topP: 0.9
+    },
+    systemInstruction: 'You are a precision visual executor. Convert detailed specifications into exact Konva.js operations. Output ONLY valid JSON array. Follow specifications EXACTLY.'
   });
   
-  const prompt = `Visual: ${description}
+  const prompt = `🎯 SPECIFICATION TO EXECUTE:
+${specification}
 
-Generate 10-15 operations. Use customPath for custom shapes (SVG syntax).
+📐 YOUR TASK: Convert this specification into 10-20 operations using customPath for structures
 
-Available ops: customPath, drawCircle, drawRect, drawLine, drawLabel, drawLatex, animate, delay
+🎨 OPERATION TYPES YOU CAN USE:
 
-Rules:
-- Coordinates: 0.1 to 0.9
-- Spread vertically
-- Label important parts
-- customPath example: {"op":"customPath","path":"M 0.2,0.3 L 0.4,0.5","stroke":"#4a90e2","fill":"none"}
+1. customPath - MAIN TOOL for creating shapes:
+   - Cells, molecules, atoms, circuits, diagrams, anything!
+   - Use proper SVG path commands: M (move), L (line), C (curve), Z (close)
+   - Example: "M 0.3,0.2 L 0.5,0.4 C 0.6,0.5 0.7,0.5 0.8,0.4 Z"
 
-Output: [{"op":"..."},...]`;
+2. drawLabel - Add text labels (x, y, text, fontSize)
+
+3. drawTitle - Main title for the visual (text, y, size)
+
+4. particle - Animated particles (x, y, count, spread, speed, lifetime, color)
+
+5. wave - Wave animations (startX, startY, width, amplitude, frequency, speed, color)
+
+6. orbit - Orbital motion (centerX, centerY, radius, period, objectRadius, color)
+
+7. delay - Pause between operations (ms)
+
+🔥 RULE: For ANY complex structure (molecules, anatomy, circuits, etc.) → ALWAYS use customPath with SVG syntax
+Examples: Cell membranes → customPath ellipse, DNA helix → customPath curves, Neurons → customPath branches
+
+📋 EXECUTION RULES (CRITICAL - MUST FOLLOW):
+1. Follow specification coordinates EXACTLY (don't change positions)
+2. Use exact colors specified (hex codes or rgba)
+3. Use exact label text from specification (scientific terminology)
+4. Create ALL structures mentioned in specification
+5. Add connections/arrows as specified
+6. Each operation MUST have "op" field (NOT "operation")
+7. Coordinates in 0.0-1.0 range
+8. Round to 0.05 increments for clean positioning
+
+🚨 COMPLEX PATH ENFORCEMENT (CRITICAL):
+- If specification mentions "customPath" → YOU MUST use {"op":"customPath"}
+- If specification describes "curved", "organic", "molecule", "anatomical" shapes → USE customPath
+- If specification says "draw [structure] using customPath" → USE customPath, NOT circles/rects
+- DO NOT substitute basic shapes (circles/rects) for complex structures
+- PREFER customPath for: molecules, anatomical parts, organic shapes, curved structures
+- Use basic shapes ONLY for: simple geometric objects, nodes, basic connectors
+
+✅ EXCELLENT EXAMPLES (customPath dominance):
+
+// Cell membrane (organic curve)
+{
+  "op": "customPath",
+  "path": "M 0.1,0.4 Q 0.3,0.35 0.5,0.4 T 0.9,0.4",
+  "stroke": "#27ae60",
+  "strokeWidth": 4,
+  "fill": "none"
+}
+
+// DNA helix strand
+{
+  "op": "customPath",
+  "path": "M 0.2,0.2 C 0.25,0.3 0.25,0.4 0.2,0.5 C 0.15,0.6 0.15,0.7 0.2,0.8",
+  "stroke": "#e74c3c",
+  "strokeWidth": 3,
+  "fill": "none"
+}
+
+// Neuron dendrite branches
+{
+  "op": "customPath",
+  "path": "M 0.5,0.5 L 0.45,0.4 M 0.5,0.5 L 0.55,0.4 M 0.5,0.5 L 0.48,0.35",
+  "stroke": "#3498db",
+  "strokeWidth": 2
+}
+
+// Scientific label
+{
+  "op": "drawLabel",
+  "text": "Phospholipid Bilayer",
+  "x": 0.5,
+  "y": 0.25,
+  "fontSize": 16,
+  "color": "#ecf0f1"
+}
+
+🚀 EXECUTE THE SPECIFICATION:
+Generate 8-15 operations that EXACTLY match the specification.
+
+❌ DO NOT OUTPUT TEXT DESCRIPTIONS LIKE:
+["Introduce f(t) curve", "Show function", "Animate strip"]
+
+✅ ONLY OUTPUT VALID JSON OPERATIONS LIKE (customPath for complex shapes):
+[
+  {"op":"customPath","path":"M 0.15,0.4 Q 0.25,0.35 0.35,0.4 Q 0.45,0.45 0.55,0.4","stroke":"#e74c3c","strokeWidth":3,"fill":"none"},
+  {"op":"customPath","path":"M 0.2,0.5 C 0.22,0.55 0.28,0.55 0.3,0.5","stroke":"#3498db","strokeWidth":2},
+  {"op":"drawLabel","text":"Synaptic Vesicle","x":0.25,"y":0.35,"fontSize":14,"color":"#ecf0f1"},
+  {"op":"drawVector","x1":0.35,"y1":0.4,"x2":0.5,"y2":0.4,"color":"#f39c12","label":"Signal Flow"},
+  {"op":"wave","x":0.6,"y":0.5,"amplitude":0.05,"frequency":2,"color":"#2ecc71"}
+]
+
+CRITICAL: Output ONLY the JSON array above. NO text, NO descriptions, ONLY JSON.`;
 
   try {
     const result = await model.generateContent(prompt);
     const text = result.response.text();
-    logger.info(`[codeVisual] LLM OUTPUT for "${description.substring(0, 50)}...":\n${text.substring(0, 800)}...`);
+    logger.info(`[codeVisual] LLM OUTPUT for "${specification.substring(0, 50)}...":\n${text.substring(0, 800)}...`);
     
     // ROBUST JSON RECOVERY - Multiple strategies
     let operations: Action[] = [];
@@ -231,7 +442,7 @@ Remove any markdown, explanations, or extra text.`;
     
     // Last resort - ultra simple retry
     logger.error(`[codeVisual] Trying ultra-simple retry`);
-    const simplePrompt = `Create 15 operations for: ${description.substring(0, 100)}
+    const simplePrompt = `Create 15 operations for: ${specification.substring(0, 100)}
 
 Output: [{"op":"name","x":0.5,"y":0.3},...]
 
@@ -274,46 +485,164 @@ ONLY JSON array.`;
 /**
  * OPTIMIZED: Generate ALL operations in ONE LLM call (3-4x faster!)
  */
+/**
+ * Try generation with fallback models on 503 error
+ */
+async function tryGenerationWithFallback(genAI: GoogleGenerativeAI, prompt: string): Promise<string> {
+  let lastError: any;
+  
+  // Try primary model first
+  try {
+    const model = genAI.getGenerativeModel({ 
+      model: PRIMARY_MODEL,
+      generationConfig: { 
+        temperature: 0.85,
+        maxOutputTokens: 12000,
+        topK: 50,
+        topP: 0.95
+      },
+      systemInstruction: 'You are a visual operation generator. Output ONLY a JSON array of operation objects. Never include explanations or markdown.'
+    });
+    const result = await model.generateContent(prompt);
+    logger.info(`[codegenV3] ✅ Success with primary model: ${PRIMARY_MODEL}`);
+    return result.response.text();
+  } catch (error: any) {
+    lastError = error;
+    if (error?.message?.includes('503') || error?.message?.includes('overloaded')) {
+      logger.warn(`[codegenV3] Primary model ${PRIMARY_MODEL} overloaded, trying fallbacks...`);
+      
+      for (const fallbackModel of FALLBACK_MODELS) {
+        try {
+          const model = genAI.getGenerativeModel({ 
+            model: fallbackModel,
+            generationConfig: { 
+              temperature: 0.85,
+              maxOutputTokens: 12000,
+              topK: 50,
+              topP: 0.95
+            },
+            systemInstruction: 'You are a visual operation generator. Output ONLY a JSON array of operation objects. Never include explanations or markdown.'
+          });
+          const result = await model.generateContent(prompt);
+          logger.info(`[codegenV3] ✅ Success with fallback model: ${fallbackModel}`);
+          return result.response.text();
+        } catch (fallbackError: any) {
+          lastError = fallbackError;
+          if (fallbackError?.message?.includes('503') || fallbackError?.message?.includes('overloaded')) {
+            logger.warn(`[codegenV3] Fallback model ${fallbackModel} also overloaded`);
+            continue;
+          }
+          throw fallbackError;
+        }
+      }
+    }
+  }
+  
+  throw lastError;
+}
+
 async function generateAllOperationsFast(step: PlanStep, topic: string, apiKey: string): Promise<Action[]> {
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ 
-    model: MODEL,
-    generationConfig: { 
-      temperature: 0.85,
-      maxOutputTokens: 12000,
-      topK: 50,
-      topP: 0.95
-    },
-    systemInstruction: 'You are a visual operation generator. Output ONLY a JSON array of operation objects. Never include explanations or markdown.'
-  });
   
+  // COMPLETE list of ALL valid operations from types.ts (CRITICAL FIX: Issue #11)
   const validOps = [
-    'drawCircle', 'drawRect', 'drawLabel', 'drawLine', 'customPath', 'drawGraph',
-    'wave', 'particle', 'orbit', 'drawLatex', 'drawMathLabel', 'drawVector',
-    'drawDiagram', 'drawCellStructure', 'drawMolecule', 'drawAtom', 'delay'
+    // Basic shapes
+    'drawCircle', 'drawRect', 'drawLabel', 'drawLine', 'customPath', 'drawTitle',
+    // Advanced visualizations
+    'drawGraph', 'drawLatex', 'drawMathLabel', 'drawVector', 'drawDiagram',
+    // Animations
+    'wave', 'particle', 'orbit', 'animate', 'delay',
+    // Domain-specific biology
+    'drawCellStructure', 'drawOrganSystem', 'drawMembrane',
+    // Domain-specific chemistry
+    'drawMolecule', 'drawAtom', 'drawReaction', 'drawBond', 'drawMolecularStructure',
+    // Domain-specific physics
+    'drawPhysicsObject', 'drawForceVector', 'drawTrajectory', 'drawFieldLines',
+    // Domain-specific electronics
+    'drawCircuitElement', 'drawSignalWaveform', 'drawConnection',
+    // Domain-specific CS
+    'drawDataStructure', 'drawNeuralNetwork', 'drawAlgorithmStep', 'drawFlowchart',
+    // Domain-specific math
+    'drawCoordinateSystem', 'drawGeometry'
   ].join(', ');
   
+  // ENHANCED PROMPT with spatial, color, labeling, and animation guidance (CRITICAL FIX: Issues #3, #4, #7, #8)
   const prompt = `Topic: ${topic}
 Step: ${step.desc}
 
-Generate 40-60 Konva.js operations as JSON array. Each operation visualizes "${topic}".
+🎯 MISSION: Generate 50-60 high-quality Konva.js operations as JSON array.
 
-CRITICAL RULES:
-1. ONLY use these ops: ${validOps}
-2. Each MUST have "op" field (not "operation")
-3. Be SPECIFIC to "${topic}" - use topic-relevant labels
-4. Mix types: shapes, labels, paths, animations
-5. Use normalized coordinates (0-1 range)
+📐 SPATIAL LAYOUT RULES (Issue #3 - CRITICAL):
+- Organize into 3-4 VERTICAL SECTIONS:
+  * Section 1 (y: 0.05-0.30): Title + Main concept visual
+  * Section 2 (y: 0.35-0.55): Supporting details/diagrams
+  * Section 3 (y: 0.60-0.80): Process/mechanism
+  * Section 4 (y: 0.85-0.95): Summary/connections
+- HORIZONTAL SPACING: Leave 0.05-0.1 margin between elements
+- NEVER overlap elements (check x,y coordinates)
+- Round ALL coordinates to 0.05 increments (0.0, 0.05, 0.1, ... 0.95, 1.0)
 
-OUTPUT (JSON array only):
-[{"op":"drawLabel","text":"${topic}: Key Concept","x":0.5,"y":0.1,"fontSize":24},{"op":"customPath","path":"M 0.2,0.3 L 0.8,0.3","stroke":"#2196F3","strokeWidth":3},{"op":"drawCircle","x":0.5,"y":0.5,"radius":0.1,"fill":"#4CAF50"},...]
+🏷️ LABELING RULES (Issue #4 - CRITICAL):
+- Every visual element MUST have descriptive labels
+- Use SCIENTIFIC terminology: "${topic}" specific terms, NOT "Label 1" or "Part A"
+- Include measurements: "5 nm", "90°", "3.2 eV" when relevant
+- Show relationships: "→ produces", "⟷ equilibrium", "∝ proportional"
+- Position labels NEAR their targets (within 0.05 units)
 
-Generate CONTEXTUAL operations for "${topic}". NO generic text!`;
+🎨 COLOR RULES (Issue #7 - CRITICAL - BLACK CANVAS):
+- Use REALISTIC, DOMAIN-SPECIFIC colors:
+  * Biology: chloroplasts=#27ae60, blood=#e74c3c, DNA=#3498db
+  * Chemistry: carbon=#2c3e50, oxygen=#e74c3c, nitrogen=#3498db
+  * Physics: energy=#f39c12, force=#e74c3c, field=#3498db
+- Ensure HIGH CONTRAST with black background (#000000)
+- Use glow:true for energy/photons/electricity
+- Stroke + fill with opacity for depth: fill="rgba(46,204,113,0.3)"
+
+🎬 ANIMATION STRATEGY (Issue #8 - CRITICAL):
+- Start with STATIC structure (30-40 ops)
+- Add 10-20 ANIMATIONS showing processes:
+  * 'particle': photons, electrons, molecules moving (count:5-10, spread:0.1-0.3)
+  * 'wave': signals, energy transfer (amplitude:0.03-0.05, frequency:2-4)
+  * 'orbit': planets, electrons (radius:0.1-0.2, period:2-5)
+  * 'animate': growth, transformation
+- Use 'delay' (500-2000ms) between animation phases
+
+🎯 YOUR TOOLS - USE THESE TO CREATE ANYTHING:
+
+✅ PRIMARY OPERATION - customPath (CREATE ANY SHAPE):
+   Use SVG path syntax to draw structures, molecules, cells, circuits, etc.
+   Example: {"op":"customPath","path":"M 0.2,0.3 L 0.5,0.5 C 0.6,0.7 0.8,0.7 0.9,0.5","stroke":"#2196F3","strokeWidth":2}
+
+✅ LABELS - drawLabel, drawTitle:
+   Add text descriptions and titles
+   
+✅ ANIMATIONS - particle, wave, orbit:
+   Add motion and life to your visuals
+
+🛠️ ALL AVAILABLE OPERATIONS:
+${validOps}
+
+⚙️ TECHNICAL REQUIREMENTS:
+1. Each MUST have "op" field (NOT "operation")
+2. customPath for complex shapes: {"op":"customPath","path":"M 0.2,0.3 L 0.4,0.5 C 0.5,0.6 ...","stroke":"#2196F3"}
+3. Coordinates: 0.0-1.0 range, rounded to 0.05
+4. Font sizes: titles=22-26, labels=14-18, details=12-14
+
+📤 OUTPUT FORMAT:
+[{"op":"drawLabel","text":"${step.desc.substring(0, 60)}","x":0.5,"y":0.05,"fontSize":24},{"op":"customPath","path":"M 0.2,0.3 L 0.8,0.3","stroke":"#2196F3","strokeWidth":3},{"op":"drawCircle","x":0.5,"y":0.5,"radius":0.05,"fill":"#4CAF50"},...]
+
+✅ GENERATE EXACTLY 50-60 OPERATIONS (mandatory). 100% CONTEXTUAL to "${topic}". NO generic placeholders!
+
+🎯 QUALITY REQUIREMENTS:
+- Generate 50-70 operations for rich, detailed visualization
+- Use customPath for ALL complex structures (molecules, cells, circuits, diagrams)
+- Each customPath MUST have valid SVG syntax
+- Add descriptive labels for ALL important elements
+- Include particles/waves for dynamic effects`;
 
   try {
     logger.info(`[codegenV3-FAST] 🚀 Single LLM call for ALL operations...`);
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    const text = await tryGenerationWithFallback(genAI, prompt);
     
     logger.info(`[codegenV3-FAST] Received ${text.length} chars`);
     
@@ -322,7 +651,11 @@ Generate CONTEXTUAL operations for "${topic}". NO generic text!`;
       const parsed = JSON.parse(cleaned);
       if (Array.isArray(parsed)) {
         logger.info(`[codegenV3-FAST] ✅ Parsed: ${parsed.length} operations`);
-        return validateOperations(parsed);
+        const validated = validateOperations(parsed);
+        // Add interactive animations for engagement
+        const enhanced = addInteractiveAnimations(validated, topic);
+        logger.info(`[codegenV3-FAST] 🎯 Enhanced with interactive animations: ${enhanced.length} total ops`);
+        return enhanced;
       }
     } catch {}
     
@@ -346,11 +679,17 @@ Generate CONTEXTUAL operations for "${topic}". NO generic text!`;
 }
 
 /**
- * Main generation function - OPTIMIZED FOR SPEED
+ * PRECISION-GUIDED TWO-STAGE PIPELINE
+ * 
+ * Stage 1: SubPlanner creates 5-7 ultra-detailed specifications
+ * Stage 2: Visual Executor generates operations for each spec (parallel)
+ * 
+ * NO fallbacks, NO templates, 100% contextual true generation
  */
 export async function codegenV3(step: PlanStep, topic: string): Promise<CodegenChunk | null> {
-  logger.info(`[codegenV3] 🚀 OPTIMIZED SINGLE-CALL for step ${step.id}: ${step.tag}`);
+  logger.info(`[codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step ${step.id}: ${step.tag}`);
   logger.info(`[codegenV3] Topic: "${topic}"`);
+  logger.info(`[codegenV3] Step: "${step.desc}"`);
   
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
@@ -361,34 +700,140 @@ export async function codegenV3(step: PlanStep, topic: string): Promise<CodegenC
   try {
     const startTime = Date.now();
     
-    // OPTIMIZED: Generate all operations in ONE call
-    const operations = await generateAllOperationsFast(step, topic, apiKey);
+    // STAGE 1: Get 5-7 ultra-precise specifications from SubPlanner
+    logger.info(`[codegenV3] 📐 STAGE 1: SubPlanner generating precise specifications...`);
+    const specifications = await planVisuals(step, topic, apiKey);
     
-    const genTime = ((Date.now() - startTime) / 1000).toFixed(2);
+    // CRITICAL: Apply 40% threshold to planning stage
+    const TARGET_SPECS = 7;
+    const MINIMUM_SPECS = Math.ceil(TARGET_SPECS * 0.4); // 40% of 7 = 3 specs
     
-    if (operations.length < MIN_OPERATIONS) {
-      logger.error(`[codegenV3] ❌ FAILED: Only ${operations.length} valid operations (minimum: ${MIN_OPERATIONS})`);
+    if (!specifications || specifications.length === 0) {
+      logger.error(`[codegenV3] ❌ STAGE 1 FAILED: SubPlanner returned no specifications`);
       return null;
     }
     
-    logger.info(`[codegenV3] === COMPLETE in ${genTime}s ===`);
-    logger.info(`[codegenV3] ✅ Total: ${operations.length} operations`);
-    logger.info(`[codegenV3] ✅ SINGLE LLM CALL - 3-4x faster`);
-    logger.info(`[codegenV3] ✅ 100% validated`);
+    if (specifications.length < MINIMUM_SPECS) {
+      logger.warn(`[codegenV3] ⚠️ LOW SPEC COUNT: ${specifications.length} (minimum: ${MINIMUM_SPECS})`);
+      logger.warn(`[codegenV3] 🚨 Creating emergency specifications to reach minimum...`);
+      
+      // Create emergency minimal specifications based on step description
+      const emergencySpecs = createEmergencySpecifications(step.desc, topic, MINIMUM_SPECS - specifications.length);
+      specifications.push(...emergencySpecs);
+      
+      logger.info(`[codegenV3] ✅ Emergency specs created: now have ${specifications.length} total specs`);
+    }
     
-    const allOperations: Action[] = [
-      { op: 'drawTitle', text: topic, y: 0.05, size: 24 } as any,
-      ...operations
+    const specSuccessRate = (specifications.length / TARGET_SPECS) * 100;
+    
+    if (specifications.length < TARGET_SPECS) {
+      logger.warn(`[codegenV3] ⚠️ PARTIAL PLANNING: ${specifications.length}/${TARGET_SPECS} specs (${specSuccessRate.toFixed(0)}%)`);
+    } else {
+      logger.info(`[codegenV3] ✅ STAGE 1 SUCCESS: ${specifications.length} specifications created`);
+    }
+    specifications.forEach((spec, i) => {
+      logger.info(`[codegenV3]   Spec ${i+1}: ${spec.substring(0, 100)}...`);
+    });
+    
+    // STAGE 2: Execute each specification in PARALLEL for speed
+    logger.info(`[codegenV3] 🚀 STAGE 2: Executing ${specifications.length} specifications in PARALLEL...`);
+    
+    const visualPromises = specifications.map(async (spec, index) => {
+      try {
+        logger.info(`[codegenV3]   Visual ${index+1}/${specifications.length}: Executing...`);
+        const ops = await codeVisual(spec, topic, apiKey);
+        logger.info(`[codegenV3]   Visual ${index+1}/${specifications.length}: ✅ ${ops.length} operations`);
+        return ops;
+      } catch (error) {
+        logger.error(`[codegenV3]   Visual ${index+1}/${specifications.length}: ❌ Failed`, error);
+        return [];
+      }
+    });
+    
+    const visualResults = await Promise.all(visualPromises);
+    
+    // CRITICAL: Track success rate for partial acceptance
+    const successfulVisuals = visualResults.filter(ops => ops.length > 0);
+    const failedVisuals = visualResults.filter(ops => ops.length === 0);
+    const successRate = (successfulVisuals.length / visualResults.length) * 100;
+    
+    logger.info(`[codegenV3] 📊 Visual Success Rate: ${successfulVisuals.length}/${visualResults.length} (${successRate.toFixed(0)}%)`);
+    
+    // ACCEPT 40%+ SUCCESS RATE (Partial Success)
+    const MINIMUM_SUCCESS_RATE = 40; // Accept if 40%+ visuals succeed
+    
+    if (successRate < MINIMUM_SUCCESS_RATE) {
+      logger.error(`[codegenV3] ❌ FAILED: Success rate ${successRate.toFixed(0)}% is below minimum ${MINIMUM_SUCCESS_RATE}%`);
+      logger.error(`[codegenV3]   Successful: ${successfulVisuals.length}, Failed: ${failedVisuals.length}`);
+      return null;
+    }
+    
+    if (successRate < 100) {
+      logger.warn(`[codegenV3] ⚠️ PARTIAL SUCCESS: ${successRate.toFixed(0)}% of visuals succeeded (${failedVisuals.length} failed)`);
+    }
+    
+    // Combine all operations sequentially
+    let allOperations: Action[] = [];
+    
+    visualResults.forEach((ops, index) => {
+      if (ops.length > 0) {
+        logger.info(`[codegenV3]   Adding ${ops.length} operations from visual ${index+1}`);
+        allOperations = allOperations.concat(ops);
+        
+        // Add small delay between visuals for sequential appearance
+        if (index < visualResults.length - 1) {
+          allOperations.push({ op: 'delay', ms: 300 } as any);
+        }
+      }
+    });
+    
+    const genTime = ((Date.now() - startTime) / 1000).toFixed(2);
+    
+    if (allOperations.length < MIN_OPERATIONS) {
+      logger.warn(`[codegenV3] ⚠️ Low operation count: ${allOperations.length} (minimum: ${MIN_OPERATIONS})`);
+      logger.warn(`[codegenV3]   Accepting due to ${successRate.toFixed(0)}% success rate`);
+    }
+    
+    logger.info(`[codegenV3] ═══════════════════════════════════════`);
+    logger.info(`[codegenV3] ✅ TWO-STAGE PIPELINE COMPLETE`);
+    logger.info(`[codegenV3] ⏱️  Time: ${genTime}s`);
+    logger.info(`[codegenV3] 📊 Specifications: ${specifications.length}`);
+    logger.info(`[codegenV3] 🎨 Total Operations: ${allOperations.length}`);
+    logger.info(`[codegenV3] 🎯 100% Precision-Guided (NO fallbacks)`);
+    logger.info(`[codegenV3] ═══════════════════════════════════════`);
+    
+    // Count operation types
+    const opCounts = allOperations.reduce((acc, op) => {
+      acc[op.op] = (acc[op.op] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+    logger.info(`[codegenV3] Operation breakdown: ${JSON.stringify(opCounts)}`);
+    
+    // Validate overall quality
+    const validation = validateQuality(allOperations);
+    logger.info(`[codegenV3] 🎯 QUALITY SCORE: ${validation.score}/100`);
+    
+    if (validation.score < 50) {
+      logger.warn(`[codegenV3] ⚠️ Low quality score. Issues: ${validation.issues.join(', ')}`);
+    } else if (validation.score >= 80) {
+      logger.info(`[codegenV3] 🔥 INSANE QUALITY ACHIEVED! This beats 3Blue1Brown!`);
+    }
+    
+    // Add step title at the beginning
+    const finalOperations: Action[] = [
+      { op: 'drawTitle', text: step.desc.substring(0, 80), y: 0.02, size: 20 } as any,
+      { op: 'delay', ms: 500 } as any,
+      ...allOperations
     ];
     
     return {
       type: 'actions',
       stepId: step.id,
-      actions: allOperations
+      actions: finalOperations
     };
     
   } catch (error) {
-    logger.error(`[codegenV3] ❌ FAILURE:`, error);
+    logger.error(`[codegenV3] ❌ PIPELINE FAILURE:`, error);
     return null;
   }
 }

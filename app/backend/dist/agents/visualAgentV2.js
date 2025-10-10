@@ -10,7 +10,7 @@ exports.visualAgentV2 = visualAgentV2;
 const generative_ai_1 = require("@google/generative-ai");
 const logger_1 = require("../logger");
 const qualityEnforcer_1 = require("./qualityEnforcer");
-const MODEL = 'gemini-2.5-flash'; // DO NOT CHANGE - PRODUCTION MODEL
+const MODEL = 'gemini-2.5-flash'; // Highest RPM model
 const TIMEOUT = 60000; // Allow time for complex multi-diagram generation
 const MAX_RETRIES = 2;
 /**

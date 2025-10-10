@@ -11,8 +11,8 @@ import { codegenV3, CodegenChunk } from './codegenV3';
 import { PlanStep } from '../types';
 import { logger } from '../logger';
 
-const MAX_RETRIES = 3;
-const BASE_DELAY = 2000; // 2 seconds
+const MAX_RETRIES = 5;  // Increased for 503 errors
+const BASE_DELAY = 5000; // 5 seconds (longer for API overload)
 
 /**
  * Wrapper for codegenV3 with retry strategy

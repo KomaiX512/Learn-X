@@ -139,12 +139,18 @@ export class SequentialRenderer {
       // HARD RESET the animation queue immediately (stops everything)
       this.animationQueue.hardReset();
       
-      // SYNCHRONOUS cleanup (no setTimeout race conditions)
-      this.clearStepSynchronously().then(() => {
+      // FIX: Use await to prevent race condition
+      (async () => {
+        await this.clearStepSynchronously();
         console.log('[SequentialRenderer] ✅ Cleanup complete, creating new layer');
         this.createNewStepLayer(chunk.stepId);
         this.enqueueActions(chunk);
-      });
+        
+        // CRITICAL FIX: Resume playback after hard reset
+        console.log('[SequentialRenderer] 🎬 Resuming playback for new step');
+        this.animationQueue.resume();
+      })();
+      return;
       
     } else {
       // First step or continuing same step - just create layer if needed
@@ -348,6 +354,15 @@ export class SequentialRenderer {
         await this.drawVector(action.x1, action.y1, action.x2, action.y2, action.color, action.label);
         break;
         
+      case 'drawLine':
+        // Transform backend format {x1,y1,x2,y2,stroke,strokeWidth} to function signature
+        await this.drawLine(
+          [action.x1, action.y1, action.x2, action.y2],
+          action.stroke || action.color,
+          action.strokeWidth || action.width
+        );
+        break;
+        
       // V2 Domain-specific operations
       case 'drawCircuitElement':
         if (this.domainRenderers) {
@@ -447,6 +462,10 @@ export class SequentialRenderer {
         
       case 'arrow':
         await this.drawArrow(action.from, action.to, action.color, action.label);
+        break;
+        
+      case 'customPath':
+        await this.drawCustomPath(action);
         break;
         
       // NEW ADVANCED OPERATIONS
@@ -565,6 +584,24 @@ export class SequentialRenderer {
       case 'drawLatex':
         // Render LaTeX equation
         await this.renderLatex(action.equation || action.text, action.x, action.y, action.size, action.color, action.animated);
+        break;
+        
+      case 'drawMathLabel':
+        // Math labels are just LaTeX equations
+        await this.renderLatex(action.tex || action.equation || action.text, action.x, action.y, action.size || action.fontSize, action.color, action.animated);
+        break;
+        
+      case 'drawDiagram':
+        // Delegate to domain renderers or render as placeholder
+        if (this.domainRenderers && action.type) {
+          console.log(`[SequentialRenderer] 📊 Rendering diagram: ${action.type}`);
+          // Domain renderers will handle specific diagram types
+          if (action.type === 'neuralNetwork') {
+            await this.domainRenderers.drawNeuralNetwork(action);
+          } else {
+            console.warn(`[SequentialRenderer] Diagram type ${action.type} not implemented`);
+          }
+        }
         break;
         
       default:
@@ -1077,6 +1114,83 @@ export class SequentialRenderer {
     // CRITICAL: Track animation for cleanup to prevent memory leaks
     this.activeAnimations.push(anim);
     console.log(`[SequentialRenderer] Tracking particle animation (total: ${this.activeAnimations.length})`);
+  }
+  
+  /**
+   * Scale SVG path coordinates from normalized (0.0-1.0) to pixels
+   * CRITICAL FIX for invisible paths issue
+   */
+  private scalePathCoordinates(pathData: string, width: number, height: number): string {
+    if (!pathData) return '';
+    
+    // Replace all number pairs in the path with scaled versions
+    return pathData.replace(/(-?\d+\.?\d*),(-?\d+\.?\d*)/g, (match, x, y) => {
+      const scaledX = parseFloat(x) * width;
+      const scaledY = parseFloat(y) * height;
+      return `${scaledX.toFixed(2)},${scaledY.toFixed(2)}`;
+    });
+  }
+  
+  /**
+   * Draw custom SVG path (CRITICAL FIX: Scaled coordinates)
+   */
+  private async drawCustomPath(action: any): Promise<void> {
+    if (!this.stage || !this.currentLayer) return;
+    
+    try {
+      console.log(`[SequentialRenderer] 🎨 Drawing custom path: ${action.path?.substring(0, 50)}...`);
+      
+      // CRITICAL FIX: Scale normalized coordinates (0.0-1.0) to pixel coordinates
+      const scaledPath = this.scalePathCoordinates(action.path, this.stage.width(), this.stage.height());
+      
+      // Parse SVG path and create Konva.Path
+      const path = new Konva.Path({
+        data: scaledPath,
+        x: (action.x || 0) * this.stage.width(),
+        y: (action.y || 0) * this.stage.height(),
+        scale: { x: action.scale || 1, y: action.scale || 1 },
+        stroke: action.stroke || '#00d9ff',
+        strokeWidth: action.strokeWidth || 2,
+        fill: action.fill || 'transparent',
+        opacity: 0
+      });
+      
+      // Add glow effect if requested
+      if (action.glow) {
+        path.shadowColor(action.stroke || '#00d9ff');
+        path.shadowBlur(15);
+        path.shadowOpacity(0.8);
+      }
+      
+      this.currentLayer.add(path);
+      
+      // Animate in with fade and scale
+      return new Promise(resolve => {
+        new Konva.Tween({
+          node: path,
+          duration: 0.6,
+          opacity: action.fill === 'transparent' ? 1 : 0.7,
+          scaleX: (action.scale || 1) * 1.05,
+          scaleY: (action.scale || 1) * 1.05,
+          easing: Konva.Easings.EaseOut,
+          onFinish: () => {
+            // Scale back slightly for bounce effect
+            new Konva.Tween({
+              node: path,
+              duration: 0.2,
+              scaleX: action.scale || 1,
+              scaleY: action.scale || 1,
+              onFinish: resolve
+            }).play();
+          }
+        }).play();
+      });
+    } catch (error) {
+      console.error('[SequentialRenderer] ❌ customPath error:', error);
+      console.error('[SequentialRenderer] Path data:', action.path);
+      // Don't fail silently - render a placeholder
+      await this.renderPlaceholder('customPath', action.x || 0.5, action.y || 0.5);
+    }
   }
   
   /**

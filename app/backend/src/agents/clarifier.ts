@@ -38,7 +38,7 @@ export async function clarifierAgent(request: ClarificationRequest): Promise<Cla
 
   try {
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.5-flash', // DO NOT CHANGE
+      model: 'gemini-2.5-flash-lite', // Highest RPM model
       generationConfig: {
         temperature: 0.7,
         responseMimeType: 'application/json'

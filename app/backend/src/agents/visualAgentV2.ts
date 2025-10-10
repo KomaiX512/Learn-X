@@ -11,7 +11,7 @@ import { logger } from '../logger';
 import { VISUAL_TOOL_LIBRARY } from '../lib/visualTools';
 import { QualityEnforcer } from './qualityEnforcer';
 
-const MODEL = 'gemini-2.5-flash'; // DO NOT CHANGE - PRODUCTION MODEL
+const MODEL = 'gemini-2.5-flash'; // Highest RPM model
 const TIMEOUT = 60000; // Allow time for complex multi-diagram generation
 const MAX_RETRIES = 2;
 

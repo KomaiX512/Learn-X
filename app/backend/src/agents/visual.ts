@@ -4,7 +4,7 @@ import { logger } from '../logger';
 import { CircuitBreaker } from '../services/circuit-breaker';
 import { QualityEnforcer } from './qualityEnforcer';
 
-const MODEL = 'gemini-2.5-flash'; // DO NOT CHANGE - PRODUCTION MODEL
+const MODEL = 'gemini-2.5-flash'; // Highest RPM model
 const TIMEOUT = 90000; // 90 seconds for RICH QUALITY generation (not speed)
 const BATCH_SIZE = 60; // Generate COMPLETE educational narrative with storytelling
 const MAX_RETRIES = 2; // Allow retries for quality

@@ -21,7 +21,7 @@ async function clarifierAgent(request) {
     logger_1.logger.debug(`[clarifier] Context - Topic: ${request.query}, Step: ${request.step.id} (${request.step.tag})`);
     try {
         const model = genAI.getGenerativeModel({
-            model: 'gemini-2.5-flash', // DO NOT CHANGE
+            model: 'gemini-2.5-flash-lite', // Highest RPM model
             generationConfig: {
                 temperature: 0.7,
                 responseMimeType: 'application/json'

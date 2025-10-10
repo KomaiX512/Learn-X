@@ -12,8 +12,8 @@ exports.codegenV3WithRetry = codegenV3WithRetry;
 exports.getRetryStats = getRetryStats;
 const codegenV3_1 = require("./codegenV3");
 const logger_1 = require("../logger");
-const MAX_RETRIES = 3;
-const BASE_DELAY = 2000; // 2 seconds
+const MAX_RETRIES = 5; // Increased for 503 errors
+const BASE_DELAY = 5000; // 5 seconds (longer for API overload)
 /**
  * Wrapper for codegenV3 with retry strategy
  * Returns null only if all attempts fail

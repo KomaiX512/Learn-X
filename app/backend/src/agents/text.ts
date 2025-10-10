@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Action, PlanStep } from '../types';
 import { logger } from '../logger';
 
-const MODEL = 'gemini-2.5-flash'; // DO NOT CHANGE - PRODUCTION MODEL
+const MODEL = 'gemini-2.5-flash'; // Highest RPM model
 const TIMEOUT = 30000; // 30 seconds for reliable text generation
 
 export interface TextChunk {

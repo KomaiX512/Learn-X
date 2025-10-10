@@ -29,13 +29,14 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
     getStage: () => stageRef.current,
     getContainer: () => scrollContainerRef.current
   }));
-  // Fixed aspect ratio canvas dimensions
-  const ASPECT_RATIO = 16 / 10; // 16:10 aspect ratio
+  // Dynamic canvas dimensions with horizontal expansion support
+  const ASPECT_RATIO = 16 / 10; // 16:10 aspect ratio for vertical dimension
   const MIN_WIDTH = 800;
   const MIN_HEIGHT = 500;
-  const MAX_WIDTH = 1400;
+  const MAX_WIDTH = 1400;  // Keep for viewport calculations
   const MAX_HEIGHT = 875;
   const [size, setSize] = useState({ w: MIN_WIDTH, h: MIN_HEIGHT });
+  const [canvasWidth, setCanvasWidth] = useState(MIN_WIDTH); // Dynamic width for horizontal scroll
 
   // Window resize handler: maintains aspect ratio
   useEffect(() => {
@@ -168,7 +169,7 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
         width: size.w,
         height: size.h,
         overflowY: 'auto',
-        overflowX: 'hidden',
+        overflowX: 'auto',  // CRITICAL FIX: Enable horizontal scrolling (Issue #2)
         background: '#1a1a2e',
         boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
         margin: '0 auto'

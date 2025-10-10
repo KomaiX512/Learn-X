@@ -221,7 +221,7 @@ export default function App() {
     } catch (e) {
       console.warn('[submit] join wait failed, proceeding anyway:', e);
     }
-    const res = await fetch('http://localhost:3001/api/query', {
+    const res = await fetch('http://localhost:8000/api/query', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query, sessionId: sid })
@@ -313,7 +313,7 @@ export default function App() {
         console.warn('[App] Socket join timeout, proceeding anyway:', e);
       }
       
-      const response = await fetch('http://localhost:3001/api/clarify', {
+      const response = await fetch('http://localhost:8000/api/clarify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

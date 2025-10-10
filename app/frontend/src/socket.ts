@@ -20,7 +20,7 @@ export function getSocket(sessionId: string) {
   }
 
   console.log('[socket] Creating new socket connection with reliability enhancements');
-  socket = io('http://localhost:3001', { 
+  socket = io('http://localhost:8000', { 
     transports: ['websocket'],
     reconnection: true,
     reconnectionAttempts: 10,

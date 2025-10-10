@@ -9,11 +9,76 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Action } from '../types';
 import { logger } from '../logger';
 
-const MODEL = 'gemini-2.5-flash';
+// Model fallback configuration - ONLY official models
+const PRIMARY_MODEL = 'gemini-2.5-flash';
+const FALLBACK_MODELS = ['gemini-2.5-flash-lite'];
+let currentModelIndex = -1; // Start with primary
 
 /**
- * Attempts to recover valid JSON array from malformed text using LLM
+ * Get the next available model with fallback logic
  */
+function getNextModel(): string {
+  if (currentModelIndex === -1) {
+    return PRIMARY_MODEL;
+  }
+  if (currentModelIndex < FALLBACK_MODELS.length) {
+    return FALLBACK_MODELS[currentModelIndex];
+  }
+  // Reset to primary if all fallbacks exhausted
+  currentModelIndex = -1;
+  return PRIMARY_MODEL;
+}
+
+/**
+ * Try with next fallback model on 503 error
+ */
+async function tryWithFallback(genAI: GoogleGenerativeAI, prompt: string): Promise<any> {
+  let lastError: any;
+  
+  // Try primary model first
+  try {
+    const model = genAI.getGenerativeModel({ 
+      model: PRIMARY_MODEL,
+      generationConfig: { temperature: 0.2, maxOutputTokens: 8000 },
+      systemInstruction: 'You are a JSON fixer. Output ONLY valid JSON. Never include explanations or markdown.'
+    });
+    const result = await model.generateContent(prompt);
+    logger.info(`[syntaxRecovery] ✅ Success with primary model: ${PRIMARY_MODEL}`);
+    currentModelIndex = -1; // Reset on success
+    return result.response.text();
+  } catch (error: any) {
+    lastError = error;
+    if (error?.message?.includes('503') || error?.message?.includes('overloaded')) {
+      logger.warn(`[syntaxRecovery] Primary model ${PRIMARY_MODEL} overloaded, trying fallbacks...`);
+      
+      // Try each fallback model
+      for (let i = 0; i < FALLBACK_MODELS.length; i++) {
+        currentModelIndex = i;
+        const fallbackModel = FALLBACK_MODELS[i];
+        try {
+          const model = genAI.getGenerativeModel({ 
+            model: fallbackModel,
+            generationConfig: { temperature: 0.2, maxOutputTokens: 8000 },
+            systemInstruction: 'You are a JSON fixer. Output ONLY valid JSON. Never include explanations or markdown.'
+          });
+          const result = await model.generateContent(prompt);
+          logger.info(`[syntaxRecovery] ✅ Success with fallback model: ${fallbackModel}`);
+          return result.response.text();
+        } catch (fallbackError: any) {
+          lastError = fallbackError;
+          if (fallbackError?.message?.includes('503') || fallbackError?.message?.includes('overloaded')) {
+            logger.warn(`[syntaxRecovery] Fallback model ${fallbackModel} also overloaded`);
+            continue;
+          }
+          throw fallbackError;
+        }
+      }
+    }
+  }
+  
+  throw lastError;
+}
+
 export async function recoverJSON(malformedText: string, expectedType: 'descriptions' | 'operations'): Promise<any> {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
@@ -22,15 +87,6 @@ export async function recoverJSON(malformedText: string, expectedType: 'descript
   }
   
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ 
-    model: MODEL,
-    generationConfig: { 
-      temperature: 0.1,  // Very low for precise JSON fixing
-      maxOutputTokens: 5000 
-    },
-    systemInstruction: 'You are a JSON syntax fixer. Output ONLY valid JSON. Never add explanations or markdown.'
-  });
-  
   const promptByType = {
     descriptions: `The following text should be a JSON array of strings but has syntax errors:
 
@@ -67,8 +123,7 @@ Rules:
   try {
     logger.info(`[syntaxRecovery] Attempting to recover ${expectedType}...`);
     
-    const result = await model.generateContent(promptByType[expectedType]);
-    const text = result.response.text();
+    const text = await tryWithFallback(genAI, promptByType[expectedType]);
     
     logger.info(`[syntaxRecovery] LLM response (first 300 chars):\n${text.substring(0, 300)}`);
     
@@ -201,6 +256,13 @@ export function validateOperations(operations: any[]): Action[] {
     // Skip if no op field
     if (!op.op || typeof op.op !== 'string') {
       logger.warn('[syntaxRecovery] Skipping operation without valid "op" field:', op);
+      droppedCount++;
+      continue;
+    }
+    
+    // CRITICAL: Drop text descriptions (sentences, not operation names)
+    if (op.op.length > 30 || op.op.includes(' ') && !op.op.startsWith('draw')) {
+      logger.warn(`[syntaxRecovery] Dropping text description (not an operation): "${op.op}"`);
       droppedCount++;
       continue;
     }

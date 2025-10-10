@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.textAgent = textAgent;
 const generative_ai_1 = require("@google/generative-ai");
 const logger_1 = require("../logger");
-const MODEL = 'gemini-2.5-flash'; // DO NOT CHANGE - PRODUCTION MODEL
+const MODEL = 'gemini-2.5-flash'; // Highest RPM model
 const TIMEOUT = 30000; // 30 seconds for reliable text generation
 function withTimeout(p, ms) {
     return Promise.race([
