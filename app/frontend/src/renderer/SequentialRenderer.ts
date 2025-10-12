@@ -48,6 +48,16 @@ export class SequentialRenderer {
       this.animationQueue.setCallbacks(config.onStepComplete, config.onProgress);
     }
   }
+
+  /**
+   * Allow external components to subscribe to per-action lifecycle.
+   */
+  public setActionCallbacks(
+    onStart?: (action: any, index: number) => void,
+    onComplete?: (action: any, index: number) => void
+  ): void {
+    this.animationQueue.setActionCallbacks(onStart, onComplete);
+  }
   
   private initializeStage(config: RendererConfig): void {
     // Reuse provided stage/overlay to avoid dual-stage conflicts
@@ -149,6 +159,7 @@ export class SequentialRenderer {
     console.log('[SequentialRenderer] chunk.actions is array:', Array.isArray(chunk.actions));
     console.log('[SequentialRenderer] chunk.actions length:', chunk.actions?.length);
     
+    
     if (!chunk.actions || !Array.isArray(chunk.actions)) {
       console.error('[SequentialRenderer] ❌ Invalid chunk - no actions array');
       console.error('[SequentialRenderer] Full chunk:', JSON.stringify(chunk, null, 2));
@@ -169,6 +180,7 @@ export class SequentialRenderer {
       // Stop any in-flight animations, but keep rendered content
       this.animationQueue.hardReset();
       this.createNewStepLayer(chunk.stepId);
+      
     }
     this.enqueueActions(chunk);
   }

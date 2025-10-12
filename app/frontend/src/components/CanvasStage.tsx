@@ -12,13 +12,20 @@ export interface CanvasStageRef {
   getContainer: () => HTMLDivElement | null;
 }
 
-const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
+interface CanvasStageProps {
+  onVisualStart?: (index: number, action: any) => void;
+  onVisualComplete?: (index: number, action: any) => void;
+}
+
+const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<Konva.Stage | null>(null);
   const sequentialRendererRef = useRef<SequentialRenderer | null>(null);
   const pendingChunksRef = useRef<any[]>([]);
+  const visualCounterRef = useRef<number>(0);
+  const lastStepIdRef = useRef<number | null>(null);
   
   // Expose methods to parent component
   useImperativeHandle(ref, () => ({
@@ -30,6 +37,12 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
       console.log('[CanvasStage] processChunk called');
       console.log('[CanvasStage] chunk:', JSON.stringify(chunk, null, 2).substring(0, 500));
       console.log('[CanvasStage] sequentialRendererRef.current exists:', !!sequentialRendererRef.current);
+      if (chunk && typeof chunk.stepId !== 'undefined') {
+        if (lastStepIdRef.current !== chunk.stepId) {
+          lastStepIdRef.current = chunk.stepId;
+          visualCounterRef.current = 0;
+        }
+      }
       
       if (sequentialRendererRef.current) {
         console.log('[CanvasStage] ✅ Calling sequentialRenderer.processChunk');
@@ -135,6 +148,21 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
             console.log(`[CanvasStage] Progress: ${progress}%`);
           }
         });
+        sequentialRendererRef.current.setActionCallbacks(
+          (action: any) => {
+            if (action?.op === 'customSVG') {
+              const idx = visualCounterRef.current;
+              if (props.onVisualStart) props.onVisualStart(idx, action);
+              visualCounterRef.current = idx + 1;
+            }
+          },
+          (action: any) => {
+            if (action?.op === 'customSVG') {
+              const idx = Math.max(0, visualCounterRef.current - 1);
+              if (props.onVisualComplete) props.onVisualComplete(idx, action);
+            }
+          }
+        );
         
         (window as any).sequentialRenderer = sequentialRendererRef.current;
         

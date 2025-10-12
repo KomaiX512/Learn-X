@@ -19,12 +19,16 @@ export class AnimationQueue {
   private playbackSpeed: number = 1.0; // 1.0 = normal speed
   private onStepComplete?: (stepId: number) => void;
   private onProgress?: (progress: number) => void;
+  private onActionStart?: (action: any, index: number) => void;
+  private onActionComplete?: (action: any, index: number) => void;
   
   // FAST RESPONSIVE TIMING - User can see progress immediately
   private readonly DELAYS = {
     afterTitle: 500,       // 0.5 seconds after title (fast)
     afterLabel: 300,       // 0.3 seconds after label (fast)
     afterVisual: 200,      // 0.2 seconds after visual (fast)
+    afterCustomSVG: 1500,  // 1.5 seconds after full SVG visual for clearer pacing
+    captionLead: 700,      // 0.7 seconds before a customSVG to let caption be read
     betweenSteps: 1000,    // 1 second between steps (reasonable pause)
     afterClear: 200,       // 0.2 seconds after clear
     afterOrbit: 500,       // 0.5 seconds for orbit animation
@@ -108,6 +112,15 @@ export class AnimationQueue {
         
         try {
           console.log(`[AnimationQueue] Starting processAction for ${item.action.op}...`);
+          // Emit action-start callback and give a short lead time for captions before customSVG
+          try {
+            if (this.onActionStart) this.onActionStart(item.action, this.currentIndex);
+            if (item.action?.op === 'customSVG') {
+              await this.wait(this.DELAYS.captionLead);
+            }
+          } catch (cbErr) {
+            console.warn('[AnimationQueue] onActionStart callback error:', cbErr);
+          }
           
           // Add timeout to prevent hanging forever on a single action
           const processWithTimeout = Promise.race([
@@ -119,6 +132,11 @@ export class AnimationQueue {
           
           await processWithTimeout;
           console.log(`[AnimationQueue] ✅ Completed ${item.action.op}`);
+          try {
+            if (this.onActionComplete) this.onActionComplete(item.action, this.currentIndex);
+          } catch (cbErr2) {
+            console.warn('[AnimationQueue] onActionComplete callback error:', cbErr2);
+          }
           
           // Force immediate visual update
           if (item.section?.layer) {
@@ -185,6 +203,8 @@ export class AnimationQueue {
       case 'drawLabel':
       case 'drawMathLabel':
         return this.DELAYS.afterLabel;
+      case 'customSVG':
+        return this.DELAYS.afterCustomSVG;
       case 'delay':
         // Delay is already handled by renderer, no additional wait needed
         return 0; // Don't wait again after delay operation
@@ -309,6 +329,14 @@ export class AnimationQueue {
   setCallbacks(onStepComplete?: (stepId: number) => void, onProgress?: (progress: number) => void): void {
     this.onStepComplete = onStepComplete;
     this.onProgress = onProgress;
+  }
+
+  /**
+   * Optional per-action callbacks used by UI to sync captions and auto-scroll
+   */
+  setActionCallbacks(onStart?: (action: any, index: number) => void, onComplete?: (action: any, index: number) => void): void {
+    this.onActionStart = onStart;
+    this.onActionComplete = onComplete;
   }
   
   /**
