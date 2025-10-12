@@ -2977,3 +2977,446 @@
 2025-10-12T16:12:12.411Z [debug] [monitor] Metrics updated:
 2025-10-12T16:13:12.411Z [debug] [monitor] Metrics updated:
 2025-10-12T16:14:12.412Z [debug] [monitor] Metrics updated:
+2025-10-12T16:15:12.420Z [debug] [monitor] Metrics updated:
+2025-10-12T16:16:12.428Z [debug] [monitor] Metrics updated:
+2025-10-12T16:17:12.430Z [debug] [monitor] Metrics updated:
+2025-10-12T16:18:12.434Z [debug] [monitor] Metrics updated:
+2025-10-12T16:19:12.438Z [debug] [monitor] Metrics updated:
+2025-10-12T16:20:12.440Z [debug] [monitor] Metrics updated:
+2025-10-12T16:21:12.440Z [debug] [monitor] Metrics updated:
+2025-10-12T16:22:12.440Z [debug] [monitor] Metrics updated:
+2025-10-12T16:23:12.441Z [debug] [monitor] Metrics updated:
+2025-10-12T16:24:12.443Z [debug] [monitor] Metrics updated:
+2025-10-12T16:25:12.462Z [debug] [monitor] Metrics updated:
+2025-10-12T16:26:12.480Z [debug] [monitor] Metrics updated:
+2025-10-12T16:27:12.481Z [debug] [monitor] Metrics updated:
+2025-10-12T16:28:12.496Z [debug] [monitor] Metrics updated:
+2025-10-12T16:29:12.510Z [debug] [monitor] Metrics updated:
+2025-10-12T16:30:12.522Z [debug] [monitor] Metrics updated:
+2025-10-12T16:31:12.533Z [debug] [monitor] Metrics updated:
+2025-10-12T16:32:12.534Z [debug] [monitor] Metrics updated:
+2025-10-12T16:33:12.542Z [debug] [monitor] Metrics updated:
+2025-10-12T16:34:12.549Z [debug] [monitor] Metrics updated:
+2025-10-12T16:35:12.553Z [debug] [monitor] Metrics updated:
+2025-10-12T16:36:12.557Z [debug] [monitor] Metrics updated:
+2025-10-12T16:37:12.558Z [debug] [monitor] Metrics updated:
+2025-10-12T16:38:12.558Z [debug] [monitor] Metrics updated:
+2025-10-12T16:39:12.560Z [debug] [monitor] Metrics updated:
+2025-10-12T16:40:12.561Z [debug] [monitor] Metrics updated:
+2025-10-12T16:41:12.563Z [debug] [monitor] Metrics updated:
+2025-10-12T16:42:12.564Z [debug] [monitor] Metrics updated:
+2025-10-12T16:43:12.566Z [debug] [monitor] Metrics updated:
+2025-10-12T16:44:12.582Z [debug] [monitor] Metrics updated:
+2025-10-12T16:45:12.596Z [debug] [monitor] Metrics updated:
+2025-10-12T16:46:12.610Z [debug] [monitor] Metrics updated:
+2025-10-12T16:47:12.623Z [debug] [monitor] Metrics updated:
+2025-10-12T16:48:12.634Z [debug] [monitor] Metrics updated:
+2025-10-12T16:49:12.643Z [debug] [monitor] Metrics updated:
+2025-10-12T16:50:12.651Z [debug] [monitor] Metrics updated:
+2025-10-12T16:51:12.657Z [debug] [monitor] Metrics updated:
+2025-10-12T16:52:12.659Z [debug] [monitor] Metrics updated:
+2025-10-12T16:53:12.663Z [debug] [monitor] Metrics updated:
+2025-10-12T16:54:12.664Z [debug] [monitor] Metrics updated:
+2025-10-12T16:55:12.665Z [debug] [monitor] Metrics updated:
+2025-10-12T16:56:12.666Z [debug] [monitor] Metrics updated:
+2025-10-12T16:57:12.667Z [debug] [monitor] Metrics updated:
+2025-10-12T16:58:12.667Z [debug] [monitor] Metrics updated:
+2025-10-12T16:59:12.687Z [debug] [monitor] Metrics updated:
+2025-10-12T17:00:12.705Z [debug] [monitor] Metrics updated:
+2025-10-12T17:01:12.722Z [debug] [monitor] Metrics updated:
+2025-10-12T17:02:12.737Z [debug] [monitor] Metrics updated:
+2025-10-12T17:03:12.751Z [debug] [monitor] Metrics updated:
+2025-10-12T17:04:12.762Z [debug] [monitor] Metrics updated:
+2025-10-12T17:05:12.773Z [debug] [monitor] Metrics updated:
+2025-10-12T17:06:12.778Z [debug] [monitor] Metrics updated:
+2025-10-12T17:07:12.785Z [debug] [monitor] Metrics updated:
+2025-10-12T17:08:12.791Z [debug] [monitor] Metrics updated:
+2025-10-12T17:09:12.795Z [debug] [monitor] Metrics updated:
+2025-10-12T17:10:12.797Z [debug] [monitor] Metrics updated:
+2025-10-12T17:11:12.798Z [debug] [monitor] Metrics updated:
+2025-10-12T17:12:12.801Z [debug] [monitor] Metrics updated:
+2025-10-12T17:13:12.802Z [debug] [monitor] Metrics updated:
+2025-10-12T17:14:12.805Z [debug] [monitor] Metrics updated:
+2025-10-12T17:15:12.805Z [debug] [monitor] Metrics updated:
+2025-10-12T17:16:12.824Z [debug] [monitor] Metrics updated:
+2025-10-12T17:17:12.841Z [debug] [monitor] Metrics updated:
+2025-10-12T17:18:12.857Z [debug] [monitor] Metrics updated:
+2025-10-12T17:19:12.872Z [debug] [monitor] Metrics updated:
+2025-10-12T17:20:12.885Z [debug] [monitor] Metrics updated:
+2025-10-12T17:21:12.897Z [debug] [monitor] Metrics updated:
+2025-10-12T17:22:12.902Z [debug] [monitor] Metrics updated:
+2025-10-12T17:23:12.911Z [debug] [monitor] Metrics updated:
+2025-10-12T17:24:12.918Z [debug] [monitor] Metrics updated:
+2025-10-12T17:25:12.924Z [debug] [monitor] Metrics updated:
+2025-10-12T17:26:12.928Z [debug] [monitor] Metrics updated:
+2025-10-12T17:27:12.931Z [debug] [monitor] Metrics updated:
+2025-10-12T17:28:12.932Z [debug] [monitor] Metrics updated:
+2025-10-12T17:29:12.935Z [debug] [monitor] Metrics updated:
+2025-10-12T17:30:12.937Z [debug] [monitor] Metrics updated:
+2025-10-12T17:31:12.939Z [debug] [monitor] Metrics updated:
+2025-10-12T17:32:12.940Z [debug] [monitor] Metrics updated:
+2025-10-12T17:33:12.956Z [debug] [monitor] Metrics updated:
+2025-10-12T17:34:12.973Z [debug] [monitor] Metrics updated:
+2025-10-12T17:35:12.989Z [debug] [monitor] Metrics updated:
+2025-10-12T17:36:13.004Z [debug] [monitor] Metrics updated:
+2025-10-12T17:37:13.017Z [debug] [monitor] Metrics updated:
+2025-10-12T17:38:13.029Z [debug] [monitor] Metrics updated:
+2025-10-12T17:39:13.033Z [debug] [monitor] Metrics updated:
+2025-10-12T17:40:13.041Z [debug] [monitor] Metrics updated:
+2025-10-12T17:41:13.048Z [debug] [monitor] Metrics updated:
+2025-10-12T17:42:13.054Z [debug] [monitor] Metrics updated:
+2025-10-12T17:43:13.059Z [debug] [monitor] Metrics updated:
+2025-10-12T17:44:13.062Z [debug] [monitor] Metrics updated:
+2025-10-12T17:45:13.064Z [debug] [monitor] Metrics updated:
+2025-10-12T17:46:13.064Z [debug] [monitor] Metrics updated:
+2025-10-12T17:47:13.066Z [debug] [monitor] Metrics updated:
+2025-10-12T17:48:13.067Z [debug] [monitor] Metrics updated:
+2025-10-12T17:49:13.067Z [debug] [monitor] Metrics updated:
+2025-10-12T17:50:13.080Z [debug] [monitor] Metrics updated:
+2025-10-12T17:51:13.092Z [debug] [monitor] Metrics updated:
+2025-10-12T17:52:13.104Z [debug] [monitor] Metrics updated:
+2025-10-12T17:53:13.117Z [debug] [monitor] Metrics updated:
+2025-10-12T17:54:13.127Z [debug] [monitor] Metrics updated:
+2025-10-12T17:55:13.138Z [debug] [monitor] Metrics updated:
+2025-10-12T17:56:13.149Z [debug] [monitor] Metrics updated:
+2025-10-12T17:57:13.158Z [debug] [monitor] Metrics updated:
+2025-10-12T17:58:13.163Z [debug] [monitor] Metrics updated:
+2025-10-12T17:59:13.169Z [debug] [monitor] Metrics updated:
+2025-10-12T18:00:13.174Z [debug] [monitor] Metrics updated:
+2025-10-12T18:01:13.177Z [debug] [monitor] Metrics updated:
+2025-10-12T18:01:49.782Z [debug] NEW Plan worker created
+2025-10-12T18:01:54.824Z [debug] [socket] Socket _w3vuF9innHDhOafAAAB disconnected: transport close
+2025-10-12T18:02:13.179Z [debug] [monitor] Metrics updated:
+2025-10-12T18:03:13.180Z [debug] [monitor] Metrics updated:
+2025-10-12T18:03:53.409Z [debug] NEW Plan worker created
+2025-10-12T18:03:53.410Z [debug] NEW Gen worker created
+2025-10-12T18:03:53.410Z [debug] NEW Parallel worker created
+2025-10-12T18:03:53.414Z [debug] Server listening on port 8000
+2025-10-12T18:04:32.960Z [debug] [socket] New connection: qZshE2sccWWR3jYFAAAB
+2025-10-12T18:04:32.961Z [debug] [socket] Socket qZshE2sccWWR3jYFAAAB joined session c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:04:32.961Z [debug] [socket] Socket qZshE2sccWWR3jYFAAAB is now in rooms: qZshE2sccWWR3jYFAAAB, c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:04:32.961Z [debug] [socket] Socket qZshE2sccWWR3jYFAAAB joined session c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:04:32.961Z [debug] [socket] Socket qZshE2sccWWR3jYFAAAB is now in rooms: qZshE2sccWWR3jYFAAAB, c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:04:33.071Z [debug] Received request on /api/query {"body":{"query":"teach me about the hearts anatomy and how it functions?","sessionId":"c4936058-ec42-4259-9b33-43fd030f5987"}}
+2025-10-12T18:04:33.071Z [debug] [api] Stored query for session c4936058-ec42-4259-9b33-43fd030f5987: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:33.071Z [debug] [orchestrator] Enqueuing plan for session c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:04:33.072Z [debug] [orchestrator] Plan job added with id 4 for session c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:04:33.073Z [debug] [plan] START: session=c4936058-ec42-4259-9b33-43fd030f5987 query=teach me about the hearts anatomy and how it functions?
+2025-10-12T18:04:33.073Z [debug] [monitor] Started tracking request c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:04:33.074Z [debug] [cache] MISS - No cached plan for query: "teach me about the hearts anatomy and how it funct..."
+2025-10-12T18:04:33.074Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T18:04:33.082Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T18:04:47.742Z [debug] [planner] Received response from Gemini in 14668ms
+2025-10-12T18:04:47.742Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Your Heart: The Ultimate Lifeline Pump",
+  "subtitle": "Learn how your heart's structure allows it to tirelessly pump blood throughout your body.",
+  "toc": [
+    {
+      "minute": 1,
+      "title": "The Intuition",
+      "summary": "Your heart is a tireless, two-sided muscular pump delivering life-sustaining resources."
+    },
+    {
+      "minute": 2,
+      "title": "How It Works",
+      "summary": "Blood flows through four chambers in a specific two-loop pathway, driven b...
+2025-10-12T18:04:47.742Z [debug] [planner] Extracted JSON (length: 3271)
+2025-10-12T18:04:47.742Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T18:04:47.742Z [debug] [monitor] Plan generation for c4936058-ec42-4259-9b33-43fd030f5987 took 14669ms
+2025-10-12T18:04:47.742Z [debug] [cache] Cached plan for query: "teach me about the hearts anatomy and how it funct..."
+2025-10-12T18:04:47.743Z [debug] [plan] OK: session=c4936058-ec42-4259-9b33-43fd030f5987 plan received with 3 steps
+2025-10-12T18:04:47.744Z [debug] [plan] Emitted plan event to session c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:04:47.744Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T18:04:47.745Z [debug] [plan] END: session=c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:04:47.746Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: c4936058-ec42-4259-9b33-43fd030f5987)
+2025-10-12T18:04:47.746Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T18:04:47.747Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T18:04:47.747Z [info] [parallel] 🚀 Step 1: Generating 4 visuals + transcript
+2025-10-12T18:04:47.747Z [info] [stepVisuals] Generating 4 visuals for step 1
+2025-10-12T18:04:47.747Z [info] [stepVisuals] Starting visual 1/4 for step 1
+2025-10-12T18:04:47.747Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T18:04:47.747Z [info] [codegenV3] Generating step 1: Imagine your body is a vast city, and every cell is a building needing constant deliveries of oxygen and nutrients, and efficient waste removal. Your heart, nestled safely in your chest, is the central, tireless delivery and waste management station. It's a powerful, muscular pump, roughly the size of your fist, that never stops working. Think of it not as one pump, but two separate but connected pumps working in perfect sync: one side sends 'dirty' blood to be cleaned, and the other side sends 'clean' blood to the entire city. This constant, rhythmic pumping is what keeps every part of you alive.
+2025-10-12T18:04:47.747Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:47.747Z [debug] [codegenV3] Prompt length: 967 chars
+2025-10-12T18:04:47.748Z [info] [stepVisuals] Starting visual 2/4 for step 1
+2025-10-12T18:04:47.748Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T18:04:47.748Z [info] [codegenV3] Generating step 1: Imagine your body is a vast city, and every cell is a building needing constant deliveries of oxygen and nutrients, and efficient waste removal. Your heart, nestled safely in your chest, is the central, tireless delivery and waste management station. It's a powerful, muscular pump, roughly the size of your fist, that never stops working. Think of it not as one pump, but two separate but connected pumps working in perfect sync: one side sends 'dirty' blood to be cleaned, and the other side sends 'clean' blood to the entire city. This constant, rhythmic pumping is what keeps every part of you alive.
+2025-10-12T18:04:47.748Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:47.748Z [debug] [codegenV3] Prompt length: 967 chars
+2025-10-12T18:04:47.748Z [info] [stepVisuals] Starting visual 3/4 for step 1
+2025-10-12T18:04:47.748Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T18:04:47.748Z [info] [codegenV3] Generating step 1: Imagine your body is a vast city, and every cell is a building needing constant deliveries of oxygen and nutrients, and efficient waste removal. Your heart, nestled safely in your chest, is the central, tireless delivery and waste management station. It's a powerful, muscular pump, roughly the size of your fist, that never stops working. Think of it not as one pump, but two separate but connected pumps working in perfect sync: one side sends 'dirty' blood to be cleaned, and the other side sends 'clean' blood to the entire city. This constant, rhythmic pumping is what keeps every part of you alive.
+2025-10-12T18:04:47.748Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:47.748Z [debug] [codegenV3] Prompt length: 967 chars
+2025-10-12T18:04:47.748Z [info] [stepVisuals] Starting visual 4/4 for step 1
+2025-10-12T18:04:47.748Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T18:04:47.748Z [info] [codegenV3] Generating step 1: Imagine your body is a vast city, and every cell is a building needing constant deliveries of oxygen and nutrients, and efficient waste removal. Your heart, nestled safely in your chest, is the central, tireless delivery and waste management station. It's a powerful, muscular pump, roughly the size of your fist, that never stops working. Think of it not as one pump, but two separate but connected pumps working in perfect sync: one side sends 'dirty' blood to be cleaned, and the other side sends 'clean' blood to the entire city. This constant, rhythmic pumping is what keeps every part of you alive.
+2025-10-12T18:04:47.748Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:47.748Z [debug] [codegenV3] Prompt length: 967 chars
+2025-10-12T18:04:49.747Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T18:04:49.747Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T18:04:49.747Z [info] [parallel] 🚀 Step 2: Generating 4 visuals + transcript
+2025-10-12T18:04:49.748Z [info] [stepVisuals] Generating 4 visuals for step 2
+2025-10-12T18:04:49.748Z [info] [stepVisuals] Starting visual 1/4 for step 2
+2025-10-12T18:04:49.748Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T18:04:49.748Z [info] [codegenV3] Generating step 2: Your heart has four main chambers: two upper chambers called **atria** and two lower, stronger chambers called **ventricles**. Picture a figure-eight pathway for blood: 
+
+1. **Deoxygenated blood** (blue, low oxygen) from your body enters the **right atrium**, flows into the **right ventricle**.
+2. The **right ventricle** then pumps this deoxygenated blood to your **lungs** to pick up fresh oxygen and release carbon dioxide.
+3. Now, **oxygenated blood** (red, high oxygen) returns from the lungs to the **left atrium**, then flows into the powerful **left ventricle**.
+4. Finally, the **left ventricle** contracts forcefully, pumping this oxygen-rich blood into the **aorta** (the body's largest artery) and out to every cell, tissue, and organ in your entire body. Four valves act like one-way doors, ensuring blood flows only in the correct direction.
+2025-10-12T18:04:49.748Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:49.748Z [debug] [codegenV3] Prompt length: 1219 chars
+2025-10-12T18:04:49.748Z [info] [stepVisuals] Starting visual 2/4 for step 2
+2025-10-12T18:04:49.748Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T18:04:49.748Z [info] [codegenV3] Generating step 2: Your heart has four main chambers: two upper chambers called **atria** and two lower, stronger chambers called **ventricles**. Picture a figure-eight pathway for blood: 
+
+1. **Deoxygenated blood** (blue, low oxygen) from your body enters the **right atrium**, flows into the **right ventricle**.
+2. The **right ventricle** then pumps this deoxygenated blood to your **lungs** to pick up fresh oxygen and release carbon dioxide.
+3. Now, **oxygenated blood** (red, high oxygen) returns from the lungs to the **left atrium**, then flows into the powerful **left ventricle**.
+4. Finally, the **left ventricle** contracts forcefully, pumping this oxygen-rich blood into the **aorta** (the body's largest artery) and out to every cell, tissue, and organ in your entire body. Four valves act like one-way doors, ensuring blood flows only in the correct direction.
+2025-10-12T18:04:49.748Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:49.748Z [debug] [codegenV3] Prompt length: 1219 chars
+2025-10-12T18:04:49.748Z [info] [stepVisuals] Starting visual 3/4 for step 2
+2025-10-12T18:04:49.748Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T18:04:49.748Z [info] [codegenV3] Generating step 2: Your heart has four main chambers: two upper chambers called **atria** and two lower, stronger chambers called **ventricles**. Picture a figure-eight pathway for blood: 
+
+1. **Deoxygenated blood** (blue, low oxygen) from your body enters the **right atrium**, flows into the **right ventricle**.
+2. The **right ventricle** then pumps this deoxygenated blood to your **lungs** to pick up fresh oxygen and release carbon dioxide.
+3. Now, **oxygenated blood** (red, high oxygen) returns from the lungs to the **left atrium**, then flows into the powerful **left ventricle**.
+4. Finally, the **left ventricle** contracts forcefully, pumping this oxygen-rich blood into the **aorta** (the body's largest artery) and out to every cell, tissue, and organ in your entire body. Four valves act like one-way doors, ensuring blood flows only in the correct direction.
+2025-10-12T18:04:49.748Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:49.748Z [debug] [codegenV3] Prompt length: 1219 chars
+2025-10-12T18:04:49.748Z [info] [stepVisuals] Starting visual 4/4 for step 2
+2025-10-12T18:04:49.748Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T18:04:49.748Z [info] [codegenV3] Generating step 2: Your heart has four main chambers: two upper chambers called **atria** and two lower, stronger chambers called **ventricles**. Picture a figure-eight pathway for blood: 
+
+1. **Deoxygenated blood** (blue, low oxygen) from your body enters the **right atrium**, flows into the **right ventricle**.
+2. The **right ventricle** then pumps this deoxygenated blood to your **lungs** to pick up fresh oxygen and release carbon dioxide.
+3. Now, **oxygenated blood** (red, high oxygen) returns from the lungs to the **left atrium**, then flows into the powerful **left ventricle**.
+4. Finally, the **left ventricle** contracts forcefully, pumping this oxygen-rich blood into the **aorta** (the body's largest artery) and out to every cell, tissue, and organ in your entire body. Four valves act like one-way doors, ensuring blood flows only in the correct direction.
+2025-10-12T18:04:49.748Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:49.748Z [debug] [codegenV3] Prompt length: 1219 chars
+2025-10-12T18:04:51.748Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T18:04:51.748Z [info] [parallel] 🚀 Step 3: Generating 4 visuals + transcript
+2025-10-12T18:04:51.748Z [info] [stepVisuals] Generating 4 visuals for step 3
+2025-10-12T18:04:51.749Z [info] [stepVisuals] Starting visual 1/4 for step 3
+2025-10-12T18:04:51.749Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T18:04:51.749Z [info] [codegenV3] Generating step 3: Understanding your heart's anatomy and function is vital for your health. When doctors listen to your heartbeat, they're hearing the valves closing – a 'lub-dub' sound indicating proper blood flow. This knowledge explains why conditions like **heart attacks** (blockages preventing blood flow to the heart muscle itself) or **high blood pressure** (the heart working harder against resistance) are so serious. Regular exercise strengthens your heart muscle, making it a more efficient pump. From developing new surgical techniques for valve repair to understanding the effects of diet on cardiovascular health, this foundational knowledge empowers us to live healthier lives and create life-saving medical interventions.
+2025-10-12T18:04:51.749Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:51.749Z [debug] [codegenV3] Prompt length: 1083 chars
+2025-10-12T18:04:51.749Z [info] [stepVisuals] Starting visual 2/4 for step 3
+2025-10-12T18:04:51.749Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T18:04:51.749Z [info] [codegenV3] Generating step 3: Understanding your heart's anatomy and function is vital for your health. When doctors listen to your heartbeat, they're hearing the valves closing – a 'lub-dub' sound indicating proper blood flow. This knowledge explains why conditions like **heart attacks** (blockages preventing blood flow to the heart muscle itself) or **high blood pressure** (the heart working harder against resistance) are so serious. Regular exercise strengthens your heart muscle, making it a more efficient pump. From developing new surgical techniques for valve repair to understanding the effects of diet on cardiovascular health, this foundational knowledge empowers us to live healthier lives and create life-saving medical interventions.
+2025-10-12T18:04:51.749Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:51.749Z [debug] [codegenV3] Prompt length: 1083 chars
+2025-10-12T18:04:51.749Z [info] [stepVisuals] Starting visual 3/4 for step 3
+2025-10-12T18:04:51.749Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T18:04:51.749Z [info] [codegenV3] Generating step 3: Understanding your heart's anatomy and function is vital for your health. When doctors listen to your heartbeat, they're hearing the valves closing – a 'lub-dub' sound indicating proper blood flow. This knowledge explains why conditions like **heart attacks** (blockages preventing blood flow to the heart muscle itself) or **high blood pressure** (the heart working harder against resistance) are so serious. Regular exercise strengthens your heart muscle, making it a more efficient pump. From developing new surgical techniques for valve repair to understanding the effects of diet on cardiovascular health, this foundational knowledge empowers us to live healthier lives and create life-saving medical interventions.
+2025-10-12T18:04:51.749Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:51.749Z [debug] [codegenV3] Prompt length: 1083 chars
+2025-10-12T18:04:51.749Z [info] [stepVisuals] Starting visual 4/4 for step 3
+2025-10-12T18:04:51.749Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T18:04:51.749Z [info] [codegenV3] Generating step 3: Understanding your heart's anatomy and function is vital for your health. When doctors listen to your heartbeat, they're hearing the valves closing – a 'lub-dub' sound indicating proper blood flow. This knowledge explains why conditions like **heart attacks** (blockages preventing blood flow to the heart muscle itself) or **high blood pressure** (the heart working harder against resistance) are so serious. Regular exercise strengthens your heart muscle, making it a more efficient pump. From developing new surgical techniques for valve repair to understanding the effects of diet on cardiovascular health, this foundational knowledge empowers us to live healthier lives and create life-saving medical interventions.
+2025-10-12T18:04:51.749Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:04:51.749Z [debug] [codegenV3] Prompt length: 1083 chars
+2025-10-12T18:04:53.411Z [debug] [monitor] Metrics updated:
+2025-10-12T18:05:34.601Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:05:34.601Z [debug] [codegenV3] Received 7209 chars from API
+2025-10-12T18:05:34.602Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:05:34.602Z [info] [codegenV3] ✅ Generated SVG in 46.85s (7209 chars)
+2025-10-12T18:05:34.602Z [info] [codegenV3] 🎬 ANIMATIONS: 26 total (<animate>: 13, <animateMotion>: 12, <animateTransform>: 1)
+2025-10-12T18:05:34.602Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=21
+2025-10-12T18:05:34.602Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:05:34.602Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T18:05:34.602Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:05:34.602Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T18:05:41.625Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:05:41.625Z [debug] [codegenV3] Received 3031 chars from API
+2025-10-12T18:05:41.625Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:05:41.625Z [info] [codegenV3] ✅ Generated SVG in 51.88s (3031 chars)
+2025-10-12T18:05:41.625Z [info] [codegenV3] 🎬 ANIMATIONS: 12 total (<animate>: 6, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T18:05:41.625Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=11
+2025-10-12T18:05:41.625Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:05:41.625Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:05:41.625Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T18:05:41.953Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:05:41.953Z [debug] [codegenV3] Received 4465 chars from API
+2025-10-12T18:05:41.953Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:05:41.953Z [info] [codegenV3] ✅ Generated SVG in 54.20s (4465 chars)
+2025-10-12T18:05:41.953Z [info] [codegenV3] 🎬 ANIMATIONS: 14 total (<animate>: 7, <animateMotion>: 6, <animateTransform>: 1)
+2025-10-12T18:05:41.953Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=17
+2025-10-12T18:05:41.953Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:05:41.953Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T18:05:41.954Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:05:41.954Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T18:05:44.742Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:05:44.742Z [debug] [codegenV3] Received 4389 chars from API
+2025-10-12T18:05:44.742Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:05:44.742Z [info] [codegenV3] ✅ Generated SVG in 56.99s (4389 chars)
+2025-10-12T18:05:44.742Z [info] [codegenV3] 🎬 ANIMATIONS: 8 total (<animate>: 4, <animateMotion>: 4, <animateTransform>: 0)
+2025-10-12T18:05:44.742Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=14
+2025-10-12T18:05:44.742Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:05:44.742Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T18:05:44.742Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:05:44.742Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T18:05:50.182Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:05:50.182Z [debug] [codegenV3] Received 2348 chars from API
+2025-10-12T18:05:50.182Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:05:50.182Z [info] [codegenV3] ✅ Generated SVG in 60.43s (2348 chars)
+2025-10-12T18:05:50.182Z [info] [codegenV3] 🎬 ANIMATIONS: 4 total (<animate>: 2, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-12T18:05:50.182Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=8
+2025-10-12T18:05:50.182Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:05:50.182Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:05:50.182Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T18:05:53.413Z [debug] [monitor] Metrics updated:
+2025-10-12T18:05:54.590Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:05:54.590Z [debug] [codegenV3] Received 3128 chars from API
+2025-10-12T18:05:54.590Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:05:54.590Z [info] [codegenV3] ✅ Generated SVG in 64.84s (3128 chars)
+2025-10-12T18:05:54.590Z [info] [codegenV3] 🎬 ANIMATIONS: 12 total (<animate>: 6, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T18:05:54.590Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=12
+2025-10-12T18:05:54.590Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:05:54.590Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:05:54.590Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T18:05:55.658Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:05:55.658Z [debug] [codegenV3] Received 6351 chars from API
+2025-10-12T18:05:55.658Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:05:55.658Z [info] [codegenV3] ✅ Generated SVG in 67.91s (6351 chars)
+2025-10-12T18:05:55.658Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 14, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T18:05:55.658Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=15
+2025-10-12T18:05:55.658Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:05:55.658Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T18:05:55.658Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:05:55.658Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T18:05:55.658Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T18:05:55.658Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T18:05:55.659Z [info] [transcript] Generating for step 1 with 4 visuals
+2025-10-12T18:05:55.659Z [debug] [transcript] Prompt length: 1585 chars
+2025-10-12T18:06:03.852Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:06:03.852Z [debug] [codegenV3] Received 3572 chars from API
+2025-10-12T18:06:03.852Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:06:03.852Z [info] [codegenV3] ✅ Generated SVG in 74.10s (3572 chars)
+2025-10-12T18:06:03.852Z [info] [codegenV3] 🎬 ANIMATIONS: 8 total (<animate>: 4, <animateMotion>: 4, <animateTransform>: 0)
+2025-10-12T18:06:03.852Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=15
+2025-10-12T18:06:03.852Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:06:03.852Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:06:03.852Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T18:06:03.852Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T18:06:03.852Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T18:06:03.852Z [info] [transcript] Generating for step 2 with 4 visuals
+2025-10-12T18:06:03.852Z [debug] [transcript] Prompt length: 1837 chars
+2025-10-12T18:06:05.203Z [info] [transcript] ✅ Generated 1206 chars
+2025-10-12T18:06:05.203Z [info] [stepVisuals] ✅ Transcript generated (1206 chars)
+2025-10-12T18:06:05.203Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T18:06:05.203Z [debug] [monitor] Step 1 generation for c4936058-ec42-4259-9b33-43fd030f5987 took 77457ms
+2025-10-12T18:06:05.203Z [info] [parallel] ✅ Step 1 COMPLETE in 77457ms with 4 actions
+2025-10-12T18:06:05.204Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-12T18:06:11.228Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:06:11.228Z [debug] [codegenV3] Received 5852 chars from API
+2025-10-12T18:06:11.228Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:06:11.228Z [info] [codegenV3] ✅ Generated SVG in 79.48s (5852 chars)
+2025-10-12T18:06:11.228Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 16, <animateMotion>: 4, <animateTransform>: 0)
+2025-10-12T18:06:11.228Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=8
+2025-10-12T18:06:11.228Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:06:11.228Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:06:11.228Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T18:06:12.044Z [info] [transcript] ✅ Generated 1862 chars
+2025-10-12T18:06:12.045Z [info] [stepVisuals] ✅ Transcript generated (1862 chars)
+2025-10-12T18:06:12.045Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T18:06:12.045Z [debug] [monitor] Step 2 generation for c4936058-ec42-4259-9b33-43fd030f5987 took 82298ms
+2025-10-12T18:06:12.045Z [info] [parallel] ✅ Step 2 COMPLETE in 82298ms with 4 actions
+2025-10-12T18:06:12.045Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-12T18:06:15.643Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-12T18:06:15.644Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-12T18:06:15.644Z [warn] [codegenV3] text() returned empty, extracting from candidate.content.parts...
+2025-10-12T18:06:15.644Z [error] [codegenV3] ❌ NO TEXT EXTRACTED from response
+2025-10-12T18:06:15.644Z [error] [codegenV3] Candidate:
+2025-10-12T18:06:15.644Z [error] [codegenV3] Generation failed: No text content in API response
+2025-10-12T18:06:15.644Z [warn] [codegenV3WithRetry] ⚠️ Null result, retrying...
+2025-10-12T18:06:15.644Z [info] [codegenV3WithRetry] Waiting 2000ms before retry...
+2025-10-12T18:06:17.647Z [info] [codegenV3WithRetry] 🔄 Attempt 2/3 for step 3
+2025-10-12T18:06:17.647Z [info] [codegenV3] Generating step 3: Understanding your heart's anatomy and function is vital for your health. When doctors listen to your heartbeat, they're hearing the valves closing – a 'lub-dub' sound indicating proper blood flow. This knowledge explains why conditions like **heart attacks** (blockages preventing blood flow to the heart muscle itself) or **high blood pressure** (the heart working harder against resistance) are so serious. Regular exercise strengthens your heart muscle, making it a more efficient pump. From developing new surgical techniques for valve repair to understanding the effects of diet on cardiovascular health, this foundational knowledge empowers us to live healthier lives and create life-saving medical interventions.
+2025-10-12T18:06:17.647Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:06:17.647Z [debug] [codegenV3] Prompt length: 1083 chars
+2025-10-12T18:06:25.329Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-12T18:06:25.329Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-12T18:06:25.330Z [warn] [codegenV3] text() returned empty, extracting from candidate.content.parts...
+2025-10-12T18:06:25.330Z [error] [codegenV3] ❌ NO TEXT EXTRACTED from response
+2025-10-12T18:06:25.330Z [error] [codegenV3] Candidate:
+2025-10-12T18:06:25.330Z [error] [codegenV3] Generation failed: No text content in API response
+2025-10-12T18:06:25.330Z [warn] [codegenV3WithRetry] ⚠️ Null result, retrying...
+2025-10-12T18:06:25.330Z [info] [codegenV3WithRetry] Waiting 2000ms before retry...
+2025-10-12T18:06:26.362Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-12T18:06:26.362Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-12T18:06:26.362Z [warn] [codegenV3] text() returned empty, extracting from candidate.content.parts...
+2025-10-12T18:06:26.362Z [error] [codegenV3] ❌ NO TEXT EXTRACTED from response
+2025-10-12T18:06:26.362Z [error] [codegenV3] Candidate:
+2025-10-12T18:06:26.362Z [error] [codegenV3] Generation failed: No text content in API response
+2025-10-12T18:06:26.362Z [warn] [codegenV3WithRetry] ⚠️ Null result, retrying...
+2025-10-12T18:06:26.362Z [info] [codegenV3WithRetry] Waiting 2000ms before retry...
+2025-10-12T18:06:27.331Z [info] [codegenV3WithRetry] 🔄 Attempt 2/3 for step 3
+2025-10-12T18:06:27.331Z [info] [codegenV3] Generating step 3: Understanding your heart's anatomy and function is vital for your health. When doctors listen to your heartbeat, they're hearing the valves closing – a 'lub-dub' sound indicating proper blood flow. This knowledge explains why conditions like **heart attacks** (blockages preventing blood flow to the heart muscle itself) or **high blood pressure** (the heart working harder against resistance) are so serious. Regular exercise strengthens your heart muscle, making it a more efficient pump. From developing new surgical techniques for valve repair to understanding the effects of diet on cardiovascular health, this foundational knowledge empowers us to live healthier lives and create life-saving medical interventions.
+2025-10-12T18:06:27.331Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:06:27.331Z [debug] [codegenV3] Prompt length: 1083 chars
+2025-10-12T18:06:28.363Z [info] [codegenV3WithRetry] 🔄 Attempt 2/3 for step 3
+2025-10-12T18:06:28.363Z [info] [codegenV3] Generating step 3: Understanding your heart's anatomy and function is vital for your health. When doctors listen to your heartbeat, they're hearing the valves closing – a 'lub-dub' sound indicating proper blood flow. This knowledge explains why conditions like **heart attacks** (blockages preventing blood flow to the heart muscle itself) or **high blood pressure** (the heart working harder against resistance) are so serious. Regular exercise strengthens your heart muscle, making it a more efficient pump. From developing new surgical techniques for valve repair to understanding the effects of diet on cardiovascular health, this foundational knowledge empowers us to live healthier lives and create life-saving medical interventions.
+2025-10-12T18:06:28.363Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:06:28.363Z [debug] [codegenV3] Prompt length: 1083 chars
+2025-10-12T18:06:53.416Z [debug] [monitor] Metrics updated:
+2025-10-12T18:07:39.219Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:07:39.219Z [debug] [codegenV3] Received 5843 chars from API
+2025-10-12T18:07:39.220Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:07:39.220Z [info] [codegenV3] ✅ Generated SVG in 71.89s (5843 chars)
+2025-10-12T18:07:39.220Z [info] [codegenV3] 🎬 ANIMATIONS: 26 total (<animate>: 15, <animateMotion>: 10, <animateTransform>: 1)
+2025-10-12T18:07:39.220Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=22
+2025-10-12T18:07:39.220Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:07:39.220Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:07:39.220Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T18:07:43.868Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-12T18:07:43.869Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-12T18:07:43.869Z [warn] [codegenV3] text() returned empty, extracting from candidate.content.parts...
+2025-10-12T18:07:43.869Z [error] [codegenV3] ❌ NO TEXT EXTRACTED from response
+2025-10-12T18:07:43.869Z [error] [codegenV3] Candidate:
+2025-10-12T18:07:43.869Z [error] [codegenV3] Generation failed: No text content in API response
+2025-10-12T18:07:43.870Z [warn] [codegenV3WithRetry] ⚠️ Null result, retrying...
+2025-10-12T18:07:43.870Z [info] [codegenV3WithRetry] Waiting 4000ms before retry...
+2025-10-12T18:07:45.706Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:07:45.706Z [debug] [codegenV3] Received 4689 chars from API
+2025-10-12T18:07:45.706Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:07:45.706Z [info] [codegenV3] ✅ Generated SVG in 77.34s (4689 chars)
+2025-10-12T18:07:45.706Z [info] [codegenV3] 🎬 ANIMATIONS: 10 total (<animate>: 7, <animateMotion>: 2, <animateTransform>: 1)
+2025-10-12T18:07:45.706Z [info] [codegenV3] 📊 CONTENT: labels=14, shapes=13
+2025-10-12T18:07:45.706Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:07:45.706Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:07:45.706Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T18:07:47.869Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 3
+2025-10-12T18:07:47.869Z [info] [codegenV3] Generating step 3: Understanding your heart's anatomy and function is vital for your health. When doctors listen to your heartbeat, they're hearing the valves closing – a 'lub-dub' sound indicating proper blood flow. This knowledge explains why conditions like **heart attacks** (blockages preventing blood flow to the heart muscle itself) or **high blood pressure** (the heart working harder against resistance) are so serious. Regular exercise strengthens your heart muscle, making it a more efficient pump. From developing new surgical techniques for valve repair to understanding the effects of diet on cardiovascular health, this foundational knowledge empowers us to live healthier lives and create life-saving medical interventions.
+2025-10-12T18:07:47.869Z [info] [codegenV3] Topic: "teach me about the hearts anatomy and how it functions?"
+2025-10-12T18:07:47.869Z [debug] [codegenV3] Prompt length: 1083 chars
+2025-10-12T18:07:53.417Z [debug] [monitor] Metrics updated:
+2025-10-12T18:08:53.419Z [debug] [monitor] Metrics updated:
+2025-10-12T18:09:00.908Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T18:09:00.908Z [debug] [codegenV3] Received 6532 chars from API
+2025-10-12T18:09:00.908Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T18:09:00.908Z [info] [codegenV3] ✅ Generated SVG in 73.04s (6532 chars)
+2025-10-12T18:09:00.908Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 19, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-12T18:09:00.908Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=12
+2025-10-12T18:09:00.908Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T18:09:00.908Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T18:09:00.909Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T18:09:00.909Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T18:09:00.909Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T18:09:00.909Z [info] [transcript] Generating for step 3 with 4 visuals
+2025-10-12T18:09:00.909Z [debug] [transcript] Prompt length: 1701 chars
+2025-10-12T18:09:12.654Z [info] [transcript] ✅ Generated 1292 chars
+2025-10-12T18:09:12.654Z [info] [stepVisuals] ✅ Transcript generated (1292 chars)
+2025-10-12T18:09:12.655Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T18:09:12.655Z [debug] [monitor] Step 3 generation for c4936058-ec42-4259-9b33-43fd030f5987 took 260907ms
+2025-10-12T18:09:12.655Z [info] [parallel] ✅ Step 3 COMPLETE in 260907ms with 4 actions
+2025-10-12T18:09:12.655Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-12T18:09:12.656Z [debug] [parallel] Parallel generation complete: 3/3 successful in 264910ms
+2025-10-12T18:09:12.656Z [debug] [monitor] Completed request c4936058-ec42-4259-9b33-43fd030f5987 in 279583ms (success: true)
+2025-10-12T18:09:12.656Z [debug] [parallel] Job complete for session c4936058-ec42-4259-9b33-43fd030f5987
+2025-10-12T18:09:53.428Z [debug] [monitor] Metrics updated:

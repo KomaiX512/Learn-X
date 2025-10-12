@@ -38,6 +38,12 @@ export class SequentialRenderer {
   private verticalOffset: number = 0; // Simple vertical offset for sections
   private sectionHeight: number = 500; // Height per visual section
   
+  // Transcript and per-visual caption state
+  private currentTranscript: string = '';
+  private transcriptSentences: string[] = [];
+  private visualIndexInStep: number = 0;
+  private captionEl: HTMLDivElement | null = null;
+  
   constructor(config: RendererConfig) {
     this.initializeStage(config);
     this.animationQueue = new AnimationQueue(this);
@@ -180,7 +186,14 @@ export class SequentialRenderer {
       // Stop any in-flight animations, but keep rendered content
       this.animationQueue.hardReset();
       this.createNewStepLayer(chunk.stepId);
-      
+      // Reset per-step transcript/caption state
+      this.currentTranscript = chunk.transcript || '';
+      this.transcriptSentences = this.splitSentences(this.currentTranscript);
+      this.visualIndexInStep = 0;
+      if (this.captionEl) {
+        try { this.captionEl.remove(); } catch {}
+        this.captionEl = null;
+      }
     }
     this.enqueueActions(chunk);
   }
@@ -356,6 +369,93 @@ export class SequentialRenderer {
     }
     
     return transformed;
+  }
+
+  /**
+   * Split transcript into readable sentences (., ?, !) with whitespace normalization
+   */
+  private splitSentences(text: string): string[] {
+    if (!text) return [];
+    const normalized = text.replace(/\s+/g, ' ').trim();
+    if (!normalized) return [];
+    const parts = normalized.split(/(?<=[.!?])\s+/);
+    return parts.filter(Boolean);
+  }
+
+  /**
+   * Show a brief caption (1–2 sentences) before rendering the next visual.
+   * Positions the caption slightly above the upcoming visual and auto-scrolls into view.
+   */
+  private async showCaptionForVisual(visualIdx: number): Promise<void> {
+    if (!this.stage) return;
+    const container = this.stage.container();
+    if (!container) return;
+
+    const start = visualIdx * 2;
+    const end = Math.min(start + 2, this.transcriptSentences.length);
+    const snippet = this.transcriptSentences.slice(start, end).join(' ');
+    const fallback = this.currentTranscript ? this.currentTranscript.split(/\n+/)[0] : '';
+    const text = snippet || fallback;
+    if (!text) return;
+
+    // Remove previous caption if any
+    if (this.captionEl) {
+      try { this.captionEl.remove(); } catch {}
+      this.captionEl = null;
+    }
+
+    const caption = document.createElement('div');
+    caption.style.position = 'absolute';
+    caption.style.left = '0';
+    caption.style.top = `${Math.max(0, this.verticalOffset - 40)}px`;
+    caption.style.width = '100%';
+    caption.style.padding = '10px 14px';
+    caption.style.boxSizing = 'border-box';
+    caption.style.background = 'linear-gradient(90deg, rgba(17,24,39,0.9), rgba(17,24,39,0.6))';
+    caption.style.border = '1px solid rgba(255,255,255,0.08)';
+    caption.style.borderRadius = '10px';
+    caption.style.color = '#e5e7eb';
+    caption.style.fontFamily = 'Georgia, serif';
+    caption.style.fontSize = '15px';
+    caption.style.lineHeight = '1.6';
+    caption.style.backdropFilter = 'blur(2px)';
+    caption.style.pointerEvents = 'none';
+    caption.style.opacity = '0';
+    caption.style.transition = 'opacity 300ms ease';
+    caption.style.boxShadow = '0 6px 20px rgba(0,0,0,0.35)';
+
+    const header = document.createElement('div');
+    header.style.display = 'flex';
+    header.style.alignItems = 'center';
+    header.style.gap = '8px';
+    header.style.marginBottom = '6px';
+    const icon = document.createElement('span');
+    icon.textContent = '🎙️';
+    const label = document.createElement('strong');
+    label.textContent = 'Narration';
+    header.appendChild(icon);
+    header.appendChild(label);
+
+    const body = document.createElement('div');
+    body.textContent = text;
+
+    caption.appendChild(header);
+    caption.appendChild(body);
+
+    container.style.position = 'relative';
+    container.appendChild(caption);
+    requestAnimationFrame(() => { caption.style.opacity = '1'; });
+
+    this.captionEl = caption;
+
+    // Auto-scroll to caption
+    const scrollParent = container.parentElement;
+    if (scrollParent) {
+      scrollParent.scrollTop = Math.max(0, caption.offsetTop - 20);
+    }
+
+    // Short dwell to read caption before the visual appears
+    await new Promise(resolve => setTimeout(resolve, 500));
   }
   
   /**
@@ -567,7 +667,12 @@ export class SequentialRenderer {
         break;
         
       case 'customSVG':
+        // Show a short caption (1–2 sentences) before rendering this visual
+        await this.showCaptionForVisual(this.visualIndexInStep);
+        // Render the SVG visual
         await this.renderCompleteSVG(action.svgCode, action.visualGroup);
+        // Advance to next visual index for captions
+        this.visualIndexInStep++;
         break;
         
       // NEW ADVANCED OPERATIONS
