@@ -143,41 +143,34 @@ export class SequentialRenderer {
    * Process a chunk of actions sequentially
    */
   public processChunk(chunk: any): void {
+    console.log('[SequentialRenderer] processChunk called');
+    console.log('[SequentialRenderer] chunk received:', chunk);
+    console.log('[SequentialRenderer] chunk.actions exists:', !!chunk.actions);
+    console.log('[SequentialRenderer] chunk.actions is array:', Array.isArray(chunk.actions));
+    console.log('[SequentialRenderer] chunk.actions length:', chunk.actions?.length);
+    
     if (!chunk.actions || !Array.isArray(chunk.actions)) {
-      console.error('[SequentialRenderer] Invalid chunk:', chunk);
+      console.error('[SequentialRenderer] ❌ Invalid chunk - no actions array');
+      console.error('[SequentialRenderer] Full chunk:', JSON.stringify(chunk, null, 2));
+      return;
+    }
+    
+    if (chunk.actions.length === 0) {
+      console.warn('[SequentialRenderer] ⚠️ Empty actions array');
       return;
     }
     
     console.log(`[SequentialRenderer] 🎬 Processing ${chunk.actions.length} actions for step ${chunk.stepId}`);
+    console.log('[SequentialRenderer] First action:', chunk.actions[0]);
     
-    // CRITICAL: When starting a NEW step, clear previous step's content
-    if (this.currentStepId !== null && this.currentStepId !== chunk.stepId) {
+    // CRITICAL: Preserve previous steps; do not clear existing layers on step change
+    if (this.currentStepId !== chunk.stepId) {
       console.log(`[SequentialRenderer] 🔄 NEW STEP DETECTED: ${this.currentStepId} → ${chunk.stepId}`);
-      console.log(`[SequentialRenderer] 🧹 CLEARING previous step content SYNCHRONOUSLY...`);
-      
-      // HARD RESET the animation queue immediately (stops everything)
+      // Stop any in-flight animations, but keep rendered content
       this.animationQueue.hardReset();
-      
-      // FIX: Use await to prevent race condition
-      (async () => {
-        await this.clearStepSynchronously();
-        console.log('[SequentialRenderer] ✅ Cleanup complete, creating new layer');
-        this.createNewStepLayer(chunk.stepId);
-        this.enqueueActions(chunk);
-        
-        // CRITICAL FIX: Resume playback after hard reset
-        console.log('[SequentialRenderer] 🎬 Resuming playback for new step');
-        this.animationQueue.resume();
-      })();
-      return;
-      
-    } else {
-      // First step or continuing same step - just create layer if needed
-      if (this.currentStepId !== chunk.stepId) {
-        this.createNewStepLayer(chunk.stepId);
-      }
-      this.enqueueActions(chunk);
+      this.createNewStepLayer(chunk.stepId);
     }
+    this.enqueueActions(chunk);
   }
   
   /**
@@ -194,9 +187,8 @@ export class SequentialRenderer {
       this.domainRenderers = new DomainRenderers(this.stage, this.currentLayer);
     }
     
-    // RESET VERTICAL OFFSET FOR NEW STEP (prevents overlapping across steps)
-    this.verticalOffset = 0;
-    console.log('[SequentialRenderer] Vertical offset reset for new step');
+    // Preserve vertical offset so visuals stack across steps
+    this.verticalOffset = this.verticalOffset;
     
     // RESET LAYOUT MANAGER FOR NEW STEP
     if (this.layoutManager) {
@@ -1942,6 +1934,65 @@ export class SequentialRenderer {
     // Add to container
     container.style.position = 'relative'; // Ensure container can hold absolute children
     container.appendChild(svgWrapper);
+
+    // Visibility pass: brighten dark text and stroke colors for contrast on dark canvas
+    try {
+      const svgEl = svgWrapper.querySelector('svg');
+      if (svgEl) {
+        const brightenIfDark = (color: string, fallback: string): string => {
+          // Accept formats like #rgb, #rrggbb, rgb(), rgba()
+          const toRgb = (c: string): { r: number; g: number; b: number } | null => {
+            c = c.trim();
+            if (/^#([0-9a-f]{3}){1,2}$/i.test(c)) {
+              let hex = c.slice(1);
+              if (hex.length === 3) hex = hex.split('').map(h => h + h).join('');
+              const num = parseInt(hex, 16);
+              return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
+            }
+            const m = c.match(/rgba?\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+            if (m) return { r: +m[1], g: +m[2], b: +m[3] };
+            return null;
+          };
+          const rgb = toRgb(color);
+          if (!rgb) return fallback;
+          // Perceived luminance (ITU-R BT.709)
+          const L = (0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b) / 255;
+          // If very dark (< 0.35), brighten to fallback
+          return L < 0.35 ? fallback : color;
+        };
+
+        // Brighten text labels
+        svgEl.querySelectorAll('text').forEach((t: Element) => {
+          const el = t as SVGTextElement;
+          const current = el.getAttribute('fill') || '#9aa0a6';
+          const bright = brightenIfDark(current, '#e8f0ff');
+          el.setAttribute('fill', bright);
+        });
+
+        // Brighten strokes and fills for shapes if too dark
+        svgEl.querySelectorAll('path, line, rect, circle, polyline, polygon').forEach((p: Element) => {
+          const el = p as SVGGraphicsElement;
+          const stroke = el.getAttribute('stroke');
+          if (stroke) {
+            const bright = brightenIfDark(stroke, '#8ad0ff');
+            el.setAttribute('stroke', bright);
+          }
+          const fill = el.getAttribute('fill');
+          if (fill && fill !== 'none') {
+            const brightFill = brightenIfDark(fill, '#6ee7b7');
+            el.setAttribute('fill', brightFill);
+          }
+        });
+      }
+    } catch (err) {
+      console.warn('[SequentialRenderer] Contrast normalization skipped:', err);
+    }
+
+    // Auto-scroll to newest visual (scroll container is parent of stage container)
+    const scrollParent = container.parentElement;
+    if (scrollParent) {
+      scrollParent.scrollTop = scrollParent.scrollHeight;
+    }
 
     // Update vertical offset for next visual (add height + spacing)
     const spacing = 50; // Spacing between visuals

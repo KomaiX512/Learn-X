@@ -69,7 +69,14 @@ export default function App() {
   }, [sessionId]);
 
   useEffect(() => {
-    if (!socket) return;
+    if (!socket) {
+      console.log('[App useEffect] No socket yet, skipping listener setup');
+      return;
+    }
+    
+    console.log('[App useEffect] 🔌 Setting up socket event listeners');
+    console.log('[App useEffect] Socket ID:', socket.id);
+    console.log('[App useEffect] Socket connected:', socket.connected);
     
     // Add connection event logging
     socket.on('connect', () => {
@@ -84,6 +91,20 @@ export default function App() {
       console.error('[socket] Connection error:', error);
     });
     
+    // Plan and progress telemetry (helps verify socket delivery early)
+    socket.on('plan', (e) => {
+      console.log('[App] Received plan:', e?.title, e?.toc?.length ?? 0, 'items');
+      if (e?.title) setPlanTitle(e.title);
+      if (e?.subtitle) setPlanSubtitle(e.subtitle);
+      if (Array.isArray(e?.toc)) setToc(e.toc);
+    });
+    socket.on('progress', (e) => {
+      console.log('[App] Progress event:', e);
+    });
+    socket.on('generation_progress', (e) => {
+      console.log('[App] Generation progress:', e);
+    });
+
     // Handle clarification responses
     socket.on('clarification', (e) => {
       console.log('[App] Received clarification:', e.title);
@@ -117,22 +138,32 @@ export default function App() {
       }, 1000);
     });
     
-    socket.on('rendered', (e) => {
+    const handleRendered = (e: any) => {
       // Check if this event is for our session (handle broadcast fallback)
       if (e.targetSession && e.targetSession !== sessionId) {
         console.log('[socket] Ignoring event for different session:', e.targetSession);
         return;
       }
       
-      console.log('=== FRONTEND RECEIVED RENDERED EVENT ===');
-      console.log('Event data:', e);
+      console.log('');
+      console.log('═'.repeat(70));
+      console.log('🎬 FRONTEND RECEIVED RENDERED EVENT');
+      console.log('═'.repeat(70));
+      console.log('Event data:', JSON.stringify(e, null, 2));
       console.log('Session match:', e.targetSession === sessionId || !e.targetSession);
       console.log('Step:', e.step);
-      console.log('Actions:', e.actions?.length || 0, 'actions');
+      console.log('Actions array exists:', !!e.actions);
+      console.log('Actions is array:', Array.isArray(e.actions));
+      console.log('Actions count:', e.actions?.length || 0);
+      if (e.actions && e.actions.length > 0) {
+        console.log('First 3 actions:', e.actions.slice(0, 3));
+      }
       console.log('Plan title:', e.plan?.title);
       console.log('Plan subtitle:', e.plan?.subtitle);
       console.log('Plan toc:', e.plan?.toc);
-      console.log('=== END FRONTEND EVENT ===');
+      console.log('canvasRef.current exists:', !!canvasRef.current);
+      console.log('═'.repeat(70));
+      console.log('');
       
       // Update plan title
       if (e.plan?.title) {
@@ -158,21 +189,30 @@ export default function App() {
       }
       
       // CRITICAL FIX: Use SequentialRenderer instead of old execChunk
+      console.log('[App] Checking actions for rendering...');
+      console.log('[App] e.actions:', e.actions);
+      console.log('[App] canvasRef.current:', canvasRef.current);
+      
       if (e.actions && e.actions.length > 0) {
-        console.log('[App] Routing', e.actions.length, 'actions to SequentialRenderer');
+        console.log('[App] ✅ Routing', e.actions.length, 'actions to SequentialRenderer');
         
         // Route to SequentialRenderer via CanvasStage ref
         if (canvasRef.current) {
-          canvasRef.current.processChunk({
+          const chunk = {
             type: 'actions',
             actions: e.actions,
             stepId: e.stepId || e.step?.id,
             step: e.step,
             plan: e.plan
-          });
+          };
+          console.log('[App] Calling processChunk with:', JSON.stringify(chunk, null, 2).substring(0, 500));
+          canvasRef.current.processChunk(chunk);
+          console.log('[App] ✅ processChunk called successfully');
         } else {
-          console.error('[App] CanvasRef not available - cannot render!');
+          console.error('[App] ❌ CanvasRef not available - cannot render!');
         }
+      } else {
+        console.warn('[App] ⚠️ No actions to render - e.actions:', e.actions);
         
         setCurrentStep(e.stepId || 0);
         setIsPlaying(true);
@@ -180,13 +220,28 @@ export default function App() {
       
       setIsReady(true);
       setIsLoading(false);
-    });
+    };
+    
+    console.log('[App useEffect] Attaching "rendered" event listener');
+    socket.on('rendered', handleRendered);
+    console.log('[App useEffect] ✅ All event listeners attached');
+    
+    // CRITICAL: After listeners are attached, re-emit join to trigger cached replay
+    if (sessionId) {
+      console.log('[App] Re-joining room to request cached replay for session:', sessionId);
+      socket.emit('join', { sessionId });
+    }
     
     
     return () => {
+      console.log('[App useEffect] Cleaning up socket listeners');
       socket.off('connect');
       socket.off('disconnect'); 
       socket.off('connect_error');
+      socket.off('plan');
+      socket.off('progress');
+      socket.off('generation_progress');
+      socket.off('rendered', handleRendered);
       socket.off('clarification');
     };
   }, [socket]);
@@ -213,20 +268,40 @@ export default function App() {
   // }, []);
 
   async function submit() {
+    console.log('[submit] 🚀 Starting submission');
     setIsReady(false);
     setIsLoading(true);
+    
     const sid = ensureSession();
+    console.log('[submit] Session ID:', sid);
+    
+    // CRITICAL: Ensure socket is created and listeners are attached
+    const sock = getSocket(sid);
+    console.log('[submit] Socket created:', !!sock);
+    
+    // Wait for socket to join the room
     try {
-      await waitForJoin(sid, 3000);
+      console.log('[submit] Waiting for socket to join room...');
+      await waitForJoin(sid, 5000); // Increased timeout
+      console.log('[submit] ✅ Socket joined room successfully');
     } catch (e) {
-      console.warn('[submit] join wait failed, proceeding anyway:', e);
+      console.error('[submit] ❌ Socket join failed:', e);
+      console.warn('[submit] Proceeding anyway, but events may be missed');
     }
+    
+    // Small delay to ensure event listeners are definitely attached
+    console.log('[submit] Waiting 100ms to ensure listeners are attached...');
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    console.log('[submit] Making API call to /api/query');
     const res = await fetch('http://localhost:8000/api/query', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query, sessionId: sid })
     });
     const data = await res.json();
+    console.log('[submit] API response:', data);
+    
     // keep existing sid if backend echoes a different one
     setSessionId((prev) => prev || data.sessionId || sid);
   }

@@ -18,6 +18,7 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<Konva.Stage | null>(null);
   const sequentialRendererRef = useRef<SequentialRenderer | null>(null);
+  const pendingChunksRef = useRef<any[]>([]);
   
   // Expose methods to parent component
   useImperativeHandle(ref, () => ({
@@ -25,7 +26,20 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
     resume: () => sequentialRendererRef.current?.resume(),
     nextStep: () => sequentialRendererRef.current?.nextStep(),
     previousStep: () => sequentialRendererRef.current?.previousStep(),
-    processChunk: (chunk: any) => sequentialRendererRef.current?.processChunk(chunk),
+    processChunk: (chunk: any) => {
+      console.log('[CanvasStage] processChunk called');
+      console.log('[CanvasStage] chunk:', JSON.stringify(chunk, null, 2).substring(0, 500));
+      console.log('[CanvasStage] sequentialRendererRef.current exists:', !!sequentialRendererRef.current);
+      
+      if (sequentialRendererRef.current) {
+        console.log('[CanvasStage] ✅ Calling sequentialRenderer.processChunk');
+        sequentialRendererRef.current.processChunk(chunk);
+      } else {
+        console.warn('[CanvasStage] ⚠️ Renderer not ready, queuing chunk');
+        pendingChunksRef.current.push(chunk);
+        console.log('[CanvasStage] Pending chunks:', pendingChunksRef.current.length);
+      }
+    },
     getStage: () => stageRef.current,
     getContainer: () => scrollContainerRef.current
   }));
@@ -125,6 +139,10 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
         (window as any).sequentialRenderer = sequentialRendererRef.current;
         
         console.log('[CanvasStage] Sequential renderer initialized');
+        if (pendingChunksRef.current.length > 0) {
+          const items = pendingChunksRef.current.splice(0, pendingChunksRef.current.length);
+          items.forEach((chunk) => sequentialRendererRef.current?.processChunk(chunk));
+        }
         
         // Force initial draw to ensure canvas is visible
         stage.batchDraw();

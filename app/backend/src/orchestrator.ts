@@ -121,6 +121,15 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
       await redis.set(PLAN_KEY(sessionId), JSON.stringify(plan));
       await redis.set(CURRENT_STEP_KEY(sessionId), 0);
 
+      // EMIT PLAN EVENT TO FRONTEND (CRITICAL FIX)
+      io.to(sessionId).emit('plan', {
+        title: plan.title,
+        subtitle: plan.subtitle,
+        toc: plan.toc,
+        steps: plan.steps.map(s => ({ id: s.id, tag: s.tag, desc: s.desc }))
+      });
+      logger.debug(`[plan] Emitted plan event to session ${sessionId}`);
+      
       // NEW: Enqueue parallel generation of ALL steps immediately
       if (plan.steps.length > 0) {
         logger.debug(`[plan] Enqueuing PARALLEL generation of all ${plan.steps.length} steps`);
