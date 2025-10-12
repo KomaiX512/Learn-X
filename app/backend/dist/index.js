@@ -52,6 +52,20 @@ const FRONTEND_URLS = (process.env.FRONTEND_URL || 'http://localhost:5173,http:/
     .map((s) => s.trim());
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 async function main() {
+    // ═══════════════════════════════════════════════════════════
+    // BACKEND STARTUP - PRODUCTION MONITORING
+    // ═══════════════════════════════════════════════════════════
+    console.log('\n' + '═'.repeat(70));
+    console.log('🚀 LEARN-X BACKEND STARTING');
+    console.log('═'.repeat(70));
+    console.log('📍 Configuration:');
+    console.log('   PORT:', PORT);
+    console.log('   FRONTEND_URLS:', FRONTEND_URLS.join(', '));
+    console.log('   REDIS_URL:', REDIS_URL);
+    console.log('   GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? '✅ SET' : '❌ MISSING');
+    console.log('   USE_VISUAL_VERSION:', process.env.USE_VISUAL_VERSION || 'v3 (default)');
+    console.log('   LOG_LEVEL:', process.env.LOG_LEVEL || 'info');
+    console.log('═'.repeat(70) + '\n');
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)({ origin: FRONTEND_URLS, credentials: true }));
     app.use(express_1.default.json());
@@ -63,8 +77,13 @@ async function main() {
         pingInterval: 25000,
         transports: ['websocket', 'polling']
     });
+    console.log('🔌 Connecting to Redis...');
     const redis = new ioredis_1.default(REDIS_URL, { maxRetriesPerRequest: null });
+    redis.on('connect', () => console.log('✅ Redis connected'));
+    redis.on('error', (err) => console.error('❌ Redis error:', err.message));
+    console.log('🎭 Initializing orchestrator...');
     const orchestrator = await (0, orchestrator_1.initOrchestrator)(io, redis);
+    console.log('✅ Orchestrator initialized\n');
     io.on('connection', (socket) => {
         logger_1.logger.debug(`[socket] New connection: ${socket.id}`);
         socket.on('join', async (data) => {
@@ -275,7 +294,14 @@ async function main() {
         }
     });
     server.listen(PORT, () => {
-        logger_1.logger.debug(`Backend listening on http://localhost:${PORT}`);
+        console.log('\n' + '═'.repeat(70));
+        console.log('✅ SERVER READY');
+        console.log('═'.repeat(70));
+        console.log('🌐 Backend URL: http://localhost:' + PORT);
+        console.log('🔗 Health Check: http://localhost:' + PORT + '/health');
+        console.log('📡 WebSocket Ready: ws://localhost:' + PORT);
+        console.log('═'.repeat(70) + '\n');
+        logger_1.logger.debug(`Server listening on port ${PORT}`);
     });
     const shutdown = () => {
         logger_1.logger.debug('Shutting down server...');

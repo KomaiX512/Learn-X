@@ -1,0 +1,712 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 00:26:39 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T19:26:39.483Z [debug] NEW Plan worker created
+2025-10-11T19:26:39.484Z [debug] NEW Gen worker created
+2025-10-11T19:26:39.484Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T19:26:39.488Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-11T19:27:39.501Z [debug] [monitor] Metrics updated:
+2025-10-11T19:28:39.517Z [debug] [monitor] Metrics updated:
+2025-10-11T19:29:39.530Z [debug] [monitor] Metrics updated:
+2025-10-11T19:30:39.544Z [debug] [monitor] Metrics updated:
+2025-10-11T19:31:39.557Z [debug] [monitor] Metrics updated:
+2025-10-11T19:32:39.569Z [debug] [monitor] Metrics updated:
+2025-10-11T19:33:39.579Z [debug] [monitor] Metrics updated:
+2025-10-11T19:34:39.585Z [debug] [monitor] Metrics updated:
+2025-10-11T19:34:43.977Z [debug] Received request on /api/query {"body":{"query":"water cycle"}}
+2025-10-11T19:34:43.977Z [debug] [api] Stored query for session 541fc958-433f-410f-a9dd-c1e87124b5af: "water cycle"
+2025-10-11T19:34:43.977Z [debug] [orchestrator] Enqueuing plan for session 541fc958-433f-410f-a9dd-c1e87124b5af
+2025-10-11T19:34:43.979Z [debug] [orchestrator] Plan job added with id 16 for session 541fc958-433f-410f-a9dd-c1e87124b5af
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 541fc958-433f-410f-a9dd-c1e87124b5af
+Query: water cycle
+Time: 2025-10-11T19:34:43.980Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T19:34:43.980Z [debug] [plan] START: session=541fc958-433f-410f-a9dd-c1e87124b5af query=water cycle
+2025-10-11T19:34:43.980Z [debug] [monitor] Started tracking request 541fc958-433f-410f-a9dd-c1e87124b5af
+2025-10-11T19:34:43.980Z [debug] [cache] MISS - No cached plan for query: "water cycle..."
+2025-10-11T19:34:43.980Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-11T19:34:43.988Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-11T19:34:44.008Z [debug] [socket] New connection: tjtvFvDEieVaFIyGAAAB
+2025-10-11T19:34:44.009Z [debug] [socket] Socket tjtvFvDEieVaFIyGAAAB joined session 541fc958-433f-410f-a9dd-c1e87124b5af
+2025-10-11T19:34:44.009Z [debug] [socket] Socket tjtvFvDEieVaFIyGAAAB is now in rooms: tjtvFvDEieVaFIyGAAAB, 541fc958-433f-410f-a9dd-c1e87124b5af
+2025-10-11T19:35:00.287Z [debug] [planner] Received response from Gemini in 16307ms
+2025-10-11T19:35:00.287Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-11T19:35:00.287Z [debug] [monitor] Plan generation for 541fc958-433f-410f-a9dd-c1e87124b5af took 16307ms
+2025-10-11T19:35:00.288Z [debug] [cache] Cached plan for query: "water cycle..."
+=== NEW STRUCTURED PLAN ===
+Session: 541fc958-433f-410f-a9dd-c1e87124b5af
+Query: water cycle
+Plan title: The Journey of Water: Understanding the Water Cycle
+Plan subtitle: You'll learn how Earth's water continuously moves and renews itself, powering life.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: "Why water never runs out and how it's naturally purified."
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'The four main stages: Evaporation, Condensation, Precipitation, and Collection.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'Why the water cycle is essential for life, weather, and climate.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a glass of water sitting in the sun. Where does the water go? It doesn't disappear; it just changes form and rises invisibly! This feeling of water vanishing, only to reappear later as rain, is the core idea. The Earth has a finite amount of water, but it's constantly recycled, ensuring we always have fresh water – it's Earth's natural purification and delivery system."
+Step 1: id=2, tag=mechanics, desc="The water cycle has four main acts:
+1.  **Evaporation:** Sunlight heats water (from oceans, lakes, puddles), turning it into invisible water vapor that rises into the atmosphere, leaving impurities behind. Visualize steam from a kettle, but on a massive scale.
+2.  **Condensation:** High in the cooler atmosphere, water vapor cools, forming tiny liquid water droplets or ice crystals. These gather to form visible clouds, like seeing your breath on a cold day.
+3.  **Precipitation:** As these cloud droplets grow heavier, they fall back to Earth as rain, snow, sleet, or hail. Think of a cloud becoming too heavy to hold its water.
+4.  **Collection:** This fallen water gathers in oceans, lakes, rivers, or seeps into the ground as groundwater, ready to begin the cycle again. Visualize rain filling a bucket or a river flowing."
+Step 2: id=3, tag=applications, desc="This endless loop is vital! It provides us with fresh drinking water, supports agriculture globally, and generates the weather patterns we experience daily. Without the water cycle, rivers would dry, crops would fail, and life as we know it couldn't exist. It's not just rain; it's the engine driving Earth's climate and ecosystems, connecting every drop of water on our planet."
+=== END NEW STRUCTURED PLAN ===
+2025-10-11T19:35:00.288Z [debug] [plan] OK: session=541fc958-433f-410f-a9dd-c1e87124b5af plan received with 3 steps
+2025-10-11T19:35:00.289Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-11T19:35:00.290Z [debug] [plan] END: session=541fc958-433f-410f-a9dd-c1e87124b5af
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 16
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 541fc958-433f-410f-a9dd-c1e87124b5af
+Query: water cycle
+Steps to generate: 3
+Time: 2025-10-11T19:35:00.291Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T19:35:00.291Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 541fc958-433f-410f-a9dd-c1e87124b5af)
+2025-10-11T19:35:00.291Z [info] [parallel] ⏸️  Staggering 5000ms before step 2 to avoid rate limits
+2025-10-11T19:35:00.291Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-11T19:35:00.291Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-11T19:35:00.291Z [info] [codegenV3WithRetry] Attempt 1/2 for step 1
+2025-10-11T19:35:00.292Z [info] [codegenV3] Generating step 1: Imagine a glass of water sitting in the sun. Where does the water go? It doesn't disappear; it just changes form and rises invisibly! This feeling of water vanishing, only to reappear later as rain, is the core idea. The Earth has a finite amount of water, but it's constantly recycled, ensuring we always have fresh water – it's Earth's natural purification and delivery system.
+2025-10-11T19:35:00.292Z [info] [codegenV3] Topic: "water cycle"
+2025-10-11T19:35:00.292Z [debug] [codegenV3] Prompt length: 890 chars
+2025-10-11T19:35:05.291Z [info] [parallel] ⏸️  Staggering 5000ms before step 3 to avoid rate limits
+2025-10-11T19:35:05.291Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-11T19:35:05.292Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-11T19:35:05.292Z [info] [codegenV3WithRetry] Attempt 1/2 for step 2
+2025-10-11T19:35:05.292Z [info] [codegenV3] Generating step 2: The water cycle has four main acts:
+1.  **Evaporation:** Sunlight heats water (from oceans, lakes, puddles), turning it into invisible water vapor that rises into the atmosphere, leaving impurities behind. Visualize steam from a kettle, but on a massive scale.
+2.  **Condensation:** High in the cooler atmosphere, water vapor cools, forming tiny liquid water droplets or ice crystals. These gather to form visible clouds, like seeing your breath on a cold day.
+3.  **Precipitation:** As these cloud droplets grow heavier, they fall back to Earth as rain, snow, sleet, or hail. Think of a cloud becoming too heavy to hold its water.
+4.  **Collection:** This fallen water gathers in oceans, lakes, rivers, or seeps into the ground as groundwater, ready to begin the cycle again. Visualize rain filling a bucket or a river flowing.
+2025-10-11T19:35:05.292Z [info] [codegenV3] Topic: "water cycle"
+2025-10-11T19:35:05.292Z [debug] [codegenV3] Prompt length: 1339 chars
+2025-10-11T19:35:10.293Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-11T19:35:10.293Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-11T19:35:10.293Z [info] [codegenV3WithRetry] Attempt 1/2 for step 3
+2025-10-11T19:35:10.293Z [info] [codegenV3] Generating step 3: This endless loop is vital! It provides us with fresh drinking water, supports agriculture globally, and generates the weather patterns we experience daily. Without the water cycle, rivers would dry, crops would fail, and life as we know it couldn't exist. It's not just rain; it's the engine driving Earth's climate and ecosystems, connecting every drop of water on our planet.
+2025-10-11T19:35:10.293Z [info] [codegenV3] Topic: "water cycle"
+2025-10-11T19:35:10.293Z [debug] [codegenV3] Prompt length: 889 chars
+2025-10-11T19:35:39.585Z [debug] [monitor] Metrics updated:
+2025-10-11T19:35:42.766Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-11T19:35:42.766Z [warn] [codegenV3] Response truncated due to length - content may be incomplete
+2025-10-11T19:35:42.766Z [debug] [codegenV3] Received 1848 chars from API
+2025-10-11T19:35:42.766Z [error] [codegenV3] ❌ NO SVG STRUCTURE FOUND
+2025-10-11T19:35:42.766Z [error] [codegenV3] Content received:
+2025-10-11T19:35:42.767Z [error] <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sky background -->
+  <rect x="0" y="0" width="800" height="600" fill="#87CEEB"/>
+
+  <!-- Sun -->
+  <circle cx="700" cy="100" r="60" fill="yellow"/>
+  <text x="675" y="105" font-family="Arial" font-size="20" fill="black">Sun</text>
+
+  <!-- Lake/Ocean (Water Collection) -->
+  <rect x="0" y="450" width="800" height="150" fill="#0077BE"/>
+  <text x="320" y="500" font-family="Arial" font-size="20" fill="white">Lake/Ocean</text>
+
+  <!-- Cloud (Condensation) -->
+  <g id="cloud-group">
+    <circle cx="200" cy="150" r="40" fill="white"/>
+    <circle cx="240" cy="150" r="50" fill="white"/>
+    <circle cx="280" cy="150" r="40" fill="white"/>
+    <text x="230" y="190" font-family="Arial" font-size="20" fill="black">Cloud</text>
+  </g>
+
+  <!-- Evaporation -->
+  <g id="evaporation-drops">
+    <!-- Drop 1 -->
+    <circle cx="350" cy="450" r="5" fill="#ADD8E6" opacity="0.8">
+      <anim
+2025-10-11T19:35:42.767Z [error] [codegenV3] Generation failed: Generated content has no valid SVG structure
+2025-10-11T19:35:42.767Z [warn] [codegenV3WithRetry] ⚠️ Null result, retrying...
+2025-10-11T19:35:42.767Z [info] [codegenV3WithRetry] Waiting 3000ms before retry...
+2025-10-11T19:35:45.767Z [info] [codegenV3WithRetry] Attempt 2/2 for step 1
+2025-10-11T19:35:45.767Z [info] [codegenV3] Generating step 1: Imagine a glass of water sitting in the sun. Where does the water go? It doesn't disappear; it just changes form and rises invisibly! This feeling of water vanishing, only to reappear later as rain, is the core idea. The Earth has a finite amount of water, but it's constantly recycled, ensuring we always have fresh water – it's Earth's natural purification and delivery system.
+2025-10-11T19:35:45.767Z [info] [codegenV3] Topic: "water cycle"
+2025-10-11T19:35:45.767Z [debug] [codegenV3] Prompt length: 890 chars
+2025-10-11T19:35:53.997Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-11T19:35:53.997Z [warn] [codegenV3] Response truncated due to length - content may be incomplete
+2025-10-11T19:35:53.997Z [error] [codegenV3] Empty text in response
+2025-10-11T19:35:53.997Z [error] [codegenV3] Full response for debugging:
+2025-10-11T19:35:53.997Z [error] [codegenV3] Generation failed: Empty response from API
+2025-10-11T19:35:53.997Z [warn] [codegenV3WithRetry] ⚠️ Null result, retrying...
+2025-10-11T19:35:53.997Z [info] [codegenV3WithRetry] Waiting 3000ms before retry...
+2025-10-11T19:35:56.999Z [info] [codegenV3WithRetry] Attempt 2/2 for step 2
+2025-10-11T19:35:56.999Z [info] [codegenV3] Generating step 2: The water cycle has four main acts:
+1.  **Evaporation:** Sunlight heats water (from oceans, lakes, puddles), turning it into invisible water vapor that rises into the atmosphere, leaving impurities behind. Visualize steam from a kettle, but on a massive scale.
+2.  **Condensation:** High in the cooler atmosphere, water vapor cools, forming tiny liquid water droplets or ice crystals. These gather to form visible clouds, like seeing your breath on a cold day.
+3.  **Precipitation:** As these cloud droplets grow heavier, they fall back to Earth as rain, snow, sleet, or hail. Think of a cloud becoming too heavy to hold its water.
+4.  **Collection:** This fallen water gathers in oceans, lakes, rivers, or seeps into the ground as groundwater, ready to begin the cycle again. Visualize rain filling a bucket or a river flowing.
+2025-10-11T19:35:56.999Z [info] [codegenV3] Topic: "water cycle"
+2025-10-11T19:35:56.999Z [debug] [codegenV3] Prompt length: 1339 chars
+2025-10-11T19:35:59.277Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-11T19:35:59.278Z [warn] [codegenV3] Response truncated due to length - content may be incomplete
+2025-10-11T19:35:59.278Z [error] [codegenV3] Empty text in response
+2025-10-11T19:35:59.278Z [error] [codegenV3] Full response for debugging:
+2025-10-11T19:35:59.278Z [error] [codegenV3] Generation failed: Empty response from API
+2025-10-11T19:35:59.278Z [warn] [codegenV3WithRetry] ⚠️ Null result, retrying...
+2025-10-11T19:35:59.278Z [info] [codegenV3WithRetry] Waiting 3000ms before retry...
+2025-10-11T19:36:02.278Z [info] [codegenV3WithRetry] Attempt 2/2 for step 3
+2025-10-11T19:36:02.278Z [info] [codegenV3] Generating step 3: This endless loop is vital! It provides us with fresh drinking water, supports agriculture globally, and generates the weather patterns we experience daily. Without the water cycle, rivers would dry, crops would fail, and life as we know it couldn't exist. It's not just rain; it's the engine driving Earth's climate and ecosystems, connecting every drop of water on our planet.
+2025-10-11T19:36:02.278Z [info] [codegenV3] Topic: "water cycle"
+2025-10-11T19:36:02.278Z [debug] [codegenV3] Prompt length: 889 chars
+2025-10-11T19:36:28.331Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-11T19:36:28.331Z [warn] [codegenV3] Response truncated due to length - content may be incomplete
+2025-10-11T19:36:28.331Z [error] [codegenV3] Empty text in response
+2025-10-11T19:36:28.331Z [error] [codegenV3] Full response for debugging:
+2025-10-11T19:36:28.332Z [error] [codegenV3] Generation failed: Empty response from API
+2025-10-11T19:36:28.332Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-11T19:36:28.332Z [error] [parallel] ❌ Step 1 codegen returned null after all retries
+2025-10-11T19:36:28.332Z [debug] [monitor] Step 1 generation for 541fc958-433f-410f-a9dd-c1e87124b5af took 88041ms
+2025-10-11T19:36:28.332Z [error] [parallel] Step 1 failed: Error: Step 1 generation failed after all retry attempts
+2025-10-11T19:36:39.589Z [debug] [monitor] Metrics updated:
+2025-10-11T19:36:40.706Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-11T19:36:40.706Z [warn] [codegenV3] Response truncated due to length - content may be incomplete
+2025-10-11T19:36:40.706Z [error] [codegenV3] Empty text in response
+2025-10-11T19:36:40.706Z [error] [codegenV3] Full response for debugging:
+2025-10-11T19:36:40.706Z [error] [codegenV3] Generation failed: Empty response from API
+2025-10-11T19:36:40.706Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-11T19:36:40.706Z [error] [parallel] ❌ Step 2 codegen returned null after all retries
+2025-10-11T19:36:40.706Z [debug] [monitor] Step 2 generation for 541fc958-433f-410f-a9dd-c1e87124b5af took 95415ms
+2025-10-11T19:36:40.706Z [error] [parallel] Step 2 failed: Error: Step 2 generation failed after all retry attempts
+2025-10-11T19:36:51.320Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-11T19:36:51.321Z [warn] [codegenV3] Response truncated due to length - content may be incomplete
+2025-10-11T19:36:51.321Z [error] [codegenV3] Empty text in response
+2025-10-11T19:36:51.321Z [error] [codegenV3] Full response for debugging:
+2025-10-11T19:36:51.321Z [error] [codegenV3] Generation failed: Empty response from API
+2025-10-11T19:36:51.321Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-11T19:36:51.321Z [error] [parallel] ❌ Step 3 codegen returned null after all retries
+2025-10-11T19:36:51.321Z [debug] [monitor] Step 3 generation for 541fc958-433f-410f-a9dd-c1e87124b5af took 101028ms
+2025-10-11T19:36:51.321Z [error] [parallel] Step 3 failed: Error: Step 3 generation failed after all retry attempts
+2025-10-11T19:36:51.321Z [debug] [parallel] Parallel generation complete: 0/3 successful in 111030ms
+2025-10-11T19:36:51.321Z [debug] [monitor] Completed request 541fc958-433f-410f-a9dd-c1e87124b5af in 127341ms (success: false)
+2025-10-11T19:36:51.321Z [debug] [parallel] Job complete for session 541fc958-433f-410f-a9dd-c1e87124b5af
+2025-10-11T19:37:39.592Z [debug] [monitor] Metrics updated:
+2025-10-11T19:37:44.008Z [debug] [socket] Socket tjtvFvDEieVaFIyGAAAB disconnected: client namespace disconnect
+2025-10-11T19:38:39.595Z [debug] [monitor] Metrics updated:
+[INFO] 00:39:14 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+2025-10-11T19:39:14.886Z [debug] Shutting down server...
+2025-10-11T19:39:14.886Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T19:39:15.089Z [debug] NEW Plan worker created
+2025-10-11T19:39:15.089Z [debug] NEW Gen worker created
+2025-10-11T19:39:15.090Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 00:39:15 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T19:39:15.101Z [debug] Shutting down server...
+2025-10-11T19:39:15.101Z [debug] Server shut down.
+[INFO] 00:58:58 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T19:58:58.287Z [debug] NEW Plan worker created
+2025-10-11T19:58:58.288Z [debug] NEW Gen worker created
+2025-10-11T19:58:58.288Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 00:58:58 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T19:58:58.300Z [debug] Shutting down server...
+2025-10-11T19:58:58.300Z [debug] Server shut down.
+[INFO] 00:59:46 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T19:59:46.863Z [debug] NEW Plan worker created
+2025-10-11T19:59:46.864Z [debug] NEW Gen worker created
+2025-10-11T19:59:46.864Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 00:59:46 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T19:59:46.876Z [debug] Shutting down server...
+2025-10-11T19:59:46.876Z [debug] Server shut down.
+[INFO] 01:00:57 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T20:00:57.949Z [debug] NEW Plan worker created
+2025-10-11T20:00:57.950Z [debug] NEW Gen worker created
+2025-10-11T20:00:57.950Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T20:00:57.954Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 10:31:28 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:31:28.649Z [debug] NEW Plan worker created
+2025-10-12T05:31:28.650Z [debug] NEW Gen worker created
+2025-10-12T05:31:28.650Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 10:31:28 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T05:31:28.662Z [debug] Shutting down server...
+2025-10-12T05:31:28.662Z [debug] Server shut down.
+[INFO] 10:31:57 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:31:57.497Z [debug] NEW Plan worker created
+2025-10-12T05:31:57.498Z [debug] NEW Gen worker created
+2025-10-12T05:31:57.498Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 10:31:57 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T05:31:57.509Z [debug] Shutting down server...
+2025-10-12T05:31:57.510Z [debug] Server shut down.
+[INFO] 10:32:16 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:32:16.982Z [debug] NEW Plan worker created
+2025-10-12T05:32:16.983Z [debug] NEW Gen worker created
+2025-10-12T05:32:16.983Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 10:32:16 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T05:32:16.994Z [debug] Shutting down server...
+2025-10-12T05:32:16.994Z [debug] Server shut down.
+[INFO] 10:32:25 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:32:26.025Z [debug] NEW Plan worker created
+2025-10-12T05:32:26.025Z [debug] NEW Gen worker created
+2025-10-12T05:32:26.025Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-12T05:32:26.029Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 10:32:35 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+2025-10-12T05:32:35.739Z [debug] Shutting down server...
+2025-10-12T05:32:35.739Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:32:35.918Z [debug] NEW Plan worker created
+2025-10-12T05:32:35.918Z [debug] NEW Gen worker created
+2025-10-12T05:32:35.919Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 10:32:35 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T05:32:35.930Z [debug] Shutting down server...
+2025-10-12T05:32:35.930Z [debug] Server shut down.
+[INFO] 10:58:37 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:58:37.388Z [debug] NEW Plan worker created
+2025-10-12T05:58:37.388Z [debug] NEW Gen worker created
+2025-10-12T05:58:37.389Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-12T05:58:37.392Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-12T05:59:37.406Z [debug] [monitor] Metrics updated:
+2025-10-12T06:00:37.422Z [debug] [monitor] Metrics updated:
+[INFO] 11:00:47 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/visual.ts has been modified
+2025-10-12T06:00:47.744Z [debug] Shutting down server...
+2025-10-12T06:00:47.744Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T06:00:47.938Z [debug] NEW Plan worker created
+2025-10-12T06:00:47.939Z [debug] NEW Gen worker created
+2025-10-12T06:00:47.939Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 11:00:47 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T06:00:47.950Z [debug] Shutting down server...
+2025-10-12T06:00:47.951Z [debug] Server shut down.
+[INFO] 11:12:18 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/planner.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T06:12:18.271Z [debug] NEW Plan worker created
+2025-10-12T06:12:18.272Z [debug] NEW Gen worker created
+2025-10-12T06:12:18.272Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 11:12:18 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T06:12:18.284Z [debug] Shutting down server...
+2025-10-12T06:12:18.284Z [debug] Server shut down.

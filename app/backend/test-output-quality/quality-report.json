@@ -1,0 +1,424 @@
+{
+  "subplanner": [
+    {
+      "topic": "Photosynthesis in Plants",
+      "step": "Light-dependent reactions in the thylakoid membrane",
+      "domain": "Biology",
+      "specs": [
+        {
+          "description": "Thylakoid membrane cross-section showing lumen (yellow), membrane (green), and stroma (light blue). Label: Thylakoid Lumen, Thylakoid Membrane, Stroma.",
+          "type": "static"
+        },
+        {
+          "description": "Photosystem II (PSII) complex embedded in green thylakoid membrane. Show chlorophyll (dark green) and reaction center. Label: PSII, Chlorophyll, Reaction Center.",
+          "type": "static"
+        },
+        {
+          "description": "Photosystem I (PSI) complex embedded in green thylakoid membrane. Show chlorophyll (dark green) and reaction center. Label: PSI, Chlorophyll, Reaction Center.",
+          "type": "static"
+        },
+        {
+          "description": "Electrons (yellow spheres) moving linearly from PSII to Cytochrome b6f, then to PSI, along the thylakoid membrane. Label: Electrons, PSII, Cytochrome b6f, PSI.",
+          "type": "animation",
+          "animationType": "flow"
+        },
+        {
+          "description": "Cytochrome b6f complex (red) within the thylakoid membrane. Indicate proton (H+) pumping channel. Label: Cytochrome b6f, Thylakoid Membrane.",
+          "type": "static"
+        },
+        {
+          "description": "ATP Synthase enzyme (blue) spanning thylakoid membrane, showing F0 and F1 units. Label: ATP Synthase, F0 unit, F1 unit.",
+          "type": "static"
+        },
+        {
+          "description": "Protons (small blue spheres) flowing from stroma into thylakoid lumen via Cytochrome b6f, then through ATP Synthase into stroma. Label: Protons, Stroma, Lumen, ATP Synthase.",
+          "type": "animation",
+          "animationType": "flow"
+        },
+        {
+          "description": "Overview of PSII, Cytochrome b6f, PSI, and ATP Synthase complexes (various colors) arranged in the thylakoid membrane. Label: All complexes.",
+          "type": "static"
+        }
+      ],
+      "quality": {
+        "clarity": 100,
+        "specificity": 0,
+        "actionable": 80,
+        "issues": [
+          "Spec 1: No topic-specific terms found",
+          "Spec 2: No topic-specific terms found",
+          "Spec 3: No topic-specific terms found",
+          "Spec 4: No topic-specific terms found",
+          "Spec 4: Animation but doesn't describe motion",
+          "Spec 5: No topic-specific terms found",
+          "Spec 6: No topic-specific terms found",
+          "Spec 7: No topic-specific terms found",
+          "Spec 8: No topic-specific terms found"
+        ]
+      }
+    },
+    {
+      "topic": "Quantum Entanglement",
+      "step": "How entangled particles behave when measured",
+      "domain": "Physics",
+      "specs": [
+        {
+          "description": "Two electron-like spheres (light blue) separated by distance, each with a blurred '?' symbol. Label: Particle A (superposition), Particle B (superposition).",
+          "type": "static"
+        },
+        {
+          "description": "A central source (white sphere) emits two entangled photons (yellow dots) moving linearly outwards in opposite directions. Label: Source, Photon A, Photon B.",
+          "type": "animation",
+          "animationType": "flow"
+        },
+        {
+          "description": "Photon A (yellow dot) positioned just before entering a Stern-Gerlach device (grey box, slit). Label: Photon A, Measurement Device.",
+          "type": "static"
+        },
+        {
+          "description": "Photon A (yellow dot) inside measurement device (grey). Two possible pathways shown: 'Up' (red arrow), 'Down' (blue arrow). Label: Possible Outcomes.",
+          "type": "static"
+        },
+        {
+          "description": "Photon A (yellow) measured 'Up' (red arrow). Simultaneously, Photon B (yellow), far away, instantly changes to 'Down' (blue arrow). Label: Photon A (Up), Photon B (Down).",
+          "type": "animation",
+          "animationType": "pulse"
+        },
+        {
+          "description": "Photon A (yellow) shows 'Up' (red arrow). Photon B (yellow) shows 'Down' (blue arrow), separated by distance. Label: Measured State A, Measured State B.",
+          "type": "static"
+        },
+        {
+          "description": "Two entangled particles (purple spheres) at distant locations (left/right planets), connected by a dashed line. Label: Entangled Pair, Planet X, Planet Y.",
+          "type": "static"
+        }
+      ],
+      "quality": {
+        "clarity": 100,
+        "specificity": 0,
+        "actionable": 60,
+        "issues": [
+          "Spec 1: No topic-specific terms found",
+          "Spec 2: No topic-specific terms found",
+          "Spec 2: Animation but doesn't describe motion",
+          "Spec 3: No topic-specific terms found",
+          "Spec 4: No topic-specific terms found",
+          "Spec 5: No topic-specific terms found",
+          "Spec 5: Animation but doesn't describe motion",
+          "Spec 6: No topic-specific terms found",
+          "Spec 7: No topic-specific terms found"
+        ]
+      }
+    },
+    {
+      "topic": "TCP/IP Protocol Stack",
+      "step": "How data packets travel through network layers",
+      "domain": "Computer Science",
+      "specs": [
+        {
+          "description": "TCP/IP protocol stack diagram, showing Application (blue), Transport (green), Internet (yellow), Network Access (red) layers vertically. Label: Each layer name.",
+          "type": "static"
+        },
+        {
+          "description": "Data encapsulation visual. Show 'Data' (light blue) at Application. Add 'Header' (grey) for 'Segment', 'Packet', 'Frame' progressively downwards. Label: 'Data', 'Segment', 'Packet', 'Frame', 'Headers'.",
+          "type": "static"
+        },
+        {
+          "description": "Data payload (light blue) flowing downwards through the TCP/IP layers. Headers (grey) are progressively added at each layer. Label: Layer names, 'Data', 'Header'.",
+          "type": "animation",
+          "animationType": "flow"
+        },
+        {
+          "description": "Data de-encapsulation visual. Show 'Frame' (dark green) at Network Access. Headers (grey) are progressively removed upwards to reveal 'Data' (light blue). Label: 'Frame', 'Packet', 'Segment', 'Data', 'Headers'.",
+          "type": "static"
+        },
+        {
+          "description": "Packet (orange block) flowing from Source Host (left, blue) through a Router (center, grey) to Destination Host (right, green). Arrows indicate direction. Label: 'Source Host', 'Router', 'Destination Host'.",
+          "type": "animation",
+          "animationType": "flow"
+        },
+        {
+          "description": "Detailed IP packet header structure (light green). Show fields: Version, Header Length, TTL, Protocol, Source IP, Destination IP. Label: Each field name clearly.",
+          "type": "static"
+        },
+        {
+          "description": "Detailed TCP segment header structure (light purple). Show fields: Source Port, Destination Port, Sequence Number, Acknowledgement Number, Window Size. Label: Each field name.",
+          "type": "static"
+        },
+        {
+          "description": "Small data bits (yellow dots) flowing from a Network Interface Card (dark grey) into a physical cable (blue line). Show continuous linear movement. Label: 'NIC', 'Cable', 'Data Bits'.",
+          "type": "animation",
+          "animationType": "flow"
+        }
+      ],
+      "quality": {
+        "clarity": 100,
+        "specificity": 0,
+        "actionable": 100,
+        "issues": [
+          "Spec 2: No topic-specific terms found",
+          "Spec 4: No topic-specific terms found",
+          "Spec 5: No topic-specific terms found",
+          "Spec 7: No topic-specific terms found",
+          "Spec 8: No topic-specific terms found"
+        ]
+      }
+    },
+    {
+      "topic": "Organic Chemistry Reactions",
+      "step": "Nucleophilic substitution SN2 mechanism",
+      "domain": "Chemistry",
+      "specs": [
+        {
+          "description": "Methyl chloride molecule (C: black, H: white, Cl: green) with partial positive charge on carbon and partial negative on chlorine. Label: C, H, Cl, δ+, δ-.",
+          "type": "static"
+        },
+        {
+          "description": "Hydroxide ion (O: red, H: white) showing negative charge and two lone pairs on oxygen. Position left. Label: Nucleophile, Lone Pairs, OH-.",
+          "type": "static"
+        },
+        {
+          "description": "Hydroxide nucleophile (red/white) moving linearly towards the backside of the C-Cl bond of methyl chloride (black/white/green). Label: Nucleophile, Electrophilic Carbon.",
+          "type": "animation",
+          "animationType": "mechanical"
+        },
+        {
+          "description": "Simultaneous breaking C-Cl bond (green) and forming O-C bond (red) at the central carbon (black). Show partial bonds. Label: Breaking bond, Forming bond.",
+          "type": "animation",
+          "animationType": "mechanical"
+        },
+        {
+          "description": "Trigonal bipyramidal transition state structure. Central carbon (black) with five atoms partially bonded. Show elongating C-Cl and shortening O-C bonds. Label: Transition State.",
+          "type": "static"
+        },
+        {
+          "description": "Methanol product (O: red, C: black, H: white) and chloride leaving group (green sphere with negative charge). Show inverted geometry in methanol. Label: Product, Leaving Group.",
+          "type": "static"
+        },
+        {
+          "description": "Energy profile diagram for SN2 reaction. Single peak (transition state) between reactants and products. Label: Reactants, Transition State, Products, Energy, Reaction Coordinate.",
+          "type": "static"
+        },
+        {
+          "description": "(R)-2-chlorobutane (C: black, Cl: green, H: white) with wedge/dash bonds, next to (S)-2-butanol product (O: red). Highlight inversion of stereochemistry. Label: Substrate, Product.",
+          "type": "static"
+        }
+      ],
+      "quality": {
+        "clarity": 100,
+        "specificity": 0,
+        "actionable": 60,
+        "issues": [
+          "Spec 1: No topic-specific terms found",
+          "Spec 2: No topic-specific terms found",
+          "Spec 3: No topic-specific terms found",
+          "Spec 3: Animation but doesn't describe motion",
+          "Spec 4: No topic-specific terms found",
+          "Spec 4: Animation but doesn't describe motion",
+          "Spec 5: No topic-specific terms found",
+          "Spec 6: No topic-specific terms found",
+          "Spec 7: No topic-specific terms found"
+        ]
+      }
+    },
+    {
+      "topic": "Machine Learning Backpropagation",
+      "step": "Gradient descent optimization through neural network layers",
+      "domain": "Computer Science",
+      "specs": [
+        {
+          "description": "A neural network diagram with input (blue), hidden (green), and output (red) layers. Show neurons as circles, connections as lines. Label: Input Layer, Hidden Layer, Output Layer, Weights, Biases.",
+          "type": "static"
+        },
+        {
+          "description": "A single neuron (yellow circle) receiving weighted inputs (blue lines) and producing an output. Show summation (Sigma) and activation function (f). Label: Inputs (x1, x2), Weights (w1, w2), Bias (b), Activation (a).",
+          "type": "static"
+        },
+        {
+          "description": "A 3D surface plot representing a loss function. Clearly show local and global minima. Color from blue (low loss) to red (high loss). Label: Loss, Weight 1, Weight 2, Global Minimum.",
+          "type": "static"
+        },
+        {
+          "description": "A 2D contour map of a loss function. Draw a vector pointing towards the steepest descent at a specific point. Color contours blue to red. Label: Current Weights, Gradient Vector, Loss Contours.",
+          "type": "static"
+        },
+        {
+          "description": "Diagram illustrating the chain rule in backpropagation. Show error dL/dw flowing from output layer (red) backwards to a weight (green) in a hidden layer. Label: dL/da, da/dz, dz/dw.",
+          "type": "static"
+        },
+        {
+          "description": "Input values (small blue spheres) flow linearly from the input layer through weighted connections to hidden and output neurons, changing color to green then red. Label: Input, Neuron Activation.",
+          "type": "animation",
+          "animationType": "flow"
+        },
+        {
+          "description": "Error signals (small red pulses) propagate backward from the output layer through connections to hidden layers. Show weights (light gray lines) subtly changing width/color upon update. Label: Error Signal, Weight Update.",
+          "type": "animation",
+          "animationType": "flow"
+        },
+        {
+          "description": "A point (white sphere) moves down a 3D loss surface (gradient colors) towards the global minimum. Show its path as a dashed line. Label: Current Weights, Loss, Learning Rate Steps.",
+          "type": "animation",
+          "animationType": "mechanical"
+        }
+      ],
+      "quality": {
+        "clarity": 100,
+        "specificity": 0,
+        "actionable": 100,
+        "issues": [
+          "Spec 1: No topic-specific terms found",
+          "Spec 2: No topic-specific terms found",
+          "Spec 3: No topic-specific terms found",
+          "Spec 4: No topic-specific terms found",
+          "Spec 6: No topic-specific terms found",
+          "Spec 7: No topic-specific terms found"
+        ]
+      }
+    }
+  ],
+  "static": [
+    {
+      "description": "Thylakoid membrane cross-section showing lumen (yellow), membrane (green), and stroma (light blue). Label: Thylakoid Lumen, Thylakoid Membrane, Stroma.",
+      "topic": "Photosynthesis in Plants",
+      "operations": [],
+      "quality": {
+        "operationCount": 0,
+        "diversity": 0,
+        "contextRelevance": 0,
+        "hasAdvancedOps": false,
+        "issues": [
+          "Generation failed: Failed to generate sufficient operations (only 14)"
+        ]
+      }
+    },
+    {
+      "description": "Two electron-like spheres (light blue) separated by distance, each with a blurred '?' symbol. Label: Particle A (superposition), Particle B (superposition).",
+      "topic": "Quantum Entanglement",
+      "operations": [],
+      "quality": {
+        "operationCount": 0,
+        "diversity": 0,
+        "contextRelevance": 0,
+        "hasAdvancedOps": false,
+        "issues": [
+          "Generation failed: Failed to generate sufficient operations (only 14)"
+        ]
+      }
+    },
+    {
+      "description": "TCP/IP protocol stack diagram, showing Application (blue), Transport (green), Internet (yellow), Network Access (red) layers vertically. Label: Each layer name.",
+      "topic": "TCP/IP Protocol Stack",
+      "operations": [],
+      "quality": {
+        "operationCount": 0,
+        "diversity": 0,
+        "contextRelevance": 0,
+        "hasAdvancedOps": false,
+        "issues": [
+          "Generation failed: Failed to generate sufficient operations (only 13)"
+        ]
+      }
+    },
+    {
+      "description": "Methyl chloride molecule (C: black, H: white, Cl: green) with partial positive charge on carbon and partial negative on chlorine. Label: C, H, Cl, δ+, δ-.",
+      "topic": "Organic Chemistry Reactions",
+      "operations": [],
+      "quality": {
+        "operationCount": 0,
+        "diversity": 0,
+        "contextRelevance": 0,
+        "hasAdvancedOps": false,
+        "issues": [
+          "Generation failed: Failed to generate sufficient operations (only 17)"
+        ]
+      }
+    },
+    {
+      "description": "A neural network diagram with input (blue), hidden (green), and output (red) layers. Show neurons as circles, connections as lines. Label: Input Layer, Hidden Layer, Output Layer, Weights, Biases.",
+      "topic": "Machine Learning Backpropagation",
+      "operations": [],
+      "quality": {
+        "operationCount": 0,
+        "diversity": 0,
+        "contextRelevance": 0,
+        "hasAdvancedOps": false,
+        "issues": [
+          "Generation failed: Failed to generate sufficient operations (only 15)"
+        ]
+      }
+    }
+  ],
+  "animation": [
+    {
+      "description": "Electrons (yellow spheres) moving linearly from PSII to Cytochrome b6f, then to PSI, along the thylakoid membrane. Label: Electrons, PSII, Cytochrome b6f, PSI.",
+      "topic": "Photosynthesis in Plants",
+      "animationType": "flow",
+      "svgCode": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg viewBox=\"0 0 1 1\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <circle id=\"electron\" r=\"0.01\" fill=\"#f39c12\"/>\n    <marker id=\"arrowhead\" viewBox=\"0 0 10 10\" refX=\"5\" refY=\"5\"\n            markerWidth=\"6\" markerHeight=\"6\"\n            orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"#f39c12\"/>\n    </marker>\n  </defs>\n\n  <text x=\"0.5\" y=\"0.1\" text-anchor=\"middle\" font-size=\"0.03\" fill=\"#2c3e50\">Photosynthesis: Electron Transport</text>\n\n  <!-- Thylakoid Membrane -->\n  <path d=\"M 0.1,0.5 L 0.9,0.5\" stroke=\"#3498db\" stroke-width=\"0.01\" fill=\"none\"/>\n\n  <!-- PSII -->\n  <rect x=\"0.1\" y=\"0.4\" width=\"0.05\" height=\"0.04\" fill=\"#27ae60\"/>\n  <text x=\"0.125\" y=\"0.48\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"white\">PSII</text>\n\n  <!-- Cytochrome b6f -->\n  <rect x=\"0.4\" y=\"0.4\" width=\"0.05\" height=\"0.04\" fill=\"#27ae60\"/>\n  <text x=\"0.425\" y=\"0.48\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"white\">Cyt b6f</text>\n\n  <!-- PSI -->\n  <rect x=\"0.7\" y=\"0.4\" width=\"0.05\" height=\"0.04\" fill=\"#27ae60\"/>\n  <text x=\"0.725\" y=\"0.48\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"white\">PSI</text>\n\n  <!-- Electron 1 -->\n  <use href=\"#electron\" x=\"0.15\" y=\"0.5\">\n    <animateMotion dur=\"4s\" repeatCount=\"indefinite\" path=\"M 0 0 L 0.25 0\" begin=\"0s\"/>\n  </use>\n  <path d=\"M 0.15,0.5 L 0.4,0.5\" stroke=\"#f39c12\" stroke-width=\"0.005\" marker-end=\"url(#arrowhead)\"/>\n\n  <!-- Electron 2 -->\n  <use href=\"#electron\" x=\"0.45\" y=\"0.5\">\n    <animateMotion dur=\"4s\" repeatCount=\"indefinite\" path=\"M 0 0 L 0.25 0\" begin=\"1.33s\"/>\n  </use>\n  <path d=\"M 0.45,0.5 L 0.7,0.5\" stroke=\"#f39c12\" stroke-width=\"0.005\" marker-end=\"url(#arrowhead)\"/>\n\n  <!-- Label for Electrons -->\n  <text x=\"0.5\" y=\"0.7\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"#7f8c8d\">Electrons</text>\n</svg>",
+      "quality": {
+        "hasAnimations": true,
+        "animationCount": 4,
+        "loopsIndefinitely": true,
+        "labelCount": 5,
+        "usesAdvancedSVG": true,
+        "issues": []
+      }
+    },
+    {
+      "description": "A central source (white sphere) emits two entangled photons (yellow dots) moving linearly outwards in opposite directions. Label: Source, Photon A, Photon B.",
+      "topic": "Quantum Entanglement",
+      "animationType": "flow",
+      "svgCode": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg viewBox=\"0 0 1 1\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <circle id=\"photon\" r=\"0.015\" fill=\"#f39c12\"/>\n  </defs>\n\n  <circle cx=\"0.5\" cy=\"0.5\" r=\"0.03\" fill=\"white\"/>\n  <text x=\"0.5\" y=\"0.45\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"black\">Source</text>\n\n  <use href=\"#photon\" x=\"0.5\" y=\"0.5\">\n    <animateMotion dur=\"2s\" repeatCount=\"indefinite\" path=\"M 0,0 H 0.4\"/>\n  </use>\n  <text x=\"0.7\" y=\"0.55\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"black\">Photon A</text>\n\n  <use href=\"#photon\" x=\"0.5\" y=\"0.5\">\n    <animateMotion dur=\"2s\" repeatCount=\"indefinite\" path=\"M 0,0 H -0.4\"/>\n  </use>\n  <text x=\"0.3\" y=\"0.55\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"black\">Photon B</text>\n\n  <text x=\"0.5\" y=\"0.1\" text-anchor=\"middle\" font-size=\"0.03\" fill=\"#2c3e50\">Quantum Entanglement</text>\n</svg>",
+      "quality": {
+        "hasAnimations": true,
+        "animationCount": 4,
+        "loopsIndefinitely": true,
+        "labelCount": 4,
+        "usesAdvancedSVG": true,
+        "issues": []
+      }
+    },
+    {
+      "description": "Data payload (light blue) flowing downwards through the TCP/IP layers. Headers (grey) are progressively added at each layer. Label: Layer names, 'Data', 'Header'.",
+      "topic": "TCP/IP Protocol Stack",
+      "animationType": "flow",
+      "svgCode": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg viewBox=\"0 0 1 1\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <rect id=\"data\" width=\"0.1\" height=\"0.05\" fill=\"#81D4FA\"/>\n    <rect id=\"header\" width=\"0.1\" height=\"0.02\" fill=\"#B0BEC5\"/>\n  </defs>\n\n  <text x=\"0.5\" y=\"0.05\" text-anchor=\"middle\" font-size=\"0.03\" fill=\"#37474F\">TCP/IP Protocol Stack</text>\n\n  <!-- Layer 5: Application -->\n  <rect x=\"0.2\" y=\"0.1\" width=\"0.6\" height=\"0.08\" fill=\"#ECEFF1\" stroke=\"#607D8B\" stroke-width=\"0.002\"/>\n  <text x=\"0.5\" y=\"0.14\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"#37474F\">Application Layer</text>\n  <use href=\"#header\" x=\"0.2\" y=\"0.18\"/>\n  <use href=\"#data\" x=\"0.3\" y=\"0.18\">\n    <animateMotion dur=\"5s\" repeatCount=\"indefinite\" path=\"M 0,0 V 0.6\" begin=\"0s\"/>\n  </use>\n  <text x=\"0.25\" y=\"0.195\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n  <text x=\"0.35\" y=\"0.195\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Data</text>\n\n  <!-- Layer 4: Transport -->\n  <rect x=\"0.2\" y=\"0.25\" width=\"0.6\" height=\"0.08\" fill=\"#ECEFF1\" stroke=\"#607D8B\" stroke-width=\"0.002\"/>\n  <text x=\"0.5\" y=\"0.29\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"#37474F\">Transport Layer</text>\n  <use href=\"#header\" x=\"0.2\" y=\"0.33\"/>\n  <use href=\"#header\" x=\"0.3\" y=\"0.33\"/>\n  <use href=\"#data\" x=\"0.4\" y=\"0.33\">\n    <animateMotion dur=\"5s\" repeatCount=\"indefinite\" path=\"M 0,0 V 0.45\" begin=\"0s\"/>\n  </use>\n  <text x=\"0.25\" y=\"0.345\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n    <text x=\"0.35\" y=\"0.345\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n  <text x=\"0.45\" y=\"0.345\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Data</text>\n\n  <!-- Layer 3: Network -->\n  <rect x=\"0.2\" y=\"0.4\" width=\"0.6\" height=\"0.08\" fill=\"#ECEFF1\" stroke=\"#607D8B\" stroke-width=\"0.002\"/>\n  <text x=\"0.5\" y=\"0.44\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"#37474F\">Network Layer</text>\n  <use href=\"#header\" x=\"0.2\" y=\"0.48\"/>\n  <use href=\"#header\" x=\"0.3\" y=\"0.48\"/>\n    <use href=\"#header\" x=\"0.4\" y=\"0.48\"/>\n  <use href=\"#data\" x=\"0.5\" y=\"0.48\">\n    <animateMotion dur=\"5s\" repeatCount=\"indefinite\" path=\"M 0,0 V 0.3\" begin=\"0s\"/>\n  </use>\n    <text x=\"0.25\" y=\"0.495\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n    <text x=\"0.35\" y=\"0.495\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n    <text x=\"0.45\" y=\"0.495\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n  <text x=\"0.55\" y=\"0.495\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Data</text>\n\n  <!-- Layer 2: Data Link -->\n  <rect x=\"0.2\" y=\"0.55\" width=\"0.6\" height=\"0.08\" fill=\"#ECEFF1\" stroke=\"#607D8B\" stroke-width=\"0.002\"/>\n  <text x=\"0.5\" y=\"0.59\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"#37474F\">Data Link Layer</text>\n  <use href=\"#header\" x=\"0.2\" y=\"0.63\"/>\n  <use href=\"#header\" x=\"0.3\" y=\"0.63\"/>\n    <use href=\"#header\" x=\"0.4\" y=\"0.63\"/>\n    <use href=\"#header\" x=\"0.5\" y=\"0.63\"/>\n  <use href=\"#data\" x=\"0.6\" y=\"0.63\">\n    <animateMotion dur=\"5s\" repeatCount=\"indefinite\" path=\"M 0,0 V 0.15\" begin=\"0s\"/>\n  </use>\n  <text x=\"0.25\" y=\"0.645\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n    <text x=\"0.35\" y=\"0.645\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n        <text x=\"0.45\" y=\"0.645\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n            <text x=\"0.55\" y=\"0.645\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n  <text x=\"0.65\" y=\"0.645\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Data</text>\n\n  <!-- Layer 1: Physical -->\n  <rect x=\"0.2\" y=\"0.7\" width=\"0.6\" height=\"0.08\" fill=\"#ECEFF1\" stroke=\"#607D8B\" stroke-width=\"0.002\"/>\n  <text x=\"0.5\" y=\"0.74\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"#37474F\">Physical Layer</text>\n  <use href=\"#header\" x=\"0.2\" y=\"0.78\"/>\n  <use href=\"#header\" x=\"0.3\" y=\"0.78\"/>\n    <use href=\"#header\" x=\"0.4\" y=\"0.78\"/>\n    <use href=\"#header\" x=\"0.5\" y=\"0.78\"/>\n      <use href=\"#header\" x=\"0.6\" y=\"0.78\"/>\n  <use href=\"#data\" x=\"0.7\" y=\"0.78\"/>\n  <text x=\"0.25\" y=\"0.795\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n    <text x=\"0.35\" y=\"0.795\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n        <text x=\"0.45\" y=\"0.795\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n            <text x=\"0.55\" y=\"0.795\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n                <text x=\"0.65\" y=\"0.795\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Header</text>\n  <text x=\"0.75\" y=\"0.795\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"#37474F\">Data</text>\n\n  <text x=\"0.5\" y=\"0.9\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"#78909C\">Data Payload Flow</text>\n</svg>",
+      "quality": {
+        "hasAnimations": true,
+        "animationCount": 8,
+        "loopsIndefinitely": true,
+        "labelCount": 27,
+        "usesAdvancedSVG": true,
+        "issues": []
+      }
+    },
+    {
+      "description": "Hydroxide nucleophile (red/white) moving linearly towards the backside of the C-Cl bond of methyl chloride (black/white/green). Label: Nucleophile, Electrophilic Carbon.",
+      "topic": "Organic Chemistry Reactions",
+      "animationType": "mechanical",
+      "svgCode": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg viewBox=\"0 0 1 1\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <circle id=\"hydroxide\" r=\"0.04\" fill=\"red\">\n      <animate attributeName=\"fill\" values=\"red;white;red\" dur=\"0.5s\" repeatCount=\"indefinite\"/>\n    </circle>\n    <g id=\"methyl_chloride\">\n      <circle cx=\"0\" cy=\"0\" r=\"0.05\" fill=\"black\"/>\n      <text x=\"0\" y=\"0.01\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"white\">C</text>\n      <line x1=\"0\" y1=\"0.05\" x2=\"0\" y2=\"0.15\" stroke=\"gray\" stroke-width=\"0.005\"/>\n      <text x=\"0.01\" y=\"0.17\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"black\">H</text>\n      <line x1=\"0\" y1=\"-0.05\" x2=\"0\" y2=\"-0.15\" stroke=\"gray\" stroke-width=\"0.005\"/>\n      <text x=\"0.01\" y=\"-0.13\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"black\">H</text>\n      <line x1=\"0.05\" y1=\"0\" x2=\"0.15\" y2=\"0\" stroke=\"gray\" stroke-width=\"0.005\"/>\n      <text x=\"0.17\" y=\"0.01\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"black\">H</text>\n      <circle cx=\"-0.2\" cy=\"0\" r=\"0.05\" fill=\"green\"/>\n      <text x=\"-0.2\" y=\"0.01\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"white\">Cl</text>\n      <line x1=\"0\" y1=\"0\" x2=\"-0.2\" y2=\"0\" stroke=\"gray\" stroke-width=\"0.005\"/>\n    </g>\n  </defs>\n  <text x=\"0.5\" y=\"0.1\" text-anchor=\"middle\" font-size=\"0.03\" fill=\"#2c3e50\">SN2 Reaction: Hydroxide Attack</text>\n  <use href=\"#hydroxide\" x=\"0.1\" y=\"0.5\">\n    <animateMotion dur=\"2s\" repeatCount=\"indefinite\" path=\"M 0,0 H 0.25\"/>\n  </use>\n  <text x=\"0.1\" y=\"0.45\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"#7f8c8d\">Nucleophile</text>\n  <text x=\"0.35\" y=\"0.45\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"#7f8c8d\">Electrophilic Carbon</text>\n  <use href=\"#methyl_chloride\" x=\"0.5\" y=\"0.5\">\n  <animateTransform attributeName=\"transform\" attributeType=\"XML\" type=\"rotate\" from=\"0 0.05 0\" to=\"360 0.05 0\" dur=\"5s\" repeatCount=\"indefinite\" begin=\"2s\"/>\n  </use>\n   <path d=\"M 0.35,0.52 L 0.4,0.52\" stroke=\"black\" stroke-width=\"0.005\" marker-end=\"url(#arrowhead)\"/>\n    <defs>\n      <marker id=\"arrowhead\" markerWidth=\"10\" markerHeight=\"7\" refX=\"0\" refY=\"3.5\" orient=\"auto\">\n        <polygon points=\"0 0, 10 3.5, 0 7\" fill=\"black\" />\n      </marker>\n    </defs>\n</svg>",
+      "quality": {
+        "hasAnimations": true,
+        "animationCount": 5,
+        "loopsIndefinitely": true,
+        "labelCount": 8,
+        "usesAdvancedSVG": true,
+        "issues": []
+      }
+    },
+    {
+      "description": "Input values (small blue spheres) flow linearly from the input layer through weighted connections to hidden and output neurons, changing color to green then red. Label: Input, Neuron Activation.",
+      "topic": "Machine Learning Backpropagation",
+      "animationType": "flow",
+      "svgCode": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg viewBox=\"0 0 1 1\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <!-- Input particle definition -->\n    <circle id=\"inputParticle\" r=\"0.015\" fill=\"blue\">\n      <animate attributeName=\"fill\" values=\"blue; green; red; blue\" dur=\"3s\" repeatCount=\"indefinite\"/>\n    </circle>\n  </defs>\n\n  <!-- Input Layer -->\n  <rect x=\"0.05\" y=\"0.3\" width=\"0.1\" height=\"0.4\" fill=\"none\" stroke=\"black\" stroke-width=\"0.005\"/>\n  <text x=\"0.1\" y=\"0.25\" text-anchor=\"middle\" font-size=\"0.02\" fill=\"black\">Input</text>\n\n  <!-- Hidden Layer -->\n  <circle cx=\"0.4\" cy=\"0.5\" r=\"0.05\" fill=\"lightgray\" stroke=\"black\" stroke-width=\"0.005\"/>\n  <text x=\"0.4\" y=\"0.4\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"black\">Neuron</text>\n  <text x=\"0.4\" y=\"0.6\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"black\">Activation</text>\n\n  <!-- Output Layer -->\n  <circle cx=\"0.8\" cy=\"0.5\" r=\"0.05\" fill=\"lightgray\" stroke=\"black\" stroke-width=\"0.005\"/>\n  <text x=\"0.8\" y=\"0.4\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"black\">Neuron</text>\n  <text x=\"0.8\" y=\"0.6\" text-anchor=\"middle\" font-size=\"0.015\" fill=\"black\">Activation</text>\n\n  <!-- Connections -->\n  <line x1=\"0.15\" y1=\"0.35\" x2=\"0.35\" y2=\"0.5\" stroke=\"gray\" stroke-width=\"0.003\"/>\n  <line x1=\"0.15\" y1=\"0.5\" x2=\"0.35\" y2=\"0.5\" stroke=\"gray\" stroke-width=\"0.003\"/>\n  <line x1=\"0.15\" y1=\"0.65\" x2=\"0.35\" y2=\"0.5\" stroke=\"gray\" stroke-width=\"0.003\"/>\n\n  <line x1=\"0.45\" y1=\"0.5\" x2=\"0.75\" y2=\"0.5\" stroke=\"gray\" stroke-width=\"0.003\"/>\n\n  <!-- Animated particles -->\n  <use href=\"#inputParticle\" x=\"0.05\" y=\"0.35\">\n    <animateMotion dur=\"3s\" repeatCount=\"indefinite\" path=\"M 0.05,0.35 H 0.35\"/>\n  </use>\n  <use href=\"#inputParticle\" x=\"0.05\" y=\"0.5\">\n    <animateMotion dur=\"3s\" repeatCount=\"indefinite\" path=\"M 0.05,0.5 H 0.35\" begin=\"0.5s\"/>\n  </use>\n    <use href=\"#inputParticle\" x=\"0.05\" y=\"0.65\">\n    <animateMotion dur=\"3s\" repeatCount=\"indefinite\" path=\"M 0.05,0.65 H 0.35\" begin=\"1s\"/>\n  </use>\n    <use href=\"#inputParticle\" x=\"0.45\" y=\"0.5\">\n    <animateMotion dur=\"3s\" repeatCount=\"indefinite\" path=\"M 0.45,0.5 H 0.75\" begin=\"1.5s\"/>\n  </use>\n\n  <!-- Title -->\n  <text x=\"0.5\" y=\"0.1\" text-anchor=\"middle\" font-size=\"0.03\" fill=\"black\">Machine Learning Backpropagation</text>\n</svg>",
+      "quality": {
+        "hasAnimations": true,
+        "animationCount": 9,
+        "loopsIndefinitely": true,
+        "labelCount": 6,
+        "usesAdvancedSVG": true,
+        "issues": []
+      }
+    }
+  ]
+}

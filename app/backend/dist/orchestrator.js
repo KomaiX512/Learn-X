@@ -21,14 +21,14 @@ const CURRENT_STEP_KEY = (sessionId) => `session:${sessionId}:current_step`;
 const PARAMS_KEY = (sessionId) => `session:${sessionId}:params`;
 const CHUNK_KEY = (sessionId, stepId) => `session:${sessionId}:step:${stepId}:chunk`;
 const LEARNING_STATE_KEY = (sessionId) => `session:${sessionId}:learning_state`;
-// Progressive learning timing based on complexity
-// REDUCED for immediate delivery - content is already generated
+// Progressive learning timing - NOT USED anymore (immediate emission)
+// Kept for reference only
 const TIMING_BY_COMPLEXITY = {
-    1: 2000, // Hook - quick engagement
-    2: 2500, // Intuition - time to absorb
-    3: 3000, // Formalism - complex concepts
-    4: 3500, // Exploration - deep dive
-    5: 3000 // Mastery - synthesis
+    1: 0, // Immediate
+    2: 0, // Immediate  
+    3: 0, // Immediate
+    4: 0, // Immediate
+    5: 0 // Immediate
 };
 async function initOrchestrator(io, redis) {
     // BullMQ requires separate Redis connections for queues and workers
@@ -60,14 +60,14 @@ async function initOrchestrator(io, redis) {
     };
     // Plan worker - NO FALLBACKS
     const planWorker = new bullmq_1.Worker('plan-jobs', async (job) => {
-        console.log('=== NEW PLAN WORKER STARTED ===');
-        console.log('Job data:', JSON.stringify(job.data));
-        logger_1.logger.debug(`[planWorker] Received job: ${job.name} id=${job.id}`);
-        if (job.name !== 'plan') {
-            console.log(`PLAN WORKER: SKIPPING non-plan job: ${job.name}`);
-            return;
-        }
         const { query, sessionId } = job.data;
+        console.log('\n' + '─'.repeat(70));
+        console.log('📋 PLAN WORKER STARTED');
+        console.log('─'.repeat(70));
+        console.log('Session:', sessionId);
+        console.log('Query:', query);
+        console.log('Time:', new Date().toISOString());
+        console.log('─'.repeat(70));
         logger_1.logger.debug(`[plan] START: session=${sessionId} query=${query}`);
         // Track request in performance monitor
         perfMonitor.startRequest(sessionId);
@@ -260,6 +260,14 @@ async function initOrchestrator(io, redis) {
             return;
         }
         const { sessionId, plan, query } = job.data;
+        console.log('\n' + '─'.repeat(70));
+        console.log('⚡ PARALLEL WORKER STARTED');
+        console.log('─'.repeat(70));
+        console.log('Session:', sessionId);
+        console.log('Query:', query);
+        console.log('Steps to generate:', plan.steps.length);
+        console.log('Time:', new Date().toISOString());
+        console.log('─'.repeat(70));
         logger_1.logger.info(`[parallel] ⚡ STARTING parallel generation for ${plan.steps.length} steps (session: ${sessionId})`);
         const paramsRaw = await redis.get(PARAMS_KEY(sessionId));
         const params = paramsRaw ? JSON.parse(paramsRaw) : {};
@@ -276,8 +284,16 @@ async function initOrchestrator(io, redis) {
             message: `🚀 Starting generation of ${plan.steps.length} steps...`
         });
         let completedCount = 0;
-        // Generate all steps in parallel
-        for (const step of plan.steps) {
+        // Generate all steps in parallel WITH IMMEDIATE EMISSION
+        // Add staggered delays to avoid rate limit bursts
+        for (let i = 0; i < plan.steps.length; i++) {
+            const step = plan.steps[i];
+            // Add 5-second staggered delay to avoid rate limit bursts (except first)
+            if (i > 0) {
+                const delay = 5000;
+                logger_1.logger.info(`[parallel] ⏸️  Staggering ${delay}ms before step ${step.id} to avoid rate limits`);
+                await new Promise(resolve => setTimeout(resolve, delay));
+            }
             generationPromises.push((async () => {
                 const stepStartTime = Date.now();
                 try {
@@ -320,11 +336,35 @@ async function initOrchestrator(io, redis) {
                     }
                     const genTime = Date.now() - stepStartTime;
                     perfMonitor.endStepGeneration(sessionId, step.id, true);
-                    logger_1.logger.debug(`[parallel] Step ${step.id} generated in ${genTime}ms`);
-                    // CRITICAL FIX: Store in memory for direct emit
+                    logger_1.logger.info(`[parallel] ✅ Step ${step.id} COMPLETE in ${genTime}ms with ${checked.actions?.length || 0} actions`);
+                    // CRITICAL: Store in memory
                     stepResults.set(step.id, checked);
-                    logger_1.logger.info(`[parallel] ✅ Stored step ${step.id} in memory (${checked.actions?.length || 0} actions)`);
-                    // Emit progress for this specific step completed
+                    // IMMEDIATE EMISSION - Don't wait for other steps!
+                    const eventData = {
+                        type: 'actions',
+                        actions: checked.actions,
+                        stepId: step.id,
+                        step: step,
+                        plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc },
+                        totalSteps: plan.steps.length
+                    };
+                    // DEBUGGING: Log room membership
+                    const roomSockets = io.sockets.adapter.rooms.get(sessionId);
+                    const socketCount = roomSockets ? roomSockets.size : 0;
+                    console.log('');
+                    console.log('═'.repeat(70));
+                    console.log('🚀 ABOUT TO EMIT STEP');
+                    console.log('═'.repeat(70));
+                    console.log('SessionId:', sessionId);
+                    console.log('StepId:', step.id);
+                    console.log('Actions:', checked.actions.length);
+                    console.log('Room sockets:', socketCount);
+                    console.log('═'.repeat(70));
+                    io.to(sessionId).emit('rendered', eventData);
+                    console.log('✅ EMITTED SUCCESSFULLY');
+                    console.log('');
+                    logger_1.logger.info(`[parallel] 🚀 IMMEDIATELY EMITTED step ${step.id} to frontend (${socketCount} sockets)`);
+                    // Emit progress
                     completedCount++;
                     const progressPercent = Math.round((completedCount / plan.steps.length) * 100);
                     io.to(sessionId).emit('progress', {
@@ -339,7 +379,7 @@ async function initOrchestrator(io, redis) {
                         totalSteps: plan.steps.length,
                         completedSteps: completedCount,
                         progress: progressPercent,
-                        message: `✅ Generated ${completedCount}/${plan.steps.length} steps (${progressPercent}%)`
+                        message: `✅ ${completedCount}/${plan.steps.length} steps ready (${progressPercent}%)`
                     });
                     return { stepId: step.id, success: true, time: genTime, actions: checked.actions?.length };
                 }
@@ -347,17 +387,22 @@ async function initOrchestrator(io, redis) {
                     const genTime = Date.now() - stepStartTime;
                     perfMonitor.endStepGeneration(sessionId, step.id, false);
                     logger_1.logger.error(`[parallel] Step ${step.id} failed: ${error}`);
-                    // CRITICAL FIX: Store null for failed steps (so we know it was attempted)
+                    // Store null for failed steps
                     stepResults.set(step.id, null);
-                    logger_1.logger.warn(`[parallel] ⚠️ Stored step ${step.id} as failed in memory`);
-                    // Emit error for this step
+                    // Emit error immediately
+                    io.to(sessionId).emit('rendered', {
+                        type: 'error',
+                        stepId: step.id,
+                        step: step,
+                        message: `Step ${step.id} failed to generate`,
+                        error: String(error)
+                    });
                     io.to(sessionId).emit('progress', {
                         stepId: step.id,
                         status: 'error',
                         error: String(error),
                         message: `Step ${step.id} generation failed`
                     });
-                    // Don't stop entire process - continue with other steps
                     return { stepId: step.id, success: false, error: String(error), time: genTime };
                 }
             })());
@@ -393,87 +438,7 @@ async function initOrchestrator(io, redis) {
                 avgStepTime: metrics.averageStepTime
             }
         });
-        // SEQUENTIAL STEP DELIVERY - Quality over speed!
-        if (successful > 0) {
-            // First, emit the plan immediately
-            io.to(sessionId).emit('rendered', {
-                type: 'plan',
-                actions: [],
-                plan: {
-                    title: plan.title,
-                    subtitle: plan.subtitle,
-                    toc: plan.toc
-                }
-            });
-            logger_1.logger.debug(`[parallel] Emitted plan for session ${sessionId}`);
-            // SEQUENTIAL: Emit first step immediately, queue others with proper delays
-            // CRITICAL FIX: Use in-memory results instead of cache
-            for (let i = 0; i < plan.steps.length; i++) {
-                const step = plan.steps[i];
-                // Try memory first (direct result from generation)
-                let chunk = stepResults.get(step.id);
-                // Fallback to cache if not in memory (e.g., cached from previous run)
-                if (!chunk) {
-                    const cacheKey = CHUNK_KEY(sessionId, step.id);
-                    const cached = await redis.get(cacheKey);
-                    if (cached) {
-                        chunk = JSON.parse(cached);
-                        logger_1.logger.info(`[parallel] 📦 Step ${step.id} retrieved from cache fallback`);
-                    }
-                }
-                else {
-                    logger_1.logger.info(`[parallel] 💾 Step ${step.id} retrieved from memory`);
-                }
-                if (chunk) {
-                    logger_1.logger.debug(`[parallel] Step ${step.id} has ${chunk.actions?.length || 0} actions`);
-                    const eventData = {
-                        type: 'actions',
-                        actions: chunk.actions,
-                        stepId: step.id,
-                        step: step,
-                        plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc },
-                        isFirstStep: i === 0,
-                        isLastStep: i === plan.steps.length - 1,
-                        totalSteps: plan.steps.length
-                    };
-                    // CRITICAL: Sequential delivery with proper delays
-                    // First step immediately, subsequent steps with 45-60 second delays
-                    if (i === 0) {
-                        // Emit first step immediately
-                        io.to(sessionId).emit('rendered', eventData);
-                        logger_1.logger.info(`[parallel] ✅ Emitted FIRST step ${step.id} immediately with ${chunk.actions?.length} actions`);
-                    }
-                    else {
-                        // Queue subsequent steps with REDUCED delays (20s each for faster UX)
-                        const stepDelays = {
-                            'hook': 20000,
-                            'intuition': 20000,
-                            'formalism': 20000,
-                            'exploration': 20000,
-                            'mastery': 20000
-                        };
-                        const delay = stepDelays[step.tag] || 20000;
-                        const cumulativeDelay = delay * i; // Each step waits for all previous steps
-                        setTimeout(() => {
-                            io.to(sessionId).emit('rendered', eventData);
-                            logger_1.logger.info(`[parallel] ✅ Emitted step ${step.id} (${i + 1}/${plan.steps.length}) with ${chunk.actions?.length} actions after ${cumulativeDelay}ms delay`);
-                        }, cumulativeDelay);
-                    }
-                }
-                else {
-                    // Step failed and has no data - emit explicit error
-                    logger_1.logger.error(`[parallel] ❌ Step ${step.id} FAILED - No data available (generation failed)`);
-                    io.to(sessionId).emit('rendered', {
-                        type: 'error',
-                        stepId: step.id,
-                        step: step,
-                        message: `Step ${step.id} (${step.tag}) failed to generate. This may be due to API rate limits.`,
-                        isPartialFailure: true
-                    });
-                }
-            }
-            logger_1.logger.debug(`[parallel] Sequential step delivery scheduled`);
-        }
+        // NO SEQUENTIAL DELIVERY - Steps are emitted immediately as they complete above!
         logger_1.logger.debug(`[parallel] Job complete for session ${sessionId}`);
     }, { connection: workerConnection, concurrency: 2 } // Reduced to 2 parallel to avoid API overload
     );

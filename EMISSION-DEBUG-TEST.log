@@ -1,0 +1,1106 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 01:28:39 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T20:28:39.667Z [debug] NEW Plan worker created
+2025-10-11T20:28:39.668Z [debug] NEW Gen worker created
+2025-10-11T20:28:39.668Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T20:28:39.671Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-11T20:29:39.678Z [debug] [monitor] Metrics updated:
+2025-10-11T20:29:49.632Z [debug] Received request on /api/query {"body":{"query":"simple cell division"}}
+2025-10-11T20:29:49.633Z [debug] [api] Stored query for session 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1: "simple cell division"
+2025-10-11T20:29:49.633Z [debug] [orchestrator] Enqueuing plan for session 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+2025-10-11T20:29:49.634Z [debug] [orchestrator] Plan job added with id 21 for session 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+Query: simple cell division
+Time: 2025-10-11T20:29:49.635Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T20:29:49.635Z [debug] [plan] START: session=3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1 query=simple cell division
+2025-10-11T20:29:49.635Z [debug] [monitor] Started tracking request 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+2025-10-11T20:29:49.635Z [debug] [cache] MISS - No cached plan for query: "simple cell division..."
+2025-10-11T20:29:49.635Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-11T20:29:49.643Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-11T20:29:49.663Z [debug] [socket] New connection: uqVJtrtTKVY74avjAAAB
+2025-10-11T20:29:49.663Z [debug] [socket] Socket uqVJtrtTKVY74avjAAAB joined session 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+2025-10-11T20:29:49.663Z [debug] [socket] Socket uqVJtrtTKVY74avjAAAB is now in rooms: uqVJtrtTKVY74avjAAAB, 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+2025-10-11T20:30:06.348Z [debug] [planner] Received response from Gemini in 16713ms
+2025-10-11T20:30:06.348Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-11T20:30:06.348Z [debug] [monitor] Plan generation for 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1 took 16713ms
+2025-10-11T20:30:06.349Z [debug] [cache] Cached plan for query: "simple cell division..."
+=== NEW STRUCTURED PLAN ===
+Session: 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+Query: simple cell division
+Plan title: Simple Cell Division: Making More Cells
+Plan subtitle: You'll learn the fundamental process of how one cell divides into two identical copies for growth, repair, and reproduction.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: 'How cells multiply to grow and heal, like making a photocopy.'
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'The three key steps: DNA copying, separation, and cell splitting.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'Where cell division matters, from healing cuts to fighting disease.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine you get a paper cut or a plant grows a new leaf. How do new cells magically appear? It's like making an exact photocopy! One parent cell (visual: a round cell with a nucleus containing a few squiggly lines representing chromosomes) needs to duplicate all its 'instruction manuals' (its DNA/chromosomes) perfectly, so the two new 'daughter cells' are identical. This process ensures all new parts of you have the same genetic blueprint."
+Step 1: id=2, tag=mechanics, desc="Let's see the action in three core stages. First, *DNA Replication*: The cell's *chromosomes* (its bundled DNA) make exact copies of themselves. (Visual: Show a single straight chromosome line turning into an 'X' shape). Second, *Chromosome Segregation*: These duplicated 'X' chromosomes line up in the center, and then the identical halves (called sister chromatids) are pulled apart to opposite ends of the cell. (Visual: 'X's splitting into two 'V' shapes moving to opposite poles). Finally, *Cytokinesis*: The original cell then pinches in the middle, creating a physical barrier, and splits into two separate, identical *daughter cells*. (Visual: Cell elongating, then a clear 'pinch' forming in the middle, leading to separation into two distinct, smaller cells)."
+Step 2: id=3, tag=applications, desc="This simple cell division, known as *mitosis*, is fundamental to life! It's how a tiny embryo grows into a complex human, how your body heals a scraped knee by replacing damaged cells, and how your hair and skin continuously renew. Bacteria also use a similar process to multiply rapidly, allowing colonies to grow. Understanding this precise mechanism is crucial for studying growth, development, and even diseases like cancer, which can arise when cell division goes wrong and cells divide uncontrollably."
+=== END NEW STRUCTURED PLAN ===
+2025-10-11T20:30:06.349Z [debug] [plan] OK: session=3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1 plan received with 3 steps
+2025-10-11T20:30:06.349Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-11T20:30:06.350Z [debug] [plan] END: session=3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 21
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+Query: simple cell division
+Steps to generate: 3
+Time: 2025-10-11T20:30:06.351Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T20:30:06.351Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1)
+2025-10-11T20:30:06.352Z [info] [parallel] ⏸️  Staggering 5000ms before step 2 to avoid rate limits
+2025-10-11T20:30:06.352Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-11T20:30:06.352Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-11T20:30:06.352Z [info] [codegenV3WithRetry] Attempt 1/2 for step 1
+2025-10-11T20:30:06.352Z [info] [codegenV3] Generating step 1: Imagine you get a paper cut or a plant grows a new leaf. How do new cells magically appear? It's like making an exact photocopy! One parent cell (visual: a round cell with a nucleus containing a few squiggly lines representing chromosomes) needs to duplicate all its 'instruction manuals' (its DNA/chromosomes) perfectly, so the two new 'daughter cells' are identical. This process ensures all new parts of you have the same genetic blueprint.
+2025-10-11T20:30:06.352Z [info] [codegenV3] Topic: "simple cell division"
+2025-10-11T20:30:06.352Z [debug] [codegenV3] Prompt length: 771 chars
+2025-10-11T20:30:11.352Z [info] [parallel] ⏸️  Staggering 5000ms before step 3 to avoid rate limits
+2025-10-11T20:30:11.352Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-11T20:30:11.352Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-11T20:30:11.352Z [info] [codegenV3WithRetry] Attempt 1/2 for step 2
+2025-10-11T20:30:11.352Z [info] [codegenV3] Generating step 2: Let's see the action in three core stages. First, *DNA Replication*: The cell's *chromosomes* (its bundled DNA) make exact copies of themselves. (Visual: Show a single straight chromosome line turning into an 'X' shape). Second, *Chromosome Segregation*: These duplicated 'X' chromosomes line up in the center, and then the identical halves (called sister chromatids) are pulled apart to opposite ends of the cell. (Visual: 'X's splitting into two 'V' shapes moving to opposite poles). Finally, *Cytokinesis*: The original cell then pinches in the middle, creating a physical barrier, and splits into two separate, identical *daughter cells*. (Visual: Cell elongating, then a clear 'pinch' forming in the middle, leading to separation into two distinct, smaller cells).
+2025-10-11T20:30:11.353Z [info] [codegenV3] Topic: "simple cell division"
+2025-10-11T20:30:11.353Z [debug] [codegenV3] Prompt length: 1097 chars
+2025-10-11T20:30:16.353Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-11T20:30:16.353Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-11T20:30:16.353Z [info] [codegenV3WithRetry] Attempt 1/2 for step 3
+2025-10-11T20:30:16.353Z [info] [codegenV3] Generating step 3: This simple cell division, known as *mitosis*, is fundamental to life! It's how a tiny embryo grows into a complex human, how your body heals a scraped knee by replacing damaged cells, and how your hair and skin continuously renew. Bacteria also use a similar process to multiply rapidly, allowing colonies to grow. Understanding this precise mechanism is crucial for studying growth, development, and even diseases like cancer, which can arise when cell division goes wrong and cells divide uncontrollably.
+2025-10-11T20:30:16.353Z [info] [codegenV3] Topic: "simple cell division"
+2025-10-11T20:30:16.354Z [debug] [codegenV3] Prompt length: 835 chars
+2025-10-11T20:30:39.679Z [debug] [monitor] Metrics updated:
+2025-10-11T20:31:06.909Z [debug] [codegenV3] Finish reason: STOP
+2025-10-11T20:31:06.909Z [debug] [codegenV3] Received 5491 chars from API
+2025-10-11T20:31:06.909Z [info] [codegenV3] ✅ Generated SVG in 55.56s (5491 chars)
+2025-10-11T20:31:06.909Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 19, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-11T20:31:06.909Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=3
+2025-10-11T20:31:06.909Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-11T20:31:06.909Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-11T20:31:06.910Z [debug] compilerRouter: routing to js
+2025-10-11T20:31:06.910Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-11T20:31:06.910Z [debug] [debugger] Chunk type: actions
+2025-10-11T20:31:06.910Z [debug] [debugger] Has actions: true
+2025-10-11T20:31:06.910Z [debug] [debugger] Actions count: 1
+2025-10-11T20:31:06.910Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-11T20:31:06.910Z [debug] [cache] Cached chunk for query step 2
+2025-10-11T20:31:06.910Z [debug] [monitor] Step 2 generation for 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1 took 55558ms
+2025-10-11T20:31:06.910Z [info] [parallel] ✅ Step 2 COMPLETE in 55558ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+StepId: 2
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:31:06.910Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-11T20:31:25.563Z [debug] [codegenV3] Finish reason: STOP
+2025-10-11T20:31:25.564Z [debug] [codegenV3] Received 5582 chars from API
+2025-10-11T20:31:25.564Z [info] [codegenV3] ✅ Generated SVG in 79.21s (5582 chars)
+2025-10-11T20:31:25.564Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 15, <animateMotion>: 0, <animateTransform>: 5)
+2025-10-11T20:31:25.564Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=5
+2025-10-11T20:31:25.564Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-11T20:31:25.564Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-11T20:31:25.564Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-11T20:31:25.565Z [debug] compilerRouter: routing to js
+2025-10-11T20:31:25.565Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-11T20:31:25.565Z [debug] [debugger] Chunk type: actions
+2025-10-11T20:31:25.565Z [debug] [debugger] Has actions: true
+2025-10-11T20:31:25.565Z [debug] [debugger] Actions count: 1
+2025-10-11T20:31:25.565Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-11T20:31:25.565Z [debug] [cache] Cached chunk for query step 1
+2025-10-11T20:31:25.565Z [debug] [monitor] Step 1 generation for 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1 took 79214ms
+2025-10-11T20:31:25.565Z [info] [parallel] ✅ Step 1 COMPLETE in 79214ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+StepId: 1
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:31:25.566Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-11T20:31:35.850Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-11T20:31:35.850Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-11T20:31:35.850Z [debug] [codegenV3] Received 5551 chars from API
+2025-10-11T20:31:35.850Z [error] [codegenV3] ❌ NO SVG STRUCTURE FOUND
+2025-10-11T20:31:35.850Z [error] [codegenV3] Content received:
+2025-10-11T20:31:35.850Z [error] <?xml version="1.0"?>
+<svg width="600" height="400" viewBox="0 0 600 400">
+    <defs>
+        <circle id="chromosomeUnit" r="7" fill="#6A5ACD"/>
+    </defs>
+
+    <!-- Main Cell Container -->
+    <g id="cell_container">
+        <circle cx="300" cy="200" r="150" fill="none" stroke="#228B22" stroke-width="3"/>
+
+        <!-- Nucleus -->
+        <circle id="nucleus" cx="300" cy="200" r="80" fill="rgba(173,216,230,0.5)" stroke="#4682B4" stroke-width="2">
+            <!-- Nuclear envelope breakdown (Prophase) -->
+            <animate attributeName="r" begin="3s" dur="1s" values="80;0" fill="freeze"/>
+            <animate attributeName="opacity" begin="3s" dur="1s" values="1;0" fill="freeze"/>
+        </circle>
+
+        <!-- Centrosomes (poles) -->
+        <circle id="centrosome_top" cx="300" cy="100" r="5" fill="#FF4500" opacity="0">
+            <animate attributeName="opacity" begin="3s" dur="0.5s" values="0;1" fill="freeze"/>
+            <animateMotion path="M300,100 L300,50" begin="3s" dur
+2025-10-11T20:31:35.850Z [error] [codegenV3] Generation failed: Generated content has no valid SVG structure
+2025-10-11T20:31:35.851Z [warn] [codegenV3WithRetry] ⚠️ Null result, retrying...
+2025-10-11T20:31:35.851Z [info] [codegenV3WithRetry] Waiting 3000ms before retry...
+2025-10-11T20:31:38.850Z [info] [codegenV3WithRetry] Attempt 2/2 for step 3
+2025-10-11T20:31:38.850Z [info] [codegenV3] Generating step 3: This simple cell division, known as *mitosis*, is fundamental to life! It's how a tiny embryo grows into a complex human, how your body heals a scraped knee by replacing damaged cells, and how your hair and skin continuously renew. Bacteria also use a similar process to multiply rapidly, allowing colonies to grow. Understanding this precise mechanism is crucial for studying growth, development, and even diseases like cancer, which can arise when cell division goes wrong and cells divide uncontrollably.
+2025-10-11T20:31:38.851Z [info] [codegenV3] Topic: "simple cell division"
+2025-10-11T20:31:38.851Z [debug] [codegenV3] Prompt length: 835 chars
+2025-10-11T20:31:39.680Z [debug] [monitor] Metrics updated:
+2025-10-11T20:32:39.683Z [debug] [monitor] Metrics updated:
+2025-10-11T20:32:49.665Z [debug] [socket] Socket uqVJtrtTKVY74avjAAAB disconnected: client namespace disconnect
+2025-10-11T20:33:09.261Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-11T20:33:09.261Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-11T20:33:09.261Z [debug] [codegenV3] Received 6335 chars from API
+2025-10-11T20:33:09.261Z [error] [codegenV3] ❌ NO SVG STRUCTURE FOUND
+2025-10-11T20:33:09.261Z [error] [codegenV3] Content received:
+2025-10-11T20:33:09.261Z [error] <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect x="0" y="0" width="800" height="600" fill="#f0f0f0"/>
+
+    <!-- Cell Body -->
+    <circle id="parentCell" cx="400" cy="300" r="150" stroke="darkgrey" stroke-width="3" fill="lightblue" fill-opacity="0.5">
+        <!-- Animate cell to elongate then constrict for division -->
+        <animate attributeName="ry" values="150;150;180;150;150" keyTimes="0;0.4;0.6;0.7;1" dur="8s" begin="0s;loop.end" fill="freeze"/>
+        <animate attributeName="rx" values="150;150;120;150;150" keyTimes="0;0.4;0.6;0.7;1" dur="8s" begin="0s;loop.end" fill="freeze"/>
+        <!-- Animate opacity to fade out for split -->
+        <animate attributeName="fill-opacity" values="0.5;0.5;0.5;0.5;0" keyTimes="0;0.7;0.8;0.9;1" dur="8s" begin="0s;loop.end" fill="freeze"/>
+        <animate attributeName="stroke-opacity" values="1;1;1;1;0" keyTimes="0;0.7;0.8;0.9;1" du
+2025-10-11T20:33:09.261Z [error] [codegenV3] Generation failed: Generated content has no valid SVG structure
+2025-10-11T20:33:09.261Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-11T20:33:09.261Z [error] [parallel] ❌ Step 3 codegen returned null after all retries
+2025-10-11T20:33:09.261Z [debug] [monitor] Step 3 generation for 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1 took 172908ms
+2025-10-11T20:33:09.262Z [error] [parallel] Step 3 failed: Error: Step 3 generation failed after all retry attempts
+2025-10-11T20:33:09.262Z [debug] [parallel] Parallel generation complete: 2/3 successful in 182911ms
+2025-10-11T20:33:09.262Z [debug] [monitor] Completed request 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1 in 199627ms (success: true)
+2025-10-11T20:33:09.262Z [debug] [parallel] Job complete for session 3cd4d12f-5c5d-4d4e-a581-0f6f8f2bbcc1
+2025-10-11T20:33:39.687Z [debug] [monitor] Metrics updated:
+2025-10-11T20:34:39.691Z [debug] [monitor] Metrics updated:
+2025-10-11T20:35:39.694Z [debug] [monitor] Metrics updated:
+2025-10-11T20:36:39.696Z [debug] [monitor] Metrics updated:
+2025-10-11T20:37:39.696Z [debug] [monitor] Metrics updated:
+2025-10-11T20:38:39.699Z [debug] [monitor] Metrics updated:
+2025-10-11T20:39:39.700Z [debug] [monitor] Metrics updated:
+2025-10-11T20:40:39.701Z [debug] [monitor] Metrics updated:
+2025-10-11T20:41:39.701Z [debug] [monitor] Metrics updated:
+2025-10-11T20:42:39.705Z [debug] [monitor] Metrics updated:
+2025-10-11T20:43:39.708Z [debug] [monitor] Metrics updated:
+2025-10-11T20:44:39.708Z [debug] [monitor] Metrics updated:
+2025-10-11T20:45:39.721Z [debug] [monitor] Metrics updated:
+2025-10-11T20:46:39.733Z [debug] [monitor] Metrics updated:
+2025-10-11T20:47:39.743Z [debug] [monitor] Metrics updated:
+2025-10-11T20:48:39.746Z [debug] [monitor] Metrics updated:
+2025-10-11T20:49:39.754Z [debug] [monitor] Metrics updated:
+2025-10-11T20:50:39.760Z [debug] [monitor] Metrics updated:
+2025-10-11T20:51:39.765Z [debug] [monitor] Metrics updated:
+2025-10-11T20:52:39.768Z [debug] [monitor] Metrics updated:
+2025-10-11T20:53:39.769Z [debug] [monitor] Metrics updated:
+2025-10-11T20:54:39.773Z [debug] [monitor] Metrics updated:
+2025-10-11T20:55:39.776Z [debug] [monitor] Metrics updated:
+2025-10-11T20:56:39.777Z [debug] [monitor] Metrics updated:
+2025-10-11T20:57:39.779Z [debug] [monitor] Metrics updated:
+2025-10-11T20:58:39.784Z [debug] [monitor] Metrics updated:
+2025-10-11T20:59:39.787Z [debug] [monitor] Metrics updated:
+2025-10-11T21:00:39.788Z [debug] [monitor] Metrics updated:
+2025-10-11T21:01:39.795Z [debug] [monitor] Metrics updated:
+2025-10-11T21:02:39.807Z [debug] [monitor] Metrics updated:
+2025-10-11T21:03:39.818Z [debug] [monitor] Metrics updated:
+2025-10-11T21:04:39.824Z [debug] [monitor] Metrics updated:
+2025-10-11T21:05:39.831Z [debug] [monitor] Metrics updated:
+2025-10-11T21:06:39.834Z [debug] [monitor] Metrics updated:
+2025-10-11T21:07:39.838Z [debug] [monitor] Metrics updated:
+2025-10-11T21:08:39.840Z [debug] [monitor] Metrics updated:
+2025-10-11T21:09:39.841Z [debug] [monitor] Metrics updated:
+2025-10-11T21:10:39.846Z [debug] [monitor] Metrics updated:
+2025-10-11T21:11:39.848Z [debug] [monitor] Metrics updated:
+2025-10-11T21:12:39.850Z [debug] [monitor] Metrics updated:
+2025-10-11T21:13:39.852Z [debug] [monitor] Metrics updated:
+2025-10-11T21:14:39.856Z [debug] [monitor] Metrics updated:
+2025-10-11T21:15:39.859Z [debug] [monitor] Metrics updated:
+2025-10-11T21:16:39.860Z [debug] [monitor] Metrics updated:
+2025-10-11T21:17:39.869Z [debug] [monitor] Metrics updated:
+2025-10-11T21:18:39.881Z [debug] [monitor] Metrics updated:
+2025-10-11T21:19:39.891Z [debug] [monitor] Metrics updated:
+2025-10-11T21:20:39.901Z [debug] [monitor] Metrics updated:
+2025-10-11T21:21:39.908Z [debug] [monitor] Metrics updated:
+2025-10-11T21:22:39.913Z [debug] [monitor] Metrics updated:
+2025-10-11T21:23:39.917Z [debug] [monitor] Metrics updated:
+2025-10-11T21:24:39.919Z [debug] [monitor] Metrics updated:
+2025-10-11T21:25:39.920Z [debug] [monitor] Metrics updated:
+2025-10-11T21:26:39.924Z [debug] [monitor] Metrics updated:
+2025-10-11T21:27:39.926Z [debug] [monitor] Metrics updated:
+2025-10-11T21:28:39.927Z [debug] [monitor] Metrics updated:
+2025-10-11T21:29:39.928Z [debug] [monitor] Metrics updated:
+2025-10-11T21:30:39.933Z [debug] [monitor] Metrics updated:
+2025-10-11T21:31:39.935Z [debug] [monitor] Metrics updated:
+2025-10-11T21:32:39.937Z [debug] [monitor] Metrics updated:
+2025-10-11T21:33:39.949Z [debug] [monitor] Metrics updated:
+2025-10-11T21:34:39.958Z [debug] [monitor] Metrics updated:
+2025-10-11T21:35:39.968Z [debug] [monitor] Metrics updated:
+2025-10-11T21:36:39.976Z [debug] [monitor] Metrics updated:
+2025-10-11T21:37:39.981Z [debug] [monitor] Metrics updated:
+2025-10-11T21:38:39.988Z [debug] [monitor] Metrics updated:
+2025-10-11T21:39:39.991Z [debug] [monitor] Metrics updated:
+2025-10-11T21:40:39.993Z [debug] [monitor] Metrics updated:
+2025-10-11T21:41:39.994Z [debug] [monitor] Metrics updated:
+2025-10-11T21:42:39.999Z [debug] [monitor] Metrics updated:
+2025-10-11T21:43:40.001Z [debug] [monitor] Metrics updated:
+2025-10-11T21:44:40.002Z [debug] [monitor] Metrics updated:
+2025-10-11T21:45:40.003Z [debug] [monitor] Metrics updated:
+2025-10-11T21:46:40.006Z [debug] [monitor] Metrics updated:
+2025-10-11T21:47:40.007Z [debug] [monitor] Metrics updated:
+2025-10-11T21:48:40.008Z [debug] [monitor] Metrics updated:
+2025-10-11T21:49:40.022Z [debug] [monitor] Metrics updated:
+2025-10-11T21:50:40.033Z [debug] [monitor] Metrics updated:
+2025-10-11T21:51:40.043Z [debug] [monitor] Metrics updated:
+2025-10-11T21:52:40.051Z [debug] [monitor] Metrics updated:
+2025-10-11T21:53:40.058Z [debug] [monitor] Metrics updated:
+2025-10-11T21:54:40.063Z [debug] [monitor] Metrics updated:
+2025-10-11T21:55:40.066Z [debug] [monitor] Metrics updated:
+2025-10-11T21:56:40.068Z [debug] [monitor] Metrics updated:
+2025-10-11T21:57:40.069Z [debug] [monitor] Metrics updated:
+2025-10-11T21:58:40.072Z [debug] [monitor] Metrics updated:
+2025-10-11T21:59:40.075Z [debug] [monitor] Metrics updated:
+2025-10-11T22:00:40.075Z [debug] [monitor] Metrics updated:
+2025-10-11T22:01:40.075Z [debug] [monitor] Metrics updated:
+2025-10-11T22:02:40.080Z [debug] [monitor] Metrics updated:
+2025-10-11T22:03:40.083Z [debug] [monitor] Metrics updated:
+2025-10-11T22:04:40.083Z [debug] [monitor] Metrics updated:
+2025-10-11T22:05:40.096Z [debug] [monitor] Metrics updated:
+2025-10-11T22:06:40.107Z [debug] [monitor] Metrics updated:
+2025-10-11T22:07:40.117Z [debug] [monitor] Metrics updated:
+2025-10-11T22:08:40.125Z [debug] [monitor] Metrics updated:
+2025-10-11T22:09:40.132Z [debug] [monitor] Metrics updated:
+2025-10-11T22:10:40.137Z [debug] [monitor] Metrics updated:
+2025-10-11T22:11:40.141Z [debug] [monitor] Metrics updated:
+2025-10-11T22:12:40.143Z [debug] [monitor] Metrics updated:
+2025-10-11T22:13:40.144Z [debug] [monitor] Metrics updated:
+2025-10-11T22:14:40.147Z [debug] [monitor] Metrics updated:
+2025-10-11T22:15:40.150Z [debug] [monitor] Metrics updated:
+2025-10-11T22:16:40.151Z [debug] [monitor] Metrics updated:
+2025-10-11T22:17:40.152Z [debug] [monitor] Metrics updated:
+2025-10-11T22:18:40.157Z [debug] [monitor] Metrics updated:
+2025-10-11T22:19:40.160Z [debug] [monitor] Metrics updated:
+2025-10-11T22:20:40.161Z [debug] [monitor] Metrics updated:
+2025-10-11T22:21:40.173Z [debug] [monitor] Metrics updated:
+2025-10-11T22:22:40.184Z [debug] [monitor] Metrics updated:
+2025-10-11T22:23:40.194Z [debug] [monitor] Metrics updated:
+2025-10-11T22:24:40.202Z [debug] [monitor] Metrics updated:
+2025-10-11T22:25:40.209Z [debug] [monitor] Metrics updated:
+2025-10-11T22:26:40.214Z [debug] [monitor] Metrics updated:
+2025-10-11T22:27:40.218Z [debug] [monitor] Metrics updated:
+2025-10-11T22:28:40.220Z [debug] [monitor] Metrics updated:
+2025-10-11T22:29:40.220Z [debug] [monitor] Metrics updated:
+2025-10-11T22:30:40.224Z [debug] [monitor] Metrics updated:
+2025-10-11T22:31:40.227Z [debug] [monitor] Metrics updated:
+2025-10-11T22:32:40.228Z [debug] [monitor] Metrics updated:
+2025-10-11T22:33:40.229Z [debug] [monitor] Metrics updated:
+2025-10-11T22:34:40.232Z [debug] [monitor] Metrics updated:
+2025-10-11T22:35:40.235Z [debug] [monitor] Metrics updated:
+2025-10-11T22:36:40.236Z [debug] [monitor] Metrics updated:
+2025-10-11T22:37:40.249Z [debug] [monitor] Metrics updated:
+2025-10-11T22:38:40.261Z [debug] [monitor] Metrics updated:
+2025-10-11T22:39:40.271Z [debug] [monitor] Metrics updated:
+2025-10-11T22:40:40.279Z [debug] [monitor] Metrics updated:
+2025-10-11T22:41:40.286Z [debug] [monitor] Metrics updated:
+2025-10-11T22:42:40.292Z [debug] [monitor] Metrics updated:
+2025-10-11T22:43:40.296Z [debug] [monitor] Metrics updated:
+2025-10-11T22:44:40.298Z [debug] [monitor] Metrics updated:
+2025-10-11T22:45:40.299Z [debug] [monitor] Metrics updated:
+2025-10-11T22:46:40.304Z [debug] [monitor] Metrics updated:
+2025-10-11T22:47:40.306Z [debug] [monitor] Metrics updated:
+2025-10-11T22:48:40.308Z [debug] [monitor] Metrics updated:
+2025-10-11T22:49:40.309Z [debug] [monitor] Metrics updated:
+2025-10-11T22:50:40.309Z [debug] [monitor] Metrics updated:
+2025-10-11T22:51:40.313Z [debug] [monitor] Metrics updated:
+2025-10-11T22:52:40.315Z [debug] [monitor] Metrics updated:
+2025-10-11T22:53:40.315Z [debug] [monitor] Metrics updated:
+2025-10-11T22:54:40.327Z [debug] [monitor] Metrics updated:
+2025-10-11T22:55:40.338Z [debug] [monitor] Metrics updated:
+2025-10-11T22:56:40.348Z [debug] [monitor] Metrics updated:
+2025-10-11T22:57:40.356Z [debug] [monitor] Metrics updated:
+2025-10-11T22:58:40.363Z [debug] [monitor] Metrics updated:
+2025-10-11T22:59:40.366Z [debug] [monitor] Metrics updated:
+2025-10-11T23:00:40.369Z [debug] [monitor] Metrics updated:
+2025-10-11T23:01:40.370Z [debug] [monitor] Metrics updated:
+2025-10-11T23:02:40.375Z [debug] [monitor] Metrics updated:
+2025-10-11T23:03:40.378Z [debug] [monitor] Metrics updated:
+2025-10-11T23:04:40.379Z [debug] [monitor] Metrics updated:
+2025-10-11T23:05:40.380Z [debug] [monitor] Metrics updated:
+2025-10-11T23:06:40.385Z [debug] [monitor] Metrics updated:
+2025-10-11T23:07:40.389Z [debug] [monitor] Metrics updated:
+2025-10-11T23:08:40.390Z [debug] [monitor] Metrics updated:
+2025-10-11T23:09:40.397Z [debug] [monitor] Metrics updated:
+2025-10-11T23:10:40.409Z [debug] [monitor] Metrics updated:
+2025-10-11T23:11:40.420Z [debug] [monitor] Metrics updated:
+2025-10-11T23:12:40.428Z [debug] [monitor] Metrics updated:
+2025-10-11T23:13:40.436Z [debug] [monitor] Metrics updated:
+2025-10-11T23:14:40.438Z [debug] [monitor] Metrics updated:
+2025-10-11T23:15:40.442Z [debug] [monitor] Metrics updated:
+2025-10-11T23:16:40.444Z [debug] [monitor] Metrics updated:
+2025-10-11T23:17:40.445Z [debug] [monitor] Metrics updated:
+2025-10-11T23:18:40.449Z [debug] [monitor] Metrics updated:
+2025-10-11T23:19:40.453Z [debug] [monitor] Metrics updated:
+2025-10-11T23:20:40.455Z [debug] [monitor] Metrics updated:
+2025-10-11T23:21:40.455Z [debug] [monitor] Metrics updated:
+2025-10-11T23:22:40.460Z [debug] [monitor] Metrics updated:
+2025-10-11T23:23:40.464Z [debug] [monitor] Metrics updated:
+2025-10-11T23:24:40.466Z [debug] [monitor] Metrics updated:
+2025-10-11T23:25:40.467Z [debug] [monitor] Metrics updated:
+2025-10-11T23:26:40.477Z [debug] [monitor] Metrics updated:
+2025-10-11T23:27:40.488Z [debug] [monitor] Metrics updated:
+2025-10-11T23:28:40.496Z [debug] [monitor] Metrics updated:
+2025-10-11T23:29:40.504Z [debug] [monitor] Metrics updated:
+2025-10-11T23:30:40.510Z [debug] [monitor] Metrics updated:
+2025-10-11T23:31:40.515Z [debug] [monitor] Metrics updated:
+2025-10-11T23:32:40.517Z [debug] [monitor] Metrics updated:
+2025-10-11T23:33:40.519Z [debug] [monitor] Metrics updated:
+2025-10-11T23:34:40.524Z [debug] [monitor] Metrics updated:
+2025-10-11T23:35:40.527Z [debug] [monitor] Metrics updated:
+2025-10-11T23:36:40.528Z [debug] [monitor] Metrics updated:
+2025-10-11T23:37:40.530Z [debug] [monitor] Metrics updated:
+2025-10-11T23:38:40.529Z [debug] [monitor] Metrics updated:
+2025-10-11T23:39:40.533Z [debug] [monitor] Metrics updated:
+2025-10-11T23:40:40.535Z [debug] [monitor] Metrics updated:
+2025-10-11T23:41:40.535Z [debug] [monitor] Metrics updated:
+2025-10-11T23:42:40.543Z [debug] [monitor] Metrics updated:
+2025-10-11T23:43:40.551Z [debug] [monitor] Metrics updated:
+2025-10-11T23:44:40.559Z [debug] [monitor] Metrics updated:
+2025-10-11T23:45:40.566Z [debug] [monitor] Metrics updated:
+2025-10-11T23:46:40.571Z [debug] [monitor] Metrics updated:
+2025-10-11T23:47:40.575Z [debug] [monitor] Metrics updated:
+2025-10-11T23:48:40.578Z [debug] [monitor] Metrics updated:
+2025-10-11T23:49:40.578Z [debug] [monitor] Metrics updated:
+2025-10-11T23:50:40.582Z [debug] [monitor] Metrics updated:
+2025-10-11T23:51:40.584Z [debug] [monitor] Metrics updated:
+2025-10-11T23:52:40.586Z [debug] [monitor] Metrics updated:
+2025-10-11T23:53:40.587Z [debug] [monitor] Metrics updated:
+2025-10-11T23:54:40.592Z [debug] [monitor] Metrics updated:
+2025-10-11T23:55:40.596Z [debug] [monitor] Metrics updated:
+2025-10-11T23:56:40.598Z [debug] [monitor] Metrics updated:
+2025-10-11T23:57:40.599Z [debug] [monitor] Metrics updated:
+2025-10-11T23:58:40.604Z [debug] [monitor] Metrics updated:
+2025-10-11T23:59:40.609Z [debug] [monitor] Metrics updated:
+2025-10-12T00:00:40.614Z [debug] [monitor] Metrics updated:
+2025-10-12T00:01:40.619Z [debug] [monitor] Metrics updated:
+2025-10-12T00:02:40.625Z [debug] [monitor] Metrics updated:
+2025-10-12T00:03:40.629Z [debug] [monitor] Metrics updated:
+2025-10-12T00:04:40.631Z [debug] [monitor] Metrics updated:
+2025-10-12T00:05:40.632Z [debug] [monitor] Metrics updated:
+2025-10-12T00:06:40.636Z [debug] [monitor] Metrics updated:
+2025-10-12T00:07:40.639Z [debug] [monitor] Metrics updated:
+2025-10-12T00:08:40.641Z [debug] [monitor] Metrics updated:
+2025-10-12T00:09:40.642Z [debug] [monitor] Metrics updated:
+2025-10-12T00:10:40.645Z [debug] [monitor] Metrics updated:
+2025-10-12T00:11:40.647Z [debug] [monitor] Metrics updated:
+2025-10-12T00:12:40.649Z [debug] [monitor] Metrics updated:
+2025-10-12T00:13:40.649Z [debug] [monitor] Metrics updated:
+2025-10-12T00:14:40.652Z [debug] [monitor] Metrics updated:
+2025-10-12T00:15:40.655Z [debug] [monitor] Metrics updated:
+2025-10-12T00:16:40.658Z [debug] [monitor] Metrics updated:
+2025-10-12T00:17:40.661Z [debug] [monitor] Metrics updated:
+2025-10-12T00:18:40.662Z [debug] [monitor] Metrics updated:
+2025-10-12T00:19:40.664Z [debug] [monitor] Metrics updated:
+2025-10-12T00:20:40.666Z [debug] [monitor] Metrics updated:
+2025-10-12T00:21:40.668Z [debug] [monitor] Metrics updated:
+2025-10-12T00:22:40.669Z [debug] [monitor] Metrics updated:
+2025-10-12T00:23:40.670Z [debug] [monitor] Metrics updated:
+2025-10-12T00:24:40.671Z [debug] [monitor] Metrics updated:
+2025-10-12T00:25:40.672Z [debug] [monitor] Metrics updated:
+2025-10-12T00:26:40.673Z [debug] [monitor] Metrics updated:
+2025-10-12T00:27:40.674Z [debug] [monitor] Metrics updated:
+2025-10-12T00:28:40.674Z [debug] [monitor] Metrics updated:
+2025-10-12T00:29:40.675Z [debug] [monitor] Metrics updated:
+2025-10-12T00:30:40.675Z [debug] [monitor] Metrics updated:
+2025-10-12T00:31:40.683Z [debug] [monitor] Metrics updated:
+2025-10-12T00:32:40.691Z [debug] [monitor] Metrics updated:
+2025-10-12T00:33:40.699Z [debug] [monitor] Metrics updated:
+2025-10-12T00:34:40.703Z [debug] [monitor] Metrics updated:
+2025-10-12T00:35:40.707Z [debug] [monitor] Metrics updated:
+2025-10-12T00:36:40.710Z [debug] [monitor] Metrics updated:
+2025-10-12T00:37:40.711Z [debug] [monitor] Metrics updated:
+2025-10-12T00:38:40.716Z [debug] [monitor] Metrics updated:
+2025-10-12T00:39:40.720Z [debug] [monitor] Metrics updated:
+2025-10-12T00:40:40.722Z [debug] [monitor] Metrics updated:
+2025-10-12T00:41:40.723Z [debug] [monitor] Metrics updated:
+2025-10-12T00:42:40.723Z [debug] [monitor] Metrics updated:
+2025-10-12T00:43:40.727Z [debug] [monitor] Metrics updated:
+2025-10-12T00:44:40.729Z [debug] [monitor] Metrics updated:
+2025-10-12T00:45:40.729Z [debug] [monitor] Metrics updated:
+2025-10-12T00:46:40.741Z [debug] [monitor] Metrics updated:
+2025-10-12T00:47:40.753Z [debug] [monitor] Metrics updated:
+2025-10-12T00:48:40.761Z [debug] [monitor] Metrics updated:
+2025-10-12T00:49:40.768Z [debug] [monitor] Metrics updated:
+2025-10-12T00:50:40.774Z [debug] [monitor] Metrics updated:
+2025-10-12T00:51:40.778Z [debug] [monitor] Metrics updated:
+2025-10-12T00:52:40.781Z [debug] [monitor] Metrics updated:
+2025-10-12T00:53:40.782Z [debug] [monitor] Metrics updated:
+2025-10-12T00:54:40.786Z [debug] [monitor] Metrics updated:
+2025-10-12T00:55:40.790Z [debug] [monitor] Metrics updated:
+2025-10-12T00:56:40.793Z [debug] [monitor] Metrics updated:
+2025-10-12T00:57:40.792Z [debug] [monitor] Metrics updated:
+2025-10-12T00:58:40.792Z [debug] [monitor] Metrics updated:
+2025-10-12T00:59:40.794Z [debug] [monitor] Metrics updated:
+2025-10-12T01:00:40.796Z [debug] [monitor] Metrics updated:
+2025-10-12T01:01:40.797Z [debug] [monitor] Metrics updated:
+2025-10-12T01:02:40.809Z [debug] [monitor] Metrics updated:
+2025-10-12T01:03:40.820Z [debug] [monitor] Metrics updated:
+2025-10-12T01:04:40.829Z [debug] [monitor] Metrics updated:
+2025-10-12T01:05:40.837Z [debug] [monitor] Metrics updated:
+2025-10-12T01:06:40.843Z [debug] [monitor] Metrics updated:
+2025-10-12T01:07:40.848Z [debug] [monitor] Metrics updated:
+2025-10-12T01:08:40.850Z [debug] [monitor] Metrics updated:
+2025-10-12T01:09:40.850Z [debug] [monitor] Metrics updated:
+2025-10-12T01:10:40.850Z [debug] [monitor] Metrics updated:
+2025-10-12T01:11:40.853Z [debug] [monitor] Metrics updated:
+2025-10-12T01:12:40.854Z [debug] [monitor] Metrics updated:
+2025-10-12T01:13:40.855Z [debug] [monitor] Metrics updated:
+2025-10-12T01:14:40.854Z [debug] [monitor] Metrics updated:
+2025-10-12T01:15:40.858Z [debug] [monitor] Metrics updated:
+2025-10-12T01:16:40.861Z [debug] [monitor] Metrics updated:
+2025-10-12T01:17:40.862Z [debug] [monitor] Metrics updated:
+2025-10-12T01:18:40.873Z [debug] [monitor] Metrics updated:
+2025-10-12T01:19:40.884Z [debug] [monitor] Metrics updated:
+2025-10-12T01:20:40.892Z [debug] [monitor] Metrics updated:
+2025-10-12T01:21:40.900Z [debug] [monitor] Metrics updated:
+2025-10-12T01:22:40.906Z [debug] [monitor] Metrics updated:
+2025-10-12T01:23:40.911Z [debug] [monitor] Metrics updated:
+2025-10-12T01:24:40.915Z [debug] [monitor] Metrics updated:
+2025-10-12T01:25:40.917Z [debug] [monitor] Metrics updated:
+2025-10-12T01:26:40.918Z [debug] [monitor] Metrics updated:
+2025-10-12T01:27:40.922Z [debug] [monitor] Metrics updated:
+2025-10-12T01:28:40.924Z [debug] [monitor] Metrics updated:
+2025-10-12T01:29:40.925Z [debug] [monitor] Metrics updated:
+2025-10-12T01:30:40.926Z [debug] [monitor] Metrics updated:
+2025-10-12T01:31:40.929Z [debug] [monitor] Metrics updated:
+2025-10-12T01:32:40.931Z [debug] [monitor] Metrics updated:
+2025-10-12T01:33:40.932Z [debug] [monitor] Metrics updated:
+2025-10-12T01:34:40.945Z [debug] [monitor] Metrics updated:
+2025-10-12T01:35:40.953Z [debug] [monitor] Metrics updated:
+2025-10-12T01:36:40.963Z [debug] [monitor] Metrics updated:
+2025-10-12T01:37:40.971Z [debug] [monitor] Metrics updated:
+2025-10-12T01:38:40.978Z [debug] [monitor] Metrics updated:
+2025-10-12T01:39:40.983Z [debug] [monitor] Metrics updated:
+2025-10-12T01:40:40.987Z [debug] [monitor] Metrics updated:
+2025-10-12T01:41:40.990Z [debug] [monitor] Metrics updated:
+2025-10-12T01:42:40.991Z [debug] [monitor] Metrics updated:
+2025-10-12T01:43:40.994Z [debug] [monitor] Metrics updated:
+2025-10-12T01:44:40.996Z [debug] [monitor] Metrics updated:
+2025-10-12T01:45:40.997Z [debug] [monitor] Metrics updated:
+2025-10-12T01:46:40.998Z [debug] [monitor] Metrics updated:
+2025-10-12T01:47:41.002Z [debug] [monitor] Metrics updated:
+2025-10-12T01:48:41.005Z [debug] [monitor] Metrics updated:
+2025-10-12T01:49:41.005Z [debug] [monitor] Metrics updated:
+2025-10-12T01:50:41.018Z [debug] [monitor] Metrics updated:
+2025-10-12T01:51:41.029Z [debug] [monitor] Metrics updated:
+2025-10-12T01:52:41.032Z [debug] [monitor] Metrics updated:
+2025-10-12T01:53:41.041Z [debug] [monitor] Metrics updated:
+2025-10-12T01:54:41.048Z [debug] [monitor] Metrics updated:
+2025-10-12T01:55:41.053Z [debug] [monitor] Metrics updated:
+2025-10-12T01:56:41.057Z [debug] [monitor] Metrics updated:
+2025-10-12T01:57:41.059Z [debug] [monitor] Metrics updated:
+2025-10-12T01:58:41.060Z [debug] [monitor] Metrics updated:
+2025-10-12T01:59:41.064Z [debug] [monitor] Metrics updated:
+2025-10-12T02:00:41.068Z [debug] [monitor] Metrics updated:
+2025-10-12T02:01:41.068Z [debug] [monitor] Metrics updated:
+2025-10-12T02:02:41.069Z [debug] [monitor] Metrics updated:
+2025-10-12T02:03:41.074Z [debug] [monitor] Metrics updated:
+2025-10-12T02:04:41.077Z [debug] [monitor] Metrics updated:
+2025-10-12T02:05:41.079Z [debug] [monitor] Metrics updated:
+2025-10-12T02:06:41.092Z [debug] [monitor] Metrics updated:
+2025-10-12T02:07:41.097Z [debug] [monitor] Metrics updated:
+2025-10-12T02:08:41.107Z [debug] [monitor] Metrics updated:
+2025-10-12T02:09:41.116Z [debug] [monitor] Metrics updated:
+2025-10-12T02:10:41.123Z [debug] [monitor] Metrics updated:
+2025-10-12T02:11:41.129Z [debug] [monitor] Metrics updated:
+2025-10-12T02:12:41.133Z [debug] [monitor] Metrics updated:
+2025-10-12T02:13:41.137Z [debug] [monitor] Metrics updated:
+2025-10-12T02:14:41.137Z [debug] [monitor] Metrics updated:
+2025-10-12T02:15:41.141Z [debug] [monitor] Metrics updated:
+2025-10-12T02:16:41.145Z [debug] [monitor] Metrics updated:
+2025-10-12T02:17:41.145Z [debug] [monitor] Metrics updated:
+2025-10-12T02:18:41.147Z [debug] [monitor] Metrics updated:
+2025-10-12T02:19:41.151Z [debug] [monitor] Metrics updated:
+2025-10-12T02:20:41.154Z [debug] [monitor] Metrics updated:
+2025-10-12T02:21:41.156Z [debug] [monitor] Metrics updated:
+2025-10-12T02:22:41.157Z [debug] [monitor] Metrics updated:
+2025-10-12T02:23:41.169Z [debug] [monitor] Metrics updated:
+2025-10-12T02:24:41.178Z [debug] [monitor] Metrics updated:
+2025-10-12T02:25:41.187Z [debug] [monitor] Metrics updated:
+2025-10-12T02:26:41.195Z [debug] [monitor] Metrics updated:
+2025-10-12T02:27:41.201Z [debug] [monitor] Metrics updated:
+2025-10-12T02:28:41.205Z [debug] [monitor] Metrics updated:
+2025-10-12T02:29:41.209Z [debug] [monitor] Metrics updated:
+2025-10-12T02:30:41.210Z [debug] [monitor] Metrics updated:
+2025-10-12T02:31:41.215Z [debug] [monitor] Metrics updated:
+2025-10-12T02:32:41.219Z [debug] [monitor] Metrics updated:
+2025-10-12T02:33:41.220Z [debug] [monitor] Metrics updated:
+2025-10-12T02:34:41.220Z [debug] [monitor] Metrics updated:
+2025-10-12T02:35:41.220Z [debug] [monitor] Metrics updated:
+2025-10-12T02:36:41.223Z [debug] [monitor] Metrics updated:
+2025-10-12T02:37:41.225Z [debug] [monitor] Metrics updated:
+2025-10-12T02:38:41.226Z [debug] [monitor] Metrics updated:
+2025-10-12T02:39:41.238Z [debug] [monitor] Metrics updated:
+2025-10-12T02:40:41.249Z [debug] [monitor] Metrics updated:
+2025-10-12T02:41:41.259Z [debug] [monitor] Metrics updated:
+2025-10-12T02:42:41.267Z [debug] [monitor] Metrics updated:
+2025-10-12T02:43:41.273Z [debug] [monitor] Metrics updated:
+2025-10-12T02:44:41.277Z [debug] [monitor] Metrics updated:
+2025-10-12T02:45:41.280Z [debug] [monitor] Metrics updated:
+2025-10-12T02:46:41.280Z [debug] [monitor] Metrics updated:
+2025-10-12T02:47:41.280Z [debug] [monitor] Metrics updated:
+2025-10-12T02:48:41.284Z [debug] [monitor] Metrics updated:
+2025-10-12T02:49:41.286Z [debug] [monitor] Metrics updated:
+2025-10-12T02:50:41.286Z [debug] [monitor] Metrics updated:
+2025-10-12T02:51:41.286Z [debug] [monitor] Metrics updated:
+2025-10-12T02:52:41.290Z [debug] [monitor] Metrics updated:
+2025-10-12T02:53:41.292Z [debug] [monitor] Metrics updated:
+2025-10-12T02:54:41.293Z [debug] [monitor] Metrics updated:
+2025-10-12T02:55:41.304Z [debug] [monitor] Metrics updated:
+2025-10-12T02:56:41.315Z [debug] [monitor] Metrics updated:
+2025-10-12T02:57:41.324Z [debug] [monitor] Metrics updated:
+2025-10-12T02:58:41.332Z [debug] [monitor] Metrics updated:
+2025-10-12T02:59:41.338Z [debug] [monitor] Metrics updated:
+2025-10-12T03:00:41.343Z [debug] [monitor] Metrics updated:
+2025-10-12T03:01:41.346Z [debug] [monitor] Metrics updated:
+2025-10-12T03:02:41.347Z [debug] [monitor] Metrics updated:
+2025-10-12T03:03:41.347Z [debug] [monitor] Metrics updated:
+2025-10-12T03:04:41.351Z [debug] [monitor] Metrics updated:
+2025-10-12T03:05:41.354Z [debug] [monitor] Metrics updated:
+2025-10-12T03:06:41.354Z [debug] [monitor] Metrics updated:
+2025-10-12T03:07:41.355Z [debug] [monitor] Metrics updated:
+2025-10-12T03:08:41.358Z [debug] [monitor] Metrics updated:
+2025-10-12T03:09:41.360Z [debug] [monitor] Metrics updated:
+2025-10-12T03:10:41.361Z [debug] [monitor] Metrics updated:
+2025-10-12T03:11:41.373Z [debug] [monitor] Metrics updated:
+2025-10-12T03:12:41.384Z [debug] [monitor] Metrics updated:
+2025-10-12T03:13:41.393Z [debug] [monitor] Metrics updated:
+2025-10-12T03:14:41.397Z [debug] [monitor] Metrics updated:
+2025-10-12T03:15:41.403Z [debug] [monitor] Metrics updated:
+2025-10-12T03:16:41.409Z [debug] [monitor] Metrics updated:
+2025-10-12T03:17:41.412Z [debug] [monitor] Metrics updated:
+2025-10-12T03:18:41.413Z [debug] [monitor] Metrics updated:
+2025-10-12T03:19:41.413Z [debug] [monitor] Metrics updated:
+2025-10-12T03:20:41.417Z [debug] [monitor] Metrics updated:
+2025-10-12T03:21:41.419Z [debug] [monitor] Metrics updated:
+2025-10-12T03:22:41.419Z [debug] [monitor] Metrics updated:
+2025-10-12T03:23:41.418Z [debug] [monitor] Metrics updated:
+2025-10-12T03:24:41.422Z [debug] [monitor] Metrics updated:
+2025-10-12T03:25:41.424Z [debug] [monitor] Metrics updated:
+2025-10-12T03:26:41.425Z [debug] [monitor] Metrics updated:
+2025-10-12T03:27:41.436Z [debug] [monitor] Metrics updated:
+2025-10-12T03:28:41.447Z [debug] [monitor] Metrics updated:
+2025-10-12T03:29:41.456Z [debug] [monitor] Metrics updated:
+2025-10-12T03:30:41.462Z [debug] [monitor] Metrics updated:
+2025-10-12T03:31:41.469Z [debug] [monitor] Metrics updated:
+2025-10-12T03:32:41.472Z [debug] [monitor] Metrics updated:
+2025-10-12T03:33:41.474Z [debug] [monitor] Metrics updated:
+2025-10-12T03:34:41.475Z [debug] [monitor] Metrics updated:
+2025-10-12T03:35:41.478Z [debug] [monitor] Metrics updated:
+2025-10-12T03:36:41.481Z [debug] [monitor] Metrics updated:
+2025-10-12T03:37:41.483Z [debug] [monitor] Metrics updated:
+2025-10-12T03:38:41.484Z [debug] [monitor] Metrics updated:
+2025-10-12T03:39:41.489Z [debug] [monitor] Metrics updated:
+2025-10-12T03:40:41.491Z [debug] [monitor] Metrics updated:
+2025-10-12T03:41:41.493Z [debug] [monitor] Metrics updated:
+2025-10-12T03:42:41.493Z [debug] [monitor] Metrics updated:
+2025-10-12T03:43:41.501Z [debug] [monitor] Metrics updated:
+2025-10-12T03:44:41.511Z [debug] [monitor] Metrics updated:
+2025-10-12T03:45:41.519Z [debug] [monitor] Metrics updated:
+2025-10-12T03:46:41.519Z [debug] [monitor] Metrics updated:
+2025-10-12T03:47:41.525Z [debug] [monitor] Metrics updated:
+2025-10-12T03:48:41.529Z [debug] [monitor] Metrics updated:
+2025-10-12T03:49:41.531Z [debug] [monitor] Metrics updated:
+2025-10-12T03:50:41.532Z [debug] [monitor] Metrics updated:
+2025-10-12T03:51:41.535Z [debug] [monitor] Metrics updated:
+2025-10-12T03:52:41.539Z [debug] [monitor] Metrics updated:
+2025-10-12T03:53:41.539Z [debug] [monitor] Metrics updated:
+2025-10-12T03:54:41.541Z [debug] [monitor] Metrics updated:
+2025-10-12T03:55:41.546Z [debug] [monitor] Metrics updated:
+2025-10-12T03:56:41.549Z [debug] [monitor] Metrics updated:
+2025-10-12T03:57:41.551Z [debug] [monitor] Metrics updated:
+2025-10-12T03:58:41.558Z [debug] [monitor] Metrics updated:
+2025-10-12T03:59:41.563Z [debug] [monitor] Metrics updated:
+2025-10-12T04:00:41.569Z [debug] [monitor] Metrics updated:
+2025-10-12T04:01:41.575Z [debug] [monitor] Metrics updated:
+2025-10-12T04:02:41.581Z [debug] [monitor] Metrics updated:
+2025-10-12T04:03:41.587Z [debug] [monitor] Metrics updated:
+2025-10-12T04:04:41.591Z [debug] [monitor] Metrics updated:
+2025-10-12T04:05:41.593Z [debug] [monitor] Metrics updated:
+2025-10-12T04:06:41.594Z [debug] [monitor] Metrics updated:
+2025-10-12T04:07:41.598Z [debug] [monitor] Metrics updated:
+2025-10-12T04:08:41.601Z [debug] [monitor] Metrics updated:
+2025-10-12T04:09:41.603Z [debug] [monitor] Metrics updated:
+2025-10-12T04:10:41.604Z [debug] [monitor] Metrics updated:
+2025-10-12T04:11:41.609Z [debug] [monitor] Metrics updated:
+2025-10-12T04:12:41.612Z [debug] [monitor] Metrics updated:
+2025-10-12T04:13:41.613Z [debug] [monitor] Metrics updated:
+2025-10-12T04:14:41.617Z [debug] [monitor] Metrics updated:
+2025-10-12T04:15:41.620Z [debug] [monitor] Metrics updated:
+2025-10-12T04:16:41.624Z [debug] [monitor] Metrics updated:
+2025-10-12T04:17:41.627Z [debug] [monitor] Metrics updated:
+2025-10-12T04:18:41.630Z [debug] [monitor] Metrics updated:
+2025-10-12T04:19:41.632Z [debug] [monitor] Metrics updated:
+2025-10-12T04:20:41.635Z [debug] [monitor] Metrics updated:
+2025-10-12T04:21:41.637Z [debug] [monitor] Metrics updated:
+2025-10-12T04:22:41.638Z [debug] [monitor] Metrics updated:
+2025-10-12T04:23:41.640Z [debug] [monitor] Metrics updated:
+2025-10-12T04:24:41.643Z [debug] [monitor] Metrics updated:
+2025-10-12T04:25:41.644Z [debug] [monitor] Metrics updated:
+2025-10-12T04:26:41.646Z [debug] [monitor] Metrics updated:
+2025-10-12T04:27:41.648Z [debug] [monitor] Metrics updated:
+2025-10-12T04:28:41.650Z [debug] [monitor] Metrics updated:
+2025-10-12T04:29:41.651Z [debug] [monitor] Metrics updated:
+2025-10-12T04:30:41.651Z [debug] [monitor] Metrics updated:
+2025-10-12T04:31:41.652Z [debug] [monitor] Metrics updated:
+2025-10-12T04:32:41.653Z [debug] [monitor] Metrics updated:
+2025-10-12T04:33:41.653Z [debug] [monitor] Metrics updated:
+2025-10-12T04:34:41.653Z [debug] [monitor] Metrics updated:
+2025-10-12T04:35:41.654Z [debug] [monitor] Metrics updated:
+2025-10-12T04:36:41.654Z [debug] [monitor] Metrics updated:
+2025-10-12T04:37:41.654Z [debug] [monitor] Metrics updated:
+2025-10-12T04:38:41.655Z [debug] [monitor] Metrics updated:
+2025-10-12T04:39:41.656Z [debug] [monitor] Metrics updated:
+2025-10-12T04:40:41.658Z [debug] [monitor] Metrics updated:
+2025-10-12T04:41:41.659Z [debug] [monitor] Metrics updated:
+2025-10-12T04:42:41.658Z [debug] [monitor] Metrics updated:
+2025-10-12T04:43:41.662Z [debug] [monitor] Metrics updated:
+2025-10-12T04:44:41.664Z [debug] [monitor] Metrics updated:
+2025-10-12T04:45:41.665Z [debug] [monitor] Metrics updated:
+2025-10-12T04:46:41.678Z [debug] [monitor] Metrics updated:
+2025-10-12T04:47:41.689Z [debug] [monitor] Metrics updated:
+2025-10-12T04:48:41.699Z [debug] [monitor] Metrics updated:
+2025-10-12T04:49:41.707Z [debug] [monitor] Metrics updated:
+2025-10-12T04:50:41.714Z [debug] [monitor] Metrics updated:
+2025-10-12T04:51:41.718Z [debug] [monitor] Metrics updated:
+2025-10-12T04:52:41.721Z [debug] [monitor] Metrics updated:
+2025-10-12T04:53:41.723Z [debug] [monitor] Metrics updated:
+2025-10-12T04:54:41.724Z [debug] [monitor] Metrics updated:
+2025-10-12T04:55:41.728Z [debug] [monitor] Metrics updated:
+2025-10-12T04:56:41.730Z [debug] [monitor] Metrics updated:
+2025-10-12T04:57:41.731Z [debug] [monitor] Metrics updated:
+2025-10-12T04:58:41.732Z [debug] [monitor] Metrics updated:
+2025-10-12T04:59:41.736Z [debug] [monitor] Metrics updated:
+2025-10-12T05:00:41.739Z [debug] [monitor] Metrics updated:
+2025-10-12T05:01:41.741Z [debug] [monitor] Metrics updated:
+2025-10-12T05:02:41.753Z [debug] [monitor] Metrics updated:
+2025-10-12T05:03:41.764Z [debug] [monitor] Metrics updated:
+2025-10-12T05:04:41.775Z [debug] [monitor] Metrics updated:
+2025-10-12T05:05:41.782Z [debug] [monitor] Metrics updated:
+2025-10-12T05:06:41.790Z [debug] [monitor] Metrics updated:
+2025-10-12T05:07:41.795Z [debug] [monitor] Metrics updated:
+2025-10-12T05:08:41.799Z [debug] [monitor] Metrics updated:
+2025-10-12T05:09:41.802Z [debug] [monitor] Metrics updated:
+2025-10-12T05:10:41.801Z [debug] [monitor] Metrics updated:
+2025-10-12T05:11:41.805Z [debug] [monitor] Metrics updated:
+2025-10-12T05:12:41.808Z [debug] [monitor] Metrics updated:
+2025-10-12T05:13:41.809Z [debug] [monitor] Metrics updated:
+2025-10-12T05:14:41.809Z [debug] [monitor] Metrics updated:
+2025-10-12T05:15:41.813Z [debug] [monitor] Metrics updated:
+2025-10-12T05:16:41.816Z [debug] [monitor] Metrics updated:
+2025-10-12T05:17:41.817Z [debug] [monitor] Metrics updated:
+2025-10-12T05:18:41.830Z [debug] [monitor] Metrics updated:
+2025-10-12T05:19:41.842Z [debug] [monitor] Metrics updated:
+2025-10-12T05:20:41.851Z [debug] [monitor] Metrics updated:
+2025-10-12T05:21:41.859Z [debug] [monitor] Metrics updated:
+2025-10-12T05:22:41.867Z [debug] [monitor] Metrics updated:
+2025-10-12T05:23:41.872Z [debug] [monitor] Metrics updated:
+2025-10-12T05:24:41.876Z [debug] [monitor] Metrics updated:
+2025-10-12T05:25:41.879Z [debug] [monitor] Metrics updated:
+2025-10-12T05:26:41.880Z [debug] [monitor] Metrics updated:
+2025-10-12T05:27:41.884Z [debug] [monitor] Metrics updated:
+2025-10-12T05:28:41.887Z [debug] [monitor] Metrics updated:
+2025-10-12T05:29:41.889Z [debug] [monitor] Metrics updated:
+2025-10-12T05:30:41.889Z [debug] [monitor] Metrics updated:
+[INFO] 10:31:28 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+2025-10-12T05:31:28.464Z [debug] Shutting down server...
+2025-10-12T05:31:28.464Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:31:28.640Z [debug] NEW Plan worker created
+2025-10-12T05:31:28.640Z [debug] NEW Gen worker created
+2025-10-12T05:31:28.640Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 10:31:28 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T05:31:28.652Z [debug] Shutting down server...
+2025-10-12T05:31:28.652Z [debug] Server shut down.
+[INFO] 10:31:57 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:31:57.511Z [debug] NEW Plan worker created
+2025-10-12T05:31:57.512Z [debug] NEW Gen worker created
+2025-10-12T05:31:57.512Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 10:31:57 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T05:31:57.530Z [debug] Shutting down server...
+2025-10-12T05:31:57.530Z [debug] Server shut down.
+[INFO] 10:32:16 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:32:16.980Z [debug] NEW Plan worker created
+2025-10-12T05:32:16.981Z [debug] NEW Gen worker created
+2025-10-12T05:32:16.981Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-12T05:32:16.985Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 10:32:25 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+2025-10-12T05:32:25.860Z [debug] Shutting down server...
+2025-10-12T05:32:25.860Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:32:26.029Z [debug] NEW Plan worker created
+2025-10-12T05:32:26.030Z [debug] NEW Gen worker created
+2025-10-12T05:32:26.030Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 10:32:26 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T05:32:26.042Z [debug] Shutting down server...
+2025-10-12T05:32:26.042Z [debug] Server shut down.
+[INFO] 10:32:35 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:32:35.902Z [debug] NEW Plan worker created
+2025-10-12T05:32:35.903Z [debug] NEW Gen worker created
+2025-10-12T05:32:35.903Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-12T05:32:35.906Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-12T05:33:35.918Z [debug] [monitor] Metrics updated:
+[INFO] 10:58:37 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:58:37.394Z [debug] NEW Plan worker created
+2025-10-12T05:58:37.395Z [debug] NEW Gen worker created
+2025-10-12T05:58:37.395Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 10:58:37 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T05:58:37.407Z [debug] Shutting down server...
+2025-10-12T05:58:37.407Z [debug] Server shut down.
+[INFO] 11:00:47 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/visual.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T06:00:47.924Z [debug] NEW Plan worker created
+2025-10-12T06:00:47.925Z [debug] NEW Gen worker created
+2025-10-12T06:00:47.925Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 11:00:47 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T06:00:47.937Z [debug] Shutting down server...
+2025-10-12T06:00:47.937Z [debug] Server shut down.
+[INFO] 11:12:18 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/planner.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T06:12:18.324Z [debug] NEW Plan worker created
+2025-10-12T06:12:18.325Z [debug] NEW Gen worker created
+2025-10-12T06:12:18.325Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 11:12:18 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T06:12:18.337Z [debug] Shutting down server...
+2025-10-12T06:12:18.337Z [debug] Server shut down.

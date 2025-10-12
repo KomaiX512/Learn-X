@@ -6,6 +6,8 @@
 import Konva from 'konva';
 import { AnimationQueue } from './AnimationQueue';
 import { DomainRenderers } from './DomainRenderers';
+import { VerticalLayoutManager } from '../layout/VerticalLayoutManager';
+import { PacingController, ContentType } from '../layout/PacingController';
 
 export interface RendererConfig {
   // Either provide an existing stage/overlay (preferred) or a canvasId to create one
@@ -29,10 +31,17 @@ export class SequentialRenderer {
   private activeAnimations: Konva.Animation[] = [];
   // Track failed actions for reporting (but continue anyway)
   private failedActions: Array<{ op: string; error: string }> = [];
+  // NEW: Layout management
+  private layoutManager: VerticalLayoutManager | null = null;
+  private pacingController: PacingController;
+  private currentVisualGroup: string | null = null;
+  private verticalOffset: number = 0; // Simple vertical offset for sections
+  private sectionHeight: number = 500; // Height per visual section
   
   constructor(config: RendererConfig) {
     this.initializeStage(config);
     this.animationQueue = new AnimationQueue(this);
+    this.pacingController = new PacingController(); // Use default educational pacing
     
     // Set callbacks
     if (config.onStepComplete || config.onProgress) {
@@ -54,6 +63,10 @@ export class SequentialRenderer {
 
       // Initialize domain renderers bound to current layer
       this.domainRenderers = new DomainRenderers(this.stage, this.currentLayer);
+      
+      // Initialize layout manager
+      this.layoutManager = new VerticalLayoutManager(this.stage.width(), this.stage.height());
+      console.log('[SequentialRenderer] Layout manager initialized');
 
       // Overlay handling
       const container = this.stage.container();
@@ -104,6 +117,12 @@ export class SequentialRenderer {
     this.currentLayer = new Konva.Layer();
     this.stage.add(this.currentLayer);
     this.domainRenderers = new DomainRenderers(this.stage, this.currentLayer);
+    
+    // Initialize layout manager
+    if (this.stage) {
+      this.layoutManager = new VerticalLayoutManager(this.stage.width(), this.stage.height());
+      console.log('[SequentialRenderer] Layout manager initialized');
+    }
 
     // Create overlay for math labels
     this.overlay = document.createElement('div');
@@ -173,6 +192,16 @@ export class SequentialRenderer {
     // Re-bind domain renderers to the new layer
     if (this.stage && this.currentLayer) {
       this.domainRenderers = new DomainRenderers(this.stage, this.currentLayer);
+    }
+    
+    // RESET VERTICAL OFFSET FOR NEW STEP (prevents overlapping across steps)
+    this.verticalOffset = 0;
+    console.log('[SequentialRenderer] Vertical offset reset for new step');
+    
+    // RESET LAYOUT MANAGER FOR NEW STEP
+    if (this.layoutManager) {
+      this.layoutManager.reset();
+      console.log('[SequentialRenderer] Layout manager reset for new step');
     }
     
     // Fade in the new layer
@@ -264,6 +293,68 @@ export class SequentialRenderer {
   }
   
   /**
+   * Update canvas height based on layout manager's total height
+   */
+  private updateCanvasHeight(): void {
+    if (!this.layoutManager || !this.stage) return;
+    
+    const totalHeight = this.layoutManager.getTotalHeight();
+    const currentHeight = this.stage.height();
+    
+    if (totalHeight > currentHeight) {
+      console.log(`[SequentialRenderer] Expanding canvas from ${currentHeight}px to ${totalHeight}px`);
+      this.stage.height(totalHeight);
+      
+      // Update container height
+      const container = this.stage.container();
+      if (container) {
+        container.style.height = `${totalHeight}px`;
+      }
+    }
+  }
+  
+  /**
+   * Transform action coordinates - SIMPLIFIED
+   * Backend generates in 0-1 normalized space, we just denormalize to canvas pixels
+   */
+  private transformActionCoordinates(action: any, visualGroup: string): any {
+    if (!this.stage) return action;
+    
+    const transformed = { ...action };
+    const canvasWidth = this.stage.width();
+    const canvasHeight = this.stage.height();
+    
+    // Simple denormalization: 0-1 → canvas pixels (no layout manager complexity)
+    if (typeof action.x === 'number') {
+      transformed.x = action.x * canvasWidth;
+    }
+    if (typeof action.y === 'number') {
+      transformed.y = action.y * canvasHeight;
+    }
+    
+    // Transform line coordinates
+    if (typeof action.x1 === 'number') transformed.x1 = action.x1 * canvasWidth;
+    if (typeof action.y1 === 'number') transformed.y1 = action.y1 * canvasHeight;
+    if (typeof action.x2 === 'number') transformed.x2 = action.x2 * canvasWidth;
+    if (typeof action.y2 === 'number') transformed.y2 = action.y2 * canvasHeight;
+    
+    // Transform center coordinates
+    if (action.center && Array.isArray(action.center) && action.center.length === 2) {
+      transformed.center = [action.center[0] * canvasWidth, action.center[1] * canvasHeight];
+    }
+    
+    // Transform from/to arrays
+    if (action.from && Array.isArray(action.from) && action.from.length === 2) {
+      transformed.from = [action.from[0] * canvasWidth, action.from[1] * canvasHeight];
+    }
+    if (action.to && Array.isArray(action.to) && action.to.length === 2) {
+      transformed.to = [action.to[0] * canvasWidth, action.to[1] * canvasHeight];
+    }
+    
+    return transformed;
+  }
+  
+  /**
    * Enqueue actions for playback
    */
   private enqueueActions(chunk: any): void {
@@ -326,6 +417,9 @@ export class SequentialRenderer {
       console.error('[SequentialRenderer] Action missing "op" field:', action);
       return;
     }
+    
+    // SIMPLIFIED: Just denormalize coordinates (0-1 → canvas pixels)
+    action = this.transformActionCoordinates(action, action.visualGroup || 'main');
     
     console.log(`[SequentialRenderer] 🔍 Routing ${action.op} to handler`);
     
@@ -466,6 +560,10 @@ export class SequentialRenderer {
         
       case 'customPath':
         await this.drawCustomPath(action);
+        break;
+        
+      case 'customSVG':
+        await this.renderCompleteSVG(action.svgCode, action.visualGroup);
         break;
         
       // NEW ADVANCED OPERATIONS
@@ -660,9 +758,12 @@ export class SequentialRenderer {
   private async drawTitle(text: string, y: number = 0.1, duration: number = 1): Promise<void> {
     if (!this.stage || !this.currentLayer) return;
     
+    // Y is already transformed to absolute coords if > 1, otherwise normalize
+    const absoluteY = y > 1 ? y : (y * this.stage.height());
+    
     const titleGroup = new Konva.Group({
       x: this.stage.width() / 2,
-      y: y * this.stage.height(),
+      y: absoluteY,
       opacity: 0
     });
     
@@ -737,15 +838,19 @@ export class SequentialRenderer {
   private async drawLabel(text: string, x: number, y: number, color?: string, options?: any): Promise<void> {
     if (!this.stage || !this.currentLayer) return;
     
+    // Coordinates are already transformed if > 1, otherwise normalize
+    const absoluteX = x > 1 ? x : (x * this.stage.width());
+    const absoluteY = y > 1 ? y : (y * this.stage.height());
+    
     const label = new Konva.Text({
       text: '',
-      x: x * this.stage.width(),
-      y: y * this.stage.height(),
+      x: absoluteX,
+      y: absoluteY,
       fontSize: options?.fontSize || 18,
       fontFamily: 'Inter, Helvetica Neue, sans-serif',
       fill: color || '#ffffff',  // WHITE text for visibility!
       fontStyle: options?.italic ? 'italic' : 'normal',
-      fontWeight: options?.bold ? 'bold' : 'normal'
+      fontWeight: options?.bold || options?.fontWeight || 'normal'
     });
     
     this.currentLayer.add(label);
@@ -784,9 +889,14 @@ export class SequentialRenderer {
   private async drawCircle(x: number, y: number, radius: number, color?: string, fill?: boolean): Promise<void> {
     if (!this.stage || !this.currentLayer) return;
     
+    // Coordinates are already transformed if > 1, otherwise normalize
+    const absoluteX = x > 1 ? x : (x * this.stage.width());
+    const absoluteY = y > 1 ? y : (y * this.stage.height());
+    const absoluteRadius = radius > 1 ? radius : (radius * Math.min(this.stage.width(), this.stage.height()));
+    
     const circle = new Konva.Circle({
-      x: x * this.stage.width(),
-      y: y * this.stage.height(),
+      x: absoluteX,
+      y: absoluteY,
       radius: 0,
       stroke: color || '#00d9ff',  // Bright cyan!
       strokeWidth: 3,
@@ -813,7 +923,7 @@ export class SequentialRenderer {
         const tween = new Konva.Tween({
           node: circle,
           duration: 0.5,
-          radius: radius * Math.min(this.stage!.width(), this.stage!.height()),
+          radius: absoluteRadius,
           easing: Konva.Easings.EaseOut,
           onFinish: safeResolve
         });
@@ -831,9 +941,15 @@ export class SequentialRenderer {
   private async drawRect(x: number, y: number, width: number, height: number, color?: string, fill?: boolean): Promise<void> {
     if (!this.stage || !this.currentLayer) return;
     
+    // Coordinates are already transformed if > 1, otherwise normalize
+    const absoluteX = x > 1 ? x : (x * this.stage.width());
+    const absoluteY = y > 1 ? y : (y * this.stage.height());
+    const absoluteWidth = width > 1 ? width : (width * this.stage.width());
+    const absoluteHeight = height > 1 ? height : (height * this.stage.height());
+    
     const rect = new Konva.Rect({
-      x: x * this.stage.width(),
-      y: y * this.stage.height(),
+      x: absoluteX,
+      y: absoluteY,
       width: 0,
       height: 0,
       stroke: color || '#00ff88',  // Bright green!
@@ -862,8 +978,8 @@ export class SequentialRenderer {
         const tween = new Konva.Tween({
           node: rect,
           duration: 0.6,
-          width: width * this.stage!.width(),
-          height: height * this.stage!.height(),
+          width: absoluteWidth,
+          height: absoluteHeight,
           easing: Konva.Easings.EaseOut,
           onFinish: safeResolve
         });
@@ -1765,6 +1881,90 @@ export class SequentialRenderer {
     console.warn(`[SequentialRenderer] ⚠️ Placeholder rendered for: ${operation}`);
   }
   
+  /**
+   * Render complete SVG document
+   * This handles full SVG code (<?xml...><svg>...</svg>) generated by backend
+   * Positioned with proper vertical spacing to avoid overlaps
+   */
+  private async renderCompleteSVG(svgCode: string, visualGroup: string): Promise<void> {
+    if (!this.stage) {
+      console.error('[SequentialRenderer] No stage available for SVG rendering');
+      return;
+    }
+
+    console.log(`[SequentialRenderer] 🎨 Rendering complete SVG (${svgCode.length} chars) for group ${visualGroup}`);
+
+    // Get the container element
+    const container = this.stage.container();
+    if (!container) {
+      console.error('[SequentialRenderer] No container for SVG rendering');
+      return;
+    }
+
+    // Create a wrapper div for the SVG
+    const svgWrapper = document.createElement('div');
+    svgWrapper.style.position = 'absolute';
+    svgWrapper.style.left = '0';
+    svgWrapper.style.width = '100%';
+    svgWrapper.style.pointerEvents = 'none'; // Allow clicks to pass through
+    svgWrapper.setAttribute('data-visual-group', visualGroup);
+
+    // Calculate vertical position based on current offset
+    svgWrapper.style.top = `${this.verticalOffset}px`;
+    console.log(`[SequentialRenderer] SVG positioned at Y=${this.verticalOffset}px`);
+
+    // Clean the SVG code (remove <?xml...?> and <!DOCTYPE> for inline rendering)
+    let cleanedSVG = svgCode
+      .replace(/<\?xml[^>]*\?>/g, '')
+      .replace(/<!DOCTYPE[^>]*>/g, '')
+      .trim();
+
+    // Extract SVG dimensions from viewBox or width/height attributes
+    let svgHeight = 600; // Default
+    const viewBoxMatch = cleanedSVG.match(/viewBox\s*=\s*["']([^"']*)["']/);
+    if (viewBoxMatch) {
+      const viewBoxValues = viewBoxMatch[1].split(/\s+/).map(Number);
+      if (viewBoxValues.length === 4) {
+        svgHeight = viewBoxValues[3]; // viewBox height
+      }
+    }
+
+    const heightMatch = cleanedSVG.match(/height\s*=\s*["'](\d+)["']/);
+    if (heightMatch) {
+      svgHeight = parseInt(heightMatch[1]);
+    }
+
+    console.log(`[SequentialRenderer] SVG height: ${svgHeight}px`);
+
+    // Inject the SVG
+    svgWrapper.innerHTML = cleanedSVG;
+
+    // Add to container
+    container.style.position = 'relative'; // Ensure container can hold absolute children
+    container.appendChild(svgWrapper);
+
+    // Update vertical offset for next visual (add height + spacing)
+    const spacing = 50; // Spacing between visuals
+    this.verticalOffset += svgHeight + spacing;
+
+    // Expand canvas if needed
+    const currentHeight = this.stage.height();
+    if (this.verticalOffset > currentHeight) {
+      console.log(`[SequentialRenderer] Expanding canvas from ${currentHeight}px to ${this.verticalOffset + 100}px`);
+      this.stage.height(this.verticalOffset + 100);
+      
+      // Update container height
+      if (container) {
+        container.style.height = `${this.verticalOffset + 100}px`;
+      }
+    }
+
+    console.log(`[SequentialRenderer] ✅ Complete SVG rendered (next offset: ${this.verticalOffset}px)`);
+
+    // Small delay for SVG animation initialization
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+
   /**
    * Get stage reference
    */

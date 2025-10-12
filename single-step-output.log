@@ -1,0 +1,16 @@
+[dotenv@17.2.3] injecting env (7) from app/backend/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+
+🧪 Testing single step generation...
+
+Topic: Blood Circulation
+Step: Blood vessels transport oxygen
+
+⏳ Calling codegenV3...
+
+2025-10-11T11:36:52.152Z [info] [codegenV3] Generating step 1: Blood vessels transport oxygen
+2025-10-11T11:36:52.153Z [info] [codegenV3] Topic: "Blood Circulation"
+2025-10-11T11:36:52.153Z [debug] [codegenV3] Prompt length: 885 chars
+2025-10-11T11:37:44.526Z [debug] [codegenV3] Received 511 chars from API
+2025-10-11T11:37:44.527Z [error] [codegenV3] Generation failed: Generated content has no valid SVG structure
+
+❌ FAILED: Result was null

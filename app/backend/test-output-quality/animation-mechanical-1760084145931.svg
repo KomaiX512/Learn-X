@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <circle id="hydroxide" r="0.04" fill="red">
+      <animate attributeName="fill" values="red;white;red" dur="0.5s" repeatCount="indefinite"/>
+    </circle>
+    <g id="methyl_chloride">
+      <circle cx="0" cy="0" r="0.05" fill="black"/>
+      <text x="0" y="0.01" text-anchor="middle" font-size="0.02" fill="white">C</text>
+      <line x1="0" y1="0.05" x2="0" y2="0.15" stroke="gray" stroke-width="0.005"/>
+      <text x="0.01" y="0.17" text-anchor="middle" font-size="0.02" fill="black">H</text>
+      <line x1="0" y1="-0.05" x2="0" y2="-0.15" stroke="gray" stroke-width="0.005"/>
+      <text x="0.01" y="-0.13" text-anchor="middle" font-size="0.02" fill="black">H</text>
+      <line x1="0.05" y1="0" x2="0.15" y2="0" stroke="gray" stroke-width="0.005"/>
+      <text x="0.17" y="0.01" text-anchor="middle" font-size="0.02" fill="black">H</text>
+      <circle cx="-0.2" cy="0" r="0.05" fill="green"/>
+      <text x="-0.2" y="0.01" text-anchor="middle" font-size="0.02" fill="white">Cl</text>
+      <line x1="0" y1="0" x2="-0.2" y2="0" stroke="gray" stroke-width="0.005"/>
+    </g>
+  </defs>
+  <text x="0.5" y="0.1" text-anchor="middle" font-size="0.03" fill="#2c3e50">SN2 Reaction: Hydroxide Attack</text>
+  <use href="#hydroxide" x="0.1" y="0.5">
+    <animateMotion dur="2s" repeatCount="indefinite" path="M 0,0 H 0.25"/>
+  </use>
+  <text x="0.1" y="0.45" text-anchor="middle" font-size="0.02" fill="#7f8c8d">Nucleophile</text>
+  <text x="0.35" y="0.45" text-anchor="middle" font-size="0.02" fill="#7f8c8d">Electrophilic Carbon</text>
+  <use href="#methyl_chloride" x="0.5" y="0.5">
+  <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 0.05 0" to="360 0.05 0" dur="5s" repeatCount="indefinite" begin="2s"/>
+  </use>
+   <path d="M 0.35,0.52 L 0.4,0.52" stroke="black" stroke-width="0.005" marker-end="url(#arrowhead)"/>
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="black" />
+      </marker>
+    </defs>
+</svg>

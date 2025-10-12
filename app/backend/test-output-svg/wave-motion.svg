@@ -1,0 +1,50 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="600" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Transverse Wave Animation</title>
+  <style>
+    .wave-path {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 3;
+    }
+    .axis {
+      stroke: black;
+      stroke-width: 1;
+    }
+    .label {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      fill: black;
+    }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="black" />
+    </marker>
+  </defs>
+  <g transform="translate(50, 50)">
+    <line x1="0" y1="200" x2="700" y2="200" class="axis" marker-end="url(#arrowhead)" />
+    <line x1="0" y1="0" x2="0" y2="400" class="axis" marker-end="url(#arrowhead)" />
+    <text x="710" y="205" class="label">Direction of Propagation</text>
+    <text x="-20" y="-5" class="label">Amplitude</text>
+    <text x="-20" y="415" class="label">Displacement</text>
+    <path id="wavePath" class="wave-path" d="M0,200 C 50,100 150,300 200,200 C 250,100 350,300 400,200 C 450,100 550,300 600,200 C 650,100 750,300 800,200" />
+    <animate xlink:href="#wavePath" attributeName="d" attributeType="XML" from="M0,200 C 50,100 150,300 200,200 C 250,100 350,300 400,200 C 450,100 550,300 600,200 C 650,100 750,300 800,200" to="M-200,200 C -150,100 -50,300 0,200 C 50,100 150,300 200,200 C 250,100 350,300 400,200 C 450,100 550,300 600,200 C 650,100 750,300 800,200" dur="4s" repeatCount="indefinite" />
+    <line id="amplitudeLine" x1="0" y1="200" x2="0" y2="100" stroke="red" stroke-width="2" />
+    <animate attributeName="y2" attributeType="XML" xlink:href="#amplitudeLine" values="200;100;200" dur="1s" repeatCount="indefinite" />
+    <text x="10" y="150" class="label">Amplitude</text>
+
+    <line id="wavelengthLine" x1="0" y1="250" x2="200" y2="250" stroke="green" stroke-width="2" marker-end="url(#arrowhead)" marker-start="url(#arrowhead)"/>
+    <text x="50" y="270" class="label">Wavelength (λ)</text>
+
+    <circle id="particle" cx="0" cy="200" r="5" fill="orange" />
+    <animateMotion xlink:href="#particle" dur="1s" repeatCount="indefinite" rotate="auto">
+      <mpath xlink:href="#wavePath" />
+    </animateMotion>
+    <text x="10" y="210" class="label">Wave Particle</text>
+
+    <text x="0" y="50" class="label">Transverse Wave</text>
+    <text x="600" y="30" class="label">Frequency</text>
+  </g>
+</svg>

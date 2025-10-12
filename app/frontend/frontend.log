@@ -1,0 +1,11 @@
+
+> frontend@0.1.0 dev
+> vite --port 5174
+
+Vite config loaded: { command: 'serve', mode: 'development' }
+
+  VITE v5.4.20  ready in 109 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help

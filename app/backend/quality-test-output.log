@@ -1,0 +1,510 @@
+
+> backend@0.1.0 test:quality
+> ts-node test-unit-quality-deep-dive.ts
+
+2025-10-10T08:13:15.784Z [info] 
+████████████████████████████████████████████████████████████████████████████████
+2025-10-10T08:13:15.785Z [info] 🔬 DEEP QUALITY UNIT TESTING - Finding Root Causes
+2025-10-10T08:13:15.785Z [info] ████████████████████████████████████████████████████████████████████████████████
+2025-10-10T08:13:15.785Z [info] 
+================================================================================
+2025-10-10T08:13:15.785Z [info] 🧪 TESTING SUBPLANNER: Photosynthesis in Plants
+2025-10-10T08:13:15.785Z [info] ================================================================================
+2025-10-10T08:13:28.488Z [info] [planVisualsEnhanced] Received response
+2025-10-10T08:13:28.488Z [info] [planVisualsEnhanced] ✅ Parsed 8 specs (2 animations)
+2025-10-10T08:13:28.488Z [info] 📝 Generated 8 specifications
+2025-10-10T08:13:28.488Z [info]    Static: 6
+2025-10-10T08:13:28.488Z [info]    Animations: 2
+2025-10-10T08:13:28.489Z [info] 
+📋 Spec 1 [static]:
+2025-10-10T08:13:28.489Z [info]    Thylakoid membrane cross-section showing lumen (yellow), membrane (green), and stroma (light blue). Label: Thylakoid Lumen, Thylakoid Membrane, Stroma.
+2025-10-10T08:13:28.489Z [info] 
+📋 Spec 2 [static]:
+2025-10-10T08:13:28.489Z [info]    Photosystem II (PSII) complex embedded in green thylakoid membrane. Show chlorophyll (dark green) and reaction center. Label: PSII, Chlorophyll, Reaction Center.
+2025-10-10T08:13:28.489Z [info] 
+📋 Spec 3 [static]:
+2025-10-10T08:13:28.489Z [info]    Photosystem I (PSI) complex embedded in green thylakoid membrane. Show chlorophyll (dark green) and reaction center. Label: PSI, Chlorophyll, Reaction Center.
+2025-10-10T08:13:28.489Z [info] 
+📋 Spec 4 [animation - flow]:
+2025-10-10T08:13:28.489Z [info]    Electrons (yellow spheres) moving linearly from PSII to Cytochrome b6f, then to PSI, along the thylakoid membrane. Label: Electrons, PSII, Cytochrome b6f, PSI.
+2025-10-10T08:13:28.489Z [info] 
+📋 Spec 5 [static]:
+2025-10-10T08:13:28.489Z [info]    Cytochrome b6f complex (red) within the thylakoid membrane. Indicate proton (H+) pumping channel. Label: Cytochrome b6f, Thylakoid Membrane.
+2025-10-10T08:13:28.489Z [info] 
+📋 Spec 6 [static]:
+2025-10-10T08:13:28.490Z [info]    ATP Synthase enzyme (blue) spanning thylakoid membrane, showing F0 and F1 units. Label: ATP Synthase, F0 unit, F1 unit.
+2025-10-10T08:13:28.490Z [info] 
+📋 Spec 7 [animation - flow]:
+2025-10-10T08:13:28.490Z [info]    Protons (small blue spheres) flowing from stroma into thylakoid lumen via Cytochrome b6f, then through ATP Synthase into stroma. Label: Protons, Stroma, Lumen, ATP Synthase.
+2025-10-10T08:13:28.490Z [info] 
+📋 Spec 8 [static]:
+2025-10-10T08:13:28.490Z [info]    Overview of PSII, Cytochrome b6f, PSI, and ATP Synthase complexes (various colors) arranged in the thylakoid membrane. Label: All complexes.
+2025-10-10T08:13:28.490Z [info] 
+📊 QUALITY ANALYSIS:
+2025-10-10T08:13:28.490Z [info]    Clarity: 100/100
+2025-10-10T08:13:28.490Z [info]    Specificity: 0/100
+2025-10-10T08:13:28.490Z [info]    Actionable: 80/100
+2025-10-10T08:13:28.490Z [warn] 
+⚠️  ISSUES DETECTED:
+2025-10-10T08:13:28.490Z [warn]    - Spec 1: No topic-specific terms found
+2025-10-10T08:13:28.490Z [warn]    - Spec 2: No topic-specific terms found
+2025-10-10T08:13:28.490Z [warn]    - Spec 3: No topic-specific terms found
+2025-10-10T08:13:28.490Z [warn]    - Spec 4: No topic-specific terms found
+2025-10-10T08:13:28.490Z [warn]    - Spec 4: Animation but doesn't describe motion
+2025-10-10T08:13:28.490Z [warn]    - Spec 5: No topic-specific terms found
+2025-10-10T08:13:28.490Z [warn]    - Spec 6: No topic-specific terms found
+2025-10-10T08:13:28.490Z [warn]    - Spec 7: No topic-specific terms found
+2025-10-10T08:13:28.490Z [warn]    - Spec 8: No topic-specific terms found
+2025-10-10T08:13:30.491Z [info] 
+================================================================================
+2025-10-10T08:13:30.491Z [info] 🎨 TESTING STATIC GENERATOR
+2025-10-10T08:13:30.491Z [info] Topic: Photosynthesis in Plants
+2025-10-10T08:13:30.491Z [info] Description: Thylakoid membrane cross-section showing lumen (yellow), membrane (green), and stroma (light blue). Label: Thylakoid Lumen, Thylakoid Membrane, Stroma.
+2025-10-10T08:13:30.491Z [info] ================================================================================
+2025-10-10T08:13:30.491Z [info] [SVG-MASTER] Attempt 1/2 for quality generation
+2025-10-10T08:13:36.783Z [info] [SVG-MASTER] Raw response length: 1954 chars
+2025-10-10T08:13:36.783Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 14 operations
+2025-10-10T08:13:36.783Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:13:36.783Z [info] [SVG-MASTER] Quality Score: 0/100
+2025-10-10T08:13:36.783Z [warn] [SVG-MASTER] Low quality (0): Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Insufficient labeling, Lacks dynamic elements
+2025-10-10T08:13:36.783Z [info] [SVG-MASTER] Retrying...
+2025-10-10T08:13:36.783Z [info] [SVG-MASTER] Attempt 2/2 for quality generation
+2025-10-10T08:13:42.797Z [info] [SVG-MASTER] Raw response length: 1921 chars
+2025-10-10T08:13:42.797Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 14 operations
+2025-10-10T08:13:42.797Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:13:42.797Z [info] [SVG-MASTER] Quality Score: 0/100
+2025-10-10T08:13:42.797Z [warn] [SVG-MASTER] Low quality (0): Simple path detected (only 4 commands), Simple path detected (only 4 commands), Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Insufficient labeling, Lacks dynamic elements
+2025-10-10T08:13:42.797Z [error] [SVG-MASTER] Attempt 2 failed: Failed to generate sufficient operations (only 14)
+2025-10-10T08:13:42.797Z [error] ❌ Generation failed: Failed to generate sufficient operations (only 14)
+2025-10-10T08:13:44.799Z [info] 
+================================================================================
+2025-10-10T08:13:44.799Z [info] 🎬 TESTING ANIMATION GENERATOR
+2025-10-10T08:13:44.799Z [info] Topic: Photosynthesis in Plants
+2025-10-10T08:13:44.799Z [info] Type: flow
+2025-10-10T08:13:44.799Z [info] Description: Electrons (yellow spheres) moving linearly from PSII to Cytochrome b6f, then to PSI, along the thylakoid membrane. Label: Electrons, PSII, Cytochrome b6f, PSI.
+2025-10-10T08:13:44.800Z [info] ================================================================================
+2025-10-10T08:13:44.800Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-10T08:13:50.644Z [info] [SVG-ANIMATION] Received 1825 chars
+2025-10-10T08:13:50.644Z [info] [SVG-ANIMATION] Quality Score: 75/100
+2025-10-10T08:13:50.644Z [info] [SVG-ANIMATION] ✅ Quality acceptable!
+2025-10-10T08:13:50.644Z [info] 
+📊 Generated SVG (1825 characters)
+2025-10-10T08:13:50.644Z [info] 
+📈 QUALITY METRICS:
+2025-10-10T08:13:50.644Z [info]    Has Animations: YES ✅
+2025-10-10T08:13:50.644Z [info]    Animation Count: 4
+2025-10-10T08:13:50.644Z [info]    Loops Indefinitely: YES ✅
+2025-10-10T08:13:50.644Z [info]    Label Count: 5
+2025-10-10T08:13:50.644Z [info]    Uses Advanced SVG: YES ✅
+2025-10-10T08:13:50.644Z [info] 
+✅ NO ISSUES - Animation is excellent!
+2025-10-10T08:13:50.645Z [info] 
+💾 Saved to: animation-flow-1760084030644.svg
+2025-10-10T08:13:52.645Z [info] 
+================================================================================
+2025-10-10T08:13:52.645Z [info] 🧪 TESTING SUBPLANNER: Quantum Entanglement
+2025-10-10T08:13:52.645Z [info] ================================================================================
+2025-10-10T08:14:06.746Z [info] [planVisualsEnhanced] Received response
+2025-10-10T08:14:06.746Z [info] [planVisualsEnhanced] ✅ Parsed 7 specs (2 animations)
+2025-10-10T08:14:06.746Z [info] 📝 Generated 7 specifications
+2025-10-10T08:14:06.746Z [info]    Static: 5
+2025-10-10T08:14:06.746Z [info]    Animations: 2
+2025-10-10T08:14:06.746Z [info] 
+📋 Spec 1 [static]:
+2025-10-10T08:14:06.746Z [info]    Two electron-like spheres (light blue) separated by distance, each with a blurred '?' symbol. Label: Particle A (superposition), Particle B (superposition).
+2025-10-10T08:14:06.746Z [info] 
+📋 Spec 2 [animation - flow]:
+2025-10-10T08:14:06.746Z [info]    A central source (white sphere) emits two entangled photons (yellow dots) moving linearly outwards in opposite directions. Label: Source, Photon A, Photon B.
+2025-10-10T08:14:06.746Z [info] 
+📋 Spec 3 [static]:
+2025-10-10T08:14:06.746Z [info]    Photon A (yellow dot) positioned just before entering a Stern-Gerlach device (grey box, slit). Label: Photon A, Measurement Device.
+2025-10-10T08:14:06.746Z [info] 
+📋 Spec 4 [static]:
+2025-10-10T08:14:06.747Z [info]    Photon A (yellow dot) inside measurement device (grey). Two possible pathways shown: 'Up' (red arrow), 'Down' (blue arrow). Label: Possible Outcomes.
+2025-10-10T08:14:06.747Z [info] 
+📋 Spec 5 [animation - pulse]:
+2025-10-10T08:14:06.747Z [info]    Photon A (yellow) measured 'Up' (red arrow). Simultaneously, Photon B (yellow), far away, instantly changes to 'Down' (blue arrow). Label: Photon A (Up), Photon B (Down).
+2025-10-10T08:14:06.747Z [info] 
+📋 Spec 6 [static]:
+2025-10-10T08:14:06.747Z [info]    Photon A (yellow) shows 'Up' (red arrow). Photon B (yellow) shows 'Down' (blue arrow), separated by distance. Label: Measured State A, Measured State B.
+2025-10-10T08:14:06.747Z [info] 
+📋 Spec 7 [static]:
+2025-10-10T08:14:06.747Z [info]    Two entangled particles (purple spheres) at distant locations (left/right planets), connected by a dashed line. Label: Entangled Pair, Planet X, Planet Y.
+2025-10-10T08:14:06.747Z [info] 
+📊 QUALITY ANALYSIS:
+2025-10-10T08:14:06.747Z [info]    Clarity: 100/100
+2025-10-10T08:14:06.747Z [info]    Specificity: 0/100
+2025-10-10T08:14:06.747Z [info]    Actionable: 60/100
+2025-10-10T08:14:06.747Z [warn] 
+⚠️  ISSUES DETECTED:
+2025-10-10T08:14:06.747Z [warn]    - Spec 1: No topic-specific terms found
+2025-10-10T08:14:06.747Z [warn]    - Spec 2: No topic-specific terms found
+2025-10-10T08:14:06.747Z [warn]    - Spec 2: Animation but doesn't describe motion
+2025-10-10T08:14:06.747Z [warn]    - Spec 3: No topic-specific terms found
+2025-10-10T08:14:06.747Z [warn]    - Spec 4: No topic-specific terms found
+2025-10-10T08:14:06.747Z [warn]    - Spec 5: No topic-specific terms found
+2025-10-10T08:14:06.747Z [warn]    - Spec 5: Animation but doesn't describe motion
+2025-10-10T08:14:06.747Z [warn]    - Spec 6: No topic-specific terms found
+2025-10-10T08:14:06.747Z [warn]    - Spec 7: No topic-specific terms found
+2025-10-10T08:14:08.747Z [info] 
+================================================================================
+2025-10-10T08:14:08.747Z [info] 🎨 TESTING STATIC GENERATOR
+2025-10-10T08:14:08.747Z [info] Topic: Quantum Entanglement
+2025-10-10T08:14:08.747Z [info] Description: Two electron-like spheres (light blue) separated by distance, each with a blurred '?' symbol. Label: Particle A (superposition), Particle B (superposition).
+2025-10-10T08:14:08.747Z [info] ================================================================================
+2025-10-10T08:14:08.747Z [info] [SVG-MASTER] Attempt 1/2 for quality generation
+2025-10-10T08:14:16.197Z [info] [SVG-MASTER] Raw response length: 1974 chars
+2025-10-10T08:14:16.198Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 14 operations
+2025-10-10T08:14:16.198Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:14:16.198Z [info] [SVG-MASTER] Quality Score: 10/100
+2025-10-10T08:14:16.198Z [warn] [SVG-MASTER] Low quality (10): Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Insufficient labeling, Lacks dynamic elements
+2025-10-10T08:14:16.198Z [info] [SVG-MASTER] Retrying...
+2025-10-10T08:14:16.198Z [info] [SVG-MASTER] Attempt 2/2 for quality generation
+2025-10-10T08:14:22.145Z [info] [SVG-MASTER] Raw response length: 1827 chars
+2025-10-10T08:14:22.145Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 14 operations
+2025-10-10T08:14:22.145Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:14:22.145Z [info] [SVG-MASTER] Quality Score: 10/100
+2025-10-10T08:14:22.145Z [warn] [SVG-MASTER] Low quality (10): Simple path detected (only 2 commands), Simple path detected (only 2 commands), Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Insufficient labeling, Lacks dynamic elements
+2025-10-10T08:14:22.145Z [error] [SVG-MASTER] Attempt 2 failed: Failed to generate sufficient operations (only 14)
+2025-10-10T08:14:22.145Z [error] ❌ Generation failed: Failed to generate sufficient operations (only 14)
+2025-10-10T08:14:24.148Z [info] 
+================================================================================
+2025-10-10T08:14:24.148Z [info] 🎬 TESTING ANIMATION GENERATOR
+2025-10-10T08:14:24.148Z [info] Topic: Quantum Entanglement
+2025-10-10T08:14:24.148Z [info] Type: flow
+2025-10-10T08:14:24.148Z [info] Description: A central source (white sphere) emits two entangled photons (yellow dots) moving linearly outwards in opposite directions. Label: Source, Photon A, Photon B.
+2025-10-10T08:14:24.148Z [info] ================================================================================
+2025-10-10T08:14:24.148Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-10T08:14:27.172Z [info] [SVG-ANIMATION] Received 857 chars
+2025-10-10T08:14:27.172Z [info] [SVG-ANIMATION] Quality Score: 70/100
+2025-10-10T08:14:27.172Z [info] [SVG-ANIMATION] ✅ Quality acceptable!
+2025-10-10T08:14:27.172Z [info] 
+📊 Generated SVG (856 characters)
+2025-10-10T08:14:27.172Z [info] 
+📈 QUALITY METRICS:
+2025-10-10T08:14:27.172Z [info]    Has Animations: YES ✅
+2025-10-10T08:14:27.172Z [info]    Animation Count: 4
+2025-10-10T08:14:27.172Z [info]    Loops Indefinitely: YES ✅
+2025-10-10T08:14:27.172Z [info]    Label Count: 4
+2025-10-10T08:14:27.172Z [info]    Uses Advanced SVG: YES ✅
+2025-10-10T08:14:27.172Z [info] 
+✅ NO ISSUES - Animation is excellent!
+2025-10-10T08:14:27.172Z [info] 
+💾 Saved to: animation-flow-1760084067172.svg
+2025-10-10T08:14:29.175Z [info] 
+================================================================================
+2025-10-10T08:14:29.175Z [info] 🧪 TESTING SUBPLANNER: TCP/IP Protocol Stack
+2025-10-10T08:14:29.175Z [info] ================================================================================
+2025-10-10T08:14:41.780Z [info] [planVisualsEnhanced] Received response
+2025-10-10T08:14:41.780Z [info] [planVisualsEnhanced] ✅ Parsed 8 specs (3 animations)
+2025-10-10T08:14:41.780Z [info] 📝 Generated 8 specifications
+2025-10-10T08:14:41.780Z [info]    Static: 5
+2025-10-10T08:14:41.780Z [info]    Animations: 3
+2025-10-10T08:14:41.780Z [info] 
+📋 Spec 1 [static]:
+2025-10-10T08:14:41.780Z [info]    TCP/IP protocol stack diagram, showing Application (blue), Transport (green), Internet (yellow), Network Access (red) layers vertically. Label: Each layer name.
+2025-10-10T08:14:41.780Z [info] 
+📋 Spec 2 [static]:
+2025-10-10T08:14:41.780Z [info]    Data encapsulation visual. Show 'Data' (light blue) at Application. Add 'Header' (grey) for 'Segment', 'Packet', 'Frame' progressively downwards. Label: 'Data', 'Segment', 'Packet', 'Frame', 'Headers'.
+2025-10-10T08:14:41.780Z [info] 
+📋 Spec 3 [animation - flow]:
+2025-10-10T08:14:41.780Z [info]    Data payload (light blue) flowing downwards through the TCP/IP layers. Headers (grey) are progressively added at each layer. Label: Layer names, 'Data', 'Header'.
+2025-10-10T08:14:41.780Z [info] 
+📋 Spec 4 [static]:
+2025-10-10T08:14:41.780Z [info]    Data de-encapsulation visual. Show 'Frame' (dark green) at Network Access. Headers (grey) are progressively removed upwards to reveal 'Data' (light blue). Label: 'Frame', 'Packet', 'Segment', 'Data', 'Headers'.
+2025-10-10T08:14:41.780Z [info] 
+📋 Spec 5 [animation - flow]:
+2025-10-10T08:14:41.780Z [info]    Packet (orange block) flowing from Source Host (left, blue) through a Router (center, grey) to Destination Host (right, green). Arrows indicate direction. Label: 'Source Host', 'Router', 'Destination Host'.
+2025-10-10T08:14:41.780Z [info] 
+📋 Spec 6 [static]:
+2025-10-10T08:14:41.780Z [info]    Detailed IP packet header structure (light green). Show fields: Version, Header Length, TTL, Protocol, Source IP, Destination IP. Label: Each field name clearly.
+2025-10-10T08:14:41.780Z [info] 
+📋 Spec 7 [static]:
+2025-10-10T08:14:41.780Z [info]    Detailed TCP segment header structure (light purple). Show fields: Source Port, Destination Port, Sequence Number, Acknowledgement Number, Window Size. Label: Each field name.
+2025-10-10T08:14:41.780Z [info] 
+📋 Spec 8 [animation - flow]:
+2025-10-10T08:14:41.780Z [info]    Small data bits (yellow dots) flowing from a Network Interface Card (dark grey) into a physical cable (blue line). Show continuous linear movement. Label: 'NIC', 'Cable', 'Data Bits'.
+2025-10-10T08:14:41.780Z [info] 
+📊 QUALITY ANALYSIS:
+2025-10-10T08:14:41.780Z [info]    Clarity: 100/100
+2025-10-10T08:14:41.780Z [info]    Specificity: 0/100
+2025-10-10T08:14:41.781Z [info]    Actionable: 100/100
+2025-10-10T08:14:41.781Z [warn] 
+⚠️  ISSUES DETECTED:
+2025-10-10T08:14:41.781Z [warn]    - Spec 2: No topic-specific terms found
+2025-10-10T08:14:41.781Z [warn]    - Spec 4: No topic-specific terms found
+2025-10-10T08:14:41.781Z [warn]    - Spec 5: No topic-specific terms found
+2025-10-10T08:14:41.781Z [warn]    - Spec 7: No topic-specific terms found
+2025-10-10T08:14:41.781Z [warn]    - Spec 8: No topic-specific terms found
+2025-10-10T08:14:43.781Z [info] 
+================================================================================
+2025-10-10T08:14:43.782Z [info] 🎨 TESTING STATIC GENERATOR
+2025-10-10T08:14:43.782Z [info] Topic: TCP/IP Protocol Stack
+2025-10-10T08:14:43.782Z [info] Description: TCP/IP protocol stack diagram, showing Application (blue), Transport (green), Internet (yellow), Network Access (red) layers vertically. Label: Each layer name.
+2025-10-10T08:14:43.782Z [info] ================================================================================
+2025-10-10T08:14:43.782Z [info] [SVG-MASTER] Attempt 1/2 for quality generation
+2025-10-10T08:14:48.556Z [info] [SVG-MASTER] Raw response length: 1657 chars
+2025-10-10T08:14:48.556Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 12 operations
+2025-10-10T08:14:48.556Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:14:48.556Z [info] [SVG-MASTER] Quality Score: 5/100
+2025-10-10T08:14:48.556Z [warn] [SVG-MASTER] Low quality (5): Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Insufficient labeling, Lacks dynamic elements
+2025-10-10T08:14:48.556Z [info] [SVG-MASTER] Retrying...
+2025-10-10T08:14:48.556Z [info] [SVG-MASTER] Attempt 2/2 for quality generation
+2025-10-10T08:14:54.568Z [info] [SVG-MASTER] Raw response length: 1812 chars
+2025-10-10T08:14:54.569Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 13 operations
+2025-10-10T08:14:54.569Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:14:54.569Z [info] [SVG-MASTER] Quality Score: 5/100
+2025-10-10T08:14:54.569Z [warn] [SVG-MASTER] Low quality (5): Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Lacks dynamic elements
+2025-10-10T08:14:54.569Z [error] [SVG-MASTER] Attempt 2 failed: Failed to generate sufficient operations (only 13)
+2025-10-10T08:14:54.569Z [error] ❌ Generation failed: Failed to generate sufficient operations (only 13)
+2025-10-10T08:14:56.574Z [info] 
+================================================================================
+2025-10-10T08:14:56.574Z [info] 🎬 TESTING ANIMATION GENERATOR
+2025-10-10T08:14:56.574Z [info] Topic: TCP/IP Protocol Stack
+2025-10-10T08:14:56.574Z [info] Type: flow
+2025-10-10T08:14:56.575Z [info] Description: Data payload (light blue) flowing downwards through the TCP/IP layers. Headers (grey) are progressively added at each layer. Label: Layer names, 'Data', 'Header'.
+2025-10-10T08:14:56.575Z [info] ================================================================================
+2025-10-10T08:14:56.575Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-10T08:15:07.372Z [info] [SVG-ANIMATION] Received 4804 chars
+2025-10-10T08:15:07.372Z [info] [SVG-ANIMATION] Quality Score: 97/100
+2025-10-10T08:15:07.372Z [info] [SVG-ANIMATION] ✅ Quality acceptable!
+2025-10-10T08:15:07.372Z [info] 
+📊 Generated SVG (4793 characters)
+2025-10-10T08:15:07.373Z [info] 
+📈 QUALITY METRICS:
+2025-10-10T08:15:07.373Z [info]    Has Animations: YES ✅
+2025-10-10T08:15:07.373Z [info]    Animation Count: 8
+2025-10-10T08:15:07.373Z [info]    Loops Indefinitely: YES ✅
+2025-10-10T08:15:07.373Z [info]    Label Count: 27
+2025-10-10T08:15:07.373Z [info]    Uses Advanced SVG: YES ✅
+2025-10-10T08:15:07.373Z [info] 
+✅ NO ISSUES - Animation is excellent!
+2025-10-10T08:15:07.373Z [info] 
+💾 Saved to: animation-flow-1760084107373.svg
+2025-10-10T08:15:09.376Z [info] 
+================================================================================
+2025-10-10T08:15:09.376Z [info] 🧪 TESTING SUBPLANNER: Organic Chemistry Reactions
+2025-10-10T08:15:09.376Z [info] ================================================================================
+2025-10-10T08:15:21.099Z [info] [planVisualsEnhanced] Received response
+2025-10-10T08:15:21.099Z [info] [planVisualsEnhanced] ✅ Parsed 8 specs (2 animations)
+2025-10-10T08:15:21.099Z [info] 📝 Generated 8 specifications
+2025-10-10T08:15:21.099Z [info]    Static: 6
+2025-10-10T08:15:21.099Z [info]    Animations: 2
+2025-10-10T08:15:21.099Z [info] 
+📋 Spec 1 [static]:
+2025-10-10T08:15:21.099Z [info]    Methyl chloride molecule (C: black, H: white, Cl: green) with partial positive charge on carbon and partial negative on chlorine. Label: C, H, Cl, δ+, δ-.
+2025-10-10T08:15:21.099Z [info] 
+📋 Spec 2 [static]:
+2025-10-10T08:15:21.099Z [info]    Hydroxide ion (O: red, H: white) showing negative charge and two lone pairs on oxygen. Position left. Label: Nucleophile, Lone Pairs, OH-.
+2025-10-10T08:15:21.099Z [info] 
+📋 Spec 3 [animation - mechanical]:
+2025-10-10T08:15:21.099Z [info]    Hydroxide nucleophile (red/white) moving linearly towards the backside of the C-Cl bond of methyl chloride (black/white/green). Label: Nucleophile, Electrophilic Carbon.
+2025-10-10T08:15:21.099Z [info] 
+📋 Spec 4 [animation - mechanical]:
+2025-10-10T08:15:21.099Z [info]    Simultaneous breaking C-Cl bond (green) and forming O-C bond (red) at the central carbon (black). Show partial bonds. Label: Breaking bond, Forming bond.
+2025-10-10T08:15:21.099Z [info] 
+📋 Spec 5 [static]:
+2025-10-10T08:15:21.099Z [info]    Trigonal bipyramidal transition state structure. Central carbon (black) with five atoms partially bonded. Show elongating C-Cl and shortening O-C bonds. Label: Transition State.
+2025-10-10T08:15:21.099Z [info] 
+📋 Spec 6 [static]:
+2025-10-10T08:15:21.099Z [info]    Methanol product (O: red, C: black, H: white) and chloride leaving group (green sphere with negative charge). Show inverted geometry in methanol. Label: Product, Leaving Group.
+2025-10-10T08:15:21.100Z [info] 
+📋 Spec 7 [static]:
+2025-10-10T08:15:21.100Z [info]    Energy profile diagram for SN2 reaction. Single peak (transition state) between reactants and products. Label: Reactants, Transition State, Products, Energy, Reaction Coordinate.
+2025-10-10T08:15:21.100Z [info] 
+📋 Spec 8 [static]:
+2025-10-10T08:15:21.100Z [info]    (R)-2-chlorobutane (C: black, Cl: green, H: white) with wedge/dash bonds, next to (S)-2-butanol product (O: red). Highlight inversion of stereochemistry. Label: Substrate, Product.
+2025-10-10T08:15:21.100Z [info] 
+📊 QUALITY ANALYSIS:
+2025-10-10T08:15:21.100Z [info]    Clarity: 100/100
+2025-10-10T08:15:21.100Z [info]    Specificity: 0/100
+2025-10-10T08:15:21.100Z [info]    Actionable: 60/100
+2025-10-10T08:15:21.100Z [warn] 
+⚠️  ISSUES DETECTED:
+2025-10-10T08:15:21.100Z [warn]    - Spec 1: No topic-specific terms found
+2025-10-10T08:15:21.100Z [warn]    - Spec 2: No topic-specific terms found
+2025-10-10T08:15:21.100Z [warn]    - Spec 3: No topic-specific terms found
+2025-10-10T08:15:21.100Z [warn]    - Spec 3: Animation but doesn't describe motion
+2025-10-10T08:15:21.100Z [warn]    - Spec 4: No topic-specific terms found
+2025-10-10T08:15:21.100Z [warn]    - Spec 4: Animation but doesn't describe motion
+2025-10-10T08:15:21.100Z [warn]    - Spec 5: No topic-specific terms found
+2025-10-10T08:15:21.100Z [warn]    - Spec 6: No topic-specific terms found
+2025-10-10T08:15:21.100Z [warn]    - Spec 7: No topic-specific terms found
+2025-10-10T08:15:23.101Z [info] 
+================================================================================
+2025-10-10T08:15:23.101Z [info] 🎨 TESTING STATIC GENERATOR
+2025-10-10T08:15:23.101Z [info] Topic: Organic Chemistry Reactions
+2025-10-10T08:15:23.101Z [info] Description: Methyl chloride molecule (C: black, H: white, Cl: green) with partial positive charge on carbon and partial negative on chlorine. Label: C, H, Cl, δ+, δ-.
+2025-10-10T08:15:23.101Z [info] ================================================================================
+2025-10-10T08:15:23.101Z [info] [SVG-MASTER] Attempt 1/2 for quality generation
+2025-10-10T08:15:29.817Z [info] [SVG-MASTER] Raw response length: 2187 chars
+2025-10-10T08:15:29.817Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 17 operations
+2025-10-10T08:15:29.817Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:15:29.817Z [info] [SVG-MASTER] Quality Score: 0/100
+2025-10-10T08:15:29.817Z [warn] [SVG-MASTER] Low quality (0): Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Lacks dynamic elements
+2025-10-10T08:15:29.817Z [info] [SVG-MASTER] Retrying...
+2025-10-10T08:15:29.817Z [info] [SVG-MASTER] Attempt 2/2 for quality generation
+2025-10-10T08:15:36.544Z [info] [SVG-MASTER] Raw response length: 2160 chars
+2025-10-10T08:15:36.544Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 17 operations
+2025-10-10T08:15:36.544Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:15:36.544Z [info] [SVG-MASTER] Quality Score: 0/100
+2025-10-10T08:15:36.544Z [warn] [SVG-MASTER] Low quality (0): Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Lacks dynamic elements
+2025-10-10T08:15:36.544Z [error] [SVG-MASTER] Attempt 2 failed: Failed to generate sufficient operations (only 17)
+2025-10-10T08:15:36.544Z [error] ❌ Generation failed: Failed to generate sufficient operations (only 17)
+2025-10-10T08:15:38.548Z [info] 
+================================================================================
+2025-10-10T08:15:38.548Z [info] 🎬 TESTING ANIMATION GENERATOR
+2025-10-10T08:15:38.548Z [info] Topic: Organic Chemistry Reactions
+2025-10-10T08:15:38.548Z [info] Type: mechanical
+2025-10-10T08:15:38.548Z [info] Description: Hydroxide nucleophile (red/white) moving linearly towards the backside of the C-Cl bond of methyl chloride (black/white/green). Label: Nucleophile, Electrophilic Carbon.
+2025-10-10T08:15:38.548Z [info] ================================================================================
+2025-10-10T08:15:38.548Z [info] [SVG-ANIMATION] Attempt 1/2 for "mechanical" animation
+2025-10-10T08:15:45.931Z [info] [SVG-ANIMATION] Received 2178 chars
+2025-10-10T08:15:45.931Z [info] [SVG-ANIMATION] Quality Score: 94/100
+2025-10-10T08:15:45.931Z [info] [SVG-ANIMATION] ✅ Quality acceptable!
+2025-10-10T08:15:45.931Z [info] 
+📊 Generated SVG (2167 characters)
+2025-10-10T08:15:45.931Z [info] 
+📈 QUALITY METRICS:
+2025-10-10T08:15:45.931Z [info]    Has Animations: YES ✅
+2025-10-10T08:15:45.931Z [info]    Animation Count: 5
+2025-10-10T08:15:45.931Z [info]    Loops Indefinitely: YES ✅
+2025-10-10T08:15:45.931Z [info]    Label Count: 8
+2025-10-10T08:15:45.931Z [info]    Uses Advanced SVG: YES ✅
+2025-10-10T08:15:45.931Z [info] 
+✅ NO ISSUES - Animation is excellent!
+2025-10-10T08:15:45.931Z [info] 
+💾 Saved to: animation-mechanical-1760084145931.svg
+2025-10-10T08:15:47.931Z [info] 
+================================================================================
+2025-10-10T08:15:47.931Z [info] 🧪 TESTING SUBPLANNER: Machine Learning Backpropagation
+2025-10-10T08:15:47.931Z [info] ================================================================================
+2025-10-10T08:16:00.183Z [info] [planVisualsEnhanced] Received response
+2025-10-10T08:16:00.183Z [info] [planVisualsEnhanced] ✅ Parsed 8 specs (3 animations)
+2025-10-10T08:16:00.183Z [info] 📝 Generated 8 specifications
+2025-10-10T08:16:00.183Z [info]    Static: 5
+2025-10-10T08:16:00.183Z [info]    Animations: 3
+2025-10-10T08:16:00.183Z [info] 
+📋 Spec 1 [static]:
+2025-10-10T08:16:00.183Z [info]    A neural network diagram with input (blue), hidden (green), and output (red) layers. Show neurons as circles, connections as lines. Label: Input Layer, Hidden Layer, Output Layer, Weights, Biases.
+2025-10-10T08:16:00.183Z [info] 
+📋 Spec 2 [static]:
+2025-10-10T08:16:00.183Z [info]    A single neuron (yellow circle) receiving weighted inputs (blue lines) and producing an output. Show summation (Sigma) and activation function (f). Label: Inputs (x1, x2), Weights (w1, w2), Bias (b), Activation (a).
+2025-10-10T08:16:00.183Z [info] 
+📋 Spec 3 [static]:
+2025-10-10T08:16:00.183Z [info]    A 3D surface plot representing a loss function. Clearly show local and global minima. Color from blue (low loss) to red (high loss). Label: Loss, Weight 1, Weight 2, Global Minimum.
+2025-10-10T08:16:00.183Z [info] 
+📋 Spec 4 [static]:
+2025-10-10T08:16:00.183Z [info]    A 2D contour map of a loss function. Draw a vector pointing towards the steepest descent at a specific point. Color contours blue to red. Label: Current Weights, Gradient Vector, Loss Contours.
+2025-10-10T08:16:00.183Z [info] 
+📋 Spec 5 [static]:
+2025-10-10T08:16:00.183Z [info]    Diagram illustrating the chain rule in backpropagation. Show error dL/dw flowing from output layer (red) backwards to a weight (green) in a hidden layer. Label: dL/da, da/dz, dz/dw.
+2025-10-10T08:16:00.183Z [info] 
+📋 Spec 6 [animation - flow]:
+2025-10-10T08:16:00.184Z [info]    Input values (small blue spheres) flow linearly from the input layer through weighted connections to hidden and output neurons, changing color to green then red. Label: Input, Neuron Activation.
+2025-10-10T08:16:00.184Z [info] 
+📋 Spec 7 [animation - flow]:
+2025-10-10T08:16:00.184Z [info]    Error signals (small red pulses) propagate backward from the output layer through connections to hidden layers. Show weights (light gray lines) subtly changing width/color upon update. Label: Error Signal, Weight Update.
+2025-10-10T08:16:00.184Z [info] 
+📋 Spec 8 [animation - mechanical]:
+2025-10-10T08:16:00.184Z [info]    A point (white sphere) moves down a 3D loss surface (gradient colors) towards the global minimum. Show its path as a dashed line. Label: Current Weights, Loss, Learning Rate Steps.
+2025-10-10T08:16:00.184Z [info] 
+📊 QUALITY ANALYSIS:
+2025-10-10T08:16:00.184Z [info]    Clarity: 100/100
+2025-10-10T08:16:00.184Z [info]    Specificity: 0/100
+2025-10-10T08:16:00.184Z [info]    Actionable: 100/100
+2025-10-10T08:16:00.184Z [warn] 
+⚠️  ISSUES DETECTED:
+2025-10-10T08:16:00.184Z [warn]    - Spec 1: No topic-specific terms found
+2025-10-10T08:16:00.184Z [warn]    - Spec 2: No topic-specific terms found
+2025-10-10T08:16:00.184Z [warn]    - Spec 3: No topic-specific terms found
+2025-10-10T08:16:00.184Z [warn]    - Spec 4: No topic-specific terms found
+2025-10-10T08:16:00.184Z [warn]    - Spec 6: No topic-specific terms found
+2025-10-10T08:16:00.184Z [warn]    - Spec 7: No topic-specific terms found
+2025-10-10T08:16:02.185Z [info] 
+================================================================================
+2025-10-10T08:16:02.185Z [info] 🎨 TESTING STATIC GENERATOR
+2025-10-10T08:16:02.185Z [info] Topic: Machine Learning Backpropagation
+2025-10-10T08:16:02.185Z [info] Description: A neural network diagram with input (blue), hidden (green), and output (red) layers. Show neurons as circles, connections as lines. Label: Input Layer, Hidden Layer, Output Layer, Weights, Biases.
+2025-10-10T08:16:02.185Z [info] ================================================================================
+2025-10-10T08:16:02.185Z [info] [SVG-MASTER] Attempt 1/2 for quality generation
+2025-10-10T08:16:10.742Z [info] [SVG-MASTER] Raw response length: 2608 chars
+2025-10-10T08:16:10.742Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 19 operations
+2025-10-10T08:16:10.742Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:16:10.742Z [info] [SVG-MASTER] Quality Score: 0/100
+2025-10-10T08:16:10.742Z [warn] [SVG-MASTER] Low quality (0): Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Simple path detected (only 2 commands), Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Insufficient labeling, Lacks dynamic elements
+2025-10-10T08:16:10.742Z [info] [SVG-MASTER] Retrying...
+2025-10-10T08:16:10.742Z [info] [SVG-MASTER] Attempt 2/2 for quality generation
+2025-10-10T08:16:16.680Z [info] [SVG-MASTER] Raw response length: 1877 chars
+2025-10-10T08:16:16.680Z [info] [SVG-MASTER] ✅ Strategy 1: Parsed 15 operations
+2025-10-10T08:16:16.680Z [info] [SVG-MASTER] ✅ Coordinates clamped to 0-1 range
+2025-10-10T08:16:16.680Z [info] [SVG-MASTER] Quality Score: 0/100
+2025-10-10T08:16:16.681Z [warn] [SVG-MASTER] Low quality (0): Too few operations (need 50+), Too few complex structures, Paths too simple (need more curves/commands), Insufficient labeling, Lacks dynamic elements
+2025-10-10T08:16:16.681Z [error] [SVG-MASTER] Attempt 2 failed: Failed to generate sufficient operations (only 15)
+2025-10-10T08:16:16.681Z [error] ❌ Generation failed: Failed to generate sufficient operations (only 15)
+2025-10-10T08:16:18.683Z [info] 
+================================================================================
+2025-10-10T08:16:18.683Z [info] 🎬 TESTING ANIMATION GENERATOR
+2025-10-10T08:16:18.683Z [info] Topic: Machine Learning Backpropagation
+2025-10-10T08:16:18.683Z [info] Type: flow
+2025-10-10T08:16:18.683Z [info] Description: Input values (small blue spheres) flow linearly from the input layer through weighted connections to hidden and output neurons, changing color to green then red. Label: Input, Neuron Activation.
+2025-10-10T08:16:18.683Z [info] ================================================================================
+2025-10-10T08:16:18.683Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-10T08:16:25.811Z [info] [SVG-ANIMATION] Received 2272 chars
+2025-10-10T08:16:25.811Z [info] [SVG-ANIMATION] Quality Score: 100/100
+2025-10-10T08:16:25.811Z [info] [SVG-ANIMATION] ✅ Quality acceptable!
+2025-10-10T08:16:25.811Z [info] 
+📊 Generated SVG (2261 characters)
+2025-10-10T08:16:25.811Z [info] 
+📈 QUALITY METRICS:
+2025-10-10T08:16:25.811Z [info]    Has Animations: YES ✅
+2025-10-10T08:16:25.811Z [info]    Animation Count: 9
+2025-10-10T08:16:25.811Z [info]    Loops Indefinitely: YES ✅
+2025-10-10T08:16:25.811Z [info]    Label Count: 6
+2025-10-10T08:16:25.811Z [info]    Uses Advanced SVG: YES ✅
+2025-10-10T08:16:25.811Z [info] 
+✅ NO ISSUES - Animation is excellent!
+2025-10-10T08:16:25.811Z [info] 
+💾 Saved to: animation-flow-1760084185811.svg
+2025-10-10T08:16:27.814Z [info] 
+████████████████████████████████████████████████████████████████████████████████
+2025-10-10T08:16:27.814Z [info] 📊 FINAL QUALITY REPORT
+2025-10-10T08:16:27.814Z [info] ████████████████████████████████████████████████████████████████████████████████
+2025-10-10T08:16:27.814Z [info] 
+🧪 SUBPLANNER RESULTS (5 tests):
+2025-10-10T08:16:27.814Z [info]    Average Clarity: 100.0/100 ✅
+2025-10-10T08:16:27.814Z [info]    Average Specificity: 0.0/100 ❌
+2025-10-10T08:16:27.814Z [info]    Average Actionable: 80.0/100 ✅
+2025-10-10T08:16:27.814Z [info]    Total Issues: 38
+2025-10-10T08:16:27.814Z [info] 
+🎨 STATIC GENERATOR RESULTS (5 tests):
+2025-10-10T08:16:27.814Z [info]    Average Operations: 0.0 ❌
+2025-10-10T08:16:27.814Z [info]    Average Diversity: 0.0/100 ❌
+2025-10-10T08:16:27.814Z [info]    Average Context: 0.0/100 ❌
+2025-10-10T08:16:27.814Z [info]    Advanced Ops: 0/5 ❌
+2025-10-10T08:16:27.814Z [info]    Total Issues: 5
+2025-10-10T08:16:27.814Z [info] 
+🎬 ANIMATION GENERATOR RESULTS (5 tests):
+2025-10-10T08:16:27.814Z [info]    Has Animations: 5/5 ✅
+2025-10-10T08:16:27.814Z [info]    Loops Indefinitely: 5/5 ✅
+2025-10-10T08:16:27.814Z [info]    Average Labels: 10.0 ✅
+2025-10-10T08:16:27.814Z [info]    Advanced SVG: 5/5 ✅
+2025-10-10T08:16:27.814Z [info]    Total Issues: 0
+2025-10-10T08:16:27.814Z [info] 
+████████████████████████████████████████████████████████████████████████████████
+2025-10-10T08:16:27.814Z [info] 🎯 ROOT CAUSE ANALYSIS
+2025-10-10T08:16:27.814Z [info] ████████████████████████████████████████████████████████████████████████████████
+2025-10-10T08:16:27.814Z [info] 
+Total Issues Found: 43
+2025-10-10T08:16:27.814Z [warn] 
+⚠️  SUBPLANNER ISSUES (38 total):
+2025-10-10T08:16:27.814Z [warn]    Root Cause: Descriptions may be too vague or lack specificity
+2025-10-10T08:16:27.815Z [warn]    Impact: Generators receive unclear guidance
+2025-10-10T08:16:27.815Z [warn]    Fix: Enhance subplanner prompt to be more specific
+2025-10-10T08:16:27.815Z [warn] 
+⚠️  STATIC GENERATOR ISSUES (5 total):
+2025-10-10T08:16:27.815Z [warn]    Root Cause: May have restrictions or unclear prompts
+2025-10-10T08:16:27.815Z [warn]    Impact: Low quality, generic visuals, lack of creativity
+2025-10-10T08:16:27.815Z [warn]    Fix: Review prompt, remove restrictions, increase creative freedom
+2025-10-10T08:16:27.815Z [info] 
+💾 Detailed report saved to: quality-report.json

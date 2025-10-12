@@ -1,0 +1,360 @@
+[
+  {
+    "op": "customPath",
+    "path": "M 0.1,0.2 C 0.2,0.1 0.3,0.2 0.4,0.3 C 0.5,0.4 0.6,0.3 0.7,0.2 C 0.8,0.1 0.9,0.2 0.9,0.3 L 0.9,0.4 C 0.8,0.5 0.7,0.4 0.6,0.3 C 0.5,0.2 0.4,0.3 0.3,0.4 C 0.2,0.5 0.1,0.4 0.1,0.3 Z",
+    "stroke": "#4CAF50",
+    "strokeWidth": 2,
+    "fill": "#4CAF50",
+    "opacity": 0.7,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Alpha Helix",
+    "x": 0.5,
+    "y": 0.15,
+    "fontSize": 16,
+    "color": "#000000",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.2,0.5 L 0.3,0.6 L 0.4,0.5 L 0.5,0.6 L 0.6,0.5 L 0.7,0.6 L 0.8,0.5 L 0.9,0.6",
+    "stroke": "#E74C3C",
+    "strokeWidth": 2,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Beta Sheet",
+    "x": 0.5,
+    "y": 0.7,
+    "fontSize": 16,
+    "color": "#000000",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.1,0.8 Q 0.2,0.9 0.3,0.8 Q 0.4,0.7 0.5,0.8 Q 0.6,0.9 0.7,0.8 Q 0.8,0.7 0.9,0.8",
+    "stroke": "#2196F3",
+    "strokeWidth": 1,
+    "fill": "none",
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Amino Acid Chain",
+    "x": 0.5,
+    "y": 0.9,
+    "fontSize": 16,
+    "color": "#000000",
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLine",
+    "x1": 0.2,
+    "y1": 0.3,
+    "x2": 0.3,
+    "y2": 0.5,
+    "stroke": "#9C27B0",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLine",
+    "x1": 0.3,
+    "y1": 0.3,
+    "x2": 0.4,
+    "y2": 0.5,
+    "stroke": "#9C27B0",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLine",
+    "x1": 0.4,
+    "y1": 0.3,
+    "x2": 0.5,
+    "y2": 0.5,
+    "stroke": "#9C27B0",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLine",
+    "x1": 0.5,
+    "y1": 0.3,
+    "x2": 0.6,
+    "y2": 0.5,
+    "stroke": "#9C27B0",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLine",
+    "x1": 0.6,
+    "y1": 0.3,
+    "x2": 0.7,
+    "y2": 0.5,
+    "stroke": "#9C27B0",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLine",
+    "x1": 0.7,
+    "y1": 0.3,
+    "x2": 0.8,
+    "y2": 0.5,
+    "stroke": "#9C27B0",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Hydrogen Bonds",
+    "x": 0.5,
+    "y": 0.4,
+    "fontSize": 14,
+    "color": "#00BCD4",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.2,0.25 C 0.25,0.2 0.3,0.25 0.35,0.3 C 0.4,0.35 0.35,0.4 0.3,0.35 C 0.25,0.3 0.2,0.35 0.25,0.3 Z",
+    "stroke": "#FDD835",
+    "strokeWidth": 1,
+    "fill": "#FDD835",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.6,0.25 C 0.65,0.2 0.7,0.25 0.75,0.3 C 0.8,0.35 0.75,0.4 0.7,0.35 C 0.65,0.3 0.6,0.35 0.65,0.3 Z",
+    "stroke": "#FDD835",
+    "strokeWidth": 1,
+    "fill": "#FDD835",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.4,0.55 C 0.45,0.5 0.5,0.55 0.55,0.6 C 0.6,0.65 0.55,0.7 0.5,0.65 C 0.45,0.6 0.4,0.65 0.45,0.6 Z",
+    "stroke": "#FDD835",
+    "strokeWidth": 1,
+    "fill": "#FDD835",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.8,0.55 C 0.85,0.5 0.9,0.55 0.95,0.6 C 1.0,0.65 0.95,0.7 0.9,0.65 C 0.85,0.6 0.8,0.65 0.85,0.6 Z",
+    "stroke": "#FDD835",
+    "strokeWidth": 1,
+    "fill": "#FDD835",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.3,0.75 C 0.35,0.7 0.4,0.75 0.45,0.8 C 0.5,0.85 0.45,0.9 0.4,0.85 C 0.35,0.8 0.3,0.85 0.35,0.8 Z",
+    "stroke": "#FDD835",
+    "strokeWidth": 1,
+    "fill": "#FDD835",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.7,0.75 C 0.75,0.7 0.8,0.75 0.85,0.8 C 0.9,0.85 0.85,0.9 0.8,0.85 C 0.75,0.8 0.7,0.85 0.75,0.8 Z",
+    "stroke": "#FDD835",
+    "strokeWidth": 1,
+    "fill": "#FDD835",
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "R-group",
+    "x": 0.15,
+    "y": 0.75,
+    "fontSize": 14,
+    "color": "#FF5722",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.1,0.4 C 0.15,0.35 0.2,0.4 0.25,0.45 C 0.3,0.5 0.25,0.55 0.2,0.5 C 0.15,0.45 0.1,0.5 0.15,0.45 Z",
+    "stroke": "#FDD835",
+    "strokeWidth": 1,
+    "fill": "#FDD835",
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Carbonyl Oxygen",
+    "x": 0.05,
+    "y": 0.35,
+    "fontSize": 14,
+    "color": "#FF5722",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.9,0.4 C 0.95,0.35 1.0,0.4 0.95,0.45 C 0.9,0.5 0.95,0.55 1.0,0.5 C 0.95,0.45 0.9,0.5 0.95,0.45 Z",
+    "stroke": "#FDD835",
+    "strokeWidth": 1,
+    "fill": "#FDD835",
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Amide Hydrogen",
+    "x": 0.85,
+    "y": 0.35,
+    "fontSize": 14,
+    "color": "#FF5722",
+    "visualGroup": "main"
+  },
+  {
+    "op": "addParticle",
+    "x": 0.25,
+    "y": 0.25,
+    "color": "#00BCD4",
+    "speed": 0.01,
+    "label": "H",
+    "visualGroup": "main"
+  },
+  {
+    "op": "addParticle",
+    "x": 0.75,
+    "y": 0.25,
+    "color": "#00BCD4",
+    "speed": -0.01,
+    "label": "O",
+    "visualGroup": "main"
+  },
+  {
+    "op": "addParticle",
+    "x": 0.45,
+    "y": 0.55,
+    "color": "#00BCD4",
+    "speed": 0.01,
+    "label": "H",
+    "visualGroup": "main"
+  },
+  {
+    "op": "addParticle",
+    "x": 0.95,
+    "y": 0.55,
+    "color": "#00BCD4",
+    "speed": -0.01,
+    "label": "O",
+    "visualGroup": "main"
+  },
+  {
+    "op": "addParticle",
+    "x": 0.35,
+    "y": 0.75,
+    "color": "#00BCD4",
+    "speed": 0.01,
+    "label": "H",
+    "visualGroup": "main"
+  },
+  {
+    "op": "addParticle",
+    "x": 0.85,
+    "y": 0.75,
+    "color": "#00BCD4",
+    "speed": -0.01,
+    "label": "O",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.1,0.25 C 0.15,0.3 0.2,0.35 0.25,0.3 C 0.3,0.25 0.35,0.2 0.3,0.15 C 0.25,0.1 0.2,0.15 0.15,0.2 Z",
+    "stroke": "#FDD835",
+    "strokeWidth": 1,
+    "fill": "#FDD835",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.7,0.15 Q 0.8,0.1 0.9,0.15",
+    "stroke": "#FF5722",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.2,0.65 Q 0.3,0.6 0.4,0.65",
+    "stroke": "#FF5722",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.6,0.65 Q 0.7,0.6 0.8,0.65",
+    "stroke": "#FF5722",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.2,0.85 Q 0.3,0.8 0.4,0.85",
+    "stroke": "#FF5722",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.6,0.85 Q 0.7,0.8 0.8,0.85",
+    "stroke": "#FF5722",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Secondary Structure",
+    "x": 0.5,
+    "y": 0.05,
+    "fontSize": 14,
+    "color": "#000000",
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Backbone",
+    "x": 0.1,
+    "y": 0.6,
+    "fontSize": 14,
+    "color": "#000000",
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Peptide Bond",
+    "x": 0.4,
+    "y": 0.75,
+    "fontSize": 14,
+    "color": "#000000",
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.2,0.1 Q 0.3,0.05 0.4,0.1",
+    "stroke": "#FF5722",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.6,0.1 Q 0.7,0.05 0.8,0.1",
+    "stroke": "#FF5722",
+    "strokeWidth": 1,
+    "visualGroup": "main"
+  },
+  {
+    "op": "drawLabel",
+    "text": "C-alpha",
+    "x": 0.2,
+    "y": 0.2,
+    "fontSize": 14,
+    "color": "#000000",
+    "visualGroup": "main"
+  }
+]

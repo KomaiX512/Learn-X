@@ -17,6 +17,21 @@ const FRONTEND_URLS = (process.env.FRONTEND_URL || 'http://localhost:5173,http:/
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 
 async function main() {
+  // ═══════════════════════════════════════════════════════════
+  // BACKEND STARTUP - PRODUCTION MONITORING
+  // ═══════════════════════════════════════════════════════════
+  console.log('\n' + '═'.repeat(70));
+  console.log('🚀 LEARN-X BACKEND STARTING');
+  console.log('═'.repeat(70));
+  console.log('📍 Configuration:');
+  console.log('   PORT:', PORT);
+  console.log('   FRONTEND_URLS:', FRONTEND_URLS.join(', '));
+  console.log('   REDIS_URL:', REDIS_URL);
+  console.log('   GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? '✅ SET' : '❌ MISSING');
+  console.log('   USE_VISUAL_VERSION:', process.env.USE_VISUAL_VERSION || 'v3 (default)');
+  console.log('   LOG_LEVEL:', process.env.LOG_LEVEL || 'info');
+  console.log('═'.repeat(70) + '\n');
+  
   const app = express();
   app.use(cors({ origin: FRONTEND_URLS, credentials: true }));
   app.use(express.json());
@@ -30,8 +45,15 @@ async function main() {
     transports: ['websocket', 'polling']
   });
 
+  console.log('🔌 Connecting to Redis...');
   const redis = new Redis(REDIS_URL, { maxRetriesPerRequest: null });
+  
+  redis.on('connect', () => console.log('✅ Redis connected'));
+  redis.on('error', (err) => console.error('❌ Redis error:', err.message));
+  
+  console.log('🎭 Initializing orchestrator...');
   const orchestrator = await initOrchestrator(io, redis);
+  console.log('✅ Orchestrator initialized\n');
 
   io.on('connection', (socket) => {
     logger.debug(`[socket] New connection: ${socket.id}`);
@@ -270,7 +292,14 @@ async function main() {
   });
 
   server.listen(PORT, () => {
-    logger.debug(`Backend listening on http://localhost:${PORT}`);
+    console.log('\n' + '═'.repeat(70));
+    console.log('✅ SERVER READY');
+    console.log('═'.repeat(70));
+    console.log('🌐 Backend URL: http://localhost:' + PORT);
+    console.log('🔗 Health Check: http://localhost:' + PORT + '/health');
+    console.log('📡 WebSocket Ready: ws://localhost:' + PORT);
+    console.log('═'.repeat(70) + '\n');
+    logger.debug(`Server listening on port ${PORT}`);
   });
 
   const shutdown = () => {

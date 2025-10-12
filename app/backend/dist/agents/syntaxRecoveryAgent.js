@@ -10,71 +10,20 @@ exports.recoverJSON = recoverJSON;
 exports.validateOperations = validateOperations;
 const generative_ai_1 = require("@google/generative-ai");
 const logger_1 = require("../logger");
-// Model fallback configuration - ONLY official models
-const PRIMARY_MODEL = 'gemini-2.5-flash';
-const FALLBACK_MODELS = ['gemini-2.5-flash-lite'];
-let currentModelIndex = -1; // Start with primary
+// PAID MODEL - NEVER DOWNGRADE
+const MODEL = 'gemini-2.5-flash'; // ONLY THIS MODEL - NO FALLBACKS
 /**
- * Get the next available model with fallback logic
+ * Generate with paid model ONLY - NO FALLBACKS
  */
-function getNextModel() {
-    if (currentModelIndex === -1) {
-        return PRIMARY_MODEL;
-    }
-    if (currentModelIndex < FALLBACK_MODELS.length) {
-        return FALLBACK_MODELS[currentModelIndex];
-    }
-    // Reset to primary if all fallbacks exhausted
-    currentModelIndex = -1;
-    return PRIMARY_MODEL;
-}
-/**
- * Try with next fallback model on 503 error
- */
-async function tryWithFallback(genAI, prompt) {
-    let lastError;
-    // Try primary model first
-    try {
-        const model = genAI.getGenerativeModel({
-            model: PRIMARY_MODEL,
-            generationConfig: { temperature: 0.2, maxOutputTokens: 8000 },
-            systemInstruction: 'You are a JSON fixer. Output ONLY valid JSON. Never include explanations or markdown.'
-        });
-        const result = await model.generateContent(prompt);
-        logger_1.logger.info(`[syntaxRecovery] ✅ Success with primary model: ${PRIMARY_MODEL}`);
-        currentModelIndex = -1; // Reset on success
-        return result.response.text();
-    }
-    catch (error) {
-        lastError = error;
-        if (error?.message?.includes('503') || error?.message?.includes('overloaded')) {
-            logger_1.logger.warn(`[syntaxRecovery] Primary model ${PRIMARY_MODEL} overloaded, trying fallbacks...`);
-            // Try each fallback model
-            for (let i = 0; i < FALLBACK_MODELS.length; i++) {
-                currentModelIndex = i;
-                const fallbackModel = FALLBACK_MODELS[i];
-                try {
-                    const model = genAI.getGenerativeModel({
-                        model: fallbackModel,
-                        generationConfig: { temperature: 0.2, maxOutputTokens: 8000 },
-                        systemInstruction: 'You are a JSON fixer. Output ONLY valid JSON. Never include explanations or markdown.'
-                    });
-                    const result = await model.generateContent(prompt);
-                    logger_1.logger.info(`[syntaxRecovery] ✅ Success with fallback model: ${fallbackModel}`);
-                    return result.response.text();
-                }
-                catch (fallbackError) {
-                    lastError = fallbackError;
-                    if (fallbackError?.message?.includes('503') || fallbackError?.message?.includes('overloaded')) {
-                        logger_1.logger.warn(`[syntaxRecovery] Fallback model ${fallbackModel} also overloaded`);
-                        continue;
-                    }
-                    throw fallbackError;
-                }
-            }
-        }
-    }
-    throw lastError;
+async function generateWithModel(genAI, prompt) {
+    const model = genAI.getGenerativeModel({
+        model: MODEL, // PAID MODEL - NEVER DOWNGRADE
+        generationConfig: { temperature: 0.2, maxOutputTokens: 8000 },
+        systemInstruction: 'You are a JSON fixer. Output ONLY valid JSON. Never include explanations or markdown.'
+    });
+    const result = await model.generateContent(prompt);
+    logger_1.logger.info(`[syntaxRecovery] ✅ Success with ${MODEL}`);
+    return result.response.text();
 }
 async function recoverJSON(malformedText, expectedType) {
     const apiKey = process.env.GEMINI_API_KEY;
@@ -116,7 +65,7 @@ Rules:
     };
     try {
         logger_1.logger.info(`[syntaxRecovery] Attempting to recover ${expectedType}...`);
-        const text = await tryWithFallback(genAI, promptByType[expectedType]);
+        const text = await generateWithModel(genAI, promptByType[expectedType]);
         logger_1.logger.info(`[syntaxRecovery] LLM response (first 300 chars):\n${text.substring(0, 300)}`);
         // Strategy 1: Direct parse after cleaning
         try {

@@ -1,0 +1,39 @@
+[2025-10-11T09:52:24.307Z] [0.0s] [INFO] 
+[2025-10-11T09:52:24.308Z] [0.0s] [INFO] ======================================================================
+[2025-10-11T09:52:24.308Z] [0.0s] [INFO] PRODUCTION SYSTEM TEST - FIXED
+[2025-10-11T09:52:24.308Z] [0.0s] [INFO] ======================================================================
+[2025-10-11T09:52:24.308Z] [0.0s] [INFO] Query: "oxygen atoms"
+[2025-10-11T09:52:24.308Z] [0.0s] [INFO] Backend: http://localhost:8000
+[2025-10-11T09:52:24.308Z] [0.0s] [INFO] 
+[2025-10-11T09:52:24.308Z] [0.0s] [REQUEST] Step 1: Sending HTTP POST to /api/query...
+[2025-10-11T09:52:24.319Z] [0.0s] [REQUEST] ✅ Session created: 96f5314e-f54e-4716-ac83-4d8687d533d4
+[2025-10-11T09:52:24.319Z] [0.0s] [INFO] 
+[2025-10-11T09:52:24.319Z] [0.0s] [NETWORK] Step 2: Connecting WebSocket...
+[2025-10-11T09:52:24.347Z] [0.0s] [NETWORK] ✅ WebSocket connected: RwhhGRTRqkYRNlsdAAAB
+[2025-10-11T09:52:24.347Z] [0.0s] [INFO] 
+[2025-10-11T09:52:24.347Z] [0.0s] [NETWORK] Step 3: Joining session 96f5314e-f54e-4716-ac83-4d8687d533d4...
+[2025-10-11T09:52:24.348Z] [0.0s] [NETWORK] ✅ Joined session: 96f5314e-f54e-4716-ac83-4d8687d533d4
+[2025-10-11T09:52:24.348Z] [0.0s] [NETWORK] Now listening for results...
+[2025-10-11T09:52:24.348Z] [0.0s] [INFO] 
+[2025-10-11T09:52:37.708Z] [13.4s] [PROGRESS] Generation: 🚀 Starting generation of 3 steps...
+[2025-10-11T09:52:37.708Z] [13.4s] [PROGRESS] Progress: Generating intuition: Close your eyes and take a deep breath. That invis...
+[2025-10-11T09:52:37.710Z] [13.4s] [PROGRESS] Progress: Generating mechanics: An oxygen atom isn't just a generic sphere; it has...
+[2025-10-11T09:52:37.710Z] [13.4s] [PROGRESS] Progress: Generating applications: Oxygen atoms are nature's power providers. In your...
+[2025-10-11T09:55:24.345Z] [180.0s] [TIMEOUT] ❌ TIMEOUT: No completion in 3 minutes
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] 
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] ======================================================================
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] FINAL REPORT
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] ======================================================================
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] 
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] 📊 TIMING:
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO]   Total: 180.0s
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO]   Plan: 0s
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] 
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] 📈 CONTENT:
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO]   Steps: 0/3
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO]   Visuals: 0
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO]   Animations: 0
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] 
+[2025-10-11T09:55:24.345Z] [180.0s] [INFO] 📊 SCORE: 20/100
+[2025-10-11T09:55:24.346Z] [180.0s] [INFO] 
+[2025-10-11T09:55:24.346Z] [180.0s] [INFO] ❌ NOT PRODUCTION READY

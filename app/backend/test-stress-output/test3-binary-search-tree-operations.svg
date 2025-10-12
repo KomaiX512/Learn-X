@@ -1,0 +1,73 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="600" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Binary Search Tree Insertion</title>
+  <style>
+    .node { font-size: 16px; font-family: sans-serif; text-anchor: middle; }
+    .label { font-size: 12px; font-family: sans-serif; text-anchor: middle; }
+  </style>
+  <defs>
+    <circle id="node_base" cx="0" cy="0" r="20" fill="#ADD8E6" stroke="black" stroke-width="2"/>
+  </defs>
+  <g id="tree" transform="translate(400, 50)">
+    <text x="0" y="-30" class="label">Root Node</text>
+    <use xlink:href="#node_base" id="node_50"/>
+    <text x="0" y="5" class="node">50</text>
+    <animate id="pulse_50" attributeName="fill" values="#ADD8E6;#FFA07A;#ADD8E6" dur="2s" repeatCount="indefinite"/>
+
+    <g id="left_subtree" transform="translate(-150, 100)">
+      <text x="0" y="-30" class="label">Left Subtree (Smaller)</text>
+      <use xlink:href="#node_base" id="node_30" fill="#ADD8E6"/>
+      <text x="0" y="5" class="node">30</text>
+
+      <animate attributeName="fill" begin="pulse_50.end+1s" values="#ADD8E6;#FFA07A;#ADD8E6" dur="2s" repeatCount="indefinite" id="pulse_30"/>
+
+      <line x1="0" y1="-20" x2="150" y2="-80" stroke="black" stroke-width="2" transform="translate(0,-20)"/>
+        <text x="75" y="-100" class="label">Left Child</text>
+
+      <g id="left_left_subtree" transform="translate(-80, 100)">
+        <text x="0" y="-30" class="label">Left Child</text>
+        <use xlink:href="#node_base" id="node_20" fill="#ADD8E6"/>
+        <text x="0" y="5" class="node">20</text>
+        <animate attributeName="fill" begin="pulse_30.end+1s" values="#ADD8E6;#FFA07A;#ADD8E6" dur="2s" repeatCount="indefinite" id="pulse_20"/>
+        <line x1="80" y1="-120" x2="0" y2="-20" stroke="black" stroke-width="2" transform="translate(70,-100)"/>
+      </g>
+
+      <g id="left_right_subtree" transform="translate(80, 100)">
+        <text x="0" y="-30" class="label">Right Child</text>
+        <use xlink:href="#node_base" id="node_40" fill="#ADD8E6"/>
+        <text x="0" y="5" class="node">40</text>
+        <animate attributeName="fill" begin="pulse_20.end+1s" values="#ADD8E6;#FFA07A;#ADD8E6" dur="2s" repeatCount="indefinite" id="pulse_40"/>
+        <line x1="-80" y1="-120" x2="0" y2="-20" stroke="black" stroke-width="2" transform="translate(-70,-100)"/>
+      </g>
+
+    </g>
+
+    <g id="right_subtree" transform="translate(150, 100)">
+      <text x="0" y="-30" class="label">Right Subtree (Larger)</text>
+      <use xlink:href="#node_base" id="node_70" fill="#ADD8E6"/>
+      <text x="0" y="5" class="node">70</text>
+      <animate attributeName="fill" begin="pulse_40.end+1s" values="#ADD8E6;#FFA07A;#ADD8E6" dur="2s" repeatCount="indefinite" id="pulse_70"/>
+      <line x1="0" y1="-20" x2="-150" y2="-80" stroke="black" stroke-width="2" transform="translate(0,-20)"/>
+      <text x="-75" y="-100" class="label">Right Child</text>
+
+      <g id="right_left_subtree" transform="translate(-80, 100)">
+        <text x="0" y="-30" class="label">Left Child</text>
+        <use xlink:href="#node_base" id="node_60" fill="#ADD8E6"/>
+        <text x="0" y="5" class="node">60</text>
+         <animate attributeName="fill" begin="pulse_70.end+1s" values="#ADD8E6;#FFA07A;#ADD8E6" dur="2s" repeatCount="indefinite" id="pulse_60"/>
+         <line x1="80" y1="-120" x2="0" y2="-20" stroke="black" stroke-width="2" transform="translate(70,-100)"/>
+      </g>
+
+      <g id="right_right_subtree" transform="translate(80, 100)">
+         <text x="0" y="-30" class="label">Right Child</text>
+        <use xlink:href="#node_base" id="node_80" fill="#ADD8E6"/>
+        <text x="0" y="5" class="node">80</text>
+        <animate attributeName="fill" begin="pulse_60.end+1s" values="#ADD8E6;#FFA07A;#ADD8E6" dur="2s" repeatCount="indefinite" id="pulse_80"/>
+        <line x1="-80" y1="-120" x2="0" y2="-20" stroke="black" stroke-width="2" transform="translate(-70,-100)"/>
+      </g>
+
+    </g>
+  </g>
+  <text x="400" y="550" class="label">Binary Search Tree</text>
+</svg>

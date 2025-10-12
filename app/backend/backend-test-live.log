@@ -1,0 +1,2074 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 14:32:13 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T09:32:14.431Z [debug] NEW Plan worker created
+2025-10-11T09:32:14.432Z [debug] NEW Gen worker created
+2025-10-11T09:32:14.432Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T09:32:14.436Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-11T09:32:52.572Z [debug] Received request on /api/query {"body":{"query":"water"}}
+2025-10-11T09:32:52.572Z [debug] [api] Stored query for session d90a8342-3997-4403-92d3-35e05278bf25: "water"
+2025-10-11T09:32:52.572Z [debug] [orchestrator] Enqueuing plan for session d90a8342-3997-4403-92d3-35e05278bf25
+2025-10-11T09:32:52.573Z [debug] [orchestrator] Plan job added with id 3 for session d90a8342-3997-4403-92d3-35e05278bf25
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: d90a8342-3997-4403-92d3-35e05278bf25
+Query: water
+Time: 2025-10-11T09:32:52.574Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T09:32:52.574Z [debug] [plan] START: session=d90a8342-3997-4403-92d3-35e05278bf25 query=water
+2025-10-11T09:32:52.574Z [debug] [monitor] Started tracking request d90a8342-3997-4403-92d3-35e05278bf25
+2025-10-11T09:32:52.575Z [debug] [cache] MISS - No cached plan for query: "water..."
+2025-10-11T09:32:52.575Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-11T09:32:52.583Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-11T09:32:52.603Z [debug] [socket] New connection: kJ8NpH1ctcpBsaaVAAAB
+2025-10-11T09:32:52.604Z [debug] [socket] Socket kJ8NpH1ctcpBsaaVAAAB joined session d90a8342-3997-4403-92d3-35e05278bf25
+2025-10-11T09:32:52.604Z [debug] [socket] Socket kJ8NpH1ctcpBsaaVAAAB is now in rooms: kJ8NpH1ctcpBsaaVAAAB, d90a8342-3997-4403-92d3-35e05278bf25
+2025-10-11T09:33:02.569Z [debug] [planner] Received response from Gemini in 9994ms
+2025-10-11T09:33:02.570Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-11T09:33:02.570Z [debug] [monitor] Plan generation for d90a8342-3997-4403-92d3-35e05278bf25 took 9995ms
+2025-10-11T09:33:02.570Z [debug] [cache] Cached plan for query: "water..."
+=== NEW STRUCTURED PLAN ===
+Session: d90a8342-3997-4403-92d3-35e05278bf25
+Query: water
+Plan title: Water: Life's Essential Molecule
+Plan subtitle: Discover why water's unique molecular structure makes it essential for all life and countless processes.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: "Water's 'stickiness' and amazing ability to dissolve almost anything."
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: "Water's bent, unevenly charged shape (polarity) creates powerful 'hydrogen bonds'."
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'These properties enable life, regulate climate, and power industries.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a single drop of water. It beads up on surfaces, sticks to itself forming puddles, and seems to 'pull' dirt off your hands. This isn't magic; it's because water molecules are tiny, powerful magnets. They're attracted to each other and to many other substances, allowing them to cling, flow, and dissolve almost anything over time, creating the oceans and transporting vital nutrients everywhere."
+Step 1: id=2, tag=mechanics, desc="Zoom into a single water molecule (H₂O). It looks like Mickey Mouse's head: one large oxygen atom with two smaller hydrogen atoms attached, forming a V-shape. Crucially, the oxygen pulls electrons much more strongly than hydrogen, making the oxygen side slightly negative and the hydrogen sides slightly positive. This uneven charge makes water a 'polar' molecule. The positive hydrogen of one water molecule is strongly attracted to the negative oxygen of another, forming a 'hydrogen bond.' These weak but numerous bonds constantly form and break, giving water its incredible cohesion, high surface tension, and ability to dissolve a vast array of other polar substances."
+Step 2: id=3, tag=applications, desc="Water's polarity and hydrogen bonds are the bedrock of life. They allow blood to transport nutrients and oxygen throughout our bodies, sap to rise against gravity in tall trees, and cells to maintain their structure. As a 'universal solvent,' water cleanses our bodies and environment. On a global scale, these properties regulate Earth's temperature by absorbing and releasing heat slowly, creating stable climates. In industry, water is vital for cooling, cleaning, and chemical reactions, all thanks to those tiny, powerful molecular magnets that make it behave like nothing else."
+=== END NEW STRUCTURED PLAN ===
+2025-10-11T09:33:02.571Z [debug] [plan] OK: session=d90a8342-3997-4403-92d3-35e05278bf25 plan received with 3 steps
+2025-10-11T09:33:02.571Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-11T09:33:02.572Z [debug] [plan] END: session=d90a8342-3997-4403-92d3-35e05278bf25
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 3
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: d90a8342-3997-4403-92d3-35e05278bf25
+Query: water
+Steps to generate: 3
+Time: 2025-10-11T09:33:02.574Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T09:33:02.574Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: d90a8342-3997-4403-92d3-35e05278bf25)
+2025-10-11T09:33:02.575Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-11T09:33:02.575Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-11T09:33:02.575Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-11T09:33:02.575Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-11T09:33:02.575Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-11T09:33:02.576Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 1: intuition
+2025-10-11T09:33:02.576Z [info] [codegenV3] Topic: "water"
+2025-10-11T09:33:02.576Z [info] [codegenV3] Step: "Imagine a single drop of water. It beads up on surfaces, sticks to itself forming puddles, and seems to 'pull' dirt off your hands. This isn't magic; it's because water molecules are tiny, powerful magnets. They're attracted to each other and to many other substances, allowing them to cling, flow, and dissolve almost anything over time, creating the oceans and transporting vital nutrients everywhere."
+2025-10-11T09:33:02.576Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:33:02.576Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-11T09:33:02.576Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-11T09:33:02.576Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 2: mechanics
+2025-10-11T09:33:02.576Z [info] [codegenV3] Topic: "water"
+2025-10-11T09:33:02.576Z [info] [codegenV3] Step: "Zoom into a single water molecule (H₂O). It looks like Mickey Mouse's head: one large oxygen atom with two smaller hydrogen atoms attached, forming a V-shape. Crucially, the oxygen pulls electrons much more strongly than hydrogen, making the oxygen side slightly negative and the hydrogen sides slightly positive. This uneven charge makes water a 'polar' molecule. The positive hydrogen of one water molecule is strongly attracted to the negative oxygen of another, forming a 'hydrogen bond.' These weak but numerous bonds constantly form and break, giving water its incredible cohesion, high surface tension, and ability to dissolve a vast array of other polar substances."
+2025-10-11T09:33:02.576Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:33:02.576Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-11T09:33:02.576Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-11T09:33:02.576Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 3: applications
+2025-10-11T09:33:02.576Z [info] [codegenV3] Topic: "water"
+2025-10-11T09:33:02.576Z [info] [codegenV3] Step: "Water's polarity and hydrogen bonds are the bedrock of life. They allow blood to transport nutrients and oxygen throughout our bodies, sap to rise against gravity in tall trees, and cells to maintain their structure. As a 'universal solvent,' water cleanses our bodies and environment. On a global scale, these properties regulate Earth's temperature by absorbing and releasing heat slowly, creating stable climates. In industry, water is vital for cooling, cleaning, and chemical reactions, all thanks to those tiny, powerful molecular magnets that make it behave like nothing else."
+2025-10-11T09:33:02.576Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:33:12.062Z [info] [planVisualsEnhanced] Received 1696 chars
+2025-10-11T09:33:12.062Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "A central red Oxygen atom (δ-) covalently bonded to two smaller white Hydrogen atoms (δ+), forming a bent H2O molecule. Dashed light blue lines extend from the δ+ H of one water molecule to the δ- O of adjacent molecules, illustrating the network of hydrogen bonds. Labels: 'Oxygen (δ-)', 'Hydrogen (δ+)', 'Hydrogen Bond'.",
+    "type": "static"
+  },
+  {
+    "description": "Numerous blue-and-white H2O molecules actively 'flow' and surround a purple ionic compound 
+2025-10-11T09:33:12.062Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:33:12.062Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:33:12.062Z [info] [codegenV3]   📐 [static] Spec 1: A central red Oxygen atom (δ-) covalently bonded to two smaller white Hydrogen a...
+2025-10-11T09:33:12.062Z [info] [codegenV3]   🎬 [flow] Spec 2: Numerous blue-and-white H2O molecules actively 'flow' and surround a purple ioni...
+2025-10-11T09:33:12.062Z [info] [codegenV3]   📐 [static] Spec 3: A thin transparent glass capillary tube stands in a beaker of water. The water l...
+2025-10-11T09:33:12.062Z [info] [codegenV3]   🎬 [pulse] Spec 4: A cluster of interconnected water molecules (red oxygen, white hydrogen) vibrate...
+2025-10-11T09:33:12.062Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:33:12.062Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:33:12.062Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:33:12.062Z [info] [codegenV3]   🎬 Animation 2: Generating flow animation...
+2025-10-11T09:33:12.062Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:33:12.062Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:33:12.062Z [info] [codegenV3]   🎬 Animation 4: Generating pulse animation...
+2025-10-11T09:33:12.074Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:33:12.074Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:33:12.074Z [info] [SVG-ANIMATION] Description: Numerous blue-and-white H2O molecules actively 'flow' and surround a purple ionic compound (e.g., Na...
+2025-10-11T09:33:12.074Z [info] [SVG-ANIMATION] Attempt 1/2 for "pulse" animation
+2025-10-11T09:33:12.074Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:33:12.074Z [info] [SVG-ANIMATION] Description: A cluster of interconnected water molecules (red oxygen, white hydrogen) vibrates slowly. As a glowi...
+2025-10-11T09:33:13.443Z [info] [planVisualsEnhanced] Received 1641 chars
+2025-10-11T09:33:13.443Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "A single water molecule (H₂O) is shown. A large red sphere (Oxygen, O) is centrally located, bonded to two smaller white spheres (Hydrogen, H) forming a 104.5° V-shape. Partial negative charge (δ-) is labeled on the Oxygen, and partial positive charge (δ+) on each Hydrogen, illustrating its polar nature.",
+    "type": "static"
+  },
+  {
+    "description": "Two water molecules are displayed. The positively charged hydrogen atom (small white sphere, δ+) of one mole
+2025-10-11T09:33:13.443Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:33:13.443Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:33:13.443Z [info] [codegenV3]   📐 [static] Spec 1: A single water molecule (H₂O) is shown. A large red sphere (Oxygen, O) is centra...
+2025-10-11T09:33:13.443Z [info] [codegenV3]   🎬 [pulse] Spec 2: Two water molecules are displayed. The positively charged hydrogen atom (small w...
+2025-10-11T09:33:13.443Z [info] [codegenV3]   📐 [static] Spec 3: An array of four water molecules (red Oxygen, white Hydrogen) are depicted, arra...
+2025-10-11T09:33:13.443Z [info] [codegenV3]   🎬 [flow] Spec 4: Several water molecules (red Oxygen, white Hydrogen) are shown in constant, flui...
+2025-10-11T09:33:13.443Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:33:13.443Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:33:13.443Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:33:13.443Z [info] [codegenV3]   🎬 Animation 2: Generating pulse animation...
+2025-10-11T09:33:13.443Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:33:13.443Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:33:13.444Z [info] [codegenV3]   🎬 Animation 4: Generating flow animation...
+2025-10-11T09:33:13.444Z [info] [SVG-ANIMATION] Attempt 1/2 for "pulse" animation
+2025-10-11T09:33:13.444Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:33:13.445Z [info] [SVG-ANIMATION] Description: Two water molecules are displayed. The positively charged hydrogen atom (small white sphere, δ+) of ...
+2025-10-11T09:33:13.445Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:33:13.445Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:33:13.445Z [info] [SVG-ANIMATION] Description: Several water molecules (red Oxygen, white Hydrogen) are shown in constant, fluid motion. As they mo...
+2025-10-11T09:33:14.146Z [info] [planVisualsEnhanced] Received 1664 chars
+2025-10-11T09:33:14.146Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "A central red sphere (Oxygen) bonded to two smaller white spheres (Hydrogen), forming a bent H2O molecule. Partial negative charge (δ-) is clearly indicated on Oxygen, and partial positive charges (δ+) on Hydrogens, illustrating the molecule's \"magnetic\" polarity. Lines represent covalent bonds.",
+    "type": "static"
+  },
+  {
+    "description": "Multiple bent H2O molecules (red Oxygen, white Hydrogen) are shown in a close, flowing aggregation. Dotted lines or
+2025-10-11T09:33:14.146Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:33:14.146Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:33:14.146Z [info] [codegenV3]   📐 [static] Spec 1: A central red sphere (Oxygen) bonded to two smaller white spheres (Hydrogen), fo...
+2025-10-11T09:33:14.146Z [info] [codegenV3]   🎬 [flow] Spec 2: Multiple bent H2O molecules (red Oxygen, white Hydrogen) are shown in a close, f...
+2025-10-11T09:33:14.146Z [info] [codegenV3]   📐 [static] Spec 3: A blue spherical water droplet rests on a flat green surface. Within the droplet...
+2025-10-11T09:33:14.146Z [info] [codegenV3]   🎬 [flow] Spec 4: A larger, brown solute particle is shown being surrounded by flowing H2O molecul...
+2025-10-11T09:33:14.146Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:33:14.147Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:33:14.147Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:33:14.147Z [info] [codegenV3]   🎬 Animation 2: Generating flow animation...
+2025-10-11T09:33:14.147Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:33:14.147Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:33:14.147Z [info] [codegenV3]   🎬 Animation 4: Generating flow animation...
+2025-10-11T09:33:14.147Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:33:14.147Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:33:14.147Z [info] [SVG-ANIMATION] Description: Multiple bent H2O molecules (red Oxygen, white Hydrogen) are shown in a close, flowing aggregation. ...
+2025-10-11T09:33:14.148Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:33:14.148Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:33:14.149Z [info] [SVG-ANIMATION] Description: A larger, brown solute particle is shown being surrounded by flowing H2O molecules (red Oxygen, whit...
+2025-10-11T09:33:14.431Z [debug] [monitor] Metrics updated:
+2025-10-11T09:33:29.330Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:29.330Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:29.331Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:29.331Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:29.331Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:29.332Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:29.332Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:29.332Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:33:29.332Z [info] [SVG-ANIMATION] Attempt 2/2 for "pulse" animation
+2025-10-11T09:33:29.332Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:33:29.332Z [info] [SVG-ANIMATION] Description: A cluster of interconnected water molecules (red oxygen, white hydrogen) vibrates slowly. As a glowi...
+2025-10-11T09:33:30.475Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:30.475Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:30.475Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:30.475Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:30.475Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:30.475Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:30.475Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:30.475Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:33:30.475Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:33:30.475Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:33:30.475Z [info] [SVG-ANIMATION] Description: Numerous blue-and-white H2O molecules actively 'flow' and surround a purple ionic compound (e.g., Na...
+2025-10-11T09:33:31.675Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:31.675Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:31.675Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:31.675Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:31.675Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:31.675Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:31.675Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:31.675Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:33:31.675Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:33:31.675Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:33:31.675Z [info] [SVG-ANIMATION] Description: Several water molecules (red Oxygen, white Hydrogen) are shown in constant, fluid motion. As they mo...
+2025-10-11T09:33:32.074Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:32.074Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:32.074Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:32.074Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:32.074Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:32.074Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:32.074Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:32.074Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:33:32.074Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:33:32.074Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:33:32.074Z [info] [SVG-ANIMATION] Description: A larger, brown solute particle is shown being surrounded by flowing H2O molecules (red Oxygen, whit...
+2025-10-11T09:33:32.818Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:32.818Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:32.818Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:32.818Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:32.818Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:32.818Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:32.818Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:32.818Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:33:32.818Z [info] [SVG-ANIMATION] Attempt 2/2 for "pulse" animation
+2025-10-11T09:33:32.818Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:33:32.819Z [info] [SVG-ANIMATION] Description: Two water molecules are displayed. The positively charged hydrogen atom (small white sphere, δ+) of ...
+2025-10-11T09:33:33.617Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:33.617Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:33.617Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:33.617Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:33.617Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:33.617Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:33.617Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:33.617Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:33:33.617Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:33:33.617Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:33:33.617Z [info] [SVG-ANIMATION] Description: Multiple bent H2O molecules (red Oxygen, white Hydrogen) are shown in a close, flowing aggregation. ...
+2025-10-11T09:33:39.019Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:33:39.020Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:33:39.020Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:33:39.020Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:33:39.020Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:33:39.020Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:33:39.020Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:33:39.020Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:33:39.020Z [info] [SVG-COMPLETE] Attempt 2/2 for section 2
+2025-10-11T09:33:41.850Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:33:41.850Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:33:41.850Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:33:41.850Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:33:41.850Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:33:41.850Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:33:41.850Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:33:41.850Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:33:41.850Z [info] [SVG-COMPLETE] Attempt 2/2 for section 2
+2025-10-11T09:33:42.890Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:33:42.890Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:33:42.890Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:33:42.890Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:33:42.890Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:33:42.890Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:33:42.890Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:33:42.890Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:33:42.890Z [info] [SVG-COMPLETE] Attempt 2/2 for section 0
+2025-10-11T09:33:43.797Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:33:43.797Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:33:43.797Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:33:43.797Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:33:43.797Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:33:43.797Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:33:43.797Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:33:43.797Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:33:43.797Z [info] [SVG-COMPLETE] Attempt 2/2 for section 0
+2025-10-11T09:33:44.275Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:33:44.276Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:33:44.276Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:33:44.276Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:33:44.276Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:33:44.276Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:33:44.276Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:33:44.276Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:33:44.276Z [info] [SVG-COMPLETE] Attempt 2/2 for section 2
+2025-10-11T09:33:44.980Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:33:44.980Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:33:44.980Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:33:44.980Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:33:44.980Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:33:44.980Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:33:44.980Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:33:44.980Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:33:44.980Z [info] [SVG-COMPLETE] Attempt 2/2 for section 0
+2025-10-11T09:33:48.514Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:48.514Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:48.514Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:48.514Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:48.514Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:48.514Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:48.514Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:48.514Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:33:48.514Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:33:48.688Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:48.689Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:48.689Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:48.689Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:48.689Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:48.689Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:48.689Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:48.689Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:33:48.689Z [error] [codegenV3]   Visual 2: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:33:52.180Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:52.180Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:52.180Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:52.180Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:52.180Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:52.180Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:52.180Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:52.180Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:33:52.180Z [error] [codegenV3]   Visual 2: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:33:53.298Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:53.298Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:53.298Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:53.298Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:53.298Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:53.298Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:53.298Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:53.298Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:33:53.299Z [error] [codegenV3]   Visual 2: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:33:53.881Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:53.882Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:53.882Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:53.882Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:53.882Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:53.882Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:53.882Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:53.882Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:33:53.882Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:33:59.672Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:33:59.672Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:33:59.672Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:33:59.672Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:33:59.672Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:33:59.672Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:33:59.672Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:33:59.672Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:33:59.672Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:34:04.720Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:34:04.720Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:34:04.720Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:34:04.720Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:34:04.720Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:34:04.720Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:34:04.721Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:34:04.721Z [error] [SVG-COMPLETE] Attempt 2 failed: Failed to generate valid SVG
+2025-10-11T09:34:04.721Z [error] [codegenV3]   Visual 3: ❌ Failed - Failed to generate valid SVG
+2025-10-11T09:34:06.423Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:34:06.424Z [info] [SVG-COMPLETE] Received 2953 chars
+2025-10-11T09:34:06.424Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ADD8E6"/>
+      <stop offset="100%" stop-color="#4682B4"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="400" width="800" height="200" fill="#32CD32"/>
+  <text x="650" y="450" font-size="20" fill="#333">Surface</text>
+
+  <ellipse cx="400" cy="350" rx="150" ry="100" fill="url(#waterGradient)
+2025-10-11T09:34:06.424Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:34:06.424Z [info] [SVG-COMPLETE] Quality Score: 100/100
+2025-10-11T09:34:06.424Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 100
+2025-10-11T09:34:06.424Z [info] [codeVisual] ✅ Generated complete SVG (2953 chars)
+2025-10-11T09:34:06.424Z [info] [codeVisual] Quality score: 100/100
+2025-10-11T09:34:06.424Z [info] [codegenV3]   Static 3: ✅ Generated complete SVG
+2025-10-11T09:34:12.911Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:34:12.911Z [info] [SVG-COMPLETE] Received 1954 chars
+2025-10-11T09:34:12.911Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Water Molecule (H2O) Title -->
+  <text x="400" y="80" text-anchor="middle" font-size="36" font-weight="bold" fill="#333333">Water Molecule (H<tspan baseline-shift="sub" font-size="0.7em">2</tspan>O)</text>
+
+  <!-- Oxygen Atom (Central Red Sphere) -->
+  <circle cx="400" cy="300" r="60" fill="#D00000" stroke="#8B0000" stroke-width="3"/>
+  <text x="400" y="200" text-anchor="middle" font-size="20" fill="#3333
+2025-10-11T09:34:12.911Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:34:12.911Z [error] [SVG-COMPLETE] Output was: <?xml version="1.0"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Water Molecule (H2O) Title -->
+  <text x="400" y="80" text-anchor="middle" font-size="36" font-weight="bold" fill="#333333">Water Molecule (H<tspan baseline-shift="sub" font-size="0.7em">2</tspan>O)</text>
+
+  <!-- Oxygen Atom (Central Red Sphere) -->
+  <circle cx="400" cy="300" r="60" fill="#D00000" stroke="#8B0000" stroke-width="3"/>
+  <text x="400" y="200" text-anchor="middle" font-size="20" fill="#333333">Oxygen</text>
+
+  <!-- Hydrogen Atoms (Smaller White Spheres) -->
+  <circle cx="321" cy="361" r="35" fill="#FFFFFF" stroke="#666666" stroke-width="2"/>
+  <circle cx="479" cy="361" r="35" fill="#FFFFFF" stroke="#666666" stroke-width="2"/>
+  <text x="260" y="361" text-anchor="middle" font-size="20" fill="#333333">Hydrogen</text>
+
+  <!-- Covalent Bonds -->
+  <line x1="400" y1="300" x2="321" y2="361" stroke="#333333" stroke-width="5"/>
+  <line x1="400" y1="300" x2="479" y2="361" stroke="#333333" 
+2025-10-11T09:34:12.911Z [info] [SVG-COMPLETE] Quality Score: 66/100
+2025-10-11T09:34:12.912Z [warn] [SVG-COMPLETE] Issues: SVG not properly closed
+2025-10-11T09:34:12.912Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 66
+2025-10-11T09:34:12.912Z [info] [codeVisual] ✅ Generated complete SVG (1954 chars)
+2025-10-11T09:34:12.912Z [info] [codeVisual] Quality score: 66/100
+2025-10-11T09:34:12.912Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:34:12.912Z [info] [codegenV3] 📊 Visual Success Rate: 2/4 (50%)
+2025-10-11T09:34:12.912Z [warn] [codegenV3] ⚠️ PARTIAL SUCCESS: 50% of visuals succeeded (2 failed)
+2025-10-11T09:34:12.912Z [info] [codegenV3]   Adding 1 operations from visual 1
+2025-10-11T09:34:12.912Z [info] [codegenV3]   Adding 1 operations from visual 3
+2025-10-11T09:34:12.912Z [warn] [codegenV3] ⚠️ Low operation count: 4 (minimum: 20)
+2025-10-11T09:34:12.912Z [warn] [codegenV3]   Accepting due to 50% success rate
+2025-10-11T09:34:12.912Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:34:12.912Z [info] [codegenV3] ✅ COMPLETE SVG PIPELINE (ALL VISUALS AS SVG)
+2025-10-11T09:34:12.912Z [info] [codegenV3] ⏱️  Time: 70.34s
+2025-10-11T09:34:12.912Z [info] [codegenV3] 📊 Specifications: 4 (2 static, 2 animations)
+2025-10-11T09:34:12.912Z [info] [codegenV3] 🎨 Total Actions: 4 (ALL customSVG)
+2025-10-11T09:34:12.912Z [info] [codegenV3] 🎯 100% Complete SVG Generation (NO operations, NO overlaps)
+2025-10-11T09:34:12.912Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:34:12.912Z [info] [codegenV3] SVG Documents: 2, Delays: 2
+2025-10-11T09:34:12.912Z [info] [codegenV3] Total SVG Code: 4.79 KB
+2025-10-11T09:34:12.912Z [info] [codegenV3WithRetry] ✅ Attempt 1 SUCCESS: 6 operations
+2025-10-11T09:34:12.912Z [debug] compilerRouter: routing to js
+2025-10-11T09:34:12.912Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-11T09:34:12.912Z [debug] [debugger] Chunk type: actions
+2025-10-11T09:34:12.912Z [debug] [debugger] Has actions: true
+2025-10-11T09:34:12.912Z [debug] [debugger] Actions count: 6
+2025-10-11T09:34:12.912Z [debug] [debugger] Chunk is valid with 6 actions, allowing all for rich visualizations
+2025-10-11T09:34:12.913Z [debug] [cache] Cached chunk for query step 1
+2025-10-11T09:34:12.913Z [debug] [monitor] Step 1 generation for d90a8342-3997-4403-92d3-35e05278bf25 took 70338ms
+2025-10-11T09:34:12.913Z [info] [parallel] ✅ Step 1 COMPLETE in 70338ms with 6 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: d90a8342-3997-4403-92d3-35e05278bf25
+StepId: 1
+Actions: 6
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T09:34:12.913Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-11T09:34:14.433Z [debug] [monitor] Metrics updated:
+2025-10-11T09:34:14.689Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:34:14.689Z [info] [SVG-COMPLETE] Received 1193 chars
+2025-10-11T09:34:14.689Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?><svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Oxygen (O) - Large Red Sphere -->
+  <circle cx="400" cy="300" r="80" fill="#E00000"/>
+
+  <!-- Hydrogen 1 (H) - Smaller White Sphere -->
+  <circle cx="308.2" cy="181.5" r="50" fill="#FFFFFF" stroke="#333" stroke-width="2"/>
+  <!-- Hydrogen 2 (H) - Smaller White Sphere -->
+  <circle cx="491.8" cy="181.5" r="50" fill="#FFFFFF" stroke="#333" stroke-width="2"/>
+
+  <!-- Covalent Bonds (lines connecting O to H at
+2025-10-11T09:34:14.689Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:34:14.689Z [error] [SVG-COMPLETE] Output was: <?xml version="1.0"?><svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Oxygen (O) - Large Red Sphere -->
+  <circle cx="400" cy="300" r="80" fill="#E00000"/>
+
+  <!-- Hydrogen 1 (H) - Smaller White Sphere -->
+  <circle cx="308.2" cy="181.5" r="50" fill="#FFFFFF" stroke="#333" stroke-width="2"/>
+  <!-- Hydrogen 2 (H) - Smaller White Sphere -->
+  <circle cx="491.8" cy="181.5" r="50" fill="#FFFFFF" stroke="#333" stroke-width="2"/>
+
+  <!-- Covalent Bonds (lines connecting O to H atoms) -->
+  <line x1="400" y1="300" x2="308.2" y2="181.5" stroke="#333" stroke-width="5"/>
+  <line x1="400" y1="300" x2="491.8" y2="181.5" stroke="#333" stroke-width="5"/>
+
+  <!-- Angle Arc (illustrating the 104.5° V-shape) -->
+  <path d="M 338.8 221 A 100 100 0 0 1 461.2 221" fill="none" stroke="#666" stroke-width="2"/>
+
+  <!-- Text Labels -->
+  <text x="400" y="50" font-family="Arial" font-size="30" text-anchor="middle" fill="#333">Water Molecule (H₂O)</text>
+  <text x="400" y="390" font-family
+2025-10-11T09:34:14.689Z [info] [SVG-COMPLETE] Quality Score: 58/100
+2025-10-11T09:34:14.689Z [warn] [SVG-COMPLETE] Issues: SVG not properly closed
+2025-10-11T09:34:14.689Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 58
+2025-10-11T09:34:14.689Z [info] [codeVisual] ✅ Generated complete SVG (1189 chars)
+2025-10-11T09:34:14.689Z [info] [codeVisual] Quality score: 58/100
+2025-10-11T09:34:14.689Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:34:14.689Z [info] [codegenV3] 📊 Visual Success Rate: 1/4 (25%)
+2025-10-11T09:34:14.689Z [error] [codegenV3] ❌ FAILED: Success rate 25% is below minimum 40%
+2025-10-11T09:34:14.689Z [error] [codegenV3]   Successful: 1, Failed: 3
+2025-10-11T09:34:14.689Z [warn] [codegenV3WithRetry] ⚠️ Attempt 1 insufficient, retrying in 3000ms...
+2025-10-11T09:34:14.689Z [warn] [codegenV3WithRetry] Result was: null
+2025-10-11T09:34:14.868Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:34:14.868Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:34:14.869Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:34:14.869Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:34:14.869Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:34:14.869Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:34:14.869Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:34:14.869Z [error] [SVG-COMPLETE] Attempt 2 failed: Failed to generate valid SVG
+2025-10-11T09:34:14.869Z [error] [codegenV3]   Visual 1: ❌ Failed - Failed to generate valid SVG
+2025-10-11T09:34:17.692Z [info] [codegenV3WithRetry] 🔄 Attempt 2/3 for step 2
+2025-10-11T09:34:17.692Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 2: mechanics
+2025-10-11T09:34:17.692Z [info] [codegenV3] Topic: "water"
+2025-10-11T09:34:17.692Z [info] [codegenV3] Step: "Zoom into a single water molecule (H₂O). It looks like Mickey Mouse's head: one large oxygen atom with two smaller hydrogen atoms attached, forming a V-shape. Crucially, the oxygen pulls electrons much more strongly than hydrogen, making the oxygen side slightly negative and the hydrogen sides slightly positive. This uneven charge makes water a 'polar' molecule. The positive hydrogen of one water molecule is strongly attracted to the negative oxygen of another, forming a 'hydrogen bond.' These weak but numerous bonds constantly form and break, giving water its incredible cohesion, high surface tension, and ability to dissolve a vast array of other polar substances."
+2025-10-11T09:34:17.692Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:34:22.421Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:34:22.421Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:34:22.421Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:34:22.421Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:34:22.421Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:34:22.421Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:34:22.421Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:34:22.421Z [error] [SVG-COMPLETE] Attempt 2 failed: Failed to generate valid SVG
+2025-10-11T09:34:22.421Z [error] [codegenV3]   Visual 3: ❌ Failed - Failed to generate valid SVG
+2025-10-11T09:34:22.422Z [info] [codegenV3] 📊 Visual Success Rate: 0/4 (0%)
+2025-10-11T09:34:22.422Z [error] [codegenV3] ❌ FAILED: Success rate 0% is below minimum 40%
+2025-10-11T09:34:22.422Z [error] [codegenV3]   Successful: 0, Failed: 4
+2025-10-11T09:34:22.422Z [warn] [codegenV3WithRetry] ⚠️ Attempt 1 insufficient, retrying in 3000ms...
+2025-10-11T09:34:22.422Z [warn] [codegenV3WithRetry] Result was: null
+2025-10-11T09:34:25.423Z [info] [codegenV3WithRetry] 🔄 Attempt 2/3 for step 3
+2025-10-11T09:34:25.423Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 3: applications
+2025-10-11T09:34:25.423Z [info] [codegenV3] Topic: "water"
+2025-10-11T09:34:25.423Z [info] [codegenV3] Step: "Water's polarity and hydrogen bonds are the bedrock of life. They allow blood to transport nutrients and oxygen throughout our bodies, sap to rise against gravity in tall trees, and cells to maintain their structure. As a 'universal solvent,' water cleanses our bodies and environment. On a global scale, these properties regulate Earth's temperature by absorbing and releasing heat slowly, creating stable climates. In industry, water is vital for cooling, cleaning, and chemical reactions, all thanks to those tiny, powerful molecular magnets that make it behave like nothing else."
+2025-10-11T09:34:25.423Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:34:30.499Z [info] [planVisualsEnhanced] Received 1658 chars
+2025-10-11T09:34:30.499Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "A central large red sphere (Oxygen) with two smaller white spheres (Hydrogen) attached at 104.5° angle, forming a V-shape. Label 'O' and 'H'. Indicate partial negative charge (δ-) on Oxygen and partial positive charge (δ+) on each Hydrogen, emphasizing the molecule's inherent polarity due to uneven electron distribution.",
+    "type": "static"
+  },
+  {
+    "description": "A water molecule (red Oxygen, white Hydrogens). Small, rapidly moving yellow dots (electron
+2025-10-11T09:34:30.499Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:34:30.499Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:34:30.499Z [info] [codegenV3]   📐 [static] Spec 1: A central large red sphere (Oxygen) with two smaller white spheres (Hydrogen) at...
+2025-10-11T09:34:30.499Z [info] [codegenV3]   🎬 [pulse] Spec 2: A water molecule (red Oxygen, white Hydrogens). Small, rapidly moving yellow dot...
+2025-10-11T09:34:30.499Z [info] [codegenV3]   📐 [static] Spec 3: Three water molecules are depicted. The positive hydrogen (small white sphere, δ...
+2025-10-11T09:34:30.499Z [info] [codegenV3]   🎬 [flow] Spec 4: A cluster of 8-10 water molecules (red O, white H) exhibits `flow` animation. Mo...
+2025-10-11T09:34:30.499Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:34:30.500Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:34:30.500Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:34:30.500Z [info] [codegenV3]   🎬 Animation 2: Generating pulse animation...
+2025-10-11T09:34:30.500Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:34:30.500Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:34:30.500Z [info] [codegenV3]   🎬 Animation 4: Generating flow animation...
+2025-10-11T09:34:30.500Z [info] [SVG-ANIMATION] Attempt 1/2 for "pulse" animation
+2025-10-11T09:34:30.500Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:34:30.500Z [info] [SVG-ANIMATION] Description: A water molecule (red Oxygen, white Hydrogens). Small, rapidly moving yellow dots (electrons) initia...
+2025-10-11T09:34:30.500Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:34:30.500Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:34:30.500Z [info] [SVG-ANIMATION] Description: A cluster of 8-10 water molecules (red O, white H) exhibits `flow` animation. Molecules gently drift...
+2025-10-11T09:34:37.067Z [info] [planVisualsEnhanced] Received 1830 chars
+2025-10-11T09:34:37.067Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "A central red sphere (Oxygen, δ-) bonded to two smaller white spheres (Hydrogen, δ+), forming a bent H2O molecule. Dotted lines extend from δ+ hydrogens to δ- oxygens of surrounding H2O molecules, illustrating strong hydrogen bonds. Labels clearly indicate \"Partial Negative Charge (δ-)\", \"Partial Positive Charge (δ+)\", and \"Hydrogen Bond\", highlighting water's molecular magnetism.",
+    "type": "static"
+  },
+  {
+    "description": "A cluster of blue solute
+2025-10-11T09:34:37.067Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:34:37.067Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:34:37.067Z [info] [codegenV3]   📐 [static] Spec 1: A central red sphere (Oxygen, δ-) bonded to two smaller white spheres (Hydrogen,...
+2025-10-11T09:34:37.067Z [info] [codegenV3]   🎬 [flow] Spec 2: A cluster of blue solute ions (e.g., Na+ and Cl-) is immersed in a field of cons...
+2025-10-11T09:34:37.067Z [info] [codegenV3]   📐 [static] Spec 3: A stylized tall tree trunk with a narrow xylem vessel shown in cross-section. Wa...
+2025-10-11T09:34:37.067Z [info] [codegenV3]   🎬 [flow] Spec 4: Water molecules (red oxygen, white hydrogen) initially move with moderate kineti...
+2025-10-11T09:34:37.067Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:34:37.067Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:34:37.068Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:34:37.068Z [info] [codegenV3]   🎬 Animation 2: Generating flow animation...
+2025-10-11T09:34:37.068Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:34:37.068Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:34:37.068Z [info] [codegenV3]   🎬 Animation 4: Generating flow animation...
+2025-10-11T09:34:37.068Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:34:37.068Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:34:37.068Z [info] [SVG-ANIMATION] Description: A cluster of blue solute ions (e.g., Na+ and Cl-) is immersed in a field of constantly moving H2O mo...
+2025-10-11T09:34:37.068Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:34:37.068Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:34:37.068Z [info] [SVG-ANIMATION] Description: Water molecules (red oxygen, white hydrogen) initially move with moderate kinetic energy. As a "Heat...
+2025-10-11T09:34:50.088Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:34:50.088Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:34:50.088Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:34:50.088Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:34:50.088Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:34:50.088Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:34:50.088Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:34:50.088Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:34:50.088Z [info] [SVG-ANIMATION] Attempt 2/2 for "pulse" animation
+2025-10-11T09:34:50.089Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:34:50.089Z [info] [SVG-ANIMATION] Description: A water molecule (red Oxygen, white Hydrogens). Small, rapidly moving yellow dots (electrons) initia...
+2025-10-11T09:34:50.465Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:34:50.465Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:34:50.465Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:34:50.465Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:34:50.465Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:34:50.465Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:34:50.465Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:34:50.465Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:34:50.465Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:34:50.465Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:34:50.465Z [info] [SVG-ANIMATION] Description: A cluster of 8-10 water molecules (red O, white H) exhibits `flow` animation. Molecules gently drift...
+2025-10-11T09:34:53.901Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:34:53.901Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:34:53.901Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:34:53.901Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:34:53.901Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:34:53.901Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:34:53.901Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:34:53.901Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:34:53.901Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:34:53.901Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:34:53.901Z [info] [SVG-ANIMATION] Description: A cluster of blue solute ions (e.g., Na+ and Cl-) is immersed in a field of constantly moving H2O mo...
+2025-10-11T09:34:57.023Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:34:57.023Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:34:57.023Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:34:57.023Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:34:57.023Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:34:57.023Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:34:57.023Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:34:57.023Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:34:57.023Z [info] [SVG-COMPLETE] Attempt 2/2 for section 2
+2025-10-11T09:34:59.610Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:34:59.610Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:34:59.610Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:34:59.610Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:34:59.610Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:34:59.610Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:34:59.610Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:34:59.610Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:34:59.610Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:34:59.610Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:34:59.610Z [info] [SVG-ANIMATION] Description: Water molecules (red oxygen, white hydrogen) initially move with moderate kinetic energy. As a "Heat...
+2025-10-11T09:35:03.973Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:35:03.973Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:35:03.974Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:35:03.974Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:35:03.974Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:35:03.974Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:35:03.974Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:35:03.974Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:35:03.974Z [info] [SVG-COMPLETE] Attempt 2/2 for section 0
+2025-10-11T09:35:04.223Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:35:04.223Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:35:04.223Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:35:04.223Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:35:04.223Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:35:04.223Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:35:04.223Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:35:04.224Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:35:04.224Z [info] [SVG-COMPLETE] Attempt 2/2 for section 0
+2025-10-11T09:35:07.127Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:35:07.127Z [info] [SVG-COMPLETE] Received 2825 chars
+2025-10-11T09:35:07.127Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?><svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Tree Trunk -->
+  <rect x="100" y="50" width="200" height="500" fill="#8B4513" rx="20" ry="20"/>
+  <text x="150" y="40" font-size="20" fill="#333" font-family="Arial">Tree Trunk</text>
+
+  <!-- Xylem Vessel -->
+  <rect x="185" y="100" width="30" height="400" fill="#CC9966" stroke="#663300" stroke-width="2"/>
+  <text x="160" y="90" font-size="18" fill="#333" font-family="Arial">Xylem Vessel</text>
+
+  <!-- Wat
+2025-10-11T09:35:07.127Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:35:07.127Z [error] [SVG-COMPLETE] Output was: <?xml version="1.0"?><svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Tree Trunk -->
+  <rect x="100" y="50" width="200" height="500" fill="#8B4513" rx="20" ry="20"/>
+  <text x="150" y="40" font-size="20" fill="#333" font-family="Arial">Tree Trunk</text>
+
+  <!-- Xylem Vessel -->
+  <rect x="185" y="100" width="30" height="400" fill="#CC9966" stroke="#663300" stroke-width="2"/>
+  <text x="160" y="90" font-size="18" fill="#333" font-family="Arial">Xylem Vessel</text>
+
+  <!-- Water molecules (H2O) definition -->
+  <defs>
+    <g id="h2o">
+      <circle cx="0" cy="0" r="8" fill="#FF0000"/> <!-- Oxygen -->
+      <circle cx="-6" cy="6" r="4" fill="#FFFFFF"/> <!-- Hydrogen 1 -->
+      <circle cx="6" cy="6" r="4" fill="#FFFFFF"/> <!-- Hydrogen 2 -->
+    </g>
+  </defs>
+
+  <!-- Chain of H2O molecules rising -->
+  <use href="#h2o" x="200" y="470" transform="rotate(-15 200 470)"/>
+  <use href="#h2o" x="200" y="430" transform="rotate(5 200 430)"/>
+  <use href="#h2o" x="200" y="390
+2025-10-11T09:35:07.127Z [info] [SVG-COMPLETE] Quality Score: 90/100
+2025-10-11T09:35:07.128Z [warn] [SVG-COMPLETE] Issues: SVG not properly closed
+2025-10-11T09:35:07.128Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 90
+2025-10-11T09:35:07.128Z [info] [codeVisual] ✅ Generated complete SVG (2825 chars)
+2025-10-11T09:35:07.128Z [info] [codeVisual] Quality score: 90/100
+2025-10-11T09:35:07.128Z [info] [codegenV3]   Static 3: ✅ Generated complete SVG
+2025-10-11T09:35:07.665Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:35:07.665Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:35:07.665Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:35:07.666Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:35:07.666Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:35:07.666Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:35:07.666Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:35:07.666Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:35:07.666Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:35:07.850Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:35:07.850Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:35:07.850Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:35:07.850Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:35:07.850Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:35:07.850Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:35:07.850Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:35:07.850Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:35:07.850Z [error] [codegenV3]   Visual 2: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:35:10.828Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:35:10.828Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:35:10.828Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:35:10.828Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:35:10.828Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:35:10.828Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:35:10.828Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:35:10.828Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:35:10.828Z [error] [codegenV3]   Visual 2: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:35:14.434Z [debug] [monitor] Metrics updated:
+2025-10-11T09:35:18.232Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:35:18.232Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:35:18.232Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:35:18.232Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:35:18.232Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:35:18.232Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:35:18.232Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:35:18.232Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:35:18.232Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:35:24.703Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:35:24.703Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:35:24.703Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:35:24.703Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:35:24.704Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:35:24.704Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:35:24.704Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:35:24.704Z [error] [SVG-COMPLETE] Attempt 2 failed: Failed to generate valid SVG
+2025-10-11T09:35:24.704Z [error] [codegenV3]   Visual 3: ❌ Failed - Failed to generate valid SVG
+2025-10-11T09:35:31.355Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:35:31.355Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:35:31.355Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:35:31.355Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:35:31.355Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:35:31.355Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:35:31.355Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:35:31.355Z [error] [SVG-COMPLETE] Attempt 2 failed: Failed to generate valid SVG
+2025-10-11T09:35:31.356Z [error] [codegenV3]   Visual 1: ❌ Failed - Failed to generate valid SVG
+2025-10-11T09:35:31.356Z [info] [codegenV3] 📊 Visual Success Rate: 1/4 (25%)
+2025-10-11T09:35:31.356Z [error] [codegenV3] ❌ FAILED: Success rate 25% is below minimum 40%
+2025-10-11T09:35:31.356Z [error] [codegenV3]   Successful: 1, Failed: 3
+2025-10-11T09:35:31.356Z [warn] [codegenV3WithRetry] ⚠️ Attempt 2 insufficient, retrying in 6000ms...
+2025-10-11T09:35:31.356Z [warn] [codegenV3WithRetry] Result was: null
+2025-10-11T09:35:31.517Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:35:31.517Z [info] [SVG-COMPLETE] Received 2203 chars
+2025-10-11T09:35:31.517Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?><svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto-start-reverse">
+            <polygon points="0 0, 10 3.5, 0 7" fill="blue" />
+        </marker>
+    </defs>
+
+    <!-- Oxygen (O) atom -->
+    <circle cx="400" cy="280" r="60" fill="red" />
+    <text x="390" y="295" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="white">O</text>
+   
+2025-10-11T09:35:31.517Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:35:31.517Z [info] [SVG-COMPLETE] Quality Score: 88/100
+2025-10-11T09:35:31.517Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 88
+2025-10-11T09:35:31.517Z [info] [codeVisual] ✅ Generated complete SVG (2203 chars)
+2025-10-11T09:35:31.517Z [info] [codeVisual] Quality score: 88/100
+2025-10-11T09:35:31.517Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:35:31.517Z [info] [codegenV3] 📊 Visual Success Rate: 1/4 (25%)
+2025-10-11T09:35:31.517Z [error] [codegenV3] ❌ FAILED: Success rate 25% is below minimum 40%
+2025-10-11T09:35:31.517Z [error] [codegenV3]   Successful: 1, Failed: 3
+2025-10-11T09:35:31.517Z [warn] [codegenV3WithRetry] ⚠️ Attempt 2 insufficient, retrying in 6000ms...
+2025-10-11T09:35:31.517Z [warn] [codegenV3WithRetry] Result was: null
+2025-10-11T09:35:37.356Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 3
+2025-10-11T09:35:37.356Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 3: applications
+2025-10-11T09:35:37.356Z [info] [codegenV3] Topic: "water"
+2025-10-11T09:35:37.356Z [info] [codegenV3] Step: "Water's polarity and hydrogen bonds are the bedrock of life. They allow blood to transport nutrients and oxygen throughout our bodies, sap to rise against gravity in tall trees, and cells to maintain their structure. As a 'universal solvent,' water cleanses our bodies and environment. On a global scale, these properties regulate Earth's temperature by absorbing and releasing heat slowly, creating stable climates. In industry, water is vital for cooling, cleaning, and chemical reactions, all thanks to those tiny, powerful molecular magnets that make it behave like nothing else."
+2025-10-11T09:35:37.356Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:35:37.518Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 2
+2025-10-11T09:35:37.518Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 2: mechanics
+2025-10-11T09:35:37.518Z [info] [codegenV3] Topic: "water"
+2025-10-11T09:35:37.518Z [info] [codegenV3] Step: "Zoom into a single water molecule (H₂O). It looks like Mickey Mouse's head: one large oxygen atom with two smaller hydrogen atoms attached, forming a V-shape. Crucially, the oxygen pulls electrons much more strongly than hydrogen, making the oxygen side slightly negative and the hydrogen sides slightly positive. This uneven charge makes water a 'polar' molecule. The positive hydrogen of one water molecule is strongly attracted to the negative oxygen of another, forming a 'hydrogen bond.' These weak but numerous bonds constantly form and break, giving water its incredible cohesion, high surface tension, and ability to dissolve a vast array of other polar substances."
+2025-10-11T09:35:37.518Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:35:45.937Z [info] [planVisualsEnhanced] Received 1784 chars
+2025-10-11T09:35:45.938Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "A bent water molecule is depicted with a central red sphere (Oxygen) featuring a δ- partial negative charge, bonded to two smaller white spheres (Hydrogen) each with a δ+ partial positive charge. Dotted lines extend from Hydrogen atoms to an Oxygen of an adjacent molecule, and from the central Oxygen to a Hydrogen of another molecule, illustrating hydrogen bonds.",
+    "type": "static"
+  },
+  {
+    "description": "An animation showing a crystal lattice of blue p
+2025-10-11T09:35:45.938Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:35:45.938Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:35:45.938Z [info] [codegenV3]   📐 [static] Spec 1: A bent water molecule is depicted with a central red sphere (Oxygen) featuring a...
+2025-10-11T09:35:45.938Z [info] [codegenV3]   🎬 [flow] Spec 2: An animation showing a crystal lattice of blue positive ions and orange negative...
+2025-10-11T09:35:45.938Z [info] [codegenV3]   📐 [static] Spec 3: A cross-section of a plant stem's xylem vessel (green tube) demonstrates capilla...
+2025-10-11T09:35:45.938Z [info] [codegenV3]   🎬 [pulse] Spec 4: An animation showing a small group of water molecules (red Oxygen, white Hydroge...
+2025-10-11T09:35:45.938Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:35:45.938Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:35:45.938Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:35:45.942Z [info] [codegenV3]   🎬 Animation 2: Generating flow animation...
+2025-10-11T09:35:45.942Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:35:45.942Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:35:45.942Z [info] [codegenV3]   🎬 Animation 4: Generating pulse animation...
+2025-10-11T09:35:45.943Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:35:45.943Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:35:45.943Z [info] [SVG-ANIMATION] Description: An animation showing a crystal lattice of blue positive ions and orange negative ions dissolving in ...
+2025-10-11T09:35:45.943Z [info] [SVG-ANIMATION] Attempt 1/2 for "pulse" animation
+2025-10-11T09:35:45.943Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:35:45.943Z [info] [SVG-ANIMATION] Description: An animation showing a small group of water molecules (red Oxygen, white Hydrogen) vibrating gently ...
+2025-10-11T09:35:47.203Z [info] [planVisualsEnhanced] Received 1559 chars
+2025-10-11T09:35:47.203Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "A single water molecule (H₂O) is depicted as a large red sphere (Oxygen) bonded to two smaller white spheres (Hydrogen) in a V-shape. Labels show 'O' on the red sphere and 'H' on white spheres. Partial charges are indicated: 'δ-' on the Oxygen and 'δ+' on each Hydrogen, highlighting its polar nature.",
+    "type": "static"
+  },
+  {
+    "description": "Multiple water molecules, each rendered as a red oxygen and two white hydrogen atoms (V-shape, δ-/δ+), are shown
+2025-10-11T09:35:47.203Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:35:47.203Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:35:47.203Z [info] [codegenV3]   📐 [static] Spec 1: A single water molecule (H₂O) is depicted as a large red sphere (Oxygen) bonded ...
+2025-10-11T09:35:47.203Z [info] [codegenV3]   🎬 [flow] Spec 2: Multiple water molecules, each rendered as a red oxygen and two white hydrogen a...
+2025-10-11T09:35:47.203Z [info] [codegenV3]   📐 [static] Spec 3: An arrangement of five interconnected water molecules (red oxygen, white hydroge...
+2025-10-11T09:35:47.203Z [info] [codegenV3]   🎬 [orbit] Spec 4: A central, large positively charged ion (e.g., a blue sphere labeled 'Na+') is s...
+2025-10-11T09:35:47.203Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:35:47.203Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:35:47.203Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:35:47.203Z [info] [codegenV3]   🎬 Animation 2: Generating flow animation...
+2025-10-11T09:35:47.203Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:35:47.203Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:35:47.203Z [info] [codegenV3]   🎬 Animation 4: Generating orbit animation...
+2025-10-11T09:35:47.203Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:35:47.203Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:35:47.203Z [info] [SVG-ANIMATION] Description: Multiple water molecules, each rendered as a red oxygen and two white hydrogen atoms (V-shape, δ-/δ+...
+2025-10-11T09:35:47.204Z [info] [SVG-ANIMATION] Attempt 1/2 for "orbit" animation
+2025-10-11T09:35:47.204Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:35:47.204Z [info] [SVG-ANIMATION] Description: A central, large positively charged ion (e.g., a blue sphere labeled 'Na+') is surrounded by several...
+2025-10-11T09:35:52.603Z [debug] [socket] Socket kJ8NpH1ctcpBsaaVAAAB disconnected: client namespace disconnect
+2025-10-11T09:36:03.289Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:36:03.289Z [info] [SVG-COMPLETE] Received 1565 chars
+2025-10-11T09:36:03.289Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?><svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Oxygen Atom (Red Sphere) -->
+  <circle cx="400" cy="280" r="70" fill="#CC0000"/>
+  <!-- Hydrogen Atom 1 (White Sphere) -->
+  <circle cx="330" cy="350" r="40" fill="#EEEEEE" stroke="black" stroke-width="2"/>
+  <!-- Hydrogen Atom 2 (White Sphere) -->
+  <circle cx="470" cy="350" r="40" fill="#EEEEEE" stroke="black" stroke-width="2"/>
+
+  <!-- Covalent Bonds (lines) -->
+  <line x1="365" y1="315" x2="350" y2="33
+2025-10-11T09:36:03.289Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:36:03.289Z [info] [SVG-COMPLETE] Quality Score: 76/100
+2025-10-11T09:36:03.289Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 76
+2025-10-11T09:36:03.289Z [info] [codeVisual] ✅ Generated complete SVG (1565 chars)
+2025-10-11T09:36:03.289Z [info] [codeVisual] Quality score: 76/100
+2025-10-11T09:36:03.289Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:36:04.370Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:36:04.370Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:36:04.370Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:36:04.370Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:36:04.370Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:36:04.370Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:36:04.370Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:36:04.370Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:36:04.370Z [info] [SVG-ANIMATION] Attempt 2/2 for "pulse" animation
+2025-10-11T09:36:04.370Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:36:04.370Z [info] [SVG-ANIMATION] Description: An animation showing a small group of water molecules (red Oxygen, white Hydrogen) vibrating gently ...
+2025-10-11T09:36:04.448Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:36:04.448Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:36:04.448Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:36:04.448Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:36:04.448Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:36:04.448Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:36:04.448Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:36:04.448Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:36:04.448Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:36:04.448Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:36:04.448Z [info] [SVG-ANIMATION] Description: An animation showing a crystal lattice of blue positive ions and orange negative ions dissolving in ...
+2025-10-11T09:36:04.603Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:36:04.603Z [info] [SVG-ANIMATION] Received 116 chars
+2025-10-11T09:36:04.603Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Define
+2025-10-11T09:36:04.603Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:36:04.603Z [error] [SVG-ANIMATION] Output was: <?xml version="1.0"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Define
+2025-10-11T09:36:04.603Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:36:04.604Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:36:04.604Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:36:04.604Z [info] [SVG-ANIMATION] Attempt 2/2 for "orbit" animation
+2025-10-11T09:36:04.604Z [info] [SVG-ANIMATION] Prompt length: 440 chars (~110 tokens)
+2025-10-11T09:36:04.604Z [info] [SVG-ANIMATION] Description: A central, large positively charged ion (e.g., a blue sphere labeled 'Na+') is surrounded by several...
+2025-10-11T09:36:08.145Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:36:08.145Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:36:08.145Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:36:08.145Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:36:08.145Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:36:08.145Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:36:08.145Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:36:08.145Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:36:08.145Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:36:08.145Z [info] [SVG-ANIMATION] Prompt length: 439 chars (~110 tokens)
+2025-10-11T09:36:08.145Z [info] [SVG-ANIMATION] Description: Multiple water molecules, each rendered as a red oxygen and two white hydrogen atoms (V-shape, δ-/δ+...
+2025-10-11T09:36:14.409Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:36:14.410Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:36:14.410Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:36:14.410Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:36:14.410Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:36:14.410Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:36:14.410Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:36:14.410Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:36:14.410Z [info] [SVG-COMPLETE] Attempt 2/2 for section 2
+2025-10-11T09:36:14.435Z [debug] [monitor] Metrics updated:
+2025-10-11T09:36:15.146Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:36:15.146Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:36:15.146Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:36:15.146Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:36:15.146Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:36:15.146Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:36:15.146Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:36:15.146Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:36:15.146Z [info] [SVG-COMPLETE] Attempt 2/2 for section 0
+2025-10-11T09:36:15.150Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:36:15.150Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:36:15.150Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:36:15.150Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:36:15.150Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:36:15.150Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:36:15.150Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:36:15.150Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:36:15.150Z [info] [SVG-COMPLETE] Attempt 2/2 for section 2
+2025-10-11T09:36:21.598Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:36:21.598Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:36:21.598Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:36:21.598Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:36:21.598Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:36:21.598Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:36:21.598Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:36:21.598Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:36:21.598Z [error] [codegenV3]   Visual 2: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:36:22.198Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:36:22.198Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:36:22.199Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:36:22.199Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:36:22.199Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:36:22.199Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:36:22.199Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:36:22.199Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:36:22.199Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:36:22.794Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:36:22.794Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:36:22.794Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:36:22.794Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:36:22.794Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:36:22.794Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:36:22.794Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:36:22.795Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:36:22.795Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:36:25.647Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:36:25.647Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:36:25.647Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:36:25.647Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:36:25.647Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:36:25.647Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:36:25.647Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:36:25.647Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:36:25.647Z [error] [codegenV3]   Visual 2: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:36:31.962Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:36:31.962Z [info] [SVG-COMPLETE] Received 1711 chars
+2025-10-11T09:36:31.962Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?><svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .O{fill:#CC0000;stroke:#990000;stroke-width:2;}
+    .H{fill:#FFFFFF;stroke:#CCCCCC;stroke-width:1;}
+    .bond{stroke:#333333;stroke-width:4;stroke-linecap:round;}
+    .hbond{stroke:#666666;stroke-width:2;stroke-dasharray:5 5;}
+    .txt{font-family:sans-serif;font-size:20px;fill:#000000;}
+    .charge{font-family:serif;font-size:25px;fill:#000000;}
+  </style>
+
+  <!-- Central Water Molecule (H2O) -->
+ 
+2025-10-11T09:36:31.962Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:36:31.962Z [info] [SVG-COMPLETE] Quality Score: 90/100
+2025-10-11T09:36:31.962Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 90
+2025-10-11T09:36:31.962Z [info] [codeVisual] ✅ Generated complete SVG (1711 chars)
+2025-10-11T09:36:31.962Z [info] [codeVisual] Quality score: 90/100
+2025-10-11T09:36:31.962Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:36:42.733Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:36:42.733Z [info] [SVG-COMPLETE] Received 2106 chars
+2025-10-11T09:36:42.733Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?><svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <g id="waterMol">
+        <circle cx="0" cy="0" r="5" fill="red"/>
+        <circle cx="-5" cy="5" r="3" fill="white"/>
+        <circle cx="5" cy="5" r="3" fill="white"/>
+    </g>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="black"/>
+    </marker>
+</defs>
+
+<!-- Xylem Vessel -->
+<rect x="350" y="100" width="5
+2025-10-11T09:36:42.733Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:36:42.733Z [info] [SVG-COMPLETE] Quality Score: 98/100
+2025-10-11T09:36:42.733Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 98
+2025-10-11T09:36:42.733Z [info] [codeVisual] ✅ Generated complete SVG (2106 chars)
+2025-10-11T09:36:42.733Z [info] [codeVisual] Quality score: 98/100
+2025-10-11T09:36:42.733Z [info] [codegenV3]   Static 3: ✅ Generated complete SVG
+2025-10-11T09:36:42.733Z [info] [codegenV3] 📊 Visual Success Rate: 2/4 (50%)
+2025-10-11T09:36:42.733Z [warn] [codegenV3] ⚠️ PARTIAL SUCCESS: 50% of visuals succeeded (2 failed)
+2025-10-11T09:36:42.734Z [info] [codegenV3]   Adding 1 operations from visual 1
+2025-10-11T09:36:42.734Z [info] [codegenV3]   Adding 1 operations from visual 3
+2025-10-11T09:36:42.734Z [warn] [codegenV3] ⚠️ Low operation count: 4 (minimum: 20)
+2025-10-11T09:36:42.734Z [warn] [codegenV3]   Accepting due to 50% success rate
+2025-10-11T09:36:42.734Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:36:42.734Z [info] [codegenV3] ✅ COMPLETE SVG PIPELINE (ALL VISUALS AS SVG)
+2025-10-11T09:36:42.734Z [info] [codegenV3] ⏱️  Time: 65.38s
+2025-10-11T09:36:42.734Z [info] [codegenV3] 📊 Specifications: 4 (2 static, 2 animations)
+2025-10-11T09:36:42.734Z [info] [codegenV3] 🎨 Total Actions: 4 (ALL customSVG)
+2025-10-11T09:36:42.734Z [info] [codegenV3] 🎯 100% Complete SVG Generation (NO operations, NO overlaps)
+2025-10-11T09:36:42.734Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:36:42.734Z [info] [codegenV3] SVG Documents: 2, Delays: 2
+2025-10-11T09:36:42.734Z [info] [codegenV3] Total SVG Code: 3.73 KB
+2025-10-11T09:36:42.734Z [info] [codegenV3WithRetry] ✅ Attempt 3 SUCCESS: 6 operations
+2025-10-11T09:36:42.734Z [debug] compilerRouter: routing to js
+2025-10-11T09:36:42.734Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-11T09:36:42.734Z [debug] [debugger] Chunk type: actions
+2025-10-11T09:36:42.734Z [debug] [debugger] Has actions: true
+2025-10-11T09:36:42.734Z [debug] [debugger] Actions count: 6
+2025-10-11T09:36:42.734Z [debug] [debugger] Chunk is valid with 6 actions, allowing all for rich visualizations
+2025-10-11T09:36:42.734Z [debug] [cache] Cached chunk for query step 3
+2025-10-11T09:36:42.734Z [debug] [monitor] Step 3 generation for d90a8342-3997-4403-92d3-35e05278bf25 took 220159ms
+2025-10-11T09:36:42.734Z [info] [parallel] ✅ Step 3 COMPLETE in 220159ms with 6 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: d90a8342-3997-4403-92d3-35e05278bf25
+StepId: 3
+Actions: 6
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T09:36:42.735Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-11T09:36:43.366Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:36:43.366Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:36:43.366Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:36:43.366Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:36:43.366Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:36:43.366Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:36:43.366Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:36:43.366Z [error] [SVG-COMPLETE] Attempt 2 failed: Failed to generate valid SVG
+2025-10-11T09:36:43.366Z [error] [codegenV3]   Visual 3: ❌ Failed - Failed to generate valid SVG
+2025-10-11T09:36:43.366Z [info] [codegenV3] 📊 Visual Success Rate: 1/4 (25%)
+2025-10-11T09:36:43.366Z [error] [codegenV3] ❌ FAILED: Success rate 25% is below minimum 40%
+2025-10-11T09:36:43.366Z [error] [codegenV3]   Successful: 1, Failed: 3
+2025-10-11T09:36:43.366Z [error] [codegenV3WithRetry] ❌ ALL 3 ATTEMPTS FAILED for step 2
+2025-10-11T09:36:43.366Z [error] [codegenV3WithRetry] Topic: "water"
+2025-10-11T09:36:43.366Z [error] [codegenV3WithRetry] Step desc: "Zoom into a single water molecule (H₂O). It looks like Mickey Mouse's head: one large oxygen atom with two smaller hydrogen atoms attached, forming a V-shape. Crucially, the oxygen pulls electrons much more strongly than hydrogen, making the oxygen side slightly negative and the hydrogen sides slightly positive. This uneven charge makes water a 'polar' molecule. The positive hydrogen of one water molecule is strongly attracted to the negative oxygen of another, forming a 'hydrogen bond.' These weak but numerous bonds constantly form and break, giving water its incredible cohesion, high surface tension, and ability to dissolve a vast array of other polar substances."
+2025-10-11T09:36:43.366Z [error] [parallel] ❌ Step 2 codegen returned null after all retries
+2025-10-11T09:36:43.366Z [debug] [monitor] Step 2 generation for d90a8342-3997-4403-92d3-35e05278bf25 took 220791ms
+2025-10-11T09:36:43.366Z [error] [parallel] Step 2 failed: Error: Step 2 generation failed after all retry attempts
+2025-10-11T09:36:43.366Z [debug] [parallel] Parallel generation complete: 2/3 successful in 220791ms
+2025-10-11T09:36:43.366Z [debug] [monitor] Completed request d90a8342-3997-4403-92d3-35e05278bf25 in 230792ms (success: true)
+2025-10-11T09:36:43.366Z [debug] [parallel] Job complete for session d90a8342-3997-4403-92d3-35e05278bf25
+2025-10-11T09:37:14.438Z [debug] [monitor] Metrics updated:
+2025-10-11T09:38:14.439Z [debug] [monitor] Metrics updated:
+2025-10-11T09:39:14.440Z [debug] [monitor] Metrics updated:
+2025-10-11T09:40:14.447Z [debug] [monitor] Metrics updated:
+2025-10-11T09:41:14.454Z [debug] [monitor] Metrics updated:
+2025-10-11T09:42:14.460Z [debug] [monitor] Metrics updated:
+2025-10-11T09:43:14.464Z [debug] [monitor] Metrics updated:
+2025-10-11T09:44:14.466Z [debug] [monitor] Metrics updated:
+2025-10-11T09:45:14.466Z [debug] [monitor] Metrics updated:
+2025-10-11T09:46:14.470Z [debug] [monitor] Metrics updated:
+2025-10-11T09:47:14.473Z [debug] [monitor] Metrics updated:
+2025-10-11T09:48:14.474Z [debug] [monitor] Metrics updated:
+2025-10-11T09:49:14.481Z [debug] [monitor] Metrics updated:
+[INFO] 14:49:20 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/svgAnimationGenerator.ts has been modified
+2025-10-11T09:49:20.319Z [debug] Shutting down server...
+2025-10-11T09:49:20.319Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T09:49:20.479Z [debug] NEW Plan worker created
+2025-10-11T09:49:20.479Z [debug] NEW Gen worker created
+2025-10-11T09:49:20.480Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T09:49:20.483Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 14:49:47 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/svgCompleteGenerator.ts has been modified
+2025-10-11T09:49:47.164Z [debug] Shutting down server...
+2025-10-11T09:49:47.164Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T09:49:47.331Z [debug] NEW Plan worker created
+2025-10-11T09:49:47.332Z [debug] NEW Gen worker created
+2025-10-11T09:49:47.332Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 14:49:47 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T09:49:47.343Z [debug] Shutting down server...
+2025-10-11T09:49:47.343Z [debug] Server shut down.
+[INFO] 14:50:14 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T09:50:14.932Z [debug] NEW Plan worker created
+2025-10-11T09:50:14.933Z [debug] NEW Gen worker created
+2025-10-11T09:50:14.933Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T09:50:14.936Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-11T09:51:14.949Z [debug] [monitor] Metrics updated:
+[INFO] 14:51:17 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/svgCompleteGenerator.ts has been modified
+2025-10-11T09:51:17.609Z [debug] Shutting down server...
+2025-10-11T09:51:17.610Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T09:51:17.778Z [debug] NEW Plan worker created
+2025-10-11T09:51:17.779Z [debug] NEW Gen worker created
+2025-10-11T09:51:17.779Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T09:51:17.783Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 14:56:01 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/svgCompleteGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T09:56:01.759Z [debug] NEW Plan worker created
+2025-10-11T09:56:01.760Z [debug] NEW Gen worker created
+2025-10-11T09:56:01.760Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T09:56:01.764Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 15:16:22 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:16:23.222Z [debug] NEW Plan worker created
+2025-10-11T10:16:23.222Z [debug] NEW Gen worker created
+2025-10-11T10:16:23.223Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:16:23 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T10:16:23.234Z [debug] Shutting down server...
+2025-10-11T10:16:23.234Z [debug] Server shut down.
+[INFO] 15:17:20 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:17:20.773Z [debug] NEW Plan worker created
+2025-10-11T10:17:20.773Z [debug] NEW Gen worker created
+2025-10-11T10:17:20.774Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:17:20 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T10:17:20.785Z [debug] Shutting down server...
+2025-10-11T10:17:20.785Z [debug] Server shut down.
+[INFO] 15:18:06 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:18:06.657Z [debug] NEW Plan worker created
+2025-10-11T10:18:06.658Z [debug] NEW Gen worker created
+2025-10-11T10:18:06.658Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:18:06 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T10:18:06.669Z [debug] Shutting down server...
+2025-10-11T10:18:06.669Z [debug] Server shut down.
+[INFO] 15:18:22 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+Compilation error in /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts
+[ERROR] 15:18:22 ⨯ Unable to compile TypeScript:
+src/agents/codegenV3.ts(258,1): error TS1128: Declaration or statement expected.
+
+[INFO] 15:18:40 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+Compilation error in /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts
+[ERROR] 15:18:40 ⨯ Unable to compile TypeScript:
+src/agents/codegenV3.ts(123,21): error TS1005: ';' expected.
+src/agents/codegenV3.ts(125,22): error TS1005: ';' expected.
+src/agents/codegenV3.ts(126,11): error TS1005: ';' expected.
+src/agents/codegenV3.ts(127,11): error TS1005: ';' expected.
+src/agents/codegenV3.ts(128,6): error TS1128: Declaration or statement expected.
+src/agents/codegenV3.ts(130,3): error TS1128: Declaration or statement expected.
+src/agents/codegenV3.ts(130,4): error TS1128: Declaration or statement expected.
+src/agents/codegenV3.ts(256,1): error TS1128: Declaration or statement expected.
+
+[INFO] 15:19:06 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:19:07.043Z [debug] NEW Plan worker created
+2025-10-11T10:19:07.044Z [debug] NEW Gen worker created
+2025-10-11T10:19:07.044Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:19:07 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T10:19:07.055Z [debug] Shutting down server...
+2025-10-11T10:19:07.055Z [debug] Server shut down.
+[INFO] 15:19:37 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:19:37.770Z [debug] NEW Plan worker created
+2025-10-11T10:19:37.771Z [debug] NEW Gen worker created
+2025-10-11T10:19:37.771Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T10:19:37.774Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-11T10:20:37.768Z [debug] [monitor] Metrics updated:
+2025-10-11T10:21:37.785Z [debug] [monitor] Metrics updated:
+2025-10-11T10:22:37.800Z [debug] [monitor] Metrics updated:
+2025-10-11T10:23:37.814Z [debug] [monitor] Metrics updated:
+2025-10-11T10:24:37.826Z [debug] [monitor] Metrics updated:
+2025-10-11T10:25:37.837Z [debug] [monitor] Metrics updated:
+2025-10-11T10:26:37.847Z [debug] [monitor] Metrics updated:
+2025-10-11T10:27:37.855Z [debug] [monitor] Metrics updated:
+2025-10-11T10:28:37.861Z [debug] [monitor] Metrics updated:
+2025-10-11T10:29:37.866Z [debug] [monitor] Metrics updated:
+2025-10-11T10:30:37.870Z [debug] [monitor] Metrics updated:
+2025-10-11T10:31:37.872Z [debug] [monitor] Metrics updated:
+2025-10-11T10:32:37.873Z [debug] [monitor] Metrics updated:
+2025-10-11T10:33:37.877Z [debug] [monitor] Metrics updated:
+2025-10-11T10:34:37.880Z [debug] [monitor] Metrics updated:
+2025-10-11T10:35:37.882Z [debug] [monitor] Metrics updated:
+2025-10-11T10:36:37.882Z [debug] [monitor] Metrics updated:
+2025-10-11T10:37:37.901Z [debug] [monitor] Metrics updated:
+2025-10-11T10:38:37.919Z [debug] [monitor] Metrics updated:
+2025-10-11T10:39:37.934Z [debug] [monitor] Metrics updated:
+2025-10-11T10:40:37.948Z [debug] [monitor] Metrics updated:
+2025-10-11T10:41:37.962Z [debug] [monitor] Metrics updated:
+2025-10-11T10:42:37.972Z [debug] [monitor] Metrics updated:
+2025-10-11T10:43:37.982Z [debug] [monitor] Metrics updated:
+2025-10-11T10:44:37.991Z [debug] [monitor] Metrics updated:
+2025-10-11T10:45:37.998Z [debug] [monitor] Metrics updated:
+2025-10-11T10:46:38.004Z [debug] [monitor] Metrics updated:
+2025-10-11T10:47:38.008Z [debug] [monitor] Metrics updated:
+2025-10-11T10:48:38.011Z [debug] [monitor] Metrics updated:
+2025-10-11T10:49:38.012Z [debug] [monitor] Metrics updated:
+2025-10-11T10:50:38.012Z [debug] [monitor] Metrics updated:
+2025-10-11T10:51:38.016Z [debug] [monitor] Metrics updated:
+2025-10-11T10:52:38.018Z [debug] [monitor] Metrics updated:
+2025-10-11T10:53:38.019Z [debug] [monitor] Metrics updated:
+2025-10-11T10:54:38.037Z [debug] [monitor] Metrics updated:
+2025-10-11T10:55:38.054Z [debug] [monitor] Metrics updated:
+2025-10-11T10:56:38.071Z [debug] [monitor] Metrics updated:
+2025-10-11T10:57:38.085Z [debug] [monitor] Metrics updated:
+2025-10-11T10:58:38.088Z [debug] [monitor] Metrics updated:
+2025-10-11T10:59:38.100Z [debug] [monitor] Metrics updated:
+2025-10-11T11:00:38.110Z [debug] [monitor] Metrics updated:
+2025-10-11T11:01:38.119Z [debug] [monitor] Metrics updated:
+2025-10-11T11:02:38.126Z [debug] [monitor] Metrics updated:
+2025-10-11T11:03:38.131Z [debug] [monitor] Metrics updated:
+2025-10-11T11:04:38.135Z [debug] [monitor] Metrics updated:
+2025-10-11T11:05:38.137Z [debug] [monitor] Metrics updated:
+2025-10-11T11:06:38.138Z [debug] [monitor] Metrics updated:
+2025-10-11T11:07:38.142Z [debug] [monitor] Metrics updated:
+2025-10-11T11:08:38.145Z [debug] [monitor] Metrics updated:
+2025-10-11T11:09:38.147Z [debug] [monitor] Metrics updated:
+2025-10-11T11:10:38.148Z [debug] [monitor] Metrics updated:
+2025-10-11T11:11:38.167Z [debug] [monitor] Metrics updated:
+2025-10-11T11:12:38.184Z [debug] [monitor] Metrics updated:
+2025-10-11T11:13:38.200Z [debug] [monitor] Metrics updated:
+2025-10-11T11:14:38.214Z [debug] [monitor] Metrics updated:
+2025-10-11T11:15:38.227Z [debug] [monitor] Metrics updated:
+2025-10-11T11:16:38.238Z [debug] [monitor] Metrics updated:
+2025-10-11T11:17:38.248Z [debug] [monitor] Metrics updated:
+2025-10-11T11:18:38.257Z [debug] [monitor] Metrics updated:
+2025-10-11T11:19:38.264Z [debug] [monitor] Metrics updated:
+2025-10-11T11:20:38.270Z [debug] [monitor] Metrics updated:
+2025-10-11T11:21:38.274Z [debug] [monitor] Metrics updated:
+2025-10-11T11:22:38.277Z [debug] [monitor] Metrics updated:
+2025-10-11T11:23:38.278Z [debug] [monitor] Metrics updated:
+2025-10-11T11:24:38.279Z [debug] [monitor] Metrics updated:
+2025-10-11T11:25:38.284Z [debug] [monitor] Metrics updated:
+2025-10-11T11:26:38.285Z [debug] [monitor] Metrics updated:
+2025-10-11T11:27:38.286Z [debug] [monitor] Metrics updated:
+2025-10-11T11:28:38.305Z [debug] [monitor] Metrics updated:
+[INFO] 16:35:26 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T11:35:27.119Z [debug] NEW Plan worker created
+2025-10-11T11:35:27.120Z [debug] NEW Gen worker created
+2025-10-11T11:35:27.120Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:35:27 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T11:35:27.132Z [debug] Shutting down server...
+2025-10-11T11:35:27.132Z [debug] Server shut down.
+[INFO] 16:37:52 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T11:37:52.897Z [debug] NEW Plan worker created
+2025-10-11T11:37:52.898Z [debug] NEW Gen worker created
+2025-10-11T11:37:52.898Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:37:52 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T11:37:52.910Z [debug] Shutting down server...
+2025-10-11T11:37:52.911Z [debug] Server shut down.
+[INFO] 16:40:33 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T11:40:33.287Z [debug] NEW Plan worker created
+2025-10-11T11:40:33.288Z [debug] NEW Gen worker created
+2025-10-11T11:40:33.288Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:40:33 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T11:40:33.300Z [debug] Shutting down server...
+2025-10-11T11:40:33.300Z [debug] Server shut down.
+[INFO] 16:40:45 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T11:40:45.949Z [debug] NEW Plan worker created
+2025-10-11T11:40:45.949Z [debug] NEW Gen worker created
+2025-10-11T11:40:45.950Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:40:45 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T11:40:45.962Z [debug] Shutting down server...
+2025-10-11T11:40:45.963Z [debug] Server shut down.
+[INFO] 17:05:17 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T12:05:17.288Z [debug] NEW Plan worker created
+2025-10-11T12:05:17.289Z [debug] NEW Gen worker created
+2025-10-11T12:05:17.289Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:05:17 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T12:05:17.301Z [debug] Shutting down server...
+2025-10-11T12:05:17.301Z [debug] Server shut down.
+[INFO] 17:07:01 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T12:07:01.375Z [debug] NEW Plan worker created
+2025-10-11T12:07:01.376Z [debug] NEW Gen worker created
+2025-10-11T12:07:01.376Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:07:01 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T12:07:01.388Z [debug] Shutting down server...
+2025-10-11T12:07:01.388Z [debug] Server shut down.
+[INFO] 17:28:18 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T12:28:18.662Z [debug] NEW Plan worker created
+2025-10-11T12:28:18.663Z [debug] NEW Gen worker created
+2025-10-11T12:28:18.663Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:28:18 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T12:28:18.675Z [debug] Shutting down server...
+2025-10-11T12:28:18.675Z [debug] Server shut down.
+[INFO] 17:54:58 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T12:54:59.040Z [debug] NEW Plan worker created
+2025-10-11T12:54:59.041Z [debug] NEW Gen worker created
+2025-10-11T12:54:59.041Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:54:59 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T12:54:59.054Z [debug] Shutting down server...
+2025-10-11T12:54:59.054Z [debug] Server shut down.
+[INFO] 18:07:40 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:07:40.751Z [debug] NEW Plan worker created
+2025-10-11T13:07:40.752Z [debug] NEW Gen worker created
+2025-10-11T13:07:40.752Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:07:40 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:07:40.764Z [debug] Shutting down server...
+2025-10-11T13:07:40.765Z [debug] Server shut down.
+[INFO] 18:08:26 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:08:26.517Z [debug] NEW Plan worker created
+2025-10-11T13:08:26.518Z [debug] NEW Gen worker created
+2025-10-11T13:08:26.518Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:08:26 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:08:26.529Z [debug] Shutting down server...
+2025-10-11T13:08:26.530Z [debug] Server shut down.
+[INFO] 18:08:44 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:08:44.257Z [debug] NEW Plan worker created
+2025-10-11T13:08:44.258Z [debug] NEW Gen worker created
+2025-10-11T13:08:44.258Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:08:44 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:08:44.271Z [debug] Shutting down server...
+2025-10-11T13:08:44.272Z [debug] Server shut down.
+[INFO] 18:08:55 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:08:55.401Z [debug] NEW Plan worker created
+2025-10-11T13:08:55.402Z [debug] NEW Gen worker created
+2025-10-11T13:08:55.402Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:08:55 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:08:55.414Z [debug] Shutting down server...
+2025-10-11T13:08:55.414Z [debug] Server shut down.
+[INFO] 18:50:16 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:50:16.250Z [debug] NEW Plan worker created
+2025-10-11T13:50:16.251Z [debug] NEW Gen worker created
+2025-10-11T13:50:16.251Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:50:16 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:50:16.263Z [debug] Shutting down server...
+2025-10-11T13:50:16.263Z [debug] Server shut down.

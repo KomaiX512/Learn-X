@@ -1,0 +1,261 @@
+[
+  {
+    "op": "drawTitle",
+    "text": "DNA Replication",
+    "x": 0.5,
+    "y": 0.1,
+    "size": 36,
+    "visualGroup": "title"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Visual 1: DNA Structure",
+    "x": 0.1,
+    "y": 0.2,
+    "fontSize": 24,
+    "visualGroup": "heading-1"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.3,0.3 C 0.3,0.4 0.4,0.5 0.5,0.5 C 0.6,0.5 0.7,0.4 0.7,0.3 C 0.7,0.2 0.6,0.1 0.5,0.1 C 0.4,0.1 0.3,0.2 0.3,0.3 Z M 0.3,0.7 C 0.3,0.6 0.4,0.5 0.5,0.5 C 0.6,0.5 0.7,0.6 0.7,0.7 C 0.7,0.8 0.6,0.9 0.5,0.9 C 0.4,0.9 0.3,0.8 0.3,0.7 Z M 0.5,0.1 L 0.5,0.9",
+    "stroke": "#2196F3",
+    "strokeWidth": 3,
+    "visualGroup": "diagram-1"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Double Helix Structure",
+    "x": 0.5,
+    "y": 0.2,
+    "fontSize": 14,
+    "visualGroup": "annotation-1"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Sugar-Phosphate Backbone",
+    "x": 0.2,
+    "y": 0.2,
+    "fontSize": 14,
+    "visualGroup": "annotation-1"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Base Pairs (A-T, C-G)",
+    "x": 0.8,
+    "y": 0.2,
+    "fontSize": 14,
+    "visualGroup": "annotation-1"
+  },
+  {
+    "op": "drawLabel",
+    "text": "DNA is a double helix composed of two strands of nucleotides.",
+    "x": 0.1,
+    "y": 0.8,
+    "fontSize": 16,
+    "visualGroup": "description-1"
+  },
+  {
+    "op": "delay",
+    "duration": 2000,
+    "visualGroup": "diagram-1"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Visual 2: Helicase Action",
+    "x": 0.1,
+    "y": 0.2,
+    "fontSize": 24,
+    "visualGroup": "heading-2"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.2,0.4 Q 0.3,0.5 0.2,0.6 L 0.8,0.6 Q 0.7,0.5 0.8,0.4 L 0.2,0.4 Z M 0.4,0.3 L 0.6,0.3",
+    "stroke": "#4CAF50",
+    "strokeWidth": 3,
+    "visualGroup": "diagram-2"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.3,0.3 C 0.3,0.4 0.4,0.5 0.5,0.5 C 0.6,0.5 0.7,0.4 0.7,0.3 C 0.7,0.2 0.6,0.1 0.5,0.1 C 0.4,0.1 0.3,0.2 0.3,0.3 Z M 0.3,0.7 C 0.3,0.6 0.4,0.5 0.5,0.5 C 0.6,0.5 0.7,0.6 0.7,0.7 C 0.7,0.8 0.6,0.9 0.5,0.9 C 0.4,0.9 0.3,0.8 0.3,0.7 Z M 0.5,0.1 L 0.5,0.9",
+    "stroke": "#2196F3",
+    "strokeWidth": 2,
+    "visualGroup": "diagram-2"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Helicase",
+    "x": 0.5,
+    "y": 0.7,
+    "fontSize": 14,
+    "visualGroup": "annotation-2"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Unwinding DNA",
+    "x": 0.5,
+    "y": 0.3,
+    "fontSize": 14,
+    "visualGroup": "annotation-2"
+  },
+  {
+    "op": "drawArrow",
+    "x1": 0.5,
+    "y1": 0.5,
+    "x2": 0.6,
+    "y2": 0.5,
+    "stroke": "#FF5722",
+    "strokeWidth": 2,
+    "visualGroup": "diagram-2"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Helicase unwinds the DNA double helix, breaking hydrogen bonds.",
+    "x": 0.1,
+    "y": 0.8,
+    "fontSize": 16,
+    "visualGroup": "description-2"
+  },
+  {
+    "op": "delay",
+    "duration": 2000,
+    "visualGroup": "diagram-2"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Visual 3: Polymerase Action",
+    "x": 0.1,
+    "y": 0.2,
+    "fontSize": 24,
+    "visualGroup": "heading-3"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.2,0.4 Q 0.3,0.5 0.2,0.6 L 0.8,0.6 Q 0.7,0.5 0.8,0.4 L 0.2,0.4 Z M 0.4,0.3 L 0.6,0.3",
+    "stroke": "#4CAF50",
+    "strokeWidth": 2,
+    "visualGroup": "diagram-3"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.3,0.3 C 0.3,0.4 0.4,0.5 0.5,0.5 C 0.6,0.5 0.7,0.4 0.7,0.3 C 0.7,0.2 0.6,0.1 0.5,0.1 C 0.4,0.1 0.3,0.2 0.3,0.3 Z M 0.3,0.7 C 0.3,0.6 0.4,0.5 0.5,0.5 C 0.6,0.5 0.7,0.6 0.7,0.7 C 0.7,0.8 0.6,0.9 0.5,0.9 C 0.4,0.9 0.3,0.8 0.3,0.7 Z M 0.5,0.1 L 0.5,0.9",
+    "stroke": "#2196F3",
+    "strokeWidth": 1,
+    "visualGroup": "diagram-3"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.1,0.5 L 0.3,0.5 M 0.1,0.45 L 0.3,0.45 M 0.1,0.55 L 0.3,0.55",
+    "stroke": "#FFC107",
+    "strokeWidth": 3,
+    "visualGroup": "diagram-3"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.7,0.5 L 0.9,0.5 M 0.7,0.45 L 0.9,0.45 M 0.7,0.55 L 0.9,0.55",
+    "stroke": "#FFC107",
+    "strokeWidth": 3,
+    "visualGroup": "diagram-3"
+  },
+  {
+    "op": "drawLabel",
+    "text": "DNA Polymerase",
+    "x": 0.5,
+    "y": 0.7,
+    "fontSize": 14,
+    "visualGroup": "annotation-3"
+  },
+  {
+    "op": "drawLabel",
+    "text": "New DNA Strands",
+    "x": 0.5,
+    "y": 0.3,
+    "fontSize": 14,
+    "visualGroup": "annotation-3"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Polymerase synthesizes new DNA strands by adding nucleotides.",
+    "x": 0.1,
+    "y": 0.8,
+    "fontSize": 16,
+    "visualGroup": "description-3"
+  },
+  {
+    "op": "delay",
+    "duration": 2000,
+    "visualGroup": "diagram-3"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Visual 4: Replication Fork",
+    "x": 0.1,
+    "y": 0.2,
+    "fontSize": 24,
+    "visualGroup": "heading-4"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.2,0.4 Q 0.5,0.5 0.2,0.6 L 0.8,0.6 Q 0.5,0.5 0.8,0.4 L 0.2,0.4 Z",
+    "stroke": "#4CAF50",
+    "strokeWidth": 2,
+    "visualGroup": "diagram-4"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.3,0.3 C 0.3,0.4 0.4,0.5 0.5,0.5 C 0.6,0.5 0.7,0.4 0.7,0.3 C 0.7,0.2 0.6,0.1 0.5,0.1 C 0.4,0.1 0.3,0.2 0.3,0.3 Z M 0.3,0.7 C 0.3,0.6 0.4,0.5 0.5,0.5 C 0.6,0.5 0.7,0.6 0.7,0.7 C 0.7,0.8 0.6,0.9 0.5,0.9 C 0.4,0.9 0.3,0.8 0.3,0.7 Z M 0.5,0.1 L 0.5,0.9",
+    "stroke": "#2196F3",
+    "strokeWidth": 1,
+    "visualGroup": "diagram-4"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.3,0.3 L 0.1,0.2 M 0.3,0.7 L 0.1,0.8",
+    "stroke": "#FFC107",
+    "strokeWidth": 3,
+    "visualGroup": "diagram-4"
+  },
+  {
+    "op": "customPath",
+    "path": "M 0.7,0.3 L 0.9,0.2 M 0.7,0.7 L 0.9,0.8",
+    "stroke": "#FFC107",
+    "strokeWidth": 3,
+    "visualGroup": "diagram-4"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Leading Strand",
+    "x": 0.8,
+    "y": 0.15,
+    "fontSize": 14,
+    "visualGroup": "annotation-4"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Lagging Strand",
+    "x": 0.8,
+    "y": 0.85,
+    "fontSize": 14,
+    "visualGroup": "annotation-4"
+  },
+  {
+    "op": "drawLabel",
+    "text": "Replication Fork",
+    "x": 0.5,
+    "y": 0.3,
+    "fontSize": 14,
+    "visualGroup": "annotation-4"
+  },
+  {
+    "op": "drawLabel",
+    "text": "The replication fork is where DNA strands are separated and replicated.",
+    "x": 0.1,
+    "y": 0.8,
+    "fontSize": 16,
+    "visualGroup": "description-4"
+  },
+  {
+    "op": "delay",
+    "duration": 2000,
+    "visualGroup": "diagram-4"
+  }
+]

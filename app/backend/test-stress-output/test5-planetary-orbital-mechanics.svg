@@ -1,0 +1,63 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="600" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Planetary Orbital Mechanics</title>
+  <style>
+    .label { font: bold 12px sans-serif; fill: black; }
+  </style>
+  <defs>
+    <circle id="earth" cx="0" cy="0" r="15" fill="skyblue" />
+    <circle id="sun" cx="0" cy="0" r="30" fill="yellow" />
+    <path id="ellipsePath" d="M 300,0 A 300,150 0 1,1 -300,0 A 300,150 0 1,1 300,0" fill="none" stroke="none" />
+  </defs>
+
+  <g transform="translate(400,300)">
+    <g id="sunGroup">
+      <use xlink:href="#sun" />
+      <text x="35" y="5" class="label">Sun (Focus)</text>
+    </g>
+
+    <g id="earthGroup">
+      <use xlink:href="#earth" />
+      <text x="20" y="5" class="label">Earth</text>
+      <animateMotion dur="10s" repeatCount="indefinite" path="M 300,0 A 300,150 0 1,1 -300,0 A 300,150 0 1,1 300,0" rotate="auto"/>
+      <animate attributeName="fill" values="skyblue; lightblue; skyblue" dur="10s" repeatCount="indefinite" />
+    </g>
+
+    <g id="orbitalPath">
+      <use xlink:href="#ellipsePath" stroke="gray" stroke-width="2" />
+      <text x="0" y="-160" class="label">Orbital Path (Ellipse)</text>
+    </g>
+
+    <g id="perihelion">
+      <circle cx="300" cy="0" r="5" fill="red" />
+      <text x="310" y="5" class="label">Perihelion</text>
+    </g>
+
+    <g id="aphelion">
+      <circle cx="-300" cy="0" r="5" fill="green" />
+      <text x="-350" y="5" class="label">Aphelion</text>
+    </g>
+
+    <g id="semiMajorAxis">
+      <line x1="-300" y1="0" x2="300" y2="0" stroke="blue" stroke-width="1" />
+      <text x="-150" y="20" class="label">Semi-Major Axis</text>
+    </g>
+
+    <g id="focalPoint">
+      <circle cx="229" cy="0" r="3" fill="purple" />
+      <text x="235" y="5" class="label">Focal Point</text>
+    </g>
+    <g id = "keplersLaw">
+        <text x="-100" y="-50" class="label">Kepler's Laws</text>
+    </g>
+
+     <g id = "velocity">
+        <text x="100" y="100" class="label">Velocity Changes</text>
+    </g>
+
+       <g id = "GravitationalForce">
+        <text x="-200" y="100" class="label">Gravitational Force</text>
+    </g>
+  </g>
+</svg>

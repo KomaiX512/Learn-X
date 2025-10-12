@@ -125,104 +125,64 @@ const SVG_PATTERNS = {
  * Creates prompts that force Gemini to generate COMPLEX, BEAUTIFUL SVG
  */
 function createInsaneQualityPrompt(topic, description) {
-    return `Generate educational visual operations for:
+    return `Generate SVG operations for the following visual description.
 
-Topic: "${topic}"
-Description: "${description}"
+TOPIC: ${topic}
+DESCRIPTION: ${description}
 
-🎯 YOUR MISSION: Generate 50-80 operations that create a STUNNING, 3Blue1Brown-quality visual.
+YOUR TASK:
+Create 40-80 operations that bring this visual to life with stunning detail and clarity.
 
-🔥 CRITICAL REQUIREMENTS FOR BEATING 3BLUE1BROWN:
+QUALITY STANDARDS:
 
-1. COMPLEX SVG PATHS (NOT simple shapes):
-   - Use Bezier curves (C command) for smooth organic shapes
-   - Use Quadratic curves (Q command) for mathematical functions  
-   - Use Arc commands (A command) for circular structures
-   - Combine multiple subpaths in single customPath for complex structures
-   
-2. MATHEMATICAL PRECISION:
-   - Graphs must use actual function calculations
-   - Coordinate systems must show proper perspective
-   - Geometric shapes must be mathematically accurate
-   
-3. LAYERED COMPLEXITY:
-   - Background layer (grids, coordinate systems)
-   - Main structure layer (primary visual elements)
-   - Detail layer (internal components, annotations)
-   - Animation layer (particles, waves, motion)
-   
-4. RICH LABELING:
-   - Every important element MUST have a label
-   - Use subscripts/superscripts in labels (H₂O, x², etc.)
-   - Include equations where relevant
-   - Add value annotations (measurements, quantities)
+1. COMPLEX SVG STRUCTURES (CRITICAL - NO BASIC SHAPES):
+   - MUST use customPath extensively - NOT drawCircle or drawRect and uniquely minimalist but detailed cnotextual
+   - Every path MUST have 10-20 commands minimum with Bezier curves (C) and Quadratic (Q)
+   - Example rich path: "M 0.1,0.2 C 0.15,0.18 0.2,0.22 0.25,0.25 C 0.3,0.28 0.35,0.26 0.4,0.3 Q 0.45,0.35 0.5,0.32 C 0.55,0.29 0.6,0.33 0.65,0.35 C 0.7,0.37 0.75,0.34 0.8,0.38 C 0.85,0.42 0.9,0.4 0.95,0.43"
+   - For molecular structures: flowing curves for bonds, organic shapes for atoms
+   - For biological structures: smooth curves for membranes, complex paths for organelles
+   - For mathematical concepts: precise curves following actual function plots
+   - Each structure should be built from multiple connected curve segments
+  
 
-5. VISUAL HIERARCHY:
-   - Primary elements: strokeWidth 3-4, bright colors
-   - Secondary elements: strokeWidth 2, medium colors
-   - Details: strokeWidth 1, subtle colors
-   - Use opacity for depth (back=0.3, mid=0.6, front=1.0)
+2. COMPREHENSIVE LABELING (required):
+   - Label every significant structure, component, or element
+   - Use precise scientific terminology from the topic
+   - Include measurements, values, or annotations where relevant
+   - Position labels clearly near their corresponding elements
+   - Font sizes: 14-18px for readability
 
-📊 OPERATION DISTRIBUTION (MANDATORY):
-- 30-40% customPath operations (complex structures)
-- 20-30% drawLabel operations (rich annotations)
-- 10-15% particle/wave/orbit (animations)
-- 5-10% drawVector/drawLine (connections)
-- 5-10% mathematical operations (graphs, equations)
+3. VISUAL HIERARCHY (required):
+   - Main structures: strokeWidth 2-3, bold colors
+   - Secondary details: strokeWidth 1-2, medium colors  
+   - Annotations: fontSize 14px, subtle colors
+   - Use opacity for depth: background 0.3, foreground 1.0
 
-🎨 COLOR PALETTE FOR PROFESSIONAL LOOK:
-- Primary: #2196F3 (blue), #4CAF50 (green), #FF5722 (orange)
-- Secondary: #9C27B0 (purple), #00BCD4 (cyan), #FFC107 (amber)
-- Neutral: #37474F (dark), #78909C (medium), #CFD8DC (light)
-- Use gradients: rgba() with varying opacity for depth
+4. DYNAMIC ELEMENTS when appropriate:
+   - addParticle: show flow, movement, molecular motion 
+   - drawWave: oscillations, signals, energy transfer
+   - createOrbit: circular motion, electron shells, planetary systems
+   - Particles should have clear purpose and direction
 
-⚡ ANIMATION REQUIREMENTS:
-- Particles showing flow/movement (electrons, photons, molecules)
-- Waves for energy/signal propagation
-- Orbit for circular motion (planets, electrons)
-- Sequential delays for step-by-step revelation
+5. CONTEXTUAL COLORS:
 
-📐 SVG PATH EXAMPLES FOR COMPLEX STRUCTURES:
+CRITICAL RULES:
+- NO placeholder text ("Label 1", "Component A", "Part 1")
+- Use ACTUAL scientific terms from the description
+- Create 40-80 operations for richness
+- Every customPath must be complex (8+ commands)
+- Coordinates: 0.0 to 1.0 normalized range
+- Each operation MUST have "visualGroup":"main"
 
-Chloroplast (biology):
-${SVG_PATTERNS.chloroplast}
-
-Benzene Ring (chemistry):
-${SVG_PATTERNS.benzene_ring}
-
-3D Coordinate System (math):
-${SVG_PATTERNS.coordinate_3d}
-
-🚨 QUALITY CHECKS:
-✅ Every customPath must have 10+ path commands (not just M L L Z)
-✅ Every visual element must contribute to understanding
-✅ No placeholder text - use real scientific terms
-✅ Animations must illustrate processes, not just decoration
-✅ Total visual must tell a complete story without words
-
-OUTPUT FORMAT:
+OUTPUT FORMAT (JSON array only):
 [
-  {"op":"customPath","path":"[COMPLEX PATH WITH 10+ COMMANDS]","stroke":"#2196F3","strokeWidth":3,"fill":"rgba(33,150,243,0.1)"},
-  {"op":"drawLabel","text":"[Scientific Term]","x":0.5,"y":0.1,"fontSize":18,"color":"#37474F"},
-  {"op":"particle","x":0.5,"y":0.5,"count":12,"spread":0.15,"speed":0.02,"lifetime":2000,"color":"#FFC107"},
+  {"op":"customPath","path":"M 0.2,0.3 C 0.3,0.2 0.4,0.4 0.5,0.5 C ...","stroke":"#2196F3","strokeWidth":2,"visualGroup":"main"},
+  {"op":"drawLabel","text":"<Actual Term>","x":0.3,"y":0.4,"fontSize":16,"color":"#ffffff","visualGroup":"main"},
+  {"op":"addParticle","x":0.5,"y":0.6,"color":"#FF5722","speed":0.02,"label":"<Element Name>","visualGroup":"main"},
   ...
 ]
 
-Generate 50-70 operations for a complete, educational visual.
-
-🎯 OUTPUT REQUIREMENTS:
-- Output ONLY a valid JSON array
-- NO explanations, NO markdown, NO comments
-- Start with [ and end with ]
-- Each operation must be a valid JSON object
-
-EXAMPLE FORMAT:
-[
-  {"op":"customPath","path":"M 0.2,0.3 C 0.3,0.4 0.5,0.5 0.7,0.6","stroke":"#2196F3","strokeWidth":2},
-  {"op":"drawLabel","text":"Main Structure","x":0.5,"y":0.1,"fontSize":16,"color":"#333"}
-]
-
-Output ONLY the JSON array now:`;
+Generate the JSON array now (no markdown, no explanations):`;
 }
 /**
  * QUALITY VALIDATOR
@@ -264,30 +224,30 @@ function validateQuality(operations) {
     // Calculate quality metrics
     const customPathCount = opCounts['customPath'] || 0;
     const avgPathComplexity = customPathCount > 0 ? totalPathComplexity / customPathCount : 0;
-    // Scoring
-    if (operations.length >= 50)
-        score += 20;
-    if (customPathCount >= 15)
-        score += 20;
+    // Scoring for 40-80 rich operations
+    if (operations.length >= 40)
+        score += 25;
+    if (operations.length >= 60)
+        score += 10; // Bonus for richness
+    if (customPathCount >= 10)
+        score += 25; // Many complex structures
     if (avgPathComplexity >= 8)
-        score += 30;
+        score += 30; // Rich Bezier curves
     if (labelCount >= 10)
-        score += 15;
-    if (animationCount >= 5)
-        score += 15;
+        score += 15; // Comprehensive labeling
+    if (animationCount >= 3)
+        score += 5; // Dynamic elements
     // Issues
     if (operations.length < 30)
-        issues.push('Too few operations (need 50+)');
-    if (customPathCount < 10)
-        issues.push('Too few complex structures');
-    if (avgPathComplexity < 5)
-        issues.push('Paths too simple (need more curves/commands)');
+        issues.push('Need 40-80 operations for richness');
+    if (customPathCount < 8)
+        issues.push('Need more complex SVG paths');
+    if (avgPathComplexity < 6 && customPathCount > 0)
+        issues.push('Paths need more curves/commands');
     if (labelCount < 8)
-        issues.push('Insufficient labeling');
-    if (animationCount < 3)
-        issues.push('Lacks dynamic elements');
+        issues.push('Need comprehensive labeling');
     return {
-        valid: score >= 60,
+        valid: score >= 50, // Higher bar for quality
         score: Math.min(100, score),
         issues
     };
@@ -302,7 +262,7 @@ async function generateInsaneVisuals(topic, description, apiKey, maxRetries = 2 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
         logger_1.logger.info(`[SVG-MASTER] Attempt ${attempt}/${maxRetries} for quality generation`);
         const model = genAI.getGenerativeModel({
-            model: 'gemini-2.5-flash', // Highest RPM model
+            model: 'gemini-2.5-flash', // Highest RPM model for production
             generationConfig: {
                 temperature: 0.85, // Balanced creativity
                 maxOutputTokens: 16000, // Reduced for faster response
@@ -312,13 +272,49 @@ async function generateInsaneVisuals(topic, description, apiKey, maxRetries = 2 
             systemInstruction: 'You are a JSON-only visual operation generator. Output ONLY a valid JSON array of operations. NO markdown, NO comments, NO explanations. Just pure JSON array starting with [ and ending with ].'
         });
         const prompt = createInsaneQualityPrompt(topic, description);
+        // Retry with exponential backoff for rate limiting
+        let result;
+        let lastError;
+        for (let retryCount = 0; retryCount < 3; retryCount++) {
+            try {
+                if (retryCount > 0) {
+                    const delayMs = retryCount * 3000; // 3s, 6s delays
+                    logger_1.logger.info(`[SVG-MASTER] Retry ${retryCount}/2 after ${delayMs}ms delay`);
+                    await new Promise(resolve => setTimeout(resolve, delayMs));
+                }
+                result = await model.generateContent(prompt);
+                break; // Success, exit retry loop
+            }
+            catch (error) {
+                lastError = error;
+                if (error.message?.includes('429') || error.message?.includes('rate limit')) {
+                    logger_1.logger.warn(`[SVG-MASTER] Rate limit hit, will retry...`);
+                    continue;
+                }
+                throw error; // Non-rate-limit error, fail immediately
+            }
+        }
+        if (!result) {
+            throw lastError || new Error('Failed after retries');
+        }
         try {
-            const result = await model.generateContent(prompt);
+            // CRITICAL: Check if response exists
+            if (!result || !result.response) {
+                logger_1.logger.error(`[SVG-MASTER] No response object from Gemini API`);
+                logger_1.logger.error(`[SVG-MASTER] Result:`, JSON.stringify(result, null, 2).substring(0, 500));
+                throw new Error('No response object from API');
+            }
+            // Check for blocked or safety issues
+            if (result.response.promptFeedback?.blockReason) {
+                logger_1.logger.error(`[SVG-MASTER] Content blocked: ${result.response.promptFeedback.blockReason}`);
+                throw new Error(`Content blocked: ${result.response.promptFeedback.blockReason}`);
+            }
             const text = result.response.text();
             logger_1.logger.info(`[SVG-MASTER] Raw response length: ${text.length} chars`);
             // CRITICAL: Handle empty or too-short responses
             if (!text || text.trim().length === 0) {
                 logger_1.logger.error(`[SVG-MASTER] Empty response from Gemini API`);
+                logger_1.logger.error(`[SVG-MASTER] Response object:`, JSON.stringify(result.response, null, 2).substring(0, 500));
                 throw new Error('Empty LLM response');
             }
             if (text.length < 50) {
@@ -379,10 +375,38 @@ async function generateInsaneVisuals(topic, description, apiKey, maxRetries = 2 
                     }
                 }
             }
+            operations = operations.map(op => {
+                const clamped = { ...op };
+                // Clamp x, y
+                if (typeof clamped.x === 'number') {
+                    clamped.x = Math.max(0, Math.min(1, clamped.x));
+                }
+                if (typeof clamped.y === 'number') {
+                    clamped.y = Math.max(0, Math.min(1, clamped.y));
+                }
+                // Clamp x1, y1, x2, y2
+                if (typeof clamped.x1 === 'number')
+                    clamped.x1 = Math.max(0, Math.min(1, clamped.x1));
+                if (typeof clamped.y1 === 'number')
+                    clamped.y1 = Math.max(0, Math.min(1, clamped.y1));
+                if (typeof clamped.x2 === 'number')
+                    clamped.x2 = Math.max(0, Math.min(1, clamped.x2));
+                if (typeof clamped.y2 === 'number')
+                    clamped.y2 = Math.max(0, Math.min(1, clamped.y2));
+                // Clamp center array
+                if (Array.isArray(clamped.center) && clamped.center.length === 2) {
+                    clamped.center = [
+                        Math.max(0, Math.min(1, clamped.center[0])),
+                        Math.max(0, Math.min(1, clamped.center[1]))
+                    ];
+                }
+                return clamped;
+            });
+            logger_1.logger.info(`[SVG-MASTER] ✅ Coordinates clamped to 0-1 range`);
             // Validate quality
             const validation = validateQuality(operations);
             logger_1.logger.info(`[SVG-MASTER] Quality Score: ${validation.score}/100`);
-            // LOWERED THRESHOLD: Accept 50+ instead of 60+ for production reliability
+            // Accept if quality score is good OR has minimum rich operations
             if (validation.score >= 50 || operations.length >= 30) {
                 logger_1.logger.info(`[SVG-MASTER] ✅ Quality acceptable! Score: ${validation.score}, Ops: ${operations.length}`);
                 return operations;

@@ -10,7 +10,13 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "test:animations": "ts-node test-animation-system.ts",
+    "test:pipeline": "ts-node test-complete-animation-pipeline.ts",
+    "test:brutal": "ts-node test-production-brutal-honest.ts",
+    "test:quality": "ts-node test-unit-quality-deep-dive.ts",
+    "test:verify": "ts-node test-quick-verify.ts",
+    "test:e2e": "ts-node test-production-complete-e2e.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.15.0",

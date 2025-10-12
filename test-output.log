@@ -1,0 +1,39 @@
+[2025-10-11T09:22:04.668Z] [0.0s] [INFO] 
+[2025-10-11T09:22:04.669Z] [0.0s] [INFO] ======================================================================
+[2025-10-11T09:22:04.669Z] [0.0s] [INFO] PRODUCTION SYSTEM TEST - FIXED
+[2025-10-11T09:22:04.669Z] [0.0s] [INFO] ======================================================================
+[2025-10-11T09:22:04.669Z] [0.0s] [INFO] Query: "teach me about simple harmonic motion"
+[2025-10-11T09:22:04.669Z] [0.0s] [INFO] Backend: http://localhost:8000
+[2025-10-11T09:22:04.669Z] [0.0s] [INFO] 
+[2025-10-11T09:22:04.669Z] [0.0s] [REQUEST] Step 1: Sending HTTP POST to /api/query...
+[2025-10-11T09:22:04.680Z] [0.0s] [REQUEST] ✅ Session created: 9c02e3ec-cf12-47bc-8b2a-7fe657d01e1a
+[2025-10-11T09:22:04.681Z] [0.0s] [INFO] 
+[2025-10-11T09:22:04.681Z] [0.0s] [NETWORK] Step 2: Connecting WebSocket...
+[2025-10-11T09:22:04.688Z] [0.0s] [NETWORK] ✅ WebSocket connected: P0BzuiqAKmahndowAAAD
+[2025-10-11T09:22:04.688Z] [0.0s] [INFO] 
+[2025-10-11T09:22:04.688Z] [0.0s] [NETWORK] Step 3: Joining session 9c02e3ec-cf12-47bc-8b2a-7fe657d01e1a...
+[2025-10-11T09:22:04.689Z] [0.0s] [NETWORK] ✅ Joined session: 9c02e3ec-cf12-47bc-8b2a-7fe657d01e1a
+[2025-10-11T09:22:04.689Z] [0.0s] [NETWORK] Now listening for results...
+[2025-10-11T09:22:04.689Z] [0.0s] [INFO] 
+[2025-10-11T09:22:18.472Z] [13.8s] [PROGRESS] Generation: 🚀 Starting generation of 3 steps...
+[2025-10-11T09:22:18.473Z] [13.8s] [PROGRESS] Progress: Generating intuition: Imagine a child on a swing, a pendulum swaying, or...
+[2025-10-11T09:22:18.474Z] [13.8s] [PROGRESS] Progress: Generating mechanics: Simple Harmonic Motion occurs when the **restoring...
+[2025-10-11T09:22:18.475Z] [13.8s] [PROGRESS] Progress: Generating applications: Simple Harmonic Motion is everywhere! It's the rhy...
+[2025-10-11T09:25:04.709Z] [180.0s] [TIMEOUT] ❌ TIMEOUT: No completion in 3 minutes
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] 
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] ======================================================================
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] FINAL REPORT
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] ======================================================================
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] 
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] 📊 TIMING:
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO]   Total: 180.0s
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO]   Plan: 0s
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] 
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] 📈 CONTENT:
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO]   Steps: 0/3
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO]   Visuals: 0
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO]   Animations: 0
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] 
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] 📊 SCORE: 20/100
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] 
+[2025-10-11T09:25:04.709Z] [180.0s] [INFO] ❌ NOT PRODUCTION READY

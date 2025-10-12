@@ -1,0 +1,1965 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 14:56:14 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T09:56:14.914Z [debug] NEW Plan worker created
+2025-10-11T09:56:14.915Z [debug] NEW Gen worker created
+2025-10-11T09:56:14.915Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T09:56:14.919Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 4
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 96f5314e-f54e-4716-ac83-4d8687d533d4
+Query: oxygen atoms
+Steps to generate: 3
+Time: 2025-10-11T09:56:44.939Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T09:56:44.939Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 96f5314e-f54e-4716-ac83-4d8687d533d4)
+2025-10-11T09:56:44.940Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-11T09:56:44.940Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-11T09:56:44.940Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-11T09:56:44.940Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-11T09:56:44.940Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-11T09:56:44.941Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 1: intuition
+2025-10-11T09:56:44.941Z [info] [codegenV3] Topic: "oxygen atoms"
+2025-10-11T09:56:44.941Z [info] [codegenV3] Step: "Close your eyes and take a deep breath. That invisible, life-giving substance you just inhaled? It's largely made of oxygen. But what *is* an oxygen atom? Imagine the entire universe built from tiny, unique LEGO bricks. An oxygen atom is one specific type of these fundamental bricks, a spherical particle, invisible to the naked eye, that's absolutely vital. It's the 'O' in H₂O (water) and CO₂ (carbon dioxide), constantly buzzing around us, making up about 21% of the air we breathe and over half the Earth's crust by mass. It's not just *in* the air, it *is* the air."
+2025-10-11T09:56:44.941Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:56:44.948Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-11T09:56:44.949Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-11T09:56:44.949Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 2: mechanics
+2025-10-11T09:56:44.949Z [info] [codegenV3] Topic: "oxygen atoms"
+2025-10-11T09:56:44.949Z [info] [codegenV3] Step: "An oxygen atom isn't just a generic sphere; it has a precise internal structure. At its core is a nucleus containing 8 protons – this specific count *defines* it as oxygen. Orbiting this nucleus are electrons, arranged in shells. The key to oxygen's behavior lies in its outer electron shell, which needs 8 electrons to be perfectly stable, but oxygen only has 6. This makes oxygen a 'social' atom; it strongly *wants* to share or 'borrow' two more electrons from other atoms. For example, in a water molecule (H₂O), one oxygen atom happily shares electrons with two hydrogen atoms, forming strong bonds and creating that essential liquid we can't live without. This electron-sharing eagerness drives most of oxygen's reactions."
+2025-10-11T09:56:44.949Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:56:44.949Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-11T09:56:44.949Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-11T09:56:44.949Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 3: applications
+2025-10-11T09:56:44.949Z [info] [codegenV3] Topic: "oxygen atoms"
+2025-10-11T09:56:44.949Z [info] [codegenV3] Step: "Oxygen atoms are nature's power providers. In your body, oxygen atoms are whisked from your lungs to your cells, where they're crucial for 'cellular respiration' – essentially burning food for energy. This is the same chemical process, just controlled, as when oxygen feeds a fire, allowing wood or gas to combust and release heat and light. But oxygen isn't always helpful; its eagerness to bond can cause 'oxidation,' like when it combines with iron to form rust, slowly breaking down metal. From powering our muscles to fueling rockets and even causing the vivid colors of the aurora, the humble oxygen atom is a relentless workhorse, constantly transforming the world around us."
+2025-10-11T09:56:44.949Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:56:56.726Z [debug] Received request on /api/query {"body":{"query":"gravity"}}
+2025-10-11T09:56:56.726Z [debug] [api] Stored query for session 18d26b0f-34a9-4eb2-a564-c253ff46ab94: "gravity"
+2025-10-11T09:56:56.726Z [debug] [orchestrator] Enqueuing plan for session 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+2025-10-11T09:56:56.728Z [debug] [orchestrator] Plan job added with id 5 for session 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+Query: gravity
+Time: 2025-10-11T09:56:56.728Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T09:56:56.728Z [debug] [plan] START: session=18d26b0f-34a9-4eb2-a564-c253ff46ab94 query=gravity
+2025-10-11T09:56:56.729Z [debug] [monitor] Started tracking request 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+2025-10-11T09:56:56.729Z [debug] [cache] MISS - No cached plan for query: "gravity..."
+2025-10-11T09:56:56.729Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-11T09:56:56.729Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-11T09:56:56.739Z [debug] [socket] New connection: RfZwFOkhexsNFp-rAAAB
+2025-10-11T09:56:56.739Z [debug] [socket] Socket RfZwFOkhexsNFp-rAAAB joined session 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+2025-10-11T09:56:56.740Z [debug] [socket] Socket RfZwFOkhexsNFp-rAAAB is now in rooms: RfZwFOkhexsNFp-rAAAB, 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+2025-10-11T09:56:59.004Z [info] [planVisualsEnhanced] Received 2428 chars
+2025-10-11T09:56:59.004Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "Create a 2D isometric projection of a single, prominent spherical 'Oxygen Atom (O)' (color: #FF6347) positioned centrally. Surround it with several smaller, identical, light-grey (#D3D3D3) spherical 'Generic Building Block' elements, slightly faded. Use subtle dashed lines to suggest conceptual connectivity between the central oxygen and the generic blocks. Label the central sphere 'Oxygen Atom (O)' and have a general label 'Fundamental Building Blocks' pointing
+2025-10-11T09:56:59.004Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:56:59.004Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:56:59.004Z [info] [codegenV3]   📐 [static] Spec 1: Create a 2D isometric projection of a single, prominent spherical 'Oxygen Atom (...
+2025-10-11T09:56:59.004Z [info] [codegenV3]   🎬 [flow] Spec 2: Display a rectangular frame representing a 'Volume of Air'. Inside, animate nume...
+2025-10-11T09:56:59.004Z [info] [codegenV3]   📐 [static] Spec 3: Render two distinct molecular structures using 2D ball-and-stick models. On the ...
+2025-10-11T09:56:59.004Z [info] [codegenV3]   🎬 [wave] Spec 4: Present a horizontal, undulating band representing 'Earth's Crust' (top layer #D...
+2025-10-11T09:56:59.004Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:56:59.004Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:56:59.004Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:56:59.005Z [info] [codegenV3]   🎬 Animation 2: Generating flow animation...
+2025-10-11T09:56:59.005Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:56:59.005Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:56:59.005Z [info] [codegenV3]   🎬 Animation 4: Generating wave animation...
+2025-10-11T09:56:59.016Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:56:59.016Z [info] [SVG-ANIMATION] Prompt length: 1479 chars (~370 tokens)
+2025-10-11T09:56:59.016Z [info] [SVG-ANIMATION] Description: Display a rectangular frame representing a 'Volume of Air'. Inside, animate numerous small, circular...
+2025-10-11T09:56:59.016Z [info] [SVG-ANIMATION] Attempt 1/2 for "wave" animation
+2025-10-11T09:56:59.016Z [info] [SVG-ANIMATION] Prompt length: 1508 chars (~377 tokens)
+2025-10-11T09:56:59.017Z [info] [SVG-ANIMATION] Description: Present a horizontal, undulating band representing 'Earth's Crust' (top layer #D2B48C, lower #8B4513...
+2025-10-11T09:57:01.298Z [info] [planVisualsEnhanced] Received 2241 chars
+2025-10-11T09:57:01.298Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "Create a 2D Bohr model representation of an oxygen atom. Show a central dark grey (#424242) nucleus containing 8 small red (#D32F2F) circles representing protons. Around this, draw two concentric light grey (#BDBDBD) circular electron shells. The inner shell holds 2 small blue (#2196F3) circles (electrons), and the outer shell holds 6 small blue (#2196F3) circles (valence electrons). Label: 'Nucleus (8 Protons)', 'Inner Shell (2e⁻)', 'Valence Shell (6e⁻)'.",
+   
+2025-10-11T09:57:01.298Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:57:01.298Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:57:01.298Z [info] [codegenV3]   📐 [static] Spec 1: Create a 2D Bohr model representation of an oxygen atom. Show a central dark gre...
+2025-10-11T09:57:01.298Z [info] [codegenV3]   🎬 [orbit] Spec 2: Display the 2D Bohr model of an oxygen atom as described. The central dark grey ...
+2025-10-11T09:57:01.298Z [info] [codegenV3]   📐 [static] Spec 3: Illustrate an oxygen atom's valence shell with two 'empty slots'. Show a central...
+2025-10-11T09:57:01.298Z [info] [codegenV3]   🎬 [orbit] Spec 4: Start with a central oxygen atom (dark grey #424242 nucleus, 6 blue #2196F3 vale...
+2025-10-11T09:57:01.298Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:57:01.298Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:57:01.298Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:57:01.298Z [info] [codegenV3]   🎬 Animation 2: Generating orbit animation...
+2025-10-11T09:57:01.298Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:57:01.298Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:57:01.299Z [info] [codegenV3]   🎬 Animation 4: Generating orbit animation...
+2025-10-11T09:57:01.299Z [info] [SVG-ANIMATION] Attempt 1/2 for "orbit" animation
+2025-10-11T09:57:01.299Z [info] [SVG-ANIMATION] Prompt length: 1405 chars (~352 tokens)
+2025-10-11T09:57:01.299Z [info] [SVG-ANIMATION] Description: Display the 2D Bohr model of an oxygen atom as described. The central dark grey (#424242) nucleus wi...
+2025-10-11T09:57:01.300Z [info] [SVG-ANIMATION] Attempt 1/2 for "orbit" animation
+2025-10-11T09:57:01.300Z [info] [SVG-ANIMATION] Prompt length: 1543 chars (~386 tokens)
+2025-10-11T09:57:01.300Z [info] [SVG-ANIMATION] Description: Start with a central oxygen atom (dark grey #424242 nucleus, 6 blue #2196F3 valence electrons on a l...
+2025-10-11T09:57:06.607Z [info] [planVisualsEnhanced] Received 2480 chars
+2025-10-11T09:57:06.608Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "Create a cross-section of a capillary (#FFB6C1) adjacent to a muscle cell (#98FB98). Show a red blood cell (biconcave disc, #DC143C) inside the capillary with attached oxygen molecules (small light blue spheres, #87CEEB). An arrow indicates oxygen transfer from RBC to the muscle cell. Inside the muscle cell, depict a mitochondrion (bean-shaped, #FFD700) where oxygen and glucose (light yellow hexagons, #FFFACD) combine to produce ATP (small green stars, #32CD32).
+2025-10-11T09:57:06.608Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:57:06.608Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:57:06.608Z [info] [codegenV3]   📐 [static] Spec 1: Create a cross-section of a capillary (#FFB6C1) adjacent to a muscle cell (#98FB...
+2025-10-11T09:57:06.608Z [info] [codegenV3]   🎬 [flow] Spec 2: Animate oxygen transport from lung to cell. Show a simplified lung alveolus (lig...
+2025-10-11T09:57:06.608Z [info] [codegenV3]   📐 [static] Spec 3: Create two side-by-side panels. Left: 'Combustion'. Show a brown log (#8B4513) e...
+2025-10-11T09:57:06.608Z [info] [codegenV3]   🎬 [flow] Spec 4: Animate the process of oxidation. Depict a flat grey surface representing 'Iron ...
+2025-10-11T09:57:06.608Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:57:06.608Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:57:06.608Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:57:06.608Z [info] [codegenV3]   🎬 Animation 2: Generating flow animation...
+2025-10-11T09:57:06.608Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:57:06.608Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:57:06.608Z [info] [codegenV3]   🎬 Animation 4: Generating flow animation...
+2025-10-11T09:57:06.609Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:57:06.609Z [info] [SVG-ANIMATION] Prompt length: 1521 chars (~381 tokens)
+2025-10-11T09:57:06.609Z [info] [SVG-ANIMATION] Description: Animate oxygen transport from lung to cell. Show a simplified lung alveolus (light blue sac, #ADD8E6...
+2025-10-11T09:57:06.609Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:57:06.609Z [info] [SVG-ANIMATION] Prompt length: 1501 chars (~376 tokens)
+2025-10-11T09:57:06.609Z [info] [SVG-ANIMATION] Description: Animate the process of oxidation. Depict a flat grey surface representing 'Iron (Fe)' (#708090). Oxy...
+2025-10-11T09:57:07.864Z [debug] [planner] Received response from Gemini in 11135ms
+2025-10-11T09:57:07.864Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-11T09:57:07.864Z [debug] [monitor] Plan generation for 18d26b0f-34a9-4eb2-a564-c253ff46ab94 took 11135ms
+2025-10-11T09:57:07.865Z [debug] [cache] Cached plan for query: "gravity..."
+=== NEW STRUCTURED PLAN ===
+Session: 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+Query: gravity
+Plan title: Gravity: The Invisible Pull
+Plan subtitle: Discover the fundamental force that keeps our feet on the ground and shapes the cosmos.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: 'Why everything falls down and we stay grounded.'
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'The universal law of mass attracting mass and its key factors.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: "Gravity's role from ocean tides to orbiting planets and beyond."
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Ever wonder why when you drop an apple, it always falls to the ground, never floats upwards? Or why you don't suddenly float off into space right now? It's all thanks to an invisible force: **gravity**. Build intuition by picturing Earth as a giant magnet (though it's not magnetism!) constantly trying to 'hug' everything close to its center. This pull keeps you firmly planted on the ground, preventing you from drifting off."
+Step 1: id=2, tag=mechanics, desc="Gravity isn't just Earth's trick; it's a fundamental universal law: **every object with mass attracts every other object with mass**. The strength of this attraction depends on two key things: 
+1. **Mass:** The more 'stuff' an object has (its mass), the stronger its gravitational pull. That's why the Earth, with its immense mass, pulls you strongly, but a small rock doesn't. 
+2. **Distance:** The closer two objects are, the stronger the pull. As objects get further apart, gravity weakens rapidly. This universal pull explains why the Moon orbits Earth, and why Earth orbits the Sun—it's a cosmic tug-of-war based on mass and distance."
+Step 2: id=3, tag=applications, desc="Gravity isn't just about things falling; it's the architect of the cosmos! It causes the ocean's **tides** as the Moon's gravity tugs on Earth's water. It holds **planets in their orbits** around stars and clusters of **stars together in galaxies**. Understanding gravity allows us to calculate how to launch **rockets into space** (giving them enough speed to overcome Earth's pull) and design stable structures. It's the invisible force that binds our world and the universe together."
+=== END NEW STRUCTURED PLAN ===
+2025-10-11T09:57:07.865Z [debug] [plan] OK: session=18d26b0f-34a9-4eb2-a564-c253ff46ab94 plan received with 3 steps
+2025-10-11T09:57:07.865Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-11T09:57:07.866Z [debug] [plan] END: session=18d26b0f-34a9-4eb2-a564-c253ff46ab94
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 5
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+Query: gravity
+Steps to generate: 3
+Time: 2025-10-11T09:57:07.867Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T09:57:07.867Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 18d26b0f-34a9-4eb2-a564-c253ff46ab94)
+2025-10-11T09:57:07.868Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-11T09:57:07.868Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-11T09:57:07.868Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-11T09:57:07.868Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-11T09:57:07.868Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-11T09:57:07.868Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 1: intuition
+2025-10-11T09:57:07.868Z [info] [codegenV3] Topic: "gravity"
+2025-10-11T09:57:07.868Z [info] [codegenV3] Step: "Ever wonder why when you drop an apple, it always falls to the ground, never floats upwards? Or why you don't suddenly float off into space right now? It's all thanks to an invisible force: **gravity**. Build intuition by picturing Earth as a giant magnet (though it's not magnetism!) constantly trying to 'hug' everything close to its center. This pull keeps you firmly planted on the ground, preventing you from drifting off."
+2025-10-11T09:57:07.868Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:57:07.868Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-11T09:57:07.869Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-11T09:57:07.869Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 2: mechanics
+2025-10-11T09:57:07.869Z [info] [codegenV3] Topic: "gravity"
+2025-10-11T09:57:07.869Z [info] [codegenV3] Step: "Gravity isn't just Earth's trick; it's a fundamental universal law: **every object with mass attracts every other object with mass**. The strength of this attraction depends on two key things: 
+1. **Mass:** The more 'stuff' an object has (its mass), the stronger its gravitational pull. That's why the Earth, with its immense mass, pulls you strongly, but a small rock doesn't. 
+2. **Distance:** The closer two objects are, the stronger the pull. As objects get further apart, gravity weakens rapidly. This universal pull explains why the Moon orbits Earth, and why Earth orbits the Sun—it's a cosmic tug-of-war based on mass and distance."
+2025-10-11T09:57:07.869Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:57:07.869Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-11T09:57:07.869Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-11T09:57:07.869Z [info] [codegenV3] 🎯 PRECISION-GUIDED TWO-STAGE for step 3: applications
+2025-10-11T09:57:07.869Z [info] [codegenV3] Topic: "gravity"
+2025-10-11T09:57:07.869Z [info] [codegenV3] Step: "Gravity isn't just about things falling; it's the architect of the cosmos! It causes the ocean's **tides** as the Moon's gravity tugs on Earth's water. It holds **planets in their orbits** around stars and clusters of **stars together in galaxies**. Understanding gravity allows us to calculate how to launch **rockets into space** (giving them enough speed to overcome Earth's pull) and design stable structures. It's the invisible force that binds our world and the universe together."
+2025-10-11T09:57:07.869Z [info] [codegenV3] 📐 STAGE 1: Enhanced SubPlanner generating specifications (static + animation)...
+2025-10-11T09:57:14.915Z [debug] [monitor] Metrics updated:
+2025-10-11T09:57:22.253Z [info] [planVisualsEnhanced] Received 2031 chars
+2025-10-11T09:57:22.254Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "Create a 2D depiction of Earth and Moon. Earth is a sphere (ocean #0077be, land #38761d) with two distinct oceanic bulges (#87ceeb) on opposite sides. The Moon, a grey sphere (#b0b0b0), is positioned closer to one bulge. Show an invisible, dashed grey line (#a9a9a9) representing gravitational pull from the Moon to the closest bulge. Label: \"Earth\", \"Moon\", \"High Tide Bulge\", \"Moon's Gravity\".",
+    "type": "static"
+  },
+  {
+    "description": "Display a 
+2025-10-11T09:57:22.254Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:57:22.254Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:57:22.254Z [info] [codegenV3]   📐 [static] Spec 1: Create a 2D depiction of Earth and Moon. Earth is a sphere (ocean #0077be, land ...
+2025-10-11T09:57:22.254Z [info] [codegenV3]   🎬 [orbit] Spec 2: Display a central yellow star (#ffd700, large circle) with an elliptical dashed ...
+2025-10-11T09:57:22.254Z [info] [codegenV3]   📐 [static] Spec 3: Illustrate a dark cosmic background (#1a1a2e). Depict three distinct galaxies: a...
+2025-10-11T09:57:22.254Z [info] [codegenV3]   🎬 [flow] Spec 4: Show a large blue and green sphere (#0077be, #38761d) at the bottom, labeled "Ea...
+2025-10-11T09:57:22.254Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:57:22.254Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:57:22.254Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:57:22.254Z [info] [codegenV3]   🎬 Animation 2: Generating orbit animation...
+2025-10-11T09:57:22.254Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:57:22.254Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:57:22.254Z [info] [codegenV3]   🎬 Animation 4: Generating flow animation...
+2025-10-11T09:57:22.254Z [info] [SVG-ANIMATION] Attempt 1/2 for "orbit" animation
+2025-10-11T09:57:22.254Z [info] [SVG-ANIMATION] Prompt length: 1380 chars (~345 tokens)
+2025-10-11T09:57:22.254Z [info] [SVG-ANIMATION] Description: Display a central yellow star (#ffd700, large circle) with an elliptical dashed path (#a9a9a9) aroun...
+2025-10-11T09:57:22.254Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:57:22.255Z [info] [SVG-ANIMATION] Prompt length: 1411 chars (~353 tokens)
+2025-10-11T09:57:22.255Z [info] [SVG-ANIMATION] Description: Show a large blue and green sphere (#0077be, #38761d) at the bottom, labeled "Earth". A silver rocke...
+2025-10-11T09:57:23.810Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:57:23.810Z [info] [SVG-COMPLETE] Received 2953 chars
+2025-10-11T09:57:23.810Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <title>2D Bohr Model of Oxygen Atom</title>
+  <desc>A visual representation of an Oxygen atom with its nucleus and electron shells.</desc>
+
+  <style type="text/css">
+    /* General styling for the Bohr model elements */
+    .nucleus-bg {
+      fill: #424242; /* Dark grey for nucleus background */
+    }
+    .proton {
+      fill: #D32F2F; /* Red for protons */
+      r: 8; /* Radius for p
+2025-10-11T09:57:23.810Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:57:23.811Z [info] [SVG-COMPLETE] Quality Score: 80/100
+2025-10-11T09:57:23.811Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 80
+2025-10-11T09:57:23.811Z [info] [codeVisual] ✅ Generated complete SVG (2942 chars)
+2025-10-11T09:57:23.811Z [info] [codeVisual] Quality score: 80/100
+2025-10-11T09:57:23.811Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:57:26.287Z [info] [planVisualsEnhanced] Received 2119 chars
+2025-10-11T09:57:26.287Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "Create a 2D depiction of universal gravitational attraction. Show two distinct spherical celestial bodies: a larger blue planet (#4285F4) labeled 'Object 1 (Mass M1)' and a smaller grey moon (#B0BEC5) labeled 'Object 2 (Mass M2)'. Place them centrally. Draw dashed purple arrows (#9C27B0) from the center of each object pointing towards the other, indicating mutual pull. Label these arrows 'Gravitational Force'. Background: dark space (#0A192F) with small white st
+2025-10-11T09:57:26.287Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:57:26.287Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:57:26.287Z [info] [codegenV3]   📐 [static] Spec 1: Create a 2D depiction of universal gravitational attraction. Show two distinct s...
+2025-10-11T09:57:26.287Z [info] [codegenV3]   🎬 [flow] Spec 2: Depict the effect of mass on gravity. On the left, show a large blue-green plane...
+2025-10-11T09:57:26.287Z [info] [codegenV3]   📐 [static] Spec 3: Illustrate how distance affects gravity. Show two identical medium-grey spheres ...
+2025-10-11T09:57:26.287Z [info] [codegenV3]   🎬 [orbit] Spec 4: Animate orbital motion due to gravity. Center a large yellow sphere (#FFC107) la...
+2025-10-11T09:57:26.287Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:57:26.287Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:57:26.287Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:57:26.287Z [info] [codegenV3]   🎬 Animation 2: Generating flow animation...
+2025-10-11T09:57:26.287Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:57:26.287Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:57:26.287Z [info] [codegenV3]   🎬 Animation 4: Generating orbit animation...
+2025-10-11T09:57:26.287Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:57:26.287Z [info] [SVG-ANIMATION] Prompt length: 1433 chars (~359 tokens)
+2025-10-11T09:57:26.287Z [info] [SVG-ANIMATION] Description: Depict the effect of mass on gravity. On the left, show a large blue-green planet (#4CAF50, #2196F3)...
+2025-10-11T09:57:26.287Z [info] [SVG-ANIMATION] Attempt 1/2 for "orbit" animation
+2025-10-11T09:57:26.287Z [info] [SVG-ANIMATION] Prompt length: 1398 chars (~350 tokens)
+2025-10-11T09:57:26.287Z [info] [SVG-ANIMATION] Description: Animate orbital motion due to gravity. Center a large yellow sphere (#FFC107) labeled 'Sun'. A mediu...
+2025-10-11T09:57:26.933Z [info] [planVisualsEnhanced] Received 1962 chars
+2025-10-11T09:57:26.933Z [info] [planVisualsEnhanced] First 500 chars: ```json
+[
+  {
+    "description": "Show a large blue (#4a90e2) and green (#7ed321) sphere representing 'Earth'. Position a small red (#d0021b) sphere, labeled 'Apple', directly above it. A dashed black (#000000) arrow, labeled 'Gravitational Pull', should extend from the apple downwards towards the center of the Earth, illustrating the path of fall. Emphasize the direct downward motion.",
+    "type": "static"
+  },
+  {
+    "description": "Depict Earth as a large blue (#4a90e2) and green (#7ed321) 
+2025-10-11T09:57:26.933Z [info] [planVisualsEnhanced] ✅ Strategy 1 success: 4 specs (2 animations)
+2025-10-11T09:57:26.933Z [info] [codegenV3] ✅ STAGE 1 SUCCESS: 4 specs (2 static, 2 animations)
+2025-10-11T09:57:26.933Z [info] [codegenV3]   📐 [static] Spec 1: Show a large blue (#4a90e2) and green (#7ed321) sphere representing 'Earth'. Pos...
+2025-10-11T09:57:26.933Z [info] [codegenV3]   🎬 [flow] Spec 2: Depict Earth as a large blue (#4a90e2) and green (#7ed321) sphere. Show a small ...
+2025-10-11T09:57:26.933Z [info] [codegenV3]   📐 [static] Spec 3: Render Earth as a large blue (#4a90e2) and green (#7ed321) sphere. Position a si...
+2025-10-11T09:57:26.933Z [info] [codegenV3]   🎬 [orbit] Spec 4: Illustrate Earth as a prominent blue (#4a90e2) and green (#7ed321) sphere. Anima...
+2025-10-11T09:57:26.933Z [info] [codegenV3] 🚀 STAGE 2: Executing 4 specifications (PARALLEL)...
+2025-10-11T09:57:26.933Z [info] [codegenV3]   📐 Static 1: Generating complete SVG visual...
+2025-10-11T09:57:26.933Z [info] [SVG-COMPLETE] Attempt 1/2 for section 0
+2025-10-11T09:57:26.933Z [info] [codegenV3]   🎬 Animation 2: Generating flow animation...
+2025-10-11T09:57:26.933Z [info] [codegenV3]   📐 Static 3: Generating complete SVG visual...
+2025-10-11T09:57:26.933Z [info] [SVG-COMPLETE] Attempt 1/2 for section 2
+2025-10-11T09:57:26.933Z [info] [codegenV3]   🎬 Animation 4: Generating orbit animation...
+2025-10-11T09:57:26.933Z [info] [SVG-ANIMATION] Attempt 1/2 for "flow" animation
+2025-10-11T09:57:26.933Z [info] [SVG-ANIMATION] Prompt length: 1397 chars (~350 tokens)
+2025-10-11T09:57:26.933Z [info] [SVG-ANIMATION] Description: Depict Earth as a large blue (#4a90e2) and green (#7ed321) sphere. Show a small human figure (#8b572...
+2025-10-11T09:57:26.933Z [info] [SVG-ANIMATION] Attempt 1/2 for "orbit" animation
+2025-10-11T09:57:26.933Z [info] [SVG-ANIMATION] Prompt length: 1416 chars (~354 tokens)
+2025-10-11T09:57:26.933Z [info] [SVG-ANIMATION] Description: Illustrate Earth as a prominent blue (#4a90e2) and green (#7ed321) sphere. Animate a grey (#9b9b9b) ...
+2025-10-11T09:57:29.604Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:57:29.604Z [info] [SVG-COMPLETE] Received 3569 chars
+2025-10-11T09:57:29.604Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="1000" height="600" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* Global styles for text and bonds */
+    .molecule-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 30px;
+      font-weight: bold;
+      fill: #333; /* Dark grey for general labels */
+      text-anchor: middle;
+    }
+    .atom-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      text-anchor: middle;
+      
+2025-10-11T09:57:29.604Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:57:29.604Z [info] [SVG-COMPLETE] Quality Score: 92/100
+2025-10-11T09:57:29.604Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 92
+2025-10-11T09:57:29.604Z [info] [codeVisual] ✅ Generated complete SVG (3558 chars)
+2025-10-11T09:57:29.604Z [info] [codeVisual] Quality score: 92/100
+2025-10-11T09:57:29.604Z [info] [codegenV3]   Static 3: ✅ Generated complete SVG
+2025-10-11T09:57:40.829Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:57:40.829Z [info] [SVG-COMPLETE] Received 3308 chars
+2025-10-11T09:57:40.829Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Define a radial gradient for a subtle spherical effect on the oxygen atom -->
+    <radialGradient id="oxygenGradient" cx="35%" cy="35%" r="70%" fx="35%" fy="35%">
+      <stop offset="0%" stop-color="#FF6347" stop-opacity="1"/> <!-- Brightest part (Tomato) -->
+      <stop offset="100%" stop-color="#CC3300" stop-opacity="1"/> <!-- Darker edge for depth -->
+    </radialGra
+2025-10-11T09:57:40.830Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:57:40.830Z [info] [SVG-COMPLETE] Quality Score: 94/100
+2025-10-11T09:57:40.830Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 94
+2025-10-11T09:57:40.830Z [info] [codeVisual] ✅ Generated complete SVG (3297 chars)
+2025-10-11T09:57:40.830Z [info] [codeVisual] Quality score: 94/100
+2025-10-11T09:57:40.830Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:57:43.211Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:57:43.211Z [info] [SVG-COMPLETE] Received 1907 chars
+2025-10-11T09:57:43.211Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <!--
+        Oxygen Atom Illustration:
+        - Central dark grey nucleus.
+        - Inner light grey shell with 2 blue electrons.
+        - Outer valence shell with 6 blue electrons and 2 light green dotted empty slots.
+        - Labels for key components.
+    -->
+
+    <!-- Atom's center coordinates: (250, 250) -->
+
+    <!-- 1. Oxygen Nucleus -->
+    <circle cx="250" cy="250" r="30
+2025-10-11T09:57:43.211Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:57:43.211Z [error] [SVG-COMPLETE] Output was: <?xml version="1.0"?>
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <!--
+        Oxygen Atom Illustration:
+        - Central dark grey nucleus.
+        - Inner light grey shell with 2 blue electrons.
+        - Outer valence shell with 6 blue electrons and 2 light green dotted empty slots.
+        - Labels for key components.
+    -->
+
+    <!-- Atom's center coordinates: (250, 250) -->
+
+    <!-- 1. Oxygen Nucleus -->
+    <circle cx="250" cy="250" r="30" fill="#424242"/>
+
+    <!-- 2. Inner Electron Shell (K-shell) -->
+    <!-- Orbit path for the inner shell -->
+    <circle cx="250" cy="250" r="70" fill="none" stroke="#BDBDBD" stroke-width="1"/>
+    <!-- Two electrons in the inner shell (2e-) -->
+    <circle cx="250" cy="180" r="8" fill="#2196F3"/> <!-- Top position (250, 250-70) -->
+    <circle cx="250" cy="320" r="8" fill="#2196F3"/> <!-- Bottom position (250, 250+70) -->
+
+    <!-- 3. Outer Valence Shell (L-shell) -->
+    <!-- Orbit path for 
+2025-10-11T09:57:43.211Z [info] [SVG-COMPLETE] Quality Score: 55/100
+2025-10-11T09:57:43.211Z [warn] [SVG-COMPLETE] Issues: SVG not properly closed, Insufficient labels (need at least 3 text elements)
+2025-10-11T09:57:43.211Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 55
+2025-10-11T09:57:43.211Z [info] [codeVisual] ✅ Generated complete SVG (1900 chars)
+2025-10-11T09:57:43.211Z [info] [codeVisual] Quality score: 55/100
+2025-10-11T09:57:43.211Z [info] [codegenV3]   Static 3: ✅ Generated complete SVG
+2025-10-11T09:57:44.117Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:57:44.117Z [info] [SVG-ANIMATION] Received 4130 chars
+2025-10-11T09:57:44.117Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Center of the atom: (300, 300) -->
+
+    <!-- Nucleus: Dark grey circle for the nucleus -->
+    <circle cx="300" cy="300" r="20" fill="#424242" />
+
+    <!-- 8 Red Protons within the nucleus (stationary) -->
+    <!-- Protons are placed to visually represent their presence within the nucleus -->
+    <circle cx="300" cy="300" r="5" fill="#D32F2F" /> <!-- Central proton -->
+    <circ
+2025-10-11T09:57:44.117Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:57:44.117Z [error] [SVG-ANIMATION] Output was: <?xml version="1.0"?>
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Center of the atom: (300, 300) -->
+
+    <!-- Nucleus: Dark grey circle for the nucleus -->
+    <circle cx="300" cy="300" r="20" fill="#424242" />
+
+    <!-- 8 Red Protons within the nucleus (stationary) -->
+    <!-- Protons are placed to visually represent their presence within the nucleus -->
+    <circle cx="300" cy="300" r="5" fill="#D32F2F" /> <!-- Central proton -->
+    <circle cx="310" cy="300" r="5" fill="#D32F2F" />
+    <circle cx="290" cy="300" r="5" fill="#D32F2F" />
+    <circle cx="300" cy="310" r="5" fill="#D32F2F" />
+    <circle cx="300" cy="290" r="5" fill="#D32F2F" />
+    <circle cx="307" cy="307" r="5" fill="#D32F2F" />
+    <circle cx="293" cy="307" r="5" fill="#D32F2F" />
+    <circle cx="307" cy="293" r="5" fill="#D32F2F" />
+    
+    <!-- Label for the Nucleus -->
+    <text x="300" y="260" text-anchor="middle" fill="#424242" font-size="16">Nucleus (8 Pro
+2025-10-11T09:57:44.118Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:57:44.118Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:57:44.118Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:57:44.118Z [info] [SVG-ANIMATION] Attempt 2/2 for "orbit" animation
+2025-10-11T09:57:44.118Z [info] [SVG-ANIMATION] Prompt length: 1405 chars (~352 tokens)
+2025-10-11T09:57:44.118Z [info] [SVG-ANIMATION] Description: Display the 2D Bohr model of an oxygen atom as described. The central dark grey (#424242) nucleus wi...
+2025-10-11T09:57:46.007Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:57:46.007Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:57:46.007Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:57:46.007Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:57:46.007Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:57:46.007Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:57:46.007Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:57:46.007Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:57:46.007Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:57:46.007Z [info] [SVG-ANIMATION] Prompt length: 1479 chars (~370 tokens)
+2025-10-11T09:57:46.007Z [info] [SVG-ANIMATION] Description: Display a rectangular frame representing a 'Volume of Air'. Inside, animate numerous small, circular...
+2025-10-11T09:57:47.205Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:57:47.205Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:57:47.205Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:57:47.205Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:57:47.205Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:57:47.205Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:57:47.205Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:57:47.205Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:57:47.205Z [info] [SVG-ANIMATION] Attempt 2/2 for "orbit" animation
+2025-10-11T09:57:47.205Z [info] [SVG-ANIMATION] Prompt length: 1543 chars (~386 tokens)
+2025-10-11T09:57:47.205Z [info] [SVG-ANIMATION] Description: Start with a central oxygen atom (dark grey #424242 nucleus, 6 blue #2196F3 valence electrons on a l...
+2025-10-11T09:57:48.572Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:57:48.572Z [info] [SVG-ANIMATION] Received 1529 chars
+2025-10-11T09:57:48.572Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define reusable elements for clarity and conciseness -->
+  <defs>
+    <!-- Oxygen Molecule (O₂) - represented as a single blue sphere -->
+    <circle id="oxygenMolecule" r="10" fill="#87CEEB">
+      <title>Oxygen (O₂) Molecule</title>
+    </circle>
+  </defs>
+
+  <!-- Background and Iron Surface -->
+  <!-- A light background provides better contrast for the elements -->
+  <rect x="0
+2025-10-11T09:57:48.572Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:57:48.572Z [error] [SVG-ANIMATION] Output was: <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define reusable elements for clarity and conciseness -->
+  <defs>
+    <!-- Oxygen Molecule (O₂) - represented as a single blue sphere -->
+    <circle id="oxygenMolecule" r="10" fill="#87CEEB">
+      <title>Oxygen (O₂) Molecule</title>
+    </circle>
+  </defs>
+
+  <!-- Background and Iron Surface -->
+  <!-- A light background provides better contrast for the elements -->
+  <rect x="0" y="0" width="800" height="600" fill="#F0F0F0" />
+  <!-- The Iron (Fe) surface where oxidation will occur -->
+  <rect id="ironSurface" x="50" y="300" width="700" height="250" fill="#708090">
+    <title>Iron (Fe) Surface</title>
+  </rect>
+
+  <!-- Labels for educational clarity -->
+  <text x="100" y="280" font-family="Arial, sans-serif" font-size="24" fill="#333">Iron (Fe)</text>
+  <text x="100" y="80" font-family="Arial, sans-serif" font-size="24" fill="#333">Oxygen (O₂)</text>
+  <text x="500" y
+2025-10-11T09:57:48.572Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:57:48.572Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:57:48.572Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:57:48.572Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:57:48.572Z [info] [SVG-ANIMATION] Prompt length: 1501 chars (~376 tokens)
+2025-10-11T09:57:48.572Z [info] [SVG-ANIMATION] Description: Animate the process of oxidation. Depict a flat grey surface representing 'Iron (Fe)' (#708090). Oxy...
+2025-10-11T09:57:48.705Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:57:48.705Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:57:48.705Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:57:48.705Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:57:48.705Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:57:48.705Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:57:48.705Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:57:48.705Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:57:48.705Z [info] [SVG-ANIMATION] Attempt 2/2 for "wave" animation
+2025-10-11T09:57:48.705Z [info] [SVG-ANIMATION] Prompt length: 1508 chars (~377 tokens)
+2025-10-11T09:57:48.705Z [info] [SVG-ANIMATION] Description: Present a horizontal, undulating band representing 'Earth's Crust' (top layer #D2B48C, lower #8B4513...
+2025-10-11T09:57:51.478Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:57:51.478Z [info] [SVG-COMPLETE] Received 2984 chars
+2025-10-11T09:57:51.478Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Reusable Oxygen Molecule (O₂) - A small blue sphere -->
+    <circle id="oxygenMolecule" r="5" fill="#87CEEB"/>
+  </defs>
+
+  <style>
+    /* Styling for panel backgrounds and text elements */
+    .panel-bg { fill:#F0F0F0; stroke:#CCC; stroke-width:1; }
+    .label-title { font-family:Arial, sans-serif; font-size:20px; font-weight:bold; text-anchor:middle; }
+    .label-elem
+2025-10-11T09:57:51.478Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:57:51.478Z [info] [SVG-COMPLETE] Quality Score: 100/100
+2025-10-11T09:57:51.478Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 100
+2025-10-11T09:57:51.478Z [info] [codeVisual] ✅ Generated complete SVG (2973 chars)
+2025-10-11T09:57:51.478Z [info] [codeVisual] Quality score: 100/100
+2025-10-11T09:57:51.478Z [info] [codegenV3]   Static 3: ✅ Generated complete SVG
+2025-10-11T09:57:51.670Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:57:51.671Z [info] [SVG-COMPLETE] Received 1784 chars
+2025-10-11T09:57:51.671Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <style type="text/css">
+      /* Define common text styles for labels */
+      .label { 
+        font-family: sans-serif; 
+        font-size: 16px; 
+        fill: #333; 
+        text-anchor: middle; 
+        font-weight: bold;
+      }
+      /* Define style for the gravitational pull line */
+      .gravity-line { 
+        stroke: #a9a9a9; 
+        stroke-width: 2; 
+        st
+2025-10-11T09:57:51.671Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:57:51.671Z [info] [SVG-COMPLETE] Quality Score: 86/100
+2025-10-11T09:57:51.671Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 86
+2025-10-11T09:57:51.671Z [info] [codeVisual] ✅ Generated complete SVG (1773 chars)
+2025-10-11T09:57:51.671Z [info] [codeVisual] Quality score: 86/100
+2025-10-11T09:57:51.671Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:57:51.933Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:57:51.933Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:57:51.933Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:57:51.933Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:57:51.933Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:57:51.933Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:57:51.933Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:57:51.933Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:57:51.933Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:57:51.933Z [info] [SVG-ANIMATION] Prompt length: 1521 chars (~381 tokens)
+2025-10-11T09:57:51.933Z [info] [SVG-ANIMATION] Description: Animate oxygen transport from lung to cell. Show a simplified lung alveolus (light blue sac, #ADD8E6...
+2025-10-11T09:57:52.715Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:57:52.715Z [info] [SVG-COMPLETE] Received 3814 chars
+2025-10-11T09:57:52.715Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="800" height="600" viewBox="0 0 800 600">
+  <style>
+    /* General Styles for visual clarity and educational focus */
+    .background {
+      fill: #222; /* Dark background for contrast */
+    }
+    .object {
+      fill: #9E9E9E; /* Medium-grey spheres for celestial bodies */
+      stroke: #666; /* Slightly darker stroke for definition */
+      stroke-width: 1.5;
+    }
+    .label-object {
+      font-family: 'Segoe UI', Aria
+2025-10-11T09:57:52.715Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:57:52.715Z [info] [SVG-COMPLETE] Quality Score: 100/100
+2025-10-11T09:57:52.715Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 100
+2025-10-11T09:57:52.715Z [info] [codeVisual] ✅ Generated complete SVG (3803 chars)
+2025-10-11T09:57:52.715Z [info] [codeVisual] Quality score: 100/100
+2025-10-11T09:57:52.715Z [info] [codegenV3]   Static 3: ✅ Generated complete SVG
+2025-10-11T09:57:53.303Z [info] [SVG-ANIMATION] Finish reason: STOP
+2025-10-11T09:57:53.303Z [info] [SVG-ANIMATION] Received 4337 chars
+2025-10-11T09:57:53.303Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Define a radial gradient for the 'Earth' planet to give it a spherical, multi-color appearance. -->
+    <radialGradient id="earthGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#2196F3"/> <!-- Blue for oceans or atmospheric effects -->
+      <stop offset="100%" stop-color="#4CAF50"/> <!-- Green for landmasses -->
+    </radialGr
+2025-10-11T09:57:53.303Z [info] [SVG-ANIMATION] Extracted SVG with <?xml header
+2025-10-11T09:57:53.303Z [info] [SVG-ANIMATION] Quality Score: 100/100
+2025-10-11T09:57:53.303Z [info] [SVG-ANIMATION] ✅ VALID! Score: 100/100
+2025-10-11T09:57:53.303Z [info] [codegenV3]   Animation 2: ✅ Generated complete SVG (4326 chars)
+2025-10-11T09:57:54.244Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:57:54.244Z [info] [SVG-COMPLETE] Received 5004 chars
+2025-10-11T09:57:54.244Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style type="text/css">
+      /* Basic text styling for labels */
+      .label { font-family: sans-serif; font-size: 18px; fill: #333; font-weight: bold; }
+      .small-label { font-family: sans-serif; font-size: 14px; fill: #555; }
+      /* Specific element styles */
+      .oxygen { fill: #87CEEB; stroke: #6AB0D4; stroke-width: 0.5; }
+      .glucose { fill: #FFFACD; stroke:
+2025-10-11T09:57:54.244Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:57:54.244Z [info] [SVG-COMPLETE] Quality Score: 96/100
+2025-10-11T09:57:54.244Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 96
+2025-10-11T09:57:54.244Z [info] [codeVisual] ✅ Generated complete SVG (4993 chars)
+2025-10-11T09:57:54.244Z [info] [codeVisual] Quality score: 96/100
+2025-10-11T09:57:54.244Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:57:57.195Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:57:57.195Z [info] [SVG-COMPLETE] Received 3583 chars
+2025-10-11T09:57:57.195Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <style>
+    /* Styling for the background, stars, and text labels */
+    .background { fill: #1a1a2e; } /* Dark cosmic background */
+    .star { fill: #ffffff; } /* White color for individual stars */
+    .label {
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      fill: #ffffff; /* White text for labels */
+      text-anchor: middle; /* Center-align text */
+    }
+    .main-label {
+      font-f
+2025-10-11T09:57:57.195Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:57:57.195Z [info] [SVG-COMPLETE] Quality Score: 100/100
+2025-10-11T09:57:57.195Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 100
+2025-10-11T09:57:57.195Z [info] [codeVisual] ✅ Generated complete SVG (3572 chars)
+2025-10-11T09:57:57.195Z [info] [codeVisual] Quality score: 100/100
+2025-10-11T09:57:57.195Z [info] [codegenV3]   Static 3: ✅ Generated complete SVG
+2025-10-11T09:57:57.389Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:57:57.389Z [info] [SVG-COMPLETE] Received 2398 chars
+2025-10-11T09:57:57.389Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="600" height="600" viewBox="0 0 600 600">
+    <style>
+        /* Basic styling for text elements to ensure readability */
+        .label {
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            fill: #333; /* Dark grey for general labels */
+        }
+        .concept-label {
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            f
+2025-10-11T09:57:57.390Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:57:57.390Z [info] [SVG-COMPLETE] Quality Score: 96/100
+2025-10-11T09:57:57.390Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 96
+2025-10-11T09:57:57.390Z [info] [codeVisual] ✅ Generated complete SVG (2398 chars)
+2025-10-11T09:57:57.390Z [info] [codeVisual] Quality score: 96/100
+2025-10-11T09:57:57.390Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:58:03.268Z [info] [SVG-COMPLETE] Finish reason: STOP
+2025-10-11T09:58:03.268Z [info] [SVG-COMPLETE] Received 2842 chars
+2025-10-11T09:58:03.268Z [info] [SVG-COMPLETE] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Reusable arrowhead marker for gravitational force vectors -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9C27B0" />
+    </marker>
+  </defs>
+
+  <!-- Background: Dark Space -->
+  <rect x="0" y="0" width="800" height="500" fill="#0A192F" />
+
+  <!-- Small white stars in the
+2025-10-11T09:58:03.268Z [info] [SVG-COMPLETE] Extracted SVG with <?xml header
+2025-10-11T09:58:03.268Z [info] [SVG-COMPLETE] Quality Score: 100/100
+2025-10-11T09:58:03.269Z [info] [SVG-COMPLETE] ✅ Quality acceptable! Score: 100
+2025-10-11T09:58:03.269Z [info] [codeVisual] ✅ Generated complete SVG (2831 chars)
+2025-10-11T09:58:03.269Z [info] [codeVisual] Quality score: 100/100
+2025-10-11T09:58:03.269Z [info] [codegenV3]   Static 1: ✅ Generated complete SVG
+2025-10-11T09:58:08.427Z [info] [SVG-ANIMATION] Finish reason: STOP
+2025-10-11T09:58:08.427Z [info] [SVG-ANIMATION] Received 3890 chars
+2025-10-11T09:58:08.427Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- Earth Gradient: Simulates land and ocean distribution -->
+        <radialGradient id="earthGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" stop-color="#7ed321" /> <!-- Green for landmasses -->
+            <stop offset="70%" stop-color="#4a90e2" /> <!-- Blue for oceans -->
+            <stop offset="100%" stop-color="#4a90e2" />
+
+2025-10-11T09:58:08.427Z [info] [SVG-ANIMATION] Extracted SVG with <?xml header
+2025-10-11T09:58:08.427Z [info] [SVG-ANIMATION] Quality Score: 100/100
+2025-10-11T09:58:08.427Z [info] [SVG-ANIMATION] ✅ VALID! Score: 100/100
+2025-10-11T09:58:08.428Z [info] [codegenV3]   Animation 2: ✅ Generated complete SVG (3879 chars)
+2025-10-11T09:58:09.589Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:58:09.589Z [info] [SVG-ANIMATION] Received 2089 chars
+2025-10-11T09:58:09.589Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="1000" height="600" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+    <title>Gravity Simulation</title>
+    <desc>A 2D animation demonstrating a planet orbiting a star due to gravitational pull, with key elements labeled for educational purposes.</desc>
+
+    <!-- Background for space -->
+    <rect x="0" y="0" width="100%" height="100%" fill="#1a1a2e"/>
+
+    <!-- Define reusable arrowheads for labels -->
+    <defs>
+        <marker id="arrowhead_white"
+2025-10-11T09:58:09.589Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:58:09.589Z [error] [SVG-ANIMATION] Output was: <?xml version="1.0"?>
+<svg width="1000" height="600" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+    <title>Gravity Simulation</title>
+    <desc>A 2D animation demonstrating a planet orbiting a star due to gravitational pull, with key elements labeled for educational purposes.</desc>
+
+    <!-- Background for space -->
+    <rect x="0" y="0" width="100%" height="100%" fill="#1a1a2e"/>
+
+    <!-- Define reusable arrowheads for labels -->
+    <defs>
+        <marker id="arrowhead_white" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#fff" />
+        </marker>
+        <marker id="arrowhead_grey" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#a9a9a9" />
+        </marker>
+
+        <!-- Definition for the elliptical orbital path -->
+        <!-- Center of the orbit (and the star) is at (500, 300) -->
+        <!-- Ellipse semi-major 
+2025-10-11T09:58:09.589Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:58:09.589Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:58:09.589Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:58:09.589Z [info] [SVG-ANIMATION] Attempt 2/2 for "orbit" animation
+2025-10-11T09:58:09.589Z [info] [SVG-ANIMATION] Prompt length: 1380 chars (~345 tokens)
+2025-10-11T09:58:09.589Z [info] [SVG-ANIMATION] Description: Display a central yellow star (#ffd700, large circle) with an elliptical dashed path (#a9a9a9) aroun...
+2025-10-11T09:58:10.435Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:58:10.435Z [info] [SVG-ANIMATION] Received 75 chars
+2025-10-11T09:58:10.435Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800
+2025-10-11T09:58:10.435Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:58:10.435Z [error] [SVG-ANIMATION] Output was: <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800
+2025-10-11T09:58:10.435Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:58:10.435Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:58:10.435Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:58:10.435Z [info] [SVG-ANIMATION] Attempt 2/2 for "flow" animation
+2025-10-11T09:58:10.435Z [info] [SVG-ANIMATION] Prompt length: 1411 chars (~353 tokens)
+2025-10-11T09:58:10.435Z [info] [SVG-ANIMATION] Description: Show a large blue and green sphere (#0077be, #38761d) at the bottom, labeled "Earth". A silver rocke...
+2025-10-11T09:58:14.918Z [debug] [monitor] Metrics updated:
+2025-10-11T09:58:15.892Z [info] [SVG-ANIMATION] Finish reason: STOP
+2025-10-11T09:58:15.892Z [info] [SVG-ANIMATION] Received 3183 chars
+2025-10-11T09:58:15.892Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Main Title -->
+  <text x="10" y="30" font-family="Arial, sans-serif" font-size="20" fill="#333">Oxygen Atom (2D Bohr Model)</text>
+
+  <!-- Atom Center: (300, 300) -->
+
+  <!-- Nucleus (Central dark grey circle) -->
+  <circle cx="300" cy="300" r="35" fill="#424242"/>
+
+  <!-- Protons (8 red circles inside the nucleus) -->
+  <!-- Placed in a circular arrangement within the nucleus, r
+2025-10-11T09:58:15.892Z [info] [SVG-ANIMATION] Extracted SVG with <?xml header
+2025-10-11T09:58:15.892Z [info] [SVG-ANIMATION] Quality Score: 100/100
+2025-10-11T09:58:15.892Z [info] [SVG-ANIMATION] ✅ VALID! Score: 100/100
+2025-10-11T09:58:15.892Z [info] [codegenV3]   Animation 2: ✅ Generated complete SVG (3172 chars)
+2025-10-11T09:58:16.031Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:58:16.031Z [info] [SVG-ANIMATION] Received 1173 chars
+2025-10-11T09:58:16.031Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="1000" height="800" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Background: Deep Space with Scattered White Stars -->
+  <rect x="0" y="0" width="1000" height="800" fill="#000000" />
+  <!-- Scattered Stars for a deep space effect -->
+  <circle cx="150" cy="50" r="1" fill="white" /> <circle cx="800" cy="120" r="0.8" fill="white" />
+  <circle cx="50" cy="300" r="1.2" fill="white" /> <circle cx="950" cy
+2025-10-11T09:58:16.031Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:58:16.031Z [error] [SVG-ANIMATION] Output was: <?xml version="1.0"?>
+<svg width="1000" height="800" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Background: Deep Space with Scattered White Stars -->
+  <rect x="0" y="0" width="1000" height="800" fill="#000000" />
+  <!-- Scattered Stars for a deep space effect -->
+  <circle cx="150" cy="50" r="1" fill="white" /> <circle cx="800" cy="120" r="0.8" fill="white" />
+  <circle cx="50" cy="300" r="1.2" fill="white" /> <circle cx="950" cy="450" r="0.9" fill="white" />
+  <circle cx="250" cy="600" r="1.1" fill="white" /> <circle cx="700" cy="750" r="0.7" fill="white" />
+  <circle cx="400" cy="100" r="1" fill="white" /> <circle cx="600" cy="250" r="0.8" fill="white" />
+  <circle cx="100" cy="500" r="1.2" fill="white" /> <circle cx="900" cy="700" r="0.9" fill="white" />
+  <circle cx="300" cy="200" r="1.1" fill="white" /> <circle cx="750" cy="550" r="0.7" fill="white" />
+  <circle cx="200" cy="700" r="1" fill="white" /> <circle cx="8
+2025-10-11T09:58:16.031Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:58:16.031Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:58:16.031Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:58:16.031Z [info] [SVG-ANIMATION] Attempt 2/2 for "orbit" animation
+2025-10-11T09:58:16.031Z [info] [SVG-ANIMATION] Prompt length: 1398 chars (~350 tokens)
+2025-10-11T09:58:16.031Z [info] [SVG-ANIMATION] Description: Animate orbital motion due to gravity. Center a large yellow sphere (#FFC107) labeled 'Sun'. A mediu...
+2025-10-11T09:58:18.122Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:58:18.123Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:58:18.123Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:58:18.123Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:58:18.123Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:58:18.123Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:58:18.123Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:58:18.123Z [warn] [SVG-COMPLETE] Score too low (0), retrying...
+2025-10-11T09:58:18.123Z [info] [SVG-COMPLETE] Attempt 2/2 for section 2
+2025-10-11T09:58:18.432Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:58:18.432Z [info] [SVG-ANIMATION] Received 1820 chars
+2025-10-11T09:58:18.432Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background for better contrast in space -->
+    <rect x="0" y="0" width="600" height="600" fill="#1a1a1a"/>
+
+    <!-- 1. Earth: Prominent blue and green sphere -->
+    <g id="Earth-System">
+        <!-- Blue for oceans -->
+        <circle id="Earth-Ocean" cx="300" cy="300" r="80" fill="#4a90e2"/>
+        <!-- Green for landmasses -->
+        <path id="Earth-Landmass1" d="M250 28
+2025-10-11T09:58:18.432Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:58:18.432Z [error] [SVG-ANIMATION] Output was: <?xml version="1.0"?>
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background for better contrast in space -->
+    <rect x="0" y="0" width="600" height="600" fill="#1a1a1a"/>
+
+    <!-- 1. Earth: Prominent blue and green sphere -->
+    <g id="Earth-System">
+        <!-- Blue for oceans -->
+        <circle id="Earth-Ocean" cx="300" cy="300" r="80" fill="#4a90e2"/>
+        <!-- Green for landmasses -->
+        <path id="Earth-Landmass1" d="M250 280 Q260 250 290 260 T320 290 Q300 310 270 300 Z" fill="#7ed321"/>
+        <path id="Earth-Landmass2" d="M330 270 Q340 250 360 260 T350 300 Q330 320 310 300 Z" fill="#7ed321"/>
+        <!-- Label for Earth -->
+        <text x="300" y="400" text-anchor="middle" fill="white" font-size="18" font-weight="bold">Earth</text>
+    </g>
+
+    <!-- 4. Gravitational Field: Faint, radial, light-blue lines subtly pulsing outwards -->
+    <g id="GravitationalField-Indicator" stroke="#add8e6" stroke-width="1" opa
+2025-10-11T09:58:18.432Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:58:18.432Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:58:18.432Z [warn] [SVG-ANIMATION] Score too low (0), retrying...
+2025-10-11T09:58:18.433Z [info] [SVG-ANIMATION] Attempt 2/2 for "orbit" animation
+2025-10-11T09:58:18.433Z [info] [SVG-ANIMATION] Prompt length: 1416 chars (~354 tokens)
+2025-10-11T09:58:18.433Z [info] [SVG-ANIMATION] Description: Illustrate Earth as a prominent blue (#4a90e2) and green (#7ed321) sphere. Animate a grey (#9b9b9b) ...
+2025-10-11T09:58:29.287Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:58:29.287Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:58:29.287Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:58:29.288Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:58:29.288Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:58:29.288Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:58:29.288Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:58:29.288Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:58:29.288Z [error] [codegenV3]   Visual 2: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:58:31.369Z [info] [SVG-ANIMATION] Finish reason: STOP
+2025-10-11T09:58:31.369Z [info] [SVG-ANIMATION] Received 3781 chars
+2025-10-11T09:58:31.369Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="1000" height="400" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
+    <title>Oxygen Transport Animation: From Lung to Cell</title>
+    <desc>A simplified 2D animation illustrating the transport of oxygen from a lung alveolus, through the bloodstream via red blood cells in a capillary, and into a muscle cell where it detaches for cellular use.</desc>
+
+    <defs>
+        <!-- Definition for a single Oxygen molecule (O₂) -->
+        <circle id="o2_molec
+2025-10-11T09:58:31.369Z [info] [SVG-ANIMATION] Extracted SVG with <?xml header
+2025-10-11T09:58:31.369Z [info] [SVG-ANIMATION] Quality Score: 100/100
+2025-10-11T09:58:31.369Z [info] [SVG-ANIMATION] ✅ VALID! Score: 100/100
+2025-10-11T09:58:31.369Z [info] [codegenV3]   Animation 2: ✅ Generated complete SVG (3770 chars)
+2025-10-11T09:58:31.676Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:58:31.676Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:58:31.676Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:58:31.676Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:58:31.676Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:58:31.676Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:58:31.676Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:58:31.676Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:58:31.676Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:58:31.676Z [info] [codegenV3] 📊 Visual Success Rate: 3/4 (75%)
+2025-10-11T09:58:31.676Z [warn] [codegenV3] ⚠️ PARTIAL SUCCESS: 75% of visuals succeeded (1 failed)
+2025-10-11T09:58:31.676Z [info] [codegenV3]   Adding 1 operations from visual 1
+2025-10-11T09:58:31.676Z [info] [codegenV3]   Adding 1 operations from visual 2
+2025-10-11T09:58:31.676Z [info] [codegenV3]   Adding 1 operations from visual 3
+2025-10-11T09:58:31.676Z [warn] [codegenV3] ⚠️ Low operation count: 6 (minimum: 20)
+2025-10-11T09:58:31.676Z [warn] [codegenV3]   Accepting due to 75% success rate
+2025-10-11T09:58:31.676Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:58:31.676Z [info] [codegenV3] ✅ COMPLETE SVG PIPELINE (ALL VISUALS AS SVG)
+2025-10-11T09:58:31.676Z [info] [codegenV3] ⏱️  Time: 106.73s
+2025-10-11T09:58:31.676Z [info] [codegenV3] 📊 Specifications: 4 (2 static, 2 animations)
+2025-10-11T09:58:31.676Z [info] [codegenV3] 🎨 Total Actions: 6 (ALL customSVG)
+2025-10-11T09:58:31.676Z [info] [codegenV3] 🎯 100% Complete SVG Generation (NO operations, NO overlaps)
+2025-10-11T09:58:31.677Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:58:31.677Z [info] [codegenV3] SVG Documents: 3, Delays: 3
+2025-10-11T09:58:31.677Z [info] [codegenV3] Total SVG Code: 7.83 KB
+2025-10-11T09:58:31.677Z [info] [codegenV3WithRetry] ✅ Attempt 1 SUCCESS: 8 operations
+2025-10-11T09:58:31.677Z [debug] compilerRouter: routing to js
+2025-10-11T09:58:31.677Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-11T09:58:31.677Z [debug] [debugger] Chunk type: actions
+2025-10-11T09:58:31.677Z [debug] [debugger] Has actions: true
+2025-10-11T09:58:31.677Z [debug] [debugger] Actions count: 8
+2025-10-11T09:58:31.677Z [debug] [debugger] Chunk is valid with 8 actions, allowing all for rich visualizations
+2025-10-11T09:58:31.678Z [debug] [cache] Cached chunk for query step 2
+2025-10-11T09:58:31.678Z [info] [parallel] ✅ Step 2 COMPLETE in 106738ms with 8 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 96f5314e-f54e-4716-ac83-4d8687d533d4
+StepId: 2
+Actions: 8
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T09:58:31.679Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-11T09:58:31.779Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:58:31.779Z [info] [SVG-ANIMATION] Received 3768 chars
+2025-10-11T09:58:31.779Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+    <title>Oxidation of Iron</title>
+
+    <!-- Background -->
+    <rect x="0" y="0" width="800" height="600" fill="#F0F0F0"/>
+
+    <!-- Iron Surface (Fe) -->
+    <rect x="50" y="300" width="700" height="250" fill="#708090" id="ironSurface"/>
+    <text x="100" y="350" fill="white" font-size="24" font-weight="bold">Iron (Fe)</text>
+
+    <!-- Oxygen Molecules (O₂) -->
+    <!-- Each oxygen m
+2025-10-11T09:58:31.779Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:58:31.779Z [error] [SVG-ANIMATION] Output was: <?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+    <title>Oxidation of Iron</title>
+
+    <!-- Background -->
+    <rect x="0" y="0" width="800" height="600" fill="#F0F0F0"/>
+
+    <!-- Iron Surface (Fe) -->
+    <rect x="50" y="300" width="700" height="250" fill="#708090" id="ironSurface"/>
+    <text x="100" y="350" fill="white" font-size="24" font-weight="bold">Iron (Fe)</text>
+
+    <!-- Oxygen Molecules (O₂) -->
+    <!-- Each oxygen molecule (O₂) is a blue sphere that falls and "bonds" to the iron surface. -->
+    <!-- Molecule 1 -->
+    <g id="O2_molecule_1">
+        <circle cx="0" cy="0" r="10" fill="#87CEEB"/>
+        <animateMotion path="M 150 0 V 300" dur="3s" repeatCount="indefinite" id="O2_1_motion" begin="0s"/>
+        <!-- Animate opacity to make the molecule disappear upon contact and reappear at the top -->
+        <animate attributeName="opacity" values="1;0;0;1" keyTimes="0;0.9;0.901;1" dur="3s" begin="O2_1_moti
+2025-10-11T09:58:31.779Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:58:31.780Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:58:31.780Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:58:31.780Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:58:31.780Z [info] [codegenV3] 📊 Visual Success Rate: 3/4 (75%)
+2025-10-11T09:58:31.780Z [warn] [codegenV3] ⚠️ PARTIAL SUCCESS: 75% of visuals succeeded (1 failed)
+2025-10-11T09:58:31.780Z [info] [codegenV3]   Adding 1 operations from visual 1
+2025-10-11T09:58:31.780Z [info] [codegenV3]   Adding 1 operations from visual 2
+2025-10-11T09:58:31.780Z [info] [codegenV3]   Adding 1 operations from visual 3
+2025-10-11T09:58:31.780Z [warn] [codegenV3] ⚠️ Low operation count: 6 (minimum: 20)
+2025-10-11T09:58:31.780Z [warn] [codegenV3]   Accepting due to 75% success rate
+2025-10-11T09:58:31.780Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:58:31.780Z [info] [codegenV3] ✅ COMPLETE SVG PIPELINE (ALL VISUALS AS SVG)
+2025-10-11T09:58:31.780Z [info] [codegenV3] ⏱️  Time: 106.83s
+2025-10-11T09:58:31.780Z [info] [codegenV3] 📊 Specifications: 4 (2 static, 2 animations)
+2025-10-11T09:58:31.780Z [info] [codegenV3] 🎨 Total Actions: 6 (ALL customSVG)
+2025-10-11T09:58:31.780Z [info] [codegenV3] 🎯 100% Complete SVG Generation (NO operations, NO overlaps)
+2025-10-11T09:58:31.780Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:58:31.780Z [info] [codegenV3] SVG Documents: 3, Delays: 3
+2025-10-11T09:58:31.780Z [info] [codegenV3] Total SVG Code: 11.46 KB
+2025-10-11T09:58:31.780Z [info] [codegenV3WithRetry] ✅ Attempt 1 SUCCESS: 8 operations
+2025-10-11T09:58:31.780Z [debug] compilerRouter: routing to js
+2025-10-11T09:58:31.780Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-11T09:58:31.780Z [debug] [debugger] Chunk type: actions
+2025-10-11T09:58:31.780Z [debug] [debugger] Has actions: true
+2025-10-11T09:58:31.780Z [debug] [debugger] Actions count: 8
+2025-10-11T09:58:31.780Z [debug] [debugger] Chunk is valid with 8 actions, allowing all for rich visualizations
+2025-10-11T09:58:31.781Z [debug] [cache] Cached chunk for query step 3
+2025-10-11T09:58:31.781Z [info] [parallel] ✅ Step 3 COMPLETE in 106841ms with 8 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 96f5314e-f54e-4716-ac83-4d8687d533d4
+StepId: 3
+Actions: 8
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T09:58:31.782Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-11T09:58:32.581Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:58:32.581Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:58:32.581Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:58:32.581Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:58:32.581Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:58:32.581Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:58:32.581Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:58:32.581Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:58:32.581Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:58:32.582Z [info] [codegenV3] 📊 Visual Success Rate: 2/4 (50%)
+2025-10-11T09:58:32.582Z [warn] [codegenV3] ⚠️ PARTIAL SUCCESS: 50% of visuals succeeded (2 failed)
+2025-10-11T09:58:32.582Z [info] [codegenV3]   Adding 1 operations from visual 1
+2025-10-11T09:58:32.582Z [info] [codegenV3]   Adding 1 operations from visual 3
+2025-10-11T09:58:32.582Z [warn] [codegenV3] ⚠️ Low operation count: 4 (minimum: 20)
+2025-10-11T09:58:32.582Z [warn] [codegenV3]   Accepting due to 50% success rate
+2025-10-11T09:58:32.582Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:58:32.582Z [info] [codegenV3] ✅ COMPLETE SVG PIPELINE (ALL VISUALS AS SVG)
+2025-10-11T09:58:32.582Z [info] [codegenV3] ⏱️  Time: 107.64s
+2025-10-11T09:58:32.582Z [info] [codegenV3] 📊 Specifications: 4 (2 static, 2 animations)
+2025-10-11T09:58:32.582Z [info] [codegenV3] 🎨 Total Actions: 4 (ALL customSVG)
+2025-10-11T09:58:32.582Z [info] [codegenV3] 🎯 100% Complete SVG Generation (NO operations, NO overlaps)
+2025-10-11T09:58:32.582Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:58:32.582Z [info] [codegenV3] SVG Documents: 2, Delays: 2
+2025-10-11T09:58:32.582Z [info] [codegenV3] Total SVG Code: 6.69 KB
+2025-10-11T09:58:32.582Z [info] [codegenV3WithRetry] ✅ Attempt 1 SUCCESS: 6 operations
+2025-10-11T09:58:32.582Z [debug] compilerRouter: routing to js
+2025-10-11T09:58:32.582Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-11T09:58:32.582Z [debug] [debugger] Chunk type: actions
+2025-10-11T09:58:32.583Z [debug] [debugger] Has actions: true
+2025-10-11T09:58:32.583Z [debug] [debugger] Actions count: 6
+2025-10-11T09:58:32.583Z [debug] [debugger] Chunk is valid with 6 actions, allowing all for rich visualizations
+2025-10-11T09:58:32.583Z [debug] [cache] Cached chunk for query step 1
+2025-10-11T09:58:32.584Z [info] [parallel] ✅ Step 1 COMPLETE in 107643ms with 6 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 96f5314e-f54e-4716-ac83-4d8687d533d4
+StepId: 1
+Actions: 6
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T09:58:32.584Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-11T09:58:32.584Z [debug] [parallel] Parallel generation complete: 3/3 successful in 107645ms
+2025-10-11T09:58:32.585Z [debug] [parallel] Job complete for session 96f5314e-f54e-4716-ac83-4d8687d533d4
+2025-10-11T09:58:51.015Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:58:51.015Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:58:51.015Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:58:51.015Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:58:51.015Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:58:51.015Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:58:51.016Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:58:51.016Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:58:51.016Z [error] [codegenV3]   Visual 2: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:59:01.572Z [info] [SVG-ANIMATION] Finish reason: STOP
+2025-10-11T09:59:01.572Z [info] [SVG-ANIMATION] Received 3247 chars
+2025-10-11T09:59:01.572Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1000 700" width="100%" height="100%">
+
+  <!-- Educational Title for the Simulation -->
+  <text x="500" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#E0E0E0">
+    Gravitational Orbital System
+  </text>
+  <text x="500" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#B0BEC5">
+    Illustrating Celestial M
+2025-10-11T09:59:01.572Z [info] [SVG-ANIMATION] Extracted SVG with <?xml header
+2025-10-11T09:59:01.572Z [info] [SVG-ANIMATION] Quality Score: 100/100
+2025-10-11T09:59:01.572Z [info] [SVG-ANIMATION] ✅ VALID! Score: 100/100
+2025-10-11T09:59:01.573Z [info] [codegenV3]   Animation 4: ✅ Generated complete SVG (3236 chars)
+2025-10-11T09:59:01.573Z [info] [codegenV3] 📊 Visual Success Rate: 4/4 (100%)
+2025-10-11T09:59:01.573Z [info] [codegenV3]   Adding 1 operations from visual 1
+2025-10-11T09:59:01.573Z [info] [codegenV3]   Adding 1 operations from visual 2
+2025-10-11T09:59:01.573Z [info] [codegenV3]   Adding 1 operations from visual 3
+2025-10-11T09:59:01.573Z [info] [codegenV3]   Adding 1 operations from visual 4
+2025-10-11T09:59:01.573Z [warn] [codegenV3] ⚠️ Low operation count: 7 (minimum: 20)
+2025-10-11T09:59:01.573Z [warn] [codegenV3]   Accepting due to 100% success rate
+2025-10-11T09:59:01.573Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:59:01.573Z [info] [codegenV3] ✅ COMPLETE SVG PIPELINE (ALL VISUALS AS SVG)
+2025-10-11T09:59:01.573Z [info] [codegenV3] ⏱️  Time: 113.70s
+2025-10-11T09:59:01.573Z [info] [codegenV3] 📊 Specifications: 4 (2 static, 2 animations)
+2025-10-11T09:59:01.573Z [info] [codegenV3] 🎨 Total Actions: 7 (ALL customSVG)
+2025-10-11T09:59:01.573Z [info] [codegenV3] 🎯 100% Complete SVG Generation (NO operations, NO overlaps)
+2025-10-11T09:59:01.573Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:59:01.573Z [info] [codegenV3] SVG Documents: 4, Delays: 3
+2025-10-11T09:59:01.573Z [info] [codegenV3] Total SVG Code: 13.86 KB
+2025-10-11T09:59:01.573Z [info] [codegenV3] 🔥 COMPLETE SVG GENERATION ACHIEVED! Blood vessel quality standards met!
+2025-10-11T09:59:01.573Z [info] [codegenV3WithRetry] ✅ Attempt 1 SUCCESS: 9 operations
+2025-10-11T09:59:01.573Z [debug] compilerRouter: routing to js
+2025-10-11T09:59:01.573Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-11T09:59:01.573Z [debug] [debugger] Chunk type: actions
+2025-10-11T09:59:01.573Z [debug] [debugger] Has actions: true
+2025-10-11T09:59:01.573Z [debug] [debugger] Actions count: 9
+2025-10-11T09:59:01.573Z [debug] [debugger] Chunk is valid with 9 actions, allowing all for rich visualizations
+2025-10-11T09:59:01.575Z [debug] [cache] Cached chunk for query step 2
+2025-10-11T09:59:01.575Z [debug] [monitor] Step 2 generation for 18d26b0f-34a9-4eb2-a564-c253ff46ab94 took 113707ms
+2025-10-11T09:59:01.575Z [info] [parallel] ✅ Step 2 COMPLETE in 113707ms with 9 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+StepId: 2
+Actions: 9
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T09:59:01.575Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-11T09:59:01.692Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:59:01.692Z [info] [SVG-ANIMATION] Received 1054 chars
+2025-10-11T09:59:01.692Z [info] [SVG-ANIMATION] Raw output (first 500 chars): <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Earth System: Represents a celestial body with gravitational pull -->
+  <g id="Earth_System">
+    <circle cx="400" cy="550" r="300" fill="#0077be" /> <!-- Earth's Oceans -->
+    <circle cx="400" cy="550" r="280" fill="#38761d" /> <!-- Earth's Continents -->
+    <text x="400" y="400" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle">Earth</text>
+  </
+2025-10-11T09:59:01.692Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:59:01.692Z [error] [SVG-ANIMATION] Output was: <?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Earth System: Represents a celestial body with gravitational pull -->
+  <g id="Earth_System">
+    <circle cx="400" cy="550" r="300" fill="#0077be" /> <!-- Earth's Oceans -->
+    <circle cx="400" cy="550" r="280" fill="#38761d" /> <!-- Earth's Continents -->
+    <text x="400" y="400" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle">Earth</text>
+  </g>
+
+  <!-- Rocket Launch System: Groups the rocket, its exhaust, and the gravity arrow -->
+  <!-- The animateMotion element moves this entire group, simulating the rocket's ascent -->
+  <g id="Rocket_Launch_System">
+    <!-- Initial position of this group's internal (0,0) is set to the rocket's base center (400,250) -->
+
+    <!-- Rocket Structure: Represents a spacecraft for propulsion -->
+    <g id="Rocket_Structure" fill="#808080" stroke="black" stroke-width="1">
+      <rect x="-15" y="-150" w
+2025-10-11T09:59:01.692Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:59:01.692Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:59:01.692Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:59:01.692Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:59:01.692Z [info] [codegenV3] 📊 Visual Success Rate: 2/4 (50%)
+2025-10-11T09:59:01.692Z [warn] [codegenV3] ⚠️ PARTIAL SUCCESS: 50% of visuals succeeded (2 failed)
+2025-10-11T09:59:01.692Z [info] [codegenV3]   Adding 1 operations from visual 1
+2025-10-11T09:59:01.692Z [info] [codegenV3]   Adding 1 operations from visual 3
+2025-10-11T09:59:01.692Z [warn] [codegenV3] ⚠️ Low operation count: 4 (minimum: 20)
+2025-10-11T09:59:01.692Z [warn] [codegenV3]   Accepting due to 50% success rate
+2025-10-11T09:59:01.692Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:59:01.692Z [info] [codegenV3] ✅ COMPLETE SVG PIPELINE (ALL VISUALS AS SVG)
+2025-10-11T09:59:01.692Z [info] [codegenV3] ⏱️  Time: 113.82s
+2025-10-11T09:59:01.692Z [info] [codegenV3] 📊 Specifications: 4 (2 static, 2 animations)
+2025-10-11T09:59:01.692Z [info] [codegenV3] 🎨 Total Actions: 4 (ALL customSVG)
+2025-10-11T09:59:01.693Z [info] [codegenV3] 🎯 100% Complete SVG Generation (NO operations, NO overlaps)
+2025-10-11T09:59:01.693Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:59:01.693Z [info] [codegenV3] SVG Documents: 2, Delays: 2
+2025-10-11T09:59:01.693Z [info] [codegenV3] Total SVG Code: 5.22 KB
+2025-10-11T09:59:01.693Z [info] [codegenV3WithRetry] ✅ Attempt 1 SUCCESS: 6 operations
+2025-10-11T09:59:01.693Z [debug] compilerRouter: routing to js
+2025-10-11T09:59:01.693Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-11T09:59:01.693Z [debug] [debugger] Chunk type: actions
+2025-10-11T09:59:01.693Z [debug] [debugger] Has actions: true
+2025-10-11T09:59:01.693Z [debug] [debugger] Actions count: 6
+2025-10-11T09:59:01.693Z [debug] [debugger] Chunk is valid with 6 actions, allowing all for rich visualizations
+2025-10-11T09:59:01.693Z [debug] [cache] Cached chunk for query step 3
+2025-10-11T09:59:01.693Z [debug] [monitor] Step 3 generation for 18d26b0f-34a9-4eb2-a564-c253ff46ab94 took 113825ms
+2025-10-11T09:59:01.693Z [info] [parallel] ✅ Step 3 COMPLETE in 113825ms with 6 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+StepId: 3
+Actions: 6
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T09:59:01.694Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-11T09:59:10.846Z [info] [SVG-COMPLETE] Finish reason: MAX_TOKENS
+2025-10-11T09:59:10.846Z [info] [SVG-COMPLETE] Received 0 chars
+2025-10-11T09:59:10.846Z [info] [SVG-COMPLETE] Raw output (first 500 chars): 
+2025-10-11T09:59:10.846Z [error] [SVG-COMPLETE] Could not find valid SVG structure in output
+2025-10-11T09:59:10.846Z [error] [SVG-COMPLETE] Output was: 
+2025-10-11T09:59:10.846Z [info] [SVG-COMPLETE] Quality Score: 0/100
+2025-10-11T09:59:10.846Z [warn] [SVG-COMPLETE] Issues: Missing XML declaration, Missing SVG element
+2025-10-11T09:59:10.846Z [error] [SVG-COMPLETE] Attempt 2 failed: Failed to generate valid SVG
+2025-10-11T09:59:10.846Z [error] [codegenV3]   Visual 3: ❌ Failed - Failed to generate valid SVG
+2025-10-11T09:59:11.688Z [info] [SVG-ANIMATION] Finish reason: MAX_TOKENS
+2025-10-11T09:59:11.688Z [info] [SVG-ANIMATION] Received 0 chars
+2025-10-11T09:59:11.688Z [info] [SVG-ANIMATION] Raw output (first 500 chars): 
+2025-10-11T09:59:11.688Z [error] [SVG-ANIMATION] Could not find valid SVG structure in output
+2025-10-11T09:59:11.688Z [error] [SVG-ANIMATION] Output was: 
+2025-10-11T09:59:11.688Z [info] [SVG-ANIMATION] Quality Score: 0/100
+2025-10-11T09:59:11.688Z [warn] [SVG-ANIMATION] Issues: Missing SVG structure
+2025-10-11T09:59:11.688Z [error] [SVG-ANIMATION] Attempt 2 failed: Failed to generate valid SVG animation
+2025-10-11T09:59:11.688Z [error] [codegenV3]   Visual 4: ❌ Failed - Failed to generate valid SVG animation
+2025-10-11T09:59:11.688Z [info] [codegenV3] 📊 Visual Success Rate: 2/4 (50%)
+2025-10-11T09:59:11.688Z [warn] [codegenV3] ⚠️ PARTIAL SUCCESS: 50% of visuals succeeded (2 failed)
+2025-10-11T09:59:11.688Z [info] [codegenV3]   Adding 1 operations from visual 1
+2025-10-11T09:59:11.688Z [info] [codegenV3]   Adding 1 operations from visual 2
+2025-10-11T09:59:11.688Z [warn] [codegenV3] ⚠️ Low operation count: 4 (minimum: 20)
+2025-10-11T09:59:11.688Z [warn] [codegenV3]   Accepting due to 50% success rate
+2025-10-11T09:59:11.688Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:59:11.688Z [info] [codegenV3] ✅ COMPLETE SVG PIPELINE (ALL VISUALS AS SVG)
+2025-10-11T09:59:11.688Z [info] [codegenV3] ⏱️  Time: 123.82s
+2025-10-11T09:59:11.689Z [info] [codegenV3] 📊 Specifications: 4 (2 static, 2 animations)
+2025-10-11T09:59:11.689Z [info] [codegenV3] 🎨 Total Actions: 4 (ALL customSVG)
+2025-10-11T09:59:11.689Z [info] [codegenV3] 🎯 100% Complete SVG Generation (NO operations, NO overlaps)
+2025-10-11T09:59:11.689Z [info] [codegenV3] ═══════════════════════════════════════
+2025-10-11T09:59:11.689Z [info] [codegenV3] SVG Documents: 2, Delays: 2
+2025-10-11T09:59:11.689Z [info] [codegenV3] Total SVG Code: 6.13 KB
+2025-10-11T09:59:11.689Z [info] [codegenV3WithRetry] ✅ Attempt 1 SUCCESS: 6 operations
+2025-10-11T09:59:11.689Z [debug] compilerRouter: routing to js
+2025-10-11T09:59:11.689Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-11T09:59:11.689Z [debug] [debugger] Chunk type: actions
+2025-10-11T09:59:11.689Z [debug] [debugger] Has actions: true
+2025-10-11T09:59:11.689Z [debug] [debugger] Actions count: 6
+2025-10-11T09:59:11.689Z [debug] [debugger] Chunk is valid with 6 actions, allowing all for rich visualizations
+2025-10-11T09:59:11.689Z [debug] [cache] Cached chunk for query step 1
+2025-10-11T09:59:11.689Z [debug] [monitor] Step 1 generation for 18d26b0f-34a9-4eb2-a564-c253ff46ab94 took 123821ms
+2025-10-11T09:59:11.689Z [info] [parallel] ✅ Step 1 COMPLETE in 123821ms with 6 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+StepId: 1
+Actions: 6
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T09:59:11.689Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-11T09:59:11.689Z [debug] [parallel] Parallel generation complete: 3/3 successful in 123822ms
+2025-10-11T09:59:11.689Z [debug] [monitor] Completed request 18d26b0f-34a9-4eb2-a564-c253ff46ab94 in 134960ms (success: true)
+2025-10-11T09:59:11.689Z [debug] [parallel] Job complete for session 18d26b0f-34a9-4eb2-a564-c253ff46ab94
+2025-10-11T09:59:13.701Z [debug] [socket] Socket RfZwFOkhexsNFp-rAAAB disconnected: client namespace disconnect
+2025-10-11T09:59:14.919Z [debug] [monitor] Metrics updated:
+2025-10-11T10:00:14.923Z [debug] [monitor] Metrics updated:
+2025-10-11T10:01:14.924Z [debug] [monitor] Metrics updated:
+2025-10-11T10:02:14.925Z [debug] [monitor] Metrics updated:
+2025-10-11T10:03:14.927Z [debug] [monitor] Metrics updated:
+2025-10-11T10:04:14.931Z [debug] [monitor] Metrics updated:
+2025-10-11T10:05:14.932Z [debug] [monitor] Metrics updated:
+2025-10-11T10:06:14.933Z [debug] [monitor] Metrics updated:
+2025-10-11T10:07:14.937Z [debug] [monitor] Metrics updated:
+2025-10-11T10:08:14.940Z [debug] [monitor] Metrics updated:
+2025-10-11T10:09:14.940Z [debug] [monitor] Metrics updated:
+2025-10-11T10:10:14.944Z [debug] [monitor] Metrics updated:
+2025-10-11T10:11:14.946Z [debug] [monitor] Metrics updated:
+2025-10-11T10:12:14.947Z [debug] [monitor] Metrics updated:
+2025-10-11T10:13:14.957Z [debug] [monitor] Metrics updated:
+2025-10-11T10:14:14.965Z [debug] [monitor] Metrics updated:
+2025-10-11T10:15:14.971Z [debug] [monitor] Metrics updated:
+[INFO] 15:15:33 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/svgAnimationGenerator.ts has been modified
+2025-10-11T10:15:33.230Z [debug] Shutting down server...
+2025-10-11T10:15:33.230Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:15:33.393Z [debug] NEW Plan worker created
+2025-10-11T10:15:33.394Z [debug] NEW Gen worker created
+2025-10-11T10:15:33.394Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T10:15:33.398Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 15:16:22 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+2025-10-11T10:16:23.018Z [debug] Shutting down server...
+2025-10-11T10:16:23.019Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:16:23.230Z [debug] NEW Plan worker created
+2025-10-11T10:16:23.231Z [debug] NEW Gen worker created
+2025-10-11T10:16:23.231Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:16:23 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T10:16:23.242Z [debug] Shutting down server...
+2025-10-11T10:16:23.243Z [debug] Server shut down.
+[INFO] 15:17:20 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:17:20.772Z [debug] NEW Plan worker created
+2025-10-11T10:17:20.772Z [debug] NEW Gen worker created
+2025-10-11T10:17:20.773Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:17:20 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T10:17:20.784Z [debug] Shutting down server...
+2025-10-11T10:17:20.785Z [debug] Server shut down.
+[INFO] 15:18:06 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:18:06.665Z [debug] NEW Plan worker created
+2025-10-11T10:18:06.665Z [debug] NEW Gen worker created
+2025-10-11T10:18:06.665Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:18:06 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T10:18:06.676Z [debug] Shutting down server...
+2025-10-11T10:18:06.676Z [debug] Server shut down.
+[INFO] 15:18:22 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+Compilation error in /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts
+[ERROR] 15:18:22 ⨯ Unable to compile TypeScript:
+src/agents/codegenV3.ts(258,1): error TS1128: Declaration or statement expected.
+
+[INFO] 15:18:40 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+Compilation error in /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts
+[ERROR] 15:18:40 ⨯ Unable to compile TypeScript:
+src/agents/codegenV3.ts(123,21): error TS1005: ';' expected.
+src/agents/codegenV3.ts(125,22): error TS1005: ';' expected.
+src/agents/codegenV3.ts(126,11): error TS1005: ';' expected.
+src/agents/codegenV3.ts(127,11): error TS1005: ';' expected.
+src/agents/codegenV3.ts(128,6): error TS1128: Declaration or statement expected.
+src/agents/codegenV3.ts(130,3): error TS1128: Declaration or statement expected.
+src/agents/codegenV3.ts(130,4): error TS1128: Declaration or statement expected.
+src/agents/codegenV3.ts(256,1): error TS1128: Declaration or statement expected.
+
+[INFO] 15:19:06 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:19:06.997Z [debug] NEW Plan worker created
+2025-10-11T10:19:06.998Z [debug] NEW Gen worker created
+2025-10-11T10:19:06.998Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:19:07 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T10:19:07.010Z [debug] Shutting down server...
+2025-10-11T10:19:07.010Z [debug] Server shut down.
+[INFO] 15:19:37 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T10:19:37.796Z [debug] NEW Plan worker created
+2025-10-11T10:19:37.797Z [debug] NEW Gen worker created
+2025-10-11T10:19:37.797Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:19:37 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T10:19:37.809Z [debug] Shutting down server...
+2025-10-11T10:19:37.810Z [debug] Server shut down.
+[INFO] 16:35:26 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T11:35:27.124Z [debug] NEW Plan worker created
+2025-10-11T11:35:27.125Z [debug] NEW Gen worker created
+2025-10-11T11:35:27.125Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:35:27 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T11:35:27.139Z [debug] Shutting down server...
+2025-10-11T11:35:27.140Z [debug] Server shut down.
+[INFO] 16:37:52 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T11:37:52.887Z [debug] NEW Plan worker created
+2025-10-11T11:37:52.888Z [debug] NEW Gen worker created
+2025-10-11T11:37:52.888Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:37:52 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T11:37:52.900Z [debug] Shutting down server...
+2025-10-11T11:37:52.900Z [debug] Server shut down.
+[INFO] 16:40:33 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T11:40:33.288Z [debug] NEW Plan worker created
+2025-10-11T11:40:33.289Z [debug] NEW Gen worker created
+2025-10-11T11:40:33.289Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:40:33 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T11:40:33.301Z [debug] Shutting down server...
+2025-10-11T11:40:33.302Z [debug] Server shut down.
+[INFO] 16:40:45 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T11:40:45.982Z [debug] NEW Plan worker created
+2025-10-11T11:40:45.982Z [debug] NEW Gen worker created
+2025-10-11T11:40:45.983Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:40:45 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T11:40:45.999Z [debug] Shutting down server...
+2025-10-11T11:40:45.999Z [debug] Server shut down.
+[INFO] 17:05:17 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T12:05:17.300Z [debug] NEW Plan worker created
+2025-10-11T12:05:17.301Z [debug] NEW Gen worker created
+2025-10-11T12:05:17.301Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:05:17 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T12:05:17.313Z [debug] Shutting down server...
+2025-10-11T12:05:17.313Z [debug] Server shut down.
+[INFO] 17:07:01 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T12:07:01.371Z [debug] NEW Plan worker created
+2025-10-11T12:07:01.372Z [debug] NEW Gen worker created
+2025-10-11T12:07:01.372Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:07:01 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T12:07:01.383Z [debug] Shutting down server...
+2025-10-11T12:07:01.384Z [debug] Server shut down.
+[INFO] 17:28:18 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T12:28:18.642Z [debug] NEW Plan worker created
+2025-10-11T12:28:18.643Z [debug] NEW Gen worker created
+2025-10-11T12:28:18.643Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:28:18 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T12:28:18.655Z [debug] Shutting down server...
+2025-10-11T12:28:18.655Z [debug] Server shut down.
+[INFO] 17:54:58 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T12:54:59.011Z [debug] NEW Plan worker created
+2025-10-11T12:54:59.012Z [debug] NEW Gen worker created
+2025-10-11T12:54:59.012Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 17:54:59 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T12:54:59.024Z [debug] Shutting down server...
+2025-10-11T12:54:59.024Z [debug] Server shut down.
+[INFO] 18:07:40 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:07:40.729Z [debug] NEW Plan worker created
+2025-10-11T13:07:40.729Z [debug] NEW Gen worker created
+2025-10-11T13:07:40.730Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:07:40 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:07:40.741Z [debug] Shutting down server...
+2025-10-11T13:07:40.742Z [debug] Server shut down.
+[INFO] 18:08:26 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:08:26.500Z [debug] NEW Plan worker created
+2025-10-11T13:08:26.501Z [debug] NEW Gen worker created
+2025-10-11T13:08:26.501Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:08:26 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:08:26.513Z [debug] Shutting down server...
+2025-10-11T13:08:26.513Z [debug] Server shut down.
+[INFO] 18:08:44 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3WithRetry.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:08:44.280Z [debug] NEW Plan worker created
+2025-10-11T13:08:44.281Z [debug] NEW Gen worker created
+2025-10-11T13:08:44.281Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:08:44 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:08:44.294Z [debug] Shutting down server...
+2025-10-11T13:08:44.294Z [debug] Server shut down.
+[INFO] 18:08:55 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:08:55.383Z [debug] NEW Plan worker created
+2025-10-11T13:08:55.384Z [debug] NEW Gen worker created
+2025-10-11T13:08:55.384Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:08:55 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:08:55.396Z [debug] Shutting down server...
+2025-10-11T13:08:55.396Z [debug] Server shut down.
+[INFO] 18:50:16 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T13:50:16.252Z [debug] NEW Plan worker created
+2025-10-11T13:50:16.253Z [debug] NEW Gen worker created
+2025-10-11T13:50:16.253Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 18:50:16 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-11T13:50:16.265Z [debug] Shutting down server...
+2025-10-11T13:50:16.265Z [debug] Server shut down.

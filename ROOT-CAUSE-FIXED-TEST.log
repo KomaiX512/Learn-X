@@ -1,0 +1,540 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 01:01:37 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-11T20:01:37.739Z [debug] NEW Plan worker created
+2025-10-11T20:01:37.740Z [debug] NEW Gen worker created
+2025-10-11T20:01:37.740Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-11T20:01:37.744Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-11T20:02:37.749Z [debug] [monitor] Metrics updated:
+2025-10-11T20:02:41.892Z [debug] Received request on /api/query {"body":{"query":"water cycle"}}
+2025-10-11T20:02:41.892Z [debug] [api] Stored query for session 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8: "water cycle"
+2025-10-11T20:02:41.892Z [debug] [orchestrator] Enqueuing plan for session 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+2025-10-11T20:02:41.894Z [debug] [orchestrator] Plan job added with id 18 for session 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+Query: water cycle
+Time: 2025-10-11T20:02:41.894Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T20:02:41.894Z [debug] [plan] START: session=4ad8387f-ae9a-4e77-8ca6-67d283e73bf8 query=water cycle
+2025-10-11T20:02:41.894Z [debug] [monitor] Started tracking request 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+2025-10-11T20:02:41.895Z [debug] [cache] HIT - Found cached plan for query: "water cycle..."
+2025-10-11T20:02:41.895Z [debug] [plan] Using cached plan for query: water cycle
+2025-10-11T20:02:41.895Z [debug] [monitor] Plan generation for 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8 took 0ms
+=== NEW STRUCTURED PLAN ===
+Session: 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+Query: water cycle
+Plan title: The Journey of Water: Understanding the Water Cycle
+Plan subtitle: You'll learn how Earth's water continuously moves and renews itself, powering life.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: "Why water never runs out and how it's naturally purified."
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'The four main stages: Evaporation, Condensation, Precipitation, and Collection.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'Why the water cycle is essential for life, weather, and climate.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a glass of water sitting in the sun. Where does the water go? It doesn't disappear; it just changes form and rises invisibly! This feeling of water vanishing, only to reappear later as rain, is the core idea. The Earth has a finite amount of water, but it's constantly recycled, ensuring we always have fresh water – it's Earth's natural purification and delivery system."
+Step 1: id=2, tag=mechanics, desc="The water cycle has four main acts:
+1.  **Evaporation:** Sunlight heats water (from oceans, lakes, puddles), turning it into invisible water vapor that rises into the atmosphere, leaving impurities behind. Visualize steam from a kettle, but on a massive scale.
+2.  **Condensation:** High in the cooler atmosphere, water vapor cools, forming tiny liquid water droplets or ice crystals. These gather to form visible clouds, like seeing your breath on a cold day.
+3.  **Precipitation:** As these cloud droplets grow heavier, they fall back to Earth as rain, snow, sleet, or hail. Think of a cloud becoming too heavy to hold its water.
+4.  **Collection:** This fallen water gathers in oceans, lakes, rivers, or seeps into the ground as groundwater, ready to begin the cycle again. Visualize rain filling a bucket or a river flowing."
+Step 2: id=3, tag=applications, desc="This endless loop is vital! It provides us with fresh drinking water, supports agriculture globally, and generates the weather patterns we experience daily. Without the water cycle, rivers would dry, crops would fail, and life as we know it couldn't exist. It's not just rain; it's the engine driving Earth's climate and ecosystems, connecting every drop of water on our planet."
+=== END NEW STRUCTURED PLAN ===
+2025-10-11T20:02:41.896Z [debug] [plan] OK: session=4ad8387f-ae9a-4e77-8ca6-67d283e73bf8 plan received with 3 steps
+2025-10-11T20:02:41.896Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-11T20:02:41.897Z [debug] [plan] END: session=4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 18
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+Query: water cycle
+Steps to generate: 3
+Time: 2025-10-11T20:02:41.899Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T20:02:41.899Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8)
+2025-10-11T20:02:41.900Z [info] [parallel] ⏸️  Staggering 5000ms before step 2 to avoid rate limits
+2025-10-11T20:02:41.901Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-11T20:02:41.901Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-11T20:02:41.901Z [info] [codegenV3WithRetry] Attempt 1/2 for step 1
+2025-10-11T20:02:41.901Z [info] [codegenV3] Generating step 1: Imagine a glass of water sitting in the sun. Where does the water go? It doesn't disappear; it just changes form and rises invisibly! This feeling of water vanishing, only to reappear later as rain, is the core idea. The Earth has a finite amount of water, but it's constantly recycled, ensuring we always have fresh water – it's Earth's natural purification and delivery system.
+2025-10-11T20:02:41.901Z [info] [codegenV3] Topic: "water cycle"
+2025-10-11T20:02:41.902Z [debug] [codegenV3] Prompt length: 698 chars
+2025-10-11T20:02:41.942Z [debug] [socket] New connection: 0xonIFyINt7uIxzQAAAB
+2025-10-11T20:02:41.942Z [debug] [socket] Socket 0xonIFyINt7uIxzQAAAB joined session 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+2025-10-11T20:02:41.942Z [debug] [socket] Socket 0xonIFyINt7uIxzQAAAB is now in rooms: 0xonIFyINt7uIxzQAAAB, 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+2025-10-11T20:02:41.943Z [debug] [socket] Sent cached plan to newly joined socket 0xonIFyINt7uIxzQAAAB
+2025-10-11T20:02:46.902Z [info] [parallel] ⏸️  Staggering 5000ms before step 3 to avoid rate limits
+2025-10-11T20:02:46.902Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-11T20:02:46.902Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-11T20:02:46.902Z [info] [codegenV3WithRetry] Attempt 1/2 for step 2
+2025-10-11T20:02:46.902Z [info] [codegenV3] Generating step 2: The water cycle has four main acts:
+1.  **Evaporation:** Sunlight heats water (from oceans, lakes, puddles), turning it into invisible water vapor that rises into the atmosphere, leaving impurities behind. Visualize steam from a kettle, but on a massive scale.
+2.  **Condensation:** High in the cooler atmosphere, water vapor cools, forming tiny liquid water droplets or ice crystals. These gather to form visible clouds, like seeing your breath on a cold day.
+3.  **Precipitation:** As these cloud droplets grow heavier, they fall back to Earth as rain, snow, sleet, or hail. Think of a cloud becoming too heavy to hold its water.
+4.  **Collection:** This fallen water gathers in oceans, lakes, rivers, or seeps into the ground as groundwater, ready to begin the cycle again. Visualize rain filling a bucket or a river flowing.
+2025-10-11T20:02:46.902Z [info] [codegenV3] Topic: "water cycle"
+2025-10-11T20:02:46.903Z [debug] [codegenV3] Prompt length: 1147 chars
+2025-10-11T20:02:51.906Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-11T20:02:51.906Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-11T20:02:51.906Z [info] [codegenV3WithRetry] Attempt 1/2 for step 3
+2025-10-11T20:02:51.906Z [info] [codegenV3] Generating step 3: This endless loop is vital! It provides us with fresh drinking water, supports agriculture globally, and generates the weather patterns we experience daily. Without the water cycle, rivers would dry, crops would fail, and life as we know it couldn't exist. It's not just rain; it's the engine driving Earth's climate and ecosystems, connecting every drop of water on our planet.
+2025-10-11T20:02:51.906Z [info] [codegenV3] Topic: "water cycle"
+2025-10-11T20:02:51.906Z [debug] [codegenV3] Prompt length: 697 chars
+2025-10-11T20:03:28.525Z [debug] [codegenV3] Finish reason: STOP
+2025-10-11T20:03:28.525Z [debug] [codegenV3] Received 4857 chars from API
+2025-10-11T20:03:28.525Z [info] [codegenV3] ✅ Generated SVG in 36.62s (4857 chars)
+2025-10-11T20:03:28.525Z [info] [codegenV3] 🎬 ANIMATIONS: 31 total (<animate>: 19, <animateMotion>: 12, <animateTransform>: 0)
+2025-10-11T20:03:28.525Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=18
+2025-10-11T20:03:28.525Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-11T20:03:28.525Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-11T20:03:28.525Z [debug] compilerRouter: routing to js
+2025-10-11T20:03:28.525Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-11T20:03:28.525Z [debug] [debugger] Chunk type: actions
+2025-10-11T20:03:28.525Z [debug] [debugger] Has actions: true
+2025-10-11T20:03:28.525Z [debug] [debugger] Actions count: 1
+2025-10-11T20:03:28.525Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-11T20:03:28.526Z [debug] [cache] Cached chunk for query step 3
+2025-10-11T20:03:28.526Z [debug] [monitor] Step 3 generation for 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8 took 36621ms
+2025-10-11T20:03:28.526Z [info] [parallel] ✅ Step 3 COMPLETE in 36621ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+StepId: 3
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:03:28.527Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-11T20:03:35.249Z [debug] [codegenV3] Finish reason: STOP
+2025-10-11T20:03:35.250Z [debug] [codegenV3] Received 7211 chars from API
+2025-10-11T20:03:35.250Z [info] [codegenV3] ✅ Generated SVG in 48.35s (7211 chars)
+2025-10-11T20:03:35.250Z [info] [codegenV3] 🎬 ANIMATIONS: 41 total (<animate>: 38, <animateMotion>: 3, <animateTransform>: 0)
+2025-10-11T20:03:35.250Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=23
+2025-10-11T20:03:35.250Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-11T20:03:35.250Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-11T20:03:35.250Z [debug] compilerRouter: routing to js
+2025-10-11T20:03:35.250Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-11T20:03:35.250Z [debug] [debugger] Chunk type: actions
+2025-10-11T20:03:35.250Z [debug] [debugger] Has actions: true
+2025-10-11T20:03:35.250Z [debug] [debugger] Actions count: 1
+2025-10-11T20:03:35.250Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-11T20:03:35.250Z [debug] [cache] Cached chunk for query step 2
+2025-10-11T20:03:35.250Z [debug] [monitor] Step 2 generation for 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8 took 48348ms
+2025-10-11T20:03:35.250Z [info] [parallel] ✅ Step 2 COMPLETE in 48348ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+StepId: 2
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:03:35.250Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-11T20:03:37.750Z [debug] [monitor] Metrics updated:
+2025-10-11T20:03:50.043Z [debug] [codegenV3] Finish reason: STOP
+2025-10-11T20:03:50.043Z [debug] [codegenV3] Received 4880 chars from API
+2025-10-11T20:03:50.043Z [info] [codegenV3] ✅ Generated SVG in 68.14s (4880 chars)
+2025-10-11T20:03:50.043Z [info] [codegenV3] 🎬 ANIMATIONS: 32 total (<animate>: 21, <animateMotion>: 10, <animateTransform>: 1)
+2025-10-11T20:03:50.043Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=19
+2025-10-11T20:03:50.043Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-11T20:03:50.044Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-11T20:03:50.044Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-11T20:03:50.044Z [debug] compilerRouter: routing to js
+2025-10-11T20:03:50.044Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-11T20:03:50.044Z [debug] [debugger] Chunk type: actions
+2025-10-11T20:03:50.044Z [debug] [debugger] Has actions: true
+2025-10-11T20:03:50.044Z [debug] [debugger] Actions count: 1
+2025-10-11T20:03:50.044Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-11T20:03:50.045Z [debug] [cache] Cached chunk for query step 1
+2025-10-11T20:03:50.045Z [debug] [monitor] Step 1 generation for 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8 took 68145ms
+2025-10-11T20:03:50.045Z [info] [parallel] ✅ Step 1 COMPLETE in 68145ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+StepId: 1
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:03:50.046Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-11T20:03:50.046Z [debug] [parallel] Parallel generation complete: 3/3 successful in 68146ms
+2025-10-11T20:03:50.046Z [debug] [monitor] Completed request 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8 in 68152ms (success: true)
+2025-10-11T20:03:50.046Z [debug] [parallel] Job complete for session 4ad8387f-ae9a-4e77-8ca6-67d283e73bf8
+2025-10-11T20:03:52.057Z [debug] [socket] Socket 0xonIFyINt7uIxzQAAAB disconnected: client namespace disconnect
+2025-10-11T20:04:37.751Z [debug] [monitor] Metrics updated:
+2025-10-11T20:05:00.390Z [debug] Received request on /api/query {"body":{"query":"DNA replication"}}
+2025-10-11T20:05:00.390Z [debug] [api] Stored query for session 35d9b5d2-b6ca-4d41-8b83-4208eb18423c: "DNA replication"
+2025-10-11T20:05:00.390Z [debug] [orchestrator] Enqueuing plan for session 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+2025-10-11T20:05:00.391Z [debug] [orchestrator] Plan job added with id 19 for session 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+Query: DNA replication
+Time: 2025-10-11T20:05:00.391Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T20:05:00.391Z [debug] [plan] START: session=35d9b5d2-b6ca-4d41-8b83-4208eb18423c query=DNA replication
+2025-10-11T20:05:00.392Z [debug] [monitor] Started tracking request 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+2025-10-11T20:05:00.392Z [debug] [cache] HIT - Found cached plan for query: "DNA replication..."
+2025-10-11T20:05:00.392Z [debug] [plan] Using cached plan for query: DNA replication
+2025-10-11T20:05:00.392Z [debug] [monitor] Plan generation for 35d9b5d2-b6ca-4d41-8b83-4208eb18423c took 0ms
+=== NEW STRUCTURED PLAN ===
+Session: 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+Query: DNA replication
+Plan title: DNA Replication: The Blueprint Duplicator
+Plan subtitle: Discover how cells flawlessly copy their entire genetic instruction manual before dividing.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition: Why & How Cells Copy DNA',
+    summary: "Why perfect DNA copies are vital for life and the simple 'unzipping' idea."
+  },
+  {
+    minute: 2,
+    title: 'How It Works: The Molecular Machines',
+    summary: 'Key enzymes and the precise base-pairing mechanism that builds new DNA strands.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications: From Forensics to Medicine',
+    summary: 'Where understanding DNA replication impacts our world, from crime scenes to cancer treatment.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine you have the most important blueprint in the world for an incredibly complex machine: *you*. Every time a cell divides to grow, heal a wound, or replace old cells, it needs to make an *exact* copy of this DNA blueprint so each new cell gets a full, perfect set of instructions. But how does it do this without mistakes? The intuition is simple: think of DNA as a double-sided zipper. Before division, the 'zipper' *unzips* down the middle. Now, each single strand acts as a template, guiding the attachment of new, complementary 'zipper teeth' to rebuild two complete, identical zippers. This 'semiconservative' process means each new DNA molecule has one original strand and one newly synthesized strand."
+Step 1: id=2, tag=mechanics, desc="Let's get specific! The process begins with an enzyme called **Helicase**, which acts like a molecular 'unzipper,' unwinding the DNA double helix and separating the two parent strands. Next, the star player, **DNA Polymerase**, steps in. It moves along each exposed template strand, reading the nucleotide bases (A, T, C, G) and adding *complementary* new nucleotides: Adenine (A) always pairs with Thymine (T), and Guanine (G) always pairs with Cytosine (C). It's a precise matching game! DNA Polymerase also has a 'proofreading' function, correcting most errors as it goes, ensuring remarkable accuracy. The result is two identical DNA double helices, each a perfect replica of the original molecule."
+Step 2: id=3, tag=applications, desc="Understanding DNA replication is profoundly important! If errors (mutations) occur during this copying process and aren't corrected, they can lead to genetic diseases or even cancer. However, we also harness this knowledge for incredible applications: **PCR (Polymerase Chain Reaction)** is a revolutionary lab technique that mimics DNA replication to make millions of copies of specific DNA segments. This is vital for **forensics** (identifying criminals from tiny DNA samples), **diagnosing infections** (like COVID-19 tests), and **genetic testing**. Furthermore, many **cancer therapies** work by targeting and disrupting DNA replication in rapidly dividing cancer cells, while researchers develop **antiviral drugs** by finding ways to block viruses from replicating their genetic material inside our cells."
+=== END NEW STRUCTURED PLAN ===
+2025-10-11T20:05:00.392Z [debug] [plan] OK: session=35d9b5d2-b6ca-4d41-8b83-4208eb18423c plan received with 3 steps
+2025-10-11T20:05:00.392Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-11T20:05:00.393Z [debug] [plan] END: session=35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 19
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+Query: DNA replication
+Steps to generate: 3
+Time: 2025-10-11T20:05:00.393Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T20:05:00.393Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 35d9b5d2-b6ca-4d41-8b83-4208eb18423c)
+2025-10-11T20:05:00.393Z [info] [parallel] ⏸️  Staggering 5000ms before step 2 to avoid rate limits
+2025-10-11T20:05:00.393Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-11T20:05:00.393Z [debug] [parallel] Using cached chunk for step 1
+2025-10-11T20:05:00.394Z [debug] [monitor] Step 1 generation for 35d9b5d2-b6ca-4d41-8b83-4208eb18423c took 1ms
+2025-10-11T20:05:00.394Z [info] [parallel] ✅ Step 1 COMPLETE in 1ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+StepId: 1
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:05:00.394Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-11T20:05:00.397Z [debug] [socket] New connection: lSJpnsCvryMDLXW3AAAD
+2025-10-11T20:05:00.397Z [debug] [socket] Socket lSJpnsCvryMDLXW3AAAD joined session 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+2025-10-11T20:05:00.397Z [debug] [socket] Socket lSJpnsCvryMDLXW3AAAD is now in rooms: lSJpnsCvryMDLXW3AAAD, 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+2025-10-11T20:05:00.398Z [debug] [socket] Sent cached plan to newly joined socket lSJpnsCvryMDLXW3AAAD
+2025-10-11T20:05:00.398Z [debug] [socket] Sent cached step 1 to newly joined socket lSJpnsCvryMDLXW3AAAD
+2025-10-11T20:05:05.396Z [info] [parallel] ⏸️  Staggering 5000ms before step 3 to avoid rate limits
+2025-10-11T20:05:05.396Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-11T20:05:05.397Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-11T20:05:05.397Z [info] [codegenV3WithRetry] Attempt 1/2 for step 2
+2025-10-11T20:05:05.397Z [info] [codegenV3] Generating step 2: Let's get specific! The process begins with an enzyme called **Helicase**, which acts like a molecular 'unzipper,' unwinding the DNA double helix and separating the two parent strands. Next, the star player, **DNA Polymerase**, steps in. It moves along each exposed template strand, reading the nucleotide bases (A, T, C, G) and adding *complementary* new nucleotides: Adenine (A) always pairs with Thymine (T), and Guanine (G) always pairs with Cytosine (C). It's a precise matching game! DNA Polymerase also has a 'proofreading' function, correcting most errors as it goes, ensuring remarkable accuracy. The result is two identical DNA double helices, each a perfect replica of the original molecule.
+2025-10-11T20:05:05.397Z [info] [codegenV3] Topic: "DNA replication"
+2025-10-11T20:05:05.397Z [debug] [codegenV3] Prompt length: 1025 chars
+2025-10-11T20:05:10.399Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-11T20:05:10.400Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-11T20:05:10.400Z [info] [codegenV3WithRetry] Attempt 1/2 for step 3
+2025-10-11T20:05:10.400Z [info] [codegenV3] Generating step 3: Understanding DNA replication is profoundly important! If errors (mutations) occur during this copying process and aren't corrected, they can lead to genetic diseases or even cancer. However, we also harness this knowledge for incredible applications: **PCR (Polymerase Chain Reaction)** is a revolutionary lab technique that mimics DNA replication to make millions of copies of specific DNA segments. This is vital for **forensics** (identifying criminals from tiny DNA samples), **diagnosing infections** (like COVID-19 tests), and **genetic testing**. Furthermore, many **cancer therapies** work by targeting and disrupting DNA replication in rapidly dividing cancer cells, while researchers develop **antiviral drugs** by finding ways to block viruses from replicating their genetic material inside our cells.
+2025-10-11T20:05:10.400Z [info] [codegenV3] Topic: "DNA replication"
+2025-10-11T20:05:10.400Z [debug] [codegenV3] Prompt length: 1136 chars
+2025-10-11T20:05:37.755Z [debug] [monitor] Metrics updated:
+2025-10-11T20:06:22.520Z [debug] [codegenV3] Finish reason: STOP
+2025-10-11T20:06:22.520Z [debug] [codegenV3] Received 4483 chars from API
+2025-10-11T20:06:22.520Z [info] [codegenV3] ✅ Generated SVG in 77.12s (4483 chars)
+2025-10-11T20:06:22.520Z [info] [codegenV3] 🎬 ANIMATIONS: 17 total (<animate>: 12, <animateMotion>: 3, <animateTransform>: 2)
+2025-10-11T20:06:22.520Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=13
+2025-10-11T20:06:22.520Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-11T20:06:22.520Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-11T20:06:22.520Z [debug] compilerRouter: routing to js
+2025-10-11T20:06:22.520Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-11T20:06:22.520Z [debug] [debugger] Chunk type: actions
+2025-10-11T20:06:22.520Z [debug] [debugger] Has actions: true
+2025-10-11T20:06:22.520Z [debug] [debugger] Actions count: 1
+2025-10-11T20:06:22.520Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-11T20:06:22.520Z [debug] [cache] Cached chunk for query step 2
+2025-10-11T20:06:22.520Z [debug] [monitor] Step 2 generation for 35d9b5d2-b6ca-4d41-8b83-4208eb18423c took 77124ms
+2025-10-11T20:06:22.520Z [info] [parallel] ✅ Step 2 COMPLETE in 77124ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+StepId: 2
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:06:22.520Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-11T20:06:26.344Z [debug] [codegenV3] Finish reason: STOP
+2025-10-11T20:06:26.344Z [debug] [codegenV3] Received 7990 chars from API
+2025-10-11T20:06:26.344Z [info] [codegenV3] ✅ Generated SVG in 75.94s (7990 chars)
+2025-10-11T20:06:26.344Z [info] [codegenV3] 🎬 ANIMATIONS: 29 total (<animate>: 19, <animateMotion>: 5, <animateTransform>: 5)
+2025-10-11T20:06:26.344Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=23
+2025-10-11T20:06:26.344Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-11T20:06:26.344Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-11T20:06:26.344Z [debug] compilerRouter: routing to js
+2025-10-11T20:06:26.344Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-11T20:06:26.344Z [debug] [debugger] Chunk type: actions
+2025-10-11T20:06:26.344Z [debug] [debugger] Has actions: true
+2025-10-11T20:06:26.344Z [debug] [debugger] Actions count: 1
+2025-10-11T20:06:26.344Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-11T20:06:26.344Z [debug] [cache] Cached chunk for query step 3
+2025-10-11T20:06:26.344Z [debug] [monitor] Step 3 generation for 35d9b5d2-b6ca-4d41-8b83-4208eb18423c took 75945ms
+2025-10-11T20:06:26.344Z [info] [parallel] ✅ Step 3 COMPLETE in 75945ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+StepId: 3
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:06:26.344Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-11T20:06:26.344Z [debug] [parallel] Parallel generation complete: 3/3 successful in 85951ms
+2025-10-11T20:06:26.344Z [debug] [monitor] Completed request 35d9b5d2-b6ca-4d41-8b83-4208eb18423c in 85952ms (success: true)
+2025-10-11T20:06:26.345Z [debug] [parallel] Job complete for session 35d9b5d2-b6ca-4d41-8b83-4208eb18423c
+2025-10-11T20:06:28.355Z [debug] [socket] Socket lSJpnsCvryMDLXW3AAAD disconnected: client namespace disconnect
+2025-10-11T20:06:37.759Z [debug] [monitor] Metrics updated:
+2025-10-11T20:07:37.762Z [debug] [monitor] Metrics updated:
+2025-10-11T20:08:37.763Z [debug] [monitor] Metrics updated:
+2025-10-11T20:09:37.763Z [debug] [monitor] Metrics updated:
+2025-10-11T20:10:37.767Z [debug] [monitor] Metrics updated:
+2025-10-11T20:10:46.709Z [debug] Received request on /api/query {"body":{"query":"photosynthesis"}}
+2025-10-11T20:10:46.709Z [debug] [api] Stored query for session 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a: "photosynthesis"
+2025-10-11T20:10:46.709Z [debug] [orchestrator] Enqueuing plan for session 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+2025-10-11T20:10:46.710Z [debug] [orchestrator] Plan job added with id 20 for session 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+Query: photosynthesis
+Time: 2025-10-11T20:10:46.710Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T20:10:46.710Z [debug] [plan] START: session=66ee7b10-1d41-4aaf-b5f2-f4bcd090539a query=photosynthesis
+2025-10-11T20:10:46.710Z [debug] [monitor] Started tracking request 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+2025-10-11T20:10:46.711Z [debug] [cache] HIT - Found cached plan for query: "photosynthesis..."
+2025-10-11T20:10:46.711Z [debug] [plan] Using cached plan for query: photosynthesis
+2025-10-11T20:10:46.711Z [debug] [monitor] Plan generation for 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a took 0ms
+=== NEW STRUCTURED PLAN ===
+Session: 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+Query: photosynthesis
+Plan title: Photosynthesis: The Plant's Secret Recipe
+Plan subtitle: Discover how plants turn sunlight into energy and air, fueling life on Earth.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: 'How plants use sunlight to grow and create their own food.'
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'The specific ingredients and products of this amazing process.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'Why photosynthesis is vital for all life and our planet.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a tall tree or a tiny blade of grass. How do they grow so big and strong without eating burgers? They're master chefs, using sunlight as their oven! Point to a vibrant green plant and say, 'This plant isn't eating dirt; it's capturing the sun's energy, like charging a solar panel, to make its own food. That green color? It's the key to this magic!'"
+Step 1: id=2, tag=mechanics, desc="So, what's the recipe? Plants take in **carbon dioxide** (CO2) from the air through tiny pores on their leaves (stomata), and **water** (H2O) from the soil through their roots. Inside their green cells are special mini-factories called **chloroplasts**, containing a pigment called **chlorophyll** (which makes them green). Chlorophyll acts like a tiny solar panel, absorbing the **sunlight** energy. This energy then powers a chemical reaction, converting CO2 and H2O into **glucose** (a type of sugar – the plant's food!) and releasing **oxygen** (O2) back into the air as a byproduct. Think of it: Water + Carbon Dioxide + Sunlight → Glucose + Oxygen."
+Step 2: id=3, tag=applications, desc="Why should *we* care about a plant's lunch? Because photosynthesis is the foundation of almost all life! Every bite of food you eat, directly or indirectly, comes from this process. The oxygen you breathe, every single breath, was once a byproduct of a plant's hard work. It's also crucial for our planet's climate, removing massive amounts of CO2 from the atmosphere. Understanding photosynthesis helps us develop better crops, fight climate change, and even imagine new ways to harness solar energy, just like plants do every day."
+=== END NEW STRUCTURED PLAN ===
+2025-10-11T20:10:46.711Z [debug] [plan] OK: session=66ee7b10-1d41-4aaf-b5f2-f4bcd090539a plan received with 3 steps
+2025-10-11T20:10:46.711Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-11T20:10:46.712Z [debug] [plan] END: session=66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 20
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+Query: photosynthesis
+Steps to generate: 3
+Time: 2025-10-11T20:10:46.713Z
+──────────────────────────────────────────────────────────────────────
+2025-10-11T20:10:46.713Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a)
+2025-10-11T20:10:46.713Z [info] [parallel] ⏸️  Staggering 5000ms before step 2 to avoid rate limits
+2025-10-11T20:10:46.713Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-11T20:10:46.713Z [debug] [parallel] Using cached chunk for step 1
+2025-10-11T20:10:46.713Z [debug] [monitor] Step 1 generation for 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a took 0ms
+2025-10-11T20:10:46.714Z [info] [parallel] ✅ Step 1 COMPLETE in 0ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+StepId: 1
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:10:46.714Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-11T20:10:46.720Z [debug] [socket] New connection: G-0QikIDgPsOLhJbAAAF
+2025-10-11T20:10:46.722Z [debug] [socket] Socket G-0QikIDgPsOLhJbAAAF joined session 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+2025-10-11T20:10:46.722Z [debug] [socket] Socket G-0QikIDgPsOLhJbAAAF is now in rooms: G-0QikIDgPsOLhJbAAAF, 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+2025-10-11T20:10:46.722Z [debug] [socket] Sent cached plan to newly joined socket G-0QikIDgPsOLhJbAAAF
+2025-10-11T20:10:46.723Z [debug] [socket] Sent cached step 1 to newly joined socket G-0QikIDgPsOLhJbAAAF
+2025-10-11T20:10:51.714Z [info] [parallel] ⏸️  Staggering 5000ms before step 3 to avoid rate limits
+2025-10-11T20:10:51.714Z [debug] [cache] HIT - Found cached chunk for step 2
+2025-10-11T20:10:51.714Z [debug] [parallel] Using cached chunk for step 2
+2025-10-11T20:10:51.714Z [debug] [monitor] Step 2 generation for 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a took 0ms
+2025-10-11T20:10:51.714Z [info] [parallel] ✅ Step 2 COMPLETE in 0ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+StepId: 2
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:10:51.715Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-11T20:10:56.716Z [debug] [cache] HIT - Found cached chunk for step 3
+2025-10-11T20:10:56.717Z [debug] [parallel] Using cached chunk for step 3
+2025-10-11T20:10:56.717Z [debug] [monitor] Step 3 generation for 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a took 1ms
+2025-10-11T20:10:56.717Z [info] [parallel] ✅ Step 3 COMPLETE in 1ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+StepId: 3
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-11T20:10:56.717Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-11T20:10:56.717Z [debug] [parallel] Parallel generation complete: 3/3 successful in 10004ms
+2025-10-11T20:10:56.717Z [debug] [monitor] Completed request 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a in 10007ms (success: true)
+2025-10-11T20:10:56.717Z [debug] [parallel] Job complete for session 66ee7b10-1d41-4aaf-b5f2-f4bcd090539a
+2025-10-11T20:10:58.728Z [debug] [socket] Socket G-0QikIDgPsOLhJbAAAF disconnected: client namespace disconnect
+2025-10-11T20:11:37.771Z [debug] [monitor] Metrics updated:
+2025-10-11T20:12:37.774Z [debug] [monitor] Metrics updated:
+2025-10-11T20:13:37.774Z [debug] [monitor] Metrics updated:

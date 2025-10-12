@@ -1,0 +1,71 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="600" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Quantum Particle in a Box</title>
+  <style>
+    .axis { stroke: black; stroke-width: 2; }
+    .wavefunction { stroke: blue; stroke-width: 2; fill: none; }
+    .probability { fill: rgba(0, 0, 255, 0.3); }
+    .energyLevel { stroke: red; stroke-width: 2; }
+    .label { font-family: Arial, sans-serif; font-size: 14px; fill: black; }
+    .title { font-family: Arial, sans-serif; font-size: 18px; fill: black; font-weight: bold; }
+  </style>
+
+  <g transform="translate(50, 50)">
+    <text x="0" y="-20" class="title">Quantum Particle in a Box</text>
+
+    <!-- Potential Well -->
+    <line x1="0" y1="0" x2="0" y2="300" class="axis" />
+    <line x1="400" y1="0" x2="400" y2="300" class="axis" />
+    <line x1="0" y1="300" x2="400" y2="300" class="axis" />
+
+    <text x="-20" y="150" class="label">V(x) = ∞</text>
+    <text x="410" y="150" class="label">V(x) = ∞</text>
+    <text x="180" y="320" class="label">V(x) = 0</text>
+
+    <!-- n=1 -->
+    <g transform="translate(0, 250)">
+      <path d="M 0 0 C 100 -50, 300 -50, 400 0" class="wavefunction" />
+      <path d="M 0 0 C 100 -50, 300 -50, 400 0 Z" class="probability" />
+      <text x="410" y="5" class="label">ψ₁</text>
+    </g>
+
+    <!-- n=2 -->
+    <g transform="translate(0, 150)">
+      <path d="M 0 0 C 80 -50, 200 50, 320 -50, 400 0" class="wavefunction" />
+      <path d="M 0 0 C 80 -50, 200 50, 320 -50, 400 0 Z" class="probability" />
+      <text x="410" y="5" class="label">ψ₂</text>
+      <line x1="200" y1="-70" x2="200" y2="20" style="stroke:gray;stroke-width:1;stroke-dasharray:5,5" />
+      <text x="205" y="-75" class="label">Node</text>
+    </g>
+
+    <!-- n=3 -->
+    <g transform="translate(0, 50)">
+      <path d="M 0 0 C 50 -50, 150 50, 250 -50, 350 50, 400 0" class="wavefunction" />
+      <path d="M 0 0 C 50 -50, 150 50, 250 -50, 350 50, 400 0 Z" class="probability" />
+      <text x="410" y="5" class="label">ψ₃</text>
+      <line x1="133" y1="-70" x2="133" y2="20" style="stroke:gray;stroke-width:1;stroke-dasharray:5,5" />
+      <line x1="266" y1="-70" x2="266" y2="20" style="stroke:gray;stroke-width:1;stroke-dasharray:5,5" />
+      <text x="138" y="-75" class="label">Node</text>
+      <text x="271" y="-75" class="label">Node</text>
+    </g>
+
+    <!-- Energy Levels -->
+    <g transform="translate(500, 0)">
+      <text x="0" y="-20" class="title">Energy Levels</text>
+      <line x1="0" y="250" x2="100" y="250" class="energyLevel" />
+      <text x="110" y="255" class="label">E₁</text>
+      <line x1="0" y="150" x2="100" y="150" class="energyLevel" />
+      <text x="110" y="155" class="label">E₂</text>
+      <line x1="0" y="50" x2="100" y="50" class="energyLevel" />
+      <text x="110" y="55" class="label">E₃</text>
+
+      <text x="-50" y="300" class="label">Ground State</text>
+      <text x="-50" y="200" class="label">First Excited State</text>
+      <text x="-50" y="100" class="label">Second Excited State</text>
+    </g>
+
+    <text x="180" y="340" class="label">Particle in a 1D Box</text>
+    <text x="180" y="360" class="label">Probability Density |ψ|²</text>
+  </g>
+</svg>

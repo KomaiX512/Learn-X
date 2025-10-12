@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Input particle definition -->
+    <circle id="inputParticle" r="0.015" fill="blue">
+      <animate attributeName="fill" values="blue; green; red; blue" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </defs>
+
+  <!-- Input Layer -->
+  <rect x="0.05" y="0.3" width="0.1" height="0.4" fill="none" stroke="black" stroke-width="0.005"/>
+  <text x="0.1" y="0.25" text-anchor="middle" font-size="0.02" fill="black">Input</text>
+
+  <!-- Hidden Layer -->
+  <circle cx="0.4" cy="0.5" r="0.05" fill="lightgray" stroke="black" stroke-width="0.005"/>
+  <text x="0.4" y="0.4" text-anchor="middle" font-size="0.015" fill="black">Neuron</text>
+  <text x="0.4" y="0.6" text-anchor="middle" font-size="0.015" fill="black">Activation</text>
+
+  <!-- Output Layer -->
+  <circle cx="0.8" cy="0.5" r="0.05" fill="lightgray" stroke="black" stroke-width="0.005"/>
+  <text x="0.8" y="0.4" text-anchor="middle" font-size="0.015" fill="black">Neuron</text>
+  <text x="0.8" y="0.6" text-anchor="middle" font-size="0.015" fill="black">Activation</text>
+
+  <!-- Connections -->
+  <line x1="0.15" y1="0.35" x2="0.35" y2="0.5" stroke="gray" stroke-width="0.003"/>
+  <line x1="0.15" y1="0.5" x2="0.35" y2="0.5" stroke="gray" stroke-width="0.003"/>
+  <line x1="0.15" y1="0.65" x2="0.35" y2="0.5" stroke="gray" stroke-width="0.003"/>
+
+  <line x1="0.45" y1="0.5" x2="0.75" y2="0.5" stroke="gray" stroke-width="0.003"/>
+
+  <!-- Animated particles -->
+  <use href="#inputParticle" x="0.05" y="0.35">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M 0.05,0.35 H 0.35"/>
+  </use>
+  <use href="#inputParticle" x="0.05" y="0.5">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M 0.05,0.5 H 0.35" begin="0.5s"/>
+  </use>
+    <use href="#inputParticle" x="0.05" y="0.65">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M 0.05,0.65 H 0.35" begin="1s"/>
+  </use>
+    <use href="#inputParticle" x="0.45" y="0.5">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M 0.45,0.5 H 0.75" begin="1.5s"/>
+  </use>
+
+  <!-- Title -->
+  <text x="0.5" y="0.1" text-anchor="middle" font-size="0.03" fill="black">Machine Learning Backpropagation</text>
+</svg>

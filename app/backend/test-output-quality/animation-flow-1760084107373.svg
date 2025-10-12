@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <rect id="data" width="0.1" height="0.05" fill="#81D4FA"/>
+    <rect id="header" width="0.1" height="0.02" fill="#B0BEC5"/>
+  </defs>
+
+  <text x="0.5" y="0.05" text-anchor="middle" font-size="0.03" fill="#37474F">TCP/IP Protocol Stack</text>
+
+  <!-- Layer 5: Application -->
+  <rect x="0.2" y="0.1" width="0.6" height="0.08" fill="#ECEFF1" stroke="#607D8B" stroke-width="0.002"/>
+  <text x="0.5" y="0.14" text-anchor="middle" font-size="0.02" fill="#37474F">Application Layer</text>
+  <use href="#header" x="0.2" y="0.18"/>
+  <use href="#data" x="0.3" y="0.18">
+    <animateMotion dur="5s" repeatCount="indefinite" path="M 0,0 V 0.6" begin="0s"/>
+  </use>
+  <text x="0.25" y="0.195" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+  <text x="0.35" y="0.195" text-anchor="middle" font-size="0.015" fill="#37474F">Data</text>
+
+  <!-- Layer 4: Transport -->
+  <rect x="0.2" y="0.25" width="0.6" height="0.08" fill="#ECEFF1" stroke="#607D8B" stroke-width="0.002"/>
+  <text x="0.5" y="0.29" text-anchor="middle" font-size="0.02" fill="#37474F">Transport Layer</text>
+  <use href="#header" x="0.2" y="0.33"/>
+  <use href="#header" x="0.3" y="0.33"/>
+  <use href="#data" x="0.4" y="0.33">
+    <animateMotion dur="5s" repeatCount="indefinite" path="M 0,0 V 0.45" begin="0s"/>
+  </use>
+  <text x="0.25" y="0.345" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+    <text x="0.35" y="0.345" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+  <text x="0.45" y="0.345" text-anchor="middle" font-size="0.015" fill="#37474F">Data</text>
+
+  <!-- Layer 3: Network -->
+  <rect x="0.2" y="0.4" width="0.6" height="0.08" fill="#ECEFF1" stroke="#607D8B" stroke-width="0.002"/>
+  <text x="0.5" y="0.44" text-anchor="middle" font-size="0.02" fill="#37474F">Network Layer</text>
+  <use href="#header" x="0.2" y="0.48"/>
+  <use href="#header" x="0.3" y="0.48"/>
+    <use href="#header" x="0.4" y="0.48"/>
+  <use href="#data" x="0.5" y="0.48">
+    <animateMotion dur="5s" repeatCount="indefinite" path="M 0,0 V 0.3" begin="0s"/>
+  </use>
+    <text x="0.25" y="0.495" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+    <text x="0.35" y="0.495" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+    <text x="0.45" y="0.495" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+  <text x="0.55" y="0.495" text-anchor="middle" font-size="0.015" fill="#37474F">Data</text>
+
+  <!-- Layer 2: Data Link -->
+  <rect x="0.2" y="0.55" width="0.6" height="0.08" fill="#ECEFF1" stroke="#607D8B" stroke-width="0.002"/>
+  <text x="0.5" y="0.59" text-anchor="middle" font-size="0.02" fill="#37474F">Data Link Layer</text>
+  <use href="#header" x="0.2" y="0.63"/>
+  <use href="#header" x="0.3" y="0.63"/>
+    <use href="#header" x="0.4" y="0.63"/>
+    <use href="#header" x="0.5" y="0.63"/>
+  <use href="#data" x="0.6" y="0.63">
+    <animateMotion dur="5s" repeatCount="indefinite" path="M 0,0 V 0.15" begin="0s"/>
+  </use>
+  <text x="0.25" y="0.645" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+    <text x="0.35" y="0.645" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+        <text x="0.45" y="0.645" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+            <text x="0.55" y="0.645" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+  <text x="0.65" y="0.645" text-anchor="middle" font-size="0.015" fill="#37474F">Data</text>
+
+  <!-- Layer 1: Physical -->
+  <rect x="0.2" y="0.7" width="0.6" height="0.08" fill="#ECEFF1" stroke="#607D8B" stroke-width="0.002"/>
+  <text x="0.5" y="0.74" text-anchor="middle" font-size="0.02" fill="#37474F">Physical Layer</text>
+  <use href="#header" x="0.2" y="0.78"/>
+  <use href="#header" x="0.3" y="0.78"/>
+    <use href="#header" x="0.4" y="0.78"/>
+    <use href="#header" x="0.5" y="0.78"/>
+      <use href="#header" x="0.6" y="0.78"/>
+  <use href="#data" x="0.7" y="0.78"/>
+  <text x="0.25" y="0.795" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+    <text x="0.35" y="0.795" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+        <text x="0.45" y="0.795" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+            <text x="0.55" y="0.795" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+                <text x="0.65" y="0.795" text-anchor="middle" font-size="0.015" fill="#37474F">Header</text>
+  <text x="0.75" y="0.795" text-anchor="middle" font-size="0.015" fill="#37474F">Data</text>
+
+  <text x="0.5" y="0.9" text-anchor="middle" font-size="0.02" fill="#78909C">Data Payload Flow</text>
+</svg>

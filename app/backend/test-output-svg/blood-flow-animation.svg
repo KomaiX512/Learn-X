@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="600" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Blood Circulation</title>
+  <style>
+    .vesselWall { fill: none; stroke: #8B4513; stroke-width: 8; }
+    .rbc { fill: #FF4136; }
+    .wbc { fill: #F012BE; }
+    .platelet { fill: #AAAAAA; }
+    .label { font-size: 16px; font-family: Arial, sans-serif; fill: black; }
+  </style>
+  <defs>
+    <circle id="rbc" cx="10" cy="10" r="10" class="rbc" />
+    <circle id="wbc" cx="15" cy="15" r="15" class="wbc" />
+    <circle id="platelet" cx="5" cy="5" r="5" class="platelet" />
+  </defs>
+  <g transform="translate(50, 50)">
+    <path id="artery" class="vesselWall" d="M0,100 C200,50 400,150 600,100" stroke-linecap="round"/>
+    <path id="artery2" class="vesselWall" d="M0,150 C200,200 400,100 600,150" stroke-linecap="round"/>
+    <text x="300" y="75" class="label">Artery</text>
+    <text x="300" y="175" class="label">Tunica Media</text>
+    <g id="rbc1">
+      <use xlink:href="#rbc" />
+      <animateMotion dur="5s" repeatCount="indefinite" path="M0,0 C200,-50 400,50 600,0" begin="0s"/>
+      <text x="20" y="10" class="label">Erythrocyte</text>
+    </g>
+    <g id="wbc1">
+      <use xlink:href="#wbc" x="50" y="20"/>
+      <animateMotion dur="7s" repeatCount="indefinite" path="M0,0 C200,50 400,-50 600,0" begin="0.5s"/>
+       <text x="70" y="20" class="label">Leukocyte</text>
+    </g>
+    <g id="platelet1">
+      <use xlink:href="#platelet" x="100" y="50"/>
+      <animateMotion dur="3s" repeatCount="indefinite" path="M0,0 C200,-50 400,50 600,0" begin="1s"/>
+      <text x="120" y="50" class="label">Thrombocyte</text>
+    </g>
+    <g id="rbc2">
+      <use xlink:href="#rbc" x="150" y="70"/>
+      <animateMotion dur="5s" repeatCount="indefinite" path="M0,0 C200,-50 400,50 600,0" begin="1.5s"/>
+    </g>
+    <g id="wbc2">
+      <use xlink:href="#wbc" x="200" y="90"/>
+      <animateMotion dur="7s" repeatCount="indefinite" path="M0,0 C200,50 400,-50 600,0" begin="2s"/>
+    </g>
+    <g id="platelet2">
+      <use xlink:href="#platelet" x="250" y="110"/>
+      <animateMotion dur="3s" repeatCount="indefinite" path="M0,0 C200,-50 400,50 600,0" begin="2.5s"/>
+    </g>
+     <text x="500" y="125" class="label">Blood Flow</text>
+  </g>
+
+  <text x="50" y="550" class="label">Vessel Lumen</text>
+  <text x="500" y="550" class="label">Blood Cells</text>
+
+</svg>

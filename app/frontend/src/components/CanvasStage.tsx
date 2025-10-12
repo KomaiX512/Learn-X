@@ -168,8 +168,8 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
         borderRadius: 12, 
         width: size.w,
         height: size.h,
-        overflowY: 'auto',
-        overflowX: 'auto',  // CRITICAL FIX: Enable horizontal scrolling (Issue #2)
+        overflowY: 'auto',  // Enable vertical scrolling for stacked visuals
+        overflowX: 'hidden',  // Disable horizontal (canvas width is fixed)
         background: '#1a1a2e',
         boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
         margin: '0 auto'
@@ -177,7 +177,8 @@ const CanvasStage = forwardRef<CanvasStageRef>((props, ref) => {
       <div 
         ref={containerRef} 
         style={{ 
-          width: size.w, 
+          width: size.w,
+          height: 'auto',  // Let canvas grow vertically with content
           minHeight: size.h,
           background: '#1a1a2e'
         }} 

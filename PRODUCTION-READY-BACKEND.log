@@ -1,0 +1,2017 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 10:34:18 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:34:18.608Z [debug] NEW Plan worker created
+2025-10-12T05:34:18.608Z [debug] NEW Gen worker created
+2025-10-12T05:34:18.608Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-12T05:34:18.612Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-12T05:35:18.625Z [debug] [monitor] Metrics updated:
+2025-10-12T05:35:22.188Z [debug] Received request on /api/query {"body":{"query":"photosynthesis light reactions"}}
+2025-10-12T05:35:22.188Z [debug] [api] Stored query for session 07f6e34f-225b-4c31-b7d5-068540d2d809: "photosynthesis light reactions"
+2025-10-12T05:35:22.188Z [debug] [orchestrator] Enqueuing plan for session 07f6e34f-225b-4c31-b7d5-068540d2d809
+2025-10-12T05:35:22.189Z [debug] [orchestrator] Plan job added with id 22 for session 07f6e34f-225b-4c31-b7d5-068540d2d809
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 07f6e34f-225b-4c31-b7d5-068540d2d809
+Query: photosynthesis light reactions
+Time: 2025-10-12T05:35:22.190Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:35:22.190Z [debug] [plan] START: session=07f6e34f-225b-4c31-b7d5-068540d2d809 query=photosynthesis light reactions
+2025-10-12T05:35:22.190Z [debug] [monitor] Started tracking request 07f6e34f-225b-4c31-b7d5-068540d2d809
+2025-10-12T05:35:22.191Z [debug] [cache] MISS - No cached plan for query: "photosynthesis light reactions..."
+2025-10-12T05:35:22.191Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T05:35:22.200Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T05:35:22.221Z [debug] [socket] New connection: XQOg8Xg2cYWN8nySAAAB
+2025-10-12T05:35:22.222Z [debug] [socket] Socket XQOg8Xg2cYWN8nySAAAB joined session 07f6e34f-225b-4c31-b7d5-068540d2d809
+2025-10-12T05:35:22.222Z [debug] [socket] Socket XQOg8Xg2cYWN8nySAAAB is now in rooms: XQOg8Xg2cYWN8nySAAAB, 07f6e34f-225b-4c31-b7d5-068540d2d809
+2025-10-12T05:35:22.222Z [debug] [socket] Socket XQOg8Xg2cYWN8nySAAAB disconnected: client namespace disconnect
+2025-10-12T05:35:37.780Z [debug] [planner] Received response from Gemini in 15589ms
+2025-10-12T05:35:37.781Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T05:35:37.781Z [debug] [monitor] Plan generation for 07f6e34f-225b-4c31-b7d5-068540d2d809 took 15591ms
+2025-10-12T05:35:37.781Z [debug] [cache] Cached plan for query: "photosynthesis light reactions..."
+=== NEW STRUCTURED PLAN ===
+Session: 07f6e34f-225b-4c31-b7d5-068540d2d809
+Query: photosynthesis light reactions
+Plan title: Powering Life: Photosynthesis Light Reactions
+Plan subtitle: Learn how plants capture sunlight and convert it into the essential energy carriers that fuel all life on Earth.
+Plan toc: [
+  {
+    minute: 1,
+    title: "The Intuition: Nature's Solar Panels",
+    summary: 'Plants convert sunlight into immediate chemical energy, like charging a battery for later use.'
+  },
+  {
+    minute: 2,
+    title: 'How It Works: Energy Conversion in the Thylakoid',
+    summary: 'Light energy splits water, releases oxygen, and creates ATP and NADPH in specific chloroplast structures.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications: Fueling Life & Future Tech',
+    summary: 'The products of light reactions power food production, oxygen generation, and inspire renewable energy solutions.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a plant isn't just 'there'; it's an incredible energy factory. Visualize warm sunlight bathing a leaf. Inside, tiny, green 'solar panels'—chlorophyll molecules—are instantly converting that raw, free sunlight into usable chemical energy, like charging microscopic batteries. This energy isn't food yet, but it's the critical *power* needed to make all our food and fuel the plant itself. This initial conversion is the essence of the light reactions."
+Step 1: id=2, tag=mechanics, desc="This power conversion happens specifically within the thylakoid membranes inside a plant's chloroplasts. Here's how: Sunlight hits chlorophyll in Photosystem II (PSII), exciting its electrons. To replace these, water (H2O) is split, releasing the oxygen (O2) we breathe! These energized electrons then flow down an 'electron transport chain,' pumping protons across the membrane, creating a gradient. This proton flow then powers an enzyme, ATP synthase, to produce ATP (adenosine triphosphate)—the cell's primary energy currency. Meanwhile, more light energy is captured by Photosystem I (PSI), re-energizing electrons which are used to form NADPH (nicotinamide adenine dinucleotide phosphate), another crucial energy carrier. Think of it as a miniature hydro-electric dam, where light drives electrons to create power!"
+Step 2: id=3, tag=applications, desc="The ATP and NADPH created in these light reactions are not just random molecules; they are the *direct fuel* for the Calvin Cycle, where carbon dioxide (CO2) is converted into glucose—the sugars that form the base of almost all food chains. Without these light-driven 'energy packets,' no sugar, no food, and no oxygen for breathing! This fundamental process not only sustains nearly all life on Earth but also inspires engineers to develop artificial photosynthesis for sustainable energy, clean hydrogen fuel production, and even enhanced carbon capture technologies to combat climate change."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:35:37.782Z [debug] [plan] OK: session=07f6e34f-225b-4c31-b7d5-068540d2d809 plan received with 3 steps
+2025-10-12T05:35:37.782Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:35:37.783Z [debug] [plan] END: session=07f6e34f-225b-4c31-b7d5-068540d2d809
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 22
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 07f6e34f-225b-4c31-b7d5-068540d2d809
+Query: photosynthesis light reactions
+Steps to generate: 3
+Time: 2025-10-12T05:35:37.784Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:35:37.784Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 07f6e34f-225b-4c31-b7d5-068540d2d809)
+2025-10-12T05:35:37.784Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:35:37.784Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T05:35:37.784Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T05:35:37.784Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T05:35:37.784Z [info] [codegenV3] Generating step 1: Imagine a plant isn't just 'there'; it's an incredible energy factory. Visualize warm sunlight bathing a leaf. Inside, tiny, green 'solar panels'—chlorophyll molecules—are instantly converting that raw, free sunlight into usable chemical energy, like charging microscopic batteries. This energy isn't food yet, but it's the critical *power* needed to make all our food and fuel the plant itself. This initial conversion is the essence of the light reactions.
+2025-10-12T05:35:37.784Z [info] [codegenV3] Topic: "photosynthesis light reactions"
+2025-10-12T05:35:37.784Z [debug] [codegenV3] Prompt length: 796 chars
+2025-10-12T05:35:39.785Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:35:39.785Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T05:35:39.785Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T05:35:39.785Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T05:35:39.785Z [info] [codegenV3] Generating step 2: This power conversion happens specifically within the thylakoid membranes inside a plant's chloroplasts. Here's how: Sunlight hits chlorophyll in Photosystem II (PSII), exciting its electrons. To replace these, water (H2O) is split, releasing the oxygen (O2) we breathe! These energized electrons then flow down an 'electron transport chain,' pumping protons across the membrane, creating a gradient. This proton flow then powers an enzyme, ATP synthase, to produce ATP (adenosine triphosphate)—the cell's primary energy currency. Meanwhile, more light energy is captured by Photosystem I (PSI), re-energizing electrons which are used to form NADPH (nicotinamide adenine dinucleotide phosphate), another crucial energy carrier. Think of it as a miniature hydro-electric dam, where light drives electrons to create power!
+2025-10-12T05:35:39.786Z [info] [codegenV3] Topic: "photosynthesis light reactions"
+2025-10-12T05:35:39.786Z [debug] [codegenV3] Prompt length: 1158 chars
+2025-10-12T05:35:41.786Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T05:35:41.787Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T05:35:41.787Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T05:35:41.787Z [info] [codegenV3] Generating step 3: The ATP and NADPH created in these light reactions are not just random molecules; they are the *direct fuel* for the Calvin Cycle, where carbon dioxide (CO2) is converted into glucose—the sugars that form the base of almost all food chains. Without these light-driven 'energy packets,' no sugar, no food, and no oxygen for breathing! This fundamental process not only sustains nearly all life on Earth but also inspires engineers to develop artificial photosynthesis for sustainable energy, clean hydrogen fuel production, and even enhanced carbon capture technologies to combat climate change.
+2025-10-12T05:35:41.787Z [info] [codegenV3] Topic: "photosynthesis light reactions"
+2025-10-12T05:35:41.787Z [debug] [codegenV3] Prompt length: 932 chars
+2025-10-12T05:36:12.181Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:36:12.181Z [debug] [codegenV3] Received 4984 chars from API
+2025-10-12T05:36:12.181Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:36:12.181Z [info] [codegenV3] ✅ Generated SVG in 34.40s (4984 chars)
+2025-10-12T05:36:12.181Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 15, <animateMotion>: 4, <animateTransform>: 1)
+2025-10-12T05:36:12.181Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=15
+2025-10-12T05:36:12.181Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:36:12.182Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T05:36:12.182Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:36:12.182Z [debug] compilerRouter: routing to js
+2025-10-12T05:36:12.182Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T05:36:12.182Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:36:12.182Z [debug] [debugger] Has actions: true
+2025-10-12T05:36:12.182Z [debug] [debugger] Actions count: 1
+2025-10-12T05:36:12.182Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:36:12.182Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T05:36:12.182Z [debug] [monitor] Step 1 generation for 07f6e34f-225b-4c31-b7d5-068540d2d809 took 34398ms
+2025-10-12T05:36:12.182Z [info] [parallel] ✅ Step 1 COMPLETE in 34398ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 07f6e34f-225b-4c31-b7d5-068540d2d809
+StepId: 1
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:36:12.183Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T05:36:17.226Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:36:17.226Z [debug] [codegenV3] Received 3012 chars from API
+2025-10-12T05:36:17.226Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:36:17.226Z [info] [codegenV3] ✅ Generated SVG in 35.44s (3012 chars)
+2025-10-12T05:36:17.226Z [info] [codegenV3] 🎬 ANIMATIONS: 11 total (<animate>: 6, <animateMotion>: 5, <animateTransform>: 0)
+2025-10-12T05:36:17.226Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=8
+2025-10-12T05:36:17.227Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:36:17.227Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:36:17.227Z [debug] compilerRouter: routing to js
+2025-10-12T05:36:17.227Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T05:36:17.227Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:36:17.227Z [debug] [debugger] Has actions: true
+2025-10-12T05:36:17.227Z [debug] [debugger] Actions count: 1
+2025-10-12T05:36:17.227Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:36:17.227Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T05:36:17.227Z [debug] [monitor] Step 3 generation for 07f6e34f-225b-4c31-b7d5-068540d2d809 took 35441ms
+2025-10-12T05:36:17.227Z [info] [parallel] ✅ Step 3 COMPLETE in 35441ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 07f6e34f-225b-4c31-b7d5-068540d2d809
+StepId: 3
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:36:17.228Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T05:36:18.628Z [debug] [monitor] Metrics updated:
+2025-10-12T05:36:45.509Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:36:45.510Z [debug] [codegenV3] Received 5217 chars from API
+2025-10-12T05:36:45.510Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:36:45.510Z [info] [codegenV3] ✅ Generated SVG in 65.72s (5217 chars)
+2025-10-12T05:36:45.510Z [info] [codegenV3] 🎬 ANIMATIONS: 19 total (<animate>: 13, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T05:36:45.510Z [info] [codegenV3] 📊 CONTENT: labels=18, shapes=19
+2025-10-12T05:36:45.510Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:36:45.510Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:36:45.510Z [debug] compilerRouter: routing to js
+2025-10-12T05:36:45.510Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T05:36:45.510Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:36:45.510Z [debug] [debugger] Has actions: true
+2025-10-12T05:36:45.510Z [debug] [debugger] Actions count: 1
+2025-10-12T05:36:45.510Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:36:45.510Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T05:36:45.510Z [debug] [monitor] Step 2 generation for 07f6e34f-225b-4c31-b7d5-068540d2d809 took 65725ms
+2025-10-12T05:36:45.510Z [info] [parallel] ✅ Step 2 COMPLETE in 65725ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 07f6e34f-225b-4c31-b7d5-068540d2d809
+StepId: 2
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:36:45.510Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T05:36:45.510Z [debug] [parallel] Parallel generation complete: 3/3 successful in 67726ms
+2025-10-12T05:36:45.511Z [debug] [monitor] Completed request 07f6e34f-225b-4c31-b7d5-068540d2d809 in 83321ms (success: true)
+2025-10-12T05:36:45.511Z [debug] [parallel] Job complete for session 07f6e34f-225b-4c31-b7d5-068540d2d809
+2025-10-12T05:37:18.630Z [debug] [monitor] Metrics updated:
+2025-10-12T05:38:18.630Z [debug] [monitor] Metrics updated:
+2025-10-12T05:38:27.350Z [debug] Received request on /api/query {"body":{"query":"quantum tunneling in semiconductors"}}
+2025-10-12T05:38:27.351Z [debug] [api] Stored query for session 9daf96e5-e526-4b94-8c48-1291ec437650: "quantum tunneling in semiconductors"
+2025-10-12T05:38:27.351Z [debug] [orchestrator] Enqueuing plan for session 9daf96e5-e526-4b94-8c48-1291ec437650
+2025-10-12T05:38:27.351Z [debug] [orchestrator] Plan job added with id 23 for session 9daf96e5-e526-4b94-8c48-1291ec437650
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 9daf96e5-e526-4b94-8c48-1291ec437650
+Query: quantum tunneling in semiconductors
+Time: 2025-10-12T05:38:27.352Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:38:27.352Z [debug] [plan] START: session=9daf96e5-e526-4b94-8c48-1291ec437650 query=quantum tunneling in semiconductors
+2025-10-12T05:38:27.352Z [debug] [monitor] Started tracking request 9daf96e5-e526-4b94-8c48-1291ec437650
+2025-10-12T05:38:27.352Z [debug] [cache] MISS - No cached plan for query: "quantum tunneling in semiconductors..."
+2025-10-12T05:38:27.352Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T05:38:27.352Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T05:38:27.355Z [debug] [socket] New connection: TQF2xoN9M2xuBlngAAAD
+2025-10-12T05:38:27.355Z [debug] [socket] Socket TQF2xoN9M2xuBlngAAAD joined session 9daf96e5-e526-4b94-8c48-1291ec437650
+2025-10-12T05:38:27.355Z [debug] [socket] Socket TQF2xoN9M2xuBlngAAAD is now in rooms: TQF2xoN9M2xuBlngAAAD, 9daf96e5-e526-4b94-8c48-1291ec437650
+2025-10-12T05:38:27.355Z [debug] [socket] Socket TQF2xoN9M2xuBlngAAAD disconnected: client namespace disconnect
+2025-10-12T05:38:38.371Z [debug] [planner] Received response from Gemini in 11019ms
+2025-10-12T05:38:38.371Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T05:38:38.371Z [debug] [monitor] Plan generation for 9daf96e5-e526-4b94-8c48-1291ec437650 took 11019ms
+2025-10-12T05:38:38.371Z [debug] [cache] Cached plan for query: "quantum tunneling in semiconductors..."
+=== NEW STRUCTURED PLAN ===
+Session: 9daf96e5-e526-4b94-8c48-1291ec437650
+Query: quantum tunneling in semiconductors
+Plan title: Quantum Tunneling in Semiconductors: The Unseen Flow
+Plan subtitle: Discover how electrons defy classical physics to pass through barriers, enabling next-generation semiconductor devices.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: "Electrons 'ghosting' through solid walls due to quantum probability."
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: "Understanding the wave function's exponential decay across a thin potential barrier."
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'Flash memory, tunnel diodes, and the future of chip design powered by tunneling.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a baseball thrown at a concrete wall – it always bounces back. But what if, occasionally, it just *appeared on the other side*? In semiconductors, electrons can do exactly that! Picture a tiny electron, not as a particle, but as a fuzzy wave. When this wave encounters a very thin insulating barrier, like a super-thin oxide layer (e.g., in a transistor gate), there's a tiny, but real, probability that parts of its wave function will 'leak' through, allowing the electron to effectively 'tunnel' to the other side without classically having enough energy to overcome it. This seemingly impossible quantum 'ghosting' is fundamental to how tiny, efficient devices work."
+Step 1: id=2, tag=mechanics, desc="Classically, an electron needs energy greater than a potential barrier's height to cross it. Quantum mechanically, the electron's behavior is described by its *wave function*. When this wave function encounters a potential energy barrier (e.g., an insulator between two semiconductor regions), it doesn't instantly drop to zero inside the barrier. Instead, it *decays exponentially* through the barrier. If the barrier is sufficiently thin (on the order of a few nanometers, like in modern gate oxides), the wave function's amplitude is still non-zero on the other side. This non-zero amplitude means there's a calculable, non-zero *probability* of finding the electron on the far side of the barrier, even if it didn't have enough energy to classically 'jump over' it. This probability is highly sensitive to the barrier's thickness and height."
+Step 2: id=3, tag=applications, desc="Quantum tunneling isn't just theoretical; it's engineered into the very heart of modern electronics. In *Flash Memory*, electrons tunnel through a thin oxide layer onto a 'floating gate' to store data as '0' or '1'. To erase, they tunnel off. *Tunnel Diodes* exploit tunneling for ultra-fast switching applications. Even the *Scanning Tunneling Microscope (STM)* works by precisely measuring the tunneling current between an atomically sharp tip and a conductive surface, allowing us to 'see' individual atoms. As semiconductor devices shrink further, tunneling becomes both a desired effect (for new functionalities) and a challenge (as it can cause unwanted leakage currents in transistors below certain sizes), pushing the boundaries of miniaturization."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:38:38.372Z [debug] [plan] OK: session=9daf96e5-e526-4b94-8c48-1291ec437650 plan received with 3 steps
+2025-10-12T05:38:38.372Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:38:38.373Z [debug] [plan] END: session=9daf96e5-e526-4b94-8c48-1291ec437650
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 23
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 9daf96e5-e526-4b94-8c48-1291ec437650
+Query: quantum tunneling in semiconductors
+Steps to generate: 3
+Time: 2025-10-12T05:38:38.373Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:38:38.373Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 9daf96e5-e526-4b94-8c48-1291ec437650)
+2025-10-12T05:38:38.373Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:38:38.373Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T05:38:38.374Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T05:38:38.374Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T05:38:38.374Z [info] [codegenV3] Generating step 1: Imagine a baseball thrown at a concrete wall – it always bounces back. But what if, occasionally, it just *appeared on the other side*? In semiconductors, electrons can do exactly that! Picture a tiny electron, not as a particle, but as a fuzzy wave. When this wave encounters a very thin insulating barrier, like a super-thin oxide layer (e.g., in a transistor gate), there's a tiny, but real, probability that parts of its wave function will 'leak' through, allowing the electron to effectively 'tunnel' to the other side without classically having enough energy to overcome it. This seemingly impossible quantum 'ghosting' is fundamental to how tiny, efficient devices work.
+2025-10-12T05:38:38.374Z [info] [codegenV3] Topic: "quantum tunneling in semiconductors"
+2025-10-12T05:38:38.374Z [debug] [codegenV3] Prompt length: 1020 chars
+2025-10-12T05:38:40.375Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:38:40.375Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T05:38:40.375Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T05:38:40.375Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T05:38:40.375Z [info] [codegenV3] Generating step 2: Classically, an electron needs energy greater than a potential barrier's height to cross it. Quantum mechanically, the electron's behavior is described by its *wave function*. When this wave function encounters a potential energy barrier (e.g., an insulator between two semiconductor regions), it doesn't instantly drop to zero inside the barrier. Instead, it *decays exponentially* through the barrier. If the barrier is sufficiently thin (on the order of a few nanometers, like in modern gate oxides), the wave function's amplitude is still non-zero on the other side. This non-zero amplitude means there's a calculable, non-zero *probability* of finding the electron on the far side of the barrier, even if it didn't have enough energy to classically 'jump over' it. This probability is highly sensitive to the barrier's thickness and height.
+2025-10-12T05:38:40.375Z [info] [codegenV3] Topic: "quantum tunneling in semiconductors"
+2025-10-12T05:38:40.375Z [debug] [codegenV3] Prompt length: 1188 chars
+2025-10-12T05:38:42.378Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T05:38:42.378Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T05:38:42.378Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T05:38:42.378Z [info] [codegenV3] Generating step 3: Quantum tunneling isn't just theoretical; it's engineered into the very heart of modern electronics. In *Flash Memory*, electrons tunnel through a thin oxide layer onto a 'floating gate' to store data as '0' or '1'. To erase, they tunnel off. *Tunnel Diodes* exploit tunneling for ultra-fast switching applications. Even the *Scanning Tunneling Microscope (STM)* works by precisely measuring the tunneling current between an atomically sharp tip and a conductive surface, allowing us to 'see' individual atoms. As semiconductor devices shrink further, tunneling becomes both a desired effect (for new functionalities) and a challenge (as it can cause unwanted leakage currents in transistors below certain sizes), pushing the boundaries of miniaturization.
+2025-10-12T05:38:42.378Z [info] [codegenV3] Topic: "quantum tunneling in semiconductors"
+2025-10-12T05:38:42.378Z [debug] [codegenV3] Prompt length: 1099 chars
+2025-10-12T05:39:18.631Z [debug] [monitor] Metrics updated:
+2025-10-12T05:39:18.732Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:39:18.732Z [debug] [codegenV3] Received 4275 chars from API
+2025-10-12T05:39:18.732Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:39:18.732Z [info] [codegenV3] ✅ Generated SVG in 40.36s (4275 chars)
+2025-10-12T05:39:18.732Z [info] [codegenV3] 🎬 ANIMATIONS: 15 total (<animate>: 9, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T05:39:18.732Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=6
+2025-10-12T05:39:18.732Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:39:18.732Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T05:39:18.732Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:39:18.732Z [debug] compilerRouter: routing to js
+2025-10-12T05:39:18.732Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T05:39:18.732Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:39:18.732Z [debug] [debugger] Has actions: true
+2025-10-12T05:39:18.732Z [debug] [debugger] Actions count: 1
+2025-10-12T05:39:18.732Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:39:18.732Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T05:39:18.732Z [debug] [monitor] Step 1 generation for 9daf96e5-e526-4b94-8c48-1291ec437650 took 40359ms
+2025-10-12T05:39:18.732Z [info] [parallel] ✅ Step 1 COMPLETE in 40359ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 9daf96e5-e526-4b94-8c48-1291ec437650
+StepId: 1
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:39:18.732Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T05:39:18.740Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:39:18.740Z [debug] [codegenV3] Received 2651 chars from API
+2025-10-12T05:39:18.740Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:39:18.740Z [info] [codegenV3] ✅ Generated SVG in 36.36s (2651 chars)
+2025-10-12T05:39:18.740Z [info] [codegenV3] 🎬 ANIMATIONS: 4 total (<animate>: 3, <animateMotion>: 1, <animateTransform>: 0)
+2025-10-12T05:39:18.740Z [info] [codegenV3] 📊 CONTENT: labels=4, shapes=4
+2025-10-12T05:39:18.740Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:39:18.740Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:39:18.740Z [debug] compilerRouter: routing to js
+2025-10-12T05:39:18.740Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T05:39:18.740Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:39:18.740Z [debug] [debugger] Has actions: true
+2025-10-12T05:39:18.740Z [debug] [debugger] Actions count: 1
+2025-10-12T05:39:18.740Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:39:18.741Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T05:39:18.741Z [debug] [monitor] Step 3 generation for 9daf96e5-e526-4b94-8c48-1291ec437650 took 36363ms
+2025-10-12T05:39:18.741Z [info] [parallel] ✅ Step 3 COMPLETE in 36363ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 9daf96e5-e526-4b94-8c48-1291ec437650
+StepId: 3
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:39:18.741Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T05:39:28.141Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:39:28.141Z [debug] [codegenV3] Received 3414 chars from API
+2025-10-12T05:39:28.141Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:39:28.142Z [info] [codegenV3] ✅ Generated SVG in 47.77s (3414 chars)
+2025-10-12T05:39:28.142Z [info] [codegenV3] 🎬 ANIMATIONS: 11 total (<animate>: 8, <animateMotion>: 3, <animateTransform>: 0)
+2025-10-12T05:39:28.142Z [info] [codegenV3] 📊 CONTENT: labels=4, shapes=7
+2025-10-12T05:39:28.142Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:39:28.142Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:39:28.142Z [debug] compilerRouter: routing to js
+2025-10-12T05:39:28.142Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T05:39:28.142Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:39:28.142Z [debug] [debugger] Has actions: true
+2025-10-12T05:39:28.142Z [debug] [debugger] Actions count: 1
+2025-10-12T05:39:28.142Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:39:28.142Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T05:39:28.142Z [debug] [monitor] Step 2 generation for 9daf96e5-e526-4b94-8c48-1291ec437650 took 47767ms
+2025-10-12T05:39:28.142Z [info] [parallel] ✅ Step 2 COMPLETE in 47767ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 9daf96e5-e526-4b94-8c48-1291ec437650
+StepId: 2
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:39:28.142Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T05:39:28.142Z [debug] [parallel] Parallel generation complete: 3/3 successful in 49769ms
+2025-10-12T05:39:28.142Z [debug] [monitor] Completed request 9daf96e5-e526-4b94-8c48-1291ec437650 in 60790ms (success: true)
+2025-10-12T05:39:28.142Z [debug] [parallel] Job complete for session 9daf96e5-e526-4b94-8c48-1291ec437650
+2025-10-12T05:40:18.641Z [debug] [monitor] Metrics updated:
+2025-10-12T05:41:18.651Z [debug] [monitor] Metrics updated:
+2025-10-12T05:41:32.481Z [debug] Received request on /api/query {"body":{"query":"neural network backpropagation"}}
+2025-10-12T05:41:32.481Z [debug] [api] Stored query for session 9bb9e345-8c3c-4d2b-8b01-91bc568c9936: "neural network backpropagation"
+2025-10-12T05:41:32.481Z [debug] [orchestrator] Enqueuing plan for session 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+2025-10-12T05:41:32.482Z [debug] [orchestrator] Plan job added with id 24 for session 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+Query: neural network backpropagation
+Time: 2025-10-12T05:41:32.482Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:41:32.482Z [debug] [plan] START: session=9bb9e345-8c3c-4d2b-8b01-91bc568c9936 query=neural network backpropagation
+2025-10-12T05:41:32.482Z [debug] [monitor] Started tracking request 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+2025-10-12T05:41:32.482Z [debug] [cache] MISS - No cached plan for query: "neural network backpropagation..."
+2025-10-12T05:41:32.482Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T05:41:32.483Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T05:41:32.484Z [debug] [socket] New connection: vMmNgtttcOnsG9woAAAF
+2025-10-12T05:41:32.484Z [debug] [socket] Socket vMmNgtttcOnsG9woAAAF joined session 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+2025-10-12T05:41:32.484Z [debug] [socket] Socket vMmNgtttcOnsG9woAAAF is now in rooms: vMmNgtttcOnsG9woAAAF, 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+2025-10-12T05:41:32.485Z [debug] [socket] Socket vMmNgtttcOnsG9woAAAF disconnected: client namespace disconnect
+2025-10-12T05:41:44.250Z [debug] [planner] Received response from Gemini in 11768ms
+2025-10-12T05:41:44.250Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T05:41:44.250Z [debug] [monitor] Plan generation for 9bb9e345-8c3c-4d2b-8b01-91bc568c9936 took 11768ms
+2025-10-12T05:41:44.250Z [debug] [cache] Cached plan for query: "neural network backpropagation..."
+=== NEW STRUCTURED PLAN ===
+Session: 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+Query: neural network backpropagation
+Plan title: Backpropagation: The Engine of Neural Network Learning
+Plan subtitle: Discover how neural networks 'learn' from their mistakes to become incredibly smart.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition: Learning from Mistakes',
+    summary: "Understand backpropagation as the network's way of finding out what went wrong and how to fix it."
+  },
+  {
+    minute: 2,
+    title: 'How It Works: Gradients and Adjustments',
+    summary: 'See the mathematical process of error distribution and weight updates.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications: Powering AI',
+    summary: 'Connect backpropagation to the powerful AI systems we use daily.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a robot learning to recognize a cat. It sees an image, makes a guess ('dog!'), and gets it wrong. Backpropagation is the *clever way* the robot figures out *exactly which internal knobs and dials (weights)* need tiny adjustments. It propagates that 'wrongness' (error) *backward* from its incorrect guess to every decision point in its 'brain' (neural network layers), making it more accurate next time. Think of it like a coach analyzing a missed shot in basketball, tracing the error back to the player's form to give precise feedback."
+Step 1: id=2, tag=mechanics, desc="The process begins with a 'forward pass' where input data travels through the network to produce an output (prediction). We then calculate the 'loss' – a numerical measure of how far off that prediction was from the correct answer. Backpropagation *then takes this loss and mathematically distributes it backward* through the network. Using the 'chain rule' of calculus, it precisely calculates the 'gradient' for each weight and bias – essentially, how much each connection contributed to the overall error. Finally, an 'optimizer' (like gradient descent) uses these gradients to slightly *tweak these weights and biases* in the direction that minimizes the loss, making the network learn."
+Step 2: id=3, tag=applications, desc="Backpropagation is the fundamental learning algorithm powering virtually all modern deep learning. Without it, neural networks would be static calculators, not learners. It enables systems to 'learn' incredibly complex patterns from vast datasets, leading to breakthroughs in diverse fields: from recognizing faces in your smartphone (image classification) and understanding human speech (natural language processing), to guiding autonomous vehicles, powering medical diagnostics, and even discovering new drugs. It's the engine that transforms raw data into the intelligent, adaptive AI systems we interact with every day."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:41:44.251Z [debug] [plan] OK: session=9bb9e345-8c3c-4d2b-8b01-91bc568c9936 plan received with 3 steps
+2025-10-12T05:41:44.251Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:41:44.251Z [debug] [plan] END: session=9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 24
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+Query: neural network backpropagation
+Steps to generate: 3
+Time: 2025-10-12T05:41:44.251Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:41:44.251Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 9bb9e345-8c3c-4d2b-8b01-91bc568c9936)
+2025-10-12T05:41:44.252Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:41:44.252Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T05:41:44.252Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T05:41:44.252Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T05:41:44.252Z [info] [codegenV3] Generating step 1: Imagine a robot learning to recognize a cat. It sees an image, makes a guess ('dog!'), and gets it wrong. Backpropagation is the *clever way* the robot figures out *exactly which internal knobs and dials (weights)* need tiny adjustments. It propagates that 'wrongness' (error) *backward* from its incorrect guess to every decision point in its 'brain' (neural network layers), making it more accurate next time. Think of it like a coach analyzing a missed shot in basketball, tracing the error back to the player's form to give precise feedback.
+2025-10-12T05:41:44.252Z [info] [codegenV3] Topic: "neural network backpropagation"
+2025-10-12T05:41:44.252Z [debug] [codegenV3] Prompt length: 883 chars
+2025-10-12T05:41:46.253Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:41:46.253Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T05:41:46.253Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T05:41:46.253Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T05:41:46.253Z [info] [codegenV3] Generating step 2: The process begins with a 'forward pass' where input data travels through the network to produce an output (prediction). We then calculate the 'loss' – a numerical measure of how far off that prediction was from the correct answer. Backpropagation *then takes this loss and mathematically distributes it backward* through the network. Using the 'chain rule' of calculus, it precisely calculates the 'gradient' for each weight and bias – essentially, how much each connection contributed to the overall error. Finally, an 'optimizer' (like gradient descent) uses these gradients to slightly *tweak these weights and biases* in the direction that minimizes the loss, making the network learn.
+2025-10-12T05:41:46.253Z [info] [codegenV3] Topic: "neural network backpropagation"
+2025-10-12T05:41:46.253Z [debug] [codegenV3] Prompt length: 1028 chars
+2025-10-12T05:41:48.255Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T05:41:48.255Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T05:41:48.255Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T05:41:48.255Z [info] [codegenV3] Generating step 3: Backpropagation is the fundamental learning algorithm powering virtually all modern deep learning. Without it, neural networks would be static calculators, not learners. It enables systems to 'learn' incredibly complex patterns from vast datasets, leading to breakthroughs in diverse fields: from recognizing faces in your smartphone (image classification) and understanding human speech (natural language processing), to guiding autonomous vehicles, powering medical diagnostics, and even discovering new drugs. It's the engine that transforms raw data into the intelligent, adaptive AI systems we interact with every day.
+2025-10-12T05:41:48.256Z [info] [codegenV3] Topic: "neural network backpropagation"
+2025-10-12T05:41:48.256Z [debug] [codegenV3] Prompt length: 961 chars
+2025-10-12T05:42:17.734Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:42:17.735Z [debug] [codegenV3] Received 5730 chars from API
+2025-10-12T05:42:17.735Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:42:17.735Z [info] [codegenV3] ✅ Generated SVG in 33.48s (5730 chars)
+2025-10-12T05:42:17.735Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 19, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-12T05:42:17.735Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=16
+2025-10-12T05:42:17.735Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:42:17.735Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T05:42:17.735Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:42:17.735Z [debug] compilerRouter: routing to js
+2025-10-12T05:42:17.735Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T05:42:17.735Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:42:17.735Z [debug] [debugger] Has actions: true
+2025-10-12T05:42:17.735Z [debug] [debugger] Actions count: 1
+2025-10-12T05:42:17.735Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:42:17.736Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T05:42:17.736Z [debug] [monitor] Step 1 generation for 9bb9e345-8c3c-4d2b-8b01-91bc568c9936 took 33484ms
+2025-10-12T05:42:17.736Z [info] [parallel] ✅ Step 1 COMPLETE in 33484ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+StepId: 1
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:42:17.736Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T05:42:18.654Z [debug] [monitor] Metrics updated:
+2025-10-12T05:42:57.583Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-12T05:42:57.583Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-12T05:42:57.583Z [debug] [codegenV3] Received 8804 chars from API
+2025-10-12T05:42:57.583Z [debug] [codegenV3] SVG tag count: 1 open, 0 close
+2025-10-12T05:42:57.583Z [warn] [codegenV3] 🔧 AUTO-REPAIR: Missing 1 closing tag(s) (finishReason: MAX_TOKENS)
+2025-10-12T05:42:57.583Z [info] [codegenV3] ✅ Added 1 closing </svg> tag(s)
+2025-10-12T05:42:57.583Z [info] [codegenV3] ✅ Generated SVG in 71.33s (8806 chars)
+2025-10-12T05:42:57.583Z [info] [codegenV3] 🎬 ANIMATIONS: 45 total (<animate>: 26, <animateMotion>: 19, <animateTransform>: 0)
+2025-10-12T05:42:57.583Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=44
+2025-10-12T05:42:57.583Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:42:57.584Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:42:57.584Z [debug] compilerRouter: routing to js
+2025-10-12T05:42:57.584Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T05:42:57.584Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:42:57.584Z [debug] [debugger] Has actions: true
+2025-10-12T05:42:57.584Z [debug] [debugger] Actions count: 1
+2025-10-12T05:42:57.584Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:42:57.584Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T05:42:57.584Z [debug] [monitor] Step 2 generation for 9bb9e345-8c3c-4d2b-8b01-91bc568c9936 took 71331ms
+2025-10-12T05:42:57.584Z [info] [parallel] ✅ Step 2 COMPLETE in 71331ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+StepId: 2
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:42:57.584Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T05:42:58.091Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:42:58.091Z [debug] [codegenV3] Received 7014 chars from API
+2025-10-12T05:42:58.091Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:42:58.091Z [info] [codegenV3] ✅ Generated SVG in 69.83s (7014 chars)
+2025-10-12T05:42:58.091Z [info] [codegenV3] 🎬 ANIMATIONS: 34 total (<animate>: 28, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T05:42:58.091Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=16
+2025-10-12T05:42:58.091Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:42:58.091Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:42:58.091Z [debug] compilerRouter: routing to js
+2025-10-12T05:42:58.091Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T05:42:58.091Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:42:58.091Z [debug] [debugger] Has actions: true
+2025-10-12T05:42:58.091Z [debug] [debugger] Actions count: 1
+2025-10-12T05:42:58.091Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:42:58.092Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T05:42:58.092Z [debug] [monitor] Step 3 generation for 9bb9e345-8c3c-4d2b-8b01-91bc568c9936 took 69837ms
+2025-10-12T05:42:58.092Z [info] [parallel] ✅ Step 3 COMPLETE in 69837ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+StepId: 3
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:42:58.092Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T05:42:58.092Z [debug] [parallel] Parallel generation complete: 3/3 successful in 73840ms
+2025-10-12T05:42:58.092Z [debug] [monitor] Completed request 9bb9e345-8c3c-4d2b-8b01-91bc568c9936 in 85610ms (success: true)
+2025-10-12T05:42:58.092Z [debug] [parallel] Job complete for session 9bb9e345-8c3c-4d2b-8b01-91bc568c9936
+2025-10-12T05:43:18.660Z [debug] [monitor] Metrics updated:
+2025-10-12T05:44:18.666Z [debug] [monitor] Metrics updated:
+2025-10-12T05:44:37.610Z [debug] Received request on /api/query {"body":{"query":"DNA transcription and translation"}}
+2025-10-12T05:44:37.610Z [debug] [api] Stored query for session 86d2981f-6278-46b3-bd25-db68aa1cce76: "DNA transcription and translation"
+2025-10-12T05:44:37.611Z [debug] [orchestrator] Enqueuing plan for session 86d2981f-6278-46b3-bd25-db68aa1cce76
+2025-10-12T05:44:37.611Z [debug] [orchestrator] Plan job added with id 25 for session 86d2981f-6278-46b3-bd25-db68aa1cce76
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 86d2981f-6278-46b3-bd25-db68aa1cce76
+Query: DNA transcription and translation
+Time: 2025-10-12T05:44:37.611Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:44:37.611Z [debug] [plan] START: session=86d2981f-6278-46b3-bd25-db68aa1cce76 query=DNA transcription and translation
+2025-10-12T05:44:37.611Z [debug] [monitor] Started tracking request 86d2981f-6278-46b3-bd25-db68aa1cce76
+2025-10-12T05:44:37.611Z [debug] [cache] MISS - No cached plan for query: "DNA transcription and translation..."
+2025-10-12T05:44:37.612Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T05:44:37.612Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T05:44:37.613Z [debug] [socket] New connection: 15Wmx9W24P8pQ_6mAAAH
+2025-10-12T05:44:37.613Z [debug] [socket] Socket 15Wmx9W24P8pQ_6mAAAH joined session 86d2981f-6278-46b3-bd25-db68aa1cce76
+2025-10-12T05:44:37.613Z [debug] [socket] Socket 15Wmx9W24P8pQ_6mAAAH is now in rooms: 15Wmx9W24P8pQ_6mAAAH, 86d2981f-6278-46b3-bd25-db68aa1cce76
+2025-10-12T05:44:37.614Z [debug] [socket] Socket 15Wmx9W24P8pQ_6mAAAH disconnected: client namespace disconnect
+2025-10-12T05:44:50.651Z [debug] [planner] Received response from Gemini in 13039ms
+2025-10-12T05:44:50.651Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T05:44:50.651Z [debug] [monitor] Plan generation for 86d2981f-6278-46b3-bd25-db68aa1cce76 took 13040ms
+2025-10-12T05:44:50.651Z [debug] [cache] Cached plan for query: "DNA transcription and translation..."
+=== NEW STRUCTURED PLAN ===
+Session: 86d2981f-6278-46b3-bd25-db68aa1cce76
+Query: DNA transcription and translation
+Plan title: DNA's Blueprint to Life: Transcription & Translation
+Plan subtitle: Discover how your body uses DNA instructions to build every protein it needs, from genetic code to functional molecules.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition: The Master Recipe Book',
+    summary: "DNA is a protected recipe book; temporary copies are made and sent to the 'kitchen' for protein assembly."
+  },
+  {
+    minute: 2,
+    title: 'How It Works: Two Steps to Proteins',
+    summary: 'Transcription copies DNA to mRNA, then Translation reads mRNA to build amino acid chains that become proteins.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications: Shaping Life & Medicine',
+    summary: 'This process enables genetic engineering, disease understanding, and drug development.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine your DNA as a precious, irreplaceable master recipe book, locked deep inside your cell's nucleus (the library). This book contains *all* the instructions for building every single component of your body – the 'dishes' (proteins) that make up your hair, muscles, and enzymes. Since the master book can't leave the library, the cell makes a *temporary, single-recipe copy* (messenger RNA, or mRNA) to send out to the 'kitchen' (the cytoplasm). This ensures the original DNA is protected while the necessary instructions are used."
+Step 1: id=2, tag=mechanics, desc="This process unfolds in two key stages: **Transcription** and **Translation**. First, during **Transcription** (inside the nucleus), a specific section of DNA (a gene) unwinds. An enzyme, RNA polymerase, 'reads' one DNA strand (e.g., A-T-C-G) and builds a complementary mRNA strand, replacing Thymine (T) with Uracil (U) in RNA (so A-T becomes A-U, and G-C remains G-C). This mRNA copy then exits the nucleus. Second, **Translation** occurs in the cytoplasm, on ribosomes. The ribosome 'reads' the mRNA's sequence in groups of three bases called *codons* (e.g., AUG, GGC). Each codon specifies a particular *amino acid*. Transfer RNA (tRNA) molecules, each carrying a specific amino acid, recognize and bind to matching mRNA codons. The ribosome then links these amino acids together in the correct sequence, forming a long chain that folds into a functional *protein*."
+Step 2: id=3, tag=applications, desc="Understanding transcription and translation is fundamental to modern biology and medicine. It allows us to: 1. **Genetic Engineering:** Manipulate these processes to insert new genes (e.g., making bacteria produce human insulin). 2. **Disease Diagnosis & Treatment:** Identify errors in this process (mutations) that lead to diseases like cystic fibrosis or sickle cell anemia, and develop drugs that target specific steps (e.g., antibiotics that block bacterial protein synthesis). This elegant molecular machinery is the very foundation of life, transforming static genetic information into dynamic, functional biological structures that enable everything from thought to muscle movement."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:44:50.651Z [debug] [plan] OK: session=86d2981f-6278-46b3-bd25-db68aa1cce76 plan received with 3 steps
+2025-10-12T05:44:50.651Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:44:50.651Z [debug] [plan] END: session=86d2981f-6278-46b3-bd25-db68aa1cce76
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 25
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 86d2981f-6278-46b3-bd25-db68aa1cce76
+Query: DNA transcription and translation
+Steps to generate: 3
+Time: 2025-10-12T05:44:50.652Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:44:50.652Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 86d2981f-6278-46b3-bd25-db68aa1cce76)
+2025-10-12T05:44:50.652Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:44:50.652Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T05:44:50.652Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T05:44:50.652Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T05:44:50.652Z [info] [codegenV3] Generating step 1: Imagine your DNA as a precious, irreplaceable master recipe book, locked deep inside your cell's nucleus (the library). This book contains *all* the instructions for building every single component of your body – the 'dishes' (proteins) that make up your hair, muscles, and enzymes. Since the master book can't leave the library, the cell makes a *temporary, single-recipe copy* (messenger RNA, or mRNA) to send out to the 'kitchen' (the cytoplasm). This ensures the original DNA is protected while the necessary instructions are used.
+2025-10-12T05:44:50.652Z [info] [codegenV3] Topic: "DNA transcription and translation"
+2025-10-12T05:44:50.652Z [debug] [codegenV3] Prompt length: 876 chars
+2025-10-12T05:44:52.657Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:44:52.657Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T05:44:52.657Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T05:44:52.657Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T05:44:52.657Z [info] [codegenV3] Generating step 2: This process unfolds in two key stages: **Transcription** and **Translation**. First, during **Transcription** (inside the nucleus), a specific section of DNA (a gene) unwinds. An enzyme, RNA polymerase, 'reads' one DNA strand (e.g., A-T-C-G) and builds a complementary mRNA strand, replacing Thymine (T) with Uracil (U) in RNA (so A-T becomes A-U, and G-C remains G-C). This mRNA copy then exits the nucleus. Second, **Translation** occurs in the cytoplasm, on ribosomes. The ribosome 'reads' the mRNA's sequence in groups of three bases called *codons* (e.g., AUG, GGC). Each codon specifies a particular *amino acid*. Transfer RNA (tRNA) molecules, each carrying a specific amino acid, recognize and bind to matching mRNA codons. The ribosome then links these amino acids together in the correct sequence, forming a long chain that folds into a functional *protein*.
+2025-10-12T05:44:52.657Z [info] [codegenV3] Topic: "DNA transcription and translation"
+2025-10-12T05:44:52.657Z [debug] [codegenV3] Prompt length: 1210 chars
+2025-10-12T05:44:54.660Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T05:44:54.660Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T05:44:54.660Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T05:44:54.660Z [info] [codegenV3] Generating step 3: Understanding transcription and translation is fundamental to modern biology and medicine. It allows us to: 1. **Genetic Engineering:** Manipulate these processes to insert new genes (e.g., making bacteria produce human insulin). 2. **Disease Diagnosis & Treatment:** Identify errors in this process (mutations) that lead to diseases like cystic fibrosis or sickle cell anemia, and develop drugs that target specific steps (e.g., antibiotics that block bacterial protein synthesis). This elegant molecular machinery is the very foundation of life, transforming static genetic information into dynamic, functional biological structures that enable everything from thought to muscle movement.
+2025-10-12T05:44:54.660Z [info] [codegenV3] Topic: "DNA transcription and translation"
+2025-10-12T05:44:54.660Z [debug] [codegenV3] Prompt length: 1031 chars
+2025-10-12T05:45:18.670Z [debug] [monitor] Metrics updated:
+2025-10-12T05:45:52.191Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:45:52.191Z [debug] [codegenV3] Received 4405 chars from API
+2025-10-12T05:45:52.191Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:45:52.191Z [info] [codegenV3] ✅ Generated SVG in 61.54s (4405 chars)
+2025-10-12T05:45:52.191Z [info] [codegenV3] 🎬 ANIMATIONS: 13 total (<animate>: 11, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-12T05:45:52.191Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=5
+2025-10-12T05:45:52.191Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:45:52.192Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T05:45:52.192Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:45:52.192Z [debug] compilerRouter: routing to js
+2025-10-12T05:45:52.192Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T05:45:52.192Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:45:52.192Z [debug] [debugger] Has actions: true
+2025-10-12T05:45:52.192Z [debug] [debugger] Actions count: 1
+2025-10-12T05:45:52.192Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:45:52.192Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T05:45:52.192Z [debug] [monitor] Step 1 generation for 86d2981f-6278-46b3-bd25-db68aa1cce76 took 61540ms
+2025-10-12T05:45:52.192Z [info] [parallel] ✅ Step 1 COMPLETE in 61540ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 86d2981f-6278-46b3-bd25-db68aa1cce76
+StepId: 1
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:45:52.193Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T05:46:10.499Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-12T05:46:10.499Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-12T05:46:10.499Z [debug] [codegenV3] Received 6304 chars from API
+2025-10-12T05:46:10.499Z [debug] [codegenV3] SVG tag count: 1 open, 0 close
+2025-10-12T05:46:10.499Z [warn] [codegenV3] 🔧 AUTO-REPAIR: Missing 1 closing tag(s) (finishReason: MAX_TOKENS)
+2025-10-12T05:46:10.499Z [info] [codegenV3] ✅ Added 1 closing </svg> tag(s)
+2025-10-12T05:46:10.499Z [info] [codegenV3] ✅ Generated SVG in 75.84s (6311 chars)
+2025-10-12T05:46:10.499Z [info] [codegenV3] 🎬 ANIMATIONS: 25 total (<animate>: 19, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T05:46:10.499Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=16
+2025-10-12T05:46:10.500Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:46:10.500Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:46:10.500Z [debug] compilerRouter: routing to js
+2025-10-12T05:46:10.500Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T05:46:10.500Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:46:10.500Z [debug] [debugger] Has actions: true
+2025-10-12T05:46:10.500Z [debug] [debugger] Actions count: 1
+2025-10-12T05:46:10.500Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:46:10.500Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T05:46:10.500Z [debug] [monitor] Step 3 generation for 86d2981f-6278-46b3-bd25-db68aa1cce76 took 75840ms
+2025-10-12T05:46:10.500Z [info] [parallel] ✅ Step 3 COMPLETE in 75840ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 86d2981f-6278-46b3-bd25-db68aa1cce76
+StepId: 3
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:46:10.500Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T05:46:15.172Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-12T05:46:15.172Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-12T05:46:15.172Z [debug] [codegenV3] Received 4566 chars from API
+2025-10-12T05:46:15.172Z [debug] [codegenV3] SVG tag count: 1 open, 0 close
+2025-10-12T05:46:15.172Z [warn] [codegenV3] 🔧 AUTO-REPAIR: Missing 1 closing tag(s) (finishReason: MAX_TOKENS)
+2025-10-12T05:46:15.172Z [info] [codegenV3] ✅ Added 1 closing </svg> tag(s)
+2025-10-12T05:46:15.172Z [info] [codegenV3] ✅ Generated SVG in 82.52s (4573 chars)
+2025-10-12T05:46:15.172Z [info] [codegenV3] 🎬 ANIMATIONS: 19 total (<animate>: 13, <animateMotion>: 5, <animateTransform>: 1)
+2025-10-12T05:46:15.172Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=15
+2025-10-12T05:46:15.172Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:46:15.172Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:46:15.172Z [debug] compilerRouter: routing to js
+2025-10-12T05:46:15.172Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T05:46:15.172Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:46:15.172Z [debug] [debugger] Has actions: true
+2025-10-12T05:46:15.172Z [debug] [debugger] Actions count: 1
+2025-10-12T05:46:15.172Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:46:15.173Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T05:46:15.173Z [debug] [monitor] Step 2 generation for 86d2981f-6278-46b3-bd25-db68aa1cce76 took 82517ms
+2025-10-12T05:46:15.173Z [info] [parallel] ✅ Step 2 COMPLETE in 82517ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 86d2981f-6278-46b3-bd25-db68aa1cce76
+StepId: 2
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:46:15.173Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T05:46:15.173Z [debug] [parallel] Parallel generation complete: 3/3 successful in 84521ms
+2025-10-12T05:46:15.173Z [debug] [monitor] Completed request 86d2981f-6278-46b3-bd25-db68aa1cce76 in 97562ms (success: true)
+2025-10-12T05:46:15.173Z [debug] [parallel] Job complete for session 86d2981f-6278-46b3-bd25-db68aa1cce76
+2025-10-12T05:46:18.673Z [debug] [monitor] Metrics updated:
+2025-10-12T05:47:18.674Z [debug] [monitor] Metrics updated:
+2025-10-12T05:47:42.740Z [debug] Received request on /api/query {"body":{"query":"general relativity spacetime curvature"}}
+2025-10-12T05:47:42.740Z [debug] [api] Stored query for session d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4: "general relativity spacetime curvature"
+2025-10-12T05:47:42.740Z [debug] [orchestrator] Enqueuing plan for session d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+2025-10-12T05:47:42.741Z [debug] [orchestrator] Plan job added with id 26 for session d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+Query: general relativity spacetime curvature
+Time: 2025-10-12T05:47:42.741Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:47:42.741Z [debug] [plan] START: session=d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4 query=general relativity spacetime curvature
+2025-10-12T05:47:42.741Z [debug] [monitor] Started tracking request d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+2025-10-12T05:47:42.741Z [debug] [cache] MISS - No cached plan for query: "general relativity spacetime curvature..."
+2025-10-12T05:47:42.742Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T05:47:42.742Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T05:47:42.744Z [debug] [socket] New connection: QrqbxwWzGNU7vNVbAAAJ
+2025-10-12T05:47:42.744Z [debug] [socket] Socket QrqbxwWzGNU7vNVbAAAJ joined session d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+2025-10-12T05:47:42.744Z [debug] [socket] Socket QrqbxwWzGNU7vNVbAAAJ is now in rooms: QrqbxwWzGNU7vNVbAAAJ, d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+2025-10-12T05:47:42.744Z [debug] [socket] Socket QrqbxwWzGNU7vNVbAAAJ disconnected: client namespace disconnect
+2025-10-12T05:47:54.440Z [debug] [planner] Received response from Gemini in 11698ms
+2025-10-12T05:47:54.440Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T05:47:54.441Z [debug] [monitor] Plan generation for d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4 took 11700ms
+2025-10-12T05:47:54.441Z [debug] [cache] Cached plan for query: "general relativity spacetime curvature..."
+=== NEW STRUCTURED PLAN ===
+Session: d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+Query: general relativity spacetime curvature
+Plan title: General Relativity: Spacetime Curvature Explained
+Plan subtitle: Discover how massive objects literally warp the fabric of the universe, creating what we perceive as gravity.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: "Gravity isn't a mysterious pull, but the bending of the universe's fabric by mass and energy."
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: "Mass warps four-dimensional spacetime, and objects follow these curves (geodesics), appearing to be 'pulled'."
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'From GPS accuracy to black holes, spacetime curvature is a fundamental aspect of reality.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine placing a heavy bowling ball onto a tightly stretched rubber sheet. The ball doesn't 'pull' the sheet; it deforms it, creating a significant dip. Now, roll a small marble nearby – it doesn't get 'pulled' by the ball, it simply rolls into the dip, following the curved path created by the bowling ball's weight. This isn't just an analogy for space, but for *spacetime* itself: mass and energy literally warp the four-dimensional fabric of the universe around them."
+Step 1: id=2, tag=mechanics, desc="In General Relativity, mass and energy tell spacetime how to curve, and spacetime tells mass and energy how to move. Planets orbit the Sun not because a mysterious 'gravitational force' pulls them, but because the Sun's immense mass creates a deep well or depression in the spacetime surrounding it. The planets, like the marble, simply follow the 'straightest possible path' (called a geodesic) through this curved four-dimensional landscape, which appears to us as an orbit. Even light bends around massive objects, like stars and galaxies, following the curvature of spacetime."
+Step 2: id=3, tag=applications, desc="This isn't just abstract theory; spacetime curvature is crucial for our modern world. Your GPS device relies on General Relativity to account for the slight differences in time experienced by satellites in weaker gravity versus receivers on Earth. Without these calculations, your GPS would be off by miles daily. Spacetime curvature also allows us to understand extreme phenomena like black holes, where spacetime is so dramatically curved that nothing, not even light, can escape, and it forms the very basis of modern cosmology, describing the expansion and structure of the universe."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:47:54.442Z [debug] [plan] OK: session=d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4 plan received with 3 steps
+2025-10-12T05:47:54.443Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:47:54.444Z [debug] [plan] END: session=d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 26
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+Query: general relativity spacetime curvature
+Steps to generate: 3
+Time: 2025-10-12T05:47:54.445Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:47:54.445Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4)
+2025-10-12T05:47:54.446Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:47:54.446Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T05:47:54.446Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T05:47:54.446Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T05:47:54.446Z [info] [codegenV3] Generating step 1: Imagine placing a heavy bowling ball onto a tightly stretched rubber sheet. The ball doesn't 'pull' the sheet; it deforms it, creating a significant dip. Now, roll a small marble nearby – it doesn't get 'pulled' by the ball, it simply rolls into the dip, following the curved path created by the bowling ball's weight. This isn't just an analogy for space, but for *spacetime* itself: mass and energy literally warp the four-dimensional fabric of the universe around them.
+2025-10-12T05:47:54.446Z [info] [codegenV3] Topic: "general relativity spacetime curvature"
+2025-10-12T05:47:54.447Z [debug] [codegenV3] Prompt length: 818 chars
+2025-10-12T05:47:56.447Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:47:56.448Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T05:47:56.448Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T05:47:56.448Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T05:47:56.448Z [info] [codegenV3] Generating step 2: In General Relativity, mass and energy tell spacetime how to curve, and spacetime tells mass and energy how to move. Planets orbit the Sun not because a mysterious 'gravitational force' pulls them, but because the Sun's immense mass creates a deep well or depression in the spacetime surrounding it. The planets, like the marble, simply follow the 'straightest possible path' (called a geodesic) through this curved four-dimensional landscape, which appears to us as an orbit. Even light bends around massive objects, like stars and galaxies, following the curvature of spacetime.
+2025-10-12T05:47:56.448Z [info] [codegenV3] Topic: "general relativity spacetime curvature"
+2025-10-12T05:47:56.448Z [debug] [codegenV3] Prompt length: 926 chars
+2025-10-12T05:47:58.452Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T05:47:58.452Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T05:47:58.452Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T05:47:58.452Z [info] [codegenV3] Generating step 3: This isn't just abstract theory; spacetime curvature is crucial for our modern world. Your GPS device relies on General Relativity to account for the slight differences in time experienced by satellites in weaker gravity versus receivers on Earth. Without these calculations, your GPS would be off by miles daily. Spacetime curvature also allows us to understand extreme phenomena like black holes, where spacetime is so dramatically curved that nothing, not even light, can escape, and it forms the very basis of modern cosmology, describing the expansion and structure of the universe.
+2025-10-12T05:47:58.452Z [info] [codegenV3] Topic: "general relativity spacetime curvature"
+2025-10-12T05:47:58.452Z [debug] [codegenV3] Prompt length: 933 chars
+2025-10-12T05:48:18.675Z [debug] [monitor] Metrics updated:
+2025-10-12T05:48:21.987Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:48:21.987Z [debug] [codegenV3] Received 2487 chars from API
+2025-10-12T05:48:21.987Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:48:21.987Z [info] [codegenV3] ✅ Generated SVG in 27.54s (2487 chars)
+2025-10-12T05:48:21.987Z [info] [codegenV3] 🎬 ANIMATIONS: 2 total (<animate>: 1, <animateMotion>: 1, <animateTransform>: 0)
+2025-10-12T05:48:21.987Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=5
+2025-10-12T05:48:21.987Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:48:21.988Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T05:48:21.988Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:48:21.988Z [debug] compilerRouter: routing to js
+2025-10-12T05:48:21.988Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T05:48:21.988Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:48:21.988Z [debug] [debugger] Has actions: true
+2025-10-12T05:48:21.988Z [debug] [debugger] Actions count: 1
+2025-10-12T05:48:21.988Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:48:21.988Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T05:48:21.988Z [debug] [monitor] Step 1 generation for d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4 took 27542ms
+2025-10-12T05:48:21.988Z [info] [parallel] ✅ Step 1 COMPLETE in 27542ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+StepId: 1
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:48:21.988Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T05:48:33.706Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:48:33.707Z [debug] [codegenV3] Received 3480 chars from API
+2025-10-12T05:48:33.707Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:48:33.707Z [info] [codegenV3] ✅ Generated SVG in 37.26s (3480 chars)
+2025-10-12T05:48:33.707Z [info] [codegenV3] 🎬 ANIMATIONS: 6 total (<animate>: 4, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-12T05:48:33.707Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=22
+2025-10-12T05:48:33.707Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:48:33.707Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:48:33.707Z [debug] compilerRouter: routing to js
+2025-10-12T05:48:33.707Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T05:48:33.707Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:48:33.707Z [debug] [debugger] Has actions: true
+2025-10-12T05:48:33.707Z [debug] [debugger] Actions count: 1
+2025-10-12T05:48:33.707Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:48:33.707Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T05:48:33.707Z [debug] [monitor] Step 2 generation for d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4 took 37260ms
+2025-10-12T05:48:33.707Z [info] [parallel] ✅ Step 2 COMPLETE in 37260ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+StepId: 2
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:48:33.707Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T05:48:49.328Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:48:49.328Z [debug] [codegenV3] Received 4184 chars from API
+2025-10-12T05:48:49.328Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:48:49.328Z [info] [codegenV3] ✅ Generated SVG in 50.88s (4184 chars)
+2025-10-12T05:48:49.328Z [info] [codegenV3] 🎬 ANIMATIONS: 18 total (<animate>: 16, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-12T05:48:49.328Z [info] [codegenV3] 📊 CONTENT: labels=4, shapes=15
+2025-10-12T05:48:49.328Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:48:49.328Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:48:49.328Z [debug] compilerRouter: routing to js
+2025-10-12T05:48:49.328Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T05:48:49.328Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:48:49.328Z [debug] [debugger] Has actions: true
+2025-10-12T05:48:49.329Z [debug] [debugger] Actions count: 1
+2025-10-12T05:48:49.329Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:48:49.329Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T05:48:49.329Z [debug] [monitor] Step 3 generation for d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4 took 50877ms
+2025-10-12T05:48:49.329Z [info] [parallel] ✅ Step 3 COMPLETE in 50877ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+StepId: 3
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:48:49.329Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T05:48:49.329Z [debug] [parallel] Parallel generation complete: 3/3 successful in 54884ms
+2025-10-12T05:48:49.329Z [debug] [monitor] Completed request d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4 in 66588ms (success: true)
+2025-10-12T05:48:49.329Z [debug] [parallel] Job complete for session d970ad15-2ff3-45ca-b2eb-ad59c93bf4d4
+2025-10-12T05:49:18.677Z [debug] [monitor] Metrics updated:
+2025-10-12T05:50:18.678Z [debug] [monitor] Metrics updated:
+2025-10-12T05:51:18.689Z [debug] [monitor] Metrics updated:
+2025-10-12T05:51:37.463Z [debug] Received request on /api/query {"body":{"query":"simple harmonic motion"}}
+2025-10-12T05:51:37.463Z [debug] [api] Stored query for session edf942cc-5c31-44a4-9757-18b6ad66fac1: "simple harmonic motion"
+2025-10-12T05:51:37.463Z [debug] [orchestrator] Enqueuing plan for session edf942cc-5c31-44a4-9757-18b6ad66fac1
+2025-10-12T05:51:37.464Z [debug] [orchestrator] Plan job added with id 27 for session edf942cc-5c31-44a4-9757-18b6ad66fac1
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: edf942cc-5c31-44a4-9757-18b6ad66fac1
+Query: simple harmonic motion
+Time: 2025-10-12T05:51:37.464Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:51:37.464Z [debug] [plan] START: session=edf942cc-5c31-44a4-9757-18b6ad66fac1 query=simple harmonic motion
+2025-10-12T05:51:37.464Z [debug] [monitor] Started tracking request edf942cc-5c31-44a4-9757-18b6ad66fac1
+2025-10-12T05:51:37.464Z [debug] [cache] MISS - No cached plan for query: "simple harmonic motion..."
+2025-10-12T05:51:37.464Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T05:51:37.464Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T05:51:37.469Z [debug] [socket] New connection: NdHJHbEY_t5fGD8yAAAL
+2025-10-12T05:51:37.470Z [debug] [socket] Socket NdHJHbEY_t5fGD8yAAAL joined session edf942cc-5c31-44a4-9757-18b6ad66fac1
+2025-10-12T05:51:37.470Z [debug] [socket] Socket NdHJHbEY_t5fGD8yAAAL is now in rooms: NdHJHbEY_t5fGD8yAAAL, edf942cc-5c31-44a4-9757-18b6ad66fac1
+2025-10-12T05:51:49.640Z [debug] [planner] Received response from Gemini in 12176ms
+2025-10-12T05:51:49.640Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T05:51:49.640Z [debug] [monitor] Plan generation for edf942cc-5c31-44a4-9757-18b6ad66fac1 took 12176ms
+2025-10-12T05:51:49.640Z [debug] [cache] Cached plan for query: "simple harmonic motion..."
+=== NEW STRUCTURED PLAN ===
+Session: edf942cc-5c31-44a4-9757-18b6ad66fac1
+Query: simple harmonic motion
+Plan title: Simple Harmonic Motion: The Rhythm of Nature
+Plan subtitle: Discover how simple, repetitive back-and-forth movements govern everything from clocks to atoms.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: 'Understanding the basic push-and-pull that creates oscillations.'
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'Unpacking the precise conditions that define Simple Harmonic Motion.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'Seeing SHM in action, from musical instruments to car shocks.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a child on a swing, pushed to its highest point, then released. It doesn't just stop at the bottom; it swings past, slowing down, stopping at the other side, and then comes back. This back-and-forth movement around a central, stable point – like a pendulum or a mass on a spring – is an oscillation. The key intuition is a 'restoring force': something always tries to pull or push the object back to the center (equilibrium), but its momentum carries it past, causing it to 'overshoot' and repeat."
+Step 1: id=2, tag=mechanics, desc="Simple Harmonic Motion (SHM) is a special type of oscillation where the *restoring force* is directly proportional to the object's displacement from its equilibrium position, and always acts to bring it back. Think of a spring: the more you stretch or compress it (displacement), the harder it pulls or pushes back (restoring force). This constant, predictable tug results in a perfectly repeating cycle, defined by its *amplitude* (maximum displacement), *period* (time for one full cycle), and *frequency* (cycles per second). Examples include an ideal mass-spring system or a simple pendulum with small swings."
+Step 2: id=3, tag=applications, desc="SHM isn't just theory; it's everywhere! Metronomes use a pendulum to keep time for musicians. The quartz crystal in your watch vibrates with precise SHM to power its accuracy. Car suspension systems are designed using principles of SHM (and damping) to absorb bumps smoothly, preventing endless bouncing. Understanding SHM helps engineers design earthquake-resistant buildings, acoustic instruments, and even enables physicists to study the vibrations of atoms and molecules."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:51:49.641Z [debug] [plan] OK: session=edf942cc-5c31-44a4-9757-18b6ad66fac1 plan received with 3 steps
+2025-10-12T05:51:49.641Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:51:49.643Z [debug] [plan] END: session=edf942cc-5c31-44a4-9757-18b6ad66fac1
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 27
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: edf942cc-5c31-44a4-9757-18b6ad66fac1
+Query: simple harmonic motion
+Steps to generate: 3
+Time: 2025-10-12T05:51:49.644Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:51:49.644Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: edf942cc-5c31-44a4-9757-18b6ad66fac1)
+2025-10-12T05:51:49.645Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:51:49.645Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T05:51:49.645Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T05:51:49.645Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T05:51:49.645Z [info] [codegenV3] Generating step 1: Imagine a child on a swing, pushed to its highest point, then released. It doesn't just stop at the bottom; it swings past, slowing down, stopping at the other side, and then comes back. This back-and-forth movement around a central, stable point – like a pendulum or a mass on a spring – is an oscillation. The key intuition is a 'restoring force': something always tries to pull or push the object back to the center (equilibrium), but its momentum carries it past, causing it to 'overshoot' and repeat.
+2025-10-12T05:51:49.645Z [info] [codegenV3] Topic: "simple harmonic motion"
+2025-10-12T05:51:49.645Z [debug] [codegenV3] Prompt length: 835 chars
+2025-10-12T05:51:51.648Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:51:51.648Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T05:51:51.648Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T05:51:51.648Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T05:51:51.648Z [info] [codegenV3] Generating step 2: Simple Harmonic Motion (SHM) is a special type of oscillation where the *restoring force* is directly proportional to the object's displacement from its equilibrium position, and always acts to bring it back. Think of a spring: the more you stretch or compress it (displacement), the harder it pulls or pushes back (restoring force). This constant, predictable tug results in a perfectly repeating cycle, defined by its *amplitude* (maximum displacement), *period* (time for one full cycle), and *frequency* (cycles per second). Examples include an ideal mass-spring system or a simple pendulum with small swings.
+2025-10-12T05:51:51.648Z [info] [codegenV3] Topic: "simple harmonic motion"
+2025-10-12T05:51:51.648Z [debug] [codegenV3] Prompt length: 943 chars
+2025-10-12T05:51:53.652Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T05:51:53.652Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T05:51:53.652Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T05:51:53.652Z [info] [codegenV3] Generating step 3: SHM isn't just theory; it's everywhere! Metronomes use a pendulum to keep time for musicians. The quartz crystal in your watch vibrates with precise SHM to power its accuracy. Car suspension systems are designed using principles of SHM (and damping) to absorb bumps smoothly, preventing endless bouncing. Understanding SHM helps engineers design earthquake-resistant buildings, acoustic instruments, and even enables physicists to study the vibrations of atoms and molecules.
+2025-10-12T05:51:53.652Z [info] [codegenV3] Topic: "simple harmonic motion"
+2025-10-12T05:51:53.652Z [debug] [codegenV3] Prompt length: 805 chars
+2025-10-12T05:52:18.694Z [debug] [monitor] Metrics updated:
+2025-10-12T05:52:33.180Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:52:33.180Z [debug] [codegenV3] Received 2625 chars from API
+2025-10-12T05:52:33.180Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:52:33.181Z [info] [codegenV3] ✅ Generated SVG in 39.53s (2625 chars)
+2025-10-12T05:52:33.181Z [info] [codegenV3] 🎬 ANIMATIONS: 2 total (<animate>: 2, <animateMotion>: 0, <animateTransform>: 0)
+2025-10-12T05:52:33.181Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=2
+2025-10-12T05:52:33.181Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:52:33.181Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:52:33.181Z [debug] compilerRouter: routing to js
+2025-10-12T05:52:33.181Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T05:52:33.181Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:52:33.181Z [debug] [debugger] Has actions: true
+2025-10-12T05:52:33.181Z [debug] [debugger] Actions count: 1
+2025-10-12T05:52:33.181Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:52:33.181Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T05:52:33.181Z [debug] [monitor] Step 3 generation for edf942cc-5c31-44a4-9757-18b6ad66fac1 took 39529ms
+2025-10-12T05:52:33.181Z [info] [parallel] ✅ Step 3 COMPLETE in 39529ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: edf942cc-5c31-44a4-9757-18b6ad66fac1
+StepId: 3
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:52:33.182Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-12T05:52:43.828Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:52:43.828Z [debug] [codegenV3] Received 4990 chars from API
+2025-10-12T05:52:43.828Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:52:43.828Z [info] [codegenV3] ✅ Generated SVG in 52.18s (4990 chars)
+2025-10-12T05:52:43.828Z [info] [codegenV3] 🎬 ANIMATIONS: 5 total (<animate>: 5, <animateMotion>: 0, <animateTransform>: 0)
+2025-10-12T05:52:43.828Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=7
+2025-10-12T05:52:43.828Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:52:43.828Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:52:43.828Z [debug] compilerRouter: routing to js
+2025-10-12T05:52:43.828Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T05:52:43.828Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:52:43.828Z [debug] [debugger] Has actions: true
+2025-10-12T05:52:43.828Z [debug] [debugger] Actions count: 1
+2025-10-12T05:52:43.828Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:52:43.829Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T05:52:43.829Z [debug] [monitor] Step 2 generation for edf942cc-5c31-44a4-9757-18b6ad66fac1 took 52181ms
+2025-10-12T05:52:43.829Z [info] [parallel] ✅ Step 2 COMPLETE in 52181ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: edf942cc-5c31-44a4-9757-18b6ad66fac1
+StepId: 2
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:52:43.829Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-12T05:52:51.854Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:52:51.854Z [debug] [codegenV3] Received 3038 chars from API
+2025-10-12T05:52:51.854Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:52:51.854Z [info] [codegenV3] ✅ Generated SVG in 62.21s (3038 chars)
+2025-10-12T05:52:51.854Z [info] [codegenV3] 🎬 ANIMATIONS: 2 total (<animate>: 1, <animateMotion>: 0, <animateTransform>: 1)
+2025-10-12T05:52:51.854Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=3
+2025-10-12T05:52:51.854Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:52:51.854Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T05:52:51.854Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:52:51.854Z [debug] compilerRouter: routing to js
+2025-10-12T05:52:51.854Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T05:52:51.854Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:52:51.854Z [debug] [debugger] Has actions: true
+2025-10-12T05:52:51.854Z [debug] [debugger] Actions count: 1
+2025-10-12T05:52:51.854Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:52:51.855Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T05:52:51.855Z [debug] [monitor] Step 1 generation for edf942cc-5c31-44a4-9757-18b6ad66fac1 took 62210ms
+2025-10-12T05:52:51.855Z [info] [parallel] ✅ Step 1 COMPLETE in 62210ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: edf942cc-5c31-44a4-9757-18b6ad66fac1
+StepId: 1
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:52:51.855Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-12T05:52:51.855Z [debug] [parallel] Parallel generation complete: 3/3 successful in 62211ms
+2025-10-12T05:52:51.855Z [debug] [monitor] Completed request edf942cc-5c31-44a4-9757-18b6ad66fac1 in 74391ms (success: true)
+2025-10-12T05:52:51.855Z [debug] [parallel] Job complete for session edf942cc-5c31-44a4-9757-18b6ad66fac1
+2025-10-12T05:52:53.863Z [debug] [socket] Socket NdHJHbEY_t5fGD8yAAAL disconnected: client namespace disconnect
+2025-10-12T05:53:18.708Z [debug] [monitor] Metrics updated:
+2025-10-12T05:54:03.255Z [debug] Received request on /api/query {"body":{"query":"photosynthesis light reactions"}}
+2025-10-12T05:54:03.255Z [debug] [api] Stored query for session 718eec10-6680-4db6-b3f3-47dcb48efa21: "photosynthesis light reactions"
+2025-10-12T05:54:03.255Z [debug] [orchestrator] Enqueuing plan for session 718eec10-6680-4db6-b3f3-47dcb48efa21
+2025-10-12T05:54:03.255Z [debug] [orchestrator] Plan job added with id 28 for session 718eec10-6680-4db6-b3f3-47dcb48efa21
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 718eec10-6680-4db6-b3f3-47dcb48efa21
+Query: photosynthesis light reactions
+Time: 2025-10-12T05:54:03.256Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:54:03.256Z [debug] [plan] START: session=718eec10-6680-4db6-b3f3-47dcb48efa21 query=photosynthesis light reactions
+2025-10-12T05:54:03.256Z [debug] [monitor] Started tracking request 718eec10-6680-4db6-b3f3-47dcb48efa21
+2025-10-12T05:54:03.256Z [debug] [cache] HIT - Found cached plan for query: "photosynthesis light reactions..."
+2025-10-12T05:54:03.256Z [debug] [plan] Using cached plan for query: photosynthesis light reactions
+2025-10-12T05:54:03.256Z [debug] [monitor] Plan generation for 718eec10-6680-4db6-b3f3-47dcb48efa21 took 0ms
+=== NEW STRUCTURED PLAN ===
+Session: 718eec10-6680-4db6-b3f3-47dcb48efa21
+Query: photosynthesis light reactions
+Plan title: Powering Life: Photosynthesis Light Reactions
+Plan subtitle: Learn how plants capture sunlight and convert it into the essential energy carriers that fuel all life on Earth.
+Plan toc: [
+  {
+    minute: 1,
+    title: "The Intuition: Nature's Solar Panels",
+    summary: 'Plants convert sunlight into immediate chemical energy, like charging a battery for later use.'
+  },
+  {
+    minute: 2,
+    title: 'How It Works: Energy Conversion in the Thylakoid',
+    summary: 'Light energy splits water, releases oxygen, and creates ATP and NADPH in specific chloroplast structures.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications: Fueling Life & Future Tech',
+    summary: 'The products of light reactions power food production, oxygen generation, and inspire renewable energy solutions.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a plant isn't just 'there'; it's an incredible energy factory. Visualize warm sunlight bathing a leaf. Inside, tiny, green 'solar panels'—chlorophyll molecules—are instantly converting that raw, free sunlight into usable chemical energy, like charging microscopic batteries. This energy isn't food yet, but it's the critical *power* needed to make all our food and fuel the plant itself. This initial conversion is the essence of the light reactions."
+Step 1: id=2, tag=mechanics, desc="This power conversion happens specifically within the thylakoid membranes inside a plant's chloroplasts. Here's how: Sunlight hits chlorophyll in Photosystem II (PSII), exciting its electrons. To replace these, water (H2O) is split, releasing the oxygen (O2) we breathe! These energized electrons then flow down an 'electron transport chain,' pumping protons across the membrane, creating a gradient. This proton flow then powers an enzyme, ATP synthase, to produce ATP (adenosine triphosphate)—the cell's primary energy currency. Meanwhile, more light energy is captured by Photosystem I (PSI), re-energizing electrons which are used to form NADPH (nicotinamide adenine dinucleotide phosphate), another crucial energy carrier. Think of it as a miniature hydro-electric dam, where light drives electrons to create power!"
+Step 2: id=3, tag=applications, desc="The ATP and NADPH created in these light reactions are not just random molecules; they are the *direct fuel* for the Calvin Cycle, where carbon dioxide (CO2) is converted into glucose—the sugars that form the base of almost all food chains. Without these light-driven 'energy packets,' no sugar, no food, and no oxygen for breathing! This fundamental process not only sustains nearly all life on Earth but also inspires engineers to develop artificial photosynthesis for sustainable energy, clean hydrogen fuel production, and even enhanced carbon capture technologies to combat climate change."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:54:03.256Z [debug] [plan] OK: session=718eec10-6680-4db6-b3f3-47dcb48efa21 plan received with 3 steps
+2025-10-12T05:54:03.256Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:54:03.256Z [debug] [plan] END: session=718eec10-6680-4db6-b3f3-47dcb48efa21
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 28
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 718eec10-6680-4db6-b3f3-47dcb48efa21
+Query: photosynthesis light reactions
+Steps to generate: 3
+Time: 2025-10-12T05:54:03.257Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:54:03.257Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 718eec10-6680-4db6-b3f3-47dcb48efa21)
+2025-10-12T05:54:03.257Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:54:03.257Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-12T05:54:03.257Z [debug] [parallel] Using cached chunk for step 1
+2025-10-12T05:54:03.257Z [debug] [monitor] Step 1 generation for 718eec10-6680-4db6-b3f3-47dcb48efa21 took 0ms
+2025-10-12T05:54:03.257Z [info] [parallel] ✅ Step 1 COMPLETE in 0ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 718eec10-6680-4db6-b3f3-47dcb48efa21
+StepId: 1
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:54:03.258Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T05:54:03.261Z [debug] [socket] New connection: EtSdSIAC0ex9a0HoAAAN
+2025-10-12T05:54:03.262Z [debug] [socket] Socket EtSdSIAC0ex9a0HoAAAN joined session 718eec10-6680-4db6-b3f3-47dcb48efa21
+2025-10-12T05:54:03.262Z [debug] [socket] Socket EtSdSIAC0ex9a0HoAAAN is now in rooms: EtSdSIAC0ex9a0HoAAAN, 718eec10-6680-4db6-b3f3-47dcb48efa21
+2025-10-12T05:54:03.262Z [debug] [socket] Sent cached plan to newly joined socket EtSdSIAC0ex9a0HoAAAN
+2025-10-12T05:54:03.262Z [debug] [socket] Sent cached step 1 to newly joined socket EtSdSIAC0ex9a0HoAAAN
+2025-10-12T05:54:05.261Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:54:05.262Z [debug] [cache] HIT - Found cached chunk for step 2
+2025-10-12T05:54:05.262Z [debug] [parallel] Using cached chunk for step 2
+2025-10-12T05:54:05.262Z [debug] [monitor] Step 2 generation for 718eec10-6680-4db6-b3f3-47dcb48efa21 took 1ms
+2025-10-12T05:54:05.262Z [info] [parallel] ✅ Step 2 COMPLETE in 1ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 718eec10-6680-4db6-b3f3-47dcb48efa21
+StepId: 2
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:54:05.262Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-12T05:54:07.271Z [debug] [cache] HIT - Found cached chunk for step 3
+2025-10-12T05:54:07.271Z [debug] [parallel] Using cached chunk for step 3
+2025-10-12T05:54:07.271Z [debug] [monitor] Step 3 generation for 718eec10-6680-4db6-b3f3-47dcb48efa21 took 1ms
+2025-10-12T05:54:07.271Z [info] [parallel] ✅ Step 3 COMPLETE in 1ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 718eec10-6680-4db6-b3f3-47dcb48efa21
+StepId: 3
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:54:07.271Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-12T05:54:07.272Z [debug] [parallel] Parallel generation complete: 3/3 successful in 4015ms
+2025-10-12T05:54:07.272Z [debug] [monitor] Completed request 718eec10-6680-4db6-b3f3-47dcb48efa21 in 4016ms (success: true)
+2025-10-12T05:54:07.272Z [debug] [parallel] Job complete for session 718eec10-6680-4db6-b3f3-47dcb48efa21
+2025-10-12T05:54:09.283Z [debug] [socket] Socket EtSdSIAC0ex9a0HoAAAN disconnected: client namespace disconnect
+2025-10-12T05:54:18.710Z [debug] [monitor] Metrics updated:
+2025-10-12T05:54:33.328Z [debug] Received request on /api/query {"body":{"query":"machine learning basics"}}
+2025-10-12T05:54:33.328Z [debug] [api] Stored query for session b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97: "machine learning basics"
+2025-10-12T05:54:33.329Z [debug] [orchestrator] Enqueuing plan for session b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+2025-10-12T05:54:33.329Z [debug] [orchestrator] Plan job added with id 29 for session b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+Query: machine learning basics
+Time: 2025-10-12T05:54:33.330Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:54:33.330Z [debug] [plan] START: session=b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97 query=machine learning basics
+2025-10-12T05:54:33.330Z [debug] [monitor] Started tracking request b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+2025-10-12T05:54:33.330Z [debug] [cache] MISS - No cached plan for query: "machine learning basics..."
+2025-10-12T05:54:33.330Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T05:54:33.330Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T05:54:33.339Z [debug] [socket] New connection: RyGLTUCEUpw0N0lSAAAP
+2025-10-12T05:54:33.340Z [debug] [socket] Socket RyGLTUCEUpw0N0lSAAAP joined session b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+2025-10-12T05:54:33.340Z [debug] [socket] Socket RyGLTUCEUpw0N0lSAAAP is now in rooms: RyGLTUCEUpw0N0lSAAAP, b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+2025-10-12T05:54:52.443Z [debug] [planner] Received response from Gemini in 19113ms
+2025-10-12T05:54:52.443Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T05:54:52.443Z [debug] [monitor] Plan generation for b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97 took 19113ms
+2025-10-12T05:54:52.443Z [debug] [cache] Cached plan for query: "machine learning basics..."
+=== NEW STRUCTURED PLAN ===
+Session: b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+Query: machine learning basics
+Plan title: Machine Learning: How Computers Learn
+Plan subtitle: Discover the fundamental concept of machine learning and how it empowers computers to learn from data to make intelligent decisions.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: 'Understand ML as teaching computers by example, not rigid rules.'
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'Explore the core process of training models with data and making predictions.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'See how ML powers everyday technology and complex systems.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine teaching a child to recognize a 'cat' by showing them hundreds of different cat pictures, without giving specific rules like 'it has whiskers' or 'pointy ears.' Machine Learning (ML) works similarly: instead of being explicitly programmed for every single scenario, we feed computers *vast amounts of data* (e.g., thousands of cat images). The computer then learns to identify patterns and relationships within this data, building an internal 'model' that helps it make sense of new, unseen information. It's like training a digital brain to learn from experience, allowing it to adapt and solve problems that are too complex for fixed programming."
+Step 1: id=2, tag=mechanics, desc="At its core, ML involves a 'training' process. We provide an algorithm (a 'model') with a dataset, often containing 'features' (attributes like color, size, text content) and corresponding 'labels' (what those features represent, e.g., 'this email is spam,' 'this image contains a dog,' or 'this house sold for $300k'). The model analyzes these features and labels to find underlying patterns. For instance, it might learn that emails with many capital letters and urgent requests are often spam. After training, the model can then take *new, unlabeled data* and make a 'prediction' or 'classification' based on what it learned. If its prediction is wrong during training, it adjusts its internal parameters (like fine-tuning knobs) to get better next time. This iterative process of prediction, error, and adjustment is how the model 'learns' and improves its accuracy over time."
+Step 2: id=3, tag=applications, desc="Machine Learning is already deeply embedded in your daily life. Think about Netflix recommending movies you'll love, Spotify suggesting new music, or Amazon showing you products you might want next – these are all driven by ML models learning your preferences and behaviors. Beyond recommendations, ML powers crucial systems like facial recognition in your smartphone, real-time fraud detection in banks, accurate spam filters in your email, and the complex decision-making in self-driving cars. It allows us to automate incredibly complex tasks, uncover hidden insights in massive datasets, and create intelligent systems that constantly adapt and improve, fundamentally changing how we interact with technology and solve real-world problems at scale."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:54:52.443Z [debug] [plan] OK: session=b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97 plan received with 3 steps
+2025-10-12T05:54:52.443Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:54:52.444Z [debug] [plan] END: session=b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 29
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+Query: machine learning basics
+Steps to generate: 3
+Time: 2025-10-12T05:54:52.444Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:54:52.444Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97)
+2025-10-12T05:54:52.444Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:54:52.444Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T05:54:52.444Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T05:54:52.444Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T05:54:52.445Z [info] [codegenV3] Generating step 1: Imagine teaching a child to recognize a 'cat' by showing them hundreds of different cat pictures, without giving specific rules like 'it has whiskers' or 'pointy ears.' Machine Learning (ML) works similarly: instead of being explicitly programmed for every single scenario, we feed computers *vast amounts of data* (e.g., thousands of cat images). The computer then learns to identify patterns and relationships within this data, building an internal 'model' that helps it make sense of new, unseen information. It's like training a digital brain to learn from experience, allowing it to adapt and solve problems that are too complex for fixed programming.
+2025-10-12T05:54:52.445Z [info] [codegenV3] Topic: "machine learning basics"
+2025-10-12T05:54:52.445Z [debug] [codegenV3] Prompt length: 987 chars
+2025-10-12T05:54:54.449Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:54:54.449Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T05:54:54.449Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T05:54:54.449Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T05:54:54.449Z [info] [codegenV3] Generating step 2: At its core, ML involves a 'training' process. We provide an algorithm (a 'model') with a dataset, often containing 'features' (attributes like color, size, text content) and corresponding 'labels' (what those features represent, e.g., 'this email is spam,' 'this image contains a dog,' or 'this house sold for $300k'). The model analyzes these features and labels to find underlying patterns. For instance, it might learn that emails with many capital letters and urgent requests are often spam. After training, the model can then take *new, unlabeled data* and make a 'prediction' or 'classification' based on what it learned. If its prediction is wrong during training, it adjusts its internal parameters (like fine-tuning knobs) to get better next time. This iterative process of prediction, error, and adjustment is how the model 'learns' and improves its accuracy over time.
+2025-10-12T05:54:54.449Z [info] [codegenV3] Topic: "machine learning basics"
+2025-10-12T05:54:54.449Z [debug] [codegenV3] Prompt length: 1211 chars
+2025-10-12T05:54:56.452Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T05:54:56.452Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T05:54:56.452Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T05:54:56.452Z [info] [codegenV3] Generating step 3: Machine Learning is already deeply embedded in your daily life. Think about Netflix recommending movies you'll love, Spotify suggesting new music, or Amazon showing you products you might want next – these are all driven by ML models learning your preferences and behaviors. Beyond recommendations, ML powers crucial systems like facial recognition in your smartphone, real-time fraud detection in banks, accurate spam filters in your email, and the complex decision-making in self-driving cars. It allows us to automate incredibly complex tasks, uncover hidden insights in massive datasets, and create intelligent systems that constantly adapt and improve, fundamentally changing how we interact with technology and solve real-world problems at scale.
+2025-10-12T05:54:56.452Z [info] [codegenV3] Topic: "machine learning basics"
+2025-10-12T05:54:56.452Z [debug] [codegenV3] Prompt length: 1083 chars
+2025-10-12T05:55:18.710Z [debug] [monitor] Metrics updated:
+2025-10-12T05:55:36.703Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:55:36.703Z [debug] [codegenV3] Received 4472 chars from API
+2025-10-12T05:55:36.703Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:55:36.703Z [info] [codegenV3] ✅ Generated SVG in 44.26s (4472 chars)
+2025-10-12T05:55:36.703Z [info] [codegenV3] 🎬 ANIMATIONS: 16 total (<animate>: 13, <animateMotion>: 3, <animateTransform>: 0)
+2025-10-12T05:55:36.703Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=11
+2025-10-12T05:55:36.703Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:55:36.703Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T05:55:36.703Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:55:36.703Z [debug] compilerRouter: routing to js
+2025-10-12T05:55:36.703Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T05:55:36.704Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:55:36.704Z [debug] [debugger] Has actions: true
+2025-10-12T05:55:36.704Z [debug] [debugger] Actions count: 1
+2025-10-12T05:55:36.704Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:55:36.704Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T05:55:36.704Z [debug] [monitor] Step 1 generation for b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97 took 44260ms
+2025-10-12T05:55:36.704Z [info] [parallel] ✅ Step 1 COMPLETE in 44260ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+StepId: 1
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:55:36.704Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-12T05:55:40.308Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:55:40.308Z [debug] [codegenV3] Received 4724 chars from API
+2025-10-12T05:55:40.308Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:55:40.308Z [info] [codegenV3] ✅ Generated SVG in 45.86s (4724 chars)
+2025-10-12T05:55:40.308Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 16, <animateMotion>: 3, <animateTransform>: 2)
+2025-10-12T05:55:40.308Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=11
+2025-10-12T05:55:40.308Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:55:40.308Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:55:40.308Z [debug] compilerRouter: routing to js
+2025-10-12T05:55:40.308Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T05:55:40.308Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:55:40.308Z [debug] [debugger] Has actions: true
+2025-10-12T05:55:40.308Z [debug] [debugger] Actions count: 1
+2025-10-12T05:55:40.308Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:55:40.308Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T05:55:40.308Z [debug] [monitor] Step 2 generation for b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97 took 45859ms
+2025-10-12T05:55:40.308Z [info] [parallel] ✅ Step 2 COMPLETE in 45859ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+StepId: 2
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:55:40.309Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-12T05:55:51.567Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:55:51.567Z [debug] [codegenV3] Received 5222 chars from API
+2025-10-12T05:55:51.567Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:55:51.567Z [info] [codegenV3] ✅ Generated SVG in 55.12s (5222 chars)
+2025-10-12T05:55:51.567Z [info] [codegenV3] 🎬 ANIMATIONS: 23 total (<animate>: 16, <animateMotion>: 5, <animateTransform>: 2)
+2025-10-12T05:55:51.567Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=19
+2025-10-12T05:55:51.567Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:55:51.567Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:55:51.567Z [debug] compilerRouter: routing to js
+2025-10-12T05:55:51.567Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T05:55:51.567Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:55:51.567Z [debug] [debugger] Has actions: true
+2025-10-12T05:55:51.567Z [debug] [debugger] Actions count: 1
+2025-10-12T05:55:51.567Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:55:51.568Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T05:55:51.568Z [debug] [monitor] Step 3 generation for b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97 took 55116ms
+2025-10-12T05:55:51.568Z [info] [parallel] ✅ Step 3 COMPLETE in 55116ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+StepId: 3
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:55:51.568Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-12T05:55:51.568Z [debug] [parallel] Parallel generation complete: 3/3 successful in 59124ms
+2025-10-12T05:55:51.568Z [debug] [monitor] Completed request b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97 in 78238ms (success: true)
+2025-10-12T05:55:51.568Z [debug] [parallel] Job complete for session b1c5ac20-bbb3-4f6a-9cda-8a9a8df6bc97
+2025-10-12T05:55:53.579Z [debug] [socket] Socket RyGLTUCEUpw0N0lSAAAP disconnected: client namespace disconnect
+2025-10-12T05:56:04.473Z [debug] Received request on /api/query {"body":{"query":"black holes and event horizons"}}
+2025-10-12T05:56:04.473Z [debug] [api] Stored query for session 9bf09f05-c537-455a-903c-2836b92a93c8: "black holes and event horizons"
+2025-10-12T05:56:04.473Z [debug] [orchestrator] Enqueuing plan for session 9bf09f05-c537-455a-903c-2836b92a93c8
+2025-10-12T05:56:04.474Z [debug] [orchestrator] Plan job added with id 30 for session 9bf09f05-c537-455a-903c-2836b92a93c8
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 9bf09f05-c537-455a-903c-2836b92a93c8
+Query: black holes and event horizons
+Time: 2025-10-12T05:56:04.474Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:56:04.474Z [debug] [plan] START: session=9bf09f05-c537-455a-903c-2836b92a93c8 query=black holes and event horizons
+2025-10-12T05:56:04.474Z [debug] [monitor] Started tracking request 9bf09f05-c537-455a-903c-2836b92a93c8
+2025-10-12T05:56:04.474Z [debug] [cache] MISS - No cached plan for query: "black holes and event horizons..."
+2025-10-12T05:56:04.474Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T05:56:04.474Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T05:56:04.480Z [debug] [socket] New connection: n09bARDnJ0cD-7IEAAAR
+2025-10-12T05:56:04.480Z [debug] [socket] Socket n09bARDnJ0cD-7IEAAAR joined session 9bf09f05-c537-455a-903c-2836b92a93c8
+2025-10-12T05:56:04.480Z [debug] [socket] Socket n09bARDnJ0cD-7IEAAAR is now in rooms: n09bARDnJ0cD-7IEAAAR, 9bf09f05-c537-455a-903c-2836b92a93c8
+2025-10-12T05:56:16.851Z [debug] [planner] Received response from Gemini in 12377ms
+2025-10-12T05:56:16.851Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T05:56:16.851Z [debug] [monitor] Plan generation for 9bf09f05-c537-455a-903c-2836b92a93c8 took 12377ms
+2025-10-12T05:56:16.851Z [debug] [cache] Cached plan for query: "black holes and event horizons..."
+=== NEW STRUCTURED PLAN ===
+Session: 9bf09f05-c537-455a-903c-2836b92a93c8
+Query: black holes and event horizons
+Plan title: Black Holes & Event Horizons: The Point of No Return
+Plan subtitle: Learn what black holes are, how their event horizons work, and why these cosmic phenomena are crucial to understanding the universe.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: "What is a black hole's point of no return?"
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'The physics behind irreversible escape.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'Observing and understanding their cosmic role.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a cosmic whirlpool so powerful that if you cross a certain invisible line, *nothing* – not even light – can ever get back out. This line is the **event horizon**, the ultimate one-way gate around a **black hole**. Why does it matter? Because these silent giants shape galaxies and challenge our very understanding of reality."
+Step 1: id=2, tag=mechanics, desc="The event horizon isn't a physical surface; it's the boundary where a black hole's gravity becomes so intense that the escape velocity exceeds the speed of light itself. Think of it like being in a river flowing faster than you can swim upstream. Once you drift past that critical point – the event horizon – the current (spacetime itself) drags everything, even light, irreversibly inwards. Inside, all paths lead only to the singularity."
+Step 2: id=3, tag=applications, desc="Black holes, marked by their event horizons, aren't just theoretical. We've observed their effects: supermassive black holes anchor every major galaxy, including our own Milky Way, influencing star formation. We detect them through the X-rays emitted by matter swirling around their event horizons, and through the gravitational waves produced when they merge. Studying event horizons pushes the limits of physics, exploring questions about time, information paradoxes, and the fundamental nature of gravity itself."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:56:16.851Z [debug] [plan] OK: session=9bf09f05-c537-455a-903c-2836b92a93c8 plan received with 3 steps
+2025-10-12T05:56:16.852Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:56:16.852Z [debug] [plan] END: session=9bf09f05-c537-455a-903c-2836b92a93c8
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 30
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: 9bf09f05-c537-455a-903c-2836b92a93c8
+Query: black holes and event horizons
+Steps to generate: 3
+Time: 2025-10-12T05:56:16.853Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:56:16.853Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 9bf09f05-c537-455a-903c-2836b92a93c8)
+2025-10-12T05:56:16.853Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:56:16.853Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T05:56:16.853Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T05:56:16.853Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T05:56:16.853Z [info] [codegenV3] Generating step 1: Imagine a cosmic whirlpool so powerful that if you cross a certain invisible line, *nothing* – not even light – can ever get back out. This line is the **event horizon**, the ultimate one-way gate around a **black hole**. Why does it matter? Because these silent giants shape galaxies and challenge our very understanding of reality.
+2025-10-12T05:56:16.853Z [info] [codegenV3] Topic: "black holes and event horizons"
+2025-10-12T05:56:16.853Z [debug] [codegenV3] Prompt length: 671 chars
+2025-10-12T05:56:18.711Z [debug] [monitor] Metrics updated:
+2025-10-12T05:56:18.854Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:56:18.854Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T05:56:18.854Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T05:56:18.854Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T05:56:18.854Z [info] [codegenV3] Generating step 2: The event horizon isn't a physical surface; it's the boundary where a black hole's gravity becomes so intense that the escape velocity exceeds the speed of light itself. Think of it like being in a river flowing faster than you can swim upstream. Once you drift past that critical point – the event horizon – the current (spacetime itself) drags everything, even light, irreversibly inwards. Inside, all paths lead only to the singularity.
+2025-10-12T05:56:18.854Z [info] [codegenV3] Topic: "black holes and event horizons"
+2025-10-12T05:56:18.854Z [debug] [codegenV3] Prompt length: 777 chars
+2025-10-12T05:56:20.857Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T05:56:20.857Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T05:56:20.857Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T05:56:20.857Z [info] [codegenV3] Generating step 3: Black holes, marked by their event horizons, aren't just theoretical. We've observed their effects: supermassive black holes anchor every major galaxy, including our own Milky Way, influencing star formation. We detect them through the X-rays emitted by matter swirling around their event horizons, and through the gravitational waves produced when they merge. Studying event horizons pushes the limits of physics, exploring questions about time, information paradoxes, and the fundamental nature of gravity itself.
+2025-10-12T05:56:20.857Z [info] [codegenV3] Topic: "black holes and event horizons"
+2025-10-12T05:56:20.857Z [debug] [codegenV3] Prompt length: 853 chars
+2025-10-12T05:56:48.822Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:56:48.822Z [debug] [codegenV3] Received 3385 chars from API
+2025-10-12T05:56:48.822Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:56:48.822Z [info] [codegenV3] ✅ Generated SVG in 31.97s (3385 chars)
+2025-10-12T05:56:48.822Z [info] [codegenV3] 🎬 ANIMATIONS: 9 total (<animate>: 6, <animateMotion>: 1, <animateTransform>: 2)
+2025-10-12T05:56:48.822Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=7
+2025-10-12T05:56:48.822Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:56:48.822Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T05:56:48.822Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:56:48.822Z [debug] compilerRouter: routing to js
+2025-10-12T05:56:48.822Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T05:56:48.822Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:56:48.822Z [debug] [debugger] Has actions: true
+2025-10-12T05:56:48.823Z [debug] [debugger] Actions count: 1
+2025-10-12T05:56:48.823Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:56:48.823Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T05:56:48.823Z [debug] [monitor] Step 1 generation for 9bf09f05-c537-455a-903c-2836b92a93c8 took 31970ms
+2025-10-12T05:56:48.823Z [info] [parallel] ✅ Step 1 COMPLETE in 31970ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 9bf09f05-c537-455a-903c-2836b92a93c8
+StepId: 1
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:56:48.823Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-12T05:56:54.939Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:56:54.939Z [debug] [codegenV3] Received 4772 chars from API
+2025-10-12T05:56:54.939Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:56:54.939Z [info] [codegenV3] ✅ Generated SVG in 34.08s (4772 chars)
+2025-10-12T05:56:54.939Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 13, <animateMotion>: 6, <animateTransform>: 1)
+2025-10-12T05:56:54.939Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=16
+2025-10-12T05:56:54.939Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:56:54.939Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:56:54.939Z [debug] compilerRouter: routing to js
+2025-10-12T05:56:54.939Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T05:56:54.939Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:56:54.939Z [debug] [debugger] Has actions: true
+2025-10-12T05:56:54.939Z [debug] [debugger] Actions count: 1
+2025-10-12T05:56:54.939Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:56:54.940Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T05:56:54.940Z [debug] [monitor] Step 3 generation for 9bf09f05-c537-455a-903c-2836b92a93c8 took 34083ms
+2025-10-12T05:56:54.940Z [info] [parallel] ✅ Step 3 COMPLETE in 34083ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 9bf09f05-c537-455a-903c-2836b92a93c8
+StepId: 3
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:56:54.940Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-12T05:57:00.780Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:57:00.780Z [debug] [codegenV3] Received 4684 chars from API
+2025-10-12T05:57:00.780Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:57:00.780Z [info] [codegenV3] ✅ Generated SVG in 41.93s (4684 chars)
+2025-10-12T05:57:00.780Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 12, <animateMotion>: 8, <animateTransform>: 2)
+2025-10-12T05:57:00.780Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=26
+2025-10-12T05:57:00.780Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:57:00.780Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:57:00.780Z [debug] compilerRouter: routing to js
+2025-10-12T05:57:00.780Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T05:57:00.780Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:57:00.780Z [debug] [debugger] Has actions: true
+2025-10-12T05:57:00.780Z [debug] [debugger] Actions count: 1
+2025-10-12T05:57:00.780Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:57:00.780Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T05:57:00.780Z [debug] [monitor] Step 2 generation for 9bf09f05-c537-455a-903c-2836b92a93c8 took 41926ms
+2025-10-12T05:57:00.780Z [info] [parallel] ✅ Step 2 COMPLETE in 41926ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 9bf09f05-c537-455a-903c-2836b92a93c8
+StepId: 2
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:57:00.780Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-12T05:57:00.780Z [debug] [parallel] Parallel generation complete: 3/3 successful in 43927ms
+2025-10-12T05:57:00.780Z [debug] [monitor] Completed request 9bf09f05-c537-455a-903c-2836b92a93c8 in 56306ms (success: true)
+2025-10-12T05:57:00.780Z [debug] [parallel] Job complete for session 9bf09f05-c537-455a-903c-2836b92a93c8
+2025-10-12T05:57:02.790Z [debug] [socket] Socket n09bARDnJ0cD-7IEAAAR disconnected: client namespace disconnect
+2025-10-12T05:57:13.036Z [debug] Received request on /api/query {"body":{"query":"cellular respiration ATP synthesis"}}
+2025-10-12T05:57:13.037Z [debug] [api] Stored query for session cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6: "cellular respiration ATP synthesis"
+2025-10-12T05:57:13.037Z [debug] [orchestrator] Enqueuing plan for session cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+2025-10-12T05:57:13.037Z [debug] [orchestrator] Plan job added with id 31 for session cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+Query: cellular respiration ATP synthesis
+Time: 2025-10-12T05:57:13.038Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:57:13.038Z [debug] [plan] START: session=cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6 query=cellular respiration ATP synthesis
+2025-10-12T05:57:13.038Z [debug] [monitor] Started tracking request cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+2025-10-12T05:57:13.039Z [debug] [cache] MISS - No cached plan for query: "cellular respiration ATP synthesis..."
+2025-10-12T05:57:13.039Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T05:57:13.039Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T05:57:13.048Z [debug] [socket] New connection: JikXQ6_fERGKes7hAAAT
+2025-10-12T05:57:13.049Z [debug] [socket] Socket JikXQ6_fERGKes7hAAAT joined session cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+2025-10-12T05:57:13.049Z [debug] [socket] Socket JikXQ6_fERGKes7hAAAT is now in rooms: JikXQ6_fERGKes7hAAAT, cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+2025-10-12T05:57:18.713Z [debug] [monitor] Metrics updated:
+2025-10-12T05:57:24.848Z [debug] [planner] Received response from Gemini in 11809ms
+2025-10-12T05:57:24.848Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T05:57:24.848Z [debug] [monitor] Plan generation for cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6 took 11810ms
+2025-10-12T05:57:24.849Z [debug] [cache] Cached plan for query: "cellular respiration ATP synthesis..."
+=== NEW STRUCTURED PLAN ===
+Session: cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+Query: cellular respiration ATP synthesis
+Plan title: Cellular Respiration: Powering Life with ATP
+Plan subtitle: You'll learn how your cells efficiently extract energy from food to create ATP, the essential power currency for every life function.
+Plan toc: [
+  {
+    minute: 1,
+    title: "The Intuition: Life's Energy Currency",
+    summary: "Why ATP is your body's essential, rechargeable energy 'cash' for all cellular work."
+  },
+  {
+    minute: 2,
+    title: 'How It Works: The ATP Synthesis Machine',
+    summary: 'The step-by-step molecular process, focusing on the Electron Transport Chain and ATP Synthase.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications: Powering You',
+    summary: 'How ATP fuels everything from muscle movement to brain activity, and its health implications.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine your body as a high-performance machine. You eat food (like putting fuel in a car's tank), but your cells can't directly use 'gasoline' (glucose) for work. They need a universal, readily spendable energy currency, like a tiny rechargeable battery. That's **ATP (Adenosine Triphosphate)**! Visually, picture a constantly charging glowing battery icon powering all cellular activity—muscle contraction, nerve impulses, even just thinking. This process, **cellular respiration**, is how your cells 'charge' these ATP batteries by systematically breaking down food molecules."
+Step 1: id=2, tag=mechanics, desc="How do we charge these crucial ATP batteries? It's a three-part molecular assembly line, primarily in your mitochondria! First, **Glycolysis** begins breaking down glucose. Then, the **Krebs Cycle** extracts more energy carriers (NADH, FADH2). But the real power comes in the **Electron Transport Chain (ETC)**. Picture a 'waterfall' of electrons: they 'fall' down a series of protein complexes, which use that energy to pump protons (H+) across the mitochondrial membrane, creating a high-concentration 'dam' of protons. Finally, these protons rush back through a molecular turbine called **ATP Synthase**, literally spinning it to *synthesize* ADP and an inorganic phosphate into an ATP molecule. This proton flow driving ATP synthesis is called **chemiosmosis**—the ultimate energy payday!"
+Step 2: id=3, tag=applications, desc="Understanding ATP synthesis is understanding the engine of life itself. Every blink, every thought, every heartbeat is directly powered by ATP. Athletes rely on efficient ATP production for both explosive power and endurance. Diseases like mitochondrial disorders directly impair this process, leading to profound fatigue and organ dysfunction because cells can't generate enough energy. Even your metabolism and weight management are fundamentally tied to how effectively your body converts food into ATP—if not used, excess energy is stored. It's the central energy powerhouse driving all biological processes in every living cell."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T05:57:24.849Z [debug] [plan] OK: session=cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6 plan received with 3 steps
+2025-10-12T05:57:24.849Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T05:57:24.850Z [debug] [plan] END: session=cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 31
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+Query: cellular respiration ATP synthesis
+Steps to generate: 3
+Time: 2025-10-12T05:57:24.850Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T05:57:24.850Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6)
+2025-10-12T05:57:24.851Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T05:57:24.851Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T05:57:24.851Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T05:57:24.851Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T05:57:24.851Z [info] [codegenV3] Generating step 1: Imagine your body as a high-performance machine. You eat food (like putting fuel in a car's tank), but your cells can't directly use 'gasoline' (glucose) for work. They need a universal, readily spendable energy currency, like a tiny rechargeable battery. That's **ATP (Adenosine Triphosphate)**! Visually, picture a constantly charging glowing battery icon powering all cellular activity—muscle contraction, nerve impulses, even just thinking. This process, **cellular respiration**, is how your cells 'charge' these ATP batteries by systematically breaking down food molecules.
+2025-10-12T05:57:24.851Z [info] [codegenV3] Topic: "cellular respiration ATP synthesis"
+2025-10-12T05:57:24.851Z [debug] [codegenV3] Prompt length: 921 chars
+2025-10-12T05:57:26.851Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T05:57:26.851Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T05:57:26.851Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T05:57:26.851Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T05:57:26.852Z [info] [codegenV3] Generating step 2: How do we charge these crucial ATP batteries? It's a three-part molecular assembly line, primarily in your mitochondria! First, **Glycolysis** begins breaking down glucose. Then, the **Krebs Cycle** extracts more energy carriers (NADH, FADH2). But the real power comes in the **Electron Transport Chain (ETC)**. Picture a 'waterfall' of electrons: they 'fall' down a series of protein complexes, which use that energy to pump protons (H+) across the mitochondrial membrane, creating a high-concentration 'dam' of protons. Finally, these protons rush back through a molecular turbine called **ATP Synthase**, literally spinning it to *synthesize* ADP and an inorganic phosphate into an ATP molecule. This proton flow driving ATP synthesis is called **chemiosmosis**—the ultimate energy payday!
+2025-10-12T05:57:26.852Z [info] [codegenV3] Topic: "cellular respiration ATP synthesis"
+2025-10-12T05:57:26.852Z [debug] [codegenV3] Prompt length: 1134 chars
+2025-10-12T05:57:28.853Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T05:57:28.853Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T05:57:28.853Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T05:57:28.853Z [info] [codegenV3] Generating step 3: Understanding ATP synthesis is understanding the engine of life itself. Every blink, every thought, every heartbeat is directly powered by ATP. Athletes rely on efficient ATP production for both explosive power and endurance. Diseases like mitochondrial disorders directly impair this process, leading to profound fatigue and organ dysfunction because cells can't generate enough energy. Even your metabolism and weight management are fundamentally tied to how effectively your body converts food into ATP—if not used, excess energy is stored. It's the central energy powerhouse driving all biological processes in every living cell.
+2025-10-12T05:57:28.854Z [info] [codegenV3] Topic: "cellular respiration ATP synthesis"
+2025-10-12T05:57:28.854Z [debug] [codegenV3] Prompt length: 975 chars
+2025-10-12T05:57:55.323Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:57:55.323Z [debug] [codegenV3] Received 3770 chars from API
+2025-10-12T05:57:55.323Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:57:55.323Z [info] [codegenV3] ✅ Generated SVG in 30.47s (3770 chars)
+2025-10-12T05:57:55.323Z [info] [codegenV3] 🎬 ANIMATIONS: 10 total (<animate>: 7, <animateMotion>: 2, <animateTransform>: 1)
+2025-10-12T05:57:55.323Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=11
+2025-10-12T05:57:55.323Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:57:55.323Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T05:57:55.323Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:57:55.323Z [debug] compilerRouter: routing to js
+2025-10-12T05:57:55.323Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T05:57:55.323Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:57:55.323Z [debug] [debugger] Has actions: true
+2025-10-12T05:57:55.323Z [debug] [debugger] Actions count: 1
+2025-10-12T05:57:55.323Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:57:55.323Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T05:57:55.323Z [debug] [monitor] Step 1 generation for cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6 took 30472ms
+2025-10-12T05:57:55.323Z [info] [parallel] ✅ Step 1 COMPLETE in 30472ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+StepId: 1
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:57:55.323Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-12T05:58:16.184Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:58:16.184Z [debug] [codegenV3] Received 5799 chars from API
+2025-10-12T05:58:16.184Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:58:16.184Z [info] [codegenV3] ✅ Generated SVG in 49.33s (5799 chars)
+2025-10-12T05:58:16.184Z [info] [codegenV3] 🎬 ANIMATIONS: 28 total (<animate>: 14, <animateMotion>: 13, <animateTransform>: 1)
+2025-10-12T05:58:16.184Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=14
+2025-10-12T05:58:16.184Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:58:16.184Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:58:16.185Z [debug] compilerRouter: routing to js
+2025-10-12T05:58:16.185Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T05:58:16.185Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:58:16.185Z [debug] [debugger] Has actions: true
+2025-10-12T05:58:16.185Z [debug] [debugger] Actions count: 1
+2025-10-12T05:58:16.185Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:58:16.185Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T05:58:16.185Z [debug] [monitor] Step 2 generation for cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6 took 49334ms
+2025-10-12T05:58:16.185Z [info] [parallel] ✅ Step 2 COMPLETE in 49334ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+StepId: 2
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:58:16.185Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-12T05:58:18.715Z [debug] [monitor] Metrics updated:
+2025-10-12T05:58:27.660Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T05:58:27.660Z [debug] [codegenV3] Received 4398 chars from API
+2025-10-12T05:58:27.661Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T05:58:27.661Z [info] [codegenV3] ✅ Generated SVG in 58.81s (4398 chars)
+2025-10-12T05:58:27.661Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 13, <animateMotion>: 6, <animateTransform>: 1)
+2025-10-12T05:58:27.661Z [info] [codegenV3] 📊 CONTENT: labels=14, shapes=10
+2025-10-12T05:58:27.661Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T05:58:27.661Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T05:58:27.661Z [debug] compilerRouter: routing to js
+2025-10-12T05:58:27.661Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T05:58:27.661Z [debug] [debugger] Chunk type: actions
+2025-10-12T05:58:27.661Z [debug] [debugger] Has actions: true
+2025-10-12T05:58:27.661Z [debug] [debugger] Actions count: 1
+2025-10-12T05:58:27.661Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T05:58:27.662Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T05:58:27.662Z [debug] [monitor] Step 3 generation for cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6 took 58809ms
+2025-10-12T05:58:27.662Z [info] [parallel] ✅ Step 3 COMPLETE in 58809ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+StepId: 3
+Actions: 1
+Room sockets: 1
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T05:58:27.662Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-12T05:58:27.662Z [debug] [parallel] Parallel generation complete: 3/3 successful in 62811ms
+2025-10-12T05:58:27.662Z [debug] [monitor] Completed request cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6 in 74624ms (success: true)
+2025-10-12T05:58:27.662Z [debug] [parallel] Job complete for session cff46f10-ebfb-4db6-b1b3-2d8b1243c6d6
+2025-10-12T05:58:29.670Z [debug] [socket] Socket JikXQ6_fERGKes7hAAAT disconnected: client namespace disconnect
+[INFO] 10:58:37 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+2025-10-12T05:58:37.218Z [debug] Shutting down server...
+2025-10-12T05:58:37.218Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T05:58:37.418Z [debug] NEW Plan worker created
+2025-10-12T05:58:37.418Z [debug] NEW Gen worker created
+2025-10-12T05:58:37.419Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 10:58:37 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-12T05:58:37.430Z [debug] Shutting down server...
+2025-10-12T05:58:37.430Z [debug] Server shut down.
+[INFO] 11:00:47 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/visual.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T06:00:47.899Z [debug] NEW Plan worker created
+2025-10-12T06:00:47.900Z [debug] NEW Gen worker created
+2025-10-12T06:00:47.900Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-12T06:00:47.906Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-12T06:01:47.906Z [debug] [monitor] Metrics updated:
+2025-10-12T06:02:47.923Z [debug] [monitor] Metrics updated:
+2025-10-12T06:03:47.938Z [debug] [monitor] Metrics updated:
+[INFO] 11:12:18 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/planner.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T06:12:18.243Z [debug] NEW Plan worker created
+2025-10-12T06:12:18.244Z [debug] NEW Gen worker created
+2025-10-12T06:12:18.244Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-12T06:12:18.248Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16

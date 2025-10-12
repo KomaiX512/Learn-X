@@ -1,0 +1,88 @@
+[2025-10-12T05:51:37.459Z] [0.0s] [INFO] 
+[2025-10-12T05:51:37.459Z] [0.0s] [INFO] ======================================================================
+[2025-10-12T05:51:37.459Z] [0.0s] [INFO] PRODUCTION SYSTEM TEST - FIXED
+[2025-10-12T05:51:37.459Z] [0.0s] [INFO] ======================================================================
+[2025-10-12T05:51:37.460Z] [0.0s] [INFO] Query: "simple harmonic motion"
+[2025-10-12T05:51:37.460Z] [0.0s] [INFO] Backend: http://localhost:8000
+[2025-10-12T05:51:37.460Z] [0.0s] [INFO] 
+[2025-10-12T05:51:37.460Z] [0.0s] [REQUEST] Step 1: Sending HTTP POST to /api/query...
+[2025-10-12T05:51:37.465Z] [0.0s] [REQUEST] ✅ Session created: edf942cc-5c31-44a4-9757-18b6ad66fac1
+[2025-10-12T05:51:37.465Z] [0.0s] [INFO] 
+[2025-10-12T05:51:37.465Z] [0.0s] [NETWORK] Step 2: Connecting WebSocket...
+[2025-10-12T05:51:37.470Z] [0.0s] [NETWORK] ✅ WebSocket connected: NdHJHbEY_t5fGD8yAAAL
+[2025-10-12T05:51:37.470Z] [0.0s] [INFO] 
+[2025-10-12T05:51:37.470Z] [0.0s] [NETWORK] Step 3: Joining session edf942cc-5c31-44a4-9757-18b6ad66fac1...
+[2025-10-12T05:51:37.470Z] [0.0s] [NETWORK] ✅ Joined session: edf942cc-5c31-44a4-9757-18b6ad66fac1
+[2025-10-12T05:51:37.470Z] [0.0s] [NETWORK] Now listening for results...
+[2025-10-12T05:51:37.470Z] [0.0s] [INFO] 
+[2025-10-12T05:51:49.645Z] [12.2s] [PROGRESS] Generation: 🚀 Starting generation of 3 steps...
+[2025-10-12T05:51:49.645Z] [12.2s] [PROGRESS] Progress: Generating intuition: Imagine a child on a swing, pushed to its highest ...
+[2025-10-12T05:51:51.648Z] [14.2s] [PROGRESS] Progress: Generating mechanics: Simple Harmonic Motion (SHM) is a special type of ...
+[2025-10-12T05:51:53.652Z] [16.2s] [PROGRESS] Progress: Generating applications: SHM isn't just theory; it's everywhere! Metronomes...
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] 
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] ======================================================================
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] 📦 STEP 3 RECEIVED (55.7s)
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] ======================================================================
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] Tag: applications
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] Total Actions: 1
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] 
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] SVG Visuals: 1
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] Animations: 1
+[2025-10-12T05:52:33.182Z] [55.7s] [INFO] 
+[2025-10-12T05:52:33.182Z] [55.7s] [WARNING] ⚠️  Expected 4 visuals, got 1
+[2025-10-12T05:52:33.182Z] [55.7s] [WARNING] ⚠️  Expected 2 animations, got 1
+[2025-10-12T05:52:33.183Z] [55.7s] [PROGRESS] Progress: Step 3 ready (1 actions)
+[2025-10-12T05:52:33.183Z] [55.7s] [PROGRESS] Generation: ✅ 1/3 steps ready (33%)
+[2025-10-12T05:52:43.829Z] [66.4s] [INFO] 
+[2025-10-12T05:52:43.829Z] [66.4s] [INFO] ======================================================================
+[2025-10-12T05:52:43.829Z] [66.4s] [INFO] 📦 STEP 2 RECEIVED (66.4s)
+[2025-10-12T05:52:43.829Z] [66.4s] [INFO] ======================================================================
+[2025-10-12T05:52:43.829Z] [66.4s] [INFO] Tag: mechanics
+[2025-10-12T05:52:43.829Z] [66.4s] [INFO] Total Actions: 1
+[2025-10-12T05:52:43.829Z] [66.4s] [INFO] 
+[2025-10-12T05:52:43.830Z] [66.4s] [INFO] SVG Visuals: 1
+[2025-10-12T05:52:43.830Z] [66.4s] [INFO] Animations: 1
+[2025-10-12T05:52:43.830Z] [66.4s] [INFO] 
+[2025-10-12T05:52:43.830Z] [66.4s] [WARNING] ⚠️  Expected 4 visuals, got 1
+[2025-10-12T05:52:43.830Z] [66.4s] [WARNING] ⚠️  Expected 2 animations, got 1
+[2025-10-12T05:52:43.830Z] [66.4s] [PROGRESS] Progress: Step 2 ready (1 actions)
+[2025-10-12T05:52:43.830Z] [66.4s] [PROGRESS] Generation: ✅ 2/3 steps ready (67%)
+[2025-10-12T05:52:51.855Z] [74.4s] [INFO] 
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] ======================================================================
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] 📦 STEP 1 RECEIVED (74.4s)
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] ======================================================================
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] Tag: intuition
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] Total Actions: 1
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] 
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] SVG Visuals: 1
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] Animations: 1
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] 
+[2025-10-12T05:52:51.856Z] [74.4s] [WARNING] ⚠️  Expected 4 visuals, got 1
+[2025-10-12T05:52:51.856Z] [74.4s] [WARNING] ⚠️  Expected 2 animations, got 1
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] 
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] ======================================================================
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] ALL 3 STEPS RECEIVED
+[2025-10-12T05:52:51.856Z] [74.4s] [INFO] ======================================================================
+[2025-10-12T05:52:51.856Z] [74.4s] [PROGRESS] Progress: Step 1 ready (1 actions)
+[2025-10-12T05:52:51.856Z] [74.4s] [PROGRESS] Generation: ✅ 3/3 steps ready (100%)
+[2025-10-12T05:52:51.856Z] [74.4s] [PROGRESS] Generation: 🎉 Generation complete! 3/3 steps ready in 62.2s
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] 
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] ======================================================================
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] FINAL REPORT
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] ======================================================================
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] 
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] 📊 TIMING:
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO]   Total: 76.4s
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO]   Plan: 0s
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO]   Step 1: 55.7s
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO]   Step 2: 66.4s
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO]   Step 3: 74.4s
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] 
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] 📈 CONTENT:
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO]   Steps: 3/3
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO]   Visuals: 3
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO]   Animations: 3
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] 
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] 📊 SCORE: 70/100
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] 
+[2025-10-12T05:52:53.862Z] [76.4s] [INFO] ⚠️  ACCEPTABLE - Has issues
