@@ -9,19 +9,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.codegenV3WithRetry = codegenV3WithRetry;
 const codegenV3_1 = require("./codegenV3");
 const logger_1 = require("../logger");
-const MAX_RETRIES = 2; // Simple retry on failure only
-const BASE_RETRY_DELAY = 3000; // Base delay: 3 seconds
+const MAX_RETRIES = 3; // Increased to 3 for better reliability with paid tier
+const BASE_RETRY_DELAY = 2000; // Base delay: 2 seconds (optimized for paid tier)
 /**
  * Calculate exponential backoff delay
  */
 function getRetryDelay(attemptNumber) {
-    return BASE_RETRY_DELAY * Math.pow(2, attemptNumber - 1); // 3s, 6s, 12s...
+    return BASE_RETRY_DELAY * Math.pow(2, attemptNumber - 1); // 2s, 4s, 8s...
 }
 /**
  * Simple retry wrapper
  */
 async function codegenV3WithRetry(step, topic, attemptNumber = 1) {
-    logger_1.logger.info(`[codegenV3WithRetry] Attempt ${attemptNumber}/${MAX_RETRIES} for step ${step.id}`);
+    logger_1.logger.info(`[codegenV3WithRetry] 🔄 Attempt ${attemptNumber}/${MAX_RETRIES} for step ${step.id}`);
     try {
         const result = await (0, codegenV3_1.codegenV3)(step, topic);
         // Accept any non-null result

@@ -10,6 +10,7 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<any>(null);
+  const [currentTranscript, setCurrentTranscript] = useState<string>('');
   const [planTitle, setPlanTitle] = useState<string>('');
   const [planSubtitle, setPlanSubtitle] = useState<string>('');
   const [toc, setToc] = useState<Array<{ minute: number; title: string; summary?: string }>>([]);
@@ -176,8 +177,12 @@ export default function App() {
         setToc(e.plan.toc);
       }
       
-      // Update current step
+      // Update current step and transcript
       setCurrentStep(e.step);
+      if (e.transcript) {
+        setCurrentTranscript(e.transcript);
+        console.log('[App] Transcript received:', e.transcript.substring(0, 100) + '...');
+      }
       
       // Add step to lecture state
       if (lectureStateRef.current && e.step) {
@@ -201,9 +206,11 @@ export default function App() {
           const chunk = {
             type: 'actions',
             actions: e.actions,
+            transcript: e.transcript || '',
             stepId: e.stepId || e.step?.id,
             step: e.step,
-            plan: e.plan
+            plan: e.plan,
+            meta: e.meta
           };
           console.log('[App] Calling processChunk with:', JSON.stringify(chunk, null, 2).substring(0, 500));
           canvasRef.current.processChunk(chunk);
@@ -211,6 +218,10 @@ export default function App() {
         } else {
           console.error('[App] ❌ CanvasRef not available - cannot render!');
         }
+        
+        // Auto-play by default for seamless experience
+        setIsPlaying(true);
+        setIsPaused(false);
       } else {
         console.warn('[App] ⚠️ No actions to render - e.actions:', e.actions);
         
@@ -645,6 +656,30 @@ export default function App() {
             }}>
               <h4 style={{ margin: '0 0 4px 0' }}>Current Step</h4>
               <div style={{ fontSize: 14, opacity: 0.95 }}>{currentStep?.desc}</div>
+            </div>
+          )}
+          
+          {/* Transcript Display */}
+          {currentTranscript && (
+            <div style={{ 
+              marginTop: 16, 
+              padding: 16, 
+              background: '#f8f9fa',
+              borderRadius: 8,
+              border: '1px solid #e0e0e0'
+            }}>
+              <h4 style={{ margin: '0 0 8px 0', color: '#333', display: 'flex', alignItems: 'center' }}>
+                <span style={{ marginRight: 8 }}>🎙️</span>
+                Narration
+              </h4>
+              <div style={{ 
+                fontSize: 15, 
+                lineHeight: 1.6, 
+                color: '#444',
+                fontFamily: 'Georgia, serif'
+              }}>
+                {currentTranscript}
+              </div>
             </div>
           )}
         </div>

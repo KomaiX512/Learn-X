@@ -259,6 +259,7 @@ function validateQuality(operations) {
 async function generateInsaneVisuals(topic, description, apiKey, maxRetries = 2 // Reduced from 3 to 2
 ) {
     const genAI = new generative_ai_1.GoogleGenerativeAI(apiKey);
+    const TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 120000);
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
         logger_1.logger.info(`[SVG-MASTER] Attempt ${attempt}/${maxRetries} for quality generation`);
         const model = genAI.getGenerativeModel({
@@ -282,7 +283,10 @@ async function generateInsaneVisuals(topic, description, apiKey, maxRetries = 2 
                     logger_1.logger.info(`[SVG-MASTER] Retry ${retryCount}/2 after ${delayMs}ms delay`);
                     await new Promise(resolve => setTimeout(resolve, delayMs));
                 }
-                result = await model.generateContent(prompt);
+                result = await Promise.race([
+                    model.generateContent(prompt),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error(`Timeout after ${TIMEOUT}ms`)), TIMEOUT))
+                ]);
                 break; // Success, exit retry loop
             }
             catch (error) {
@@ -309,7 +313,19 @@ async function generateInsaneVisuals(topic, description, apiKey, maxRetries = 2 
                 logger_1.logger.error(`[SVG-MASTER] Content blocked: ${result.response.promptFeedback.blockReason}`);
                 throw new Error(`Content blocked: ${result.response.promptFeedback.blockReason}`);
             }
-            const text = result.response.text();
+            // Extract text robustly (handle empty text())
+            let text = '';
+            try {
+                text = result.response.text();
+            }
+            catch { }
+            if (!text || text.trim().length === 0) {
+                const candidate = result?.response?.candidates?.[0];
+                const parts = candidate?.content?.parts;
+                if (Array.isArray(parts)) {
+                    text = parts.map((p) => p?.text || '').join('').trim();
+                }
+            }
             logger_1.logger.info(`[SVG-MASTER] Raw response length: ${text.length} chars`);
             // CRITICAL: Handle empty or too-short responses
             if (!text || text.trim().length === 0) {

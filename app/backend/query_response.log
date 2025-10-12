@@ -1418,3 +1418,1150 @@
 2025-10-12T13:13:38.464Z [debug] [socket] Sent cached step 2 to newly joined socket aSVNKrl_jcE17vdzAAAB
 2025-10-12T13:13:38.465Z [debug] [socket] Sent cached step 3 to newly joined socket aSVNKrl_jcE17vdzAAAB
 2025-10-12T13:13:57.135Z [debug] [monitor] Metrics updated:
+2025-10-12T13:14:57.136Z [debug] [monitor] Metrics updated:
+2025-10-12T13:15:57.141Z [debug] [monitor] Metrics updated:
+2025-10-12T13:16:57.146Z [debug] [monitor] Metrics updated:
+2025-10-12T13:17:19.872Z [debug] [socket] Socket aSVNKrl_jcE17vdzAAAB disconnected: transport close
+2025-10-12T13:17:34.077Z [debug] [socket] New connection: k63i-_vjLlf3caSpAAAD
+2025-10-12T13:17:34.079Z [debug] [socket] Socket k63i-_vjLlf3caSpAAAD joined session 8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:17:34.079Z [debug] [socket] Socket k63i-_vjLlf3caSpAAAD is now in rooms: k63i-_vjLlf3caSpAAAD, 8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:17:34.080Z [debug] [socket] Socket k63i-_vjLlf3caSpAAAD joined session 8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:17:34.081Z [debug] [socket] Socket k63i-_vjLlf3caSpAAAD is now in rooms: k63i-_vjLlf3caSpAAAD, 8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:17:34.187Z [debug] Received request on /api/query {"body":{"query":"teach me about amplifiers","sessionId":"8613f5a2-c175-4d21-8b11-836dd8135ec2"}}
+2025-10-12T13:17:34.187Z [debug] [api] Stored query for session 8613f5a2-c175-4d21-8b11-836dd8135ec2: "teach me about amplifiers"
+2025-10-12T13:17:34.187Z [debug] [orchestrator] Enqueuing plan for session 8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:17:34.188Z [debug] [orchestrator] Plan job added with id 45 for session 8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:17:34.189Z [debug] [plan] START: session=8613f5a2-c175-4d21-8b11-836dd8135ec2 query=teach me about amplifiers
+2025-10-12T13:17:34.189Z [debug] [monitor] Started tracking request 8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:17:34.190Z [debug] [cache] MISS - No cached plan for query: "teach me about amplifiers..."
+2025-10-12T13:17:34.190Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T13:17:34.190Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T13:17:48.154Z [debug] [planner] Received response from Gemini in 13964ms
+2025-10-12T13:17:48.154Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Understanding Amplifiers: Signal Boosters",
+  "subtitle": "Discover how amplifiers take weak signals and transform them into powerful, usable outputs.",
+  "toc": [
+    {"minute": 1, "title": "The Intuition", "summary": "Amplify means to make bigger, like a megaphone for sound."},
+    {"minute": 2, "title": "How It Works", "summary": "A small input signal controls a large external power source."},
+    {"minute": 3, "title": "Real Applications", "summary": "From headphones to...
+2025-10-12T13:17:48.154Z [debug] [planner] Extracted JSON (length: 2494)
+2025-10-12T13:17:48.155Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T13:17:48.155Z [debug] [monitor] Plan generation for 8613f5a2-c175-4d21-8b11-836dd8135ec2 took 13966ms
+2025-10-12T13:17:48.155Z [debug] [cache] Cached plan for query: "teach me about amplifiers..."
+2025-10-12T13:17:48.155Z [debug] [plan] OK: session=8613f5a2-c175-4d21-8b11-836dd8135ec2 plan received with 3 steps
+2025-10-12T13:17:48.156Z [debug] [plan] Emitted plan event to session 8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:17:48.156Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T13:17:48.157Z [debug] [plan] END: session=8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:17:48.157Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 8613f5a2-c175-4d21-8b11-836dd8135ec2)
+2025-10-12T13:17:48.158Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T13:17:48.158Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T13:17:48.159Z [info] [parallel] 🚀 Step 1: Using v3 TRUE GENERATION
+2025-10-12T13:17:48.159Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T13:17:48.159Z [info] [codegenV3] Generating step 1: Imagine whispering into a simple microphone, and your voice booms across a stadium! Or trying to hear a tiny insect buzzing in a huge forest. That's the intuitive job of an amplifier: to take a weak, often almost imperceptible electrical signal (like a tiny audio current from your phone or a faint radio wave) and make it significantly larger, stronger, and more powerful, while preserving its original shape and information.
+2025-10-12T13:17:48.159Z [info] [codegenV3] Topic: "teach me about amplifiers"
+2025-10-12T13:17:48.159Z [debug] [codegenV3] Prompt length: 759 chars
+2025-10-12T13:17:50.158Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T13:17:50.159Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T13:17:50.159Z [info] [parallel] 🚀 Step 2: Using v3 TRUE GENERATION
+2025-10-12T13:17:50.159Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T13:17:50.159Z [info] [codegenV3] Generating step 2: An amplifier doesn't create power out of thin air; it acts like a sophisticated valve. It takes a small input signal (e.g., a tiny voltage fluctuation) and uses it to *control* the flow of a much larger amount of power from an external source (like a battery or wall outlet). Key components, often transistors, receive the weak input signal, which then dictates how much current from the larger power supply is allowed to pass through and get 'shaped' to mirror the original input, but at a vastly increased magnitude. Think of it as a tiny finger controlling a giant water faucet.
+2025-10-12T13:17:50.159Z [info] [codegenV3] Topic: "teach me about amplifiers"
+2025-10-12T13:17:50.159Z [debug] [codegenV3] Prompt length: 914 chars
+2025-10-12T13:17:52.161Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T13:17:52.162Z [info] [parallel] 🚀 Step 3: Using v3 TRUE GENERATION
+2025-10-12T13:17:52.162Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T13:17:52.162Z [info] [codegenV3] Generating step 3: Amplifiers are ubiquitous! They are the unsung heroes in almost every piece of electronics. Your smartphone's headphone jack uses a tiny audio amplifier (often an op-amp) to drive your earbuds. Giant concert speakers are powered by massive audio amplifiers. Radio frequency (RF) amplifiers boost signals from distant satellites or make sure your cell phone signal reaches the tower. Even in medical devices, faint biological signals (like heartbeats) are amplified for diagnosis. Without them, most electronic communication and output would be too weak to be useful.
+2025-10-12T13:17:52.162Z [info] [codegenV3] Topic: "teach me about amplifiers"
+2025-10-12T13:17:52.162Z [debug] [codegenV3] Prompt length: 899 chars
+2025-10-12T13:17:57.149Z [debug] [monitor] Metrics updated:
+2025-10-12T13:18:28.936Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T13:18:28.937Z [debug] [codegenV3] Received 2808 chars from API
+2025-10-12T13:18:28.937Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T13:18:28.937Z [info] [codegenV3] ✅ Generated SVG in 40.78s (2808 chars)
+2025-10-12T13:18:28.937Z [info] [codegenV3] 🎬 ANIMATIONS: 12 total (<animate>: 9, <animateMotion>: 2, <animateTransform>: 1)
+2025-10-12T13:18:28.937Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=5
+2025-10-12T13:18:28.937Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T13:18:28.937Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T13:18:28.937Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T13:18:28.937Z [debug] compilerRouter: routing to js
+2025-10-12T13:18:28.937Z [debug] [debugger] START: Received chunk for stepId=1
+2025-10-12T13:18:28.937Z [debug] [debugger] Chunk type: actions
+2025-10-12T13:18:28.937Z [debug] [debugger] Has actions: true
+2025-10-12T13:18:28.937Z [debug] [debugger] Actions count: 1
+2025-10-12T13:18:28.937Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T13:18:28.938Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T13:18:28.938Z [debug] [monitor] Step 1 generation for 8613f5a2-c175-4d21-8b11-836dd8135ec2 took 40780ms
+2025-10-12T13:18:28.938Z [info] [parallel] ✅ Step 1 COMPLETE in 40780ms with 1 actions
+2025-10-12T13:18:28.938Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-12T13:18:51.431Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T13:18:51.431Z [debug] [codegenV3] Received 3948 chars from API
+2025-10-12T13:18:51.432Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T13:18:51.432Z [info] [codegenV3] ✅ Generated SVG in 59.27s (3948 chars)
+2025-10-12T13:18:51.432Z [info] [codegenV3] 🎬 ANIMATIONS: 8 total (<animate>: 7, <animateMotion>: 1, <animateTransform>: 0)
+2025-10-12T13:18:51.432Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=12
+2025-10-12T13:18:51.432Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T13:18:51.432Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T13:18:51.432Z [debug] compilerRouter: routing to js
+2025-10-12T13:18:51.432Z [debug] [debugger] START: Received chunk for stepId=3
+2025-10-12T13:18:51.432Z [debug] [debugger] Chunk type: actions
+2025-10-12T13:18:51.432Z [debug] [debugger] Has actions: true
+2025-10-12T13:18:51.432Z [debug] [debugger] Actions count: 1
+2025-10-12T13:18:51.432Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T13:18:51.433Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T13:18:51.433Z [debug] [monitor] Step 3 generation for 8613f5a2-c175-4d21-8b11-836dd8135ec2 took 59272ms
+2025-10-12T13:18:51.433Z [info] [parallel] ✅ Step 3 COMPLETE in 59272ms with 1 actions
+2025-10-12T13:18:51.434Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-12T13:18:57.151Z [debug] [monitor] Metrics updated:
+2025-10-12T13:19:00.838Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T13:19:00.838Z [debug] [codegenV3] Received 4799 chars from API
+2025-10-12T13:19:00.838Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T13:19:00.838Z [info] [codegenV3] ✅ Generated SVG in 70.68s (4799 chars)
+2025-10-12T13:19:00.838Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 14, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-12T13:19:00.838Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=10
+2025-10-12T13:19:00.838Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T13:19:00.838Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T13:19:00.838Z [debug] compilerRouter: routing to js
+2025-10-12T13:19:00.838Z [debug] [debugger] START: Received chunk for stepId=2
+2025-10-12T13:19:00.838Z [debug] [debugger] Chunk type: actions
+2025-10-12T13:19:00.838Z [debug] [debugger] Has actions: true
+2025-10-12T13:19:00.838Z [debug] [debugger] Actions count: 1
+2025-10-12T13:19:00.838Z [debug] [debugger] Chunk is valid with 1 actions, allowing all for rich visualizations
+2025-10-12T13:19:00.838Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T13:19:00.838Z [debug] [monitor] Step 2 generation for 8613f5a2-c175-4d21-8b11-836dd8135ec2 took 70680ms
+2025-10-12T13:19:00.838Z [info] [parallel] ✅ Step 2 COMPLETE in 70680ms with 1 actions
+2025-10-12T13:19:00.838Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-12T13:19:00.839Z [debug] [parallel] Parallel generation complete: 3/3 successful in 72681ms
+2025-10-12T13:19:00.839Z [debug] [monitor] Completed request 8613f5a2-c175-4d21-8b11-836dd8135ec2 in 86650ms (success: true)
+2025-10-12T13:19:00.839Z [debug] [parallel] Job complete for session 8613f5a2-c175-4d21-8b11-836dd8135ec2
+2025-10-12T13:19:57.151Z [debug] [monitor] Metrics updated:
+2025-10-12T13:20:57.155Z [debug] [monitor] Metrics updated:
+2025-10-12T13:21:57.157Z [debug] [monitor] Metrics updated:
+2025-10-12T13:22:57.158Z [debug] [monitor] Metrics updated:
+2025-10-12T13:23:57.163Z [debug] [monitor] Metrics updated:
+2025-10-12T13:24:57.167Z [debug] [monitor] Metrics updated:
+2025-10-12T13:25:57.169Z [debug] [monitor] Metrics updated:
+2025-10-12T13:26:57.170Z [debug] [monitor] Metrics updated:
+2025-10-12T13:27:57.174Z [debug] [monitor] Metrics updated:
+2025-10-12T13:28:57.177Z [debug] [monitor] Metrics updated:
+2025-10-12T13:29:57.179Z [debug] [monitor] Metrics updated:
+2025-10-12T13:30:57.179Z [debug] [monitor] Metrics updated:
+2025-10-12T13:31:57.187Z [debug] [monitor] Metrics updated:
+2025-10-12T13:32:57.193Z [debug] [monitor] Metrics updated:
+2025-10-12T13:33:57.196Z [debug] [monitor] Metrics updated:
+2025-10-12T13:34:57.199Z [debug] [monitor] Metrics updated:
+2025-10-12T13:35:57.201Z [debug] [monitor] Metrics updated:
+2025-10-12T13:36:57.202Z [debug] [monitor] Metrics updated:
+2025-10-12T13:37:57.205Z [debug] [monitor] Metrics updated:
+2025-10-12T13:38:57.208Z [debug] [monitor] Metrics updated:
+2025-10-12T13:39:57.209Z [debug] [monitor] Metrics updated:
+2025-10-12T13:40:57.214Z [debug] [monitor] Metrics updated:
+2025-10-12T13:41:57.218Z [debug] [monitor] Metrics updated:
+2025-10-12T13:42:57.220Z [debug] [monitor] Metrics updated:
+2025-10-12T13:43:57.221Z [debug] [monitor] Metrics updated:
+2025-10-12T13:44:03.363Z [debug] Shutting down server...
+2025-10-12T13:44:03.565Z [debug] NEW Plan worker created
+2025-10-12T13:44:03.571Z [debug] NEW Plan worker created
+2025-10-12T13:44:03.581Z [debug] NEW Plan worker created
+2025-10-12T13:44:03.582Z [debug] NEW Gen worker created
+2025-10-12T13:44:03.582Z [debug] NEW Parallel worker created
+2025-10-12T13:44:03.586Z [debug] Server listening on port 8000
+2025-10-12T13:44:03.590Z [debug] NEW Plan worker created
+2025-10-12T13:44:03.594Z [debug] NEW Plan worker created
+2025-10-12T13:44:03.600Z [debug] NEW Plan worker created
+2025-10-12T13:44:03.610Z [debug] NEW Plan worker created
+2025-10-12T13:44:03.624Z [debug] NEW Plan worker created
+2025-10-12T13:44:03.637Z [debug] NEW Plan worker created
+2025-10-12T13:44:08.690Z [debug] Shutting down server...
+2025-10-12T13:44:08.871Z [debug] NEW Plan worker created
+2025-10-12T13:44:08.871Z [debug] NEW Gen worker created
+2025-10-12T13:44:08.871Z [debug] NEW Parallel worker created
+2025-10-12T13:44:08.875Z [debug] Server listening on port 8000
+2025-10-12T13:44:08.881Z [debug] NEW Plan worker created
+2025-10-12T13:44:08.898Z [debug] NEW Plan worker created
+2025-10-12T13:44:08.911Z [debug] NEW Plan worker created
+2025-10-12T13:44:22.279Z [debug] Shutting down server...
+2025-10-12T13:44:22.459Z [debug] NEW Plan worker created
+2025-10-12T13:44:22.459Z [debug] NEW Gen worker created
+2025-10-12T13:44:22.459Z [debug] NEW Parallel worker created
+2025-10-12T13:44:22.463Z [debug] Server listening on port 8000
+2025-10-12T13:44:22.463Z [debug] NEW Plan worker created
+2025-10-12T13:44:22.466Z [debug] NEW Plan worker created
+2025-10-12T13:44:52.784Z [debug] Shutting down server...
+2025-10-12T13:44:52.970Z [debug] NEW Plan worker created
+2025-10-12T13:44:52.971Z [debug] NEW Gen worker created
+2025-10-12T13:44:52.971Z [debug] NEW Parallel worker created
+2025-10-12T13:44:52.975Z [debug] Server listening on port 8000
+2025-10-12T13:44:52.978Z [debug] NEW Plan worker created
+2025-10-12T13:44:53.011Z [debug] NEW Plan worker created
+2025-10-12T13:44:57.225Z [debug] [monitor] Metrics updated:
+2025-10-12T13:45:52.987Z [debug] [monitor] Metrics updated:
+2025-10-12T13:45:57.228Z [debug] [monitor] Metrics updated:
+2025-10-12T13:46:53.004Z [debug] [monitor] Metrics updated:
+2025-10-12T13:46:57.229Z [debug] [monitor] Metrics updated:
+2025-10-12T13:47:53.019Z [debug] [monitor] Metrics updated:
+2025-10-12T13:47:57.230Z [debug] [monitor] Metrics updated:
+2025-10-12T13:48:53.028Z [debug] [monitor] Metrics updated:
+2025-10-12T13:48:57.238Z [debug] [monitor] Metrics updated:
+2025-10-12T13:49:53.039Z [debug] [monitor] Metrics updated:
+2025-10-12T13:49:53.044Z [debug] Shutting down server...
+2025-10-12T13:49:53.220Z [debug] NEW Plan worker created
+2025-10-12T13:49:53.221Z [debug] NEW Gen worker created
+2025-10-12T13:49:53.221Z [debug] NEW Parallel worker created
+2025-10-12T13:49:53.225Z [debug] Server listening on port 8000
+2025-10-12T13:49:53.238Z [debug] NEW Plan worker created
+2025-10-12T13:49:53.244Z [debug] NEW Plan worker created
+2025-10-12T13:49:57.244Z [debug] [monitor] Metrics updated:
+2025-10-12T13:50:53.236Z [debug] [monitor] Metrics updated:
+2025-10-12T13:50:57.249Z [debug] [monitor] Metrics updated:
+2025-10-12T13:51:53.252Z [debug] [monitor] Metrics updated:
+2025-10-12T13:51:57.253Z [debug] [monitor] Metrics updated:
+2025-10-12T13:52:43.971Z [debug] Shutting down server...
+2025-10-12T13:52:44.150Z [debug] NEW Plan worker created
+2025-10-12T13:52:44.150Z [debug] NEW Gen worker created
+2025-10-12T13:52:44.151Z [debug] NEW Parallel worker created
+2025-10-12T13:52:44.154Z [debug] Server listening on port 8000
+2025-10-12T13:52:44.154Z [debug] NEW Plan worker created
+2025-10-12T13:52:44.175Z [debug] NEW Plan worker created
+2025-10-12T13:52:48.878Z [debug] Shutting down server...
+2025-10-12T13:52:49.086Z [debug] NEW Plan worker created
+2025-10-12T13:52:49.087Z [debug] NEW Gen worker created
+2025-10-12T13:52:49.087Z [debug] NEW Parallel worker created
+2025-10-12T13:52:49.090Z [debug] Server listening on port 8000
+2025-10-12T13:52:49.098Z [debug] NEW Plan worker created
+2025-10-12T13:52:49.122Z [debug] NEW Plan worker created
+2025-10-12T13:52:57.254Z [debug] [monitor] Metrics updated:
+2025-10-12T13:53:17.770Z [debug] Shutting down server...
+2025-10-12T13:53:17.934Z [debug] NEW Plan worker created
+2025-10-12T13:53:17.935Z [debug] NEW Gen worker created
+2025-10-12T13:53:17.936Z [debug] NEW Parallel worker created
+2025-10-12T13:53:17.941Z [debug] Server listening on port 8000
+2025-10-12T13:53:17.947Z [debug] NEW Plan worker created
+2025-10-12T13:53:17.952Z [debug] NEW Plan worker created
+2025-10-12T13:53:57.255Z [debug] [monitor] Metrics updated:
+2025-10-12T13:54:17.950Z [debug] [monitor] Metrics updated:
+2025-10-12T13:54:27.305Z [debug] Shutting down server...
+2025-10-12T13:54:27.484Z [debug] NEW Plan worker created
+2025-10-12T13:54:27.485Z [debug] NEW Gen worker created
+2025-10-12T13:54:27.485Z [debug] NEW Parallel worker created
+2025-10-12T13:54:27.488Z [debug] Server listening on port 8000
+2025-10-12T13:54:27.505Z [debug] NEW Plan worker created
+2025-10-12T13:54:27.511Z [debug] NEW Plan worker created
+2025-10-12T13:54:57.258Z [debug] [monitor] Metrics updated:
+2025-10-12T13:55:27.500Z [debug] [monitor] Metrics updated:
+2025-10-12T13:55:57.261Z [debug] [monitor] Metrics updated:
+2025-10-12T13:56:27.517Z [debug] [monitor] Metrics updated:
+2025-10-12T13:56:57.262Z [debug] [monitor] Metrics updated:
+2025-10-12T13:57:27.532Z [debug] [monitor] Metrics updated:
+2025-10-12T13:57:57.268Z [debug] [monitor] Metrics updated:
+2025-10-12T13:58:27.546Z [debug] [monitor] Metrics updated:
+2025-10-12T13:58:57.272Z [debug] [monitor] Metrics updated:
+2025-10-12T13:59:18.817Z [debug] Shutting down server...
+2025-10-12T13:59:18.971Z [debug] NEW Plan worker created
+2025-10-12T13:59:18.971Z [debug] NEW Gen worker created
+2025-10-12T13:59:18.972Z [debug] NEW Parallel worker created
+2025-10-12T13:59:18.975Z [debug] Server listening on port 8000
+2025-10-12T13:59:18.975Z [debug] NEW Plan worker created
+2025-10-12T13:59:19.019Z [debug] NEW Plan worker created
+2025-10-12T13:59:27.475Z [debug] Shutting down server...
+2025-10-12T13:59:27.654Z [debug] NEW Plan worker created
+2025-10-12T13:59:27.655Z [debug] NEW Gen worker created
+2025-10-12T13:59:27.655Z [debug] NEW Parallel worker created
+2025-10-12T13:59:27.659Z [debug] Server listening on port 8000
+2025-10-12T13:59:27.665Z [debug] NEW Plan worker created
+2025-10-12T13:59:27.679Z [debug] NEW Plan worker created
+2025-10-12T13:59:43.072Z [debug] Shutting down server...
+2025-10-12T13:59:43.261Z [debug] NEW Plan worker created
+2025-10-12T13:59:43.262Z [debug] NEW Gen worker created
+2025-10-12T13:59:43.262Z [debug] NEW Parallel worker created
+2025-10-12T13:59:43.266Z [debug] Server listening on port 8000
+2025-10-12T13:59:43.275Z [debug] NEW Plan worker created
+2025-10-12T13:59:43.283Z [debug] NEW Plan worker created
+2025-10-12T13:59:57.275Z [debug] [monitor] Metrics updated:
+2025-10-12T14:00:20.086Z [debug] Shutting down server...
+2025-10-12T14:00:20.261Z [debug] NEW Plan worker created
+2025-10-12T14:00:20.261Z [debug] NEW Gen worker created
+2025-10-12T14:00:20.261Z [debug] NEW Parallel worker created
+2025-10-12T14:00:20.265Z [debug] Server listening on port 8000
+2025-10-12T14:00:20.272Z [debug] NEW Plan worker created
+2025-10-12T14:00:20.301Z [debug] NEW Plan worker created
+2025-10-12T14:00:42.768Z [debug] Shutting down server...
+2025-10-12T14:00:42.962Z [debug] NEW Plan worker created
+2025-10-12T14:00:42.963Z [debug] NEW Gen worker created
+2025-10-12T14:00:42.963Z [debug] NEW Parallel worker created
+2025-10-12T14:00:42.966Z [debug] Server listening on port 8000
+2025-10-12T14:00:42.985Z [debug] NEW Plan worker created
+2025-10-12T14:00:42.994Z [debug] NEW Plan worker created
+2025-10-12T14:00:56.373Z [debug] Shutting down server...
+2025-10-12T14:00:56.551Z [debug] NEW Plan worker created
+2025-10-12T14:00:56.552Z [debug] NEW Gen worker created
+2025-10-12T14:00:56.552Z [debug] NEW Parallel worker created
+2025-10-12T14:00:56.555Z [debug] Server listening on port 8000
+2025-10-12T14:00:56.568Z [debug] NEW Plan worker created
+2025-10-12T14:00:56.628Z [debug] NEW Plan worker created
+2025-10-12T14:00:57.277Z [debug] [monitor] Metrics updated:
+2025-10-12T14:01:56.567Z [debug] [monitor] Metrics updated:
+2025-10-12T14:01:57.278Z [debug] [monitor] Metrics updated:
+2025-10-12T14:02:56.584Z [debug] [monitor] Metrics updated:
+2025-10-12T14:02:57.281Z [debug] [monitor] Metrics updated:
+2025-10-12T14:03:56.599Z [debug] [monitor] Metrics updated:
+2025-10-12T14:03:57.283Z [debug] [monitor] Metrics updated:
+2025-10-12T14:04:56.612Z [debug] [monitor] Metrics updated:
+2025-10-12T14:04:57.284Z [debug] [monitor] Metrics updated:
+2025-10-12T14:05:56.625Z [debug] [monitor] Metrics updated:
+2025-10-12T14:05:57.291Z [debug] [monitor] Metrics updated:
+2025-10-12T14:06:56.636Z [debug] [monitor] Metrics updated:
+2025-10-12T14:06:57.298Z [debug] [monitor] Metrics updated:
+2025-10-12T14:07:56.646Z [debug] [monitor] Metrics updated:
+2025-10-12T14:07:57.302Z [debug] [monitor] Metrics updated:
+2025-10-12T14:08:56.654Z [debug] [monitor] Metrics updated:
+2025-10-12T14:08:57.306Z [debug] [monitor] Metrics updated:
+2025-10-12T14:09:56.661Z [debug] [monitor] Metrics updated:
+2025-10-12T14:09:57.308Z [debug] [monitor] Metrics updated:
+2025-10-12T14:10:56.667Z [debug] [monitor] Metrics updated:
+2025-10-12T14:10:57.309Z [debug] [monitor] Metrics updated:
+2025-10-12T14:11:56.670Z [debug] [monitor] Metrics updated:
+2025-10-12T14:11:57.313Z [debug] [monitor] Metrics updated:
+2025-10-12T14:12:56.674Z [debug] [monitor] Metrics updated:
+2025-10-12T14:12:57.316Z [debug] [monitor] Metrics updated:
+2025-10-12T14:13:56.674Z [debug] [monitor] Metrics updated:
+2025-10-12T14:13:57.318Z [debug] [monitor] Metrics updated:
+2025-10-12T14:14:56.678Z [debug] [monitor] Metrics updated:
+2025-10-12T14:14:57.324Z [debug] [monitor] Metrics updated:
+2025-10-12T14:15:56.680Z [debug] [monitor] Metrics updated:
+2025-10-12T14:15:57.328Z [debug] [monitor] Metrics updated:
+2025-10-12T14:16:56.682Z [debug] [monitor] Metrics updated:
+2025-10-12T14:16:57.331Z [debug] [monitor] Metrics updated:
+2025-10-12T14:17:56.683Z [debug] [monitor] Metrics updated:
+2025-10-12T14:17:57.332Z [debug] [monitor] Metrics updated:
+2025-10-12T14:18:56.700Z [debug] [monitor] Metrics updated:
+2025-10-12T14:18:57.332Z [debug] [monitor] Metrics updated:
+2025-10-12T14:19:56.709Z [debug] [monitor] Metrics updated:
+2025-10-12T14:19:57.336Z [debug] [monitor] Metrics updated:
+2025-10-12T14:20:56.723Z [debug] [monitor] Metrics updated:
+2025-10-12T14:20:57.338Z [debug] [monitor] Metrics updated:
+2025-10-12T14:21:56.737Z [debug] [monitor] Metrics updated:
+2025-10-12T14:21:57.339Z [debug] [monitor] Metrics updated:
+2025-10-12T14:22:56.750Z [debug] [monitor] Metrics updated:
+2025-10-12T14:22:57.347Z [debug] [monitor] Metrics updated:
+2025-10-12T14:23:49.760Z [debug] NEW Plan worker created
+2025-10-12T14:23:49.761Z [debug] NEW Gen worker created
+2025-10-12T14:23:49.761Z [debug] NEW Parallel worker created
+2025-10-12T14:23:49.764Z [debug] Server listening on port 8000
+2025-10-12T14:24:01.211Z [debug] NEW Plan worker created
+2025-10-12T14:24:49.776Z [debug] [monitor] Metrics updated:
+2025-10-12T14:25:11.591Z [debug] Received request on /api/query {"body":{"query":"teach me how photosynthesis works in plants","sessionId":"test-debug-session-001"}}
+2025-10-12T14:25:11.591Z [debug] [api] Stored query for session test-debug-session-001: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:11.592Z [debug] [orchestrator] Enqueuing plan for session test-debug-session-001
+2025-10-12T14:25:11.593Z [debug] [orchestrator] Plan job added with id 46 for session test-debug-session-001
+2025-10-12T14:25:11.595Z [debug] [plan] START: session=test-debug-session-001 query=teach me how photosynthesis works in plants
+2025-10-12T14:25:11.595Z [debug] [monitor] Started tracking request test-debug-session-001
+2025-10-12T14:25:11.595Z [debug] [cache] MISS - No cached plan for query: "teach me how photosynthesis works in plants..."
+2025-10-12T14:25:11.596Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T14:25:11.609Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T14:25:26.031Z [debug] [planner] Received response from Gemini in 14435ms
+2025-10-12T14:25:26.031Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Photosynthesis: How Plants Make Their Own Food",
+  "subtitle": "Learn the essential process plants use to convert sunlight into energy and grow.",
+  "toc": [
+    {
+      "minute": 1,
+      "title": "The Intuition",
+      "summary": "Plants are solar-powered food factories for all life."
+    },
+    {
+      "minute": 2,
+      "title": "How It Works",
+      "summary": "Plants use sunlight, water, and CO2 to create sugar and oxygen."
+    },
+    {
+      "minute": 3,
+      "title...
+2025-10-12T14:25:26.031Z [debug] [planner] Extracted JSON (length: 2455)
+2025-10-12T14:25:26.031Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T14:25:26.031Z [debug] [monitor] Plan generation for test-debug-session-001 took 14436ms
+2025-10-12T14:25:26.032Z [debug] [cache] Cached plan for query: "teach me how photosynthesis works in plants..."
+2025-10-12T14:25:26.033Z [debug] [plan] OK: session=test-debug-session-001 plan received with 3 steps
+2025-10-12T14:25:26.033Z [debug] [plan] Emitted plan event to session test-debug-session-001
+2025-10-12T14:25:26.033Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T14:25:26.034Z [debug] [plan] END: session=test-debug-session-001
+2025-10-12T14:25:26.035Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: test-debug-session-001)
+2025-10-12T14:25:26.035Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T14:25:26.035Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T14:25:26.035Z [info] [parallel] 🚀 Step 1: Generating 4 visuals + transcript
+2025-10-12T14:25:26.036Z [info] [stepVisuals] Generating 4 visuals for step 1
+2025-10-12T14:25:26.036Z [info] [stepVisuals] Starting visual 1/4 for step 1
+2025-10-12T14:25:26.036Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:25:26.036Z [info] [codegenV3] Generating step 1: Imagine a plant as a tiny, solar-powered chef! Unlike us, plants don't 'eat' food; they *make* it. They take simple ingredients – sunlight, water, and air – and transform them into energy-rich sugars to grow. This incredible process, photosynthesis, is how they feed themselves, and ultimately, almost all life on Earth. It's their unique way of harnessing the sun's energy.
+2025-10-12T14:25:26.036Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:26.036Z [debug] [codegenV3] Prompt length: 725 chars
+2025-10-12T14:25:26.036Z [info] [stepVisuals] Starting visual 2/4 for step 1
+2025-10-12T14:25:26.036Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:25:26.036Z [info] [codegenV3] Generating step 1: Imagine a plant as a tiny, solar-powered chef! Unlike us, plants don't 'eat' food; they *make* it. They take simple ingredients – sunlight, water, and air – and transform them into energy-rich sugars to grow. This incredible process, photosynthesis, is how they feed themselves, and ultimately, almost all life on Earth. It's their unique way of harnessing the sun's energy.
+2025-10-12T14:25:26.036Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:26.036Z [debug] [codegenV3] Prompt length: 725 chars
+2025-10-12T14:25:26.036Z [info] [stepVisuals] Starting visual 3/4 for step 1
+2025-10-12T14:25:26.036Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:25:26.036Z [info] [codegenV3] Generating step 1: Imagine a plant as a tiny, solar-powered chef! Unlike us, plants don't 'eat' food; they *make* it. They take simple ingredients – sunlight, water, and air – and transform them into energy-rich sugars to grow. This incredible process, photosynthesis, is how they feed themselves, and ultimately, almost all life on Earth. It's their unique way of harnessing the sun's energy.
+2025-10-12T14:25:26.036Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:26.036Z [debug] [codegenV3] Prompt length: 725 chars
+2025-10-12T14:25:26.037Z [info] [stepVisuals] Starting visual 4/4 for step 1
+2025-10-12T14:25:26.037Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:25:26.037Z [info] [codegenV3] Generating step 1: Imagine a plant as a tiny, solar-powered chef! Unlike us, plants don't 'eat' food; they *make* it. They take simple ingredients – sunlight, water, and air – and transform them into energy-rich sugars to grow. This incredible process, photosynthesis, is how they feed themselves, and ultimately, almost all life on Earth. It's their unique way of harnessing the sun's energy.
+2025-10-12T14:25:26.037Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:26.037Z [debug] [codegenV3] Prompt length: 725 chars
+2025-10-12T14:25:28.038Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T14:25:28.038Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T14:25:28.038Z [info] [parallel] 🚀 Step 2: Generating 4 visuals + transcript
+2025-10-12T14:25:28.038Z [info] [stepVisuals] Generating 4 visuals for step 2
+2025-10-12T14:25:28.038Z [info] [stepVisuals] Starting visual 1/4 for step 2
+2025-10-12T14:25:28.039Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:25:28.039Z [info] [codegenV3] Generating step 2: Here’s how this magic happens: Deep within a plant's green leaves are microscopic 'powerhouses' called chloroplasts, packed with a green pigment called chlorophyll. Chlorophyll's job is to capture sunlight's energy, much like a tiny solar panel. Simultaneously, the plant's roots absorb water (H2O), and tiny pores on its leaves take in carbon dioxide (CO2) from the air. Using the captured sunlight, the plant combines water and carbon dioxide, chemically transforming them into glucose (a type of sugar, its food!) and releasing oxygen (O2) as a byproduct back into the air.
+2025-10-12T14:25:28.039Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:28.039Z [debug] [codegenV3] Prompt length: 927 chars
+2025-10-12T14:25:28.039Z [info] [stepVisuals] Starting visual 2/4 for step 2
+2025-10-12T14:25:28.039Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:25:28.039Z [info] [codegenV3] Generating step 2: Here’s how this magic happens: Deep within a plant's green leaves are microscopic 'powerhouses' called chloroplasts, packed with a green pigment called chlorophyll. Chlorophyll's job is to capture sunlight's energy, much like a tiny solar panel. Simultaneously, the plant's roots absorb water (H2O), and tiny pores on its leaves take in carbon dioxide (CO2) from the air. Using the captured sunlight, the plant combines water and carbon dioxide, chemically transforming them into glucose (a type of sugar, its food!) and releasing oxygen (O2) as a byproduct back into the air.
+2025-10-12T14:25:28.039Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:28.039Z [debug] [codegenV3] Prompt length: 927 chars
+2025-10-12T14:25:28.039Z [info] [stepVisuals] Starting visual 3/4 for step 2
+2025-10-12T14:25:28.039Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:25:28.039Z [info] [codegenV3] Generating step 2: Here’s how this magic happens: Deep within a plant's green leaves are microscopic 'powerhouses' called chloroplasts, packed with a green pigment called chlorophyll. Chlorophyll's job is to capture sunlight's energy, much like a tiny solar panel. Simultaneously, the plant's roots absorb water (H2O), and tiny pores on its leaves take in carbon dioxide (CO2) from the air. Using the captured sunlight, the plant combines water and carbon dioxide, chemically transforming them into glucose (a type of sugar, its food!) and releasing oxygen (O2) as a byproduct back into the air.
+2025-10-12T14:25:28.039Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:28.039Z [debug] [codegenV3] Prompt length: 927 chars
+2025-10-12T14:25:28.039Z [info] [stepVisuals] Starting visual 4/4 for step 2
+2025-10-12T14:25:28.039Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:25:28.039Z [info] [codegenV3] Generating step 2: Here’s how this magic happens: Deep within a plant's green leaves are microscopic 'powerhouses' called chloroplasts, packed with a green pigment called chlorophyll. Chlorophyll's job is to capture sunlight's energy, much like a tiny solar panel. Simultaneously, the plant's roots absorb water (H2O), and tiny pores on its leaves take in carbon dioxide (CO2) from the air. Using the captured sunlight, the plant combines water and carbon dioxide, chemically transforming them into glucose (a type of sugar, its food!) and releasing oxygen (O2) as a byproduct back into the air.
+2025-10-12T14:25:28.039Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:28.039Z [debug] [codegenV3] Prompt length: 927 chars
+2025-10-12T14:25:30.042Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T14:25:30.042Z [info] [parallel] 🚀 Step 3: Generating 4 visuals + transcript
+2025-10-12T14:25:30.042Z [info] [stepVisuals] Generating 4 visuals for step 3
+2025-10-12T14:25:30.042Z [info] [stepVisuals] Starting visual 1/4 for step 3
+2025-10-12T14:25:30.042Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:25:30.042Z [info] [codegenV3] Generating step 3: Photosynthesis isn't just for plants; it's fundamental to *everything*. Every breath you take contains oxygen produced by plants. Every bite of food you eat, whether plant-based or from an animal that ate plants, traces its energy back to photosynthesis. It's the engine of Earth's food chains and a major regulator of our atmosphere, absorbing carbon dioxide and releasing the life-giving oxygen that sustains us all. Understanding this process helps us appreciate our planet's delicate balance and the critical role plants play.
+2025-10-12T14:25:30.042Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:30.042Z [debug] [codegenV3] Prompt length: 881 chars
+2025-10-12T14:25:30.043Z [info] [stepVisuals] Starting visual 2/4 for step 3
+2025-10-12T14:25:30.043Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:25:30.043Z [info] [codegenV3] Generating step 3: Photosynthesis isn't just for plants; it's fundamental to *everything*. Every breath you take contains oxygen produced by plants. Every bite of food you eat, whether plant-based or from an animal that ate plants, traces its energy back to photosynthesis. It's the engine of Earth's food chains and a major regulator of our atmosphere, absorbing carbon dioxide and releasing the life-giving oxygen that sustains us all. Understanding this process helps us appreciate our planet's delicate balance and the critical role plants play.
+2025-10-12T14:25:30.043Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:30.043Z [debug] [codegenV3] Prompt length: 881 chars
+2025-10-12T14:25:30.043Z [info] [stepVisuals] Starting visual 3/4 for step 3
+2025-10-12T14:25:30.043Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:25:30.043Z [info] [codegenV3] Generating step 3: Photosynthesis isn't just for plants; it's fundamental to *everything*. Every breath you take contains oxygen produced by plants. Every bite of food you eat, whether plant-based or from an animal that ate plants, traces its energy back to photosynthesis. It's the engine of Earth's food chains and a major regulator of our atmosphere, absorbing carbon dioxide and releasing the life-giving oxygen that sustains us all. Understanding this process helps us appreciate our planet's delicate balance and the critical role plants play.
+2025-10-12T14:25:30.043Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:30.043Z [debug] [codegenV3] Prompt length: 881 chars
+2025-10-12T14:25:30.043Z [info] [stepVisuals] Starting visual 4/4 for step 3
+2025-10-12T14:25:30.043Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:25:30.043Z [info] [codegenV3] Generating step 3: Photosynthesis isn't just for plants; it's fundamental to *everything*. Every breath you take contains oxygen produced by plants. Every bite of food you eat, whether plant-based or from an animal that ate plants, traces its energy back to photosynthesis. It's the engine of Earth's food chains and a major regulator of our atmosphere, absorbing carbon dioxide and releasing the life-giving oxygen that sustains us all. Understanding this process helps us appreciate our planet's delicate balance and the critical role plants play.
+2025-10-12T14:25:30.043Z [info] [codegenV3] Topic: "teach me how photosynthesis works in plants"
+2025-10-12T14:25:30.043Z [debug] [codegenV3] Prompt length: 881 chars
+2025-10-12T14:25:49.779Z [debug] [monitor] Metrics updated:
+2025-10-12T14:25:50.092Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:25:50.092Z [debug] [codegenV3] Received 3515 chars from API
+2025-10-12T14:25:50.092Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:25:50.092Z [info] [codegenV3] ✅ Generated SVG in 20.05s (3515 chars)
+2025-10-12T14:25:50.092Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 11, <animateMotion>: 9, <animateTransform>: 1)
+2025-10-12T14:25:50.092Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=13
+2025-10-12T14:25:50.092Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:25:50.092Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:25:50.092Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:26:03.038Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:03.038Z [debug] [codegenV3] Received 3635 chars from API
+2025-10-12T14:26:03.038Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:03.038Z [info] [codegenV3] ✅ Generated SVG in 35.00s (3635 chars)
+2025-10-12T14:26:03.039Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 13, <animateMotion>: 6, <animateTransform>: 1)
+2025-10-12T14:26:03.039Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=13
+2025-10-12T14:26:03.039Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:03.039Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:03.039Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:26:08.664Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:08.664Z [debug] [codegenV3] Received 3061 chars from API
+2025-10-12T14:26:08.664Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:08.664Z [info] [codegenV3] ✅ Generated SVG in 42.63s (3061 chars)
+2025-10-12T14:26:08.664Z [info] [codegenV3] 🎬 ANIMATIONS: 16 total (<animate>: 10, <animateMotion>: 5, <animateTransform>: 1)
+2025-10-12T14:26:08.664Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=10
+2025-10-12T14:26:08.664Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:08.664Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:26:08.664Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:08.665Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:26:09.206Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:09.206Z [debug] [codegenV3] Received 4021 chars from API
+2025-10-12T14:26:09.206Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:09.206Z [info] [codegenV3] ✅ Generated SVG in 39.16s (4021 chars)
+2025-10-12T14:26:09.206Z [info] [codegenV3] 🎬 ANIMATIONS: 18 total (<animate>: 10, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-12T14:26:09.206Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=10
+2025-10-12T14:26:09.206Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:09.206Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:09.206Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:26:09.618Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:09.618Z [debug] [codegenV3] Received 3497 chars from API
+2025-10-12T14:26:09.618Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:09.619Z [info] [codegenV3] ✅ Generated SVG in 41.58s (3497 chars)
+2025-10-12T14:26:09.619Z [info] [codegenV3] 🎬 ANIMATIONS: 10 total (<animate>: 6, <animateMotion>: 4, <animateTransform>: 0)
+2025-10-12T14:26:09.619Z [info] [codegenV3] 📊 CONTENT: labels=14, shapes=8
+2025-10-12T14:26:09.619Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:09.619Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:09.619Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:26:10.761Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:10.762Z [debug] [codegenV3] Received 3911 chars from API
+2025-10-12T14:26:10.762Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:10.762Z [info] [codegenV3] ✅ Generated SVG in 42.72s (3911 chars)
+2025-10-12T14:26:10.762Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 12, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-12T14:26:10.762Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=14
+2025-10-12T14:26:10.762Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:10.762Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:10.762Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:26:11.422Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:11.422Z [debug] [codegenV3] Received 3667 chars from API
+2025-10-12T14:26:11.422Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:11.422Z [info] [codegenV3] ✅ Generated SVG in 45.39s (3667 chars)
+2025-10-12T14:26:11.422Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 11, <animateMotion>: 10, <animateTransform>: 0)
+2025-10-12T14:26:11.422Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=11
+2025-10-12T14:26:11.422Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:11.423Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:26:11.423Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:11.423Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:26:13.894Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:13.895Z [debug] [codegenV3] Received 3957 chars from API
+2025-10-12T14:26:13.895Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:13.895Z [info] [codegenV3] ✅ Generated SVG in 43.85s (3957 chars)
+2025-10-12T14:26:13.895Z [info] [codegenV3] 🎬 ANIMATIONS: 24 total (<animate>: 14, <animateMotion>: 9, <animateTransform>: 1)
+2025-10-12T14:26:13.895Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=18
+2025-10-12T14:26:13.895Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:13.895Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:13.895Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:26:14.192Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:14.192Z [debug] [codegenV3] Received 5472 chars from API
+2025-10-12T14:26:14.192Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:14.192Z [info] [codegenV3] ✅ Generated SVG in 44.15s (5472 chars)
+2025-10-12T14:26:14.192Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 13, <animateMotion>: 6, <animateTransform>: 3)
+2025-10-12T14:26:14.192Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=15
+2025-10-12T14:26:14.192Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:14.192Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:14.192Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:26:14.192Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:26:14.193Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:26:14.193Z [info] [transcript] Generating for step 3 with 4 visuals
+2025-10-12T14:26:14.193Z [debug] [transcript] Prompt length: 1499 chars
+2025-10-12T14:26:21.351Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:21.351Z [debug] [codegenV3] Received 4899 chars from API
+2025-10-12T14:26:21.351Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:21.351Z [info] [codegenV3] ✅ Generated SVG in 55.31s (4899 chars)
+2025-10-12T14:26:21.351Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 12, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-12T14:26:21.351Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=20
+2025-10-12T14:26:21.351Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:21.351Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:26:21.351Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:21.352Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:26:25.262Z [info] [transcript] ✅ Generated 1267 chars
+2025-10-12T14:26:25.262Z [info] [stepVisuals] ✅ Transcript generated (1267 chars)
+2025-10-12T14:26:25.262Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T14:26:25.263Z [debug] [monitor] Step 3 generation for test-debug-session-001 took 55221ms
+2025-10-12T14:26:25.263Z [info] [parallel] ✅ Step 3 COMPLETE in 55220ms with 4 actions
+2025-10-12T14:26:25.263Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T14:26:25.953Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:25.953Z [debug] [codegenV3] Received 4658 chars from API
+2025-10-12T14:26:25.954Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:25.954Z [info] [codegenV3] ✅ Generated SVG in 59.92s (4658 chars)
+2025-10-12T14:26:25.954Z [info] [codegenV3] 🎬 ANIMATIONS: 31 total (<animate>: 16, <animateMotion>: 15, <animateTransform>: 0)
+2025-10-12T14:26:25.954Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=11
+2025-10-12T14:26:25.954Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:25.954Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:26:25.954Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:25.954Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:26:25.954Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:26:25.954Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:26:25.954Z [info] [transcript] Generating for step 1 with 4 visuals
+2025-10-12T14:26:25.954Z [debug] [transcript] Prompt length: 1343 chars
+2025-10-12T14:26:34.151Z [info] [transcript] ✅ Generated 886 chars
+2025-10-12T14:26:34.151Z [info] [stepVisuals] ✅ Transcript generated (886 chars)
+2025-10-12T14:26:34.151Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T14:26:34.151Z [debug] [monitor] Step 1 generation for test-debug-session-001 took 68116ms
+2025-10-12T14:26:34.151Z [info] [parallel] ✅ Step 1 COMPLETE in 68116ms with 4 actions
+2025-10-12T14:26:34.151Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T14:26:39.565Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:26:39.565Z [debug] [codegenV3] Received 4560 chars from API
+2025-10-12T14:26:39.565Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:26:39.565Z [info] [codegenV3] ✅ Generated SVG in 71.53s (4560 chars)
+2025-10-12T14:26:39.565Z [info] [codegenV3] 🎬 ANIMATIONS: 19 total (<animate>: 13, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:26:39.565Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=8
+2025-10-12T14:26:39.565Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:26:39.565Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:26:39.565Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:26:39.565Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:26:39.565Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:26:39.565Z [info] [transcript] Generating for step 2 with 4 visuals
+2025-10-12T14:26:39.566Z [debug] [transcript] Prompt length: 1545 chars
+2025-10-12T14:26:49.781Z [debug] [monitor] Metrics updated:
+2025-10-12T14:26:55.931Z [info] [transcript] ✅ Generated 1389 chars
+2025-10-12T14:26:55.931Z [info] [stepVisuals] ✅ Transcript generated (1389 chars)
+2025-10-12T14:26:55.932Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T14:26:55.933Z [debug] [monitor] Step 2 generation for test-debug-session-001 took 87895ms
+2025-10-12T14:26:55.933Z [info] [parallel] ✅ Step 2 COMPLETE in 87895ms with 4 actions
+2025-10-12T14:26:55.933Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T14:26:55.933Z [debug] [parallel] Parallel generation complete: 3/3 successful in 89898ms
+2025-10-12T14:26:55.934Z [debug] [monitor] Completed request test-debug-session-001 in 104339ms (success: true)
+2025-10-12T14:26:55.934Z [debug] [parallel] Job complete for session test-debug-session-001
+2025-10-12T14:27:31.987Z [debug] Shutting down server...
+2025-10-12T14:28:21.743Z [debug] NEW Plan worker created
+2025-10-12T14:28:21.743Z [debug] NEW Gen worker created
+2025-10-12T14:28:21.743Z [debug] NEW Parallel worker created
+2025-10-12T14:28:21.747Z [debug] Server listening on port 8000
+2025-10-12T14:28:29.141Z [debug] Received request on /api/query {"body":{"query":"teach me how photosynthesis works in plants","sessionId":"debug-test-1760279309"}}
+2025-10-12T14:28:29.142Z [debug] [api] Stored query for session debug-test-1760279309: "teach me how photosynthesis works in plants"
+2025-10-12T14:28:29.142Z [debug] [orchestrator] Enqueuing plan for session debug-test-1760279309
+2025-10-12T14:28:29.143Z [debug] [orchestrator] Plan job added with id 47 for session debug-test-1760279309
+2025-10-12T14:28:29.144Z [debug] [plan] START: session=debug-test-1760279309 query=teach me how photosynthesis works in plants
+2025-10-12T14:28:29.144Z [debug] [monitor] Started tracking request debug-test-1760279309
+2025-10-12T14:28:29.144Z [debug] [cache] HIT - Found cached plan for query: "teach me how photosynthesis works in plants..."
+2025-10-12T14:28:29.144Z [debug] [plan] Using cached plan for query: teach me how photosynthesis works in plants
+2025-10-12T14:28:29.144Z [debug] [monitor] Plan generation for debug-test-1760279309 took 0ms
+2025-10-12T14:28:29.145Z [debug] [plan] OK: session=debug-test-1760279309 plan received with 3 steps
+2025-10-12T14:28:29.146Z [debug] [plan] Emitted plan event to session debug-test-1760279309
+2025-10-12T14:28:29.146Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T14:28:29.146Z [debug] [plan] END: session=debug-test-1760279309
+2025-10-12T14:28:29.148Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: debug-test-1760279309)
+2025-10-12T14:28:29.148Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T14:28:29.148Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-12T14:28:29.148Z [debug] [parallel] Using cached chunk for step 1
+2025-10-12T14:28:29.149Z [debug] [monitor] Step 1 generation for debug-test-1760279309 took 1ms
+2025-10-12T14:28:29.149Z [info] [parallel] ✅ Step 1 COMPLETE in 1ms with 4 actions
+2025-10-12T14:28:29.149Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T14:28:31.151Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T14:28:31.151Z [debug] [cache] HIT - Found cached chunk for step 2
+2025-10-12T14:28:31.151Z [debug] [parallel] Using cached chunk for step 2
+2025-10-12T14:28:31.152Z [debug] [monitor] Step 2 generation for debug-test-1760279309 took 1ms
+2025-10-12T14:28:31.152Z [info] [parallel] ✅ Step 2 COMPLETE in 1ms with 4 actions
+2025-10-12T14:28:31.152Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T14:28:33.152Z [debug] [cache] HIT - Found cached chunk for step 3
+2025-10-12T14:28:33.153Z [debug] [parallel] Using cached chunk for step 3
+2025-10-12T14:28:33.153Z [debug] [monitor] Step 3 generation for debug-test-1760279309 took 1ms
+2025-10-12T14:28:33.153Z [info] [parallel] ✅ Step 3 COMPLETE in 1ms with 4 actions
+2025-10-12T14:28:33.154Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T14:28:33.154Z [debug] [parallel] Parallel generation complete: 3/3 successful in 4006ms
+2025-10-12T14:28:33.154Z [debug] [monitor] Completed request debug-test-1760279309 in 4010ms (success: true)
+2025-10-12T14:28:33.154Z [debug] [parallel] Job complete for session debug-test-1760279309
+2025-10-12T14:29:21.747Z [debug] [monitor] Metrics updated:
+2025-10-12T14:30:21.752Z [debug] [monitor] Metrics updated:
+2025-10-12T14:31:21.755Z [debug] [monitor] Metrics updated:
+2025-10-12T14:32:21.757Z [debug] [monitor] Metrics updated:
+2025-10-12T14:33:21.758Z [debug] [monitor] Metrics updated:
+2025-10-12T14:33:28.630Z [debug] NEW Plan worker created
+2025-10-12T14:33:28.630Z [debug] NEW Gen worker created
+2025-10-12T14:33:28.630Z [debug] NEW Parallel worker created
+2025-10-12T14:33:28.634Z [debug] Server listening on port 8000
+2025-10-12T14:33:35.931Z [debug] Received request on /api/query {"body":{"query":"explain how solar panels convert sunlight into electricity","sessionId":"real-test-1760279615"}}
+2025-10-12T14:33:35.931Z [debug] [api] Stored query for session real-test-1760279615: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:35.931Z [debug] [orchestrator] Enqueuing plan for session real-test-1760279615
+2025-10-12T14:33:35.933Z [debug] [orchestrator] Plan job added with id 1 for session real-test-1760279615
+2025-10-12T14:33:35.934Z [debug] [plan] START: session=real-test-1760279615 query=explain how solar panels convert sunlight into electricity
+2025-10-12T14:33:35.934Z [debug] [monitor] Started tracking request real-test-1760279615
+2025-10-12T14:33:35.935Z [debug] [cache] MISS - No cached plan for query: "explain how solar panels convert sunlight into ele..."
+2025-10-12T14:33:35.936Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T14:33:35.944Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T14:33:54.325Z [debug] [planner] Received response from Gemini in 18390ms
+2025-10-12T14:33:54.325Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Sunlight to Power: How Solar Panels Work",
+  "subtitle": "Discover the fascinating science behind how solar panels transform light into usable electricity in just three steps.",
+  "toc": [
+    {"minute": 1, "title": "The Intuition", "summary": "Sunlight is pure energy; solar panels have a special way to grab it."},
+    {"minute": 2, "title": "How It Works", "summary": "Photons from sunlight knock electrons loose in silicon, creating an electric current."},
+    {"minute": 3,...
+2025-10-12T14:33:54.325Z [debug] [planner] Extracted JSON (length: 2487)
+2025-10-12T14:33:54.325Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T14:33:54.325Z [debug] [monitor] Plan generation for real-test-1760279615 took 18391ms
+2025-10-12T14:33:54.326Z [debug] [cache] Cached plan for query: "explain how solar panels convert sunlight into ele..."
+2025-10-12T14:33:54.326Z [debug] [plan] OK: session=real-test-1760279615 plan received with 3 steps
+2025-10-12T14:33:54.327Z [debug] [plan] Emitted plan event to session real-test-1760279615
+2025-10-12T14:33:54.327Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T14:33:54.328Z [debug] [plan] END: session=real-test-1760279615
+2025-10-12T14:33:54.329Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: real-test-1760279615)
+2025-10-12T14:33:54.329Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T14:33:54.330Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T14:33:54.330Z [info] [parallel] 🚀 Step 1: Generating 4 visuals + transcript
+2025-10-12T14:33:54.330Z [info] [stepVisuals] Generating 4 visuals for step 1
+2025-10-12T14:33:54.330Z [info] [stepVisuals] Starting visual 1/4 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3] Generating step 1: Imagine stepping outside on a sunny day and feeling the warmth on your skin. That's pure energy from the sun! Solar panels are designed to capture this light energy, but instead of just warmth, they turn it into something else: *electricity*. Think of a solar panel as a highly specialized catcher's mitt for tiny, super-fast particles of light, ready to transform their impact into power.
+2025-10-12T14:33:54.330Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:54.330Z [debug] [codegenV3] Prompt length: 755 chars
+2025-10-12T14:33:54.330Z [info] [stepVisuals] Starting visual 2/4 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3] Generating step 1: Imagine stepping outside on a sunny day and feeling the warmth on your skin. That's pure energy from the sun! Solar panels are designed to capture this light energy, but instead of just warmth, they turn it into something else: *electricity*. Think of a solar panel as a highly specialized catcher's mitt for tiny, super-fast particles of light, ready to transform their impact into power.
+2025-10-12T14:33:54.330Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:54.330Z [debug] [codegenV3] Prompt length: 755 chars
+2025-10-12T14:33:54.330Z [info] [stepVisuals] Starting visual 3/4 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3] Generating step 1: Imagine stepping outside on a sunny day and feeling the warmth on your skin. That's pure energy from the sun! Solar panels are designed to capture this light energy, but instead of just warmth, they turn it into something else: *electricity*. Think of a solar panel as a highly specialized catcher's mitt for tiny, super-fast particles of light, ready to transform their impact into power.
+2025-10-12T14:33:54.331Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:54.331Z [debug] [codegenV3] Prompt length: 755 chars
+2025-10-12T14:33:54.331Z [info] [stepVisuals] Starting visual 4/4 for step 1
+2025-10-12T14:33:54.331Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:33:54.331Z [info] [codegenV3] Generating step 1: Imagine stepping outside on a sunny day and feeling the warmth on your skin. That's pure energy from the sun! Solar panels are designed to capture this light energy, but instead of just warmth, they turn it into something else: *electricity*. Think of a solar panel as a highly specialized catcher's mitt for tiny, super-fast particles of light, ready to transform their impact into power.
+2025-10-12T14:33:54.331Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:54.331Z [debug] [codegenV3] Prompt length: 755 chars
+2025-10-12T14:33:56.333Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T14:33:56.333Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T14:33:56.333Z [info] [parallel] 🚀 Step 2: Generating 4 visuals + transcript
+2025-10-12T14:33:56.333Z [info] [stepVisuals] Generating 4 visuals for step 2
+2025-10-12T14:33:56.333Z [info] [stepVisuals] Starting visual 1/4 for step 2
+2025-10-12T14:33:56.333Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:33:56.333Z [info] [codegenV3] Generating step 2: The 'magic' happens inside the solar panel's *photovoltaic cells*, made of special materials like *silicon* (a semiconductor). When a particle of sunlight, called a *photon*, strikes the silicon, it literally kicks loose a tiny charged particle called an *electron*. This isn't just one electron; billions of photons striking the panel each second free billions of electrons. These freed electrons are then directed to flow in a specific direction, creating an electric current – just like water flowing through a pipe when you open a tap. This flow is the *direct current (DC)* electricity we need.
+2025-10-12T14:33:56.333Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:56.333Z [debug] [codegenV3] Prompt length: 965 chars
+2025-10-12T14:33:56.333Z [info] [stepVisuals] Starting visual 2/4 for step 2
+2025-10-12T14:33:56.333Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:33:56.333Z [info] [codegenV3] Generating step 2: The 'magic' happens inside the solar panel's *photovoltaic cells*, made of special materials like *silicon* (a semiconductor). When a particle of sunlight, called a *photon*, strikes the silicon, it literally kicks loose a tiny charged particle called an *electron*. This isn't just one electron; billions of photons striking the panel each second free billions of electrons. These freed electrons are then directed to flow in a specific direction, creating an electric current – just like water flowing through a pipe when you open a tap. This flow is the *direct current (DC)* electricity we need.
+2025-10-12T14:33:56.333Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:56.333Z [debug] [codegenV3] Prompt length: 965 chars
+2025-10-12T14:33:56.334Z [info] [stepVisuals] Starting visual 3/4 for step 2
+2025-10-12T14:33:56.334Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:33:56.334Z [info] [codegenV3] Generating step 2: The 'magic' happens inside the solar panel's *photovoltaic cells*, made of special materials like *silicon* (a semiconductor). When a particle of sunlight, called a *photon*, strikes the silicon, it literally kicks loose a tiny charged particle called an *electron*. This isn't just one electron; billions of photons striking the panel each second free billions of electrons. These freed electrons are then directed to flow in a specific direction, creating an electric current – just like water flowing through a pipe when you open a tap. This flow is the *direct current (DC)* electricity we need.
+2025-10-12T14:33:56.334Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:56.334Z [debug] [codegenV3] Prompt length: 965 chars
+2025-10-12T14:33:56.334Z [info] [stepVisuals] Starting visual 4/4 for step 2
+2025-10-12T14:33:56.334Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:33:56.334Z [info] [codegenV3] Generating step 2: The 'magic' happens inside the solar panel's *photovoltaic cells*, made of special materials like *silicon* (a semiconductor). When a particle of sunlight, called a *photon*, strikes the silicon, it literally kicks loose a tiny charged particle called an *electron*. This isn't just one electron; billions of photons striking the panel each second free billions of electrons. These freed electrons are then directed to flow in a specific direction, creating an electric current – just like water flowing through a pipe when you open a tap. This flow is the *direct current (DC)* electricity we need.
+2025-10-12T14:33:56.334Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:56.334Z [debug] [codegenV3] Prompt length: 965 chars
+2025-10-12T14:33:58.337Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T14:33:58.337Z [info] [parallel] 🚀 Step 3: Generating 4 visuals + transcript
+2025-10-12T14:33:58.337Z [info] [stepVisuals] Generating 4 visuals for step 3
+2025-10-12T14:33:58.337Z [info] [stepVisuals] Starting visual 1/4 for step 3
+2025-10-12T14:33:58.338Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:33:58.338Z [info] [codegenV3] Generating step 3: This ingenious photon-to-electron trick has massive real-world impact. The DC electricity generated by a single solar panel is then converted into *alternating current (AC)*, which is what powers our homes, schools, and businesses. You see these panels on rooftops, in vast *solar farms* generating power for entire cities, and even silently powering satellites in space. Solar energy is a clean, renewable powerhouse, drastically reducing our reliance on fossil fuels and lighting the way to a sustainable future.
+2025-10-12T14:33:58.338Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:58.338Z [debug] [codegenV3] Prompt length: 880 chars
+2025-10-12T14:33:58.338Z [info] [stepVisuals] Starting visual 2/4 for step 3
+2025-10-12T14:33:58.338Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:33:58.338Z [info] [codegenV3] Generating step 3: This ingenious photon-to-electron trick has massive real-world impact. The DC electricity generated by a single solar panel is then converted into *alternating current (AC)*, which is what powers our homes, schools, and businesses. You see these panels on rooftops, in vast *solar farms* generating power for entire cities, and even silently powering satellites in space. Solar energy is a clean, renewable powerhouse, drastically reducing our reliance on fossil fuels and lighting the way to a sustainable future.
+2025-10-12T14:33:58.339Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:58.339Z [debug] [codegenV3] Prompt length: 880 chars
+2025-10-12T14:33:58.339Z [info] [stepVisuals] Starting visual 3/4 for step 3
+2025-10-12T14:33:58.339Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:33:58.339Z [info] [codegenV3] Generating step 3: This ingenious photon-to-electron trick has massive real-world impact. The DC electricity generated by a single solar panel is then converted into *alternating current (AC)*, which is what powers our homes, schools, and businesses. You see these panels on rooftops, in vast *solar farms* generating power for entire cities, and even silently powering satellites in space. Solar energy is a clean, renewable powerhouse, drastically reducing our reliance on fossil fuels and lighting the way to a sustainable future.
+2025-10-12T14:33:58.339Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:58.339Z [debug] [codegenV3] Prompt length: 880 chars
+2025-10-12T14:33:58.339Z [info] [stepVisuals] Starting visual 4/4 for step 3
+2025-10-12T14:33:58.339Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:33:58.339Z [info] [codegenV3] Generating step 3: This ingenious photon-to-electron trick has massive real-world impact. The DC electricity generated by a single solar panel is then converted into *alternating current (AC)*, which is what powers our homes, schools, and businesses. You see these panels on rooftops, in vast *solar farms* generating power for entire cities, and even silently powering satellites in space. Solar energy is a clean, renewable powerhouse, drastically reducing our reliance on fossil fuels and lighting the way to a sustainable future.
+2025-10-12T14:33:58.339Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:58.339Z [debug] [codegenV3] Prompt length: 880 chars
+2025-10-12T14:34:28.629Z [debug] [monitor] Metrics updated:
+2025-10-12T14:34:30.960Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:30.960Z [debug] [codegenV3] Received 3419 chars from API
+2025-10-12T14:34:30.960Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:30.960Z [info] [codegenV3] ✅ Generated SVG in 32.62s (3419 chars)
+2025-10-12T14:34:30.960Z [info] [codegenV3] 🎬 ANIMATIONS: 14 total (<animate>: 8, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:34:30.960Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=14
+2025-10-12T14:34:30.960Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:30.961Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:30.961Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:34:31.294Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:31.294Z [debug] [codegenV3] Received 4139 chars from API
+2025-10-12T14:34:31.294Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:31.294Z [info] [codegenV3] ✅ Generated SVG in 32.95s (4139 chars)
+2025-10-12T14:34:31.294Z [info] [codegenV3] 🎬 ANIMATIONS: 16 total (<animate>: 8, <animateMotion>: 7, <animateTransform>: 1)
+2025-10-12T14:34:31.294Z [info] [codegenV3] 📊 CONTENT: labels=17, shapes=13
+2025-10-12T14:34:31.294Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:31.294Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:31.294Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:34:32.942Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:32.942Z [debug] [codegenV3] Received 3901 chars from API
+2025-10-12T14:34:32.942Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:32.942Z [info] [codegenV3] ✅ Generated SVG in 34.60s (3901 chars)
+2025-10-12T14:34:32.942Z [info] [codegenV3] 🎬 ANIMATIONS: 17 total (<animate>: 9, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-12T14:34:32.942Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=24
+2025-10-12T14:34:32.942Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:32.942Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:32.942Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:34:36.928Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:36.928Z [debug] [codegenV3] Received 3165 chars from API
+2025-10-12T14:34:36.928Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:36.928Z [info] [codegenV3] ✅ Generated SVG in 42.60s (3165 chars)
+2025-10-12T14:34:36.928Z [info] [codegenV3] 🎬 ANIMATIONS: 14 total (<animate>: 8, <animateMotion>: 5, <animateTransform>: 1)
+2025-10-12T14:34:36.928Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=10
+2025-10-12T14:34:36.928Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:36.929Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:34:36.929Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:36.929Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:34:38.349Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:38.349Z [debug] [codegenV3] Received 3011 chars from API
+2025-10-12T14:34:38.349Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:38.349Z [info] [codegenV3] ✅ Generated SVG in 44.02s (3011 chars)
+2025-10-12T14:34:38.349Z [info] [codegenV3] 🎬 ANIMATIONS: 15 total (<animate>: 10, <animateMotion>: 5, <animateTransform>: 0)
+2025-10-12T14:34:38.349Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=8
+2025-10-12T14:34:38.349Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:38.349Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:34:38.349Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:38.349Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:34:47.033Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:47.033Z [debug] [codegenV3] Received 3862 chars from API
+2025-10-12T14:34:47.033Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:47.033Z [info] [codegenV3] ✅ Generated SVG in 50.70s (3862 chars)
+2025-10-12T14:34:47.033Z [info] [codegenV3] 🎬 ANIMATIONS: 19 total (<animate>: 13, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:34:47.033Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=8
+2025-10-12T14:34:47.033Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:47.033Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:47.033Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:34:48.505Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:48.505Z [debug] [codegenV3] Received 3816 chars from API
+2025-10-12T14:34:48.505Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:48.505Z [info] [codegenV3] ✅ Generated SVG in 50.17s (3816 chars)
+2025-10-12T14:34:48.505Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 12, <animateMotion>: 9, <animateTransform>: 0)
+2025-10-12T14:34:48.505Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=16
+2025-10-12T14:34:48.505Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:48.505Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:48.505Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:34:48.505Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:34:48.505Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:34:48.506Z [info] [transcript] Generating for step 3 with 4 visuals
+2025-10-12T14:34:48.506Z [debug] [transcript] Prompt length: 1498 chars
+2025-10-12T14:34:48.935Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:48.935Z [debug] [codegenV3] Received 3806 chars from API
+2025-10-12T14:34:48.935Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:48.935Z [info] [codegenV3] ✅ Generated SVG in 54.60s (3806 chars)
+2025-10-12T14:34:48.935Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 12, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-12T14:34:48.935Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=15
+2025-10-12T14:34:48.935Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:48.935Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:34:48.935Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:48.935Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:34:59.936Z [info] [transcript] ✅ Generated 1406 chars
+2025-10-12T14:34:59.936Z [info] [stepVisuals] ✅ Transcript generated (1406 chars)
+2025-10-12T14:34:59.936Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T14:34:59.937Z [debug] [monitor] Step 3 generation for real-test-1760279615 took 61600ms
+2025-10-12T14:34:59.937Z [info] [parallel] ✅ Step 3 COMPLETE in 61600ms with 4 actions
+2025-10-12T14:34:59.937Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T14:35:07.701Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:35:07.701Z [debug] [codegenV3] Received 2449 chars from API
+2025-10-12T14:35:07.701Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:35:07.701Z [info] [codegenV3] ✅ Generated SVG in 71.37s (2449 chars)
+2025-10-12T14:35:07.701Z [info] [codegenV3] 🎬 ANIMATIONS: 12 total (<animate>: 6, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:35:07.701Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=9
+2025-10-12T14:35:07.701Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:35:07.701Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:35:07.701Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:35:11.599Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:35:11.599Z [debug] [codegenV3] Received 3743 chars from API
+2025-10-12T14:35:11.599Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:35:11.599Z [info] [codegenV3] ✅ Generated SVG in 75.27s (3743 chars)
+2025-10-12T14:35:11.599Z [info] [codegenV3] 🎬 ANIMATIONS: 18 total (<animate>: 12, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:35:11.599Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=10
+2025-10-12T14:35:11.599Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:35:11.599Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:35:11.599Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:35:19.882Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:35:19.882Z [debug] [codegenV3] Received 4258 chars from API
+2025-10-12T14:35:19.882Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:35:19.882Z [info] [codegenV3] ✅ Generated SVG in 83.55s (4258 chars)
+2025-10-12T14:35:19.882Z [info] [codegenV3] 🎬 ANIMATIONS: 25 total (<animate>: 15, <animateMotion>: 10, <animateTransform>: 0)
+2025-10-12T14:35:19.882Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=14
+2025-10-12T14:35:19.882Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:35:19.882Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:35:19.882Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:35:19.882Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:35:19.882Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:35:19.882Z [info] [transcript] Generating for step 2 with 4 visuals
+2025-10-12T14:35:19.883Z [debug] [transcript] Prompt length: 1583 chars
+2025-10-12T14:35:23.269Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:35:23.269Z [debug] [codegenV3] Received 6140 chars from API
+2025-10-12T14:35:23.269Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:35:23.269Z [info] [codegenV3] ✅ Generated SVG in 88.94s (6140 chars)
+2025-10-12T14:35:23.269Z [info] [codegenV3] 🎬 ANIMATIONS: 46 total (<animate>: 33, <animateMotion>: 13, <animateTransform>: 0)
+2025-10-12T14:35:23.270Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=17
+2025-10-12T14:35:23.270Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:35:23.270Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:35:23.270Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:35:23.270Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:35:23.270Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:35:23.270Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:35:23.270Z [info] [transcript] Generating for step 1 with 4 visuals
+2025-10-12T14:35:23.270Z [debug] [transcript] Prompt length: 1373 chars
+2025-10-12T14:35:28.633Z [debug] [monitor] Metrics updated:
+2025-10-12T14:35:28.665Z [info] [transcript] ✅ Generated 1598 chars
+2025-10-12T14:35:28.665Z [info] [stepVisuals] ✅ Transcript generated (1598 chars)
+2025-10-12T14:35:28.666Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T14:35:28.666Z [debug] [monitor] Step 2 generation for real-test-1760279615 took 92333ms
+2025-10-12T14:35:28.666Z [info] [parallel] ✅ Step 2 COMPLETE in 92333ms with 4 actions
+2025-10-12T14:35:28.667Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T14:35:34.768Z [info] [transcript] ✅ Generated 1302 chars
+2025-10-12T14:35:34.768Z [info] [stepVisuals] ✅ Transcript generated (1302 chars)
+2025-10-12T14:35:34.769Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T14:35:34.769Z [debug] [monitor] Step 1 generation for real-test-1760279615 took 100440ms
+2025-10-12T14:35:34.769Z [info] [parallel] ✅ Step 1 COMPLETE in 100440ms with 4 actions
+2025-10-12T14:35:34.769Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T14:35:34.769Z [debug] [parallel] Parallel generation complete: 3/3 successful in 100440ms
+2025-10-12T14:35:34.769Z [debug] [monitor] Completed request real-test-1760279615 in 118835ms (success: true)
+2025-10-12T14:35:34.769Z [debug] [parallel] Job complete for session real-test-1760279615
+2025-10-12T14:36:28.637Z [debug] [monitor] Metrics updated:
+2025-10-12T14:37:01.724Z [debug] NEW Plan worker created
+2025-10-12T14:37:21.575Z [debug] NEW Plan worker created
+2025-10-12T14:37:21.575Z [debug] NEW Gen worker created
+2025-10-12T14:37:21.576Z [debug] NEW Parallel worker created
+2025-10-12T14:37:21.579Z [debug] Server listening on port 8000
+2025-10-12T14:37:50.746Z [debug] [socket] New connection: m6YtUCLka6nuRzrSAAAB
+2025-10-12T14:37:50.747Z [debug] [socket] Socket m6YtUCLka6nuRzrSAAAB joined session 5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:37:50.747Z [debug] [socket] Socket m6YtUCLka6nuRzrSAAAB is now in rooms: m6YtUCLka6nuRzrSAAAB, 5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:37:50.748Z [debug] [socket] Socket m6YtUCLka6nuRzrSAAAB joined session 5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:37:50.748Z [debug] [socket] Socket m6YtUCLka6nuRzrSAAAB is now in rooms: m6YtUCLka6nuRzrSAAAB, 5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:37:50.855Z [debug] Received request on /api/query {"body":{"query":"teach me about amplifiers , its working and its real work applications","sessionId":"5848b1bb-f7d8-4093-b765-b0bc885b69cb"}}
+2025-10-12T14:37:50.855Z [debug] [api] Stored query for session 5848b1bb-f7d8-4093-b765-b0bc885b69cb: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:37:50.855Z [debug] [orchestrator] Enqueuing plan for session 5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:37:50.856Z [debug] [orchestrator] Plan job added with id 2 for session 5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:37:50.857Z [debug] [plan] START: session=5848b1bb-f7d8-4093-b765-b0bc885b69cb query=teach me about amplifiers , its working and its real work applications
+2025-10-12T14:37:50.858Z [debug] [monitor] Started tracking request 5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:37:50.858Z [debug] [cache] MISS - No cached plan for query: "teach me about amplifiers , its working and its re..."
+2025-10-12T14:37:50.858Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T14:37:50.865Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T14:38:02.873Z [debug] [planner] Received response from Gemini in 12015ms
+2025-10-12T14:38:02.873Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Amplifiers: Boost Your Signal's Power",
+  "subtitle": "Learn how amplifiers make weak signals strong, their core mechanism, and their essential role in technology.",
+  "toc": [
+    {
+      "minute": 1,
+      "title": "The Intuition",
+      "summary": "Turning a faint whisper into a clear, powerful sound."
+    },
+    {
+      "minute": 2,
+      "title": "How It Works",
+      "summary": "Small input signal, big powered replica output."
+    },
+    {
+      "minute": 3,
+      "ti...
+2025-10-12T14:38:02.873Z [debug] [planner] Extracted JSON (length: 2593)
+2025-10-12T14:38:02.873Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T14:38:02.873Z [debug] [monitor] Plan generation for 5848b1bb-f7d8-4093-b765-b0bc885b69cb took 12015ms
+2025-10-12T14:38:02.873Z [debug] [cache] Cached plan for query: "teach me about amplifiers , its working and its re..."
+2025-10-12T14:38:02.874Z [debug] [plan] OK: session=5848b1bb-f7d8-4093-b765-b0bc885b69cb plan received with 3 steps
+2025-10-12T14:38:02.875Z [debug] [plan] Emitted plan event to session 5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:38:02.875Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T14:38:02.875Z [debug] [plan] END: session=5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:38:02.877Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 5848b1bb-f7d8-4093-b765-b0bc885b69cb)
+2025-10-12T14:38:02.877Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T14:38:02.877Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T14:38:02.877Z [info] [parallel] 🚀 Step 1: Generating 4 visuals + transcript
+2025-10-12T14:38:02.877Z [info] [stepVisuals] Generating 4 visuals for step 1
+2025-10-12T14:38:02.878Z [info] [stepVisuals] Starting visual 1/4 for step 1
+2025-10-12T14:38:02.878Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:38:02.878Z [info] [codegenV3] Generating step 1: Imagine trying to hear your friend whisper across a noisy concert hall – impossible! Now picture them speaking into a powerful microphone and speaker system. An amplifier does exactly that for electrical signals: it takes a tiny, weak electrical 'whisper' (like from a phone's mic or a guitar pickup) and makes it a clear, powerful 'shout' that can drive speakers or transmit across vast distances. It magnifies the *power* of a signal, not just its size.
+2025-10-12T14:38:02.878Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:02.878Z [debug] [codegenV3] Prompt length: 833 chars
+2025-10-12T14:38:02.878Z [info] [stepVisuals] Starting visual 2/4 for step 1
+2025-10-12T14:38:02.878Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:38:02.878Z [info] [codegenV3] Generating step 1: Imagine trying to hear your friend whisper across a noisy concert hall – impossible! Now picture them speaking into a powerful microphone and speaker system. An amplifier does exactly that for electrical signals: it takes a tiny, weak electrical 'whisper' (like from a phone's mic or a guitar pickup) and makes it a clear, powerful 'shout' that can drive speakers or transmit across vast distances. It magnifies the *power* of a signal, not just its size.
+2025-10-12T14:38:02.878Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:02.878Z [debug] [codegenV3] Prompt length: 833 chars
+2025-10-12T14:38:02.878Z [info] [stepVisuals] Starting visual 3/4 for step 1
+2025-10-12T14:38:02.878Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:38:02.878Z [info] [codegenV3] Generating step 1: Imagine trying to hear your friend whisper across a noisy concert hall – impossible! Now picture them speaking into a powerful microphone and speaker system. An amplifier does exactly that for electrical signals: it takes a tiny, weak electrical 'whisper' (like from a phone's mic or a guitar pickup) and makes it a clear, powerful 'shout' that can drive speakers or transmit across vast distances. It magnifies the *power* of a signal, not just its size.
+2025-10-12T14:38:02.878Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:02.878Z [debug] [codegenV3] Prompt length: 833 chars
+2025-10-12T14:38:02.878Z [info] [stepVisuals] Starting visual 4/4 for step 1
+2025-10-12T14:38:02.878Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:38:02.878Z [info] [codegenV3] Generating step 1: Imagine trying to hear your friend whisper across a noisy concert hall – impossible! Now picture them speaking into a powerful microphone and speaker system. An amplifier does exactly that for electrical signals: it takes a tiny, weak electrical 'whisper' (like from a phone's mic or a guitar pickup) and makes it a clear, powerful 'shout' that can drive speakers or transmit across vast distances. It magnifies the *power* of a signal, not just its size.
+2025-10-12T14:38:02.878Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:02.878Z [debug] [codegenV3] Prompt length: 833 chars
+2025-10-12T14:38:04.880Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T14:38:04.880Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T14:38:04.881Z [info] [parallel] 🚀 Step 2: Generating 4 visuals + transcript
+2025-10-12T14:38:04.881Z [info] [stepVisuals] Generating 4 visuals for step 2
+2025-10-12T14:38:04.881Z [info] [stepVisuals] Starting visual 1/4 for step 2
+2025-10-12T14:38:04.881Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:38:04.881Z [info] [codegenV3] Generating step 2: An amplifier isn't creating energy; it's a clever power manager. It takes that weak input signal (e.g., millivolts from a sensor) and, using a separate, robust *external power source* (like your wall socket or a battery), it meticulously *copies* and *enlarges* the original signal's waveform. Think of it like a high-fidelity projector: the tiny film (input signal) controls a powerful light source (external power) to project a massive, bright image (amplified output). Key components like transistors or vacuum tubes act as precise control valves, regulating the flow of the external power to mirror and boost the input.
+2025-10-12T14:38:04.881Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:04.881Z [debug] [codegenV3] Prompt length: 1001 chars
+2025-10-12T14:38:04.881Z [info] [stepVisuals] Starting visual 2/4 for step 2
+2025-10-12T14:38:04.881Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:38:04.881Z [info] [codegenV3] Generating step 2: An amplifier isn't creating energy; it's a clever power manager. It takes that weak input signal (e.g., millivolts from a sensor) and, using a separate, robust *external power source* (like your wall socket or a battery), it meticulously *copies* and *enlarges* the original signal's waveform. Think of it like a high-fidelity projector: the tiny film (input signal) controls a powerful light source (external power) to project a massive, bright image (amplified output). Key components like transistors or vacuum tubes act as precise control valves, regulating the flow of the external power to mirror and boost the input.
+2025-10-12T14:38:04.881Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:04.881Z [debug] [codegenV3] Prompt length: 1001 chars
+2025-10-12T14:38:04.881Z [info] [stepVisuals] Starting visual 3/4 for step 2
+2025-10-12T14:38:04.881Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:38:04.881Z [info] [codegenV3] Generating step 2: An amplifier isn't creating energy; it's a clever power manager. It takes that weak input signal (e.g., millivolts from a sensor) and, using a separate, robust *external power source* (like your wall socket or a battery), it meticulously *copies* and *enlarges* the original signal's waveform. Think of it like a high-fidelity projector: the tiny film (input signal) controls a powerful light source (external power) to project a massive, bright image (amplified output). Key components like transistors or vacuum tubes act as precise control valves, regulating the flow of the external power to mirror and boost the input.
+2025-10-12T14:38:04.881Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:04.881Z [debug] [codegenV3] Prompt length: 1001 chars
+2025-10-12T14:38:04.881Z [info] [stepVisuals] Starting visual 4/4 for step 2
+2025-10-12T14:38:04.881Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:38:04.881Z [info] [codegenV3] Generating step 2: An amplifier isn't creating energy; it's a clever power manager. It takes that weak input signal (e.g., millivolts from a sensor) and, using a separate, robust *external power source* (like your wall socket or a battery), it meticulously *copies* and *enlarges* the original signal's waveform. Think of it like a high-fidelity projector: the tiny film (input signal) controls a powerful light source (external power) to project a massive, bright image (amplified output). Key components like transistors or vacuum tubes act as precise control valves, regulating the flow of the external power to mirror and boost the input.
+2025-10-12T14:38:04.881Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:04.881Z [debug] [codegenV3] Prompt length: 1001 chars
+2025-10-12T14:38:06.881Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T14:38:06.881Z [info] [parallel] 🚀 Step 3: Generating 4 visuals + transcript
+2025-10-12T14:38:06.881Z [info] [stepVisuals] Generating 4 visuals for step 3
+2025-10-12T14:38:06.881Z [info] [stepVisuals] Starting visual 1/4 for step 3
+2025-10-12T14:38:06.881Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:38:06.881Z [info] [codegenV3] Generating step 3: Amplifiers are the unsung backbone of our electronic world. They're essential for anything that needs a signal to be louder, clearer, or travel further. This includes the speakers in your phone, car stereo, and home theater; the iconic roar of an electric guitar amp; and boosting weak radio signals for your WiFi, cell towers, and satellite dishes to communicate across vast distances. Even medical devices like MRI machines and ultrasound units rely on amplifiers to process and magnify tiny biological signals for diagnosis.
+2025-10-12T14:38:06.881Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:06.881Z [debug] [codegenV3] Prompt length: 905 chars
+2025-10-12T14:38:06.881Z [info] [stepVisuals] Starting visual 2/4 for step 3
+2025-10-12T14:38:06.881Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:38:06.881Z [info] [codegenV3] Generating step 3: Amplifiers are the unsung backbone of our electronic world. They're essential for anything that needs a signal to be louder, clearer, or travel further. This includes the speakers in your phone, car stereo, and home theater; the iconic roar of an electric guitar amp; and boosting weak radio signals for your WiFi, cell towers, and satellite dishes to communicate across vast distances. Even medical devices like MRI machines and ultrasound units rely on amplifiers to process and magnify tiny biological signals for diagnosis.
+2025-10-12T14:38:06.881Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:06.881Z [debug] [codegenV3] Prompt length: 905 chars
+2025-10-12T14:38:06.881Z [info] [stepVisuals] Starting visual 3/4 for step 3
+2025-10-12T14:38:06.881Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:38:06.881Z [info] [codegenV3] Generating step 3: Amplifiers are the unsung backbone of our electronic world. They're essential for anything that needs a signal to be louder, clearer, or travel further. This includes the speakers in your phone, car stereo, and home theater; the iconic roar of an electric guitar amp; and boosting weak radio signals for your WiFi, cell towers, and satellite dishes to communicate across vast distances. Even medical devices like MRI machines and ultrasound units rely on amplifiers to process and magnify tiny biological signals for diagnosis.
+2025-10-12T14:38:06.881Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:06.881Z [debug] [codegenV3] Prompt length: 905 chars
+2025-10-12T14:38:06.881Z [info] [stepVisuals] Starting visual 4/4 for step 3
+2025-10-12T14:38:06.881Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:38:06.881Z [info] [codegenV3] Generating step 3: Amplifiers are the unsung backbone of our electronic world. They're essential for anything that needs a signal to be louder, clearer, or travel further. This includes the speakers in your phone, car stereo, and home theater; the iconic roar of an electric guitar amp; and boosting weak radio signals for your WiFi, cell towers, and satellite dishes to communicate across vast distances. Even medical devices like MRI machines and ultrasound units rely on amplifiers to process and magnify tiny biological signals for diagnosis.
+2025-10-12T14:38:06.881Z [info] [codegenV3] Topic: "teach me about amplifiers , its working and its real work applications"
+2025-10-12T14:38:06.881Z [debug] [codegenV3] Prompt length: 905 chars
+2025-10-12T14:38:21.575Z [debug] [monitor] Metrics updated:
+2025-10-12T14:38:38.428Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:38:38.428Z [debug] [codegenV3] Received 4219 chars from API
+2025-10-12T14:38:38.429Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:38:38.429Z [info] [codegenV3] ✅ Generated SVG in 35.55s (4219 chars)
+2025-10-12T14:38:38.429Z [info] [codegenV3] 🎬 ANIMATIONS: 11 total (<animate>: 8, <animateMotion>: 2, <animateTransform>: 1)
+2025-10-12T14:38:38.429Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=8
+2025-10-12T14:38:38.429Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:38:38.429Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:38:38.430Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:38:38.430Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:38:46.145Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:38:46.145Z [debug] [codegenV3] Received 4303 chars from API
+2025-10-12T14:38:46.145Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:38:46.145Z [info] [codegenV3] ✅ Generated SVG in 43.27s (4303 chars)
+2025-10-12T14:38:46.146Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 14, <animateMotion>: 6, <animateTransform>: 2)
+2025-10-12T14:38:46.146Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=9
+2025-10-12T14:38:46.146Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:38:46.146Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:38:46.146Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:38:46.146Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:38:48.815Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:38:48.815Z [debug] [codegenV3] Received 5172 chars from API
+2025-10-12T14:38:48.815Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:38:48.815Z [info] [codegenV3] ✅ Generated SVG in 45.94s (5172 chars)
+2025-10-12T14:38:48.815Z [info] [codegenV3] 🎬 ANIMATIONS: 23 total (<animate>: 18, <animateMotion>: 3, <animateTransform>: 2)
+2025-10-12T14:38:48.815Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=14
+2025-10-12T14:38:48.815Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:38:48.815Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:38:48.815Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:38:48.815Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:38:49.149Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:38:49.149Z [debug] [codegenV3] Received 2716 chars from API
+2025-10-12T14:38:49.149Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:38:49.149Z [info] [codegenV3] ✅ Generated SVG in 44.27s (2716 chars)
+2025-10-12T14:38:49.149Z [info] [codegenV3] 🎬 ANIMATIONS: 7 total (<animate>: 5, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-12T14:38:49.149Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=11
+2025-10-12T14:38:49.149Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:38:49.149Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:38:49.149Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:38:51.292Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:38:51.292Z [debug] [codegenV3] Received 5442 chars from API
+2025-10-12T14:38:51.292Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:38:51.292Z [info] [codegenV3] ✅ Generated SVG in 44.41s (5442 chars)
+2025-10-12T14:38:51.292Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 12, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-12T14:38:51.292Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=23
+2025-10-12T14:38:51.292Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:38:51.292Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:38:51.292Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:38:51.836Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:38:51.836Z [debug] [codegenV3] Received 6007 chars from API
+2025-10-12T14:38:51.836Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:38:51.836Z [info] [codegenV3] ✅ Generated SVG in 44.95s (6007 chars)
+2025-10-12T14:38:51.836Z [info] [codegenV3] 🎬 ANIMATIONS: 13 total (<animate>: 7, <animateMotion>: 5, <animateTransform>: 1)
+2025-10-12T14:38:51.836Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=23
+2025-10-12T14:38:51.836Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:38:51.836Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:38:51.836Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:38:52.832Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:38:52.832Z [debug] [codegenV3] Received 5058 chars from API
+2025-10-12T14:38:52.832Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:38:52.832Z [info] [codegenV3] ✅ Generated SVG in 45.95s (5058 chars)
+2025-10-12T14:38:52.832Z [info] [codegenV3] 🎬 ANIMATIONS: 12 total (<animate>: 6, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:38:52.832Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=24
+2025-10-12T14:38:52.832Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:38:52.832Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:38:52.832Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:39:04.110Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:39:04.110Z [debug] [codegenV3] Received 2996 chars from API
+2025-10-12T14:39:04.110Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:39:04.110Z [info] [codegenV3] ✅ Generated SVG in 59.23s (2996 chars)
+2025-10-12T14:39:04.110Z [info] [codegenV3] 🎬 ANIMATIONS: 6 total (<animate>: 4, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-12T14:39:04.110Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=7
+2025-10-12T14:39:04.110Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:39:04.110Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:39:04.110Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:39:06.104Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:39:06.104Z [debug] [codegenV3] Received 4115 chars from API
+2025-10-12T14:39:06.104Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:39:06.104Z [info] [codegenV3] ✅ Generated SVG in 61.22s (4115 chars)
+2025-10-12T14:39:06.104Z [info] [codegenV3] 🎬 ANIMATIONS: 13 total (<animate>: 9, <animateMotion>: 2, <animateTransform>: 2)
+2025-10-12T14:39:06.104Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=7
+2025-10-12T14:39:06.105Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:39:06.105Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:39:06.105Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:39:09.584Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:39:09.584Z [debug] [codegenV3] Received 3164 chars from API
+2025-10-12T14:39:09.584Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:39:09.585Z [info] [codegenV3] ✅ Generated SVG in 64.70s (3164 chars)
+2025-10-12T14:39:09.585Z [info] [codegenV3] 🎬 ANIMATIONS: 7 total (<animate>: 4, <animateMotion>: 3, <animateTransform>: 0)
+2025-10-12T14:39:09.585Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=8
+2025-10-12T14:39:09.585Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:39:09.585Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:39:09.585Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:39:09.585Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:39:09.585Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:39:09.585Z [info] [transcript] Generating for step 2 with 4 visuals
+2025-10-12T14:39:09.585Z [debug] [transcript] Prompt length: 1619 chars
+2025-10-12T14:39:18.718Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:39:18.718Z [debug] [codegenV3] Received 4349 chars from API
+2025-10-12T14:39:18.718Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:39:18.718Z [info] [codegenV3] ✅ Generated SVG in 75.84s (4349 chars)
+2025-10-12T14:39:18.718Z [info] [codegenV3] 🎬 ANIMATIONS: 17 total (<animate>: 15, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-12T14:39:18.718Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=11
+2025-10-12T14:39:18.718Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:39:18.718Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:39:18.718Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:39:18.718Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:39:18.718Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:39:18.718Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:39:18.718Z [info] [transcript] Generating for step 1 with 4 visuals
+2025-10-12T14:39:18.718Z [debug] [transcript] Prompt length: 1451 chars
+2025-10-12T14:39:21.576Z [debug] [monitor] Metrics updated:
+2025-10-12T14:39:23.925Z [info] [transcript] ✅ Generated 1524 chars
+2025-10-12T14:39:23.925Z [info] [stepVisuals] ✅ Transcript generated (1524 chars)
+2025-10-12T14:39:23.926Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T14:39:23.926Z [debug] [monitor] Step 2 generation for 5848b1bb-f7d8-4093-b765-b0bc885b69cb took 79046ms
+2025-10-12T14:39:23.926Z [info] [parallel] ✅ Step 2 COMPLETE in 79046ms with 4 actions
+2025-10-12T14:39:23.926Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-12T14:39:29.573Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:39:29.574Z [debug] [codegenV3] Received 5312 chars from API
+2025-10-12T14:39:29.574Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:39:29.574Z [info] [codegenV3] ✅ Generated SVG in 82.69s (5312 chars)
+2025-10-12T14:39:29.574Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 14, <animateMotion>: 2, <animateTransform>: 6)
+2025-10-12T14:39:29.574Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=17
+2025-10-12T14:39:29.574Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:39:29.574Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:39:29.574Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:39:29.574Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:39:29.574Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:39:29.574Z [info] [transcript] Generating for step 3 with 4 visuals
+2025-10-12T14:39:29.574Z [debug] [transcript] Prompt length: 1523 chars
+2025-10-12T14:39:29.985Z [info] [transcript] ✅ Generated 1065 chars
+2025-10-12T14:39:29.985Z [info] [stepVisuals] ✅ Transcript generated (1065 chars)
+2025-10-12T14:39:29.985Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T14:39:29.985Z [debug] [monitor] Step 1 generation for 5848b1bb-f7d8-4093-b765-b0bc885b69cb took 87108ms
+2025-10-12T14:39:29.985Z [info] [parallel] ✅ Step 1 COMPLETE in 87108ms with 4 actions
+2025-10-12T14:39:29.986Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-12T14:39:41.920Z [info] [transcript] ✅ Generated 1472 chars
+2025-10-12T14:39:41.920Z [info] [stepVisuals] ✅ Transcript generated (1472 chars)
+2025-10-12T14:39:41.921Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T14:39:41.921Z [debug] [monitor] Step 3 generation for 5848b1bb-f7d8-4093-b765-b0bc885b69cb took 95041ms
+2025-10-12T14:39:41.921Z [info] [parallel] ✅ Step 3 COMPLETE in 95041ms with 4 actions
+2025-10-12T14:39:41.921Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-12T14:39:41.922Z [debug] [parallel] Parallel generation complete: 3/3 successful in 99044ms
+2025-10-12T14:39:41.922Z [debug] [monitor] Completed request 5848b1bb-f7d8-4093-b765-b0bc885b69cb in 111065ms (success: true)
+2025-10-12T14:39:41.922Z [debug] [parallel] Job complete for session 5848b1bb-f7d8-4093-b765-b0bc885b69cb
+2025-10-12T14:40:21.580Z [debug] [monitor] Metrics updated:

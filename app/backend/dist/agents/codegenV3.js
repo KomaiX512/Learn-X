@@ -10,21 +10,23 @@ exports.codegenV3 = codegenV3;
 const logger_1 = require("../logger");
 const generative_ai_1 = require("@google/generative-ai");
 const MODEL = 'gemini-2.5-flash';
-const MAX_OUTPUT_TOKENS = 16384; // Increased for complex visuals
-const GENERATION_TIMEOUT = 90000; // 90 seconds - allow for API variability
+const MAX_OUTPUT_TOKENS = 16384; // Need high limit for full SVG with animations
+const GENERATION_TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 120000); // default 120s, overridable via env
 /**
- * SIMPLE PROMPT - Direct generation matching user's pattern
+ * PROVEN PATTERN - Matches user's successful blood vessel prompt
+ * CRITICAL: Must explicitly request ANIMATIONS with movement
+ * CONCISE: Keep prompt short to reduce output verbosity
  */
 function createStepPrompt(step, topic) {
-    return `Write a script of code in 2D SIMPLE pure SVG code with focused minimal clear visual representation for teaching "${topic}" - specifically this concept: "${step.desc}"
+    return `Create animated SVG visualization for "${topic}": ${step.desc}
 
-Code length not more than 250 lines. Create a complete educational visualization that depicts the key concepts with actual labeled elements. Include labeled diagrams showcasing all relevant components and their relationships.
+Requirements:
+- Use <animate>, <animateMotion>, or <animateTransform> for movement
+- Label all key components with <text> elements
+- Max 180 lines, focused and minimal
+- Pure SVG only (no HTML/CSS/JS)
 
-Label all structures, concepts, and processes with their scientific/technical names using synchronized full-color visuals. The labels should clearly indicate the names making it educational for students. Ensure the visual experience is engaging and informative for educational purposes.
-
-NOTE: My compiler is just SVG compiler so do ONLY pure SVG. NO surrounding HTML, external CSS, and JavaScript. Start with <?xml version="1.0"?>
-
-OUTPUT ONLY THE PURE SVG CODE:`;
+Start with <?xml version="1.0"?> and output ONLY the SVG code:`;
 }
 /**
  * SIMPLIFIED SINGLE-STAGE GENERATION
@@ -69,35 +71,59 @@ async function codegenV3(step, topic) {
             logger_1.logger.error('[codegenV3] Response:', JSON.stringify(result.response, null, 2).substring(0, 500));
             throw new Error('No candidates in response - possible content filter');
         }
-        // Get text
-        let svgCode;
+        // CHECK FINISH REASON FIRST - before trying to extract text
+        const candidate = result.response.candidates[0];
+        if (candidate.finishReason) {
+            logger_1.logger.debug(`[codegenV3] Finish reason: ${candidate.finishReason}`);
+            // BLOCK ONLY TRUE SAFETY ISSUES
+            if (candidate.finishReason === 'SAFETY' || candidate.finishReason === 'RECITATION') {
+                logger_1.logger.error('[codegenV3] Content blocked by safety filters!');
+                logger_1.logger.error('[codegenV3] Safety ratings:', JSON.stringify(candidate.safetyRatings));
+                throw new Error('API blocked content due to safety filters');
+            }
+            // WARN but CONTINUE for truncation - we can use partial content
+            if (candidate.finishReason === 'MAX_TOKENS' || candidate.finishReason === 'LENGTH') {
+                logger_1.logger.warn('[codegenV3] Response truncated - will attempt to use partial content');
+            }
+        }
+        // EXTRACT TEXT - manually from parts to handle ALL cases including truncated responses
+        let svgCode = '';
         try {
-            svgCode = result.response.text();
+            // PRIMARY: Try standard text() method first
+            if (result.response.text) {
+                svgCode = result.response.text();
+            }
+            // FALLBACK: If text() returns empty, extract directly from candidate parts
+            if (!svgCode || svgCode.trim().length === 0) {
+                logger_1.logger.warn('[codegenV3] text() returned empty, extracting from candidate.content.parts...');
+                if (candidate?.content?.parts && Array.isArray(candidate.content.parts)) {
+                    // Concatenate all text parts
+                    svgCode = candidate.content.parts
+                        .filter((part) => part.text)
+                        .map((part) => part.text)
+                        .join('');
+                    if (svgCode && svgCode.trim().length > 0) {
+                        logger_1.logger.info(`[codegenV3] ✅ Extracted ${svgCode.length} chars from candidate.content.parts`);
+                    }
+                }
+            }
         }
         catch (error) {
-            logger_1.logger.error('[codegenV3] Failed to get text from response:', error.message);
-            logger_1.logger.error('[codegenV3] Full response object:', JSON.stringify(result.response, null, 2));
-            // Check for safety ratings blocking content
-            const candidate = result.response.candidates?.[0];
-            if (candidate?.finishReason) {
-                logger_1.logger.error(`[codegenV3] Finish reason: ${candidate.finishReason}`);
-                // Detect truncation reasons
-                if (candidate.finishReason === 'MAX_TOKENS' || candidate.finishReason === 'LENGTH') {
-                    throw new Error('API truncated response - increase maxOutputTokens or simplify prompt');
-                }
-                if (candidate.finishReason === 'SAFETY' || candidate.finishReason === 'RECITATION') {
-                    throw new Error('API blocked content due to safety filters');
-                }
-            }
-            if (candidate?.safetyRatings) {
-                logger_1.logger.error('[codegenV3] Safety ratings:', JSON.stringify(candidate.safetyRatings));
-            }
+            logger_1.logger.error('[codegenV3] Failed to extract text:', error.message);
+            // Final attempt: log structure and try to get any text
+            logger_1.logger.error('[codegenV3] Candidate structure:', JSON.stringify({
+                hasContent: !!candidate?.content,
+                hasParts: !!candidate?.content?.parts,
+                partsLength: candidate?.content?.parts?.length,
+                finishReason: candidate?.finishReason
+            }));
             throw new Error(`Failed to extract text: ${error.message}`);
         }
+        // VALIDATE we got SOMETHING
         if (!svgCode || svgCode.trim().length === 0) {
-            logger_1.logger.error('[codegenV3] Empty text in response');
-            logger_1.logger.error('[codegenV3] Full response for debugging:', JSON.stringify(result.response, null, 2));
-            throw new Error('Empty response from API');
+            logger_1.logger.error('[codegenV3] ❌ NO TEXT EXTRACTED from response');
+            logger_1.logger.error('[codegenV3] Candidate:', JSON.stringify(candidate, null, 2).substring(0, 1000));
+            throw new Error('No text content in API response');
         }
         logger_1.logger.debug(`[codegenV3] Received ${svgCode.length} chars from API`);
         // Clean markdown wrappers
@@ -106,7 +132,30 @@ async function codegenV3(step, topic) {
             .replace(/```svg\n?/g, '')
             .replace(/```\n?/g, '')
             .trim();
-        // Extract SVG content - use greedy matching to capture full SVG
+        // STEP 1: VALIDATE we have SOME SVG structure
+        if (!svgCode.includes('<svg')) {
+            logger_1.logger.error('[codegenV3] ❌ NO SVG OPENING TAG');
+            logger_1.logger.error('[codegenV3] Content received:');
+            logger_1.logger.error(svgCode.substring(0, 1000));
+            throw new Error('No <svg> tag found in generated content');
+        }
+        // STEP 2: COUNT TAGS for auto-repair
+        const openSvgTags = (svgCode.match(/<svg/g) || []).length;
+        let closeSvgTags = (svgCode.match(/<\/svg>/g) || []).length;
+        logger_1.logger.debug(`[codegenV3] SVG tag count: ${openSvgTags} open, ${closeSvgTags} close`);
+        // STEP 3: AUTO-REPAIR FIRST (before validation)
+        if (openSvgTags > closeSvgTags) {
+            const isMaxTokens = candidate?.finishReason === 'MAX_TOKENS' || candidate?.finishReason === 'LENGTH';
+            logger_1.logger.warn(`[codegenV3] 🔧 AUTO-REPAIR: Missing ${openSvgTags - closeSvgTags} closing tag(s) (finishReason: ${candidate?.finishReason})`);
+            // Add missing closing tags
+            const missingCloseTags = openSvgTags - closeSvgTags;
+            for (let i = 0; i < missingCloseTags; i++) {
+                svgCode += '\n</svg>';
+            }
+            closeSvgTags = (svgCode.match(/<\/svg>/g) || []).length;
+            logger_1.logger.info(`[codegenV3] ✅ Added ${missingCloseTags} closing </svg> tag(s)`);
+        }
+        // STEP 4: EXTRACT clean SVG with proper XML declaration
         const svgMatch = svgCode.match(/<\?xml[\s\S]*<\/svg>/i) ||
             svgCode.match(/<svg[\s\S]*<\/svg>/i);
         if (svgMatch) {
@@ -115,38 +164,56 @@ async function codegenV3(step, topic) {
                 svgCode = '<?xml version="1.0" standalone="no"?>\n' + svgCode;
             }
         }
-        // Validate SVG structure and completeness
-        if (!svgCode.includes('<svg') || !svgCode.includes('</svg>')) {
-            logger_1.logger.error('[codegenV3] ❌ NO SVG STRUCTURE FOUND');
-            logger_1.logger.error('[codegenV3] Content received:');
-            logger_1.logger.error(svgCode.substring(0, 1000));
-            throw new Error('Generated content has no valid SVG structure');
+        else {
+            // Fallback: wrap whatever we have
+            if (!svgCode.startsWith('<?xml')) {
+                svgCode = '<?xml version="1.0" standalone="no"?>\n' + svgCode;
+            }
         }
-        // Check if SVG is complete (not truncated)
-        const lastClosingTag = svgCode.lastIndexOf('</svg>');
-        const svgLength = svgCode.length;
-        const distanceFromEnd = svgLength - lastClosingTag - 6; // 6 = length of '</svg>'
-        if (distanceFromEnd > 50) {
-            logger_1.logger.warn(`[codegenV3] ⚠️ SVG might be truncated - ${distanceFromEnd} chars after </svg>`);
-        }
-        // Validate SVG is well-formed (basic check)
-        const openSvgTags = (svgCode.match(/<svg/g) || []).length;
-        const closeSvgTags = (svgCode.match(/<\/svg>/g) || []).length;
-        if (openSvgTags !== closeSvgTags) {
-            logger_1.logger.error(`[codegenV3] ❌ MALFORMED SVG - Open tags: ${openSvgTags}, Close tags: ${closeSvgTags}`);
+        // STEP 5: FINAL VALIDATION after repair
+        const finalOpenTags = (svgCode.match(/<svg/g) || []).length;
+        const finalCloseTags = (svgCode.match(/<\/svg>/g) || []).length;
+        if (finalOpenTags !== finalCloseTags) {
+            logger_1.logger.error(`[codegenV3] ❌ MALFORMED SVG after repair - Open: ${finalOpenTags}, Close: ${finalCloseTags}`);
             logger_1.logger.error('[codegenV3] Content preview:');
-            logger_1.logger.error(svgCode.substring(0, 500) + '\n...\n' + svgCode.substring(svgCode.length - 500));
-            throw new Error(`Malformed SVG - mismatched tags (${openSvgTags} open, ${closeSvgTags} close)`);
+            logger_1.logger.error(svgCode.substring(0, 500) + '\n...\n' + svgCode.substring(Math.max(0, svgCode.length - 500)));
+            throw new Error(`Malformed SVG after repair - mismatched tags (${finalOpenTags} open, ${finalCloseTags} close)`);
+        }
+        // STEP 6: Check completeness (info only, don't fail)
+        const lastClosingTag = svgCode.lastIndexOf('</svg>');
+        const distanceFromEnd = svgCode.length - lastClosingTag - 6;
+        if (distanceFromEnd > 50) {
+            logger_1.logger.warn(`[codegenV3] ⚠️ ${distanceFromEnd} chars after final </svg> (possible junk content)`);
         }
         const genTime = ((Date.now() - startTime) / 1000).toFixed(2);
-        // Log quality metrics (for monitoring, not validation)
-        const hasAnimations = svgCode.includes('<animate') ||
-            svgCode.includes('animateMotion') ||
-            svgCode.includes('animateTransform');
+        // DIAGNOSTIC: Count animation tags
+        const animateCount = (svgCode.match(/<animate[^>]*>/g) || []).length;
+        const animateMotionCount = (svgCode.match(/<animateMotion[^>]*>/g) || []).length;
+        const animateTransformCount = (svgCode.match(/<animateTransform[^>]*>/g) || []).length;
+        const totalAnimations = animateCount + animateMotionCount + animateTransformCount;
         const textLabels = (svgCode.match(/<text/g) || []).length;
         const shapes = (svgCode.match(/<circle|<rect|<path|<ellipse|<polygon/g) || []).length;
         logger_1.logger.info(`[codegenV3] ✅ Generated SVG in ${genTime}s (${svgCode.length} chars)`);
-        logger_1.logger.debug(`[codegenV3] Quality: animations=${hasAnimations}, labels=${textLabels}, shapes=${shapes}`);
+        logger_1.logger.info(`[codegenV3] 🎬 ANIMATIONS: ${totalAnimations} total (<animate>: ${animateCount}, <animateMotion>: ${animateMotionCount}, <animateTransform>: ${animateTransformCount})`);
+        logger_1.logger.info(`[codegenV3] 📊 CONTENT: labels=${textLabels}, shapes=${shapes}`);
+        // DIAGNOSTIC: Save SVG to file for inspection
+        if (totalAnimations === 0) {
+            logger_1.logger.error(`[codegenV3] ❌ ZERO ANIMATIONS GENERATED! Saving output for debugging...`);
+            const fs = require('fs');
+            const debugPath = `/tmp/debug-step${step.id}-NO-ANIMATIONS.svg`;
+            fs.writeFileSync(debugPath, svgCode);
+            logger_1.logger.error(`[codegenV3] Saved to: ${debugPath}`);
+        }
+        else {
+            logger_1.logger.info(`[codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed`);
+            // Save first successful one for reference
+            if (step.id === 1) {
+                const fs = require('fs');
+                const debugPath = `/tmp/debug-step${step.id}-WITH-ANIMATIONS.svg`;
+                fs.writeFileSync(debugPath, svgCode);
+                logger_1.logger.info(`[codegenV3] Reference saved to: ${debugPath}`);
+            }
+        }
         // Return as customSVG action
         const actions = [
             {

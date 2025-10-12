@@ -11,6 +11,7 @@ const planner_1 = require("./agents/planner");
 const codegen_1 = require("./agents/codegen");
 const codegenV2_1 = __importDefault(require("./agents/codegenV2"));
 const codegenV3WithRetry_1 = require("./agents/codegenV3WithRetry");
+const transcriptGenerator_1 = require("./agents/transcriptGenerator");
 const router_1 = require("./compiler/router");
 const debugger_1 = require("./agents/debugger");
 const cache_manager_1 = require("./services/cache-manager");
@@ -21,6 +22,8 @@ const CURRENT_STEP_KEY = (sessionId) => `session:${sessionId}:current_step`;
 const PARAMS_KEY = (sessionId) => `session:${sessionId}:params`;
 const CHUNK_KEY = (sessionId, stepId) => `session:${sessionId}:step:${stepId}:chunk`;
 const LEARNING_STATE_KEY = (sessionId) => `session:${sessionId}:learning_state`;
+// Production config: 4 visuals per step
+const VISUALS_PER_STEP = 4;
 // Progressive learning timing - NOT USED anymore (immediate emission)
 // Kept for reference only
 const TIMING_BY_COMPLEXITY = {
@@ -30,6 +33,60 @@ const TIMING_BY_COMPLEXITY = {
     4: 0, // Immediate
     5: 0 // Immediate
 };
+/**
+ * Generate multiple visuals + transcript for a single step
+ * PRODUCTION QUALITY: 4 visuals with detailed transcript
+ */
+async function generateStepVisuals(step, topic, sessionId) {
+    logger_1.logger.info(`[stepVisuals] Generating ${VISUALS_PER_STEP} visuals for step ${step.id}`);
+    const visualDescriptions = [];
+    const allActions = [];
+    // Generate 4 visuals in parallel - each is independent API call
+    const visualPromises = Array.from({ length: VISUALS_PER_STEP }, async (_, index) => {
+        const visualNumber = index + 1;
+        logger_1.logger.info(`[stepVisuals] Starting visual ${visualNumber}/${VISUALS_PER_STEP} for step ${step.id}`);
+        try {
+            // Each visual uses the SAME codegenV3WithRetry - proven to work
+            const result = await (0, codegenV3WithRetry_1.codegenV3WithRetry)(step, topic);
+            if (!result || !result.actions || result.actions.length === 0) {
+                logger_1.logger.warn(`[stepVisuals] Visual ${visualNumber} returned no actions`);
+                return null;
+            }
+            // Store description for transcript generation
+            const description = `Animated SVG visualization showing: ${step.desc.substring(0, 100)}`;
+            visualDescriptions.push({ visualNumber, description });
+            logger_1.logger.info(`[stepVisuals] ✅ Visual ${visualNumber} complete with ${result.actions.length} actions`);
+            return result.actions[0]; // Extract the customSVG action
+        }
+        catch (error) {
+            logger_1.logger.error(`[stepVisuals] Visual ${visualNumber} failed: ${error.message}`);
+            return null;
+        }
+    });
+    // Wait for all visuals to complete
+    const visualResults = await Promise.all(visualPromises);
+    // Filter out nulls and collect successful visuals
+    const successfulVisuals = visualResults.filter(v => v !== null);
+    allActions.push(...successfulVisuals);
+    logger_1.logger.info(`[stepVisuals] Generated ${successfulVisuals.length}/${VISUALS_PER_STEP} visuals successfully`);
+    // Generate transcript based on visual descriptions
+    let transcript = '';
+    if (visualDescriptions.length > 0) {
+        logger_1.logger.info(`[stepVisuals] Generating transcript for ${visualDescriptions.length} visuals`);
+        const transcriptResult = await (0, transcriptGenerator_1.generateTranscript)(step, topic, visualDescriptions);
+        transcript = transcriptResult || `Step ${step.id}: ${step.desc}`;
+        logger_1.logger.info(`[stepVisuals] ✅ Transcript generated (${transcript.length} chars)`);
+    }
+    else {
+        logger_1.logger.warn(`[stepVisuals] No visuals succeeded, using fallback transcript`);
+        transcript = `Step ${step.id}: ${step.desc}`;
+    }
+    return {
+        actions: allActions,
+        transcript,
+        visualDescriptions
+    };
+}
 async function initOrchestrator(io, redis) {
     // BullMQ requires separate Redis connections for queues and workers
     const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
@@ -101,6 +158,14 @@ async function initOrchestrator(io, redis) {
         logger_1.logger.debug(`[plan] OK: session=${sessionId} plan received with ${plan.steps.length} steps`);
         await redis.set(PLAN_KEY(sessionId), JSON.stringify(plan));
         await redis.set(CURRENT_STEP_KEY(sessionId), 0);
+        // EMIT PLAN EVENT TO FRONTEND (CRITICAL FIX)
+        io.to(sessionId).emit('plan', {
+            title: plan.title,
+            subtitle: plan.subtitle,
+            toc: plan.toc,
+            steps: plan.steps.map(s => ({ id: s.id, tag: s.tag, desc: s.desc }))
+        });
+        logger_1.logger.debug(`[plan] Emitted plan event to session ${sessionId}`);
         // NEW: Enqueue parallel generation of ALL steps immediately
         if (plan.steps.length > 0) {
             logger_1.logger.debug(`[plan] Enqueuing PARALLEL generation of all ${plan.steps.length} steps`);
@@ -285,13 +350,14 @@ async function initOrchestrator(io, redis) {
         });
         let completedCount = 0;
         // Generate all steps in parallel WITH IMMEDIATE EMISSION
-        // Add staggered delays to avoid rate limit bursts
+        // Optimized for Gemini 2.5 Flash Paid Tier (1,000-4,000 RPM)
+        // Stagger by 2s for optimal throughput without hitting burst limits
         for (let i = 0; i < plan.steps.length; i++) {
             const step = plan.steps[i];
-            // Add 5-second staggered delay to avoid rate limit bursts (except first)
+            // Add 2-second staggered delay (optimized for paid tier)
             if (i > 0) {
-                const delay = 5000;
-                logger_1.logger.info(`[parallel] ⏸️  Staggering ${delay}ms before step ${step.id} to avoid rate limits`);
+                const delay = 2000; // Reduced from 5s to 2s for faster user experience
+                logger_1.logger.info(`[parallel] ⏸️  Staggering ${delay}ms before step ${step.id} (optimized for paid tier)`);
                 await new Promise(resolve => setTimeout(resolve, delay));
             }
             generationPromises.push((async () => {
@@ -313,22 +379,27 @@ async function initOrchestrator(io, redis) {
                         io.to(sessionId).emit('progress', {
                             stepId: step.id,
                             status: 'generating',
-                            message: `Generating ${step.tag}: ${step.desc.slice(0, 50)}...`
+                            message: `Generating ${VISUALS_PER_STEP} visuals for ${step.tag}...`
                         });
-                        // Generate the step with retry strategy for V3
-                        const version = process.env.USE_VISUAL_VERSION || 'v3';
-                        logger_1.logger.info(`[parallel] 🚀 Step ${step.id}: Using ${version} TRUE GENERATION`);
-                        // Use retry wrapper for V3
-                        const code = version === 'v3' ? await (0, codegenV3WithRetry_1.codegenV3WithRetry)(step, query) :
-                            version === 'v2' ? await (0, codegenV2_1.default)(step, query) :
-                                await (0, codegen_1.codegenAgent)(step, query);
-                        // CRITICAL: Handle null from codegen
-                        if (!code) {
-                            logger_1.logger.error(`[parallel] ❌ Step ${step.id} codegen returned null after all retries`);
-                            throw new Error(`Step ${step.id} generation failed after all retry attempts`);
+                        // PRODUCTION: Generate 4 visuals + transcript
+                        logger_1.logger.info(`[parallel] 🚀 Step ${step.id}: Generating ${VISUALS_PER_STEP} visuals + transcript`);
+                        const { actions, transcript, visualDescriptions } = await generateStepVisuals(step, query, sessionId);
+                        // CRITICAL: Handle empty results
+                        if (!actions || actions.length === 0) {
+                            logger_1.logger.error(`[parallel] ❌ Step ${step.id} generated no visuals`);
+                            throw new Error(`Step ${step.id} generation produced no visuals`);
                         }
-                        const compiled = await (0, router_1.compilerRouter)(code, step.compiler);
-                        checked = await (0, debugger_1.debugAgent)(compiled);
+                        // Build the result chunk with transcript
+                        checked = {
+                            type: 'actions',
+                            stepId: step.id,
+                            actions,
+                            transcript, // NEW: Include transcript in emission
+                            meta: {
+                                visualCount: actions.length,
+                                transcriptLength: transcript.length
+                            }
+                        };
                         // Cache the result in both places
                         const key = CHUNK_KEY(sessionId, step.id);
                         await redis.set(key, JSON.stringify(checked));
@@ -343,10 +414,12 @@ async function initOrchestrator(io, redis) {
                     const eventData = {
                         type: 'actions',
                         actions: checked.actions,
+                        transcript: checked.transcript || '', // Include transcript for narration
                         stepId: step.id,
                         step: step,
                         plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc },
-                        totalSteps: plan.steps.length
+                        totalSteps: plan.steps.length,
+                        meta: checked.meta // Include metadata about visual count
                     };
                     // DEBUGGING: Log room membership
                     const roomSockets = io.sockets.adapter.rooms.get(sessionId);

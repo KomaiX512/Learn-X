@@ -1,0 +1,176 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 19:28:21 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T14:28:21.743Z [debug] NEW Plan worker created
+2025-10-12T14:28:21.743Z [debug] NEW Gen worker created
+2025-10-12T14:28:21.743Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-12T14:28:21.747Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-12T14:28:29.141Z [debug] Received request on /api/query {"body":{"query":"teach me how photosynthesis works in plants","sessionId":"debug-test-1760279309"}}
+2025-10-12T14:28:29.142Z [debug] [api] Stored query for session debug-test-1760279309: "teach me how photosynthesis works in plants"
+2025-10-12T14:28:29.142Z [debug] [orchestrator] Enqueuing plan for session debug-test-1760279309
+2025-10-12T14:28:29.143Z [debug] [orchestrator] Plan job added with id 47 for session debug-test-1760279309
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: debug-test-1760279309
+Query: teach me how photosynthesis works in plants
+Time: 2025-10-12T14:28:29.144Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T14:28:29.144Z [debug] [plan] START: session=debug-test-1760279309 query=teach me how photosynthesis works in plants
+2025-10-12T14:28:29.144Z [debug] [monitor] Started tracking request debug-test-1760279309
+2025-10-12T14:28:29.144Z [debug] [cache] HIT - Found cached plan for query: "teach me how photosynthesis works in plants..."
+2025-10-12T14:28:29.144Z [debug] [plan] Using cached plan for query: teach me how photosynthesis works in plants
+2025-10-12T14:28:29.144Z [debug] [monitor] Plan generation for debug-test-1760279309 took 0ms
+=== NEW STRUCTURED PLAN ===
+Session: debug-test-1760279309
+Query: teach me how photosynthesis works in plants
+Plan title: Photosynthesis: How Plants Make Their Own Food
+Plan subtitle: Learn the essential process plants use to convert sunlight into energy and grow.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: 'Plants are solar-powered food factories for all life.'
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'Plants use sunlight, water, and CO2 to create sugar and oxygen.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'Photosynthesis is vital for food, oxygen, and climate.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine a plant as a tiny, solar-powered chef! Unlike us, plants don't 'eat' food; they *make* it. They take simple ingredients – sunlight, water, and air – and transform them into energy-rich sugars to grow. This incredible process, photosynthesis, is how they feed themselves, and ultimately, almost all life on Earth. It's their unique way of harnessing the sun's energy."
+Step 1: id=2, tag=mechanics, desc="Here’s how this magic happens: Deep within a plant's green leaves are microscopic 'powerhouses' called chloroplasts, packed with a green pigment called chlorophyll. Chlorophyll's job is to capture sunlight's energy, much like a tiny solar panel. Simultaneously, the plant's roots absorb water (H2O), and tiny pores on its leaves take in carbon dioxide (CO2) from the air. Using the captured sunlight, the plant combines water and carbon dioxide, chemically transforming them into glucose (a type of sugar, its food!) and releasing oxygen (O2) as a byproduct back into the air."
+Step 2: id=3, tag=applications, desc="Photosynthesis isn't just for plants; it's fundamental to *everything*. Every breath you take contains oxygen produced by plants. Every bite of food you eat, whether plant-based or from an animal that ate plants, traces its energy back to photosynthesis. It's the engine of Earth's food chains and a major regulator of our atmosphere, absorbing carbon dioxide and releasing the life-giving oxygen that sustains us all. Understanding this process helps us appreciate our planet's delicate balance and the critical role plants play."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T14:28:29.145Z [debug] [plan] OK: session=debug-test-1760279309 plan received with 3 steps
+2025-10-12T14:28:29.146Z [debug] [plan] Emitted plan event to session debug-test-1760279309
+2025-10-12T14:28:29.146Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T14:28:29.146Z [debug] [plan] END: session=debug-test-1760279309
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 45
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: debug-test-1760279309
+Query: teach me how photosynthesis works in plants
+Steps to generate: 3
+Time: 2025-10-12T14:28:29.148Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T14:28:29.148Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: debug-test-1760279309)
+2025-10-12T14:28:29.148Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T14:28:29.148Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-12T14:28:29.148Z [debug] [parallel] Using cached chunk for step 1
+2025-10-12T14:28:29.149Z [debug] [monitor] Step 1 generation for debug-test-1760279309 took 1ms
+2025-10-12T14:28:29.149Z [info] [parallel] ✅ Step 1 COMPLETE in 1ms with 4 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: debug-test-1760279309
+StepId: 1
+Actions: 4
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T14:28:29.149Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T14:28:31.151Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T14:28:31.151Z [debug] [cache] HIT - Found cached chunk for step 2
+2025-10-12T14:28:31.151Z [debug] [parallel] Using cached chunk for step 2
+2025-10-12T14:28:31.152Z [debug] [monitor] Step 2 generation for debug-test-1760279309 took 1ms
+2025-10-12T14:28:31.152Z [info] [parallel] ✅ Step 2 COMPLETE in 1ms with 4 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: debug-test-1760279309
+StepId: 2
+Actions: 4
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T14:28:31.152Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T14:28:33.152Z [debug] [cache] HIT - Found cached chunk for step 3
+2025-10-12T14:28:33.153Z [debug] [parallel] Using cached chunk for step 3
+2025-10-12T14:28:33.153Z [debug] [monitor] Step 3 generation for debug-test-1760279309 took 1ms
+2025-10-12T14:28:33.153Z [info] [parallel] ✅ Step 3 COMPLETE in 1ms with 4 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: debug-test-1760279309
+StepId: 3
+Actions: 4
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T14:28:33.154Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T14:28:33.154Z [debug] [parallel] Parallel generation complete: 3/3 successful in 4006ms
+2025-10-12T14:28:33.154Z [debug] [monitor] Completed request debug-test-1760279309 in 4010ms (success: true)
+2025-10-12T14:28:33.154Z [debug] [parallel] Job complete for session debug-test-1760279309
+2025-10-12T14:29:21.747Z [debug] [monitor] Metrics updated:

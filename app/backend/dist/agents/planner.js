@@ -19,20 +19,42 @@ function withTimeout(p, ms, label) {
     ]);
 }
 function fixJsonSyntax(jsonText) {
-    // Common JSON fixes
-    let fixed = jsonText
-        .replace(/,(\s*[}\]])/g, '$1') // Remove trailing commas
-        .replace(/([{,]\s*)(\w+):/g, '$1"$2":') // Quote unquoted keys
-        .replace(/:\s*'([^']*)'/g, ': "$1"') // Replace single quotes with double
-        .replace(/\\n/g, ' ') // Replace newlines with spaces
-        .replace(/\s+/g, ' ') // Normalize whitespace
-        .trim();
-    // Try to balance braces and brackets
+    // ULTRA-ROBUST JSON FIXER - preserves LaTeX and mathematical notation
+    let fixed = jsonText;
+    // 1. Remove markdown code blocks
+    fixed = fixed.replace(/```json|```/gi, '').trim();
+    // 2. CRITICAL: Temporarily escape LaTeX expressions to protect them
+    // Match $...$ patterns (LaTeX inline math) and protect backslashes
+    const latexPatterns = [];
+    fixed = fixed.replace(/\$([^$]+)\$/g, (match) => {
+        latexPatterns.push(match);
+        return `__LATEX_${latexPatterns.length - 1}__`;
+    });
+    // 3. Now safely remove literal backslash-n (newlines) which break JSON
+    fixed = fixed.replace(/\\n/g, ' ');
+    fixed = fixed.replace(/\\t/g, ' ');
+    fixed = fixed.replace(/\\r/g, ' ');
+    // 4. Restore LaTeX patterns
+    latexPatterns.forEach((pattern, idx) => {
+        // Escape backslashes in LaTeX for JSON
+        const escapedPattern = pattern.replace(/\\/g, '\\\\');
+        fixed = fixed.replace(`__LATEX_${idx}__`, escapedPattern);
+    });
+    // 5. Remove trailing commas before } or ]
+    fixed = fixed.replace(/,(\s*[}\]])/g, '$1');
+    // 6. Fix smart quotes and special dashes (do this before other string processing)
+    fixed = fixed.replace(/'/g, "'");
+    fixed = fixed.replace(/"/g, '"');
+    fixed = fixed.replace(/"/g, '"');
+    fixed = fixed.replace(/–/g, '-');
+    fixed = fixed.replace(/—/g, '-');
+    // 7. Remove control characters that break JSON (but not backslashes)
+    fixed = fixed.replace(/[\x00-\x09\x0B-\x1F\x7F]/g, ' ');
+    // 8. Balance braces and brackets
     const openBraces = (fixed.match(/\{/g) || []).length;
     const closeBraces = (fixed.match(/\}/g) || []).length;
     const openBrackets = (fixed.match(/\[/g) || []).length;
     const closeBrackets = (fixed.match(/\]/g) || []).length;
-    // Add missing closing braces/brackets
     for (let i = 0; i < openBraces - closeBraces; i++) {
         fixed += '}';
     }
@@ -85,12 +107,29 @@ Topic: ${query}`;
     const res = await withTimeout(model.generateContent(prompt), DEFAULT_TIMEOUT, 'planner/gemini');
     const t1 = Date.now();
     logger_1.logger.debug(`[planner] Received response from Gemini in ${t1 - t0}ms`);
-    const text = res.response.text();
+    let text = '';
+    try {
+        text = res.response.text();
+    }
+    catch { }
+    if (!text || text.trim().length === 0) {
+        const candidate = res?.response?.candidates?.[0];
+        const parts = candidate?.content?.parts;
+        if (Array.isArray(parts)) {
+            text = parts.map((p) => p?.text || '').join('').trim();
+        }
+    }
+    if (!text || text.trim().length === 0) {
+        throw new Error('Planner: empty LLM response');
+    }
+    // Log raw response for debugging
+    logger_1.logger.debug(`[planner] Raw response (first 500 chars): ${text.slice(0, 500)}...`);
     const jsonStart = text.indexOf('{');
     const jsonEnd = text.lastIndexOf('}');
     if (jsonStart === -1 || jsonEnd === -1)
         throw new Error('Planner: no JSON in response');
     let jsonText = text.slice(jsonStart, jsonEnd + 1).replace(/```json|```/g, '').trim();
+    logger_1.logger.debug(`[planner] Extracted JSON (length: ${jsonText.length})`);
     // Try parsing, if it fails, attempt to fix and retry
     let plan;
     try {
@@ -98,15 +137,25 @@ Topic: ${query}`;
         logger_1.logger.debug('[planner] JSON parsed successfully on first attempt');
     }
     catch (firstError) {
-        logger_1.logger.debug(`[planner] JSON parse failed, attempting to fix: ${firstError}`);
+        logger_1.logger.debug(`[planner] JSON parse failed, attempting to fix: ${firstError.message}`);
+        // Try to log the problematic area
+        const posMatch = firstError.message.match(/position (\d+)/);
+        if (posMatch) {
+            const pos = parseInt(posMatch[1]);
+            const start = Math.max(0, pos - 50);
+            const end = Math.min(jsonText.length, pos + 50);
+            logger_1.logger.debug(`[planner] Problem area around position ${pos}: ...${jsonText.slice(start, end)}...`);
+        }
         const fixedJson = fixJsonSyntax(jsonText);
+        logger_1.logger.debug(`[planner] Fixed JSON (length: ${fixedJson.length})`);
         try {
             plan = JSON.parse(fixedJson);
             logger_1.logger.debug('[planner] JSON parsed successfully after syntax fix');
         }
         catch (secondError) {
-            logger_1.logger.error(`[planner] JSON parse failed completely: ${secondError}`);
-            throw new Error(`Failed to parse planner response: ${secondError}`);
+            logger_1.logger.error(`[planner] JSON parse failed completely: ${secondError.message}`);
+            logger_1.logger.error(`[planner] Failed JSON (first 1000 chars): ${fixedJson.slice(0, 1000)}`);
+            throw new Error(`Failed to parse planner response: ${secondError.message}`);
         }
     }
     if (!plan.title || !plan.subtitle)

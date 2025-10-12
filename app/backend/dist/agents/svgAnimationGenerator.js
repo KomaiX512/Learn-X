@@ -44,6 +44,7 @@ function validateAnimationQuality(svgCode) {
  */
 async function generateSVGAnimation(topic, description, animationType, apiKey) {
     const genAI = new generative_ai_1.GoogleGenerativeAI(apiKey);
+    const TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 90000);
     logger_1.logger.info(`[SVG] Generating ${animationType} for: ${topic}`);
     const model = genAI.getGenerativeModel({
         model: 'gemini-2.5-flash',
@@ -56,11 +57,26 @@ async function generateSVGAnimation(topic, description, animationType, apiKey) {
     });
     const prompt = createAnimationPrompt(topic, description, animationType);
     try {
-        const result = await model.generateContent(prompt);
-        if (!result.response.text()) {
-            throw new Error('Empty response from API');
+        const result = await Promise.race([
+            model.generateContent(prompt),
+            new Promise((_, reject) => setTimeout(() => reject(new Error(`Timeout after ${TIMEOUT}ms`)), TIMEOUT))
+        ]);
+        let raw = '';
+        try {
+            raw = result.response.text();
         }
-        let svgCode = result.response.text();
+        catch { }
+        if (!raw || raw.trim().length === 0) {
+            const candidate = result?.response?.candidates?.[0];
+            const parts = candidate?.content?.parts;
+            if (Array.isArray(parts)) {
+                raw = parts.map((p) => p?.text || '').join('').trim();
+            }
+        }
+        if (!raw || raw.trim().length === 0) {
+            throw new Error('Empty LLM response');
+        }
+        let svgCode = raw;
         // Clean markdown wrappers
         svgCode = svgCode
             .replace(/```xml\n?/g, '')

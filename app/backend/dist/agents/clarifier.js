@@ -23,14 +23,29 @@ async function clarifierAgent(request) {
         const model = genAI.getGenerativeModel({
             model: 'gemini-2.5-flash', // PAID MODEL - NEVER DOWNGRADE
             generationConfig: {
-                temperature: 0.7,
-                responseMimeType: 'application/json'
-            }
+                temperature: 0.7
+            },
+            systemInstruction: 'You are a JSON-only clarifier. Output ONLY a valid JSON object with fields: title, explanation, actions (array). Never include markdown, comments, or any text outside the JSON.'
         });
         const prompt = buildClarificationPrompt(request);
         logger_1.logger.debug('[clarifier] Sending request to Gemini...');
         const result = await model.generateContent(prompt);
-        const response = result.response.text();
+        let response = '';
+        try {
+            response = result.response.text();
+        }
+        catch { }
+        // Fallback: extract from candidate parts if text() is empty
+        if (!response || response.trim().length === 0) {
+            const candidate = result?.response?.candidates?.[0];
+            const parts = candidate?.content?.parts;
+            if (Array.isArray(parts)) {
+                response = parts.map((p) => p?.text || '').join('').trim();
+            }
+        }
+        if (!response || response.trim().length === 0) {
+            throw new Error('Empty LLM response');
+        }
         logger_1.logger.debug(`[clarifier] Raw response length: ${response.length} chars`);
         // Parse and validate response
         const parsed = JSON.parse(response);

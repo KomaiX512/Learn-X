@@ -7,14 +7,16 @@ import { codegenAgent } from './agents/codegen';
 import codegenAgentV2 from './agents/codegenV2';
 import codegenV3 from './agents/codegenV3';
 import { codegenV3WithRetry } from './agents/codegenV3WithRetry';
+import { generateTranscript } from './agents/transcriptGenerator';
 import { compilerRouter } from './compiler/router';
 import { debugAgent } from './agents/debugger';
-import { SessionParams, Plan, RenderChunk } from './types';
+import { SessionParams, Plan, RenderChunk, PlanStep } from './types';
 import { CacheManager } from './services/cache-manager';
 import { PerformanceMonitor } from './services/performance-monitor';
 
 type PlanJobData = { query: string; sessionId: string };
 type GenJobData = { step: any; sessionId: string; prefetch?: boolean };
+type VisualDescription = { visualNumber: number; description: string };
 
 const PLAN_KEY = (sessionId: string) => `session:${sessionId}:plan`;
 const QUERY_KEY = (sessionId: string) => `session:${sessionId}:query`;
@@ -22,6 +24,9 @@ const CURRENT_STEP_KEY = (sessionId: string) => `session:${sessionId}:current_st
 const PARAMS_KEY = (sessionId: string) => `session:${sessionId}:params`;
 const CHUNK_KEY = (sessionId: string, stepId: number) => `session:${sessionId}:step:${stepId}:chunk`;
 const LEARNING_STATE_KEY = (sessionId: string) => `session:${sessionId}:learning_state`;
+
+// Production config: 4 visuals per step
+const VISUALS_PER_STEP = 4;
 
 // Progressive learning timing - NOT USED anymore (immediate emission)
 // Kept for reference only
@@ -32,6 +37,76 @@ const TIMING_BY_COMPLEXITY: { [key: number]: number } = {
   4: 0,   // Immediate
   5: 0    // Immediate
 };
+
+/**
+ * Generate multiple visuals + transcript for a single step
+ * PRODUCTION QUALITY: 4 visuals with detailed transcript
+ */
+async function generateStepVisuals(
+  step: PlanStep,
+  topic: string,
+  sessionId: string
+): Promise<{ actions: any[], transcript: string, visualDescriptions: VisualDescription[] }> {
+  
+  logger.info(`[stepVisuals] Generating ${VISUALS_PER_STEP} visuals for step ${step.id}`);
+  
+  const visualDescriptions: VisualDescription[] = [];
+  const allActions: any[] = [];
+  
+  // Generate 4 visuals in parallel - each is independent API call
+  const visualPromises = Array.from({ length: VISUALS_PER_STEP }, async (_, index) => {
+    const visualNumber = index + 1;
+    logger.info(`[stepVisuals] Starting visual ${visualNumber}/${VISUALS_PER_STEP} for step ${step.id}`);
+    
+    try {
+      // Each visual uses the SAME codegenV3WithRetry - proven to work
+      const result = await codegenV3WithRetry(step, topic);
+      
+      if (!result || !result.actions || result.actions.length === 0) {
+        logger.warn(`[stepVisuals] Visual ${visualNumber} returned no actions`);
+        return null;
+      }
+      
+      // Store description for transcript generation
+      const description = `Animated SVG visualization showing: ${step.desc.substring(0, 100)}`;
+      visualDescriptions.push({ visualNumber, description });
+      
+      logger.info(`[stepVisuals] ✅ Visual ${visualNumber} complete with ${result.actions.length} actions`);
+      return result.actions[0]; // Extract the customSVG action
+      
+    } catch (error: any) {
+      logger.error(`[stepVisuals] Visual ${visualNumber} failed: ${error.message}`);
+      return null;
+    }
+  });
+  
+  // Wait for all visuals to complete
+  const visualResults = await Promise.all(visualPromises);
+  
+  // Filter out nulls and collect successful visuals
+  const successfulVisuals = visualResults.filter(v => v !== null);
+  allActions.push(...successfulVisuals);
+  
+  logger.info(`[stepVisuals] Generated ${successfulVisuals.length}/${VISUALS_PER_STEP} visuals successfully`);
+  
+  // Generate transcript based on visual descriptions
+  let transcript = '';
+  if (visualDescriptions.length > 0) {
+    logger.info(`[stepVisuals] Generating transcript for ${visualDescriptions.length} visuals`);
+    const transcriptResult = await generateTranscript(step, topic, visualDescriptions);
+    transcript = transcriptResult || `Step ${step.id}: ${step.desc}`;
+    logger.info(`[stepVisuals] ✅ Transcript generated (${transcript.length} chars)`);
+  } else {
+    logger.warn(`[stepVisuals] No visuals succeeded, using fallback transcript`);
+    transcript = `Step ${step.id}: ${step.desc}`;
+  }
+  
+  return {
+    actions: allActions,
+    transcript,
+    visualDescriptions
+  };
+}
 
 export async function initOrchestrator(io: IOServer, redis: Redis) {
   // BullMQ requires separate Redis connections for queues and workers
@@ -383,26 +458,31 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
                 io.to(sessionId).emit('progress', {
                   stepId: step.id,
                   status: 'generating',
-                  message: `Generating ${step.tag}: ${step.desc.slice(0, 50)}...`
+                  message: `Generating ${VISUALS_PER_STEP} visuals for ${step.tag}...`
                 });
                 
-                // Generate the step with retry strategy for V3
-                const version = process.env.USE_VISUAL_VERSION || 'v3';
-                logger.info(`[parallel] 🚀 Step ${step.id}: Using ${version} TRUE GENERATION`);
+                // PRODUCTION: Generate 4 visuals + transcript
+                logger.info(`[parallel] 🚀 Step ${step.id}: Generating ${VISUALS_PER_STEP} visuals + transcript`);
                 
-                // Use retry wrapper for V3
-                const code = version === 'v3' ? await codegenV3WithRetry(step, query) : 
-                             version === 'v2' ? await codegenAgentV2(step, query) : 
-                             await codegenAgent(step, query);
+                const { actions, transcript, visualDescriptions } = await generateStepVisuals(step, query, sessionId);
                 
-                // CRITICAL: Handle null from codegen
-                if (!code) {
-                  logger.error(`[parallel] ❌ Step ${step.id} codegen returned null after all retries`);
-                  throw new Error(`Step ${step.id} generation failed after all retry attempts`);
+                // CRITICAL: Handle empty results
+                if (!actions || actions.length === 0) {
+                  logger.error(`[parallel] ❌ Step ${step.id} generated no visuals`);
+                  throw new Error(`Step ${step.id} generation produced no visuals`);
                 }
                 
-                const compiled: RenderChunk = await compilerRouter(code, step.compiler);
-                checked = await debugAgent(compiled);
+                // Build the result chunk with transcript
+                checked = {
+                  type: 'actions',
+                  stepId: step.id,
+                  actions,
+                  transcript, // NEW: Include transcript in emission
+                  meta: {
+                    visualCount: actions.length,
+                    transcriptLength: transcript.length
+                  }
+                } as any;
                 
                 // Cache the result in both places
                 const key = CHUNK_KEY(sessionId, step.id);
@@ -421,10 +501,12 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
               const eventData = { 
                 type: 'actions',
                 actions: checked.actions,
+                transcript: (checked as any).transcript || '', // Include transcript for narration
                 stepId: step.id,
                 step: step, 
                 plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc },
-                totalSteps: plan.steps.length
+                totalSteps: plan.steps.length,
+                meta: (checked as any).meta // Include metadata about visual count
               };
               
               // DEBUGGING: Log room membership

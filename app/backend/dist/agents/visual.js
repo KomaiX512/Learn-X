@@ -6,7 +6,7 @@ const logger_1 = require("../logger");
 const circuit_breaker_1 = require("../services/circuit-breaker");
 const qualityEnforcer_1 = require("./qualityEnforcer");
 const MODEL = 'gemini-2.5-flash'; // Highest RPM model
-const TIMEOUT = 90000; // 90 seconds for RICH QUALITY generation (not speed)
+const TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 90000); // overridable via env
 const BATCH_SIZE = 60; // Generate COMPLETE educational narrative with storytelling
 const MAX_RETRIES = 2; // Allow retries for quality
 // Circuit breaker for Gemini API
@@ -282,7 +282,22 @@ Generate ${requiresLatex ? "WITH LaTeX equations" : ""} ${requiresDiagram ? "WIT
             for (let retry = 0; retry <= MAX_RETRIES; retry++) {
                 try {
                     const res = await geminiBreaker.execute(async () => withTimeout(model.generateContent(prompt), TIMEOUT));
-                    const text = res.response.text().trim();
+                    let text = '';
+                    try {
+                        text = res.response.text().trim();
+                    }
+                    catch { }
+                    // Fallback: extract from candidate parts if text() is empty
+                    if (!text || text.length === 0) {
+                        const candidate = res?.response?.candidates?.[0];
+                        const parts = candidate?.content?.parts;
+                        if (Array.isArray(parts)) {
+                            text = parts.map((p) => p?.text || '').join('').trim();
+                        }
+                    }
+                    if (!text || text.length === 0) {
+                        throw new Error('Empty LLM response');
+                    }
                     // DEBUG: Log first 500 chars of response
                     logger_1.logger.debug('[visual] Gemini response preview: ' + text.substring(0, 500));
                     // Check if latex is in response

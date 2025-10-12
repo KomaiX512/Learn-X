@@ -1,0 +1,386 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 19:33:28 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-12T14:33:28.630Z [debug] NEW Plan worker created
+2025-10-12T14:33:28.630Z [debug] NEW Gen worker created
+2025-10-12T14:33:28.630Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-12T14:33:28.634Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-12T14:33:35.931Z [debug] Received request on /api/query {"body":{"query":"explain how solar panels convert sunlight into electricity","sessionId":"real-test-1760279615"}}
+2025-10-12T14:33:35.931Z [debug] [api] Stored query for session real-test-1760279615: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:35.931Z [debug] [orchestrator] Enqueuing plan for session real-test-1760279615
+2025-10-12T14:33:35.933Z [debug] [orchestrator] Plan job added with id 1 for session real-test-1760279615
+
+──────────────────────────────────────────────────────────────────────
+📋 PLAN WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: real-test-1760279615
+Query: explain how solar panels convert sunlight into electricity
+Time: 2025-10-12T14:33:35.934Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T14:33:35.934Z [debug] [plan] START: session=real-test-1760279615 query=explain how solar panels convert sunlight into electricity
+2025-10-12T14:33:35.934Z [debug] [monitor] Started tracking request real-test-1760279615
+2025-10-12T14:33:35.935Z [debug] [cache] MISS - No cached plan for query: "explain how solar panels convert sunlight into ele..."
+2025-10-12T14:33:35.936Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-12T14:33:35.944Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-12T14:33:54.325Z [debug] [planner] Received response from Gemini in 18390ms
+2025-10-12T14:33:54.325Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Sunlight to Power: How Solar Panels Work",
+  "subtitle": "Discover the fascinating science behind how solar panels transform light into usable electricity in just three steps.",
+  "toc": [
+    {"minute": 1, "title": "The Intuition", "summary": "Sunlight is pure energy; solar panels have a special way to grab it."},
+    {"minute": 2, "title": "How It Works", "summary": "Photons from sunlight knock electrons loose in silicon, creating an electric current."},
+    {"minute": 3,...
+2025-10-12T14:33:54.325Z [debug] [planner] Extracted JSON (length: 2487)
+2025-10-12T14:33:54.325Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-12T14:33:54.325Z [debug] [monitor] Plan generation for real-test-1760279615 took 18391ms
+2025-10-12T14:33:54.326Z [debug] [cache] Cached plan for query: "explain how solar panels convert sunlight into ele..."
+=== NEW STRUCTURED PLAN ===
+Session: real-test-1760279615
+Query: explain how solar panels convert sunlight into electricity
+Plan title: Sunlight to Power: How Solar Panels Work
+Plan subtitle: Discover the fascinating science behind how solar panels transform light into usable electricity in just three steps.
+Plan toc: [
+  {
+    minute: 1,
+    title: 'The Intuition',
+    summary: 'Sunlight is pure energy; solar panels have a special way to grab it.'
+  },
+  {
+    minute: 2,
+    title: 'How It Works',
+    summary: 'Photons from sunlight knock electrons loose in silicon, creating an electric current.'
+  },
+  {
+    minute: 3,
+    title: 'Real Applications',
+    summary: 'This clean energy powers homes, businesses, and even space missions.'
+  }
+]
+Plan steps count: 3
+Step 0: id=1, tag=intuition, desc="Imagine stepping outside on a sunny day and feeling the warmth on your skin. That's pure energy from the sun! Solar panels are designed to capture this light energy, but instead of just warmth, they turn it into something else: *electricity*. Think of a solar panel as a highly specialized catcher's mitt for tiny, super-fast particles of light, ready to transform their impact into power."
+Step 1: id=2, tag=mechanics, desc="The 'magic' happens inside the solar panel's *photovoltaic cells*, made of special materials like *silicon* (a semiconductor). When a particle of sunlight, called a *photon*, strikes the silicon, it literally kicks loose a tiny charged particle called an *electron*. This isn't just one electron; billions of photons striking the panel each second free billions of electrons. These freed electrons are then directed to flow in a specific direction, creating an electric current – just like water flowing through a pipe when you open a tap. This flow is the *direct current (DC)* electricity we need."
+Step 2: id=3, tag=applications, desc="This ingenious photon-to-electron trick has massive real-world impact. The DC electricity generated by a single solar panel is then converted into *alternating current (AC)*, which is what powers our homes, schools, and businesses. You see these panels on rooftops, in vast *solar farms* generating power for entire cities, and even silently powering satellites in space. Solar energy is a clean, renewable powerhouse, drastically reducing our reliance on fossil fuels and lighting the way to a sustainable future."
+=== END NEW STRUCTURED PLAN ===
+2025-10-12T14:33:54.326Z [debug] [plan] OK: session=real-test-1760279615 plan received with 3 steps
+2025-10-12T14:33:54.327Z [debug] [plan] Emitted plan event to session real-test-1760279615
+2025-10-12T14:33:54.327Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-12T14:33:54.328Z [debug] [plan] END: session=real-test-1760279615
+
+====================================================================================================
+🔥 PARALLEL WORKER CALLED
+====================================================================================================
+Job ID: 1
+Job name: parallel-generate
+Job data keys: [ 'plan', 'sessionId', 'query' ]
+====================================================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+⚡ PARALLEL WORKER STARTED
+──────────────────────────────────────────────────────────────────────
+Session: real-test-1760279615
+Query: explain how solar panels convert sunlight into electricity
+Steps to generate: 3
+Time: 2025-10-12T14:33:54.329Z
+──────────────────────────────────────────────────────────────────────
+2025-10-12T14:33:54.329Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: real-test-1760279615)
+2025-10-12T14:33:54.329Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-12T14:33:54.330Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-12T14:33:54.330Z [info] [parallel] 🚀 Step 1: Generating 4 visuals + transcript
+2025-10-12T14:33:54.330Z [info] [stepVisuals] Generating 4 visuals for step 1
+2025-10-12T14:33:54.330Z [info] [stepVisuals] Starting visual 1/4 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3] Generating step 1: Imagine stepping outside on a sunny day and feeling the warmth on your skin. That's pure energy from the sun! Solar panels are designed to capture this light energy, but instead of just warmth, they turn it into something else: *electricity*. Think of a solar panel as a highly specialized catcher's mitt for tiny, super-fast particles of light, ready to transform their impact into power.
+2025-10-12T14:33:54.330Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:54.330Z [debug] [codegenV3] Prompt length: 755 chars
+2025-10-12T14:33:54.330Z [info] [stepVisuals] Starting visual 2/4 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3] Generating step 1: Imagine stepping outside on a sunny day and feeling the warmth on your skin. That's pure energy from the sun! Solar panels are designed to capture this light energy, but instead of just warmth, they turn it into something else: *electricity*. Think of a solar panel as a highly specialized catcher's mitt for tiny, super-fast particles of light, ready to transform their impact into power.
+2025-10-12T14:33:54.330Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:54.330Z [debug] [codegenV3] Prompt length: 755 chars
+2025-10-12T14:33:54.330Z [info] [stepVisuals] Starting visual 3/4 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:33:54.330Z [info] [codegenV3] Generating step 1: Imagine stepping outside on a sunny day and feeling the warmth on your skin. That's pure energy from the sun! Solar panels are designed to capture this light energy, but instead of just warmth, they turn it into something else: *electricity*. Think of a solar panel as a highly specialized catcher's mitt for tiny, super-fast particles of light, ready to transform their impact into power.
+2025-10-12T14:33:54.331Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:54.331Z [debug] [codegenV3] Prompt length: 755 chars
+2025-10-12T14:33:54.331Z [info] [stepVisuals] Starting visual 4/4 for step 1
+2025-10-12T14:33:54.331Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-12T14:33:54.331Z [info] [codegenV3] Generating step 1: Imagine stepping outside on a sunny day and feeling the warmth on your skin. That's pure energy from the sun! Solar panels are designed to capture this light energy, but instead of just warmth, they turn it into something else: *electricity*. Think of a solar panel as a highly specialized catcher's mitt for tiny, super-fast particles of light, ready to transform their impact into power.
+2025-10-12T14:33:54.331Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:54.331Z [debug] [codegenV3] Prompt length: 755 chars
+2025-10-12T14:33:56.333Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-12T14:33:56.333Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-12T14:33:56.333Z [info] [parallel] 🚀 Step 2: Generating 4 visuals + transcript
+2025-10-12T14:33:56.333Z [info] [stepVisuals] Generating 4 visuals for step 2
+2025-10-12T14:33:56.333Z [info] [stepVisuals] Starting visual 1/4 for step 2
+2025-10-12T14:33:56.333Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:33:56.333Z [info] [codegenV3] Generating step 2: The 'magic' happens inside the solar panel's *photovoltaic cells*, made of special materials like *silicon* (a semiconductor). When a particle of sunlight, called a *photon*, strikes the silicon, it literally kicks loose a tiny charged particle called an *electron*. This isn't just one electron; billions of photons striking the panel each second free billions of electrons. These freed electrons are then directed to flow in a specific direction, creating an electric current – just like water flowing through a pipe when you open a tap. This flow is the *direct current (DC)* electricity we need.
+2025-10-12T14:33:56.333Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:56.333Z [debug] [codegenV3] Prompt length: 965 chars
+2025-10-12T14:33:56.333Z [info] [stepVisuals] Starting visual 2/4 for step 2
+2025-10-12T14:33:56.333Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:33:56.333Z [info] [codegenV3] Generating step 2: The 'magic' happens inside the solar panel's *photovoltaic cells*, made of special materials like *silicon* (a semiconductor). When a particle of sunlight, called a *photon*, strikes the silicon, it literally kicks loose a tiny charged particle called an *electron*. This isn't just one electron; billions of photons striking the panel each second free billions of electrons. These freed electrons are then directed to flow in a specific direction, creating an electric current – just like water flowing through a pipe when you open a tap. This flow is the *direct current (DC)* electricity we need.
+2025-10-12T14:33:56.333Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:56.333Z [debug] [codegenV3] Prompt length: 965 chars
+2025-10-12T14:33:56.334Z [info] [stepVisuals] Starting visual 3/4 for step 2
+2025-10-12T14:33:56.334Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:33:56.334Z [info] [codegenV3] Generating step 2: The 'magic' happens inside the solar panel's *photovoltaic cells*, made of special materials like *silicon* (a semiconductor). When a particle of sunlight, called a *photon*, strikes the silicon, it literally kicks loose a tiny charged particle called an *electron*. This isn't just one electron; billions of photons striking the panel each second free billions of electrons. These freed electrons are then directed to flow in a specific direction, creating an electric current – just like water flowing through a pipe when you open a tap. This flow is the *direct current (DC)* electricity we need.
+2025-10-12T14:33:56.334Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:56.334Z [debug] [codegenV3] Prompt length: 965 chars
+2025-10-12T14:33:56.334Z [info] [stepVisuals] Starting visual 4/4 for step 2
+2025-10-12T14:33:56.334Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-12T14:33:56.334Z [info] [codegenV3] Generating step 2: The 'magic' happens inside the solar panel's *photovoltaic cells*, made of special materials like *silicon* (a semiconductor). When a particle of sunlight, called a *photon*, strikes the silicon, it literally kicks loose a tiny charged particle called an *electron*. This isn't just one electron; billions of photons striking the panel each second free billions of electrons. These freed electrons are then directed to flow in a specific direction, creating an electric current – just like water flowing through a pipe when you open a tap. This flow is the *direct current (DC)* electricity we need.
+2025-10-12T14:33:56.334Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:56.334Z [debug] [codegenV3] Prompt length: 965 chars
+2025-10-12T14:33:58.337Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-12T14:33:58.337Z [info] [parallel] 🚀 Step 3: Generating 4 visuals + transcript
+2025-10-12T14:33:58.337Z [info] [stepVisuals] Generating 4 visuals for step 3
+2025-10-12T14:33:58.337Z [info] [stepVisuals] Starting visual 1/4 for step 3
+2025-10-12T14:33:58.338Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:33:58.338Z [info] [codegenV3] Generating step 3: This ingenious photon-to-electron trick has massive real-world impact. The DC electricity generated by a single solar panel is then converted into *alternating current (AC)*, which is what powers our homes, schools, and businesses. You see these panels on rooftops, in vast *solar farms* generating power for entire cities, and even silently powering satellites in space. Solar energy is a clean, renewable powerhouse, drastically reducing our reliance on fossil fuels and lighting the way to a sustainable future.
+2025-10-12T14:33:58.338Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:58.338Z [debug] [codegenV3] Prompt length: 880 chars
+2025-10-12T14:33:58.338Z [info] [stepVisuals] Starting visual 2/4 for step 3
+2025-10-12T14:33:58.338Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:33:58.338Z [info] [codegenV3] Generating step 3: This ingenious photon-to-electron trick has massive real-world impact. The DC electricity generated by a single solar panel is then converted into *alternating current (AC)*, which is what powers our homes, schools, and businesses. You see these panels on rooftops, in vast *solar farms* generating power for entire cities, and even silently powering satellites in space. Solar energy is a clean, renewable powerhouse, drastically reducing our reliance on fossil fuels and lighting the way to a sustainable future.
+2025-10-12T14:33:58.339Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:58.339Z [debug] [codegenV3] Prompt length: 880 chars
+2025-10-12T14:33:58.339Z [info] [stepVisuals] Starting visual 3/4 for step 3
+2025-10-12T14:33:58.339Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:33:58.339Z [info] [codegenV3] Generating step 3: This ingenious photon-to-electron trick has massive real-world impact. The DC electricity generated by a single solar panel is then converted into *alternating current (AC)*, which is what powers our homes, schools, and businesses. You see these panels on rooftops, in vast *solar farms* generating power for entire cities, and even silently powering satellites in space. Solar energy is a clean, renewable powerhouse, drastically reducing our reliance on fossil fuels and lighting the way to a sustainable future.
+2025-10-12T14:33:58.339Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:58.339Z [debug] [codegenV3] Prompt length: 880 chars
+2025-10-12T14:33:58.339Z [info] [stepVisuals] Starting visual 4/4 for step 3
+2025-10-12T14:33:58.339Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-12T14:33:58.339Z [info] [codegenV3] Generating step 3: This ingenious photon-to-electron trick has massive real-world impact. The DC electricity generated by a single solar panel is then converted into *alternating current (AC)*, which is what powers our homes, schools, and businesses. You see these panels on rooftops, in vast *solar farms* generating power for entire cities, and even silently powering satellites in space. Solar energy is a clean, renewable powerhouse, drastically reducing our reliance on fossil fuels and lighting the way to a sustainable future.
+2025-10-12T14:33:58.339Z [info] [codegenV3] Topic: "explain how solar panels convert sunlight into electricity"
+2025-10-12T14:33:58.339Z [debug] [codegenV3] Prompt length: 880 chars
+2025-10-12T14:34:28.629Z [debug] [monitor] Metrics updated:
+2025-10-12T14:34:30.960Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:30.960Z [debug] [codegenV3] Received 3419 chars from API
+2025-10-12T14:34:30.960Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:30.960Z [info] [codegenV3] ✅ Generated SVG in 32.62s (3419 chars)
+2025-10-12T14:34:30.960Z [info] [codegenV3] 🎬 ANIMATIONS: 14 total (<animate>: 8, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:34:30.960Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=14
+2025-10-12T14:34:30.960Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:30.961Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:30.961Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:34:31.294Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:31.294Z [debug] [codegenV3] Received 4139 chars from API
+2025-10-12T14:34:31.294Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:31.294Z [info] [codegenV3] ✅ Generated SVG in 32.95s (4139 chars)
+2025-10-12T14:34:31.294Z [info] [codegenV3] 🎬 ANIMATIONS: 16 total (<animate>: 8, <animateMotion>: 7, <animateTransform>: 1)
+2025-10-12T14:34:31.294Z [info] [codegenV3] 📊 CONTENT: labels=17, shapes=13
+2025-10-12T14:34:31.294Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:31.294Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:31.294Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:34:32.942Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:32.942Z [debug] [codegenV3] Received 3901 chars from API
+2025-10-12T14:34:32.942Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:32.942Z [info] [codegenV3] ✅ Generated SVG in 34.60s (3901 chars)
+2025-10-12T14:34:32.942Z [info] [codegenV3] 🎬 ANIMATIONS: 17 total (<animate>: 9, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-12T14:34:32.942Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=24
+2025-10-12T14:34:32.942Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:32.942Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:32.942Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:34:36.928Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:36.928Z [debug] [codegenV3] Received 3165 chars from API
+2025-10-12T14:34:36.928Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:36.928Z [info] [codegenV3] ✅ Generated SVG in 42.60s (3165 chars)
+2025-10-12T14:34:36.928Z [info] [codegenV3] 🎬 ANIMATIONS: 14 total (<animate>: 8, <animateMotion>: 5, <animateTransform>: 1)
+2025-10-12T14:34:36.928Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=10
+2025-10-12T14:34:36.928Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:36.929Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:34:36.929Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:36.929Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:34:38.349Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:38.349Z [debug] [codegenV3] Received 3011 chars from API
+2025-10-12T14:34:38.349Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:38.349Z [info] [codegenV3] ✅ Generated SVG in 44.02s (3011 chars)
+2025-10-12T14:34:38.349Z [info] [codegenV3] 🎬 ANIMATIONS: 15 total (<animate>: 10, <animateMotion>: 5, <animateTransform>: 0)
+2025-10-12T14:34:38.349Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=8
+2025-10-12T14:34:38.349Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:38.349Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:34:38.349Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:38.349Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:34:47.033Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:47.033Z [debug] [codegenV3] Received 3862 chars from API
+2025-10-12T14:34:47.033Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:47.033Z [info] [codegenV3] ✅ Generated SVG in 50.70s (3862 chars)
+2025-10-12T14:34:47.033Z [info] [codegenV3] 🎬 ANIMATIONS: 19 total (<animate>: 13, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:34:47.033Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=8
+2025-10-12T14:34:47.033Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:47.033Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:47.033Z [info] [stepVisuals] ✅ Visual 1 complete with 1 actions
+2025-10-12T14:34:48.505Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:48.505Z [debug] [codegenV3] Received 3816 chars from API
+2025-10-12T14:34:48.505Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:48.505Z [info] [codegenV3] ✅ Generated SVG in 50.17s (3816 chars)
+2025-10-12T14:34:48.505Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 12, <animateMotion>: 9, <animateTransform>: 0)
+2025-10-12T14:34:48.505Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=16
+2025-10-12T14:34:48.505Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:48.505Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:48.505Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:34:48.505Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:34:48.505Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:34:48.506Z [info] [transcript] Generating for step 3 with 4 visuals
+2025-10-12T14:34:48.506Z [debug] [transcript] Prompt length: 1498 chars
+2025-10-12T14:34:48.935Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:34:48.935Z [debug] [codegenV3] Received 3806 chars from API
+2025-10-12T14:34:48.935Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:34:48.935Z [info] [codegenV3] ✅ Generated SVG in 54.60s (3806 chars)
+2025-10-12T14:34:48.935Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 12, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-12T14:34:48.935Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=15
+2025-10-12T14:34:48.935Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:34:48.935Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:34:48.935Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:34:48.935Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:34:59.936Z [info] [transcript] ✅ Generated 1406 chars
+2025-10-12T14:34:59.936Z [info] [stepVisuals] ✅ Transcript generated (1406 chars)
+2025-10-12T14:34:59.936Z [debug] [cache] Cached chunk for query step 3
+2025-10-12T14:34:59.937Z [debug] [monitor] Step 3 generation for real-test-1760279615 took 61600ms
+2025-10-12T14:34:59.937Z [info] [parallel] ✅ Step 3 COMPLETE in 61600ms with 4 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: real-test-1760279615
+StepId: 3
+Actions: 4
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T14:34:59.937Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-12T14:35:07.701Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:35:07.701Z [debug] [codegenV3] Received 2449 chars from API
+2025-10-12T14:35:07.701Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:35:07.701Z [info] [codegenV3] ✅ Generated SVG in 71.37s (2449 chars)
+2025-10-12T14:35:07.701Z [info] [codegenV3] 🎬 ANIMATIONS: 12 total (<animate>: 6, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:35:07.701Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=9
+2025-10-12T14:35:07.701Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:35:07.701Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:35:07.701Z [info] [stepVisuals] ✅ Visual 2 complete with 1 actions
+2025-10-12T14:35:11.599Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:35:11.599Z [debug] [codegenV3] Received 3743 chars from API
+2025-10-12T14:35:11.599Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:35:11.599Z [info] [codegenV3] ✅ Generated SVG in 75.27s (3743 chars)
+2025-10-12T14:35:11.599Z [info] [codegenV3] 🎬 ANIMATIONS: 18 total (<animate>: 12, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-12T14:35:11.599Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=10
+2025-10-12T14:35:11.599Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:35:11.599Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:35:11.599Z [info] [stepVisuals] ✅ Visual 3 complete with 1 actions
+2025-10-12T14:35:19.882Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:35:19.882Z [debug] [codegenV3] Received 4258 chars from API
+2025-10-12T14:35:19.882Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:35:19.882Z [info] [codegenV3] ✅ Generated SVG in 83.55s (4258 chars)
+2025-10-12T14:35:19.882Z [info] [codegenV3] 🎬 ANIMATIONS: 25 total (<animate>: 15, <animateMotion>: 10, <animateTransform>: 0)
+2025-10-12T14:35:19.882Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=14
+2025-10-12T14:35:19.882Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:35:19.882Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:35:19.882Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:35:19.882Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:35:19.882Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:35:19.882Z [info] [transcript] Generating for step 2 with 4 visuals
+2025-10-12T14:35:19.883Z [debug] [transcript] Prompt length: 1583 chars
+2025-10-12T14:35:23.269Z [debug] [codegenV3] Finish reason: STOP
+2025-10-12T14:35:23.269Z [debug] [codegenV3] Received 6140 chars from API
+2025-10-12T14:35:23.269Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-12T14:35:23.269Z [info] [codegenV3] ✅ Generated SVG in 88.94s (6140 chars)
+2025-10-12T14:35:23.269Z [info] [codegenV3] 🎬 ANIMATIONS: 46 total (<animate>: 33, <animateMotion>: 13, <animateTransform>: 0)
+2025-10-12T14:35:23.270Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=17
+2025-10-12T14:35:23.270Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-12T14:35:23.270Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-12T14:35:23.270Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-12T14:35:23.270Z [info] [stepVisuals] ✅ Visual 4 complete with 1 actions
+2025-10-12T14:35:23.270Z [info] [stepVisuals] Generated 4/4 visuals successfully
+2025-10-12T14:35:23.270Z [info] [stepVisuals] Generating transcript for 4 visuals
+2025-10-12T14:35:23.270Z [info] [transcript] Generating for step 1 with 4 visuals
+2025-10-12T14:35:23.270Z [debug] [transcript] Prompt length: 1373 chars
+2025-10-12T14:35:28.633Z [debug] [monitor] Metrics updated:
+2025-10-12T14:35:28.665Z [info] [transcript] ✅ Generated 1598 chars
+2025-10-12T14:35:28.665Z [info] [stepVisuals] ✅ Transcript generated (1598 chars)
+2025-10-12T14:35:28.666Z [debug] [cache] Cached chunk for query step 2
+2025-10-12T14:35:28.666Z [debug] [monitor] Step 2 generation for real-test-1760279615 took 92333ms
+2025-10-12T14:35:28.666Z [info] [parallel] ✅ Step 2 COMPLETE in 92333ms with 4 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: real-test-1760279615
+StepId: 2
+Actions: 4
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T14:35:28.667Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-12T14:35:34.768Z [info] [transcript] ✅ Generated 1302 chars
+2025-10-12T14:35:34.768Z [info] [stepVisuals] ✅ Transcript generated (1302 chars)
+2025-10-12T14:35:34.769Z [debug] [cache] Cached chunk for query step 1
+2025-10-12T14:35:34.769Z [debug] [monitor] Step 1 generation for real-test-1760279615 took 100440ms
+2025-10-12T14:35:34.769Z [info] [parallel] ✅ Step 1 COMPLETE in 100440ms with 4 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: real-test-1760279615
+StepId: 1
+Actions: 4
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-12T14:35:34.769Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-12T14:35:34.769Z [debug] [parallel] Parallel generation complete: 3/3 successful in 100440ms
+2025-10-12T14:35:34.769Z [debug] [monitor] Completed request real-test-1760279615 in 118835ms (success: true)
+2025-10-12T14:35:34.769Z [debug] [parallel] Job complete for session real-test-1760279615
