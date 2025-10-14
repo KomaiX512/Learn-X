@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <!-- Title -->
+    <text x="400" y="40" font-family="Arial, sans-serif" font-size="28" fill="white" text-anchor="middle">DNA Replication</text>
+
+    <!-- DNA Template Strands (White) - Unwinding animation -->
+    <!-- These two paths represent the original DNA double helix unwinding -->
+    <path id="templateStrandLeft" fill="none" stroke="white" stroke-width="4" stroke-linecap="round">
+        <animate attributeName="d" dur="6s" repeatCount="indefinite"
+                 from="M 390 100 C 360 150, 440 250, 390 300 C 360 350, 440 450, 390 500"
+                 to="M 350 100 C 320 150, 320 250, 350 300 C 380 350, 380 450, 350 500" />
+    </path>
+    <path id="templateStrandRight" fill="none" stroke="white" stroke-width="4" stroke-linecap="round">
+        <animate attributeName="d" dur="6s" repeatCount="indefinite"
+                 from="M 410 100 C 440 150, 360 250, 410 300 C 440 350, 360 450, 410 500"
+                 to="M 450 100 C 480 150, 480 250, 450 300 C 420 350, 420 450, 450 500" />
+    </path>
+
+    <!-- Labels for Template Strands -->
+    <text x="250" y="150" font-family="Arial, sans-serif" font-size="16" fill="white">Template Strands</text>
+    <text x="550" y="150" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="end">Template Strands</text>
+
+    <!-- Replication Fork (Helicase) - A yellow triangle moving down -->
+    <g id="replicationForkGroup">
+        <polygon points="390,100 410,100 400,120" fill="yellow" stroke="none"/>
+        <text x="400" y="80" font-family="Arial, sans-serif" font-size="16" fill="yellow" text-anchor="middle">Helicase</text>
+        <animateTransform attributeName="transform"
+                          type="translate"
+                          from="0 0"
+                          to="0 400"
+                          dur="6s" repeatCount="indefinite" />
+    </g>
+
+    <!-- New Strands (Cyan) - Animated with stroke-dashoffset to simulate growth -->
+    <!-- These paths are slightly offset from the fully unwound template strands -->
+    <path id="newStrandLeft" fill="none" stroke="cyan" stroke-width="4" stroke-linecap="round"
+          d="M 330 100 C 300 150, 300 250, 330 300 C 360 350, 360 450, 330 500">
+        <!-- Path length estimate: ~500 units -->
+        <animate attributeName="stroke-dasharray" values="0 500; 500 0" dur="6s" repeatCount="indefinite" begin="0s"/>
+        <animate attributeName="stroke-dashoffset" values="500; 0" dur="6s" repeatCount="indefinite" begin="0s"/>
+    </path>
+    <path id="newStrandRight" fill="none" stroke="cyan" stroke-width="4" stroke-linecap="round"
+          d="M 470 100 C 500 150, 500 250, 470 300 C 440 350, 440 450, 470 500">
+        <!-- Path length estimate: ~500 units -->
+        <animate attributeName="stroke-dasharray" values="0 500; 500 0" dur="6s" repeatCount="indefinite" begin="0s"/>
+        <animate attributeName="stroke-dashoffset" values="500; 0" dur="6s" repeatCount="indefinite" begin="0s"/>
+    </path>
+
+    <!-- Labels for New Strands -->
+    <text x="250" y="450" font-family="Arial, sans-serif" font-size="16" fill="cyan">New Strands</text>
+    <text x="550" y="450" font-family="Arial, sans-serif" font-size="16" fill="cyan" text-anchor="end">New Strands</text>
+
+    <!-- DNA Polymerase Label (Green) - Indicates enzyme responsible for synthesis -->
+    <text x="400" y="550" font-family="Arial, sans-serif" font-size="16" fill="green" text-anchor="middle">DNA Polymerase</text>
+
+    <!-- Arrows indicating direction of synthesis (5' to 3') -->
+    <!-- Left strand synthesis arrow -->
+    <g>
+        <path d="M 330 150 L 330 170 M 325 165 L 330 170 L 335 165" stroke="red" stroke-width="2" fill="none"/>
+        <text x="340" y="160" font-family="Arial, sans-serif" font-size="14" fill="red">5' -> 3'</text>
+        <animateMotion path="M 0 0 L 0 300" dur="6s" repeatCount="indefinite" />
+    </g>
+    <!-- Right strand synthesis arrow -->
+    <g>
+        <path d="M 470 150 L 470 170 M 465 165 L 470 170 L 475 165" stroke="red" stroke-width="2" fill="none"/>
+        <text x="460" y="160" font-family="Arial, sans-serif" font-size="14" fill="red" text-anchor="end">5' -> 3'</text>
+        <animateMotion path="M 0 0 L 0 300" dur="6s" repeatCount="indefinite" />
+    </g>
+
+</svg>

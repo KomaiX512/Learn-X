@@ -9453,3 +9453,1573 @@
 2025-10-14T08:11:29.506Z [debug] [monitor] Completed request af60b662-7643-4129-a4b2-a614cbe7e80a in 441967ms (success: true)
 2025-10-14T08:11:29.506Z [debug] [parallel] Job complete for session af60b662-7643-4129-a4b2-a614cbe7e80a
 2025-10-14T08:11:53.080Z [debug] [monitor] Metrics updated:
+2025-10-14T11:38:25.653Z [debug] NEW Plan worker created
+2025-10-14T11:38:25.654Z [debug] NEW Gen worker created
+2025-10-14T11:38:25.654Z [debug] NEW Parallel worker created
+2025-10-14T11:38:25.659Z [debug] Server listening on port 8000
+2025-10-14T11:38:25.682Z [debug] NEW Plan worker created
+2025-10-14T11:38:25.689Z [debug] NEW Plan worker created
+2025-10-14T11:38:25.726Z [debug] NEW Plan worker created
+2025-10-14T11:39:18.298Z [debug] NEW Plan worker created
+2025-10-14T11:39:18.299Z [debug] NEW Gen worker created
+2025-10-14T11:39:18.299Z [debug] NEW Parallel worker created
+2025-10-14T11:39:18.303Z [debug] Server listening on port 8000
+2025-10-14T11:39:18.520Z [debug] NEW Plan worker created
+2025-10-14T11:39:49.640Z [debug] NEW Plan worker created
+2025-10-14T11:39:49.641Z [debug] NEW Gen worker created
+2025-10-14T11:39:49.641Z [debug] NEW Parallel worker created
+2025-10-14T11:39:49.644Z [debug] Server listening on port 8000
+2025-10-14T11:40:47.458Z [debug] [socket] New connection: Y-Z6X8dUuadc8oIvAAAB
+2025-10-14T11:40:47.459Z [debug] [socket] Socket Y-Z6X8dUuadc8oIvAAAB joined session 8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:40:47.459Z [debug] [socket] Socket Y-Z6X8dUuadc8oIvAAAB is now in rooms: Y-Z6X8dUuadc8oIvAAAB, 8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:40:47.460Z [debug] [socket] Socket Y-Z6X8dUuadc8oIvAAAB joined session 8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:40:47.460Z [debug] [socket] Socket Y-Z6X8dUuadc8oIvAAAB is now in rooms: Y-Z6X8dUuadc8oIvAAAB, 8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:40:47.577Z [debug] Received request on /api/query {"body":{"query":"teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications","sessionId":"8817e17e-5e9f-477c-80f3-db955c0e9ffa"}}
+2025-10-14T11:40:47.577Z [debug] [api] Stored query for session 8817e17e-5e9f-477c-80f3-db955c0e9ffa: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:40:47.577Z [debug] [orchestrator] Enqueuing plan for session 8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:40:47.580Z [debug] [orchestrator] Plan job added with id 4 for session 8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:40:47.583Z [debug] [plan] START: session=8817e17e-5e9f-477c-80f3-db955c0e9ffa query=teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications
+2025-10-14T11:40:47.583Z [debug] [monitor] Started tracking request 8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:40:47.584Z [debug] [cache] MISS - No cached plan for query: "teach me about the LTI (linear time invarient) sys..."
+2025-10-14T11:40:47.584Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T11:40:47.595Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T11:40:49.644Z [debug] [monitor] Metrics updated:
+2025-10-14T11:41:07.323Z [debug] [planner] Received response from Gemini in 19739ms
+2025-10-14T11:41:07.323Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Unlocking LTI Systems: Predictable Worlds",
+  "subtitle": "Discover how Linear Time-Invariant (LTI) systems work, why they're predictable, and their surprising real-world applications.",
+  "toc": [
+    {
+      "minute": 1,
+      "title": "The Intuition",
+      "summary": "Understand systems that are fair (linear) and consistent (time-invariant)."
+    },
+    {
+      "minute": 2,
+      "title": "How It Works",
+      "summary": "Learn about impulse response and convolution – t...
+2025-10-14T11:41:07.323Z [debug] [planner] Extracted JSON (length: 2984)
+2025-10-14T11:41:07.324Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T11:41:07.324Z [debug] [monitor] Plan generation for 8817e17e-5e9f-477c-80f3-db955c0e9ffa took 19741ms
+2025-10-14T11:41:07.324Z [debug] [cache] Cached plan for query: "teach me about the LTI (linear time invarient) sys..."
+2025-10-14T11:41:07.325Z [debug] [plan] OK: session=8817e17e-5e9f-477c-80f3-db955c0e9ffa plan received with 3 steps
+2025-10-14T11:41:07.326Z [debug] [plan] Emitted plan event to session 8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:41:07.326Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-14T11:41:07.327Z [debug] [plan] END: session=8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:41:07.328Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 8817e17e-5e9f-477c-80f3-db955c0e9ffa)
+2025-10-14T11:41:07.328Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-14T11:41:07.329Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T11:41:07.329Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations
+2025-10-14T11:41:07.329Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 1
+2025-10-14T11:41:07.329Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T11:41:07.329Z [info] [notes] ✅ Using AI-generated notesSubtopic: "LTI System Intuition"
+2025-10-14T11:41:07.329Z [info] [notes] 📚 Notes Subtopic: "LTI System Intuition"
+2025-10-14T11:41:07.329Z [info] [notes] 🎬 Visual Description: "Imagine a perfectly consistent 'sound chamber' where the rules never change. If ..."
+2025-10-14T11:41:07.329Z [info] [notes] 🎯 Starting ADAPTIVE notes generation with 5 retry attempts
+2025-10-14T11:41:07.329Z [info] [notes] 🎛️  Temperature strategy: 0.7 → 1.2
+2025-10-14T11:41:07.329Z [info] [notes] 📝 Attempt 1/5 (temp: 0.70)
+2025-10-14T11:41:07.329Z [info] [notes] Generating SVG keynote for step 1
+2025-10-14T11:41:07.329Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:07.329Z [info] [notes] Subtopic: "LTI System Intuition"
+2025-10-14T11:41:07.329Z [debug] [notes] Using temperature: 0.7
+2025-10-14T11:41:07.329Z [debug] [notes] Prompt length: 3884 chars
+2025-10-14T11:41:07.329Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T11:41:07.329Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T11:41:07.330Z [info] [codegenV3] Generating step 1: Imagine a perfectly consistent 'sound chamber' where the rules never change. If you make a small sound, you get a predictable echo. If you make that sound twice as loud, the echo is exactly twice as loud (that's 'linearity'). Now, if you make the exact same sound an hour later, the echo pattern is still identical, just shifted in time (that's 'time-invariance'). This predictable, reliable behavior is the core intuition of an LTI system – it always plays fair and never changes its rules.
+2025-10-14T11:41:07.330Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:07.330Z [debug] [codegenV3] Prompt length: 1238 chars
+2025-10-14T11:41:07.330Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T11:41:07.330Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T11:41:07.330Z [info] [codegenV3] Generating step 1: Imagine a perfectly consistent 'sound chamber' where the rules never change. If you make a small sound, you get a predictable echo. If you make that sound twice as loud, the echo is exactly twice as loud (that's 'linearity'). Now, if you make the exact same sound an hour later, the echo pattern is still identical, just shifted in time (that's 'time-invariance'). This predictable, reliable behavior is the core intuition of an LTI system – it always plays fair and never changes its rules.
+2025-10-14T11:41:07.330Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:07.330Z [debug] [codegenV3] Prompt length: 1238 chars
+2025-10-14T11:41:07.330Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T11:41:07.330Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T11:41:07.330Z [info] [codegenV3] Generating step 1: Imagine a perfectly consistent 'sound chamber' where the rules never change. If you make a small sound, you get a predictable echo. If you make that sound twice as loud, the echo is exactly twice as loud (that's 'linearity'). Now, if you make the exact same sound an hour later, the echo pattern is still identical, just shifted in time (that's 'time-invariance'). This predictable, reliable behavior is the core intuition of an LTI system – it always plays fair and never changes its rules.
+2025-10-14T11:41:07.330Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:07.330Z [debug] [codegenV3] Prompt length: 1238 chars
+2025-10-14T11:41:07.330Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T11:41:07.330Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T11:41:07.330Z [info] [codegenV3] Generating step 1: Imagine a perfectly consistent 'sound chamber' where the rules never change. If you make a small sound, you get a predictable echo. If you make that sound twice as loud, the echo is exactly twice as loud (that's 'linearity'). Now, if you make the exact same sound an hour later, the echo pattern is still identical, just shifted in time (that's 'time-invariance'). This predictable, reliable behavior is the core intuition of an LTI system – it always plays fair and never changes its rules.
+2025-10-14T11:41:07.330Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:07.330Z [debug] [codegenV3] Prompt length: 1238 chars
+2025-10-14T11:41:07.330Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T11:41:09.331Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-14T11:41:09.332Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-14T11:41:09.333Z [info] [parallel] 🚀 Step 2: Generating notes + 4 animations
+2025-10-14T11:41:09.333Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 2
+2025-10-14T11:41:09.333Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 2
+2025-10-14T11:41:09.334Z [info] [notes] ✅ Using AI-generated notesSubtopic: "Impulse Response, Convolution"
+2025-10-14T11:41:09.334Z [info] [notes] 📚 Notes Subtopic: "Impulse Response, Convolution"
+2025-10-14T11:41:09.334Z [info] [notes] 🎬 Visual Description: "How do we analyze such a predictable chamber? We give it the simplest possible '..."
+2025-10-14T11:41:09.334Z [info] [notes] 🎯 Starting ADAPTIVE notes generation with 5 retry attempts
+2025-10-14T11:41:09.334Z [info] [notes] 🎛️  Temperature strategy: 0.7 → 1.2
+2025-10-14T11:41:09.334Z [info] [notes] 📝 Attempt 1/5 (temp: 0.70)
+2025-10-14T11:41:09.334Z [info] [notes] Generating SVG keynote for step 2
+2025-10-14T11:41:09.334Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:09.334Z [info] [notes] Subtopic: "Impulse Response, Convolution"
+2025-10-14T11:41:09.334Z [debug] [notes] Using temperature: 0.7
+2025-10-14T11:41:09.334Z [debug] [notes] Prompt length: 3893 chars
+2025-10-14T11:41:09.334Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 2
+2025-10-14T11:41:09.334Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T11:41:09.334Z [info] [codegenV3] Generating step 2: How do we analyze such a predictable chamber? We give it the simplest possible 'poke' – a single, incredibly short, sharp clap. The unique echo pattern this single clap creates is the system's 'fingerprint,' called its 'impulse response.' Now, here's the magic: to predict what happens with *any* complex sound played in the chamber, we just imagine breaking that sound into millions of tiny, individual claps. Each tiny clap produces its own 'fingerprint' echo, and we simply add all those individual, shifted echoes together. This powerful mathematical process of 'summing up' impulse responses to predict output for any input is called 'convolution.'
+2025-10-14T11:41:09.334Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:09.334Z [debug] [codegenV3] Prompt length: 1400 chars
+2025-10-14T11:41:09.335Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 2
+2025-10-14T11:41:09.335Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T11:41:09.335Z [info] [codegenV3] Generating step 2: How do we analyze such a predictable chamber? We give it the simplest possible 'poke' – a single, incredibly short, sharp clap. The unique echo pattern this single clap creates is the system's 'fingerprint,' called its 'impulse response.' Now, here's the magic: to predict what happens with *any* complex sound played in the chamber, we just imagine breaking that sound into millions of tiny, individual claps. Each tiny clap produces its own 'fingerprint' echo, and we simply add all those individual, shifted echoes together. This powerful mathematical process of 'summing up' impulse responses to predict output for any input is called 'convolution.'
+2025-10-14T11:41:09.335Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:09.335Z [debug] [codegenV3] Prompt length: 1400 chars
+2025-10-14T11:41:09.335Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 2
+2025-10-14T11:41:09.335Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T11:41:09.335Z [info] [codegenV3] Generating step 2: How do we analyze such a predictable chamber? We give it the simplest possible 'poke' – a single, incredibly short, sharp clap. The unique echo pattern this single clap creates is the system's 'fingerprint,' called its 'impulse response.' Now, here's the magic: to predict what happens with *any* complex sound played in the chamber, we just imagine breaking that sound into millions of tiny, individual claps. Each tiny clap produces its own 'fingerprint' echo, and we simply add all those individual, shifted echoes together. This powerful mathematical process of 'summing up' impulse responses to predict output for any input is called 'convolution.'
+2025-10-14T11:41:09.335Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:09.335Z [debug] [codegenV3] Prompt length: 1400 chars
+2025-10-14T11:41:09.335Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 2
+2025-10-14T11:41:09.335Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T11:41:09.335Z [info] [codegenV3] Generating step 2: How do we analyze such a predictable chamber? We give it the simplest possible 'poke' – a single, incredibly short, sharp clap. The unique echo pattern this single clap creates is the system's 'fingerprint,' called its 'impulse response.' Now, here's the magic: to predict what happens with *any* complex sound played in the chamber, we just imagine breaking that sound into millions of tiny, individual claps. Each tiny clap produces its own 'fingerprint' echo, and we simply add all those individual, shifted echoes together. This powerful mathematical process of 'summing up' impulse responses to predict output for any input is called 'convolution.'
+2025-10-14T11:41:09.335Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:09.335Z [debug] [codegenV3] Prompt length: 1400 chars
+2025-10-14T11:41:09.335Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T11:41:11.332Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-14T11:41:11.333Z [info] [parallel] 🚀 Step 3: Generating notes + 4 animations
+2025-10-14T11:41:11.333Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 3
+2025-10-14T11:41:11.333Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 3
+2025-10-14T11:41:11.333Z [info] [notes] ✅ Using AI-generated notesSubtopic: "Real-World LTI"
+2025-10-14T11:41:11.333Z [info] [notes] 📚 Notes Subtopic: "Real-World LTI"
+2025-10-14T11:41:11.333Z [info] [notes] 🎬 Visual Description: "The 'sound chamber' concept isn't just theoretical; it's everywhere! Think about..."
+2025-10-14T11:41:11.333Z [info] [notes] 🎯 Starting ADAPTIVE notes generation with 5 retry attempts
+2025-10-14T11:41:11.333Z [info] [notes] 🎛️  Temperature strategy: 0.7 → 1.2
+2025-10-14T11:41:11.333Z [info] [notes] 📝 Attempt 1/5 (temp: 0.70)
+2025-10-14T11:41:11.333Z [info] [notes] Generating SVG keynote for step 3
+2025-10-14T11:41:11.333Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:11.333Z [info] [notes] Subtopic: "Real-World LTI"
+2025-10-14T11:41:11.333Z [debug] [notes] Using temperature: 0.7
+2025-10-14T11:41:11.333Z [debug] [notes] Prompt length: 3878 chars
+2025-10-14T11:41:11.333Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 3
+2025-10-14T11:41:11.333Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T11:41:11.333Z [info] [codegenV3] Generating step 3: The 'sound chamber' concept isn't just theoretical; it's everywhere! Think about tuning your headphones' bass and treble: that's an LTI filter shaping the audio signal. When you apply a 'blur' effect to a photo, each pixel's color is averaged with its neighbors in a very specific, consistent way – an LTI operation using a blurring kernel. Even how radio signals travel through the air, experiencing predictable echoes and delays, can be modeled and corrected using LTI analysis. From medical imaging to control systems that keep planes stable, LTI analysis provides the blueprint for understanding and designing predictable, reliable systems.
+2025-10-14T11:41:11.333Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:11.333Z [debug] [codegenV3] Prompt length: 1391 chars
+2025-10-14T11:41:11.333Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 3
+2025-10-14T11:41:11.333Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T11:41:11.333Z [info] [codegenV3] Generating step 3: The 'sound chamber' concept isn't just theoretical; it's everywhere! Think about tuning your headphones' bass and treble: that's an LTI filter shaping the audio signal. When you apply a 'blur' effect to a photo, each pixel's color is averaged with its neighbors in a very specific, consistent way – an LTI operation using a blurring kernel. Even how radio signals travel through the air, experiencing predictable echoes and delays, can be modeled and corrected using LTI analysis. From medical imaging to control systems that keep planes stable, LTI analysis provides the blueprint for understanding and designing predictable, reliable systems.
+2025-10-14T11:41:11.333Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:11.333Z [debug] [codegenV3] Prompt length: 1391 chars
+2025-10-14T11:41:11.334Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 3
+2025-10-14T11:41:11.334Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T11:41:11.334Z [info] [codegenV3] Generating step 3: The 'sound chamber' concept isn't just theoretical; it's everywhere! Think about tuning your headphones' bass and treble: that's an LTI filter shaping the audio signal. When you apply a 'blur' effect to a photo, each pixel's color is averaged with its neighbors in a very specific, consistent way – an LTI operation using a blurring kernel. Even how radio signals travel through the air, experiencing predictable echoes and delays, can be modeled and corrected using LTI analysis. From medical imaging to control systems that keep planes stable, LTI analysis provides the blueprint for understanding and designing predictable, reliable systems.
+2025-10-14T11:41:11.334Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:11.334Z [debug] [codegenV3] Prompt length: 1391 chars
+2025-10-14T11:41:11.334Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 3
+2025-10-14T11:41:11.334Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T11:41:11.334Z [info] [codegenV3] Generating step 3: The 'sound chamber' concept isn't just theoretical; it's everywhere! Think about tuning your headphones' bass and treble: that's an LTI filter shaping the audio signal. When you apply a 'blur' effect to a photo, each pixel's color is averaged with its neighbors in a very specific, consistent way – an LTI operation using a blurring kernel. Even how radio signals travel through the air, experiencing predictable echoes and delays, can be modeled and corrected using LTI analysis. From medical imaging to control systems that keep planes stable, LTI analysis provides the blueprint for understanding and designing predictable, reliable systems.
+2025-10-14T11:41:11.334Z [info] [codegenV3] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:11.334Z [debug] [codegenV3] Prompt length: 1391 chars
+2025-10-14T11:41:11.334Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T11:41:41.841Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:41:41.842Z [info] [notes] ✅ Generated SVG keynote in 32.51s (11233 chars)
+2025-10-14T11:41:41.842Z [info] [notes] 📊 Elements: text=53, rect=13, line=0, total=66
+2025-10-14T11:41:41.842Z [warn] [notes] ⚠️ Attempt 1 below production quality:
+2025-10-14T11:41:41.843Z [warn] [notes]    - Text elements: 53/25 ✓
+2025-10-14T11:41:41.843Z [warn] [notes]    - Total elements: 80/35 ✓
+2025-10-14T11:41:41.843Z [warn] [notes]    - Length: 11233/3500 ✓
+2025-10-14T11:41:41.843Z [warn] [notes]    - ViewBox: ✓
+2025-10-14T11:41:41.843Z [warn] [notes]    - Will retry with higher temperature for richer content
+2025-10-14T11:41:41.843Z [info] [notes] ⏸️  Adaptive retry in 1500ms (will boost temperature to 0.80)...
+2025-10-14T11:41:43.345Z [info] [notes] 📝 Attempt 2/5 (temp: 0.80)
+2025-10-14T11:41:43.345Z [info] [notes] Generating SVG keynote for step 2
+2025-10-14T11:41:43.345Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:41:43.345Z [info] [notes] Subtopic: "Impulse Response, Convolution"
+2025-10-14T11:41:43.345Z [debug] [notes] Using temperature: 0.8
+2025-10-14T11:41:43.345Z [debug] [notes] Prompt length: 3893 chars
+2025-10-14T11:41:49.646Z [debug] [monitor] Metrics updated:
+2025-10-14T11:41:51.755Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:41:51.755Z [debug] [codegenV3] Received 7067 chars from API
+2025-10-14T11:41:51.755Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:41:51.756Z [info] [codegenV3] ✅ Generated SVG in 44.42s (7067 chars)
+2025-10-14T11:41:51.756Z [info] [codegenV3] 🎬 ANIMATIONS: 26 total (<animate>: 18, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-14T11:41:51.756Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=27
+2025-10-14T11:41:51.756Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:41:51.757Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T11:41:51.757Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:41:51.757Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T11:42:03.618Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:03.618Z [debug] [codegenV3] Received 8238 chars from API
+2025-10-14T11:42:03.618Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:03.618Z [info] [codegenV3] ✅ Generated SVG in 52.28s (8238 chars)
+2025-10-14T11:42:03.618Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 16, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-14T11:42:03.618Z [info] [codegenV3] 📊 CONTENT: labels=17, shapes=31
+2025-10-14T11:42:03.618Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:03.618Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:03.618Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T11:42:03.779Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:03.779Z [debug] [codegenV3] Received 6709 chars from API
+2025-10-14T11:42:03.779Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:03.779Z [info] [codegenV3] ✅ Generated SVG in 54.44s (6709 chars)
+2025-10-14T11:42:03.779Z [info] [codegenV3] 🎬 ANIMATIONS: 27 total (<animate>: 22, <animateMotion>: 5, <animateTransform>: 0)
+2025-10-14T11:42:03.779Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=24
+2025-10-14T11:42:03.779Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:03.779Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:03.779Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T11:42:09.469Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:09.469Z [debug] [codegenV3] Received 10192 chars from API
+2025-10-14T11:42:09.469Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:09.469Z [info] [codegenV3] ✅ Generated SVG in 60.13s (10192 chars)
+2025-10-14T11:42:09.470Z [info] [codegenV3] 🎬 ANIMATIONS: 36 total (<animate>: 33, <animateMotion>: 3, <animateTransform>: 0)
+2025-10-14T11:42:09.470Z [info] [codegenV3] 📊 CONTENT: labels=14, shapes=13
+2025-10-14T11:42:09.470Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:09.470Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:09.470Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T11:42:14.209Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:14.209Z [debug] [codegenV3] Received 10814 chars from API
+2025-10-14T11:42:14.209Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:14.210Z [info] [codegenV3] ✅ Generated SVG in 62.88s (10814 chars)
+2025-10-14T11:42:14.210Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 13, <animateMotion>: 6, <animateTransform>: 1)
+2025-10-14T11:42:14.210Z [info] [codegenV3] 📊 CONTENT: labels=33, shapes=31
+2025-10-14T11:42:14.210Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:14.210Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:14.210Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T11:42:18.524Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:18.524Z [debug] [codegenV3] Received 6501 chars from API
+2025-10-14T11:42:18.524Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:18.524Z [info] [codegenV3] ✅ Generated SVG in 71.19s (6501 chars)
+2025-10-14T11:42:18.524Z [info] [codegenV3] 🎬 ANIMATIONS: 30 total (<animate>: 21, <animateMotion>: 9, <animateTransform>: 0)
+2025-10-14T11:42:18.524Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=15
+2025-10-14T11:42:18.524Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:18.524Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T11:42:18.525Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:18.525Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T11:42:20.259Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:20.259Z [debug] [codegenV3] Received 11498 chars from API
+2025-10-14T11:42:20.260Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:20.260Z [info] [codegenV3] ✅ Generated SVG in 68.93s (11498 chars)
+2025-10-14T11:42:20.260Z [info] [codegenV3] 🎬 ANIMATIONS: 36 total (<animate>: 28, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-14T11:42:20.260Z [info] [codegenV3] 📊 CONTENT: labels=28, shapes=41
+2025-10-14T11:42:20.260Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:20.260Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:20.260Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T11:42:23.981Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:23.981Z [debug] [codegenV3] Received 8304 chars from API
+2025-10-14T11:42:23.981Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:23.981Z [info] [codegenV3] ✅ Generated SVG in 76.65s (8304 chars)
+2025-10-14T11:42:23.981Z [info] [codegenV3] 🎬 ANIMATIONS: 42 total (<animate>: 32, <animateMotion>: 10, <animateTransform>: 0)
+2025-10-14T11:42:23.981Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=13
+2025-10-14T11:42:23.982Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:23.982Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T11:42:23.982Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:23.982Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T11:42:25.919Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:25.919Z [debug] [codegenV3] Received 8199 chars from API
+2025-10-14T11:42:25.919Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:25.919Z [info] [codegenV3] ✅ Generated SVG in 74.58s (8199 chars)
+2025-10-14T11:42:25.919Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 18, <animateMotion>: 3, <animateTransform>: 1)
+2025-10-14T11:42:25.919Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=34
+2025-10-14T11:42:25.919Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:25.919Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:25.919Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T11:42:29.482Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:42:29.483Z [info] [notes] ✅ Generated SVG keynote in 82.15s (10974 chars)
+2025-10-14T11:42:29.483Z [info] [notes] 📊 Elements: text=55, rect=11, line=6, total=72
+2025-10-14T11:42:29.484Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760442149484.svg
+2025-10-14T11:42:29.484Z [warn] [notes] ⚠️ Attempt 1 below production quality:
+2025-10-14T11:42:29.485Z [warn] [notes]    - Text elements: 55/25 ✓
+2025-10-14T11:42:29.485Z [warn] [notes]    - Total elements: 73/35 ✓
+2025-10-14T11:42:29.485Z [warn] [notes]    - Length: 10974/3500 ✓
+2025-10-14T11:42:29.485Z [warn] [notes]    - ViewBox: ✓
+2025-10-14T11:42:29.485Z [warn] [notes]    - Will retry with higher temperature for richer content
+2025-10-14T11:42:29.485Z [info] [notes] ⏸️  Adaptive retry in 1500ms (will boost temperature to 0.80)...
+2025-10-14T11:42:30.985Z [info] [notes] 📝 Attempt 2/5 (temp: 0.80)
+2025-10-14T11:42:30.986Z [info] [notes] Generating SVG keynote for step 1
+2025-10-14T11:42:30.986Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:42:30.986Z [info] [notes] Subtopic: "LTI System Intuition"
+2025-10-14T11:42:30.986Z [debug] [notes] Using temperature: 0.8
+2025-10-14T11:42:30.986Z [debug] [notes] Prompt length: 3884 chars
+2025-10-14T11:42:37.462Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:37.463Z [debug] [codegenV3] Received 9505 chars from API
+2025-10-14T11:42:37.463Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:37.463Z [info] [codegenV3] ✅ Generated SVG in 88.13s (9505 chars)
+2025-10-14T11:42:37.463Z [info] [codegenV3] 🎬 ANIMATIONS: 38 total (<animate>: 33, <animateMotion>: 5, <animateTransform>: 0)
+2025-10-14T11:42:37.463Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=10
+2025-10-14T11:42:37.463Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:37.463Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:37.463Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T11:42:38.915Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:38.915Z [debug] [codegenV3] Received 7681 chars from API
+2025-10-14T11:42:38.915Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:38.915Z [info] [codegenV3] ✅ Generated SVG in 91.58s (7681 chars)
+2025-10-14T11:42:38.915Z [info] [codegenV3] 🎬 ANIMATIONS: 29 total (<animate>: 20, <animateMotion>: 6, <animateTransform>: 3)
+2025-10-14T11:42:38.915Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=19
+2025-10-14T11:42:38.915Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:38.915Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T11:42:38.915Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:38.915Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T11:42:43.627Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:42:43.627Z [debug] [codegenV3] Received 7018 chars from API
+2025-10-14T11:42:43.627Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:42:43.627Z [info] [codegenV3] ✅ Generated SVG in 94.29s (7018 chars)
+2025-10-14T11:42:43.627Z [info] [codegenV3] 🎬 ANIMATIONS: 33 total (<animate>: 23, <animateMotion>: 10, <animateTransform>: 0)
+2025-10-14T11:42:43.627Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=11
+2025-10-14T11:42:43.627Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:42:43.627Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:42:43.627Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T11:42:49.649Z [debug] [monitor] Metrics updated:
+2025-10-14T11:42:52.616Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:42:52.617Z [info] [notes] ✅ Generated SVG keynote in 101.28s (13439 chars)
+2025-10-14T11:42:52.617Z [info] [notes] 📊 Elements: text=70, rect=6, line=18, total=94
+2025-10-14T11:42:52.617Z [warn] [notes] ⚠️ Attempt 1 below production quality:
+2025-10-14T11:42:52.617Z [warn] [notes]    - Text elements: 70/25 ✓
+2025-10-14T11:42:52.617Z [warn] [notes]    - Total elements: 97/35 ✓
+2025-10-14T11:42:52.617Z [warn] [notes]    - Length: 13439/3500 ✓
+2025-10-14T11:42:52.617Z [warn] [notes]    - ViewBox: ✓
+2025-10-14T11:42:52.618Z [warn] [notes]    - Will retry with higher temperature for richer content
+2025-10-14T11:42:52.618Z [info] [notes] ⏸️  Adaptive retry in 1500ms (will boost temperature to 0.80)...
+2025-10-14T11:42:54.117Z [info] [notes] 📝 Attempt 2/5 (temp: 0.80)
+2025-10-14T11:42:54.118Z [info] [notes] Generating SVG keynote for step 3
+2025-10-14T11:42:54.118Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:42:54.118Z [info] [notes] Subtopic: "Real-World LTI"
+2025-10-14T11:42:54.118Z [debug] [notes] Using temperature: 0.8
+2025-10-14T11:42:54.118Z [debug] [notes] Prompt length: 3878 chars
+2025-10-14T11:43:36.135Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:43:36.136Z [info] [notes] ✅ Generated SVG keynote in 112.79s (11592 chars)
+2025-10-14T11:43:36.136Z [info] [notes] 📊 Elements: text=63, rect=4, line=9, total=76
+2025-10-14T11:43:36.136Z [warn] [notes] ⚠️ Attempt 2 below production quality:
+2025-10-14T11:43:36.136Z [warn] [notes]    - Text elements: 63/25 ✓
+2025-10-14T11:43:36.136Z [warn] [notes]    - Total elements: 77/35 ✓
+2025-10-14T11:43:36.136Z [warn] [notes]    - Length: 11592/3500 ✓
+2025-10-14T11:43:36.136Z [warn] [notes]    - ViewBox: ✓
+2025-10-14T11:43:36.136Z [warn] [notes]    - Will retry with higher temperature for richer content
+2025-10-14T11:43:36.136Z [info] [notes] ⏸️  Adaptive retry in 3000ms (will boost temperature to 0.90)...
+2025-10-14T11:43:39.136Z [info] [notes] 📝 Attempt 3/5 (temp: 0.85)
+2025-10-14T11:43:39.136Z [info] [notes] Generating SVG keynote for step 2
+2025-10-14T11:43:39.137Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:43:39.137Z [info] [notes] Subtopic: "Impulse Response, Convolution"
+2025-10-14T11:43:39.137Z [debug] [notes] Using temperature: 0.85
+2025-10-14T11:43:39.137Z [debug] [notes] Prompt length: 3893 chars
+2025-10-14T11:43:49.651Z [debug] [monitor] Metrics updated:
+2025-10-14T11:44:08.560Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:44:08.561Z [info] [notes] ✅ Generated SVG keynote in 74.44s (17696 chars)
+2025-10-14T11:44:08.561Z [info] [notes] 📊 Elements: text=91, rect=9, line=29, total=129
+2025-10-14T11:44:08.561Z [warn] [notes] ⚠️ Attempt 2 below production quality:
+2025-10-14T11:44:08.561Z [warn] [notes]    - Text elements: 91/25 ✓
+2025-10-14T11:44:08.561Z [warn] [notes]    - Total elements: 137/35 ✓
+2025-10-14T11:44:08.561Z [warn] [notes]    - Length: 17696/3500 ✓
+2025-10-14T11:44:08.561Z [warn] [notes]    - ViewBox: ✓
+2025-10-14T11:44:08.561Z [warn] [notes]    - Will retry with higher temperature for richer content
+2025-10-14T11:44:08.561Z [info] [notes] ⏸️  Adaptive retry in 3000ms (will boost temperature to 0.90)...
+2025-10-14T11:44:11.563Z [info] [notes] 📝 Attempt 3/5 (temp: 0.85)
+2025-10-14T11:44:11.564Z [info] [notes] Generating SVG keynote for step 3
+2025-10-14T11:44:11.564Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:44:11.564Z [info] [notes] Subtopic: "Real-World LTI"
+2025-10-14T11:44:11.564Z [debug] [notes] Using temperature: 0.85
+2025-10-14T11:44:11.564Z [debug] [notes] Prompt length: 3878 chars
+2025-10-14T11:44:11.733Z [debug] Shutting down server...
+2025-10-14T11:44:44.748Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:44:44.748Z [info] [notes] ✅ Generated SVG keynote in 133.76s (16961 chars)
+2025-10-14T11:44:44.748Z [info] [notes] 📊 Elements: text=84, rect=15, line=18, total=117
+2025-10-14T11:44:44.749Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760442284749.svg
+2025-10-14T11:44:44.749Z [warn] [notes] ⚠️ Attempt 2 below production quality:
+2025-10-14T11:44:44.749Z [warn] [notes]    - Text elements: 84/25 ✓
+2025-10-14T11:44:44.749Z [warn] [notes]    - Total elements: 120/35 ✓
+2025-10-14T11:44:44.749Z [warn] [notes]    - Length: 16961/3500 ✓
+2025-10-14T11:44:44.749Z [warn] [notes]    - ViewBox: ✓
+2025-10-14T11:44:44.749Z [warn] [notes]    - Will retry with higher temperature for richer content
+2025-10-14T11:44:44.749Z [info] [notes] ⏸️  Adaptive retry in 3000ms (will boost temperature to 0.90)...
+2025-10-14T11:44:47.751Z [info] [notes] 📝 Attempt 3/5 (temp: 0.85)
+2025-10-14T11:44:47.751Z [info] [notes] Generating SVG keynote for step 1
+2025-10-14T11:44:47.751Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:44:47.751Z [info] [notes] Subtopic: "LTI System Intuition"
+2025-10-14T11:44:47.751Z [debug] [notes] Using temperature: 0.85
+2025-10-14T11:44:47.751Z [debug] [notes] Prompt length: 3884 chars
+2025-10-14T11:44:49.652Z [debug] [monitor] Metrics updated:
+2025-10-14T11:45:42.752Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:45:42.753Z [info] [notes] ✅ Generated SVG keynote in 91.19s (9797 chars)
+2025-10-14T11:45:42.753Z [info] [notes] 📊 Elements: text=47, rect=4, line=10, total=61
+2025-10-14T11:45:42.753Z [warn] [notes] ⚠️ Attempt 3 below production quality:
+2025-10-14T11:45:42.753Z [warn] [notes]    - Text elements: 47/25 ✓
+2025-10-14T11:45:42.753Z [warn] [notes]    - Total elements: 65/35 ✓
+2025-10-14T11:45:42.753Z [warn] [notes]    - Length: 9797/3500 ✓
+2025-10-14T11:45:42.753Z [warn] [notes]    - ViewBox: ✓
+2025-10-14T11:45:42.753Z [warn] [notes]    - Will retry with higher temperature for richer content
+2025-10-14T11:45:42.753Z [info] [notes] ⏸️  Adaptive retry in 4500ms (will boost temperature to 0.95)...
+2025-10-14T11:45:47.255Z [info] [notes] 📝 Attempt 4/5 (temp: 0.85)
+2025-10-14T11:45:47.255Z [info] [notes] Generating SVG keynote for step 3
+2025-10-14T11:45:47.255Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:45:47.255Z [info] [notes] Subtopic: "Real-World LTI"
+2025-10-14T11:45:47.255Z [debug] [notes] Using temperature: 0.85
+2025-10-14T11:45:47.255Z [debug] [notes] Prompt length: 3878 chars
+2025-10-14T11:45:49.653Z [debug] [monitor] Metrics updated:
+2025-10-14T11:46:05.942Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:46:05.942Z [info] [notes] ✅ Generated SVG keynote in 146.81s (16085 chars)
+2025-10-14T11:46:05.942Z [info] [notes] 📊 Elements: text=78, rect=10, line=13, total=101
+2025-10-14T11:46:05.942Z [info] [notes] ✅ SUCCESS on attempt 3/5
+2025-10-14T11:46:05.942Z [info] [notes] 📊 Quality: 16085 chars, 78 text, 10 rect, 13 line
+2025-10-14T11:46:05.942Z [info] [notes] 🎯 Temperature 0.85 produced excellent results
+2025-10-14T11:46:05.942Z [info] [stepVisuals] ✅ Notes generated (16085 chars)
+2025-10-14T11:46:05.942Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T11:46:05.942Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T11:46:05.942Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T11:46:05.945Z [debug] [cache] Cached chunk for query step 2
+2025-10-14T11:46:05.945Z [debug] [monitor] Step 2 generation for 8817e17e-5e9f-477c-80f3-db955c0e9ffa took 296614ms
+2025-10-14T11:46:05.945Z [info] [parallel] ✅ Step 2 COMPLETE in 296614ms with 5 actions
+2025-10-14T11:46:05.946Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-14T11:46:37.314Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:46:37.314Z [info] [notes] ✅ Generated SVG keynote in 109.56s (14602 chars)
+2025-10-14T11:46:37.314Z [info] [notes] 📊 Elements: text=39, rect=15, line=18, total=72
+2025-10-14T11:46:37.314Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760442397314.svg
+2025-10-14T11:46:37.315Z [info] [notes] ✅ SUCCESS on attempt 3/5
+2025-10-14T11:46:37.315Z [info] [notes] 📊 Quality: 14602 chars, 39 text, 15 rect, 18 line
+2025-10-14T11:46:37.315Z [info] [notes] 🎯 Temperature 0.85 produced excellent results
+2025-10-14T11:46:37.315Z [info] [stepVisuals] ✅ Notes generated (14602 chars)
+2025-10-14T11:46:37.315Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T11:46:37.315Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T11:46:37.315Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T11:46:37.315Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T11:46:37.316Z [debug] [monitor] Step 1 generation for 8817e17e-5e9f-477c-80f3-db955c0e9ffa took 329988ms
+2025-10-14T11:46:37.316Z [info] [parallel] ✅ Step 1 COMPLETE in 329988ms with 5 actions
+2025-10-14T11:46:37.316Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-14T11:46:43.490Z [debug] NEW Plan worker created
+2025-10-14T11:46:43.491Z [debug] NEW Gen worker created
+2025-10-14T11:46:43.491Z [debug] NEW Parallel worker created
+2025-10-14T11:46:43.497Z [debug] Server listening on port 8000
+2025-10-14T11:46:43.495Z [debug] NEW Plan worker created
+2025-10-14T11:46:43.520Z [debug] NEW Plan worker created
+2025-10-14T11:46:43.533Z [debug] NEW Plan worker created
+2025-10-14T11:46:43.535Z [debug] NEW Plan worker created
+2025-10-14T11:46:49.656Z [debug] [monitor] Metrics updated:
+2025-10-14T11:47:43.506Z [debug] [monitor] Metrics updated:
+2025-10-14T11:47:45.896Z [debug] Shutting down server...
+2025-10-14T11:47:46.053Z [debug] NEW Plan worker created
+2025-10-14T11:47:46.054Z [debug] NEW Gen worker created
+2025-10-14T11:47:46.054Z [debug] NEW Parallel worker created
+2025-10-14T11:47:46.058Z [debug] Server listening on port 8000
+2025-10-14T11:47:46.063Z [debug] NEW Plan worker created
+2025-10-14T11:47:46.075Z [debug] NEW Plan worker created
+2025-10-14T11:47:46.083Z [debug] NEW Plan worker created
+2025-10-14T11:47:49.657Z [debug] [monitor] Metrics updated:
+2025-10-14T11:48:02.368Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:48:02.368Z [info] [notes] ✅ Generated SVG keynote in 135.11s (14498 chars)
+2025-10-14T11:48:02.368Z [info] [notes] 📊 Elements: text=69, rect=6, line=18, total=93
+2025-10-14T11:48:02.368Z [warn] [notes] ⚠️ Attempt 4 below production quality:
+2025-10-14T11:48:02.368Z [warn] [notes]    - Text elements: 69/25 ✓
+2025-10-14T11:48:02.368Z [warn] [notes]    - Total elements: 101/35 ✓
+2025-10-14T11:48:02.368Z [warn] [notes]    - Length: 14498/3500 ✓
+2025-10-14T11:48:02.368Z [warn] [notes]    - ViewBox: ✓
+2025-10-14T11:48:02.368Z [warn] [notes]    - Will retry with higher temperature for richer content
+2025-10-14T11:48:02.368Z [info] [notes] ⏸️  Adaptive retry in 6000ms (will boost temperature to 0.95)...
+2025-10-14T11:48:08.369Z [info] [notes] 📝 Attempt 5/5 (temp: 0.85)
+2025-10-14T11:48:08.369Z [info] [notes] Generating SVG keynote for step 3
+2025-10-14T11:48:08.369Z [info] [notes] Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:48:08.369Z [info] [notes] Subtopic: "Real-World LTI"
+2025-10-14T11:48:08.369Z [debug] [notes] Using temperature: 0.85
+2025-10-14T11:48:08.369Z [debug] [notes] Prompt length: 3878 chars
+2025-10-14T11:48:15.278Z [debug] NEW Plan worker created
+2025-10-14T11:48:15.282Z [debug] NEW Plan worker created
+2025-10-14T11:48:15.313Z [debug] NEW Plan worker created
+2025-10-14T11:48:49.661Z [debug] [monitor] Metrics updated:
+2025-10-14T11:49:42.858Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:49:42.859Z [info] [notes] ✅ Generated SVG keynote in 94.49s (13408 chars)
+2025-10-14T11:49:42.859Z [info] [notes] 📊 Elements: text=71, rect=2, line=15, total=88
+2025-10-14T11:49:42.859Z [warn] [notes] ⚠️ Attempt 5 below production quality:
+2025-10-14T11:49:42.860Z [warn] [notes]    - Text elements: 71/25 ✓
+2025-10-14T11:49:42.860Z [warn] [notes]    - Total elements: 93/35 ✓
+2025-10-14T11:49:42.860Z [warn] [notes]    - Length: 13408/3500 ✓
+2025-10-14T11:49:42.860Z [warn] [notes]    - ViewBox: ✓
+2025-10-14T11:49:42.860Z [warn] [notes]    - Will retry with higher temperature for richer content
+2025-10-14T11:49:42.860Z [error] [notes] 💥 CRITICAL: All 5 adaptive attempts failed
+2025-10-14T11:49:42.860Z [error] [notes] 📊 Best quality achieved: 13408 chars, 71 text elements
+2025-10-14T11:49:42.860Z [error] [notes] 🔧 Topic: "teach me about the LTI (linear time invarient) system analysis, and methodology of resolution or anlaysis? and real life applications"
+2025-10-14T11:49:42.860Z [error] [notes] 🔧 Notes Subtopic: "Real-World LTI"
+2025-10-14T11:49:42.860Z [error] [notes] 🔧 Visual Description: "The 'sound chamber' concept isn't just theoretical; it's everywhere! Think about tuning your headpho..."
+2025-10-14T11:49:42.860Z [error] [notes] 💡 This indicates a fundamental API or prompt issue - check Gemini response
+2025-10-14T11:49:42.860Z [error] [stepVisuals] ❌ Notes generation failed for step 3
+2025-10-14T11:49:42.860Z [info] [stepVisuals] ✅ COMPLETE: Notes=NO, Animations=4/4
+2025-10-14T11:49:42.860Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T11:49:42.864Z [debug] [cache] Cached chunk for query step 3
+2025-10-14T11:49:42.864Z [debug] [monitor] Step 3 generation for 8817e17e-5e9f-477c-80f3-db955c0e9ffa took 511532ms
+2025-10-14T11:49:42.864Z [info] [parallel] ✅ Step 3 COMPLETE in 511532ms with 4 actions
+2025-10-14T11:49:42.865Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-14T11:49:42.865Z [debug] [parallel] Parallel generation complete: 3/3 successful in 515537ms
+2025-10-14T11:49:42.866Z [debug] [monitor] Completed request 8817e17e-5e9f-477c-80f3-db955c0e9ffa in 535283ms (success: true)
+2025-10-14T11:49:42.866Z [debug] [parallel] Job complete for session 8817e17e-5e9f-477c-80f3-db955c0e9ffa
+2025-10-14T11:49:49.665Z [debug] [monitor] Metrics updated:
+2025-10-14T11:50:31.057Z [debug] NEW Plan worker created
+2025-10-14T11:50:31.058Z [debug] NEW Plan worker created
+2025-10-14T11:50:31.063Z [debug] NEW Plan worker created
+2025-10-14T11:50:49.669Z [debug] [monitor] Metrics updated:
+2025-10-14T11:51:13.752Z [debug] [socket] Socket Y-Z6X8dUuadc8oIvAAAB disconnected: forced close
+2025-10-14T11:51:14.011Z [debug] NEW Plan worker created
+2025-10-14T11:51:39.811Z [debug] NEW Plan worker created
+2025-10-14T11:53:53.520Z [debug] NEW Plan worker created
+2025-10-14T11:53:53.521Z [debug] NEW Gen worker created
+2025-10-14T11:53:53.521Z [debug] NEW Parallel worker created
+2025-10-14T11:53:53.525Z [debug] Server listening on port 8000
+2025-10-14T11:54:53.526Z [debug] [monitor] Metrics updated:
+2025-10-14T11:55:53.537Z [debug] [monitor] Metrics updated:
+2025-10-14T11:56:26.569Z [debug] Received request on /api/query {"body":{"query":"Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"}}
+2025-10-14T11:56:26.570Z [debug] [api] Stored query for session 0b55e867-d0ec-4f00-b61b-2d769688695d: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:26.570Z [debug] [orchestrator] Enqueuing plan for session 0b55e867-d0ec-4f00-b61b-2d769688695d
+2025-10-14T11:56:26.571Z [debug] [orchestrator] Plan job added with id 5 for session 0b55e867-d0ec-4f00-b61b-2d769688695d
+2025-10-14T11:56:26.572Z [debug] [plan] START: session=0b55e867-d0ec-4f00-b61b-2d769688695d query=Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent
+2025-10-14T11:56:26.572Z [debug] [monitor] Started tracking request 0b55e867-d0ec-4f00-b61b-2d769688695d
+2025-10-14T11:56:26.572Z [debug] [cache] MISS - No cached plan for query: "Teach me about Neural Networks: forward propagatio..."
+2025-10-14T11:56:26.572Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T11:56:26.580Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T11:56:26.599Z [debug] [socket] New connection: xU6gYhlRQjE7t0pcAAAB
+2025-10-14T11:56:26.600Z [debug] [socket] Socket xU6gYhlRQjE7t0pcAAAB joined session 0b55e867-d0ec-4f00-b61b-2d769688695d
+2025-10-14T11:56:26.600Z [debug] [socket] Socket xU6gYhlRQjE7t0pcAAAB is now in rooms: xU6gYhlRQjE7t0pcAAAB, 0b55e867-d0ec-4f00-b61b-2d769688695d
+2025-10-14T11:56:40.311Z [debug] [planner] Received response from Gemini in 13739ms
+2025-10-14T11:56:40.311Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Neural Network Learning: Forward, Back, & Gradient",
+  "subtitle": "Learn the core processes that enable neural networks to learn from data and make intelligent predictions.",
+  "toc": [
+    {
+      "minute": 1,
+      "title": "The Intuition: Initial Guess",
+      "summary": "Data flows forward for an initial prediction."
+    },
+    {
+      "minute": 2,
+      "title": "How It Works: Learning from Mistakes",
+      "summary": "Errors travel backward to adjust network's 'knowl...
+2025-10-14T11:56:40.311Z [debug] [planner] Extracted JSON (length: 2737)
+2025-10-14T11:56:40.311Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T11:56:40.311Z [debug] [monitor] Plan generation for 0b55e867-d0ec-4f00-b61b-2d769688695d took 13739ms
+2025-10-14T11:56:40.312Z [debug] [cache] Cached plan for query: "Teach me about Neural Networks: forward propagatio..."
+2025-10-14T11:56:40.313Z [debug] [plan] OK: session=0b55e867-d0ec-4f00-b61b-2d769688695d plan received with 3 steps
+2025-10-14T11:56:40.314Z [debug] [plan] Emitted plan event to session 0b55e867-d0ec-4f00-b61b-2d769688695d
+2025-10-14T11:56:40.314Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-14T11:56:40.315Z [debug] [plan] END: session=0b55e867-d0ec-4f00-b61b-2d769688695d
+2025-10-14T11:56:40.317Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 0b55e867-d0ec-4f00-b61b-2d769688695d)
+2025-10-14T11:56:40.317Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-14T11:56:40.318Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T11:56:40.318Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations
+2025-10-14T11:56:40.318Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 1
+2025-10-14T11:56:40.318Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T11:56:40.318Z [info] [notes] 🎯 Generating SVG keynote (SINGLE ATTEMPT - NO RETRIES)
+2025-10-14T11:56:40.318Z [info] [notes] 📚 Subtopic: "Picture a handwritten digit '7' entering a neural network. Information flows forward, layer by layer, through thousands of interconnected 'neurons'. Each connection has a 'weight' influencing the signal, processing and passing it on like a complex relay race. At the end, the network makes an initial guess – perhaps confidently predicting it's a '1'. This entire initial 'guess' and data flow is **Forward Propagation**."
+2025-10-14T11:56:40.319Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T11:56:40.319Z [info] [notes] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:40.319Z [info] [notes] Subtopic: "Picture a handwritten digit '7' entering a neural network. Information flows forward, layer by layer, through thousands of interconnected 'neurons'. Each connection has a 'weight' influencing the signal, processing and passing it on like a complex relay race. At the end, the network makes an initial guess – perhaps confidently predicting it's a '1'. This entire initial 'guess' and data flow is **Forward Propagation**."
+2025-10-14T11:56:40.319Z [debug] [notes] Temperature: 0.75
+2025-10-14T11:56:40.319Z [debug] [notes] Prompt length: 4480 chars
+2025-10-14T11:56:40.319Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T11:56:40.319Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T11:56:40.319Z [info] [codegenV3] Generating step 1: Picture a handwritten digit '7' entering a neural network. Information flows forward, layer by layer, through thousands of interconnected 'neurons'. Each connection has a 'weight' influencing the signal, processing and passing it on like a complex relay race. At the end, the network makes an initial guess – perhaps confidently predicting it's a '1'. This entire initial 'guess' and data flow is **Forward Propagation**.
+2025-10-14T11:56:40.319Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:40.320Z [debug] [codegenV3] Prompt length: 1125 chars
+2025-10-14T11:56:40.320Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T11:56:40.320Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T11:56:40.320Z [info] [codegenV3] Generating step 1: Picture a handwritten digit '7' entering a neural network. Information flows forward, layer by layer, through thousands of interconnected 'neurons'. Each connection has a 'weight' influencing the signal, processing and passing it on like a complex relay race. At the end, the network makes an initial guess – perhaps confidently predicting it's a '1'. This entire initial 'guess' and data flow is **Forward Propagation**.
+2025-10-14T11:56:40.320Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:40.320Z [debug] [codegenV3] Prompt length: 1125 chars
+2025-10-14T11:56:40.320Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T11:56:40.320Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T11:56:40.320Z [info] [codegenV3] Generating step 1: Picture a handwritten digit '7' entering a neural network. Information flows forward, layer by layer, through thousands of interconnected 'neurons'. Each connection has a 'weight' influencing the signal, processing and passing it on like a complex relay race. At the end, the network makes an initial guess – perhaps confidently predicting it's a '1'. This entire initial 'guess' and data flow is **Forward Propagation**.
+2025-10-14T11:56:40.320Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:40.320Z [debug] [codegenV3] Prompt length: 1125 chars
+2025-10-14T11:56:40.320Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T11:56:40.320Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T11:56:40.320Z [info] [codegenV3] Generating step 1: Picture a handwritten digit '7' entering a neural network. Information flows forward, layer by layer, through thousands of interconnected 'neurons'. Each connection has a 'weight' influencing the signal, processing and passing it on like a complex relay race. At the end, the network makes an initial guess – perhaps confidently predicting it's a '1'. This entire initial 'guess' and data flow is **Forward Propagation**.
+2025-10-14T11:56:40.320Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:40.320Z [debug] [codegenV3] Prompt length: 1125 chars
+2025-10-14T11:56:40.320Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T11:56:42.318Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-14T11:56:42.318Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-14T11:56:42.319Z [info] [parallel] 🚀 Step 2: Generating notes + 4 animations
+2025-10-14T11:56:42.319Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 2
+2025-10-14T11:56:42.319Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 2
+2025-10-14T11:56:42.319Z [info] [notes] 🎯 Generating SVG keynote (SINGLE ATTEMPT - NO RETRIES)
+2025-10-14T11:56:42.319Z [info] [notes] 📚 Subtopic: "Now, the network made a mistake; it thought '7' was '1'. We tell it: 'No, it was a 7!' The network calculates precisely *how wrong* it was. This 'error signal' then travels *backward* through the exact same connections, in reverse. This is **Backpropagation**. As it travels, it tells each connection (each 'weight') how much it contributed to the error and how to slightly adjust itself to be more accurate next time. **Gradient Descent** is the smart strategy of subtly nudging these weights downhill, taking tiny steps to minimize the error over many, many examples, until the network consistently gets it right."
+2025-10-14T11:56:42.319Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T11:56:42.319Z [info] [notes] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:42.319Z [info] [notes] Subtopic: "Now, the network made a mistake; it thought '7' was '1'. We tell it: 'No, it was a 7!' The network calculates precisely *how wrong* it was. This 'error signal' then travels *backward* through the exact same connections, in reverse. This is **Backpropagation**. As it travels, it tells each connection (each 'weight') how much it contributed to the error and how to slightly adjust itself to be more accurate next time. **Gradient Descent** is the smart strategy of subtly nudging these weights downhill, taking tiny steps to minimize the error over many, many examples, until the network consistently gets it right."
+2025-10-14T11:56:42.319Z [debug] [notes] Temperature: 0.75
+2025-10-14T11:56:42.319Z [debug] [notes] Prompt length: 4674 chars
+2025-10-14T11:56:42.319Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 2
+2025-10-14T11:56:42.319Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T11:56:42.319Z [info] [codegenV3] Generating step 2: Now, the network made a mistake; it thought '7' was '1'. We tell it: 'No, it was a 7!' The network calculates precisely *how wrong* it was. This 'error signal' then travels *backward* through the exact same connections, in reverse. This is **Backpropagation**. As it travels, it tells each connection (each 'weight') how much it contributed to the error and how to slightly adjust itself to be more accurate next time. **Gradient Descent** is the smart strategy of subtly nudging these weights downhill, taking tiny steps to minimize the error over many, many examples, until the network consistently gets it right.
+2025-10-14T11:56:42.319Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:42.319Z [debug] [codegenV3] Prompt length: 1319 chars
+2025-10-14T11:56:42.319Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 2
+2025-10-14T11:56:42.319Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T11:56:42.320Z [info] [codegenV3] Generating step 2: Now, the network made a mistake; it thought '7' was '1'. We tell it: 'No, it was a 7!' The network calculates precisely *how wrong* it was. This 'error signal' then travels *backward* through the exact same connections, in reverse. This is **Backpropagation**. As it travels, it tells each connection (each 'weight') how much it contributed to the error and how to slightly adjust itself to be more accurate next time. **Gradient Descent** is the smart strategy of subtly nudging these weights downhill, taking tiny steps to minimize the error over many, many examples, until the network consistently gets it right.
+2025-10-14T11:56:42.320Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:42.320Z [debug] [codegenV3] Prompt length: 1319 chars
+2025-10-14T11:56:42.320Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 2
+2025-10-14T11:56:42.320Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T11:56:42.320Z [info] [codegenV3] Generating step 2: Now, the network made a mistake; it thought '7' was '1'. We tell it: 'No, it was a 7!' The network calculates precisely *how wrong* it was. This 'error signal' then travels *backward* through the exact same connections, in reverse. This is **Backpropagation**. As it travels, it tells each connection (each 'weight') how much it contributed to the error and how to slightly adjust itself to be more accurate next time. **Gradient Descent** is the smart strategy of subtly nudging these weights downhill, taking tiny steps to minimize the error over many, many examples, until the network consistently gets it right.
+2025-10-14T11:56:42.320Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:42.320Z [debug] [codegenV3] Prompt length: 1319 chars
+2025-10-14T11:56:42.320Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 2
+2025-10-14T11:56:42.320Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T11:56:42.320Z [info] [codegenV3] Generating step 2: Now, the network made a mistake; it thought '7' was '1'. We tell it: 'No, it was a 7!' The network calculates precisely *how wrong* it was. This 'error signal' then travels *backward* through the exact same connections, in reverse. This is **Backpropagation**. As it travels, it tells each connection (each 'weight') how much it contributed to the error and how to slightly adjust itself to be more accurate next time. **Gradient Descent** is the smart strategy of subtly nudging these weights downhill, taking tiny steps to minimize the error over many, many examples, until the network consistently gets it right.
+2025-10-14T11:56:42.320Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:42.320Z [debug] [codegenV3] Prompt length: 1319 chars
+2025-10-14T11:56:42.320Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T11:56:44.320Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-14T11:56:44.320Z [info] [parallel] 🚀 Step 3: Generating notes + 4 animations
+2025-10-14T11:56:44.320Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 3
+2025-10-14T11:56:44.320Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 3
+2025-10-14T11:56:44.320Z [info] [notes] 🎯 Generating SVG keynote (SINGLE ATTEMPT - NO RETRIES)
+2025-10-14T11:56:44.320Z [info] [notes] 📚 Subtopic: "This tireless cycle of forward propagation (making a guess), backpropagation (finding the error), and gradient descent (adjusting 'knowledge') repeats millions of times with vast amounts of data. It's how neural networks learn to distinguish cats from dogs, translate languages with nuance, power facial recognition systems on your phone, or even guide self-driving cars safely through traffic. Each refined 'weight' becomes a piece of deep, learned knowledge, allowing AI to perform incredibly complex tasks with human-like intelligence."
+2025-10-14T11:56:44.320Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T11:56:44.320Z [info] [notes] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:44.320Z [info] [notes] Subtopic: "This tireless cycle of forward propagation (making a guess), backpropagation (finding the error), and gradient descent (adjusting 'knowledge') repeats millions of times with vast amounts of data. It's how neural networks learn to distinguish cats from dogs, translate languages with nuance, power facial recognition systems on your phone, or even guide self-driving cars safely through traffic. Each refined 'weight' becomes a piece of deep, learned knowledge, allowing AI to perform incredibly complex tasks with human-like intelligence."
+2025-10-14T11:56:44.320Z [debug] [notes] Temperature: 0.75
+2025-10-14T11:56:44.320Z [debug] [notes] Prompt length: 4597 chars
+2025-10-14T11:56:44.321Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 3
+2025-10-14T11:56:44.321Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T11:56:44.321Z [info] [codegenV3] Generating step 3: This tireless cycle of forward propagation (making a guess), backpropagation (finding the error), and gradient descent (adjusting 'knowledge') repeats millions of times with vast amounts of data. It's how neural networks learn to distinguish cats from dogs, translate languages with nuance, power facial recognition systems on your phone, or even guide self-driving cars safely through traffic. Each refined 'weight' becomes a piece of deep, learned knowledge, allowing AI to perform incredibly complex tasks with human-like intelligence.
+2025-10-14T11:56:44.321Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:44.321Z [debug] [codegenV3] Prompt length: 1242 chars
+2025-10-14T11:56:44.321Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 3
+2025-10-14T11:56:44.321Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T11:56:44.321Z [info] [codegenV3] Generating step 3: This tireless cycle of forward propagation (making a guess), backpropagation (finding the error), and gradient descent (adjusting 'knowledge') repeats millions of times with vast amounts of data. It's how neural networks learn to distinguish cats from dogs, translate languages with nuance, power facial recognition systems on your phone, or even guide self-driving cars safely through traffic. Each refined 'weight' becomes a piece of deep, learned knowledge, allowing AI to perform incredibly complex tasks with human-like intelligence.
+2025-10-14T11:56:44.321Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:44.321Z [debug] [codegenV3] Prompt length: 1242 chars
+2025-10-14T11:56:44.321Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 3
+2025-10-14T11:56:44.321Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T11:56:44.321Z [info] [codegenV3] Generating step 3: This tireless cycle of forward propagation (making a guess), backpropagation (finding the error), and gradient descent (adjusting 'knowledge') repeats millions of times with vast amounts of data. It's how neural networks learn to distinguish cats from dogs, translate languages with nuance, power facial recognition systems on your phone, or even guide self-driving cars safely through traffic. Each refined 'weight' becomes a piece of deep, learned knowledge, allowing AI to perform incredibly complex tasks with human-like intelligence.
+2025-10-14T11:56:44.321Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:44.321Z [debug] [codegenV3] Prompt length: 1242 chars
+2025-10-14T11:56:44.321Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 3
+2025-10-14T11:56:44.321Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T11:56:44.321Z [info] [codegenV3] Generating step 3: This tireless cycle of forward propagation (making a guess), backpropagation (finding the error), and gradient descent (adjusting 'knowledge') repeats millions of times with vast amounts of data. It's how neural networks learn to distinguish cats from dogs, translate languages with nuance, power facial recognition systems on your phone, or even guide self-driving cars safely through traffic. Each refined 'weight' becomes a piece of deep, learned knowledge, allowing AI to perform incredibly complex tasks with human-like intelligence.
+2025-10-14T11:56:44.321Z [info] [codegenV3] Topic: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T11:56:44.321Z [debug] [codegenV3] Prompt length: 1242 chars
+2025-10-14T11:56:44.321Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T11:56:53.539Z [debug] [monitor] Metrics updated:
+2025-10-14T11:57:18.406Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:57:18.406Z [debug] [codegenV3] Received 8405 chars from API
+2025-10-14T11:57:18.406Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:57:18.406Z [info] [codegenV3] ✅ Generated SVG in 34.09s (8405 chars)
+2025-10-14T11:57:18.406Z [info] [codegenV3] 🎬 ANIMATIONS: 23 total (<animate>: 21, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-14T11:57:18.406Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=8
+2025-10-14T11:57:18.406Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:57:18.406Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:57:18.406Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T11:57:39.968Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:57:39.968Z [debug] [codegenV3] Received 9474 chars from API
+2025-10-14T11:57:39.968Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:57:39.968Z [info] [codegenV3] ✅ Generated SVG in 55.65s (9474 chars)
+2025-10-14T11:57:39.968Z [info] [codegenV3] 🎬 ANIMATIONS: 33 total (<animate>: 23, <animateMotion>: 7, <animateTransform>: 3)
+2025-10-14T11:57:39.968Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=5
+2025-10-14T11:57:39.968Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:57:39.968Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:57:39.968Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T11:57:41.909Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:57:41.909Z [debug] [codegenV3] Received 8985 chars from API
+2025-10-14T11:57:41.909Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:57:41.909Z [info] [codegenV3] ✅ Generated SVG in 61.59s (8985 chars)
+2025-10-14T11:57:41.909Z [info] [codegenV3] 🎬 ANIMATIONS: 31 total (<animate>: 23, <animateMotion>: 7, <animateTransform>: 1)
+2025-10-14T11:57:41.909Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=11
+2025-10-14T11:57:41.910Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:57:41.910Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T11:57:41.910Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:57:41.910Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T11:57:50.323Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:57:50.323Z [debug] [codegenV3] Received 8500 chars from API
+2025-10-14T11:57:50.323Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:57:50.323Z [info] [codegenV3] ✅ Generated SVG in 66.00s (8500 chars)
+2025-10-14T11:57:50.323Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 18, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-14T11:57:50.323Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=17
+2025-10-14T11:57:50.323Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:57:50.323Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:57:50.323Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T11:57:53.540Z [debug] [monitor] Metrics updated:
+2025-10-14T11:58:03.096Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:58:03.096Z [debug] [codegenV3] Received 10690 chars from API
+2025-10-14T11:58:03.096Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:58:03.096Z [info] [codegenV3] ✅ Generated SVG in 82.78s (10690 chars)
+2025-10-14T11:58:03.096Z [info] [codegenV3] 🎬 ANIMATIONS: 42 total (<animate>: 41, <animateMotion>: 1, <animateTransform>: 0)
+2025-10-14T11:58:03.096Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=17
+2025-10-14T11:58:03.096Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:58:03.096Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T11:58:03.096Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:58:03.096Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T11:58:15.851Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:58:15.851Z [debug] [codegenV3] Received 11031 chars from API
+2025-10-14T11:58:15.851Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:58:15.852Z [info] [codegenV3] ✅ Generated SVG in 93.53s (11031 chars)
+2025-10-14T11:58:15.852Z [info] [codegenV3] 🎬 ANIMATIONS: 42 total (<animate>: 36, <animateMotion>: 4, <animateTransform>: 2)
+2025-10-14T11:58:15.852Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=15
+2025-10-14T11:58:15.852Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:58:15.852Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:58:15.852Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T11:58:15.913Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:58:15.913Z [debug] [codegenV3] Received 9187 chars from API
+2025-10-14T11:58:15.913Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:58:15.913Z [info] [codegenV3] ✅ Generated SVG in 93.59s (9187 chars)
+2025-10-14T11:58:15.913Z [info] [codegenV3] 🎬 ANIMATIONS: 40 total (<animate>: 30, <animateMotion>: 10, <animateTransform>: 0)
+2025-10-14T11:58:15.913Z [info] [codegenV3] 📊 CONTENT: labels=14, shapes=25
+2025-10-14T11:58:15.913Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:58:15.913Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:58:15.913Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T11:58:16.326Z [info] [notes] ⏱️  Generation completed in 92.01s
+2025-10-14T11:58:16.326Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:58:16.326Z [info] [notes] ✅ Generated SVG keynote in 92.01s (13396 chars)
+2025-10-14T11:58:16.326Z [info] [notes] 📊 Elements: text=56, rect=13, line=11, total=80
+2025-10-14T11:58:16.326Z [info] [notes] 📊 Quality Validation:
+2025-10-14T11:58:16.326Z [info] [notes]    - Text elements: 56/15 ✓
+2025-10-14T11:58:16.326Z [info] [notes]    - Visual elements: 30/10 ✓
+2025-10-14T11:58:16.326Z [info] [notes]    - Total elements: 86/30 ✓
+2025-10-14T11:58:16.326Z [info] [notes]    - Content length: 13396/3000 ✓
+2025-10-14T11:58:16.326Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T11:58:16.326Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T11:58:16.326Z [info] [notes] ✅ SUCCESS - Generated high-quality SVG keynote
+2025-10-14T11:58:16.326Z [info] [stepVisuals] ✅ Notes generated (13396 chars)
+2025-10-14T11:58:20.034Z [info] [notes] ⏱️  Generation completed in 97.72s
+2025-10-14T11:58:20.034Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:58:20.034Z [info] [notes] ✅ Generated SVG keynote in 97.72s (16373 chars)
+2025-10-14T11:58:20.034Z [info] [notes] 📊 Elements: text=71, rect=16, line=10, total=97
+2025-10-14T11:58:20.035Z [info] [notes] 📊 Quality Validation:
+2025-10-14T11:58:20.035Z [info] [notes]    - Text elements: 71/15 ✓
+2025-10-14T11:58:20.035Z [info] [notes]    - Visual elements: 48/10 ✓
+2025-10-14T11:58:20.035Z [info] [notes]    - Total elements: 119/30 ✓
+2025-10-14T11:58:20.035Z [info] [notes]    - Content length: 16373/3000 ✓
+2025-10-14T11:58:20.035Z [info] [notes]    - ViewBox present: ✗
+2025-10-14T11:58:20.035Z [info] [notes]    - Overall: ❌ FAIL
+2025-10-14T11:58:20.035Z [error] [notes] ❌ QUALITY FAILURE - One or more checks failed
+2025-10-14T11:58:20.035Z [error] [notes] 💥 Generation failed: Quality validation failed - see logs above
+2025-10-14T11:58:20.062Z [debug] [notes] Stack trace: Error: Quality validation failed - see logs above
+    at generateNotesForStep (/home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts:560:13)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at generateNotes (/home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts:601:12)
+    at /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts:74:25
+    at async Promise.all (index 0)
+    at generateStepVisuals (/home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts:138:22)
+    at /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts:516:91
+    at async Promise.allSettled (index 1)
+    at Worker.bullmq_1.Worker.connection [as processFn] (/home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts:651:23)
+    at /home/komail/LEAF/Learn-X/app/backend/node_modules/bullmq/src/classes/worker.ts:881:26
+2025-10-14T11:58:20.062Z [error] [generateNotes] Failed: Quality validation failed - see logs above {"stack":"Error: Quality validation failed - see logs above\n    at generateNotesForStep (/home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts:560:13)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at generateNotes (/home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts:601:12)\n    at /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts:74:25\n    at async Promise.all (index 0)\n    at generateStepVisuals (/home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts:138:22)\n    at /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts:516:91\n    at async Promise.allSettled (index 1)\n    at Worker.bullmq_1.Worker.connection [as processFn] (/home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts:651:23)\n    at /home/komail/LEAF/Learn-X/app/backend/node_modules/bullmq/src/classes/worker.ts:881:26"}
+2025-10-14T11:58:20.062Z [error] [stepVisuals] ❌ Notes generation failed for step 2
+2025-10-14T11:58:24.017Z [info] [notes] ⏱️  Generation completed in 103.70s
+2025-10-14T11:58:24.017Z [debug] [notes] Finish reason: STOP
+2025-10-14T11:58:24.017Z [info] [notes] ✅ Generated SVG keynote in 103.70s (13723 chars)
+2025-10-14T11:58:24.017Z [info] [notes] 📊 Elements: text=51, rect=12, line=33, total=96
+2025-10-14T11:58:24.017Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760443104017.svg
+2025-10-14T11:58:24.017Z [info] [notes] 📊 Quality Validation:
+2025-10-14T11:58:24.017Z [info] [notes]    - Text elements: 51/15 ✓
+2025-10-14T11:58:24.017Z [info] [notes]    - Visual elements: 61/10 ✓
+2025-10-14T11:58:24.017Z [info] [notes]    - Total elements: 112/30 ✓
+2025-10-14T11:58:24.017Z [info] [notes]    - Content length: 13723/3000 ✓
+2025-10-14T11:58:24.017Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T11:58:24.017Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T11:58:24.017Z [info] [notes] ✅ SUCCESS - Generated high-quality SVG keynote
+2025-10-14T11:58:24.017Z [info] [stepVisuals] ✅ Notes generated (13723 chars)
+2025-10-14T11:58:24.549Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:58:24.549Z [debug] [codegenV3] Received 12716 chars from API
+2025-10-14T11:58:24.549Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:58:24.550Z [info] [codegenV3] ✅ Generated SVG in 104.23s (12716 chars)
+2025-10-14T11:58:24.550Z [info] [codegenV3] 🎬 ANIMATIONS: 52 total (<animate>: 44, <animateMotion>: 6, <animateTransform>: 2)
+2025-10-14T11:58:24.550Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=27
+2025-10-14T11:58:24.550Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:58:24.550Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T11:58:24.550Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:58:24.550Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T11:58:27.524Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:58:27.524Z [debug] [codegenV3] Received 9307 chars from API
+2025-10-14T11:58:27.524Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:58:27.524Z [info] [codegenV3] ✅ Generated SVG in 103.20s (9307 chars)
+2025-10-14T11:58:27.524Z [info] [codegenV3] 🎬 ANIMATIONS: 30 total (<animate>: 28, <animateMotion>: 2, <animateTransform>: 0)
+2025-10-14T11:58:27.524Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=13
+2025-10-14T11:58:27.524Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:58:27.524Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:58:27.524Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T11:58:27.524Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T11:58:27.524Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T11:58:27.524Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T11:58:27.526Z [debug] [cache] Cached chunk for query step 3
+2025-10-14T11:58:27.526Z [debug] [monitor] Step 3 generation for 0b55e867-d0ec-4f00-b61b-2d769688695d took 103206ms
+2025-10-14T11:58:27.526Z [info] [parallel] ✅ Step 3 COMPLETE in 103206ms with 5 actions
+2025-10-14T11:58:27.526Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-14T11:58:50.730Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:58:50.730Z [debug] [codegenV3] Received 17174 chars from API
+2025-10-14T11:58:50.730Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:58:50.730Z [info] [codegenV3] ✅ Generated SVG in 128.41s (17174 chars)
+2025-10-14T11:58:50.730Z [info] [codegenV3] 🎬 ANIMATIONS: 68 total (<animate>: 58, <animateMotion>: 10, <animateTransform>: 0)
+2025-10-14T11:58:50.731Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=48
+2025-10-14T11:58:50.731Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:58:50.731Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:58:50.731Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T11:58:53.540Z [debug] [monitor] Metrics updated:
+2025-10-14T11:58:53.734Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:58:53.734Z [debug] [codegenV3] Received 17119 chars from API
+2025-10-14T11:58:53.734Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:58:53.734Z [info] [codegenV3] ✅ Generated SVG in 131.41s (17119 chars)
+2025-10-14T11:58:53.734Z [info] [codegenV3] 🎬 ANIMATIONS: 117 total (<animate>: 99, <animateMotion>: 18, <animateTransform>: 0)
+2025-10-14T11:58:53.734Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=43
+2025-10-14T11:58:53.734Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:58:53.734Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:58:53.734Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T11:58:53.734Z [info] [stepVisuals] ✅ COMPLETE: Notes=NO, Animations=4/4
+2025-10-14T11:58:53.734Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T11:58:53.735Z [debug] [cache] Cached chunk for query step 2
+2025-10-14T11:58:53.735Z [debug] [monitor] Step 2 generation for 0b55e867-d0ec-4f00-b61b-2d769688695d took 131417ms
+2025-10-14T11:58:53.735Z [info] [parallel] ✅ Step 2 COMPLETE in 131417ms with 4 actions
+2025-10-14T11:58:53.736Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-14T11:58:57.056Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T11:58:57.056Z [debug] [codegenV3] Received 14419 chars from API
+2025-10-14T11:58:57.056Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T11:58:57.056Z [info] [codegenV3] ✅ Generated SVG in 136.74s (14419 chars)
+2025-10-14T11:58:57.056Z [info] [codegenV3] 🎬 ANIMATIONS: 46 total (<animate>: 29, <animateMotion>: 14, <animateTransform>: 3)
+2025-10-14T11:58:57.056Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=4
+2025-10-14T11:58:57.056Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T11:58:57.056Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T11:58:57.056Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T11:58:57.056Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T11:58:57.056Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T11:58:57.056Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T11:58:57.056Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T11:58:57.057Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T11:58:57.057Z [debug] [monitor] Step 1 generation for 0b55e867-d0ec-4f00-b61b-2d769688695d took 136740ms
+2025-10-14T11:58:57.057Z [info] [parallel] ✅ Step 1 COMPLETE in 136740ms with 5 actions
+2025-10-14T11:58:57.058Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-14T11:58:57.058Z [debug] [parallel] Parallel generation complete: 3/3 successful in 136741ms
+2025-10-14T11:58:57.058Z [debug] [monitor] Completed request 0b55e867-d0ec-4f00-b61b-2d769688695d in 150486ms (success: true)
+2025-10-14T11:58:57.058Z [debug] [parallel] Job complete for session 0b55e867-d0ec-4f00-b61b-2d769688695d
+2025-10-14T11:58:57.059Z [debug] [socket] Socket xU6gYhlRQjE7t0pcAAAB disconnected: client namespace disconnect
+2025-10-14T11:59:53.546Z [debug] [monitor] Metrics updated:
+2025-10-14T12:00:53.551Z [debug] [monitor] Metrics updated:
+2025-10-14T12:01:53.554Z [debug] [monitor] Metrics updated:
+2025-10-14T12:02:53.555Z [debug] [monitor] Metrics updated:
+2025-10-14T12:03:20.572Z [debug] Shutting down server...
+2025-10-14T12:03:20.731Z [debug] NEW Plan worker created
+2025-10-14T12:03:20.731Z [debug] NEW Gen worker created
+2025-10-14T12:03:20.731Z [debug] NEW Parallel worker created
+2025-10-14T12:03:20.735Z [debug] Server listening on port 8000
+2025-10-14T12:04:20.748Z [debug] [monitor] Metrics updated:
+2025-10-14T12:05:20.765Z [debug] [monitor] Metrics updated:
+2025-10-14T12:06:20.780Z [debug] [monitor] Metrics updated:
+2025-10-14T12:07:02.998Z [debug] Shutting down server...
+2025-10-14T12:07:03.158Z [debug] NEW Plan worker created
+2025-10-14T12:07:03.159Z [debug] NEW Gen worker created
+2025-10-14T12:07:03.159Z [debug] NEW Parallel worker created
+2025-10-14T12:07:03.162Z [debug] Server listening on port 8000
+2025-10-14T12:07:22.195Z [debug] Shutting down server...
+2025-10-14T12:07:22.358Z [debug] NEW Plan worker created
+2025-10-14T12:07:22.359Z [debug] NEW Gen worker created
+2025-10-14T12:07:22.359Z [debug] NEW Parallel worker created
+2025-10-14T12:07:22.362Z [debug] Server listening on port 8000
+2025-10-14T12:07:52.711Z [debug] NEW Plan worker created
+2025-10-14T12:07:52.711Z [debug] NEW Gen worker created
+2025-10-14T12:07:52.711Z [debug] NEW Parallel worker created
+2025-10-14T12:07:52.715Z [debug] Server listening on port 8000
+2025-10-14T12:08:21.332Z [debug] Received request on /api/query {"body":{"query":"Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"}}
+2025-10-14T12:08:21.333Z [debug] [api] Stored query for session 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff: "Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent"
+2025-10-14T12:08:21.333Z [debug] [orchestrator] Enqueuing plan for session 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff
+2025-10-14T12:08:21.334Z [debug] [orchestrator] Plan job added with id 6 for session 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff
+2025-10-14T12:08:21.335Z [debug] [plan] START: session=2f9d380d-517c-48a8-b2d2-59fa2a5a96ff query=Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent
+2025-10-14T12:08:21.335Z [debug] [monitor] Started tracking request 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff
+2025-10-14T12:08:21.335Z [debug] [cache] HIT - Found cached plan for query: "Teach me about Neural Networks: forward propagatio..."
+2025-10-14T12:08:21.335Z [debug] [plan] Using cached plan for query: Teach me about Neural Networks: forward propagation, backpropagation, and gradient descent
+2025-10-14T12:08:21.335Z [debug] [monitor] Plan generation for 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff took 0ms
+2025-10-14T12:08:21.336Z [debug] [plan] OK: session=2f9d380d-517c-48a8-b2d2-59fa2a5a96ff plan received with 3 steps
+2025-10-14T12:08:21.337Z [debug] [plan] Emitted plan event to session 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff
+2025-10-14T12:08:21.337Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-14T12:08:21.337Z [debug] [plan] END: session=2f9d380d-517c-48a8-b2d2-59fa2a5a96ff
+2025-10-14T12:08:21.340Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff)
+2025-10-14T12:08:21.341Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-14T12:08:21.342Z [debug] [socket] New connection: O6YnamWrgLXVT3abAAAB
+2025-10-14T12:08:21.342Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-14T12:08:21.343Z [debug] [parallel] Using cached chunk for step 1
+2025-10-14T12:08:21.343Z [debug] [monitor] Step 1 generation for 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff took 3ms
+2025-10-14T12:08:21.343Z [info] [parallel] ✅ Step 1 COMPLETE in 3ms with 5 actions
+2025-10-14T12:08:21.344Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-14T12:08:21.344Z [debug] [socket] Socket O6YnamWrgLXVT3abAAAB joined session 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff
+2025-10-14T12:08:21.344Z [debug] [socket] Socket O6YnamWrgLXVT3abAAAB is now in rooms: O6YnamWrgLXVT3abAAAB, 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff
+2025-10-14T12:08:21.345Z [debug] [socket] Sent cached plan to newly joined socket O6YnamWrgLXVT3abAAAB
+2025-10-14T12:08:21.346Z [debug] [socket] Sent cached step 1 to newly joined socket O6YnamWrgLXVT3abAAAB
+2025-10-14T12:08:23.342Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-14T12:08:23.342Z [debug] [cache] HIT - Found cached chunk for step 2
+2025-10-14T12:08:23.342Z [debug] [parallel] Using cached chunk for step 2
+2025-10-14T12:08:23.343Z [debug] [monitor] Step 2 generation for 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff took 1ms
+2025-10-14T12:08:23.343Z [info] [parallel] ✅ Step 2 COMPLETE in 1ms with 4 actions
+2025-10-14T12:08:23.343Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-14T12:08:25.349Z [debug] [cache] HIT - Found cached chunk for step 3
+2025-10-14T12:08:25.349Z [debug] [parallel] Using cached chunk for step 3
+2025-10-14T12:08:25.350Z [debug] [monitor] Step 3 generation for 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff took 1ms
+2025-10-14T12:08:25.350Z [info] [parallel] ✅ Step 3 COMPLETE in 1ms with 5 actions
+2025-10-14T12:08:25.351Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-14T12:08:25.351Z [debug] [parallel] Parallel generation complete: 3/3 successful in 4011ms
+2025-10-14T12:08:25.351Z [debug] [monitor] Completed request 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff in 4016ms (success: true)
+2025-10-14T12:08:25.351Z [debug] [parallel] Job complete for session 2f9d380d-517c-48a8-b2d2-59fa2a5a96ff
+2025-10-14T12:08:25.352Z [debug] [socket] Socket O6YnamWrgLXVT3abAAAB disconnected: client namespace disconnect
+2025-10-14T12:08:52.710Z [debug] [monitor] Metrics updated:
+2025-10-14T12:09:06.080Z [debug] Received request on /api/query {"body":{"query":"Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"}}
+2025-10-14T12:09:06.080Z [debug] [api] Stored query for session 86670067-080b-43ba-bed0-4a39f35631d3: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:06.080Z [debug] [orchestrator] Enqueuing plan for session 86670067-080b-43ba-bed0-4a39f35631d3
+2025-10-14T12:09:06.081Z [debug] [orchestrator] Plan job added with id 1 for session 86670067-080b-43ba-bed0-4a39f35631d3
+2025-10-14T12:09:06.081Z [debug] [plan] START: session=86670067-080b-43ba-bed0-4a39f35631d3 query=Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain
+2025-10-14T12:09:06.081Z [debug] [monitor] Started tracking request 86670067-080b-43ba-bed0-4a39f35631d3
+2025-10-14T12:09:06.081Z [debug] [cache] MISS - No cached plan for query: "Teach me about Photosynthesis: light reactions, Ca..."
+2025-10-14T12:09:06.082Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T12:09:06.089Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T12:09:06.109Z [debug] [socket] New connection: pudp0GFQ-tL9NFh1AAAD
+2025-10-14T12:09:06.110Z [debug] [socket] Socket pudp0GFQ-tL9NFh1AAAD joined session 86670067-080b-43ba-bed0-4a39f35631d3
+2025-10-14T12:09:06.110Z [debug] [socket] Socket pudp0GFQ-tL9NFh1AAAD is now in rooms: pudp0GFQ-tL9NFh1AAAD, 86670067-080b-43ba-bed0-4a39f35631d3
+2025-10-14T12:09:24.957Z [debug] [planner] Received response from Gemini in 18875ms
+2025-10-14T12:09:24.957Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Photosynthesis: Light to Sugar",
+  "subtitle": "Discover how plants convert sunlight into chemical energy and sugar through light reactions, the electron transport chain, and the Calvin cycle.",
+  "toc": [
+    {
+      "minute": 1,
+      "title": "The Intuition",
+      "summary": "How plants capture light energy to power life."
+    },
+    {
+      "minute": 2,
+      "title": "How It Works",
+      "summary": "The two main phases: energy capture and sugar building."
+    },
+    ...
+2025-10-14T12:09:24.957Z [debug] [planner] Extracted JSON (length: 3021)
+2025-10-14T12:09:24.957Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T12:09:24.957Z [debug] [monitor] Plan generation for 86670067-080b-43ba-bed0-4a39f35631d3 took 18876ms
+2025-10-14T12:09:24.958Z [debug] [cache] Cached plan for query: "Teach me about Photosynthesis: light reactions, Ca..."
+2025-10-14T12:09:24.958Z [debug] [plan] OK: session=86670067-080b-43ba-bed0-4a39f35631d3 plan received with 3 steps
+2025-10-14T12:09:24.959Z [debug] [plan] Emitted plan event to session 86670067-080b-43ba-bed0-4a39f35631d3
+2025-10-14T12:09:24.959Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-14T12:09:24.959Z [debug] [plan] END: session=86670067-080b-43ba-bed0-4a39f35631d3
+2025-10-14T12:09:24.960Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 86670067-080b-43ba-bed0-4a39f35631d3)
+2025-10-14T12:09:24.961Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-14T12:09:24.961Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T12:09:24.961Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations
+2025-10-14T12:09:24.961Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 1
+2025-10-14T12:09:24.961Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T12:09:24.962Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T12:09:24.962Z [info] [notes] 📚 Subtopic: "Imagine a lush green plant basking under the sun. That sunlight isn't just warmth; it's pure energy. In the plant's leaves, specialized 'solar panels' (chlorophyll) absorb this light. This absorbed light energy is immediately used in the 'light reactions' to split water molecules. Think of it like a tiny, efficient factory; water goes in, oxygen is released (which we breathe!), and two crucial energy carriers are produced: ATP (a charged battery) and NADPH (a loaded electron truck). These aren't sugar yet, but they're the energized currency ready to build it."
+2025-10-14T12:09:24.962Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T12:09:24.962Z [info] [notes] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:09:24.962Z [info] [notes] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:24.962Z [info] [notes] Subtopic: "Imagine a lush green plant basking under the sun. That sunlight isn't just warmth; it's pure energy. In the plant's leaves, specialized 'solar panels' (chlorophyll) absorb this light. This absorbed light energy is immediately used in the 'light reactions' to split water molecules. Think of it like a tiny, efficient factory; water goes in, oxygen is released (which we breathe!), and two crucial energy carriers are produced: ATP (a charged battery) and NADPH (a loaded electron truck). These aren't sugar yet, but they're the energized currency ready to build it."
+2025-10-14T12:09:24.962Z [debug] [notes] Temperature: 0.75
+2025-10-14T12:09:24.962Z [debug] [notes] Prompt length: 4624 chars
+2025-10-14T12:09:24.962Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T12:09:24.962Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:09:24.963Z [info] [codegenV3] Generating step 1: Imagine a lush green plant basking under the sun. That sunlight isn't just warmth; it's pure energy. In the plant's leaves, specialized 'solar panels' (chlorophyll) absorb this light. This absorbed light energy is immediately used in the 'light reactions' to split water molecules. Think of it like a tiny, efficient factory; water goes in, oxygen is released (which we breathe!), and two crucial energy carriers are produced: ATP (a charged battery) and NADPH (a loaded electron truck). These aren't sugar yet, but they're the energized currency ready to build it.
+2025-10-14T12:09:24.963Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:24.963Z [debug] [codegenV3] Prompt length: 1269 chars
+2025-10-14T12:09:24.963Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T12:09:24.963Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:09:24.963Z [info] [codegenV3] Generating step 1: Imagine a lush green plant basking under the sun. That sunlight isn't just warmth; it's pure energy. In the plant's leaves, specialized 'solar panels' (chlorophyll) absorb this light. This absorbed light energy is immediately used in the 'light reactions' to split water molecules. Think of it like a tiny, efficient factory; water goes in, oxygen is released (which we breathe!), and two crucial energy carriers are produced: ATP (a charged battery) and NADPH (a loaded electron truck). These aren't sugar yet, but they're the energized currency ready to build it.
+2025-10-14T12:09:24.963Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:24.963Z [debug] [codegenV3] Prompt length: 1269 chars
+2025-10-14T12:09:24.963Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T12:09:24.963Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:09:24.963Z [info] [codegenV3] Generating step 1: Imagine a lush green plant basking under the sun. That sunlight isn't just warmth; it's pure energy. In the plant's leaves, specialized 'solar panels' (chlorophyll) absorb this light. This absorbed light energy is immediately used in the 'light reactions' to split water molecules. Think of it like a tiny, efficient factory; water goes in, oxygen is released (which we breathe!), and two crucial energy carriers are produced: ATP (a charged battery) and NADPH (a loaded electron truck). These aren't sugar yet, but they're the energized currency ready to build it.
+2025-10-14T12:09:24.963Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:24.963Z [debug] [codegenV3] Prompt length: 1269 chars
+2025-10-14T12:09:24.963Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T12:09:24.963Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:09:24.963Z [info] [codegenV3] Generating step 1: Imagine a lush green plant basking under the sun. That sunlight isn't just warmth; it's pure energy. In the plant's leaves, specialized 'solar panels' (chlorophyll) absorb this light. This absorbed light energy is immediately used in the 'light reactions' to split water molecules. Think of it like a tiny, efficient factory; water goes in, oxygen is released (which we breathe!), and two crucial energy carriers are produced: ATP (a charged battery) and NADPH (a loaded electron truck). These aren't sugar yet, but they're the energized currency ready to build it.
+2025-10-14T12:09:24.963Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:24.964Z [debug] [codegenV3] Prompt length: 1269 chars
+2025-10-14T12:09:24.964Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T12:09:26.966Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-14T12:09:26.966Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-14T12:09:26.966Z [info] [parallel] 🚀 Step 2: Generating notes + 4 animations
+2025-10-14T12:09:26.966Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 2
+2025-10-14T12:09:26.966Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 2
+2025-10-14T12:09:26.967Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T12:09:26.967Z [info] [notes] 📚 Subtopic: "Now, let's zoom inside the plant's energy factory. The energy carriers (ATP and NADPH) created by the light reactions move to another section: the Calvin Cycle. But before that, an electron transport chain is at play, where electrons are passed rapidly along a series of proteins, like a bucket brigade, generating more ATP. With these energy carriers now fully loaded, the Calvin Cycle acts like a molecular 3D printer. It takes carbon dioxide (CO2) from the air – the 'building blocks' – and, using the energy from ATP and the reducing power from NADPH, systematically builds complex sugar molecules, like glucose. This is the plant's food, its stored energy, and the foundation of almost all life."
+2025-10-14T12:09:26.967Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T12:09:26.967Z [info] [notes] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:09:26.967Z [info] [notes] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:26.967Z [info] [notes] Subtopic: "Now, let's zoom inside the plant's energy factory. The energy carriers (ATP and NADPH) created by the light reactions move to another section: the Calvin Cycle. But before that, an electron transport chain is at play, where electrons are passed rapidly along a series of proteins, like a bucket brigade, generating more ATP. With these energy carriers now fully loaded, the Calvin Cycle acts like a molecular 3D printer. It takes carbon dioxide (CO2) from the air – the 'building blocks' – and, using the energy from ATP and the reducing power from NADPH, systematically builds complex sugar molecules, like glucose. This is the plant's food, its stored energy, and the foundation of almost all life."
+2025-10-14T12:09:26.967Z [debug] [notes] Temperature: 0.75
+2025-10-14T12:09:26.967Z [debug] [notes] Prompt length: 4759 chars
+2025-10-14T12:09:26.967Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 2
+2025-10-14T12:09:26.967Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:09:26.967Z [info] [codegenV3] Generating step 2: Now, let's zoom inside the plant's energy factory. The energy carriers (ATP and NADPH) created by the light reactions move to another section: the Calvin Cycle. But before that, an electron transport chain is at play, where electrons are passed rapidly along a series of proteins, like a bucket brigade, generating more ATP. With these energy carriers now fully loaded, the Calvin Cycle acts like a molecular 3D printer. It takes carbon dioxide (CO2) from the air – the 'building blocks' – and, using the energy from ATP and the reducing power from NADPH, systematically builds complex sugar molecules, like glucose. This is the plant's food, its stored energy, and the foundation of almost all life.
+2025-10-14T12:09:26.967Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:26.967Z [debug] [codegenV3] Prompt length: 1404 chars
+2025-10-14T12:09:26.968Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 2
+2025-10-14T12:09:26.968Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:09:26.968Z [info] [codegenV3] Generating step 2: Now, let's zoom inside the plant's energy factory. The energy carriers (ATP and NADPH) created by the light reactions move to another section: the Calvin Cycle. But before that, an electron transport chain is at play, where electrons are passed rapidly along a series of proteins, like a bucket brigade, generating more ATP. With these energy carriers now fully loaded, the Calvin Cycle acts like a molecular 3D printer. It takes carbon dioxide (CO2) from the air – the 'building blocks' – and, using the energy from ATP and the reducing power from NADPH, systematically builds complex sugar molecules, like glucose. This is the plant's food, its stored energy, and the foundation of almost all life.
+2025-10-14T12:09:26.968Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:26.968Z [debug] [codegenV3] Prompt length: 1404 chars
+2025-10-14T12:09:26.968Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 2
+2025-10-14T12:09:26.968Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:09:26.968Z [info] [codegenV3] Generating step 2: Now, let's zoom inside the plant's energy factory. The energy carriers (ATP and NADPH) created by the light reactions move to another section: the Calvin Cycle. But before that, an electron transport chain is at play, where electrons are passed rapidly along a series of proteins, like a bucket brigade, generating more ATP. With these energy carriers now fully loaded, the Calvin Cycle acts like a molecular 3D printer. It takes carbon dioxide (CO2) from the air – the 'building blocks' – and, using the energy from ATP and the reducing power from NADPH, systematically builds complex sugar molecules, like glucose. This is the plant's food, its stored energy, and the foundation of almost all life.
+2025-10-14T12:09:26.968Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:26.968Z [debug] [codegenV3] Prompt length: 1404 chars
+2025-10-14T12:09:26.968Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 2
+2025-10-14T12:09:26.968Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:09:26.968Z [info] [codegenV3] Generating step 2: Now, let's zoom inside the plant's energy factory. The energy carriers (ATP and NADPH) created by the light reactions move to another section: the Calvin Cycle. But before that, an electron transport chain is at play, where electrons are passed rapidly along a series of proteins, like a bucket brigade, generating more ATP. With these energy carriers now fully loaded, the Calvin Cycle acts like a molecular 3D printer. It takes carbon dioxide (CO2) from the air – the 'building blocks' – and, using the energy from ATP and the reducing power from NADPH, systematically builds complex sugar molecules, like glucose. This is the plant's food, its stored energy, and the foundation of almost all life.
+2025-10-14T12:09:26.968Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:26.968Z [debug] [codegenV3] Prompt length: 1404 chars
+2025-10-14T12:09:26.968Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T12:09:28.970Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-14T12:09:28.971Z [info] [parallel] 🚀 Step 3: Generating notes + 4 animations
+2025-10-14T12:09:28.971Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 3
+2025-10-14T12:09:28.971Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 3
+2025-10-14T12:09:28.971Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T12:09:28.971Z [info] [notes] 📚 Subtopic: "Photosynthesis isn't just a plant's secret; it's the engine of our planet. Every bite of food you eat, whether it's a vegetable or meat from an animal that ate plants, traces its energy back to this process. It literally cleans our air, absorbing the CO2 we exhale and releasing the oxygen we need to survive. Without the elegant dance of light reactions, the electron transport chain, and the Calvin cycle, Earth would be a barren, oxygen-starved world. It's the ultimate renewable energy source, powering ecosystems, creating biomass, and even forming the ancient organic matter that became fossil fuels."
+2025-10-14T12:09:28.971Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T12:09:28.971Z [info] [notes] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:09:28.971Z [info] [notes] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:28.971Z [info] [notes] Subtopic: "Photosynthesis isn't just a plant's secret; it's the engine of our planet. Every bite of food you eat, whether it's a vegetable or meat from an animal that ate plants, traces its energy back to this process. It literally cleans our air, absorbing the CO2 we exhale and releasing the oxygen we need to survive. Without the elegant dance of light reactions, the electron transport chain, and the Calvin cycle, Earth would be a barren, oxygen-starved world. It's the ultimate renewable energy source, powering ecosystems, creating biomass, and even forming the ancient organic matter that became fossil fuels."
+2025-10-14T12:09:28.971Z [debug] [notes] Temperature: 0.75
+2025-10-14T12:09:28.971Z [debug] [notes] Prompt length: 4665 chars
+2025-10-14T12:09:28.972Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 3
+2025-10-14T12:09:28.972Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:09:28.972Z [info] [codegenV3] Generating step 3: Photosynthesis isn't just a plant's secret; it's the engine of our planet. Every bite of food you eat, whether it's a vegetable or meat from an animal that ate plants, traces its energy back to this process. It literally cleans our air, absorbing the CO2 we exhale and releasing the oxygen we need to survive. Without the elegant dance of light reactions, the electron transport chain, and the Calvin cycle, Earth would be a barren, oxygen-starved world. It's the ultimate renewable energy source, powering ecosystems, creating biomass, and even forming the ancient organic matter that became fossil fuels.
+2025-10-14T12:09:28.972Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:28.972Z [debug] [codegenV3] Prompt length: 1310 chars
+2025-10-14T12:09:28.972Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 3
+2025-10-14T12:09:28.972Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:09:28.972Z [info] [codegenV3] Generating step 3: Photosynthesis isn't just a plant's secret; it's the engine of our planet. Every bite of food you eat, whether it's a vegetable or meat from an animal that ate plants, traces its energy back to this process. It literally cleans our air, absorbing the CO2 we exhale and releasing the oxygen we need to survive. Without the elegant dance of light reactions, the electron transport chain, and the Calvin cycle, Earth would be a barren, oxygen-starved world. It's the ultimate renewable energy source, powering ecosystems, creating biomass, and even forming the ancient organic matter that became fossil fuels.
+2025-10-14T12:09:28.972Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:28.972Z [debug] [codegenV3] Prompt length: 1310 chars
+2025-10-14T12:09:28.972Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 3
+2025-10-14T12:09:28.972Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:09:28.972Z [info] [codegenV3] Generating step 3: Photosynthesis isn't just a plant's secret; it's the engine of our planet. Every bite of food you eat, whether it's a vegetable or meat from an animal that ate plants, traces its energy back to this process. It literally cleans our air, absorbing the CO2 we exhale and releasing the oxygen we need to survive. Without the elegant dance of light reactions, the electron transport chain, and the Calvin cycle, Earth would be a barren, oxygen-starved world. It's the ultimate renewable energy source, powering ecosystems, creating biomass, and even forming the ancient organic matter that became fossil fuels.
+2025-10-14T12:09:28.972Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:28.972Z [debug] [codegenV3] Prompt length: 1310 chars
+2025-10-14T12:09:28.973Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 3
+2025-10-14T12:09:28.973Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:09:28.973Z [info] [codegenV3] Generating step 3: Photosynthesis isn't just a plant's secret; it's the engine of our planet. Every bite of food you eat, whether it's a vegetable or meat from an animal that ate plants, traces its energy back to this process. It literally cleans our air, absorbing the CO2 we exhale and releasing the oxygen we need to survive. Without the elegant dance of light reactions, the electron transport chain, and the Calvin cycle, Earth would be a barren, oxygen-starved world. It's the ultimate renewable energy source, powering ecosystems, creating biomass, and even forming the ancient organic matter that became fossil fuels.
+2025-10-14T12:09:28.973Z [info] [codegenV3] Topic: "Teach me about Photosynthesis: light reactions, Calvin cycle, and electron transport chain"
+2025-10-14T12:09:28.973Z [debug] [codegenV3] Prompt length: 1310 chars
+2025-10-14T12:09:28.973Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T12:09:52.712Z [debug] [monitor] Metrics updated:
+2025-10-14T12:10:07.839Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:10:07.839Z [debug] [codegenV3] Received 6882 chars from API
+2025-10-14T12:10:07.839Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:10:07.839Z [info] [codegenV3] ✅ Generated SVG in 42.88s (6882 chars)
+2025-10-14T12:10:07.839Z [info] [codegenV3] 🎬 ANIMATIONS: 24 total (<animate>: 12, <animateMotion>: 12, <animateTransform>: 0)
+2025-10-14T12:10:07.839Z [info] [codegenV3] 📊 CONTENT: labels=21, shapes=19
+2025-10-14T12:10:07.839Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:10:07.839Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T12:10:07.840Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:10:07.840Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T12:10:23.798Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:10:23.798Z [debug] [codegenV3] Received 7699 chars from API
+2025-10-14T12:10:23.798Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:10:23.798Z [info] [codegenV3] ✅ Generated SVG in 56.83s (7699 chars)
+2025-10-14T12:10:23.798Z [info] [codegenV3] 🎬 ANIMATIONS: 27 total (<animate>: 19, <animateMotion>: 7, <animateTransform>: 1)
+2025-10-14T12:10:23.798Z [info] [codegenV3] 📊 CONTENT: labels=17, shapes=26
+2025-10-14T12:10:23.798Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:10:23.798Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:10:23.798Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T12:10:26.064Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:10:26.064Z [debug] [codegenV3] Received 5977 chars from API
+2025-10-14T12:10:26.064Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:10:26.064Z [info] [codegenV3] ✅ Generated SVG in 61.10s (5977 chars)
+2025-10-14T12:10:26.064Z [info] [codegenV3] 🎬 ANIMATIONS: 19 total (<animate>: 11, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-14T12:10:26.064Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=22
+2025-10-14T12:10:26.064Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:10:26.064Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T12:10:26.064Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:10:26.064Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T12:10:31.482Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:10:31.482Z [debug] [codegenV3] Received 9377 chars from API
+2025-10-14T12:10:31.482Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:10:31.483Z [info] [codegenV3] ✅ Generated SVG in 64.52s (9377 chars)
+2025-10-14T12:10:31.483Z [info] [codegenV3] 🎬 ANIMATIONS: 41 total (<animate>: 22, <animateMotion>: 15, <animateTransform>: 4)
+2025-10-14T12:10:31.483Z [info] [codegenV3] 📊 CONTENT: labels=20, shapes=29
+2025-10-14T12:10:31.483Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:10:31.483Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:10:31.483Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T12:10:32.151Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:10:32.152Z [debug] [codegenV3] Received 6450 chars from API
+2025-10-14T12:10:32.152Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:10:32.152Z [info] [codegenV3] ✅ Generated SVG in 63.18s (6450 chars)
+2025-10-14T12:10:32.152Z [info] [codegenV3] 🎬 ANIMATIONS: 28 total (<animate>: 16, <animateMotion>: 12, <animateTransform>: 0)
+2025-10-14T12:10:32.152Z [info] [codegenV3] 📊 CONTENT: labels=14, shapes=21
+2025-10-14T12:10:32.152Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:10:32.152Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:10:32.152Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T12:10:42.763Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:10:42.763Z [debug] [codegenV3] Received 8814 chars from API
+2025-10-14T12:10:42.763Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:10:42.763Z [info] [codegenV3] ✅ Generated SVG in 77.80s (8814 chars)
+2025-10-14T12:10:42.763Z [info] [codegenV3] 🎬 ANIMATIONS: 27 total (<animate>: 14, <animateMotion>: 12, <animateTransform>: 1)
+2025-10-14T12:10:42.763Z [info] [codegenV3] 📊 CONTENT: labels=18, shapes=38
+2025-10-14T12:10:42.763Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:10:42.763Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T12:10:42.763Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:10:42.763Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T12:10:48.800Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:10:48.800Z [debug] [codegenV3] Received 6673 chars from API
+2025-10-14T12:10:48.800Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:10:48.800Z [info] [codegenV3] ✅ Generated SVG in 81.83s (6673 chars)
+2025-10-14T12:10:48.800Z [info] [codegenV3] 🎬 ANIMATIONS: 35 total (<animate>: 23, <animateMotion>: 9, <animateTransform>: 3)
+2025-10-14T12:10:48.800Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=16
+2025-10-14T12:10:48.800Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:10:48.800Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:10:48.800Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T12:10:49.088Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:10:49.089Z [debug] [codegenV3] Received 6930 chars from API
+2025-10-14T12:10:49.089Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:10:49.089Z [info] [codegenV3] ✅ Generated SVG in 84.13s (6930 chars)
+2025-10-14T12:10:49.089Z [info] [codegenV3] 🎬 ANIMATIONS: 40 total (<animate>: 20, <animateMotion>: 15, <animateTransform>: 5)
+2025-10-14T12:10:49.089Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=21
+2025-10-14T12:10:49.089Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:10:49.089Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T12:10:49.089Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:10:49.089Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T12:10:51.536Z [info] [notes] ⏱️  Generation completed in 84.57s
+2025-10-14T12:10:51.536Z [debug] [notes] Finish reason: STOP
+2025-10-14T12:10:51.537Z [info] [notes] ✅ Generated SVG keynote in 84.57s (13823 chars)
+2025-10-14T12:10:51.537Z [info] [notes] 📊 Elements: text=58, rect=19, line=0, total=77
+2025-10-14T12:10:51.537Z [info] [notes] Debug copy saved: /tmp/notes-step2-1760443851537.svg
+2025-10-14T12:10:51.537Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T12:10:51.537Z [info] [notes]    - Text elements: 58/8 ✓
+2025-10-14T12:10:51.537Z [info] [notes]    - Visual elements: 41/5 ✓
+2025-10-14T12:10:51.537Z [info] [notes]    - Total elements: 99/20 ✓
+2025-10-14T12:10:51.537Z [info] [notes]    - Content length: 13823/2000 ✓
+2025-10-14T12:10:51.537Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T12:10:51.537Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T12:10:51.537Z [info] [notes] ✅ SUCCESS on attempt 1/3 (84.57s total)
+2025-10-14T12:10:51.537Z [info] [stepVisuals] ✅ Notes generated (13823 chars)
+2025-10-14T12:10:52.714Z [debug] [monitor] Metrics updated:
+2025-10-14T12:10:56.818Z [info] [notes] ⏱️  Generation completed in 91.86s
+2025-10-14T12:10:56.818Z [debug] [notes] Finish reason: STOP
+2025-10-14T12:10:56.818Z [info] [notes] ✅ Generated SVG keynote in 91.86s (13958 chars)
+2025-10-14T12:10:56.818Z [info] [notes] 📊 Elements: text=72, rect=12, line=10, total=94
+2025-10-14T12:10:56.818Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760443856818.svg
+2025-10-14T12:10:56.818Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T12:10:56.819Z [info] [notes]    - Text elements: 72/8 ✓
+2025-10-14T12:10:56.819Z [info] [notes]    - Visual elements: 26/5 ✓
+2025-10-14T12:10:56.819Z [info] [notes]    - Total elements: 98/20 ✓
+2025-10-14T12:10:56.819Z [info] [notes]    - Content length: 13958/2000 ✓
+2025-10-14T12:10:56.819Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T12:10:56.819Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T12:10:56.819Z [info] [notes] ✅ SUCCESS on attempt 1/3 (91.86s total)
+2025-10-14T12:10:56.819Z [info] [stepVisuals] ✅ Notes generated (13958 chars)
+2025-10-14T12:10:56.819Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T12:10:56.819Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T12:10:56.819Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T12:10:56.820Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T12:10:56.820Z [debug] [monitor] Step 1 generation for 86670067-080b-43ba-bed0-4a39f35631d3 took 91859ms
+2025-10-14T12:10:56.820Z [info] [parallel] ✅ Step 1 COMPLETE in 91859ms with 5 actions
+2025-10-14T12:10:56.821Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-14T12:11:00.377Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:11:00.377Z [debug] [codegenV3] Received 9937 chars from API
+2025-10-14T12:11:00.377Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:11:00.377Z [info] [codegenV3] ✅ Generated SVG in 91.40s (9937 chars)
+2025-10-14T12:11:00.377Z [info] [codegenV3] 🎬 ANIMATIONS: 37 total (<animate>: 19, <animateMotion>: 17, <animateTransform>: 1)
+2025-10-14T12:11:00.377Z [info] [codegenV3] 📊 CONTENT: labels=22, shapes=43
+2025-10-14T12:11:00.378Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:11:00.378Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:11:00.378Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T12:11:04.918Z [info] [notes] ⏱️  Generation completed in 95.95s
+2025-10-14T12:11:04.918Z [debug] [notes] Finish reason: STOP
+2025-10-14T12:11:04.919Z [info] [notes] ✅ Generated SVG keynote in 95.95s (19183 chars)
+2025-10-14T12:11:04.919Z [info] [notes] 📊 Elements: text=91, rect=10, line=23, total=124
+2025-10-14T12:11:04.919Z [info] [notes] Debug copy saved: /tmp/notes-step3-1760443864919.svg
+2025-10-14T12:11:04.919Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T12:11:04.919Z [info] [notes]    - Text elements: 91/8 ✓
+2025-10-14T12:11:04.919Z [info] [notes]    - Visual elements: 47/5 ✓
+2025-10-14T12:11:04.919Z [info] [notes]    - Total elements: 138/20 ✓
+2025-10-14T12:11:04.919Z [info] [notes]    - Content length: 19183/2000 ✓
+2025-10-14T12:11:04.919Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T12:11:04.919Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T12:11:04.919Z [info] [notes] ✅ SUCCESS on attempt 1/3 (95.95s total)
+2025-10-14T12:11:04.919Z [info] [stepVisuals] ✅ Notes generated (19183 chars)
+2025-10-14T12:11:05.113Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:11:05.113Z [debug] [codegenV3] Received 9972 chars from API
+2025-10-14T12:11:05.113Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:11:05.113Z [info] [codegenV3] ✅ Generated SVG in 96.14s (9972 chars)
+2025-10-14T12:11:05.113Z [info] [codegenV3] 🎬 ANIMATIONS: 44 total (<animate>: 29, <animateMotion>: 14, <animateTransform>: 1)
+2025-10-14T12:11:05.113Z [info] [codegenV3] 📊 CONTENT: labels=20, shapes=29
+2025-10-14T12:11:05.113Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:11:05.113Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:11:05.113Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T12:11:13.138Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:11:13.138Z [debug] [codegenV3] Received 9620 chars from API
+2025-10-14T12:11:13.138Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:11:13.138Z [info] [codegenV3] ✅ Generated SVG in 106.17s (9620 chars)
+2025-10-14T12:11:13.139Z [info] [codegenV3] 🎬 ANIMATIONS: 39 total (<animate>: 23, <animateMotion>: 16, <animateTransform>: 0)
+2025-10-14T12:11:13.139Z [info] [codegenV3] 📊 CONTENT: labels=27, shapes=33
+2025-10-14T12:11:13.139Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:11:13.139Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:11:13.139Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T12:11:13.139Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T12:11:13.139Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T12:11:13.139Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T12:11:13.139Z [debug] [cache] Cached chunk for query step 2
+2025-10-14T12:11:13.139Z [debug] [monitor] Step 2 generation for 86670067-080b-43ba-bed0-4a39f35631d3 took 106173ms
+2025-10-14T12:11:13.140Z [info] [parallel] ✅ Step 2 COMPLETE in 106173ms with 5 actions
+2025-10-14T12:11:13.140Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-14T12:11:43.437Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:11:43.437Z [debug] [codegenV3] Received 12959 chars from API
+2025-10-14T12:11:43.437Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:11:43.437Z [info] [codegenV3] ✅ Generated SVG in 134.47s (12959 chars)
+2025-10-14T12:11:43.437Z [info] [codegenV3] 🎬 ANIMATIONS: 56 total (<animate>: 36, <animateMotion>: 18, <animateTransform>: 2)
+2025-10-14T12:11:43.437Z [info] [codegenV3] 📊 CONTENT: labels=26, shapes=54
+2025-10-14T12:11:43.437Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:11:43.437Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:11:43.437Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T12:11:43.437Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T12:11:43.437Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T12:11:43.437Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T12:11:43.438Z [debug] [cache] Cached chunk for query step 3
+2025-10-14T12:11:43.438Z [debug] [monitor] Step 3 generation for 86670067-080b-43ba-bed0-4a39f35631d3 took 134468ms
+2025-10-14T12:11:43.438Z [info] [parallel] ✅ Step 3 COMPLETE in 134468ms with 5 actions
+2025-10-14T12:11:43.439Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-14T12:11:43.439Z [debug] [parallel] Parallel generation complete: 3/3 successful in 138478ms
+2025-10-14T12:11:43.439Z [debug] [monitor] Completed request 86670067-080b-43ba-bed0-4a39f35631d3 in 157358ms (success: true)
+2025-10-14T12:11:43.439Z [debug] [parallel] Job complete for session 86670067-080b-43ba-bed0-4a39f35631d3
+2025-10-14T12:11:43.440Z [debug] [socket] Socket pudp0GFQ-tL9NFh1AAAD disconnected: client namespace disconnect
+2025-10-14T12:11:52.717Z [debug] [monitor] Metrics updated:
+2025-10-14T12:12:52.720Z [debug] [monitor] Metrics updated:
+2025-10-14T12:13:52.722Z [debug] [monitor] Metrics updated:
+2025-10-14T12:14:23.706Z [debug] NEW Plan worker created
+2025-10-14T12:14:23.707Z [debug] NEW Gen worker created
+2025-10-14T12:14:23.707Z [debug] NEW Parallel worker created
+2025-10-14T12:14:23.710Z [debug] Server listening on port 8000
+2025-10-14T12:15:23.723Z [debug] [monitor] Metrics updated:
+2025-10-14T12:15:38.876Z [debug] [socket] New connection: G4kGe7F0vyKGuzyDAAAB
+2025-10-14T12:15:38.876Z [debug] [socket] Socket G4kGe7F0vyKGuzyDAAAB joined session 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:15:38.876Z [debug] [socket] Socket G4kGe7F0vyKGuzyDAAAB is now in rooms: G4kGe7F0vyKGuzyDAAAB, 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:15:38.877Z [debug] [socket] Socket G4kGe7F0vyKGuzyDAAAB joined session 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:15:38.877Z [debug] [socket] Socket G4kGe7F0vyKGuzyDAAAB is now in rooms: G4kGe7F0vyKGuzyDAAAB, 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:15:38.985Z [debug] Received request on /api/query {"body":{"query":"teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications","sessionId":"90dc7d47-0e88-4aee-9d01-7c685a6fcdd0"}}
+2025-10-14T12:15:38.985Z [debug] [api] Stored query for session 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:38.985Z [debug] [orchestrator] Enqueuing plan for session 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:15:38.986Z [debug] [orchestrator] Plan job added with id 2 for session 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:15:38.988Z [debug] [plan] START: session=90dc7d47-0e88-4aee-9d01-7c685a6fcdd0 query=teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications
+2025-10-14T12:15:38.988Z [debug] [monitor] Started tracking request 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:15:38.988Z [debug] [cache] MISS - No cached plan for query: "teach me about the LTI( linear time invariant ) , ..."
+2025-10-14T12:15:38.989Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T12:15:38.997Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T12:15:52.257Z [debug] [planner] Received response from Gemini in 13268ms
+2025-10-14T12:15:52.257Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Understanding LTI Systems: Predictable Signal Processing",
+  "subtitle": "Discover the core concepts, analysis methods, and real-world applications of Linear Time-Invariant systems.",
+  "toc": [
+    {
+      "minute": 1,
+      "title": "The Intuition",
+      "summary": "Why LTI systems are so useful for consistent, predictable behavior."
+    },
+    {
+      "minute": 2,
+      "title": "How It Works",
+      "summary": "The power of impulse response and the convolution operatio...
+2025-10-14T12:15:52.257Z [debug] [planner] Extracted JSON (length: 2824)
+2025-10-14T12:15:52.257Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T12:15:52.257Z [debug] [monitor] Plan generation for 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0 took 13269ms
+2025-10-14T12:15:52.257Z [debug] [cache] Cached plan for query: "teach me about the LTI( linear time invariant ) , ..."
+2025-10-14T12:15:52.258Z [debug] [plan] OK: session=90dc7d47-0e88-4aee-9d01-7c685a6fcdd0 plan received with 3 steps
+2025-10-14T12:15:52.259Z [debug] [plan] Emitted plan event to session 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:15:52.259Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-14T12:15:52.259Z [debug] [plan] END: session=90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:15:52.260Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0)
+2025-10-14T12:15:52.261Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-14T12:15:52.261Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T12:15:52.261Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations
+2025-10-14T12:15:52.261Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 1
+2025-10-14T12:15:52.261Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T12:15:52.261Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T12:15:52.261Z [info] [notes] 📚 Subtopic: "Imagine you have a perfect echo chamber. Every time you clap, you hear the exact same echo pattern, just delayed. If you clap twice as loud, the echo is twice as loud. If you clap a second later, the echo still sounds identical, just a second later. This consistent, proportional, and time-independent response is the intuitive heart of an LTI system – it always acts the same way, predictably, no matter the input's strength or when it occurs."
+2025-10-14T12:15:52.261Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T12:15:52.262Z [info] [notes] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:15:52.262Z [info] [notes] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:52.262Z [info] [notes] Subtopic: "Imagine you have a perfect echo chamber. Every time you clap, you hear the exact same echo pattern, just delayed. If you clap twice as loud, the echo is twice as loud. If you clap a second later, the echo still sounds identical, just a second later. This consistent, proportional, and time-independent response is the intuitive heart of an LTI system – it always acts the same way, predictably, no matter the input's strength or when it occurs."
+2025-10-14T12:15:52.262Z [debug] [notes] Temperature: 0.75
+2025-10-14T12:15:52.262Z [debug] [notes] Prompt length: 4503 chars
+2025-10-14T12:15:52.262Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T12:15:52.262Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:15:52.262Z [info] [codegenV3] Generating step 1: Imagine you have a perfect echo chamber. Every time you clap, you hear the exact same echo pattern, just delayed. If you clap twice as loud, the echo is twice as loud. If you clap a second later, the echo still sounds identical, just a second later. This consistent, proportional, and time-independent response is the intuitive heart of an LTI system – it always acts the same way, predictably, no matter the input's strength or when it occurs.
+2025-10-14T12:15:52.262Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:52.262Z [debug] [codegenV3] Prompt length: 1164 chars
+2025-10-14T12:15:52.262Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T12:15:52.262Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:15:52.262Z [info] [codegenV3] Generating step 1: Imagine you have a perfect echo chamber. Every time you clap, you hear the exact same echo pattern, just delayed. If you clap twice as loud, the echo is twice as loud. If you clap a second later, the echo still sounds identical, just a second later. This consistent, proportional, and time-independent response is the intuitive heart of an LTI system – it always acts the same way, predictably, no matter the input's strength or when it occurs.
+2025-10-14T12:15:52.262Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:52.262Z [debug] [codegenV3] Prompt length: 1164 chars
+2025-10-14T12:15:52.262Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T12:15:52.263Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:15:52.263Z [info] [codegenV3] Generating step 1: Imagine you have a perfect echo chamber. Every time you clap, you hear the exact same echo pattern, just delayed. If you clap twice as loud, the echo is twice as loud. If you clap a second later, the echo still sounds identical, just a second later. This consistent, proportional, and time-independent response is the intuitive heart of an LTI system – it always acts the same way, predictably, no matter the input's strength or when it occurs.
+2025-10-14T12:15:52.263Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:52.263Z [debug] [codegenV3] Prompt length: 1164 chars
+2025-10-14T12:15:52.263Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T12:15:52.263Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T12:15:52.263Z [info] [codegenV3] Generating step 1: Imagine you have a perfect echo chamber. Every time you clap, you hear the exact same echo pattern, just delayed. If you clap twice as loud, the echo is twice as loud. If you clap a second later, the echo still sounds identical, just a second later. This consistent, proportional, and time-independent response is the intuitive heart of an LTI system – it always acts the same way, predictably, no matter the input's strength or when it occurs.
+2025-10-14T12:15:52.263Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:52.263Z [debug] [codegenV3] Prompt length: 1164 chars
+2025-10-14T12:15:52.263Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T12:15:54.261Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-14T12:15:54.261Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-14T12:15:54.261Z [info] [parallel] 🚀 Step 2: Generating notes + 4 animations
+2025-10-14T12:15:54.261Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 2
+2025-10-14T12:15:54.261Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 2
+2025-10-14T12:15:54.262Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T12:15:54.262Z [info] [notes] 📚 Subtopic: "The 'methodology of resolution' for LTI systems lies in two pillars: Linearity (outputs scale with inputs, and multiple inputs combine predictably) and Time-Invariance (delaying an input only delays the output by the same amount). The magic tool for analyzing any LTI system is its 'impulse response' – how it reacts to a single, brief 'tap' (like our single clap). By taking *any* input signal and 'convolving' it with this impulse response, we can precisely predict the system's output. It's like breaking down the input into many tiny taps, and then summing up all their individual echo responses."
+2025-10-14T12:15:54.262Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T12:15:54.262Z [info] [notes] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:15:54.262Z [info] [notes] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:54.262Z [info] [notes] Subtopic: "The 'methodology of resolution' for LTI systems lies in two pillars: Linearity (outputs scale with inputs, and multiple inputs combine predictably) and Time-Invariance (delaying an input only delays the output by the same amount). The magic tool for analyzing any LTI system is its 'impulse response' – how it reacts to a single, brief 'tap' (like our single clap). By taking *any* input signal and 'convolving' it with this impulse response, we can precisely predict the system's output. It's like breaking down the input into many tiny taps, and then summing up all their individual echo responses."
+2025-10-14T12:15:54.262Z [debug] [notes] Temperature: 0.75
+2025-10-14T12:15:54.262Z [debug] [notes] Prompt length: 4659 chars
+2025-10-14T12:15:54.262Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 2
+2025-10-14T12:15:54.262Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:15:54.262Z [info] [codegenV3] Generating step 2: The 'methodology of resolution' for LTI systems lies in two pillars: Linearity (outputs scale with inputs, and multiple inputs combine predictably) and Time-Invariance (delaying an input only delays the output by the same amount). The magic tool for analyzing any LTI system is its 'impulse response' – how it reacts to a single, brief 'tap' (like our single clap). By taking *any* input signal and 'convolving' it with this impulse response, we can precisely predict the system's output. It's like breaking down the input into many tiny taps, and then summing up all their individual echo responses.
+2025-10-14T12:15:54.262Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:54.262Z [debug] [codegenV3] Prompt length: 1320 chars
+2025-10-14T12:15:54.262Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 2
+2025-10-14T12:15:54.262Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:15:54.262Z [info] [codegenV3] Generating step 2: The 'methodology of resolution' for LTI systems lies in two pillars: Linearity (outputs scale with inputs, and multiple inputs combine predictably) and Time-Invariance (delaying an input only delays the output by the same amount). The magic tool for analyzing any LTI system is its 'impulse response' – how it reacts to a single, brief 'tap' (like our single clap). By taking *any* input signal and 'convolving' it with this impulse response, we can precisely predict the system's output. It's like breaking down the input into many tiny taps, and then summing up all their individual echo responses.
+2025-10-14T12:15:54.262Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:54.262Z [debug] [codegenV3] Prompt length: 1320 chars
+2025-10-14T12:15:54.263Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 2
+2025-10-14T12:15:54.263Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:15:54.263Z [info] [codegenV3] Generating step 2: The 'methodology of resolution' for LTI systems lies in two pillars: Linearity (outputs scale with inputs, and multiple inputs combine predictably) and Time-Invariance (delaying an input only delays the output by the same amount). The magic tool for analyzing any LTI system is its 'impulse response' – how it reacts to a single, brief 'tap' (like our single clap). By taking *any* input signal and 'convolving' it with this impulse response, we can precisely predict the system's output. It's like breaking down the input into many tiny taps, and then summing up all their individual echo responses.
+2025-10-14T12:15:54.263Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:54.263Z [debug] [codegenV3] Prompt length: 1320 chars
+2025-10-14T12:15:54.263Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 2
+2025-10-14T12:15:54.263Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T12:15:54.263Z [info] [codegenV3] Generating step 2: The 'methodology of resolution' for LTI systems lies in two pillars: Linearity (outputs scale with inputs, and multiple inputs combine predictably) and Time-Invariance (delaying an input only delays the output by the same amount). The magic tool for analyzing any LTI system is its 'impulse response' – how it reacts to a single, brief 'tap' (like our single clap). By taking *any* input signal and 'convolving' it with this impulse response, we can precisely predict the system's output. It's like breaking down the input into many tiny taps, and then summing up all their individual echo responses.
+2025-10-14T12:15:54.263Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:54.263Z [debug] [codegenV3] Prompt length: 1320 chars
+2025-10-14T12:15:54.263Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T12:15:56.265Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-14T12:15:56.265Z [info] [parallel] 🚀 Step 3: Generating notes + 4 animations
+2025-10-14T12:15:56.265Z [info] [stepVisuals] 🎯 NEW ARCHITECTURE: Notes + 4 animations for step 3
+2025-10-14T12:15:56.265Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 3
+2025-10-14T12:15:56.265Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T12:15:56.265Z [info] [notes] 📚 Subtopic: "LTI systems are the bedrock of modern signal processing. Think about an audio equalizer, boosting or cutting bass and treble – it's an LTI filter. The noise cancellation in your headphones, processing sound to remove unwanted noise, relies on LTI principles. From the precise control systems guiding aircraft to the sophisticated algorithms in medical imaging (like MRI processing) and wireless communication, LTI theory provides the powerful, predictable mathematical framework to design, analyze, and optimize systems that filter, transmit, and interpret signals reliably."
+2025-10-14T12:15:56.265Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T12:15:56.265Z [info] [notes] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:15:56.265Z [info] [notes] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:56.265Z [info] [notes] Subtopic: "LTI systems are the bedrock of modern signal processing. Think about an audio equalizer, boosting or cutting bass and treble – it's an LTI filter. The noise cancellation in your headphones, processing sound to remove unwanted noise, relies on LTI principles. From the precise control systems guiding aircraft to the sophisticated algorithms in medical imaging (like MRI processing) and wireless communication, LTI theory provides the powerful, predictable mathematical framework to design, analyze, and optimize systems that filter, transmit, and interpret signals reliably."
+2025-10-14T12:15:56.265Z [debug] [notes] Temperature: 0.75
+2025-10-14T12:15:56.265Z [debug] [notes] Prompt length: 4633 chars
+2025-10-14T12:15:56.266Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 3
+2025-10-14T12:15:56.266Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:15:56.266Z [info] [codegenV3] Generating step 3: LTI systems are the bedrock of modern signal processing. Think about an audio equalizer, boosting or cutting bass and treble – it's an LTI filter. The noise cancellation in your headphones, processing sound to remove unwanted noise, relies on LTI principles. From the precise control systems guiding aircraft to the sophisticated algorithms in medical imaging (like MRI processing) and wireless communication, LTI theory provides the powerful, predictable mathematical framework to design, analyze, and optimize systems that filter, transmit, and interpret signals reliably.
+2025-10-14T12:15:56.266Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:56.266Z [debug] [codegenV3] Prompt length: 1294 chars
+2025-10-14T12:15:56.266Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 3
+2025-10-14T12:15:56.266Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:15:56.266Z [info] [codegenV3] Generating step 3: LTI systems are the bedrock of modern signal processing. Think about an audio equalizer, boosting or cutting bass and treble – it's an LTI filter. The noise cancellation in your headphones, processing sound to remove unwanted noise, relies on LTI principles. From the precise control systems guiding aircraft to the sophisticated algorithms in medical imaging (like MRI processing) and wireless communication, LTI theory provides the powerful, predictable mathematical framework to design, analyze, and optimize systems that filter, transmit, and interpret signals reliably.
+2025-10-14T12:15:56.266Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:56.266Z [debug] [codegenV3] Prompt length: 1294 chars
+2025-10-14T12:15:56.266Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 3
+2025-10-14T12:15:56.266Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:15:56.266Z [info] [codegenV3] Generating step 3: LTI systems are the bedrock of modern signal processing. Think about an audio equalizer, boosting or cutting bass and treble – it's an LTI filter. The noise cancellation in your headphones, processing sound to remove unwanted noise, relies on LTI principles. From the precise control systems guiding aircraft to the sophisticated algorithms in medical imaging (like MRI processing) and wireless communication, LTI theory provides the powerful, predictable mathematical framework to design, analyze, and optimize systems that filter, transmit, and interpret signals reliably.
+2025-10-14T12:15:56.266Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:56.266Z [debug] [codegenV3] Prompt length: 1294 chars
+2025-10-14T12:15:56.266Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 3
+2025-10-14T12:15:56.266Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T12:15:56.266Z [info] [codegenV3] Generating step 3: LTI systems are the bedrock of modern signal processing. Think about an audio equalizer, boosting or cutting bass and treble – it's an LTI filter. The noise cancellation in your headphones, processing sound to remove unwanted noise, relies on LTI principles. From the precise control systems guiding aircraft to the sophisticated algorithms in medical imaging (like MRI processing) and wireless communication, LTI theory provides the powerful, predictable mathematical framework to design, analyze, and optimize systems that filter, transmit, and interpret signals reliably.
+2025-10-14T12:15:56.266Z [info] [codegenV3] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:15:56.266Z [debug] [codegenV3] Prompt length: 1294 chars
+2025-10-14T12:15:56.266Z [info] [stepVisuals] ⚡ Running 5 parallel generations...
+2025-10-14T12:16:23.723Z [debug] [monitor] Metrics updated:
+2025-10-14T12:16:41.910Z [info] [notes] ⏱️  Generation completed in 45.65s
+2025-10-14T12:16:41.910Z [debug] [notes] Finish reason: STOP
+2025-10-14T12:16:41.911Z [info] [notes] ✅ Generated SVG keynote in 45.65s (12375 chars)
+2025-10-14T12:16:41.911Z [info] [notes] 📊 Elements: text=65, rect=9, line=3, total=77
+2025-10-14T12:16:41.912Z [info] [notes] Debug copy saved: /tmp/notes-step3-1760444201911.svg
+2025-10-14T12:16:41.912Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T12:16:41.912Z [info] [notes]    - Text elements: 65/8 ✓
+2025-10-14T12:16:41.912Z [info] [notes]    - Visual elements: 28/5 ✓
+2025-10-14T12:16:41.912Z [info] [notes]    - Total elements: 93/20 ✓
+2025-10-14T12:16:41.912Z [info] [notes]    - Content length: 12375/2000 ✓
+2025-10-14T12:16:41.912Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T12:16:41.912Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T12:16:41.912Z [info] [notes] ✅ SUCCESS on attempt 1/3 (45.65s total)
+2025-10-14T12:16:41.912Z [info] [stepVisuals] ✅ Notes generated (12375 chars)
+2025-10-14T12:16:50.462Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:16:50.462Z [debug] [codegenV3] Received 9225 chars from API
+2025-10-14T12:16:50.462Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:16:50.462Z [info] [codegenV3] ✅ Generated SVG in 58.20s (9225 chars)
+2025-10-14T12:16:50.462Z [info] [codegenV3] 🎬 ANIMATIONS: 44 total (<animate>: 32, <animateMotion>: 12, <animateTransform>: 0)
+2025-10-14T12:16:50.462Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=15
+2025-10-14T12:16:50.462Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:16:50.462Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T12:16:50.462Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:16:50.462Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T12:17:05.993Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:05.993Z [debug] [codegenV3] Received 8266 chars from API
+2025-10-14T12:17:05.993Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:05.993Z [info] [codegenV3] ✅ Generated SVG in 69.73s (8266 chars)
+2025-10-14T12:17:05.993Z [info] [codegenV3] 🎬 ANIMATIONS: 25 total (<animate>: 17, <animateMotion>: 7, <animateTransform>: 1)
+2025-10-14T12:17:05.993Z [info] [codegenV3] 📊 CONTENT: labels=18, shapes=25
+2025-10-14T12:17:05.993Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:05.993Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:05.993Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T12:17:10.683Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:10.683Z [debug] [codegenV3] Received 11467 chars from API
+2025-10-14T12:17:10.683Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:10.683Z [info] [codegenV3] ✅ Generated SVG in 78.42s (11467 chars)
+2025-10-14T12:17:10.683Z [info] [codegenV3] 🎬 ANIMATIONS: 40 total (<animate>: 20, <animateMotion>: 19, <animateTransform>: 1)
+2025-10-14T12:17:10.683Z [info] [codegenV3] 📊 CONTENT: labels=39, shapes=24
+2025-10-14T12:17:10.683Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:10.683Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T12:17:10.684Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:10.684Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T12:17:13.817Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:13.817Z [debug] [codegenV3] Received 13192 chars from API
+2025-10-14T12:17:13.817Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:13.817Z [info] [codegenV3] ✅ Generated SVG in 79.55s (13192 chars)
+2025-10-14T12:17:13.817Z [info] [codegenV3] 🎬 ANIMATIONS: 50 total (<animate>: 37, <animateMotion>: 13, <animateTransform>: 0)
+2025-10-14T12:17:13.817Z [info] [codegenV3] 📊 CONTENT: labels=34, shapes=56
+2025-10-14T12:17:13.817Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:13.817Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:13.817Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T12:17:18.561Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:18.561Z [debug] [codegenV3] Received 15487 chars from API
+2025-10-14T12:17:18.561Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:18.561Z [info] [codegenV3] ✅ Generated SVG in 84.30s (15487 chars)
+2025-10-14T12:17:18.561Z [info] [codegenV3] 🎬 ANIMATIONS: 40 total (<animate>: 34, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-14T12:17:18.561Z [info] [codegenV3] 📊 CONTENT: labels=22, shapes=25
+2025-10-14T12:17:18.561Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:18.562Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:18.562Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T12:17:20.906Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:20.906Z [debug] [codegenV3] Received 6734 chars from API
+2025-10-14T12:17:20.906Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:20.906Z [info] [codegenV3] ✅ Generated SVG in 88.64s (6734 chars)
+2025-10-14T12:17:20.906Z [info] [codegenV3] 🎬 ANIMATIONS: 33 total (<animate>: 28, <animateMotion>: 5, <animateTransform>: 0)
+2025-10-14T12:17:20.906Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=1
+2025-10-14T12:17:20.906Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:20.906Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T12:17:20.906Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:20.906Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T12:17:22.282Z [info] [notes] ⏱️  Generation completed in 90.02s
+2025-10-14T12:17:22.282Z [debug] [notes] Finish reason: STOP
+2025-10-14T12:17:22.283Z [info] [notes] ✅ Generated SVG keynote in 90.02s (13278 chars)
+2025-10-14T12:17:22.283Z [info] [notes] 📊 Elements: text=56, rect=18, line=26, total=100
+2025-10-14T12:17:22.283Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760444242283.svg
+2025-10-14T12:17:22.283Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T12:17:22.283Z [info] [notes]    - Text elements: 56/8 ✓
+2025-10-14T12:17:22.283Z [info] [notes]    - Visual elements: 44/5 ✓
+2025-10-14T12:17:22.283Z [info] [notes]    - Total elements: 100/20 ✓
+2025-10-14T12:17:22.283Z [info] [notes]    - Content length: 13278/2000 ✓
+2025-10-14T12:17:22.283Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T12:17:22.283Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T12:17:22.283Z [info] [notes] ✅ SUCCESS on attempt 1/3 (90.02s total)
+2025-10-14T12:17:22.283Z [info] [stepVisuals] ✅ Notes generated (13278 chars)
+2025-10-14T12:17:23.326Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:23.326Z [debug] [codegenV3] Received 12470 chars from API
+2025-10-14T12:17:23.326Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:23.326Z [info] [codegenV3] ✅ Generated SVG in 89.06s (12470 chars)
+2025-10-14T12:17:23.326Z [info] [codegenV3] 🎬 ANIMATIONS: 44 total (<animate>: 32, <animateMotion>: 12, <animateTransform>: 0)
+2025-10-14T12:17:23.326Z [info] [codegenV3] 📊 CONTENT: labels=34, shapes=40
+2025-10-14T12:17:23.326Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:23.326Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:23.326Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T12:17:23.723Z [debug] [monitor] Metrics updated:
+2025-10-14T12:17:27.444Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:27.444Z [debug] [codegenV3] Received 21377 chars from API
+2025-10-14T12:17:27.444Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:27.444Z [info] [codegenV3] ✅ Generated SVG in 91.18s (21377 chars)
+2025-10-14T12:17:27.444Z [info] [codegenV3] 🎬 ANIMATIONS: 113 total (<animate>: 93, <animateMotion>: 17, <animateTransform>: 3)
+2025-10-14T12:17:27.444Z [info] [codegenV3] 📊 CONTENT: labels=31, shapes=59
+2025-10-14T12:17:27.444Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:27.444Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:27.444Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T12:17:32.414Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:32.414Z [debug] [codegenV3] Received 20337 chars from API
+2025-10-14T12:17:32.414Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:32.414Z [info] [codegenV3] ✅ Generated SVG in 98.15s (20337 chars)
+2025-10-14T12:17:32.414Z [info] [codegenV3] 🎬 ANIMATIONS: 119 total (<animate>: 107, <animateMotion>: 8, <animateTransform>: 4)
+2025-10-14T12:17:32.414Z [info] [codegenV3] 📊 CONTENT: labels=25, shapes=17
+2025-10-14T12:17:32.414Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:32.414Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:32.414Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T12:17:37.407Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:37.407Z [debug] [codegenV3] Received 15138 chars from API
+2025-10-14T12:17:37.407Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:37.407Z [info] [codegenV3] ✅ Generated SVG in 105.14s (15138 chars)
+2025-10-14T12:17:37.407Z [info] [codegenV3] 🎬 ANIMATIONS: 83 total (<animate>: 71, <animateMotion>: 11, <animateTransform>: 1)
+2025-10-14T12:17:37.407Z [info] [codegenV3] 📊 CONTENT: labels=22, shapes=29
+2025-10-14T12:17:37.407Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:37.407Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T12:17:37.407Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:37.407Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T12:17:37.408Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T12:17:37.408Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T12:17:37.408Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T12:17:37.409Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T12:17:37.409Z [debug] [monitor] Step 1 generation for 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0 took 105148ms
+2025-10-14T12:17:37.409Z [info] [parallel] ✅ Step 1 COMPLETE in 105148ms with 5 actions
+2025-10-14T12:17:37.409Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-14T12:17:37.851Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:37.851Z [debug] [codegenV3] Received 10327 chars from API
+2025-10-14T12:17:37.851Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:37.852Z [info] [codegenV3] ✅ Generated SVG in 101.59s (10327 chars)
+2025-10-14T12:17:37.852Z [info] [codegenV3] 🎬 ANIMATIONS: 28 total (<animate>: 24, <animateMotion>: 4, <animateTransform>: 0)
+2025-10-14T12:17:37.852Z [info] [codegenV3] 📊 CONTENT: labels=21, shapes=31
+2025-10-14T12:17:37.852Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:37.852Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:37.852Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T12:17:42.295Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T12:17:42.295Z [debug] [codegenV3] Received 8699 chars from API
+2025-10-14T12:17:42.295Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T12:17:42.295Z [info] [codegenV3] ✅ Generated SVG in 106.03s (8699 chars)
+2025-10-14T12:17:42.295Z [info] [codegenV3] 🎬 ANIMATIONS: 25 total (<animate>: 17, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-14T12:17:42.295Z [info] [codegenV3] 📊 CONTENT: labels=28, shapes=29
+2025-10-14T12:17:42.295Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T12:17:42.295Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T12:17:42.295Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T12:17:42.295Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T12:17:42.295Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T12:17:42.295Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T12:17:42.297Z [debug] [cache] Cached chunk for query step 3
+2025-10-14T12:17:42.297Z [debug] [monitor] Step 3 generation for 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0 took 106032ms
+2025-10-14T12:17:42.297Z [info] [parallel] ✅ Step 3 COMPLETE in 106032ms with 5 actions
+2025-10-14T12:17:42.298Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-14T12:17:49.431Z [info] [notes] ⏱️  Generation completed in 115.17s
+2025-10-14T12:17:49.431Z [debug] [notes] Finish reason: STOP
+2025-10-14T12:17:49.431Z [info] [notes] ✅ Generated SVG keynote in 115.17s (18073 chars)
+2025-10-14T12:17:49.431Z [info] [notes] 📊 Elements: text=75, rect=39, line=23, total=137
+2025-10-14T12:17:49.431Z [info] [notes] Debug copy saved: /tmp/notes-step2-1760444269431.svg
+2025-10-14T12:17:49.431Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T12:17:49.431Z [info] [notes]    - Text elements: 75/8 ✓
+2025-10-14T12:17:49.431Z [info] [notes]    - Visual elements: 64/5 ✓
+2025-10-14T12:17:49.431Z [info] [notes]    - Total elements: 139/20 ✓
+2025-10-14T12:17:49.431Z [info] [notes]    - Content length: 18073/2000 ✓
+2025-10-14T12:17:49.431Z [info] [notes]    - ViewBox present: ✗
+2025-10-14T12:17:49.431Z [info] [notes]    - Overall: ❌ FAIL
+2025-10-14T12:17:49.431Z [warn] [notes] ⚠️ Attempt 1 quality check failed - will retry
+2025-10-14T12:17:49.431Z [error] [notes] ❌ Attempt 1/3 failed: Quality validation failed: text=75, visual=64, total=139, length=18073
+2025-10-14T12:17:49.431Z [info] [notes] ⏸️  Waiting 2000ms before retry...
+2025-10-14T12:17:51.434Z [info] [notes] 🔄 Attempt 2/3 for step 2
+2025-10-14T12:17:51.434Z [info] [notes] Topic: "teach me about the LTI( linear time invariant ) , its methodology of resolution and practical applications"
+2025-10-14T12:17:51.434Z [info] [notes] Subtopic: "The 'methodology of resolution' for LTI systems lies in two pillars: Linearity (outputs scale with inputs, and multiple inputs combine predictably) and Time-Invariance (delaying an input only delays the output by the same amount). The magic tool for analyzing any LTI system is its 'impulse response' – how it reacts to a single, brief 'tap' (like our single clap). By taking *any* input signal and 'convolving' it with this impulse response, we can precisely predict the system's output. It's like breaking down the input into many tiny taps, and then summing up all their individual echo responses."
+2025-10-14T12:17:51.434Z [debug] [notes] Temperature: 0.75
+2025-10-14T12:17:51.434Z [debug] [notes] Prompt length: 4659 chars
+2025-10-14T12:18:23.727Z [debug] [monitor] Metrics updated:
+2025-10-14T12:19:23.728Z [debug] [monitor] Metrics updated:
+2025-10-14T12:20:12.708Z [info] [notes] ⏱️  Generation completed in 141.27s
+2025-10-14T12:20:12.708Z [debug] [notes] Finish reason: STOP
+2025-10-14T12:20:12.708Z [info] [notes] ✅ Generated SVG keynote in 141.27s (18387 chars)
+2025-10-14T12:20:12.708Z [info] [notes] 📊 Elements: text=74, rect=19, line=35, total=128
+2025-10-14T12:20:12.708Z [info] [notes] Debug copy saved: /tmp/notes-step2-1760444412708.svg
+2025-10-14T12:20:12.708Z [info] [notes] 📊 Quality Validation (Attempt 2):
+2025-10-14T12:20:12.708Z [info] [notes]    - Text elements: 74/8 ✓
+2025-10-14T12:20:12.708Z [info] [notes]    - Visual elements: 66/5 ✓
+2025-10-14T12:20:12.708Z [info] [notes]    - Total elements: 140/20 ✓
+2025-10-14T12:20:12.708Z [info] [notes]    - Content length: 18387/2000 ✓
+2025-10-14T12:20:12.708Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T12:20:12.708Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T12:20:12.708Z [info] [notes] ✅ SUCCESS on attempt 2/3 (258.45s total)
+2025-10-14T12:20:12.708Z [info] [stepVisuals] ✅ Notes generated (18387 chars)
+2025-10-14T12:20:12.708Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T12:20:12.708Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T12:20:12.708Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T12:20:12.709Z [debug] [cache] Cached chunk for query step 2
+2025-10-14T12:20:12.709Z [debug] [monitor] Step 2 generation for 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0 took 258448ms
+2025-10-14T12:20:12.709Z [info] [parallel] ✅ Step 2 COMPLETE in 258448ms with 5 actions
+2025-10-14T12:20:12.710Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-14T12:20:12.710Z [debug] [parallel] Parallel generation complete: 3/3 successful in 260449ms
+2025-10-14T12:20:12.710Z [debug] [monitor] Completed request 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0 in 273722ms (success: true)
+2025-10-14T12:20:12.710Z [debug] [parallel] Job complete for session 90dc7d47-0e88-4aee-9d01-7c685a6fcdd0
+2025-10-14T12:20:23.729Z [debug] [monitor] Metrics updated:
+2025-10-14T12:21:23.737Z [debug] [monitor] Metrics updated:
+2025-10-14T12:22:23.745Z [debug] [monitor] Metrics updated:
+2025-10-14T12:23:23.751Z [debug] [monitor] Metrics updated:

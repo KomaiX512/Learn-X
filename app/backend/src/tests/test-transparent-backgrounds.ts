@@ -69,7 +69,7 @@ async function testTransparentBackgrounds() {
   }
   
   // Extract SVG from customSVG action
-  const svgAction = visual.actions.find((a: any) => a.op === 'customSVG');
+  const svgAction = visual.actions.find((a: any) => a.op === 'customSVG') as any;
   if (!svgAction || !svgAction.svgCode) {
     console.log('⚠️ No customSVG action found, skipping visual check');
   } else {

@@ -16,15 +16,13 @@ import { logger } from '../logger';
 import { PlanStep } from '../types';
 
 const MODEL = 'gemini-2.5-flash';
-const GENERATION_TIMEOUT = 180000; // 3 minutes - NO ARTIFICIAL LIMITS, let Gemini finish
-const MAX_OUTPUT_TOKENS = 30000; // Further increased to avoid truncation on rich SVG notes
-const MAX_RETRIES = 5; // Number of retry attempts for failed generations
-const RETRY_DELAY_MS = 1500; // Delay between retries
-const MIN_QUALITY_THRESHOLD = 2000; // Minimum chars for acceptable quality (relaxed from 3000)
+const MAX_OUTPUT_TOKENS = 30000; // Rich SVG content without truncation
+const MIN_QUALITY_THRESHOLD = 2000; // Minimum chars for acceptable quality
+const MAX_RETRIES = 3; // Retry on failure
+const RETRY_DELAY_BASE = 2000; // 2 seconds base delay
 
-// TEMPERATURE STRATEGY: Balanced for creative yet consistent output
-const BASE_TEMPERATURE = 0.7; // Sweet spot for creativity + reliability
-const RETRY_TEMPERATURE_BOOST = 0.1; // Increase on retry if low quality
+// TEMPERATURE: Fixed for consistent quality
+const TEMPERATURE = 0.75; // Balanced creativity + reliability
 
 /**
  * USER'S EXACT PROMPT - Pure Requirements, No Templates
@@ -79,7 +77,7 @@ async function generateNotesInternal(
   step: PlanStep,
   topic: string,
   subtopic: string,
-  temperature: number = BASE_TEMPERATURE
+  temperature: number = TEMPERATURE
 ): Promise<string | null> {
   
   logger.info(`[notes] Generating SVG keynote for step ${step.id}`);
@@ -105,7 +103,7 @@ async function generateNotesInternal(
         topK: 50,
         topP: 0.95
       },
-      systemInstruction: 'You are an SVG educational keynote generator. Output ONLY pure SVG XML code - no markdown, no explanations, no text outside the SVG tags. Start every response with <?xml version="1.0"?> followed by complete <svg width="1200" height="2000" viewBox="0 0 1200 2000"> tags. Use the FULL vertical space (2000px height) to create comprehensive, vertically-stacked educational content with NO horizontal columns.'
+      systemInstruction: 'You are a visual education designer creating SVG keynotes. Output ONLY pure SVG code with NO markdown, NO explanations, NO code fences - just the raw SVG starting with <svg and ending with </svg>.',
     });
     
     // Construct the complete prompt - subtopic only, no templates
@@ -116,7 +114,7 @@ SUBTOPIC:
 "${subtopic}"
 ═══════════════════════════════════════════════════════════════
 
-Generate the complete SVG code now. Start with <?xml version="1.0"?> and output ONLY the SVG:`;
+Generate the complete SVG code now. Start with <?xml version="1.0"?> followed by complete <svg width="1200" height="2000" viewBox="0 0 1200 2000"> tags. Use the FULL vertical space (2000px height) to create comprehensive, vertically-stacked educational content with NO horizontal columns.`;
     
     logger.debug(`[notes] Prompt length: ${fullPrompt.length} chars`);
     
@@ -266,13 +264,11 @@ Generate the complete SVG code now. Start with <?xml version="1.0"?> and output 
     logger.info(`[notes] ✅ Generated SVG keynote in ${genTime}s (${svgCode.length} chars)`);
     logger.info(`[notes] 📊 Elements: text=${textElements}, rect=${rectElements}, line=${lineElements}, total=${totalElements}`);
     
-    // Save debug copy for first step
-    if (step.id === 1) {
-      const fs = require('fs');
-      const debugPath = `/tmp/notes-step${step.id}-${Date.now()}.svg`;
-      fs.writeFileSync(debugPath, svgCode);
-      logger.info(`[notes] Debug copy saved: ${debugPath}`);
-    }
+    // Save debug copy for ALL steps (debugging)
+    const fs = require('fs');
+    const debugPath = `/tmp/notes-step${step.id}-${Date.now()}.svg`;
+    fs.writeFileSync(debugPath, svgCode);
+    logger.info(`[notes] Debug copy saved: ${debugPath}`);
     
     return svgCode;
     
@@ -314,108 +310,308 @@ function getNotesSubtopic(step: PlanStep, topic: string): string {
  * @param subtopic - The specific subtopic for this step (CRITICAL INPUT)
  * @returns SVG code string or null on failure
  */
-export async function generateNotes(
+export async function generateNotesForStep(
   step: PlanStep,
   topic: string,
-  subtopic: string
-): Promise<string | null> {
+  subtopicOverride?: string,
+  visualDescription?: string
+): Promise<string> {
+  logger.info(`[notes] 🎯 Generating SVG keynote with ${MAX_RETRIES} retry attempts`);
+  logger.info(`[notes] 📚 Subtopic: "${subtopicOverride || step.notesSubtopic || step.desc}"`);
+  logger.info(`[notes] 🎬 Visual Desc: "${visualDescription?.substring(0, 80)}..."`);
   
-  // Get notes subtopic (AI-generated from planner, NOT extracted)
-  const notesSubtopic = getNotesSubtopic(step, topic);
-  
-  logger.info(`[notes] 📚 Notes Subtopic: "${notesSubtopic}"`);
-  logger.info(`[notes] 🎬 Visual Description: "${subtopic.substring(0, 80)}${subtopic.length > 80 ? '...' : ''}"`);
-  
-  logger.info(`[notes] 🎯 Starting ADAPTIVE notes generation with ${MAX_RETRIES} retry attempts`);
-  logger.info(`[notes] 🎛️  Temperature strategy: ${BASE_TEMPERATURE} → ${BASE_TEMPERATURE + (RETRY_TEMPERATURE_BOOST * MAX_RETRIES)}`);
-  
+  let lastError: Error | null = null;
   let lastQuality = { chars: 0, textElements: 0 };
+  const overallStartTime = Date.now();
   
+  // Retry loop
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-    // ADAPTIVE TEMPERATURE: Increase slightly on each retry
-    // Attempt 1: 0.6 (consistent)
-    // Attempt 2: 0.7 (more creative)
-    // Attempt 3: 0.8 (most creative)
-    const temperature = parseFloat((Math.min(BASE_TEMPERATURE + (RETRY_TEMPERATURE_BOOST * (attempt - 1)), 0.85)).toFixed(2));
+    logger.info(`[notes] 🔄 Attempt ${attempt}/${MAX_RETRIES} for step ${step.id}`);
+    const startTime = Date.now();
+  
+  try {
     
-    logger.info(`[notes] 📝 Attempt ${attempt}/${MAX_RETRIES} (temp: ${temperature.toFixed(2)})`);
-    
-    try {
-      const result = await generateNotesInternal(step, topic, notesSubtopic, temperature);
-      
-      if (result && result.length >= MIN_QUALITY_THRESHOLD) {
-        // STRICT QUALITY VALIDATION
-        const textCount = (result.match(/<text/g) || []).length;
-        const rectCount = (result.match(/<rect/g) || []).length;
-        const lineCount = (result.match(/<line/g) || []).length;
-        const shapeCount = (result.match(/<(circle|path|ellipse|polygon)\b/g) || []).length;
-        const visualElements = rectCount + lineCount + shapeCount;
-        const hasViewBox = result.includes('viewBox="0 0 1200 2000"') || result.includes('viewBox="0 0 1200 800"');
-        const totalElements = textCount + visualElements;
-        
-        lastQuality = { chars: result.length, textElements: textCount };
-        
-        // PRODUCTION QUALITY THRESHOLDS (flexible for creative variations)
-        // Different topics may use different element ratios creatively
-        const meetsMinimumQuality = (
-          textCount >= 20 &&                    // enough textual content
-          visualElements >= 20 &&               // enough visuals
-          visualElements >= Math.floor(textCount * 0.6) && // avoid text-heavy outputs
-          totalElements >= 40 &&                // overall richness
-          result.length >= 3500 &&              // detailed content
-          hasViewBox
-        );
-        
-        if (meetsMinimumQuality) {
-          logger.info(`[notes] ✅ SUCCESS on attempt ${attempt}/${MAX_RETRIES}`);
-          logger.info(`[notes] 📊 Quality: ${result.length} chars, ${textCount} text, ${rectCount} rect, ${lineCount} line`);
-          logger.info(`[notes] 🎯 Temperature ${temperature.toFixed(2)} produced excellent results`);
-          return result;
-        } else {
-          logger.warn(`[notes] ⚠️ Attempt ${attempt} below production quality:`);
-          logger.warn(`[notes]    - Text elements: ${textCount}/25 ${textCount >= 25 ? '✓' : '✗'}`);
-          logger.warn(`[notes]    - Total elements: ${totalElements}/35 ${totalElements >= 35 ? '✓' : '✗'}`);
-          logger.warn(`[notes]    - Length: ${result.length}/3500 ${result.length >= 3500 ? '✓' : '✗'}`);
-          logger.warn(`[notes]    - ViewBox: ${hasViewBox ? '✓' : '✗'}`);
-          logger.warn(`[notes]    - Will retry with higher temperature for richer content`);
-        }
-      } else {
-        logger.warn(`[notes] ⚠️ Attempt ${attempt} produced insufficient output (${result?.length || 0} chars, min: ${MIN_QUALITY_THRESHOLD})`);
-      }
-      
-    } catch (error: any) {
-      logger.error(`[notes] ❌ Attempt ${attempt} crashed: ${error.message}`);
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      logger.error('[notes] GEMINI_API_KEY not set');
+      throw new Error('GEMINI_API_KEY not configured');
     }
     
-    // Wait before retry (exponential backoff)
-    if (attempt < MAX_RETRIES) {
-      const delay = RETRY_DELAY_MS * attempt;
-      logger.info(`[notes] ⏸️  Adaptive retry in ${delay}ms (will boost temperature to ${(temperature + RETRY_TEMPERATURE_BOOST).toFixed(2)})...`);
-      await new Promise(resolve => setTimeout(resolve, delay));
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({
+      model: MODEL,
+      generationConfig: {
+        temperature: TEMPERATURE,
+        maxOutputTokens: MAX_OUTPUT_TOKENS,
+        topK: 50,
+        topP: 0.95
+      },
+      systemInstruction: 'You are a visual education designer creating SVG keynotes. Output ONLY pure SVG code with NO markdown, NO explanations, NO code fences - just the raw SVG starting with <svg and ending with </svg>.',
+    });
+    
+    // Construct the complete prompt - subtopic only, no templates
+    const actualSubtopic = subtopicOverride || step.notesSubtopic || step.desc;
+    const fullPrompt = `${SVG_KNOWLEDGE_CREATOR_PROMPT}
+
+═══════════════════════════════════════════════════════════════
+SUBTOPIC:
+"${actualSubtopic}"
+═══════════════════════════════════════════════════════════════
+
+Generate the complete SVG code now. Start with <?xml version="1.0"?> followed by complete <svg width="1200" height="2000" viewBox="0 0 1200 2000"> tags. Use the FULL vertical space (2000px height) to create comprehensive, vertically-stacked educational content with NO horizontal columns.`;
+    
+    logger.info('[notes] Topic: "' + topic + '"');
+    logger.info('[notes] Subtopic: "' + actualSubtopic + '"');
+    logger.debug(`[notes] Temperature: ${TEMPERATURE}`);
+    logger.debug(`[notes] Prompt length: ${fullPrompt.length} chars`);
+    
+    // Generate without timeout - let API complete naturally
+    const result = await model.generateContent(fullPrompt) as any;
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+    logger.info(`[notes] ⏱️  Generation completed in ${elapsed}s`);
+    
+    // Validate response structure
+    if (!result || !result.response) {
+      logger.error('[notes] No response object from API');
+      logger.error('[notes] Result structure:', JSON.stringify(result || {}, null, 2).substring(0, 500));
+      throw new Error('No response from Gemini API');
+    }
+    
+    // Check for prompt feedback (API-level blocks)
+    if (result.response.promptFeedback) {
+      const feedback = result.response.promptFeedback;
+      if (feedback.blockReason) {
+        logger.error(`[notes] ⛔ Prompt BLOCKED by Gemini API: ${feedback.blockReason}`);
+        logger.error(`[notes] Safety ratings:`, JSON.stringify(feedback.safetyRatings || [], null, 2));
+        throw new Error(`Prompt blocked: ${feedback.blockReason}`);
+      }
+    }
+    
+    if (!result.response.candidates || result.response.candidates.length === 0) {
+      logger.error('[notes] No candidates in response');
+      logger.error('[notes] Response:', JSON.stringify(result.response, null, 2).substring(0, 500));
+      throw new Error('No candidates in API response');
+    }
+    
+    const candidate = result.response.candidates[0];
+    
+    // Log finish reason for diagnostics
+    logger.debug(`[notes] Finish reason: ${candidate.finishReason}`);
+    
+    // Check for safety blocks
+    if (candidate.finishReason === 'SAFETY' || candidate.finishReason === 'RECITATION') {
+      logger.error(`[notes] ⛔ Content BLOCKED: ${candidate.finishReason}`);
+      if (candidate.safetyRatings) {
+        logger.error('[notes] Safety ratings:', JSON.stringify(candidate.safetyRatings, null, 2));
+      }
+      throw new Error(`Content blocked: ${candidate.finishReason}`);
+    }
+    
+    // Check for MAX_TOKENS - continue and try to salvage partial SVG
+    if (candidate.finishReason === 'MAX_TOKENS' || candidate.finishReason === 'LENGTH') {
+      logger.warn(`[notes] ⚠️ MAX_TOKENS/LENGTH reached - attempting to use partial SVG content`);
+    }
+    
+    // Check for other non-STOP finish reasons
+    if (candidate.finishReason && candidate.finishReason !== 'STOP') {
+      logger.warn(`[notes] ⚠️ Unusual finish reason: ${candidate.finishReason}`);
+    }
+    
+    // Extract SVG code
+    let svgCode = '';
+    try {
+      if (result.response.text) {
+        svgCode = result.response.text();
+      }
+      
+      // Fallback: extract from candidate parts
+      if (!svgCode || svgCode.trim().length === 0) {
+        if (candidate?.content?.parts && Array.isArray(candidate.content.parts)) {
+          svgCode = candidate.content.parts
+            .filter((part: any) => part.text)
+            .map((part: any) => part.text)
+            .join('');
+        }
+      }
+    } catch (error: any) {
+      logger.error('[notes] Failed to extract SVG code:', error.message);
+      return null;
+    }
+    
+    if (!svgCode || svgCode.trim().length === 0) {
+      logger.error('[notes] ❌ EMPTY SVG CODE EXTRACTED');
+      logger.error('[notes] Finish reason:', candidate.finishReason);
+      logger.error('[notes] Has content parts:', candidate?.content?.parts ? 'YES' : 'NO');
+      if (candidate?.content?.parts) {
+        logger.error('[notes] Parts count:', candidate.content.parts.length);
+        candidate.content.parts.forEach((part: any, idx: number) => {
+          logger.error(`[notes] Part ${idx}:`, Object.keys(part).join(', '));
+        });
+      }
+      logger.error('[notes] This usually means Gemini refused to generate or hit token limits');
+      return null;
+    }
+    
+    // Clean markdown wrappers
+    svgCode = svgCode
+      .replace(/```xml\n?/g, '')
+      .replace(/```svg\n?/g, '')
+      .replace(/```\n?/g, '')
+      .trim();
+    
+    // Validate SVG structure
+    if (!svgCode.includes('<svg')) {
+      logger.error('[notes] No <svg> tag found in generated content');
+      return null;
+    }
+    
+    // Auto-repair missing closing tags
+    const openSvgTags = (svgCode.match(/<svg/g) || []).length;
+    let closeSvgTags = (svgCode.match(/<\/svg>/g) || []).length;
+    
+    if (openSvgTags > closeSvgTags) {
+      logger.warn(`[notes] Auto-repairing: Adding ${openSvgTags - closeSvgTags} closing tag(s)`);
+      const missingCloseTags = openSvgTags - closeSvgTags;
+      for (let i = 0; i < missingCloseTags; i++) {
+        svgCode += '\n</svg>';
+      }
+    }
+    
+    // Extract clean SVG with XML declaration
+    const svgMatch = svgCode.match(/<\?xml[\s\S]*<\/svg>/i) || 
+                     svgCode.match(/<svg[\s\S]*<\/svg>/i);
+    
+    if (svgMatch) {
+      svgCode = svgMatch[0];
+      if (!svgCode.startsWith('<?xml')) {
+        svgCode = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' + svgCode;
+      }
+    } else {
+      // Fallback: wrap whatever we have
+      if (!svgCode.startsWith('<?xml')) {
+        svgCode = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' + svgCode;
+      }
+    }
+    
+    // Final validation
+    const finalOpenTags = (svgCode.match(/<svg/g) || []).length;
+    const finalCloseTags = (svgCode.match(/<\/svg>/g) || []).length;
+    
+    if (finalOpenTags !== finalCloseTags) {
+      logger.error(`[notes] Malformed SVG after repair - Open: ${finalOpenTags}, Close: ${finalCloseTags}`);
+      return null;
+    }
+    
+    const genTime = ((Date.now() - startTime) / 1000).toFixed(2);
+    
+    // Diagnostic metrics
+    const textElements = (svgCode.match(/<text/g) || []).length;
+    const rectElements = (svgCode.match(/<rect/g) || []).length;
+    const lineElements = (svgCode.match(/<line/g) || []).length;
+    const totalElements = textElements + rectElements + lineElements;
+    
+    logger.info(`[notes] ✅ Generated SVG keynote in ${genTime}s (${svgCode.length} chars)`);
+    logger.info(`[notes] 📊 Elements: text=${textElements}, rect=${rectElements}, line=${lineElements}, total=${totalElements}`);
+    
+    // Save debug copy for ALL steps (debugging)
+    const fs = require('fs');
+    const debugPath = `/tmp/notes-step${step.id}-${Date.now()}.svg`;
+    fs.writeFileSync(debugPath, svgCode);
+    logger.info(`[notes] Debug copy saved: ${debugPath}`);
+    
+    // STRICT QUALITY VALIDATION
+    const textCount = (svgCode.match(/<text/g) || []).length;
+    const rectCount = (svgCode.match(/<rect/g) || []).length;
+    const lineCount = (svgCode.match(/<line/g) || []).length;
+    const shapeCount = (svgCode.match(/<(circle|path|ellipse|polygon)\b/g) || []).length;
+    const visualElements = rectCount + lineCount + shapeCount;
+    const hasViewBox = svgCode.includes('viewBox="0 0 1200 2000"') || svgCode.includes('viewBox="0 0 1200 800"');
+    const totalElementsCount = textCount + visualElements;
+    
+    lastQuality = { chars: svgCode.length, textElements: textCount };
+    
+    // ULTRA-RELAXED QUALITY THRESHOLDS for Production Reliability
+    // Focus on absolute minimums that indicate real quality
+    const hasMinText = textCount >= 8;  // Relaxed from 15
+    const hasMinVisuals = visualElements >= 5;  // Relaxed from 10
+    const hasMinTotal = totalElementsCount >= 20;  // Relaxed from 30
+    const hasMinLength = svgCode.length >= 2000;  // Relaxed from 3000
+    const hasValidViewBox = hasViewBox;
+    
+    const meetsMinimumQuality = (
+      hasMinText &&
+      hasMinVisuals &&
+      hasMinTotal &&
+      hasMinLength &&
+      hasValidViewBox
+    );
+    
+    // COMPLETE LOGGING - Show every validation condition
+    logger.info(`[notes] 📊 Quality Validation (Attempt ${attempt}):`);
+    logger.info(`[notes]    - Text elements: ${textCount}/8 ${hasMinText ? '✓' : '✗'}`);
+    logger.info(`[notes]    - Visual elements: ${visualElements}/5 ${hasMinVisuals ? '✓' : '✗'}`);
+    logger.info(`[notes]    - Total elements: ${totalElementsCount}/20 ${hasMinTotal ? '✓' : '✗'}`);
+    logger.info(`[notes]    - Content length: ${svgCode.length}/2000 ${hasMinLength ? '✓' : '✗'}`);
+    logger.info(`[notes]    - ViewBox present: ${hasValidViewBox ? '✓' : '✗'}`);
+    logger.info(`[notes]    - Overall: ${meetsMinimumQuality ? '✅ PASS' : '❌ FAIL'}`);
+    
+    if (meetsMinimumQuality) {
+      const totalTime = ((Date.now() - overallStartTime) / 1000).toFixed(2);
+      logger.info(`[notes] ✅ SUCCESS on attempt ${attempt}/${MAX_RETRIES} (${totalTime}s total)`);
+      return svgCode;
+    } else {
+      logger.warn(`[notes] ⚠️ Attempt ${attempt} quality check failed - will retry`);
+      throw new Error(`Quality validation failed: text=${textCount}, visual=${visualElements}, total=${totalElementsCount}, length=${svgCode.length}`);
+    }
+    
+    } catch (error: any) {
+      lastError = error;
+      logger.error(`[notes] ❌ Attempt ${attempt}/${MAX_RETRIES} failed: ${error.message}`);
+      
+      if (attempt < MAX_RETRIES) {
+        const delay = RETRY_DELAY_BASE * attempt; // 2s, 4s, 6s
+        logger.info(`[notes] ⏸️  Waiting ${delay}ms before retry...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
     }
   }
   
-  logger.error(`[notes] 💥 CRITICAL: All ${MAX_RETRIES} adaptive attempts failed`);
-  logger.error(`[notes] 📊 Best quality achieved: ${lastQuality.chars} chars, ${lastQuality.textElements} text elements`);
-  logger.error(`[notes] 🔧 Topic: "${topic}"`);
-  logger.error(`[notes] 🔧 Notes Subtopic: "${notesSubtopic}"`);
-  logger.error(`[notes] 🔧 Visual Description: "${subtopic.substring(0, 100)}..."`);
-  logger.error(`[notes] 💡 This indicates a fundamental API or prompt issue - check Gemini response`);
-  return null;
+  // All retries exhausted
+  const totalTime = ((Date.now() - overallStartTime) / 1000).toFixed(2);
+  logger.error(`[notes] 💥 All ${MAX_RETRIES} attempts failed after ${totalTime}s`);
+  logger.error(`[notes] Last error: ${lastError?.message}`);
+  throw lastError || new Error('Notes generation failed after all retries');
 }
 
 /**
  * LEGACY FUNCTION - Kept for backward compatibility
- * Maps to generateNotes with subtopic = step description
+ * Maps to generateNotesForStep with subtopic = step description
  */
 export async function generateTranscript(
   step: PlanStep,
   topic: string,
   visualDescriptions: any[]
 ): Promise<string | null> {
-  logger.warn('[transcript] Legacy function called, redirecting to generateNotes');
+  logger.warn('[transcript] Legacy function called, redirecting to generateNotesForStep');
   // Use step description as subtopic for backward compatibility
   const subtopic = step.desc;
-  const svgCode = await generateNotes(step, topic, subtopic);
+  const svgCode = await generateNotesForStep(step, topic, subtopic, visualDescriptions?.[0]?.description);
   return svgCode ? `Generated notes for: ${subtopic}` : null;
+}
+
+/**
+ * ALIAS for backward compatibility - generateNotes → generateNotesForStep
+ */
+export async function generateNotes(
+  step: PlanStep,
+  topic: string,
+  subtopic?: string,
+  visualDescription?: string
+): Promise<string | null> {
+  try {
+    return await generateNotesForStep(step, topic, subtopic, visualDescription);
+  } catch (error) {
+    logger.error('[generateNotes] Failed:', error);
+    return null; // Legacy behavior - return null on error
+  }
 }

@@ -1,0 +1,1117 @@
+
+> backend@0.1.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 14:11:44 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:11:44.455Z [debug] NEW Plan worker created
+2025-10-14T09:11:44.455Z [debug] NEW Gen worker created
+2025-10-14T09:11:44.455Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: w[INFO] 14:22:49 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:22:49.870Z [debug] NEW Plan worker created
+2025-10-14T09:22:49.870Z [debug] NEW Gen worker created
+2025-10-14T09:22:49.870Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 14:22:49 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T09:22:49.882Z [debug] Shutting down server...
+2025-10-14T09:22:49.882Z [debug] Server shut down.
+[INFO] 14:23:10 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:23:10.346Z [debug] NEW Plan worker created
+2025-10-14T09:23:10.347Z [debug] NEW Gen worker created
+2025-10-14T09:23:10.347Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 14:23:10 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T09:23:10.358Z [debug] Shutting down server...
+2025-10-14T09:23:10.358Z [debug] Server shut down.
+[INFO] 14:23:23 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:23:23.975Z [debug] NEW Plan worker created
+2025-10-14T09:23:23.975Z [debug] NEW Gen worker created
+2025-10-14T09:23:23.975Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-14T09:23:23.979Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-14T09:24:23.991Z [debug] [monitor] Metrics updated:
+2025-10-14T09:25:24.007Z [debug] [monitor] Metrics updated:
+2025-10-14T09:26:24.022Z [debug] [monitor] Metrics updated:
+2025-10-14T09:27:24.037Z [debug] [monitor] Metrics updated:
+2025-10-14T09:28:24.049Z [debug] [monitor] Metrics updated:
+2025-10-14T09:29:24.061Z [debug] [monitor] Metrics updated:
+2025-10-14T09:30:24.069Z [debug] [monitor] Metrics updated:
+2025-10-14T09:31:24.077Z [debug] [monitor] Metrics updated:
+[INFO] 14:31:36 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+2025-10-14T09:31:36.962Z [debug] Shutting down server...
+2025-10-14T09:31:36.963Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:31:37.138Z [debug] NEW Plan worker created
+2025-10-14T09:31:37.138Z [debug] NEW Gen worker created
+2025-10-14T09:31:37.139Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 14:31:37 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T09:31:37.150Z [debug] Shutting down server...
+2025-10-14T09:31:37.150Z [debug] Server shut down.
+[INFO] 14:32:27 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:32:28.089Z [debug] NEW Plan worker created
+2025-10-14T09:32:28.090Z [debug] NEW Gen worker created
+2025-10-14T09:32:28.090Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 14:32:28 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T09:32:28.101Z [debug] Shutting down server...
+2025-10-14T09:32:28.101Z [debug] Server shut down.
+[INFO] 15:36:44 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T10:36:44.346Z [debug] NEW Plan worker created
+2025-10-14T10:36:44.347Z [debug] NEW Gen worker created
+2025-10-14T10:36:44.347Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:36:44 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T10:36:44.358Z [debug] Shutting down server...
+2025-10-14T10:36:44.358Z [debug] Server shut down.
+[INFO] 15:37:06 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T10:37:06.802Z [debug] NEW Plan worker created
+2025-10-14T10:37:06.803Z [debug] NEW Gen worker created
+2025-10-14T10:37:06.803Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:37:06 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T10:37:06.814Z [debug] Shutting down server...
+2025-10-14T10:37:06.814Z [debug] Server shut down.
+[INFO] 15:37:28 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T10:37:28.625Z [debug] NEW Plan worker created
+2025-10-14T10:37:28.626Z [debug] NEW Gen worker created
+2025-10-14T10:37:28.626Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:37:28 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T10:37:28.637Z [debug] Shutting down server...
+2025-10-14T10:37:28.638Z [debug] Server shut down.
+[INFO] 15:37:45 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T10:37:46.150Z [debug] NEW Plan worker created
+2025-10-14T10:37:46.151Z [debug] NEW Gen worker created
+2025-10-14T10:37:46.151Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:37:46 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T10:37:46.162Z [debug] Shutting down server...
+2025-10-14T10:37:46.163Z [debug] Server shut down.
+[INFO] 15:38:08 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T10:38:09.025Z [debug] NEW Plan worker created
+2025-10-14T10:38:09.025Z [debug] NEW Gen worker created
+2025-10-14T10:38:09.025Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:38:09 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T10:38:09.036Z [debug] Shutting down server...
+2025-10-14T10:38:09.037Z [debug] Server shut down.
+[INFO] 15:39:10 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T10:39:10.631Z [debug] NEW Plan worker created
+2025-10-14T10:39:10.631Z [debug] NEW Gen worker created
+2025-10-14T10:39:10.632Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-14T10:39:10.635Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 15:39:32 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+2025-10-14T10:39:32.230Z [debug] Shutting down server...
+2025-10-14T10:39:32.230Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T10:39:32.399Z [debug] NEW Plan worker created
+2025-10-14T10:39:32.399Z [debug] NEW Gen worker created
+2025-10-14T10:39:32.400Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 15:39:32 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T10:39:32.410Z [debug] Shutting down server...
+2025-10-14T10:39:32.411Z [debug] Server shut down.
+[INFO] 15:40:06 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T10:40:06.842Z [debug] NEW Plan worker created
+2025-10-14T10:40:06.842Z [debug] NEW Gen worker created
+2025-10-14T10:40:06.843Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-14T10:40:06.846Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-14T10:41:06.848Z [debug] [monitor] Metrics updated:
+2025-10-14T10:42:06.864Z [debug] [monitor] Metrics updated:
+2025-10-14T10:43:06.879Z [debug] [monitor] Metrics updated:
+2025-10-14T10:44:06.893Z [debug] [monitor] Metrics updated:
+2025-10-14T10:45:06.905Z [debug] [monitor] Metrics updated:
+2025-10-14T10:46:06.916Z [debug] [monitor] Metrics updated:
+[INFO] 16:02:39 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T11:02:40.071Z [debug] NEW Plan worker created
+2025-10-14T11:02:40.072Z [debug] NEW Gen worker created
+2025-10-14T11:02:40.073Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-14T11:02:40.077Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 16:02:52 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+2025-10-14T11:02:52.157Z [debug] Shutting down server...
+2025-10-14T11:02:52.157Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T11:02:52.361Z [debug] NEW Plan worker created
+2025-10-14T11:02:52.362Z [debug] NEW Gen worker created
+2025-10-14T11:02:52.362Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:02:52 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T11:02:52.373Z [debug] Shutting down server...
+2025-10-14T11:02:52.374Z [debug] Server shut down.
+[INFO] 16:38:25 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T11:38:25.689Z [debug] NEW Plan worker created
+2025-10-14T11:38:25.689Z [debug] NEW Gen worker created
+2025-10-14T11:38:25.690Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:38:25 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T11:38:25.703Z [debug] Shutting down server...
+2025-10-14T11:38:25.703Z [debug] Server shut down.
+[INFO] 16:46:43 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T11:46:43.495Z [debug] NEW Plan worker created
+2025-10-14T11:46:43.496Z [debug] NEW Gen worker created
+2025-10-14T11:46:43.496Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:46:43 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T11:46:43.508Z [debug] Shutting down server...
+2025-10-14T11:46:43.508Z [debug] Server shut down.
+[INFO] 16:47:45 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T11:47:46.063Z [debug] NEW Plan worker created
+2025-10-14T11:47:46.064Z [debug] NEW Gen worker created
+2025-10-14T11:47:46.064Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:47:46 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T11:47:46.077Z [debug] Shutting down server...
+2025-10-14T11:47:46.078Z [debug] Server shut down.
+[INFO] 16:48:15 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T11:48:15.278Z [debug] NEW Plan worker created
+2025-10-14T11:48:15.278Z [debug] NEW Gen worker created
+2025-10-14T11:48:15.278Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:48:15 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T11:48:15.290Z [debug] Shutting down server...
+2025-10-14T11:48:15.290Z [debug] Server shut down.
+[INFO] 16:50:30 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T11:50:31.058Z [debug] NEW Plan worker created
+2025-10-14T11:50:31.059Z [debug] NEW Gen worker created
+2025-10-14T11:50:31.059Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 16:50:31 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T11:50:31.071Z [debug] Shutting down server...
+2025-10-14T11:50:31.071Z [debug] Server shut down.
+t 3/3 for step 1
+2025-10-14T09:20:27.547Z [info] [codegenV3] Generating step 1: Imagine your body needs to grow, or heal a cut. Billions of new cells are needed, and each one needs a perfect, identical copy of your entire genetic instruction manual – your DNA. It's like needing to make a perfect photocopy of a 20,000-page book every time you make a new cell. How does the cell ensure every single letter is exactly right, without errors, to pass on its complete identity?
+2025-10-14T09:20:27.547Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:27.547Z [debug] [codegenV3] Prompt length: 1030 chars
+2025-10-14T09:20:27.548Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 1
+2025-10-14T09:20:27.548Z [info] [codegenV3] Generating step 1: Imagine your body needs to grow, or heal a cut. Billions of new cells are needed, and each one needs a perfect, identical copy of your entire genetic instruction manual – your DNA. It's like needing to make a perfect photocopy of a 20,000-page book every time you make a new cell. How does the cell ensure every single letter is exactly right, without errors, to pass on its complete identity?
+2025-10-14T09:20:27.548Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:27.548Z [debug] [codegenV3] Prompt length: 1030 chars
+2025-10-14T09:20:28.050Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 2
+2025-10-14T09:20:28.050Z [info] [codegenV3] Generating step 2: The genius of DNA replication lies in its elegance. Picture the DNA double helix, a twisted ladder. First, an enzyme called 'helicase' acts like a tiny zipper, unwinding and separating the two strands. Now, each single strand becomes a template. Another enzyme, 'DNA polymerase,' then moves along each original strand, reading the 'old' blueprint and adding the correct new complementary 'bricks' (nucleotides) to build two brand new, complete DNA ladders. Each new DNA molecule is half 'old' and half 'new' – a process called semi-conservative replication.
+2025-10-14T09:20:28.050Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:28.050Z [debug] [codegenV3] Prompt length: 1194 chars
+2025-10-14T09:20:28.051Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 2
+2025-10-14T09:20:28.051Z [info] [codegenV3] Generating step 2: The genius of DNA replication lies in its elegance. Picture the DNA double helix, a twisted ladder. First, an enzyme called 'helicase' acts like a tiny zipper, unwinding and separating the two strands. Now, each single strand becomes a template. Another enzyme, 'DNA polymerase,' then moves along each original strand, reading the 'old' blueprint and adding the correct new complementary 'bricks' (nucleotides) to build two brand new, complete DNA ladders. Each new DNA molecule is half 'old' and half 'new' – a process called semi-conservative replication.
+2025-10-14T09:20:28.051Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:28.051Z [debug] [codegenV3] Prompt length: 1194 chars
+2025-10-14T09:20:28.052Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 2
+2025-10-14T09:20:28.052Z [info] [codegenV3] Generating step 2: The genius of DNA replication lies in its elegance. Picture the DNA double helix, a twisted ladder. First, an enzyme called 'helicase' acts like a tiny zipper, unwinding and separating the two strands. Now, each single strand becomes a template. Another enzyme, 'DNA polymerase,' then moves along each original strand, reading the 'old' blueprint and adding the correct new complementary 'bricks' (nucleotides) to build two brand new, complete DNA ladders. Each new DNA molecule is half 'old' and half 'new' – a process called semi-conservative replication.
+2025-10-14T09:20:28.052Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:28.052Z [debug] [codegenV3] Prompt length: 1194 chars
+2025-10-14T09:20:28.053Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 2
+2025-10-14T09:20:28.053Z [info] [codegenV3] Generating step 2: The genius of DNA replication lies in its elegance. Picture the DNA double helix, a twisted ladder. First, an enzyme called 'helicase' acts like a tiny zipper, unwinding and separating the two strands. Now, each single strand becomes a template. Another enzyme, 'DNA polymerase,' then moves along each original strand, reading the 'old' blueprint and adding the correct new complementary 'bricks' (nucleotides) to build two brand new, complete DNA ladders. Each new DNA molecule is half 'old' and half 'new' – a process called semi-conservative replication.
+2025-10-14T09:20:28.053Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:28.053Z [debug] [codegenV3] Prompt length: 1194 chars
+2025-10-14T09:20:28.547Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 3
+2025-10-14T09:20:28.547Z [info] [codegenV3] Generating step 3: This incredible copying process is fundamental to all life. It's why you inherited traits from your parents, why a cut finger heals, and why a single fertilized egg can become a complex organism. When mistakes happen during replication, they can lead to mutations, sometimes causing diseases like cancer. But we also harness it: in forensics, DNA replication allows us to amplify tiny samples for identification. In medicine, understanding it helps design anti-cancer drugs or gene therapies. It's the core engine of life's continuity.
+2025-10-14T09:20:28.547Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:28.547Z [debug] [codegenV3] Prompt length: 1172 chars
+2025-10-14T09:20:28.548Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 3
+2025-10-14T09:20:28.548Z [info] [codegenV3] Generating step 3: This incredible copying process is fundamental to all life. It's why you inherited traits from your parents, why a cut finger heals, and why a single fertilized egg can become a complex organism. When mistakes happen during replication, they can lead to mutations, sometimes causing diseases like cancer. But we also harness it: in forensics, DNA replication allows us to amplify tiny samples for identification. In medicine, understanding it helps design anti-cancer drugs or gene therapies. It's the core engine of life's continuity.
+2025-10-14T09:20:28.548Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:28.548Z [debug] [codegenV3] Prompt length: 1172 chars
+2025-10-14T09:20:28.549Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 3
+2025-10-14T09:20:28.549Z [info] [codegenV3] Generating step 3: This incredible copying process is fundamental to all life. It's why you inherited traits from your parents, why a cut finger heals, and why a single fertilized egg can become a complex organism. When mistakes happen during replication, they can lead to mutations, sometimes causing diseases like cancer. But we also harness it: in forensics, DNA replication allows us to amplify tiny samples for identification. In medicine, understanding it helps design anti-cancer drugs or gene therapies. It's the core engine of life's continuity.
+2025-10-14T09:20:28.549Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:28.549Z [debug] [codegenV3] Prompt length: 1172 chars
+2025-10-14T09:20:28.550Z [info] [codegenV3WithRetry] 🔄 Attempt 3/3 for step 3
+2025-10-14T09:20:28.551Z [info] [codegenV3] Generating step 3: This incredible copying process is fundamental to all life. It's why you inherited traits from your parents, why a cut finger heals, and why a single fertilized egg can become a complex organism. When mistakes happen during replication, they can lead to mutations, sometimes causing diseases like cancer. But we also harness it: in forensics, DNA replication allows us to amplify tiny samples for identification. In medicine, understanding it helps design anti-cancer drugs or gene therapies. It's the core engine of life's continuity.
+2025-10-14T09:20:28.551Z [info] [codegenV3] Topic: "Explain DNA replication"
+2025-10-14T09:20:28.551Z [debug] [codegenV3] Prompt length: 1172 chars
+2025-10-14T09:20:44.542Z [debug] [monitor] Metrics updated:
+2025-10-14T09:21:14.845Z [debug] [notes] Finish reason: STOP
+2025-10-14T09:21:14.846Z [info] [notes] ✅ Generated SVG keynote in 82.30s (15242 chars)
+2025-10-14T09:21:14.846Z [info] [notes] 📊 Elements: text=87, rect=13, line=15, total=115
+2025-10-14T09:21:14.846Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760433674846.svg
+2025-10-14T09:21:14.846Z [info] [notes] ✅ SUCCESS on attempt 2/3
+2025-10-14T09:21:14.846Z [info] [notes] 📊 Quality: 15242 chars, 87 text, 13 rect, 15 line
+2025-10-14T09:21:14.846Z [info] [notes] 🎯 Temperature 0.80 produced excellent results
+2025-10-14T09:21:14.846Z [info] [stepVisuals] ✅ Notes generated (15242 chars)
+2025-10-14T09:21:25.481Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T09:21:25.482Z [debug] [codegenV3] Received 6992 chars from API
+2025-10-14T09:21:25.482Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T09:21:25.482Z [info] [codegenV3] ✅ Generated SVG in 56.94s (6992 chars)
+2025-10-14T09:21:25.482Z [info] [codegenV3] 🎬 ANIMATIONS: 24 total (<animate>: 21, <animateMotion>: 3, <animateTransform>: 0)
+2025-10-14T09:21:25.482Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=27
+2025-10-14T09:21:25.482Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T09:21:25.482Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T09:21:25.482Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T09:21:27.546Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:27.547Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:27.547Z [warn] [stepVisuals] Animation 1 returned no actions
+2025-10-14T09:21:27.548Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:27.548Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:27.548Z [warn] [stepVisuals] Animation 2 returned no actions
+2025-10-14T09:21:27.548Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:27.548Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:27.548Z [warn] [stepVisuals] Animation 4 returned no actions
+2025-10-14T09:21:27.548Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=1/4
+2025-10-14T09:21:27.548Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T09:21:27.548Z [info] [parallel] ✅ 1 animations included (priority 2+)
+2025-10-14T09:21:27.549Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T09:21:27.549Z [debug] [monitor] Step 1 generation for 21e52109-63f3-4a10-988b-c7fc57ad0696 took 186009ms
+2025-10-14T09:21:27.549Z [info] [parallel] ✅ Step 1 COMPLETE in 186009ms with 2 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 21e52109-63f3-4a10-988b-c7fc57ad0696
+StepId: 1
+Actions: 2
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-14T09:21:27.549Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-14T09:21:28.052Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:28.052Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:28.052Z [warn] [stepVisuals] Animation 1 returned no actions
+2025-10-14T09:21:28.052Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:28.052Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:28.052Z [warn] [stepVisuals] Animation 2 returned no actions
+2025-10-14T09:21:28.052Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:28.052Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:28.052Z [warn] [stepVisuals] Animation 3 returned no actions
+2025-10-14T09:21:28.053Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:28.053Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:28.053Z [warn] [stepVisuals] Animation 4 returned no actions
+2025-10-14T09:21:28.053Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=0/4
+2025-10-14T09:21:28.053Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T09:21:28.054Z [debug] [cache] Cached chunk for query step 2
+2025-10-14T09:21:28.054Z [debug] [monitor] Step 2 generation for 21e52109-63f3-4a10-988b-c7fc57ad0696 took 186012ms
+2025-10-14T09:21:28.054Z [info] [parallel] ✅ Step 2 COMPLETE in 186012ms with 1 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 21e52109-63f3-4a10-988b-c7fc57ad0696
+StepId: 2
+Actions: 1
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-14T09:21:28.054Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-14T09:21:28.548Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:28.548Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:28.548Z [warn] [stepVisuals] Animation 2 returned no actions
+2025-10-14T09:21:28.548Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:28.548Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:28.548Z [warn] [stepVisuals] Animation 3 returned no actions
+2025-10-14T09:21:28.550Z [error] [codegenV3] Generation failed: Animation generation timeout after 60000ms
+2025-10-14T09:21:28.550Z [error] [codegenV3WithRetry] ❌ All attempts failed
+2025-10-14T09:21:28.550Z [warn] [stepVisuals] Animation 4 returned no actions
+2025-10-14T09:21:28.550Z [info] [stepVisuals] ✅ COMPLETE: Notes=YES, Animations=1/4
+2025-10-14T09:21:28.550Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T09:21:28.550Z [info] [parallel] ✅ 1 animations included (priority 2+)
+2025-10-14T09:21:28.551Z [debug] [cache] Cached chunk for query step 3
+2025-10-14T09:21:28.551Z [debug] [monitor] Step 3 generation for 21e52109-63f3-4a10-988b-c7fc57ad0696 took 186008ms
+2025-10-14T09:21:28.551Z [info] [parallel] ✅ Step 3 COMPLETE in 186008ms with 2 actions
+
+══════════════════════════════════════════════════════════════════════
+🚀 ABOUT TO EMIT STEP
+══════════════════════════════════════════════════════════════════════
+SessionId: 21e52109-63f3-4a10-988b-c7fc57ad0696
+StepId: 3
+Actions: 2
+Room sockets: 0
+══════════════════════════════════════════════════════════════════════
+✅ EMITTED SUCCESSFULLY
+
+2025-10-14T09:21:28.551Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-14T09:21:28.551Z [debug] [parallel] Parallel generation complete: 3/3 successful in 187011ms
+2025-10-14T09:21:28.551Z [debug] [monitor] Completed request 21e52109-63f3-4a10-988b-c7fc57ad0696 in 198999ms (success: true)
+2025-10-14T09:21:28.551Z [debug] [parallel] Job complete for session 21e52109-63f3-4a10-988b-c7fc57ad0696
+2025-10-14T09:21:44.546Z [debug] [monitor] Metrics updated:
+2025-10-14T09:22:44.547Z [debug] [monitor] Metrics updated:
+[INFO] 14:22:49 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+2025-10-14T09:22:49.690Z [debug] Shutting down server...
+2025-10-14T09:22:49.691Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:22:49.892Z [debug] NEW Plan worker created
+2025-10-14T09:22:49.893Z [debug] NEW Gen worker created
+2025-10-14T09:22:49.893Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 14:22:49 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T09:22:49.904Z [debug] Shutting down server...
+2025-10-14T09:22:49.905Z [debug] Server shut down.
+[INFO] 14:23:10 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:23:10.329Z [debug] NEW Plan worker created
+2025-10-14T09:23:10.330Z [debug] NEW Gen worker created
+2025-10-14T09:23:10.330Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-14T09:23:10.333Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+[INFO] 14:23:23 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/orchestrator.ts has been modified
+2025-10-14T09:23:23.808Z [debug] Shutting down server...
+2025-10-14T09:23:23.809Z [debug] Server shut down.
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:23:23.978Z [debug] NEW Plan worker created
+2025-10-14T09:23:23.979Z [debug] NEW Gen worker created
+2025-10-14T09:23:23.979Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 14:23:23 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T09:23:23.991Z [debug] Shutting down server...
+2025-10-14T09:23:23.992Z [debug] Server shut down.
+[INFO] 14:31:36 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/codegenV3.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:31:37.132Z [debug] NEW Plan worker created
+2025-10-14T09:31:37.133Z [debug] NEW Gen worker created
+2025-10-14T09:31:37.133Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at main (/home/komail/LEAF/Learn-X/app/backend/src/index.ts:294:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+[ERROR] 14:31:37 Error: listen EADDRINUSE: address already in use :::8000
+✅ Redis connected
+2025-10-14T09:31:37.144Z [debug] Shutting down server...
+2025-10-14T09:31:37.144Z [debug] Server shut down.
+[INFO] 14:32:27 Restarting: /home/komail/LEAF/Learn-X/app/backend/src/agents/transcriptGenerator.ts has been modified
+
+══════════════════════════════════════════════════════════════════════
+🚀 LEARN-X BACKEND STARTING
+══════════════════════════════════════════════════════════════════════
+📍 Configuration:
+   PORT: 8000
+   FRONTEND_URLS: http://localhost:5173, http://localhost:5174
+   REDIS_URL: redis://localhost:6379
+   GEMINI_API_KEY: ✅ SET
+   USE_VISUAL_VERSION: v3
+   LOG_LEVEL: debug
+══════════════════════════════════════════════════════════════════════
+
+🔌 Connecting to Redis...
+🎭 Initializing orchestrator...
+🧹 Clearing stale job queues on startup...
+2025-10-14T09:32:28.080Z [debug] NEW Plan worker created
+2025-10-14T09:32:28.080Z [debug] NEW Gen worker created
+2025-10-14T09:32:28.080Z [debug] NEW Parallel worker created
+✅ Orchestrator initialized
+
+
+══════════════════════════════════════════════════════════════════════
+✅ SERVER READY
+══════════════════════════════════════════════════════════════════════
+🌐 Backend URL: http://localhost:8000
+🔗 Health Check: http://localhost:8000/health
+📡 WebSocket Ready: ws://localhost:8000
+══════════════════════════════════════════════════════════════════════
+
+2025-10-14T09:32:28.084Z [debug] Server listening on port 8000
+✅ Redis connected
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+It is highly recommended to use a minimum Redis version of 6.2.0
+             Current: 6.0.16
+2025-10-14T09:33:28.097Z [debug] [monitor] Metrics updated:
