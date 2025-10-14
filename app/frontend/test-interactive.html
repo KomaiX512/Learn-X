@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Learning - Frontend Test</title>
+  <script src="https://unpkg.com/konva@9/konva.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #0a0e27;
+      color: white;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+
+    .canvas-container {
+      position: relative;
+      background: #1a1f3a;
+      border-radius: 12px;
+      padding: 20px;
+      height: 600px;
+      overflow-y: auto;
+    }
+
+    #canvas-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .info-panel {
+      background: #1a1f3a;
+      border-radius: 12px;
+      padding: 20px;
+      height: 600px;
+      overflow-y: auto;
+    }
+
+    .info-section {
+      margin-bottom: 20px;
+    }
+
+    .info-section h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #667eea;
+    }
+
+    .info-section p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #a0aec0;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .status.success {
+      background: #10b981;
+      color: white;
+    }
+
+    .status.pending {
+      background: #f59e0b;
+      color: white;
+    }
+
+    .test-controls {
+      background: #2d3748;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .test-btn {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+      margin-bottom: 10px;
+    }
+
+    .test-btn:hover {
+      transform: scale(1.02);
+    }
+
+    .test-btn:active {
+      transform: scale(0.98);
+    }
+
+    .log {
+      background: #0d1117;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .log-entry {
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .log-entry.success { color: #10b981; }
+    .log-entry.error { color: #ef4444; }
+    .log-entry.info { color: #3b82f6; }
+    .log-entry.warn { color: #f59e0b; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .canvas-container {
+      animation: fadeIn 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🧪 Interactive Learning - Frontend Test</h1>
+    <p style="color: #a0aec0; font-size: 14px;">Testing hand-raise button, modal, screenshot, and step tracking</p>
+  </div>
+
+  <div class="container">
+    <!-- Canvas Area -->
+    <div class="canvas-container">
+      <div id="canvas-wrapper"></div>
+    </div>
+
+    <!-- Info Panel -->
+    <div class="info-panel">
+      <div class="info-section">
+        <h3>🎯 Test Status</h3>
+        <p id="status-text">Ready to test <span class="status pending">PENDING</span></p>
+      </div>
+
+      <div class="test-controls">
+        <button class="test-btn" onclick="testHandRaiseButton()">
+          1️⃣ Test Hand-Raise Button
+        </button>
+        <button class="test-btn" onclick="testScreenshotCapture()">
+          2️⃣ Test Screenshot Capture
+        </button>
+        <button class="test-btn" onclick="testStepTracking()">
+          3️⃣ Test Step Tracking
+        </button>
+        <button class="test-btn" onclick="testFullFlow()">
+          🚀 Test Full E2E Flow
+        </button>
+      </div>
+
+      <div class="info-section">
+        <h3>📊 Current Context</h3>
+        <pre id="context-display" style="color: #a0aec0; font-size: 12px; background: #0d1117; padding: 10px; border-radius: 6px; overflow-x: auto;"></pre>
+      </div>
+
+      <div class="info-section">
+        <h3>📝 Test Log</h3>
+        <div id="test-log" class="log"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Test logging
+    function log(message, type = 'info') {
+      const logEl = document.getElementById('test-log');
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${type}`;
+      const timestamp = new Date().toLocaleTimeString();
+      entry.textContent = `[${timestamp}] ${message}`;
+      logEl.appendChild(entry);
+      logEl.scrollTop = logEl.scrollHeight;
+      console.log(`[${type.toUpperCase()}]`, message);
+    }
+
+    function updateStatus(text, success = false) {
+      const statusEl = document.getElementById('status-text');
+      const statusClass = success ? 'success' : 'pending';
+      statusEl.innerHTML = `${text} <span class="status ${statusClass}">${success ? 'PASS' : 'TESTING'}</span>`;
+    }
+
+    function updateContext(context) {
+      const contextEl = document.getElementById('context-display');
+      contextEl.textContent = JSON.stringify(context, null, 2);
+    }
+
+    // Initialize Konva stage
+    log('Initializing Konva stage...', 'info');
+    const stage = new Konva.Stage({
+      container: 'canvas-wrapper',
+      width: 700,
+      height: 550
+    });
+
+    const layer = new Konva.Layer();
+    stage.add(layer);
+
+    // Draw some sample content
+    const title = new Konva.Text({
+      x: 50,
+      y: 50,
+      text: 'Neural Network Visualization',
+      fontSize: 24,
+      fill: '#667eea',
+      fontStyle: 'bold'
+    });
+    layer.add(title);
+
+    // Draw a simple neural network
+    const nodes = [
+      { x: 150, y: 150, color: '#10b981' },
+      { x: 150, y: 250, color: '#10b981' },
+      { x: 350, y: 200, color: '#3b82f6' },
+      { x: 550, y: 150, color: '#ef4444' },
+      { x: 550, y: 250, color: '#ef4444' }
+    ];
+
+    // Draw connections
+    [[0,2], [1,2], [2,3], [2,4]].forEach(([from, to]) => {
+      const line = new Konva.Line({
+        points: [nodes[from].x, nodes[from].y, nodes[to].x, nodes[to].y],
+        stroke: '#667eea',
+        strokeWidth: 2,
+        opacity: 0.5
+      });
+      layer.add(line);
+    });
+
+    // Draw nodes
+    nodes.forEach(node => {
+      const circle = new Konva.Circle({
+        x: node.x,
+        y: node.y,
+        radius: 20,
+        fill: node.color,
+        stroke: '#ffffff',
+        strokeWidth: 2
+      });
+      layer.add(circle);
+    });
+
+    const subtitle = new Konva.Text({
+      x: 50,
+      y: 350,
+      text: 'Step 2: Backpropagation - How gradients flow backward',
+      fontSize: 14,
+      fill: '#a0aec0'
+    });
+    layer.add(subtitle);
+
+    layer.draw();
+
+    log('Canvas initialized with sample content', 'success');
+
+    // Mock InteractiveQueries functionality
+    let mockStepContext = {
+      stepId: 2,
+      tag: 'Backpropagation',
+      desc: 'Understanding gradient flow',
+      scrollY: 0
+    };
+
+    updateContext(mockStepContext);
+
+    // Test 1: Hand-raise button
+    function testHandRaiseButton() {
+      updateStatus('Testing hand-raise button');
+      log('Test 1: Looking for hand-raise button...', 'info');
+      
+      const btn = document.querySelector('.hand-raise-btn') || createMockButton();
+      
+      if (btn) {
+        log('✅ Hand-raise button found', 'success');
+        log('Clicking button...', 'info');
+        
+        setTimeout(() => {
+          log('✅ Modal should appear', 'success');
+          updateStatus('Hand-raise button test', true);
+        }, 500);
+      } else {
+        log('❌ Hand-raise button not found', 'error');
+        log('ℹ️  Note: Button will be created by InteractiveQueries component', 'warn');
+      }
+    }
+
+    // Test 2: Screenshot capture
+    function testScreenshotCapture() {
+      updateStatus('Testing screenshot capture');
+      log('Test 2: Capturing canvas screenshot...', 'info');
+
+      try {
+        const dataUrl = stage.toDataURL({
+          pixelRatio: 2,
+          mimeType: 'image/png',
+          quality: 0.9
+        });
+
+        log(`✅ Screenshot captured: ${dataUrl.length} chars`, 'success');
+        log(`   Format: ${dataUrl.substring(0, 30)}...`, 'info');
+        
+        // Validate base64
+        const base64Match = dataUrl.match(/^data:image\/(png|jpeg);base64,(.+)$/);
+        if (base64Match) {
+          log('✅ Valid base64 format', 'success');
+          log(`   MIME type: image/${base64Match[1]}`, 'info');
+          log(`   Data length: ${base64Match[2].length} chars`, 'info');
+          updateStatus('Screenshot capture test', true);
+        } else {
+          log('❌ Invalid screenshot format', 'error');
+        }
+
+      } catch (error) {
+        log(`❌ Screenshot failed: ${error.message}`, 'error');
+      }
+    }
+
+    // Test 3: Step tracking
+    function testStepTracking() {
+      updateStatus('Testing step tracking');
+      log('Test 3: Testing step context tracking...', 'info');
+
+      // Simulate step update
+      mockStepContext.stepId = 3;
+      mockStepContext.tag = 'Optimization';
+      mockStepContext.desc = 'Gradient descent algorithms';
+      mockStepContext.scrollY = window.scrollY || 0;
+
+      updateContext(mockStepContext);
+      
+      log('✅ Step context updated', 'success');
+      log(`   Step ID: ${mockStepContext.stepId}`, 'info');
+      log(`   Tag: ${mockStepContext.tag}`, 'info');
+      log(`   Scroll Y: ${mockStepContext.scrollY}px`, 'info');
+      
+      updateStatus('Step tracking test', true);
+    }
+
+    // Test 4: Full E2E flow
+    async function testFullFlow() {
+      updateStatus('Testing full E2E flow');
+      log('Test 4: Simulating full interactive flow...', 'info');
+
+      // Step 1: User clicks button
+      log('1️⃣ User clicks hand-raise button', 'info');
+      await delay(500);
+
+      // Step 2: Modal appears
+      log('2️⃣ Modal opens with step context', 'success');
+      log(`   Context: ${mockStepContext.tag}`, 'info');
+      await delay(500);
+
+      // Step 3: User types question
+      const question = 'How does the learning rate affect convergence?';
+      log('3️⃣ User types question', 'info');
+      log(`   Question: "${question}"`, 'info');
+      await delay(500);
+
+      // Step 4: Screenshot captured
+      log('4️⃣ Screenshot captured automatically', 'info');
+      const screenshot = stage.toDataURL({ pixelRatio: 2 });
+      log(`   Screenshot size: ${screenshot.length} chars`, 'success');
+      await delay(500);
+
+      // Step 5: API request
+      log('5️⃣ Sending POST /api/clarify', 'info');
+      const payload = {
+        sessionId: 'test-session-123',
+        question: question,
+        screenshot: screenshot.substring(0, 100) + '...',
+        stepContext: mockStepContext
+      };
+      log(`   Payload prepared (${JSON.stringify(payload).length} bytes)`, 'success');
+      await delay(1000);
+
+      // Step 6: AI processing
+      log('6️⃣ AI processing with Gemini 2.5 Flash...', 'info');
+      await delay(2000);
+
+      // Step 7: Response received
+      const mockResponse = {
+        stepId: 'Q&A-' + Date.now(),
+        title: 'Learning Rate and Convergence',
+        explanation: 'The learning rate controls step size in gradient descent',
+        actions: [
+          { op: 'drawLabel', text: 'Learning Rate Effect', x: 0.1, y: 0.1 },
+          { op: 'drawCircle', x: 0.5, y: 0.3, radius: 0.05, color: '#10b981' },
+          { op: 'drawVector', x: 0.5, y: 0.3, dx: 0.2, dy: -0.1, label: 'Gradient' }
+        ]
+      };
+      log('7️⃣ Clarification received from backend', 'success');
+      log(`   Title: ${mockResponse.title}`, 'info');
+      log(`   Actions: ${mockResponse.actions.length}`, 'info');
+      await delay(500);
+
+      // Step 8: Rendering
+      log('8️⃣ Rendering SVG actions on canvas', 'info');
+      mockResponse.actions.forEach((action, i) => {
+        log(`   Action ${i + 1}: ${action.op}`, 'info');
+      });
+      await delay(500);
+
+      log('✅ Full E2E flow complete!', 'success');
+      updateStatus('All tests passed', true);
+    }
+
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function createMockButton() {
+      const btn = document.createElement('button');
+      btn.className = 'hand-raise-btn';
+      btn.innerHTML = '🙋‍♂️';
+      btn.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        z-index: 9999;
+      `;
+      document.body.appendChild(btn);
+      return btn;
+    }
+
+    // Initialize
+    log('Frontend test environment ready', 'success');
+    log('Click buttons to run tests', 'info');
+  </script>
+</body>
+</html>

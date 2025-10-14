@@ -1,0 +1,268 @@
+/**
+ * Text-to-Speech Service
+ * Converts narration text to audio using Google Cloud Text-to-Speech API
+ */
+
+import { logger } from '../logger';
+import * as fs from 'fs';
+import * as path from 'path';
+import { promisify } from 'util';
+import * as https from 'https';
+
+const writeFile = promisify(fs.writeFile);
+const mkdir = promisify(fs.mkdir);
+
+// TTS Configuration from environment
+const TTS_ENABLED = process.env.TTS_ENABLED === 'true';
+const TTS_API_KEY = process.env.GOOGLE_CLOUD_TTS_API_KEY || '';
+const TTS_VOICE_NAME = process.env.TTS_VOICE_NAME || 'en-US-Journey-D';
+const TTS_AUDIO_ENCODING = process.env.TTS_AUDIO_ENCODING || 'MP3';
+const TTS_SPEAKING_RATE = parseFloat(process.env.TTS_SPEAKING_RATE || '1.0');
+const TTS_INTER_VISUAL_DELAY = parseInt(process.env.TTS_INTER_VISUAL_DELAY || '2000', 10);
+
+// Audio output directory
+const AUDIO_OUTPUT_DIR = path.join(process.cwd(), 'audio-output');
+
+// Google Cloud TTS REST API endpoint
+const TTS_API_ENDPOINT = 'https://texttospeech.googleapis.com/v1/text:synthesize';
+
+export interface TTSOptions {
+  text: string;
+  voiceName?: string;
+  speakingRate?: number;
+  languageCode?: string;
+  prompt?: string; // For Gemini 2.5 Flash TTS styling
+}
+
+export interface TTSResult {
+  audioContent: Buffer;
+  audioDuration: number; // Estimated duration in seconds
+  outputPath?: string;
+}
+
+export class TTSService {
+  private client: TextToSpeechClient | null = null;
+  private isInitialized: boolean = false;
+
+  constructor() {
+    if (TTS_ENABLED) {
+      this.initializeClient();
+    }
+  }
+
+  /**
+   * Initialize the TTS client
+   */
+  private initializeClient() {
+    try {
+      // Check if service account credentials are set
+      const credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+      
+      if (credentials) {
+        logger.info('[TTS] Initializing with service account credentials');
+        this.client = new TextToSpeechClient({
+          keyFilename: credentials
+        });
+      } else if (TTS_API_KEY) {
+        logger.info('[TTS] Initializing with API key');
+        // Note: Google Cloud TTS typically requires service account credentials
+        // If using Gemini 2.5 Flash TTS, this might work differently
+        this.client = new TextToSpeechClient({
+          apiKey: TTS_API_KEY
+        } as any);
+      } else {
+        logger.warn('[TTS] No credentials configured. TTS will be disabled.');
+        return;
+      }
+
+      this.isInitialized = true;
+      logger.info('[TTS] Service initialized successfully');
+      
+      // Ensure audio output directory exists
+      this.ensureOutputDirectory();
+      
+    } catch (error: any) {
+      logger.error(`[TTS] Failed to initialize: ${error.message}`);
+      this.isInitialized = false;
+    }
+  }
+
+  /**
+   * Ensure audio output directory exists
+   */
+  private async ensureOutputDirectory() {
+    try {
+      await mkdir(AUDIO_OUTPUT_DIR, { recursive: true });
+      logger.debug(`[TTS] Audio output directory ready: ${AUDIO_OUTPUT_DIR}`);
+    } catch (error: any) {
+      logger.error(`[TTS] Failed to create output directory: ${error.message}`);
+    }
+  }
+
+  /**
+   * Check if TTS service is available
+   */
+  public isAvailable(): boolean {
+    return TTS_ENABLED && this.isInitialized && this.client !== null;
+  }
+
+  /**
+   * Synthesize text to speech
+   */
+  public async synthesize(options: TTSOptions): Promise<TTSResult> {
+    if (!this.isAvailable()) {
+      throw new Error('TTS service is not available');
+    }
+
+    const startTime = Date.now();
+    logger.info(`[TTS] Synthesizing text (${options.text.length} chars)...`);
+
+    try {
+      // Construct the request
+      const request: protos.google.cloud.texttospeech.v1.ISynthesizeSpeechRequest = {
+        input: { text: options.text },
+        voice: {
+          languageCode: options.languageCode || 'en-US',
+          name: options.voiceName || TTS_VOICE_NAME,
+          // For Gemini 2.5 Flash TTS
+          ...(options.prompt && { ssmlGender: 'NEUTRAL' })
+        },
+        audioConfig: {
+          audioEncoding: this.getAudioEncoding(TTS_AUDIO_ENCODING),
+          speakingRate: options.speakingRate || TTS_SPEAKING_RATE,
+        },
+      };
+
+      // Perform the text-to-speech request
+      const [response] = await this.client!.synthesizeSpeech(request);
+
+      if (!response.audioContent) {
+        throw new Error('No audio content returned from TTS API');
+      }
+
+      const audioBuffer = Buffer.from(response.audioContent as Uint8Array);
+      const audioDuration = this.estimateAudioDuration(options.text, options.speakingRate || TTS_SPEAKING_RATE);
+      
+      const elapsed = Date.now() - startTime;
+      logger.info(`[TTS] ✅ Synthesized ${options.text.length} chars → ${audioDuration}s audio in ${elapsed}ms`);
+
+      return {
+        audioContent: audioBuffer,
+        audioDuration
+      };
+
+    } catch (error: any) {
+      logger.error(`[TTS] Synthesis failed: ${error.message}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Synthesize and save to file
+   */
+  public async synthesizeToFile(options: TTSOptions, filename: string): Promise<TTSResult> {
+    const result = await this.synthesize(options);
+    
+    const outputPath = path.join(AUDIO_OUTPUT_DIR, filename);
+    await writeFile(outputPath, result.audioContent);
+    
+    logger.info(`[TTS] Audio saved to: ${outputPath}`);
+    
+    return {
+      ...result,
+      outputPath
+    };
+  }
+
+  /**
+   * Batch synthesize multiple texts
+   */
+  public async synthesizeBatch(texts: TTSOptions[]): Promise<TTSResult[]> {
+    logger.info(`[TTS] Batch synthesizing ${texts.length} texts...`);
+    
+    const results = await Promise.all(
+      texts.map((opts, idx) => 
+        this.synthesize(opts).catch(error => {
+          logger.error(`[TTS] Failed to synthesize text ${idx + 1}: ${error.message}`);
+          throw error;
+        })
+      )
+    );
+    
+    const totalDuration = results.reduce((sum, r) => sum + r.audioDuration, 0);
+    logger.info(`[TTS] ✅ Batch complete: ${results.length} audio files, ${totalDuration}s total`);
+    
+    return results;
+  }
+
+  /**
+   * Get audio encoding from string
+   */
+  private getAudioEncoding(encoding: string): protos.google.cloud.texttospeech.v1.AudioEncoding {
+    switch (encoding.toUpperCase()) {
+      case 'MP3':
+        return protos.google.cloud.texttospeech.v1.AudioEncoding.MP3;
+      case 'OGG_OPUS':
+        return protos.google.cloud.texttospeech.v1.AudioEncoding.OGG_OPUS;
+      case 'LINEAR16':
+        return protos.google.cloud.texttospeech.v1.AudioEncoding.LINEAR16;
+      default:
+        return protos.google.cloud.texttospeech.v1.AudioEncoding.MP3;
+    }
+  }
+
+  /**
+   * Estimate audio duration based on text length and speaking rate
+   * Average speaking rate: 150 words per minute at rate 1.0
+   */
+  private estimateAudioDuration(text: string, speakingRate: number): number {
+    const words = text.split(/\s+/).length;
+    const baseWordsPerMinute = 150;
+    const adjustedWordsPerMinute = baseWordsPerMinute * speakingRate;
+    const durationMinutes = words / adjustedWordsPerMinute;
+    const durationSeconds = Math.ceil(durationMinutes * 60);
+    
+    return durationSeconds;
+  }
+
+  /**
+   * Get inter-visual delay in milliseconds
+   */
+  public getInterVisualDelay(): number {
+    return TTS_INTER_VISUAL_DELAY;
+  }
+
+  /**
+   * Test TTS connection and credentials
+   */
+  public async testConnection(): Promise<boolean> {
+    if (!this.isAvailable()) {
+      logger.error('[TTS] Service not available for testing');
+      return false;
+    }
+
+    try {
+      logger.info('[TTS] Testing connection...');
+      
+      const testText = 'Hello, this is a test of the text to speech system.';
+      const result = await this.synthesize({ text: testText });
+      
+      if (result.audioContent.length > 0) {
+        logger.info('[TTS] ✅ Connection test successful');
+        logger.info(`[TTS] Generated ${result.audioContent.length} bytes of audio`);
+        logger.info(`[TTS] Estimated duration: ${result.audioDuration}s`);
+        return true;
+      }
+      
+      logger.error('[TTS] Connection test failed: No audio content generated');
+      return false;
+      
+    } catch (error: any) {
+      logger.error(`[TTS] Connection test failed: ${error.message}`);
+      return false;
+    }
+  }
+}
+
+// Export singleton instance
+export const ttsService = new TTSService();

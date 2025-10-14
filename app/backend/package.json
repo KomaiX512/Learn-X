@@ -16,9 +16,18 @@
     "test:brutal": "ts-node test-production-brutal-honest.ts",
     "test:quality": "ts-node test-unit-quality-deep-dive.ts",
     "test:verify": "ts-node test-quick-verify.ts",
-    "test:e2e": "ts-node test-production-complete-e2e.ts"
+    "test:e2e": "ts-node test-production-complete-e2e.ts",
+    "test:narration:logic": "ts-node src/tests/narration-logic-test.ts",
+    "test:narration:unit": "ts-node src/tests/narration-unit-test.ts",
+    "test:narration:integration": "ts-node src/tests/narration-integration-test.ts",
+    "test:narration:all": "npm run test:narration:logic && npm run test:narration:unit && npm run test:narration:integration",
+    "test:tts": "ts-node src/tests/tts-test.ts",
+    "test:tts:sync": "ts-node src/tests/tts-synchronization-test.ts",
+    "test:tts:e2e": "ts-node src/tests/tts-e2e-test.ts",
+    "test:tts:all": "npm run test:tts && npm run test:tts:sync && npm run test:tts:e2e"
   },
   "dependencies": {
+    "@google-cloud/text-to-speech": "^5.8.1",
     "@google/generative-ai": "^0.15.0",
     "bullmq": "^5.0.0",
     "cors": "^2.8.5",

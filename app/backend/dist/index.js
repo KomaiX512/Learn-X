@@ -65,6 +65,11 @@ async function main() {
     console.log('   GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? '✅ SET' : '❌ MISSING');
     console.log('   USE_VISUAL_VERSION:', process.env.USE_VISUAL_VERSION || 'v3 (default)');
     console.log('   LOG_LEVEL:', process.env.LOG_LEVEL || 'info');
+    console.log('\n📊 TTS Configuration:');
+    console.log('   TTS_ENABLED:', process.env.TTS_ENABLED || 'false');
+    console.log('   TTS_API_KEY:', process.env.GOOGLE_CLOUD_TTS_API_KEY ? '✅ SET' : '❌ MISSING');
+    console.log('   TTS_VOICE:', process.env.TTS_VOICE_NAME || 'en-US-Journey-D');
+    console.log('   TTS_INTER_VISUAL_DELAY:', process.env.TTS_INTER_VISUAL_DELAY || '2000ms');
     console.log('═'.repeat(70) + '\n');
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)({ origin: FRONTEND_URLS, credentials: true }));
@@ -79,6 +84,23 @@ async function main() {
     });
     console.log('🔌 Connecting to Redis...');
     const redis = new ioredis_1.default(REDIS_URL, { maxRetriesPerRequest: null });
+    // Initialize TTS service and test connection
+    console.log('🎤 Initializing Text-to-Speech service...');
+    const { ttsService } = await Promise.resolve().then(() => __importStar(require('./services/tts-service')));
+    if (ttsService.isAvailable()) {
+        console.log('✅ TTS service initialized');
+        // Optionally test connection on startup
+        const testSuccess = await ttsService.testConnection();
+        if (testSuccess) {
+            console.log('✅ TTS connection test successful');
+        }
+        else {
+            console.warn('⚠️  TTS connection test failed - audio narration may not work');
+        }
+    }
+    else {
+        console.log('⚠️  TTS service not available (check configuration)');
+    }
     redis.on('connect', () => console.log('✅ Redis connected'));
     redis.on('error', (err) => console.error('❌ Redis error:', err.message));
     console.log('🎭 Initializing orchestrator...');
@@ -232,56 +254,76 @@ async function main() {
             res.status(500).json({ error: String(err) });
         }
     });
+    // Audio serving endpoint - stream audio files
+    app.get('/audio/:filename', (req, res) => {
+        const { filename } = req.params;
+        const audioPath = `${process.cwd()}/audio-output/${filename}`;
+        // Security: only allow MP3 files and prevent directory traversal
+        if (!filename.endsWith('.mp3') || filename.includes('..')) {
+            return res.status(400).json({ error: 'Invalid filename' });
+        }
+        res.sendFile(audioPath, (err) => {
+            if (err) {
+                logger_1.logger.error(`[audio] Failed to serve ${filename}: ${err.message}`);
+                res.status(404).json({ error: 'Audio file not found' });
+            }
+        });
+    });
     // Clarification endpoint - student asks question during lecture
     app.post('/api/clarify', async (req, res) => {
         try {
-            const { sessionId, question, screenshot } = req.body;
+            const { sessionId, question, screenshot, stepContext } = req.body;
             if (!sessionId || !question) {
                 return res.status(400).json({ error: 'Missing sessionId or question' });
             }
             logger_1.logger.info(`[api] Clarification request for session ${sessionId}: "${question}"`);
+            logger_1.logger.debug(`[api] Step context:`, stepContext);
             // Retrieve context from Redis
             const planKey = `session:${sessionId}:plan`;
-            const currentStepKey = `session:${sessionId}:current_step`;
-            const [planData, currentStepIndex] = await Promise.all([
+            const queryKey = `session:${sessionId}:query`;
+            const [planData, query] = await Promise.all([
                 redis.get(planKey),
-                redis.get(currentStepKey)
+                redis.get(queryKey)
             ]);
             if (!planData) {
                 return res.status(404).json({ error: 'Session not found or plan not available' });
             }
             const plan = JSON.parse(planData);
-            const stepIndex = parseInt(currentStepIndex || '0', 10);
-            const currentStep = plan.steps[stepIndex];
-            if (!currentStep) {
-                return res.status(404).json({ error: 'Current step not found' });
-            }
-            // Get query from session
-            const queryKey = `session:${sessionId}:query`;
-            const query = await redis.get(queryKey) || 'Unknown topic';
+            // Use step context from frontend or fallback to first step
+            const currentStep = stepContext ? {
+                id: stepContext.stepId || 0,
+                tag: stepContext.tag || 'Current Step',
+                desc: stepContext.desc || 'Learning step',
+                complexity: 3
+            } : plan.steps[0];
             // Import clarifier agent
             const { clarifierAgent } = await Promise.resolve().then(() => __importStar(require('./agents/clarifier')));
             // Generate clarification
             const clarification = await clarifierAgent({
-                query,
+                query: query || 'Unknown topic',
                 step: currentStep,
                 question,
                 screenshot,
                 plan
             });
             logger_1.logger.info(`[api] Clarification generated: ${clarification.actions.length} actions`);
-            // Emit clarification to the session
+            // Create a unique step ID for this clarification
+            const clarificationStepId = `Q&A-${Date.now()}`;
+            // Emit clarification as a special step that can be inserted inline
             io.to(sessionId).emit('clarification', {
                 type: 'clarification',
+                stepId: clarificationStepId,
                 title: clarification.title,
                 explanation: clarification.explanation,
                 actions: clarification.actions,
                 question,
-                stepId: `clarification-${Date.now()}`
+                insertAfterScroll: stepContext?.scrollY || 0,
+                timestamp: Date.now()
             });
             res.json({
                 success: true,
                 clarification: {
+                    stepId: clarificationStepId,
                     title: clarification.title,
                     explanation: clarification.explanation,
                     actionsCount: clarification.actions.length

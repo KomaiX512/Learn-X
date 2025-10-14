@@ -12,6 +12,7 @@ const codegen_1 = require("./agents/codegen");
 const codegenV2_1 = __importDefault(require("./agents/codegenV2"));
 const codegenV3WithRetry_1 = require("./agents/codegenV3WithRetry");
 const transcriptGenerator_1 = require("./agents/transcriptGenerator");
+const audio_narration_service_1 = require("./services/audio-narration-service");
 const router_1 = require("./compiler/router");
 const debugger_1 = require("./agents/debugger");
 const cache_manager_1 = require("./services/cache-manager");
@@ -22,8 +23,9 @@ const CURRENT_STEP_KEY = (sessionId) => `session:${sessionId}:current_step`;
 const PARAMS_KEY = (sessionId) => `session:${sessionId}:params`;
 const CHUNK_KEY = (sessionId, stepId) => `session:${sessionId}:step:${stepId}:chunk`;
 const LEARNING_STATE_KEY = (sessionId) => `session:${sessionId}:learning_state`;
-// Production config: 4 visuals per step
-const VISUALS_PER_STEP = 4;
+// Production config: Notes + 4 animations per step
+const VISUALS_PER_STEP = 4; // Animation visuals only
+const ENABLE_NOTES_GENERATION = true; // Set to false to disable notes keynotes
 // Progressive learning timing - NOT USED anymore (immediate emission)
 // Kept for reference only
 const TIMING_BY_COMPLEXITY = {
@@ -34,57 +36,141 @@ const TIMING_BY_COMPLEXITY = {
     5: 0 // Immediate
 };
 /**
- * Generate multiple visuals + transcript for a single step
- * PRODUCTION QUALITY: 4 visuals with detailed transcript
+ * Generate notes keynote + multiple animation visuals + narrations for a single step
+ * OPTIMIZED ARCHITECTURE:
+ * - Notes keynote generated FIRST (priority visual)
+ * - 4 animation visuals generated in parallel
+ * - Narrations generated ONCE for all visuals (single API call)
+ * - Notes rendered at top, animations vertically below
+ * - Parallel generation to save time
  */
 async function generateStepVisuals(step, topic, sessionId) {
-    logger_1.logger.info(`[stepVisuals] Generating ${VISUALS_PER_STEP} visuals for step ${step.id}`);
+    logger_1.logger.info(`[stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + ${VISUALS_PER_STEP} animations + narrations for step ${step.id}`);
     const visualDescriptions = [];
-    const allActions = [];
-    // Generate 4 visuals in parallel - each is independent API call
-    const visualPromises = Array.from({ length: VISUALS_PER_STEP }, async (_, index) => {
+    const allPromises = [];
+    let notesPromise = null;
+    let notesSvgCode = null;
+    // PRIORITY 1: Generate notes keynote (if enabled)
+    if (ENABLE_NOTES_GENERATION) {
+        logger_1.logger.info(`[stepVisuals] 📝 Starting NOTES generation (priority visual) for step ${step.id}`);
+        notesPromise = (async () => {
+            try {
+                const subtopic = step.desc; // Use step description as subtopic
+                const svgCode = await (0, transcriptGenerator_1.generateNotes)(step, topic, subtopic);
+                if (!svgCode) {
+                    logger_1.logger.error(`[stepVisuals] ❌ Notes generation failed for step ${step.id}`);
+                    return null;
+                }
+                notesSvgCode = svgCode; // Store for narration generator
+                logger_1.logger.info(`[stepVisuals] ✅ Notes generated (${svgCode.length} chars)`);
+                // Return as customSVG action with special marking
+                return {
+                    op: 'customSVG',
+                    svgCode,
+                    visualGroup: `step-${step.id}-notes`,
+                    isNotesKeynote: true, // Special flag for frontend prioritization
+                    priority: 1 // Highest priority - render first
+                };
+            }
+            catch (error) {
+                logger_1.logger.error(`[stepVisuals] Notes generation error: ${error.message}`);
+                return null;
+            }
+        })();
+        allPromises.push(notesPromise);
+    }
+    // PRIORITY 2: Generate animation visuals in parallel
+    const animationMetadata = [];
+    const animationPromises = Array.from({ length: VISUALS_PER_STEP }, async (_, index) => {
         const visualNumber = index + 1;
-        logger_1.logger.info(`[stepVisuals] Starting visual ${visualNumber}/${VISUALS_PER_STEP} for step ${step.id}`);
+        logger_1.logger.info(`[stepVisuals] 🎬 Starting animation ${visualNumber}/${VISUALS_PER_STEP} for step ${step.id}`);
         try {
             // Each visual uses the SAME codegenV3WithRetry - proven to work
             const result = await (0, codegenV3WithRetry_1.codegenV3WithRetry)(step, topic);
             if (!result || !result.actions || result.actions.length === 0) {
-                logger_1.logger.warn(`[stepVisuals] Visual ${visualNumber} returned no actions`);
+                logger_1.logger.warn(`[stepVisuals] Animation ${visualNumber} returned no actions`);
                 return null;
             }
-            // Store description for transcript generation
-            const description = `Animated SVG visualization showing: ${step.desc.substring(0, 100)}`;
+            // Store metadata for narration generator
+            animationMetadata.push({
+                index,
+                result,
+                actionCount: result.actions.length
+            });
+            // Store description
+            const description = `Animated SVG visualization ${visualNumber}: ${step.desc.substring(0, 80)}`;
             visualDescriptions.push({ visualNumber, description });
-            logger_1.logger.info(`[stepVisuals] ✅ Visual ${visualNumber} complete with ${result.actions.length} actions`);
-            return result.actions[0]; // Extract the customSVG action
+            logger_1.logger.info(`[stepVisuals] ✅ Animation ${visualNumber} complete with ${result.actions.length} actions`);
+            // Mark as animation with lower priority
+            const action = result.actions[0];
+            return {
+                ...action,
+                visualGroup: `step-${step.id}-animation-${visualNumber}`,
+                isNotesKeynote: false,
+                priority: 2 + visualNumber // Lower priority - render after notes
+            };
         }
         catch (error) {
-            logger_1.logger.error(`[stepVisuals] Visual ${visualNumber} failed: ${error.message}`);
+            logger_1.logger.error(`[stepVisuals] Animation ${visualNumber} failed: ${error.message}`);
             return null;
         }
     });
-    // Wait for all visuals to complete
-    const visualResults = await Promise.all(visualPromises);
-    // Filter out nulls and collect successful visuals
-    const successfulVisuals = visualResults.filter(v => v !== null);
-    allActions.push(...successfulVisuals);
-    logger_1.logger.info(`[stepVisuals] Generated ${successfulVisuals.length}/${VISUALS_PER_STEP} visuals successfully`);
-    // Generate transcript based on visual descriptions
-    let transcript = '';
-    if (visualDescriptions.length > 0) {
-        logger_1.logger.info(`[stepVisuals] Generating transcript for ${visualDescriptions.length} visuals`);
-        const transcriptResult = await (0, transcriptGenerator_1.generateTranscript)(step, topic, visualDescriptions);
-        transcript = transcriptResult || `Step ${step.id}: ${step.desc}`;
-        logger_1.logger.info(`[stepVisuals] ✅ Transcript generated (${transcript.length} chars)`);
+    allPromises.push(...animationPromises);
+    // PARALLEL EXECUTION: Wait for all (notes + animations) to complete
+    logger_1.logger.info(`[stepVisuals] ⚡ Running ${allPromises.length} parallel visual generations...`);
+    const allResults = await Promise.all(allPromises);
+    // Separate notes from animations
+    const notesAction = ENABLE_NOTES_GENERATION ? allResults[0] : null;
+    const animationResults = ENABLE_NOTES_GENERATION ? allResults.slice(1) : allResults;
+    // Filter out nulls from animations
+    const successfulAnimations = animationResults.filter(v => v !== null);
+    logger_1.logger.info(`[stepVisuals] ✅ VISUALS COMPLETE: Notes=${notesAction ? 'YES' : 'NO'}, Animations=${successfulAnimations.length}/${VISUALS_PER_STEP}`);
+    // PRIORITY 3: Generate narrations + audio for ALL visuals in ONE API call
+    let stepNarration = undefined;
+    try {
+        logger_1.logger.info(`[stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)`);
+        // Prepare visual inputs for narration + audio generator
+        const visualInputs = [];
+        // Add notes visual
+        if (notesAction && notesSvgCode) {
+            visualInputs.push({
+                type: 'notes',
+                visualNumber: 0,
+                svgCode: notesSvgCode,
+                description: step.desc
+            });
+        }
+        // Add animation visuals
+        successfulAnimations.forEach((anim, idx) => {
+            const metadata = animationMetadata.find(m => m.index === idx);
+            visualInputs.push({
+                type: 'animation',
+                visualNumber: idx + 1,
+                actionCount: metadata?.actionCount || 0,
+                description: step.desc
+            });
+        });
+        if (visualInputs.length > 0) {
+            stepNarration = await (0, audio_narration_service_1.generateStepNarrationWithAudio)(step, topic, visualInputs, sessionId);
+            const hasAudioStr = stepNarration.hasAudio ? 'with audio' : 'text-only';
+            const audioSizeMB = (stepNarration.totalAudioSize / 1024 / 1024).toFixed(2);
+            logger_1.logger.info(`[stepVisuals] ✅ NARRATIONS generated: ${stepNarration.narrations.length} narrations (${stepNarration.totalDuration}s total, ${hasAudioStr}, ${audioSizeMB}MB)`);
+        }
     }
-    else {
-        logger_1.logger.warn(`[stepVisuals] No visuals succeeded, using fallback transcript`);
-        transcript = `Step ${step.id}: ${step.desc}`;
+    catch (error) {
+        logger_1.logger.error(`[stepVisuals] ⚠️ Narration/audio generation failed (non-critical): ${error.message}`);
+        // Continue without narrations - they're optional
     }
+    // Generate transcript summary
+    const transcript = stepNarration
+        ? `Step ${step.id}: ${step.desc}`
+        : `Step ${step.id}: ${step.desc} (Notes: ${notesAction ? 'generated' : 'skipped'}, Animations: ${successfulAnimations.length})`;
     return {
-        actions: allActions,
+        notesAction,
+        animationActions: successfulAnimations,
         transcript,
-        visualDescriptions
+        visualDescriptions,
+        narration: stepNarration
     };
 }
 async function initOrchestrator(io, redis) {
@@ -381,23 +467,41 @@ async function initOrchestrator(io, redis) {
                             status: 'generating',
                             message: `Generating ${VISUALS_PER_STEP} visuals for ${step.tag}...`
                         });
-                        // PRODUCTION: Generate 4 visuals + transcript
-                        logger_1.logger.info(`[parallel] 🚀 Step ${step.id}: Generating ${VISUALS_PER_STEP} visuals + transcript`);
-                        const { actions, transcript, visualDescriptions } = await generateStepVisuals(step, query, sessionId);
-                        // CRITICAL: Handle empty results
-                        if (!actions || actions.length === 0) {
-                            logger_1.logger.error(`[parallel] ❌ Step ${step.id} generated no visuals`);
+                        // NEW ARCHITECTURE: Generate notes + animations + narrations
+                        logger_1.logger.info(`[parallel] 🚀 Step ${step.id}: Generating notes + ${VISUALS_PER_STEP} animations + narrations`);
+                        const { notesAction, animationActions, transcript, visualDescriptions, narration } = await generateStepVisuals(step, query, sessionId);
+                        // CRITICAL: Combine notes + animations into prioritized actions array
+                        const allActions = [];
+                        // Add notes FIRST (priority 1)
+                        if (notesAction) {
+                            allActions.push(notesAction);
+                            logger_1.logger.info(`[parallel] ✅ Notes keynote included (priority 1)`);
+                        }
+                        // Add animations AFTER notes (priority 2+)
+                        if (animationActions && animationActions.length > 0) {
+                            allActions.push(...animationActions);
+                            logger_1.logger.info(`[parallel] ✅ ${animationActions.length} animations included (priority 2+)`);
+                        }
+                        // Validate we have at least something to render
+                        if (allActions.length === 0) {
+                            logger_1.logger.error(`[parallel] ❌ Step ${step.id} generated no visuals (notes or animations)`);
                             throw new Error(`Step ${step.id} generation produced no visuals`);
                         }
-                        // Build the result chunk with transcript
+                        // Build the result chunk with transcript and narrations
                         checked = {
                             type: 'actions',
                             stepId: step.id,
-                            actions,
-                            transcript, // NEW: Include transcript in emission
+                            actions: allActions, // Prioritized: notes first, then animations
+                            transcript,
+                            narration, // Include structured narrations for each visual
                             meta: {
-                                visualCount: actions.length,
-                                transcriptLength: transcript.length
+                                hasNotes: notesAction !== null,
+                                animationCount: animationActions.length,
+                                totalVisuals: allActions.length,
+                                transcriptLength: transcript.length,
+                                hasNarration: narration !== undefined,
+                                narrationCount: narration?.narrations?.length || 0,
+                                totalAudioDuration: narration?.totalDuration || 0
                             }
                         };
                         // Cache the result in both places
@@ -414,12 +518,20 @@ async function initOrchestrator(io, redis) {
                     const eventData = {
                         type: 'actions',
                         actions: checked.actions,
-                        transcript: checked.transcript || '', // Include transcript for narration
+                        transcript: checked.transcript || '', // Legacy transcript
+                        narration: checked.narration, // NEW: Structured narrations + audio for TTS
                         stepId: step.id,
                         step: step,
                         plan: { title: plan.title, subtitle: plan.subtitle, toc: plan.toc },
                         totalSteps: plan.steps.length,
-                        meta: checked.meta // Include metadata about visual count
+                        meta: checked.meta, // Include metadata about visual count
+                        // TTS synchronization configuration
+                        ttsConfig: {
+                            enabled: (0, audio_narration_service_1.isAudioNarrationAvailable)(),
+                            interVisualDelay: (0, audio_narration_service_1.getInterVisualDelay)(), // ms to wait between visuals
+                            waitForNarration: true, // Must wait for narration to complete
+                            waitForAnimation: true // Must wait for animation to complete
+                        }
                     };
                     // DEBUGGING: Log room membership
                     const roomSockets = io.sockets.adapter.rooms.get(sessionId);
