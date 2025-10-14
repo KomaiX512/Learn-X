@@ -44,6 +44,13 @@ export class SequentialRenderer {
   private visualIndexInStep: number = 0;
   private captionEl: HTMLDivElement | null = null;
   
+  // Progressive rendering state
+  private progressiveRenderingEnabled: boolean = true;
+  private renderDelayPerElement: number = 30; // ms delay per SVG element
+  
+  // Step synchronization
+  private stepTransitionDelay: number = 5000; // 5 seconds between visuals
+  
   constructor(config: RendererConfig) {
     this.initializeStage(config);
     this.animationQueue = new AnimationQueue(this);
@@ -459,11 +466,30 @@ export class SequentialRenderer {
   }
   
   /**
-   * Enqueue actions for playback
+   * Enqueue actions for playback with priority-based ordering
+   * NEW: Notes keynotes (priority=1) render FIRST, animations (priority=2+) render below
    */
   private enqueueActions(chunk: any): void {
-    // Add to animation queue for sequential playback
-    this.animationQueue.enqueue(chunk.actions, {
+    console.log(`[SequentialRenderer] 🎯 Sorting ${chunk.actions.length} actions by priority`);
+    
+    // PRIORITY-BASED RENDERING: Sort actions by priority field
+    const sortedActions = [...chunk.actions].sort((a: any, b: any) => {
+      const priorityA = a.priority || 999; // Default to low priority
+      const priorityB = b.priority || 999;
+      return priorityA - priorityB; // Lower number = higher priority
+    });
+    
+    // Log prioritization results
+    const notesActions = sortedActions.filter((a: any) => a.isNotesKeynote);
+    const animationActions = sortedActions.filter((a: any) => !a.isNotesKeynote);
+    
+    console.log(`[SequentialRenderer] 📊 Priority breakdown:`);
+    console.log(`[SequentialRenderer]   - Notes keynotes: ${notesActions.length} (priority 1)`);
+    console.log(`[SequentialRenderer]   - Animations: ${animationActions.length} (priority 2+)`);
+    console.log(`[SequentialRenderer] 🎬 Rendering order: Notes → Animations (vertical stack)`);
+    
+    // Add to animation queue for sequential playback (now in priority order)
+    this.animationQueue.enqueue(sortedActions, {
       stepId: chunk.stepId,
       layer: this.currentLayer,
       stage: this.stage
@@ -667,10 +693,8 @@ export class SequentialRenderer {
         break;
         
       case 'customSVG':
-        // Show a short caption (1–2 sentences) before rendering this visual
-        await this.showCaptionForVisual(this.visualIndexInStep);
-        // Render the SVG visual
-        await this.renderCompleteSVG(action.svgCode, action.visualGroup);
+        // Render the SVG visual with priority-based positioning
+        await this.renderCompleteSVG(action.svgCode, action.visualGroup, action.isNotesKeynote);
         // Advance to next visual index for captions
         this.visualIndexInStep++;
         break;
@@ -1190,7 +1214,7 @@ export class SequentialRenderer {
       opacity: 1
     }).play();
     
-    // Orbit animation
+    // Orbit animation - LOOPS INDEFINITELY
     const anim = new Konva.Animation((frame) => {
       if (!frame) return;
       const angle = (frame.time * action.speed * 0.001) % (Math.PI * 2);
@@ -1201,8 +1225,9 @@ export class SequentialRenderer {
     anim.start();
     
     // CRITICAL: Track animation for cleanup to prevent memory leaks
+    // Animation loops forever until step changes
     this.activeAnimations.push(anim);
-    console.log(`[SequentialRenderer] Tracking orbit animation (total: ${this.activeAnimations.length})`);
+    console.log(`[SequentialRenderer] ✅ Orbit animation LOOPING (total: ${this.activeAnimations.length})`);
   }
   
   /**
@@ -1246,7 +1271,7 @@ export class SequentialRenderer {
       opacity: 1
     }).play();
     
-    // Wave animation
+    // Wave animation - LOOPS INDEFINITELY
     const anim = new Konva.Animation((frame) => {
       if (!frame) return;
       const newPoints: number[] = [];
@@ -1270,8 +1295,9 @@ export class SequentialRenderer {
     anim.start();
     
     // CRITICAL: Track animation for cleanup to prevent memory leaks
+    // Animation loops forever until step changes
     this.activeAnimations.push(anim);
-    console.log(`[SequentialRenderer] Tracking wave animation (total: ${this.activeAnimations.length})`);
+    console.log(`[SequentialRenderer] ✅ Wave animation LOOPING (total: ${this.activeAnimations.length})`);
   }
   
   /**
@@ -1323,7 +1349,7 @@ export class SequentialRenderer {
       }, i * 50);
     }
     
-    // Particle movement animation
+    // Particle movement animation - LOOPS INDEFINITELY
     const anim = new Konva.Animation((frame) => {
       if (!frame) return;
       particles.forEach((particle, i) => {
@@ -1337,8 +1363,9 @@ export class SequentialRenderer {
     anim.start();
     
     // CRITICAL: Track animation for cleanup to prevent memory leaks
+    // Animation loops forever until step changes
     this.activeAnimations.push(anim);
-    console.log(`[SequentialRenderer] Tracking particle animation (total: ${this.activeAnimations.length})`);
+    console.log(`[SequentialRenderer] ✅ Particle animation LOOPING (total: ${this.activeAnimations.length})`);
   }
   
   /**
@@ -1805,7 +1832,7 @@ export class SequentialRenderer {
         this.currentLayer.add(rod);
         this.currentLayer.add(pendulum);
         
-        // Animate pendulum swing
+        // Animate pendulum swing - LOOPS INDEFINITELY
         const anim = new Konva.Animation((frame: any) => {
           const angle = Math.sin(frame.time * 0.002) * 0.5;
           const newX = px + Math.sin(angle) * length * this.stage!.height();
@@ -1817,9 +1844,8 @@ export class SequentialRenderer {
         }, this.currentLayer);
         
         anim.start();
-        
-        // Stop after 3 seconds
-        setTimeout(() => anim.stop(), 3000);
+        this.activeAnimations.push(anim);
+        console.log(`[SequentialRenderer] ✅ Pendulum animation LOOPING`);
         break;
     }
   }
@@ -1882,7 +1908,7 @@ export class SequentialRenderer {
     
     this.currentLayer.add(object);
     
-    // Create circular motion animation
+    // Create circular motion animation - LOOPS INDEFINITELY
     const anim = new Konva.Animation((frame: any) => {
       const angle = (frame.time * angularVelocity * 0.001) % (2 * Math.PI);
       object.x(cx + r * Math.cos(angle));
@@ -1890,9 +1916,8 @@ export class SequentialRenderer {
     }, this.currentLayer);
     
     anim.start();
-    
-    // Stop after 3 seconds
-    setTimeout(() => anim.stop(), 3000);
+    this.activeAnimations.push(anim);
+    console.log(`[SequentialRenderer] ✅ Circular motion LOOPING`);
   }
   
   /**
@@ -1991,17 +2016,22 @@ export class SequentialRenderer {
   }
   
   /**
-   * Render complete SVG document
+   * Render a complete SVG code block from the backend
    * This handles full SVG code (<?xml...><svg>...</svg>) generated by backend
-   * Positioned with proper vertical spacing to avoid overlaps
+   * NEW: Priority-based positioning - Notes keynotes at top, animations stack below
+   * 
+   * @param svgCode - Complete SVG code string
+   * @param visualGroup - Visual group identifier
+   * @param isNotesKeynote - If true, this is a notes keynote (priority 1, rendered first)
    */
-  private async renderCompleteSVG(svgCode: string, visualGroup: string): Promise<void> {
+  private async renderCompleteSVG(svgCode: string, visualGroup: string, isNotesKeynote: boolean = false): Promise<void> {
     if (!this.stage) {
       console.error('[SequentialRenderer] No stage available for SVG rendering');
       return;
     }
 
-    console.log(`[SequentialRenderer] 🎨 Rendering complete SVG (${svgCode.length} chars) for group ${visualGroup}`);
+    const visualType = isNotesKeynote ? '📝 NOTES KEYNOTE' : '🎬 ANIMATION';
+    console.log(`[SequentialRenderer] 🎨 Rendering ${visualType} (${svgCode.length} chars) for group ${visualGroup}`);
 
     // Get the container element
     const container = this.stage.container();
@@ -2045,12 +2075,17 @@ export class SequentialRenderer {
 
     console.log(`[SequentialRenderer] SVG height: ${svgHeight}px`);
 
-    // Inject the SVG
+    // Inject the SVG with progressive rendering
     svgWrapper.innerHTML = cleanedSVG;
 
     // Add to container
     container.style.position = 'relative'; // Ensure container can hold absolute children
     container.appendChild(svgWrapper);
+    
+    // PROGRESSIVE RENDERING: Animate elements appearing one by one
+    if (this.progressiveRenderingEnabled) {
+      await this.applyProgressiveRendering(svgWrapper);
+    }
 
     // Visibility pass: brighten dark text and stroke colors for contrast on dark canvas
     try {
@@ -2112,7 +2147,12 @@ export class SequentialRenderer {
     }
 
     // Update vertical offset for next visual (add height + spacing)
-    const spacing = 50; // Spacing between visuals
+    // NEW: Extra spacing between notes keynote and first animation
+    let spacing = 50; // Default spacing between visuals
+    if (isNotesKeynote) {
+      spacing = 100; // Extra spacing after notes keynote before animations
+      console.log(`[SequentialRenderer] 📝 Notes keynote complete, adding extra spacing (${spacing}px) before animations`);
+    }
     this.verticalOffset += svgHeight + spacing;
 
     // Expand canvas if needed
@@ -2129,8 +2169,51 @@ export class SequentialRenderer {
 
     console.log(`[SequentialRenderer] ✅ Complete SVG rendered (next offset: ${this.verticalOffset}px)`);
 
-    // Small delay for SVG animation initialization
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // STEP SYNCHRONIZATION: 5-second delay before next visual
+    console.log(`[SequentialRenderer] ⏱️  Waiting ${this.stepTransitionDelay}ms before next visual...`);
+    await new Promise(resolve => setTimeout(resolve, this.stepTransitionDelay));
+    console.log(`[SequentialRenderer] ✅ Transition delay complete, ready for next visual`);
+  }
+  
+  /**
+   * Progressive rendering: Make SVG elements appear one by one like being drawn
+   * This creates a "live writing" effect for psychological impact
+   */
+  private async applyProgressiveRendering(svgWrapper: HTMLElement): Promise<void> {
+    const svgEl = svgWrapper.querySelector('svg');
+    if (!svgEl) return;
+    
+    console.log(`[SequentialRenderer] 🎨 Applying progressive rendering...`);
+    
+    // Get all renderable elements (text, shapes, lines)
+    const elements = Array.from(svgEl.querySelectorAll('text, rect, circle, line, path, polygon, polyline'));
+    
+    if (elements.length === 0) {
+      console.log(`[SequentialRenderer] No elements to progressively render`);
+      return;
+    }
+    
+    console.log(`[SequentialRenderer] Found ${elements.length} elements to animate`);
+    
+    // Hide all elements initially
+    elements.forEach((el) => {
+      (el as SVGElement).style.opacity = '0';
+    });
+    
+    // Reveal elements one by one with fade-in effect
+    for (let i = 0; i < elements.length; i++) {
+      const el = elements[i] as SVGElement;
+      
+      // Fade in with CSS transition
+      el.style.transition = 'opacity 200ms ease-in';
+      el.style.opacity = '1';
+      
+      // Delay before next element (adaptive: faster for many elements)
+      const delay = elements.length > 100 ? 10 : this.renderDelayPerElement;
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+    
+    console.log(`[SequentialRenderer] ✅ Progressive rendering complete`);
   }
 
   /**

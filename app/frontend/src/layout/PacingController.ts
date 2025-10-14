@@ -34,22 +34,22 @@ export class PacingController {
   private config: PacingConfig;
   private currentDelay: number = 0;
   
-  // Default educational pacing (optimized for learning)
+  // Default educational pacing (SLOW, HUMAN-LIKE for better comprehension)
   private static readonly DEFAULT_CONFIG: PacingConfig = {
-    beforeTitle: 500,
-    afterTitle: 2000,        // 2s to read title
-    beforeHeading: 800,
-    afterHeading: 1500,      // 1.5s to read heading
-    beforeDiagram: 1000,
-    afterDiagram: 4000,      // 4s to understand diagram
-    beforeDescription: 500,
-    afterDescription: 3000,  // 3s to read description
-    betweenActions: 1000,    // 1s between individual actions
-    beforeNewVisual: 2000,   // 2s before starting new visual
+    beforeTitle: 800,
+    afterTitle: 2500,        // 2.5s to read title
+    beforeHeading: 1000,
+    afterHeading: 2000,      // 2s to read heading
+    beforeDiagram: 1500,
+    afterDiagram: 5000,      // 5s to understand diagram (INCREASED for human-like)
+    beforeDescription: 800,
+    afterDescription: 3500,  // 3.5s to read description
+    betweenActions: 1500,    // 1.5s between individual actions (INCREASED for smooth flow)
+    beforeNewVisual: 3000,   // 3s before starting new visual (INCREASED for clear separation)
     
-    titleAnimationDuration: 800,
-    diagramAnimationDuration: 1500,
-    textAnimationDuration: 600,
+    titleAnimationDuration: 1200,    // INCREASED for smooth, human-like rendering
+    diagramAnimationDuration: 2000,  // INCREASED for smooth, human-like rendering
+    textAnimationDuration: 800,      // INCREASED for smooth, human-like rendering
     
     complexDiagramMultiplier: 1.5,
     simpleTextMultiplier: 0.7

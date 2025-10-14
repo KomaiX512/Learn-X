@@ -2,7 +2,8 @@ export type CompilerType = 'js' | 'latex' | 'wasm-py';
 
 export interface PlanStep {
   id: number;
-  desc: string;
+  desc: string;           // Visual description (for visual generator - narrative, visual)
+  notesSubtopic?: string; // Notes subtopic (for notes generator - clear, structured)
   compiler: CompilerType;
   complexity: number; // 1-10
   tag?: string;       // semantic tag, e.g., 'rc_axes', 'rc_curve', 'rc_annotation'
@@ -40,7 +41,7 @@ export type Action =
   | { op: 'field'; type: 'electric' | 'magnetic' | 'vector'; gridSize: number; strength: number }
   | { op: 'flow'; path: [number, number][]; particleCount: number; speed: number; color?: string }
   | { op: 'customPath'; path: string; x?: number; y?: number; fill?: string; stroke?: string; strokeWidth?: number; scale?: number; glow?: boolean }
-  | { op: 'customSVG'; svgCode: string; visualGroup?: string; width?: number; height?: number }
+  | { op: 'customSVG'; svgCode: string; visualGroup?: string; width?: number; height?: number; isNotesKeynote?: boolean; priority?: number }
   | { op: 'drawGraph'; func: string; domain: [number, number]; color?: string; scale?: number }
   | { op: 'drawDiagram'; type: 'neuralNetwork' | 'molecule' | 'circuit' | 'anatomy'; x?: number; y?: number; layers?: number[]; atoms?: any[]; bonds?: any[] }
   // V2 Domain-Specific Operations

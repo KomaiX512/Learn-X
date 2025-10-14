@@ -26,6 +26,54 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
   const pendingChunksRef = useRef<any[]>([]);
   const visualCounterRef = useRef<number>(0);
   const lastStepIdRef = useRef<number | null>(null);
+  const expectedStepIdRef = useRef<number | null>(null);
+  const stepBufferRef = useRef<Record<number, any>>({});
+  const isRenderingRef = useRef<boolean>(false);
+  const scaleRef = useRef<number>(1);
+  
+  // In-order step gating helpers
+  const flushBufferedIfAvailable = () => {
+    const expected = expectedStepIdRef.current;
+    if (!sequentialRendererRef.current || expected == null) return;
+    const buffered = stepBufferRef.current[expected];
+    if (buffered) {
+      delete stepBufferRef.current[expected];
+      isRenderingRef.current = true;
+      sequentialRendererRef.current.processChunk(buffered);
+    }
+  };
+  
+  const routeChunk = (chunk: any) => {
+    console.log('[CanvasStage] processChunk called');
+    console.log('[CanvasStage] chunk:', JSON.stringify(chunk, null, 2).substring(0, 500));
+    console.log('[CanvasStage] sequentialRendererRef.current exists:', !!sequentialRendererRef.current);
+    if (chunk && typeof chunk.stepId !== 'undefined') {
+      if (lastStepIdRef.current !== chunk.stepId) {
+        lastStepIdRef.current = chunk.stepId;
+        visualCounterRef.current = 0;
+      }
+      // Initialize expected step to first received stepId for robust ordering
+      if (expectedStepIdRef.current === null) {
+        expectedStepIdRef.current = Number(chunk.stepId);
+      }
+      const sId = Number(chunk.stepId);
+      // Buffer out-of-order steps or if a step is currently rendering
+      if (sId !== expectedStepIdRef.current || isRenderingRef.current) {
+        stepBufferRef.current[sId] = chunk;
+        console.log(`[CanvasStage] 📦 Buffered step ${sId} (expected ${expectedStepIdRef.current})`);
+        return;
+      }
+    }
+    if (sequentialRendererRef.current) {
+      console.log('[CanvasStage] ✅ Calling sequentialRenderer.processChunk');
+      isRenderingRef.current = true;
+      sequentialRendererRef.current.processChunk(chunk);
+    } else {
+      console.warn('[CanvasStage] ⚠️ Renderer not ready, queuing chunk');
+      pendingChunksRef.current.push(chunk);
+      console.log('[CanvasStage] Pending chunks:', pendingChunksRef.current.length);
+    }
+  };
   
   // Expose methods to parent component
   useImperativeHandle(ref, () => ({
@@ -33,26 +81,7 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
     resume: () => sequentialRendererRef.current?.resume(),
     nextStep: () => sequentialRendererRef.current?.nextStep(),
     previousStep: () => sequentialRendererRef.current?.previousStep(),
-    processChunk: (chunk: any) => {
-      console.log('[CanvasStage] processChunk called');
-      console.log('[CanvasStage] chunk:', JSON.stringify(chunk, null, 2).substring(0, 500));
-      console.log('[CanvasStage] sequentialRendererRef.current exists:', !!sequentialRendererRef.current);
-      if (chunk && typeof chunk.stepId !== 'undefined') {
-        if (lastStepIdRef.current !== chunk.stepId) {
-          lastStepIdRef.current = chunk.stepId;
-          visualCounterRef.current = 0;
-        }
-      }
-      
-      if (sequentialRendererRef.current) {
-        console.log('[CanvasStage] ✅ Calling sequentialRenderer.processChunk');
-        sequentialRendererRef.current.processChunk(chunk);
-      } else {
-        console.warn('[CanvasStage] ⚠️ Renderer not ready, queuing chunk');
-        pendingChunksRef.current.push(chunk);
-        console.log('[CanvasStage] Pending chunks:', pendingChunksRef.current.length);
-      }
-    },
+    processChunk: (chunk: any) => routeChunk(chunk),
     getStage: () => stageRef.current,
     getContainer: () => scrollContainerRef.current
   }));
@@ -134,6 +163,39 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         console.log('[CanvasStage] Stage created successfully');
         console.log('[CanvasStage] Canvas element exists:', !!document.querySelector(`#${containerId} canvas`));
         
+        // Ctrl+Wheel zoom (only inside canvas)
+        const onWheel = (e: WheelEvent) => {
+          if (!e.ctrlKey) return; // only intercept Ctrl+scroll
+          e.preventDefault(); // prevent page zoom
+          const s = stageRef.current;
+          if (!s) return;
+          const oldScale = scaleRef.current || 1;
+          const scaleBy = 1.05;
+          const direction = e.deltaY > 0 ? 1 : -1; // wheel down => zoom out
+          const newScale = Math.max(0.3, Math.min(5, direction > 0 ? oldScale / scaleBy : oldScale * scaleBy));
+          const pointer = s.getPointerPosition();
+          if (pointer) {
+            const mousePointTo = {
+              x: (pointer.x - s.x()) / oldScale,
+              y: (pointer.y - s.y()) / oldScale
+            };
+            s.scale({ x: newScale, y: newScale });
+            const newPos = {
+              x: pointer.x - mousePointTo.x * newScale,
+              y: pointer.y - mousePointTo.y * newScale
+            };
+            s.position(newPos as any);
+          } else {
+            s.scale({ x: newScale, y: newScale });
+          }
+          scaleRef.current = newScale;
+          s.batchDraw();
+        };
+        const scrollEl = scrollContainerRef.current;
+        if (scrollEl) {
+          scrollEl.addEventListener('wheel', onWheel, { passive: false });
+        }
+        
         // Initialize sequential renderer for optimized playback
         sequentialRendererRef.current = new SequentialRenderer({
           // Reuse the stage we just created; do NOT create a second stage
@@ -143,6 +205,12 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
           height: size.h,
           onStepComplete: (stepId) => {
             console.log(`[CanvasStage] Step ${stepId} complete`);
+            // Advance expected step and flush buffer
+            isRenderingRef.current = false;
+            if (expectedStepIdRef.current !== null) {
+              expectedStepIdRef.current = (expectedStepIdRef.current || 0) + 1;
+            }
+            flushBufferedIfAvailable();
           },
           onProgress: (progress) => {
             console.log(`[CanvasStage] Progress: ${progress}%`);
@@ -169,7 +237,7 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         console.log('[CanvasStage] Sequential renderer initialized');
         if (pendingChunksRef.current.length > 0) {
           const items = pendingChunksRef.current.splice(0, pendingChunksRef.current.length);
-          items.forEach((chunk) => sequentialRendererRef.current?.processChunk(chunk));
+          items.forEach((chunk) => routeChunk(chunk));
         }
         
         // Force initial draw to ensure canvas is visible
@@ -183,6 +251,12 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
     // Cleanup ONLY on unmount
     return () => {
       console.log('[CanvasStage] Component unmounting - cleaning up stage');
+      // Remove zoom listener
+      const scrollEl = scrollContainerRef.current;
+      if (scrollEl) {
+        // best-effort removal; we used an inline handler so cannot easily remove it by ref
+        // but React unmount will remove the element and its listeners
+      }
       if (sequentialRendererRef.current) {
         sequentialRendererRef.current.cleanup?.();
       }

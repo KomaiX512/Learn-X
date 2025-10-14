@@ -54,7 +54,7 @@ export class VerticalLayoutManager {
       canvasHeight,
       minZoneHeight: config?.minZoneHeight || 150,
       maxZoneHeight: config?.maxZoneHeight || 600,
-      zonePadding: config?.zonePadding || 40,
+      zonePadding: config?.zonePadding || 80, // INCREASED: 40 → 80 for better spacing
       titleHeight: config?.titleHeight || 120,
       headingHeight: config?.headingHeight || 80,
       diagramHeight: config?.diagramHeight || 400,

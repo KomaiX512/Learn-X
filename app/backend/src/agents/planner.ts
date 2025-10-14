@@ -103,17 +103,51 @@ export async function plannerAgent(query: string): Promise<Plan> {
     {"minute": 3, "title": "Real Applications", "summary": "[Where this matters]"}
   ],
   "steps": [
-    {"id": 1, "desc": "[Hook with visual + build intuitive understanding]", "compiler": "js", "complexity": 2, "tag": "intuition"},
-    {"id": 2, "desc": "[Show exact mechanism with clear examples]", "compiler": "js", "complexity": 3, "tag": "mechanics"},
-    {"id": 3, "desc": "[Real-world applications and implications]", "compiler": "js", "complexity": 2, "tag": "applications"}
+    {
+      "id": 1,
+      "desc": "[Hook with visual narrative - for visual generator]",
+      "notesSubtopic": "[Clear 2-3 word subtopic - for notes generator]",
+      "compiler": "js",
+      "complexity": 2,
+      "tag": "intuition"
+    },
+    {
+      "id": 2,
+      "desc": "[Show mechanism with visual narrative - for visual generator]",
+      "notesSubtopic": "[Clear 2-3 word subtopic - for notes generator]",
+      "compiler": "js",
+      "complexity": 3,
+      "tag": "mechanics"
+    },
+    {
+      "id": 3,
+      "desc": "[Real applications with visual narrative - for visual generator]",
+      "notesSubtopic": "[Clear 2-3 word subtopic - for notes generator]",
+      "compiler": "js",
+      "complexity": 2,
+      "tag": "applications"
+    }
   ]
 }
 
-⚠️ REQUIREMENTS:
+⚠️ CRITICAL REQUIREMENTS:
 - EXACTLY 3 steps (not 5)
-- Each description must be specific and visual
+- TWO DESCRIPTIONS PER STEP:
+  * "desc": Narrative, visual description (for animations/visuals) - can be long, storytelling
+  * "notesSubtopic": Clear, concise subtopic (for educational notes) - 2-5 words, what to teach
 - Use actual topic terms, not generic placeholders
 - Keep focused - this is a quick lesson
+
+EXAMPLES:
+Topic: "Operational Amplifiers"
+Step 1:
+  desc: "Imagine you have a tiny whisper from a microphone, too faint to hear. The Op-Amp amplifies this signal thousands of times, turning whispers into roars."
+  notesSubtopic: "Op-Amp Basics"
+
+Topic: "Quantum Mechanics"
+Step 1:
+  desc: "Picture an electron not as a tiny ball, but as a cloud of probability, existing everywhere at once until observed."
+  notesSubtopic: "Wave-Particle Duality"
 
 Topic: ${query}`;
 

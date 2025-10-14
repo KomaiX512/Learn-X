@@ -16,22 +16,24 @@ export interface CodegenChunk {
 }
 
 const MODEL = 'gemini-2.5-flash';
-const MAX_OUTPUT_TOKENS = 16384; // Need high limit for full SVG with animations
-const GENERATION_TIMEOUT = Number(process.env.LLM_TIMEOUT_MS || 120000); // default 120s, overridable via env
+const MAX_OUTPUT_TOKENS = 30000; // Increased to avoid truncation on rich SVG outputs
+// No hard timeout: let the API complete naturally
 
 /**
  * PROVEN PATTERN - Matches user's successful blood vessel prompt
  * CRITICAL: Must explicitly request ANIMATIONS with movement
- * CONCISE: Keep prompt short to reduce output verbosity
+ * VISUAL CONTRAST: Canvas is BLACK - use bright colors, avoid black/dark colors
+ * DESCRIPTION: Include 1-2 line figure description
  */
 function createStepPrompt(step: PlanStep, topic: string): string {
-  return `Create animated SVG visualization for "${topic}": ${step.desc}
+  return `Create an animated SVG visual for "${topic}" — ${step.desc}
 
 Requirements:
-- Use <animate>, <animateMotion>, or <animateTransform> for movement
-- Label all key components with <text> elements
-- Max 180 lines, focused and minimal
-- Pure SVG only (no HTML/CSS/JS)
+- Use <animate>, <animateMotion>, or <animateTransform> for movement.
+- Label key components with concise <text> tags (short labels only; no long narration paragraphs).
+- VISUAL CONTRAST: Background is BLACK. Use bright colors (white, cyan, yellow, red, green). Avoid dark/black for strokes/text. Do NOT add background rectangles or large fills — keep a chalkboard aesthetic.
+- Emphasize visuals: arrows, shapes, paths, motion. Keep text minimal and functional.
+- Pure SVG only (no HTML/CSS/JS).
 
 Start with <?xml version="1.0"?> and output ONLY the SVG code:`;
 }
@@ -60,7 +62,7 @@ export async function codegenV3(step: PlanStep, topic: string): Promise<CodegenC
       generationConfig: {
         temperature: 0.75,
         maxOutputTokens: MAX_OUTPUT_TOKENS,
-        topK: 40,
+        topK: 50,
         topP: 0.95
       },
       systemInstruction: 'You are an SVG code generator. Output ONLY valid SVG XML code. Never include explanations, markdown formatting, or any text outside the SVG code. Start with <?xml version="1.0"?> and include complete <svg> tags.'
@@ -69,13 +71,8 @@ export async function codegenV3(step: PlanStep, topic: string): Promise<CodegenC
     const prompt = createStepPrompt(step, topic);
     logger.debug(`[codegenV3] Prompt length: ${prompt.length} chars`);
     
-    // Generate with timeout protection
-    const generationPromise = model.generateContent(prompt);
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Generation timeout')), GENERATION_TIMEOUT)
-    );
-    
-    const result = await Promise.race([generationPromise, timeoutPromise]) as any;
+    // Generate without artificial timeout
+    const result = await model.generateContent(prompt) as any;
     
     // Check for response structure
     if (!result || !result.response) {

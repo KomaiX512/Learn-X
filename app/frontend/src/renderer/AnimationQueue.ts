@@ -11,7 +11,7 @@ export interface QueuedAnimation {
 
 export class AnimationQueue {
   private queue: QueuedAnimation[] = [];
-  private isPlaying: boolean = false;
+  private isPlaying: boolean = false;  // Start stopped; enqueue() will autoplay
   private isPaused: boolean = false;
   private currentIndex: number = 0;
   private currentStepId: number | null = null;
@@ -21,6 +21,7 @@ export class AnimationQueue {
   private onProgress?: (progress: number) => void;
   private onActionStart?: (action: any, index: number) => void;
   private onActionComplete?: (action: any, index: number) => void;
+  private hasStartedOnce: boolean = false;  // Track if playback has started
   
   // FAST RESPONSIVE TIMING - User can see progress immediately
   private readonly DELAYS = {
@@ -59,10 +60,13 @@ export class AnimationQueue {
     console.log(`[AnimationQueue] Queue now has ${this.queue.length} total actions`);
     console.log(`[AnimationQueue] Current status: isPlaying=${this.isPlaying}, isPaused=${this.isPaused}, currentIndex=${this.currentIndex}`);
     
-    // Start playing if not already
-    // The play() loop will automatically process new actions as they arrive
-    if (!this.isPlaying && !this.isPaused) {
-      console.log('[AnimationQueue] Starting playback...');
+    // AUTOPLAY: Start playing immediately on first enqueue
+    if (!this.hasStartedOnce && !this.isPaused) {
+      console.log('[AnimationQueue] 🎬 AUTOPLAY: Starting playback automatically...');
+      this.hasStartedOnce = true;
+      this.play();
+    } else if (!this.isPlaying && !this.isPaused) {
+      console.log('[AnimationQueue] Resuming playback...');
       this.play();
     } else {
       console.log('[AnimationQueue] Playback already active, new actions will be processed automatically');
@@ -112,25 +116,15 @@ export class AnimationQueue {
         
         try {
           console.log(`[AnimationQueue] Starting processAction for ${item.action.op}...`);
-          // Emit action-start callback and give a short lead time for captions before customSVG
+          // Emit action-start callback
           try {
             if (this.onActionStart) this.onActionStart(item.action, this.currentIndex);
-            if (item.action?.op === 'customSVG') {
-              await this.wait(this.DELAYS.captionLead);
-            }
           } catch (cbErr) {
             console.warn('[AnimationQueue] onActionStart callback error:', cbErr);
           }
           
-          // Add timeout to prevent hanging forever on a single action
-          const processWithTimeout = Promise.race([
-            this.renderer.processAction(item.action, item.section),
-            new Promise((_, reject) => 
-              setTimeout(() => reject(new Error('Action timeout after 10 seconds')), 10000)
-            )
-          ]);
-          
-          await processWithTimeout;
+          // Process action directly (no hard timeouts)
+          await this.renderer.processAction(item.action, item.section);
           console.log(`[AnimationQueue] ✅ Completed ${item.action.op}`);
           try {
             if (this.onActionComplete) this.onActionComplete(item.action, this.currentIndex);
@@ -356,11 +350,12 @@ export class AnimationQueue {
    */
   hardReset(): void {
     console.log('[AnimationQueue] 🔄 HARD RESET for step transition');
-    this.isPaused = true; // Pause immediately
+    this.isPaused = false; // Do not pause; allow autoplay on next enqueue
     this.isPlaying = false; // Stop playback
     this.queue = []; // Clear queue
     this.currentIndex = 0; // Reset index
     this.currentStepId = null; // Clear step tracking
+    this.hasStartedOnce = false; // Allow enqueue() to trigger autoplay
     console.log('[AnimationQueue] ✅ Hard reset complete');
   }
   
