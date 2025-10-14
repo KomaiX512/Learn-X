@@ -3,6 +3,8 @@
  * Plays animations at human-readable pace, independent of backend speed
  */
 
+import { ttsPlayback } from '../services/tts-playback';
+
 export interface QueuedAnimation {
   action: any;
   section: any;
@@ -123,9 +125,32 @@ export class AnimationQueue {
             console.warn('[AnimationQueue] onActionStart callback error:', cbErr);
           }
           
-          // Process action directly (no hard timeouts)
-          await this.renderer.processAction(item.action, item.section);
-          console.log(`[AnimationQueue] ✅ Completed ${item.action.op}`);
+          // CRITICAL TTS INTEGRATION: For full visuals (customSVG), play narration synchronized
+          if (item.action.op === 'customSVG' && item.action.visualGroup) {
+            // Extract visual number from visualGroup (e.g., "step-1-notes" -> 0, "step-1-animation-1" -> 1)
+            let visualNumber = 0;
+            if (item.action.isNotesKeynote) {
+              visualNumber = 0; // Notes are always visual 0
+            } else {
+              const match = item.action.visualGroup.match(/animation-(\d+)/);
+              if (match) {
+                visualNumber = parseInt(match[1], 10);
+              }
+            }
+            
+            console.log(`[AnimationQueue] 🎬 Full visual detected: ${item.action.visualGroup}, visual #${visualNumber}`);
+            
+            // Start animation and narration in parallel, wait for BOTH
+            const animationPromise = this.renderer.processAction(item.action, item.section);
+            await ttsPlayback.playWithAnimation(visualNumber, animationPromise);
+            
+            console.log(`[AnimationQueue] ✅ Visual ${visualNumber} complete (animation + narration + delay)`);
+          } else {
+            // Regular action (no TTS)
+            await this.renderer.processAction(item.action, item.section);
+            console.log(`[AnimationQueue] ✅ Completed ${item.action.op}`);
+          }
+          
           try {
             if (this.onActionComplete) this.onActionComplete(item.action, this.currentIndex);
           } catch (cbErr2) {

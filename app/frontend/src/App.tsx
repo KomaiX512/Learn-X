@@ -1,10 +1,12 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react';
-import CanvasStage from './components/CanvasStage';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import './App.css';
+import CanvasStage, { CanvasStageRef } from './components/CanvasStage';
 import { getSocket, waitForJoin } from './socket';
-import { LectureStateManager } from './services/LectureStateManager';
-import { InterruptionPanel } from './components/InterruptionPanel';
 import { captureCanvasScreenshot, setupDoubleClickScreenshot, showScreenshotFlash } from './utils/canvasScreenshot';
 import type { ScreenshotResult } from './utils/canvasScreenshot';
+import { LectureStateManager } from './services/LectureStateManager';
+import { ttsPlayback } from './services/tts-playback';
+import { InterruptionPanel } from './components/InterruptionPanel';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -182,6 +184,15 @@ export default function App() {
       if (e.transcript) {
         setCurrentTranscript(e.transcript);
         console.log('[App] Transcript received:', e.transcript.substring(0, 100) + '...');
+      }
+      
+      // CRITICAL: Load TTS narrations if available
+      if (e.narration) {
+        console.log('[App] 🎤 Loading TTS narrations...');
+        ttsPlayback.loadNarrations(e.narration, e.ttsConfig);
+        console.log(`[App] ✅ TTS loaded: ${e.narration.narrations?.length || 0} narrations`);
+      } else {
+        console.log('[App] No narration data in event');
       }
       
       // Add step to lecture state

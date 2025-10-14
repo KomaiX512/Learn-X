@@ -1,11 +1,13 @@
 /**
- * Sequential Renderer with Optimized Animations
- * Ensures one action at a time with proper delays for comprehension
+ * Sequential Renderer System
+ * Processes animations one at a time (orchestrates with AnimationQueue)
  */
 
 import Konva from 'konva';
+import { LayoutManager } from './LayoutManager';
 import { AnimationQueue } from './AnimationQueue';
 import { DomainRenderers } from './DomainRenderers';
+import { ttsPlayback } from '../services/tts-playback';
 import { VerticalLayoutManager } from '../layout/VerticalLayoutManager';
 import { PacingController, ContentType } from '../layout/PacingController';
 

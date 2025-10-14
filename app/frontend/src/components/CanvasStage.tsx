@@ -52,15 +52,17 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         lastStepIdRef.current = chunk.stepId;
         visualCounterRef.current = 0;
       }
-      // Initialize expected step to first received stepId for robust ordering
+      // CRITICAL FIX: Always start expecting step 1, not first received step!
+      // Steps are generated in parallel and may arrive out of order
       if (expectedStepIdRef.current === null) {
-        expectedStepIdRef.current = Number(chunk.stepId);
+        expectedStepIdRef.current = 1; // Always start from step 1
+        console.log('[CanvasStage] 🎯 Initialized expectedStep to 1');
       }
       const sId = Number(chunk.stepId);
       // Buffer out-of-order steps or if a step is currently rendering
       if (sId !== expectedStepIdRef.current || isRenderingRef.current) {
         stepBufferRef.current[sId] = chunk;
-        console.log(`[CanvasStage] 📦 Buffered step ${sId} (expected ${expectedStepIdRef.current})`);
+        console.log(`[CanvasStage] 📦 Buffered step ${sId} (expected ${expectedStepIdRef.current}, rendering=${isRenderingRef.current})`);
         return;
       }
     }

@@ -12220,3 +12220,1871 @@
 2025-10-14T17:10:17.058Z [debug] [monitor] Metrics updated:
 2025-10-14T17:11:17.061Z [debug] [monitor] Metrics updated:
 2025-10-14T17:12:17.064Z [debug] [monitor] Metrics updated:
+2025-10-14T17:13:17.065Z [debug] [monitor] Metrics updated:
+2025-10-14T17:14:17.069Z [debug] [monitor] Metrics updated:
+2025-10-14T17:15:17.072Z [debug] [monitor] Metrics updated:
+2025-10-14T17:16:17.073Z [debug] [monitor] Metrics updated:
+2025-10-14T17:17:17.073Z [debug] [monitor] Metrics updated:
+2025-10-14T17:18:07.819Z [debug] [socket] Socket 8-kxHaEkDugFlxQ6AAAB disconnected: transport close
+2025-10-14T17:18:17.076Z [debug] [monitor] Metrics updated:
+2025-10-14T17:19:17.078Z [debug] [monitor] Metrics updated:
+2025-10-14T17:20:17.079Z [debug] [monitor] Metrics updated:
+2025-10-14T17:21:17.088Z [debug] [monitor] Metrics updated:
+2025-10-14T17:22:17.095Z [debug] [monitor] Metrics updated:
+2025-10-14T17:23:17.101Z [debug] [monitor] Metrics updated:
+2025-10-14T17:24:17.105Z [debug] [monitor] Metrics updated:
+2025-10-14T17:25:17.107Z [debug] [monitor] Metrics updated:
+2025-10-14T17:26:17.107Z [debug] [monitor] Metrics updated:
+2025-10-14T17:26:33.690Z [info] [TTS] Service initialized successfully
+2025-10-14T17:26:33.713Z [info] [TTS] Testing connection...
+2025-10-14T17:26:33.713Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T17:26:33.713Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:26:33.715Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T17:26:33.962Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 249ms
+2025-10-14T17:26:33.962Z [info] [TTS] ✅ Connection test successful
+2025-10-14T17:26:33.962Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T17:26:33.962Z [info] [TTS] Estimated duration: 5s
+2025-10-14T17:26:33.964Z [debug] NEW Plan worker created
+2025-10-14T17:26:33.964Z [debug] NEW Gen worker created
+2025-10-14T17:26:33.965Z [debug] NEW Parallel worker created
+2025-10-14T17:26:33.966Z [debug] Server listening on port 8000
+2025-10-14T17:27:19.098Z [debug] Received request on /api/query {"body":{"query":"How does a car engine work?","sessionId":"brutal-test-1760462839"}}
+2025-10-14T17:27:19.098Z [debug] [api] Stored query for session brutal-test-1760462839: "How does a car engine work?"
+2025-10-14T17:27:19.098Z [debug] [orchestrator] Enqueuing plan for session brutal-test-1760462839
+2025-10-14T17:27:19.099Z [debug] [orchestrator] Plan job added with id 5 for session brutal-test-1760462839
+2025-10-14T17:27:19.100Z [debug] [plan] START: session=brutal-test-1760462839 query=How does a car engine work?
+2025-10-14T17:27:19.100Z [debug] [monitor] Started tracking request brutal-test-1760462839
+2025-10-14T17:27:19.100Z [debug] [cache] MISS - No cached plan for query: "How does a car engine work?..."
+2025-10-14T17:27:19.101Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T17:27:19.108Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T17:27:33.399Z [debug] [planner] Received response from Gemini in 14298ms
+2025-10-14T17:27:33.399Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "How Your Car's Engine Powers Motion",
+  "subtitle": "Discover the core principle behind converting fuel into the energy that moves your vehicle.",
+  "toc": [
+    {
+      "minute": 1,
+      "title": "The Intuition",
+      "summary": "Turn a tiny, controlled explosion into powerful movement."
+    },
+    {
+      "minute": 2,
+      "title": "How It Works",
+      "summary": "Pistons, combustion, and the spinning crankshaft."
+    },
+    {
+      "minute": 3,
+      "title": "Real A...
+2025-10-14T17:27:33.399Z [debug] [planner] Extracted JSON (length: 2388)
+2025-10-14T17:27:33.399Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T17:27:33.399Z [debug] [monitor] Plan generation for brutal-test-1760462839 took 14299ms
+2025-10-14T17:27:33.400Z [debug] [cache] Cached plan for query: "How does a car engine work?..."
+2025-10-14T17:27:33.400Z [debug] [plan] OK: session=brutal-test-1760462839 plan received with 3 steps
+2025-10-14T17:27:33.401Z [debug] [plan] Emitted plan event to session brutal-test-1760462839
+2025-10-14T17:27:33.401Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-14T17:27:33.402Z [debug] [plan] END: session=brutal-test-1760462839
+2025-10-14T17:27:33.404Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: brutal-test-1760462839)
+2025-10-14T17:27:33.405Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-14T17:27:33.405Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T17:27:33.405Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations + narrations
+2025-10-14T17:27:33.406Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 1
+2025-10-14T17:27:33.406Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T17:27:33.406Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T17:27:33.406Z [info] [notes] 📚 Subtopic: "Imagine a tiny, controlled explosion, like a firecracker. Now, imagine harnessing the intense force of that explosion not to make noise, but to push something incredibly hard, repeatedly. Your car engine does exactly this, over and over, to create power. It's like thousands of miniature, perfectly timed pushes that ultimately drive the wheels."
+2025-10-14T17:27:33.406Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T17:27:33.406Z [info] [notes] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:27:33.406Z [info] [notes] Topic: "How does a car engine work?"
+2025-10-14T17:27:33.406Z [info] [notes] Subtopic: "Imagine a tiny, controlled explosion, like a firecracker. Now, imagine harnessing the intense force of that explosion not to make noise, but to push something incredibly hard, repeatedly. Your car engine does exactly this, over and over, to create power. It's like thousands of miniature, perfectly timed pushes that ultimately drive the wheels."
+2025-10-14T17:27:33.406Z [debug] [notes] Temperature: 0.75
+2025-10-14T17:27:33.406Z [debug] [notes] Prompt length: 4404 chars
+2025-10-14T17:27:33.407Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T17:27:33.407Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:27:33.407Z [info] [codegenV3] Generating step 1: Imagine a tiny, controlled explosion, like a firecracker. Now, imagine harnessing the intense force of that explosion not to make noise, but to push something incredibly hard, repeatedly. Your car engine does exactly this, over and over, to create power. It's like thousands of miniature, perfectly timed pushes that ultimately drive the wheels.
+2025-10-14T17:27:33.407Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:33.407Z [debug] [codegenV3] Prompt length: 986 chars
+2025-10-14T17:27:33.407Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T17:27:33.407Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:27:33.407Z [info] [codegenV3] Generating step 1: Imagine a tiny, controlled explosion, like a firecracker. Now, imagine harnessing the intense force of that explosion not to make noise, but to push something incredibly hard, repeatedly. Your car engine does exactly this, over and over, to create power. It's like thousands of miniature, perfectly timed pushes that ultimately drive the wheels.
+2025-10-14T17:27:33.407Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:33.407Z [debug] [codegenV3] Prompt length: 986 chars
+2025-10-14T17:27:33.407Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T17:27:33.407Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:27:33.407Z [info] [codegenV3] Generating step 1: Imagine a tiny, controlled explosion, like a firecracker. Now, imagine harnessing the intense force of that explosion not to make noise, but to push something incredibly hard, repeatedly. Your car engine does exactly this, over and over, to create power. It's like thousands of miniature, perfectly timed pushes that ultimately drive the wheels.
+2025-10-14T17:27:33.408Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:33.408Z [debug] [codegenV3] Prompt length: 986 chars
+2025-10-14T17:27:33.408Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T17:27:33.408Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:27:33.408Z [info] [codegenV3] Generating step 1: Imagine a tiny, controlled explosion, like a firecracker. Now, imagine harnessing the intense force of that explosion not to make noise, but to push something incredibly hard, repeatedly. Your car engine does exactly this, over and over, to create power. It's like thousands of miniature, perfectly timed pushes that ultimately drive the wheels.
+2025-10-14T17:27:33.408Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:33.408Z [debug] [codegenV3] Prompt length: 986 chars
+2025-10-14T17:27:33.408Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T17:27:33.964Z [debug] [monitor] Metrics updated:
+2025-10-14T17:27:35.406Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-14T17:27:35.406Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-14T17:27:35.406Z [info] [parallel] 🚀 Step 2: Generating notes + 4 animations + narrations
+2025-10-14T17:27:35.406Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 2
+2025-10-14T17:27:35.406Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 2
+2025-10-14T17:27:35.406Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T17:27:35.406Z [info] [notes] 📚 Subtopic: "Inside the engine are cylinders, each containing a piston that moves up and down. Fuel and air mix, get compressed tightly by the piston, and then a spark plug ignites it – *BOOM!* This mini-explosion shoves the piston down with immense force. This downward push is then transferred to a spinning rod called the crankshaft, much like how your legs push bicycle pedals to make the wheels turn. The crankshaft then sends that rotational power to your car's wheels."
+2025-10-14T17:27:35.406Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T17:27:35.406Z [info] [notes] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:27:35.406Z [info] [notes] Topic: "How does a car engine work?"
+2025-10-14T17:27:35.406Z [info] [notes] Subtopic: "Inside the engine are cylinders, each containing a piston that moves up and down. Fuel and air mix, get compressed tightly by the piston, and then a spark plug ignites it – *BOOM!* This mini-explosion shoves the piston down with immense force. This downward push is then transferred to a spinning rod called the crankshaft, much like how your legs push bicycle pedals to make the wheels turn. The crankshaft then sends that rotational power to your car's wheels."
+2025-10-14T17:27:35.406Z [debug] [notes] Temperature: 0.75
+2025-10-14T17:27:35.406Z [debug] [notes] Prompt length: 4521 chars
+2025-10-14T17:27:35.406Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 2
+2025-10-14T17:27:35.406Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:27:35.406Z [info] [codegenV3] Generating step 2: Inside the engine are cylinders, each containing a piston that moves up and down. Fuel and air mix, get compressed tightly by the piston, and then a spark plug ignites it – *BOOM!* This mini-explosion shoves the piston down with immense force. This downward push is then transferred to a spinning rod called the crankshaft, much like how your legs push bicycle pedals to make the wheels turn. The crankshaft then sends that rotational power to your car's wheels.
+2025-10-14T17:27:35.406Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:35.406Z [debug] [codegenV3] Prompt length: 1103 chars
+2025-10-14T17:27:35.407Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 2
+2025-10-14T17:27:35.407Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:27:35.407Z [info] [codegenV3] Generating step 2: Inside the engine are cylinders, each containing a piston that moves up and down. Fuel and air mix, get compressed tightly by the piston, and then a spark plug ignites it – *BOOM!* This mini-explosion shoves the piston down with immense force. This downward push is then transferred to a spinning rod called the crankshaft, much like how your legs push bicycle pedals to make the wheels turn. The crankshaft then sends that rotational power to your car's wheels.
+2025-10-14T17:27:35.407Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:35.407Z [debug] [codegenV3] Prompt length: 1103 chars
+2025-10-14T17:27:35.407Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 2
+2025-10-14T17:27:35.407Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:27:35.407Z [info] [codegenV3] Generating step 2: Inside the engine are cylinders, each containing a piston that moves up and down. Fuel and air mix, get compressed tightly by the piston, and then a spark plug ignites it – *BOOM!* This mini-explosion shoves the piston down with immense force. This downward push is then transferred to a spinning rod called the crankshaft, much like how your legs push bicycle pedals to make the wheels turn. The crankshaft then sends that rotational power to your car's wheels.
+2025-10-14T17:27:35.407Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:35.407Z [debug] [codegenV3] Prompt length: 1103 chars
+2025-10-14T17:27:35.407Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 2
+2025-10-14T17:27:35.407Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:27:35.407Z [info] [codegenV3] Generating step 2: Inside the engine are cylinders, each containing a piston that moves up and down. Fuel and air mix, get compressed tightly by the piston, and then a spark plug ignites it – *BOOM!* This mini-explosion shoves the piston down with immense force. This downward push is then transferred to a spinning rod called the crankshaft, much like how your legs push bicycle pedals to make the wheels turn. The crankshaft then sends that rotational power to your car's wheels.
+2025-10-14T17:27:35.407Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:35.407Z [debug] [codegenV3] Prompt length: 1103 chars
+2025-10-14T17:27:35.407Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T17:27:37.410Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-14T17:27:37.410Z [info] [parallel] 🚀 Step 3: Generating notes + 4 animations + narrations
+2025-10-14T17:27:37.410Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 3
+2025-10-14T17:27:37.410Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 3
+2025-10-14T17:27:37.410Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T17:27:37.410Z [info] [notes] 📚 Subtopic: "Every time you accelerate, pass another car, or climb a hill, you're experiencing the power of these synchronized explosions in the engine. Modern engines vary: some have more cylinders for smoother power, some use turbos for extra boost, and others are designed for better fuel economy. Understanding this basic principle helps you appreciate why different cars feel different and how innovations in engine technology keep evolving for efficiency and performance."
+2025-10-14T17:27:37.410Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T17:27:37.410Z [info] [notes] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:27:37.410Z [info] [notes] Topic: "How does a car engine work?"
+2025-10-14T17:27:37.410Z [info] [notes] Subtopic: "Every time you accelerate, pass another car, or climb a hill, you're experiencing the power of these synchronized explosions in the engine. Modern engines vary: some have more cylinders for smoother power, some use turbos for extra boost, and others are designed for better fuel economy. Understanding this basic principle helps you appreciate why different cars feel different and how innovations in engine technology keep evolving for efficiency and performance."
+2025-10-14T17:27:37.410Z [debug] [notes] Temperature: 0.75
+2025-10-14T17:27:37.410Z [debug] [notes] Prompt length: 4523 chars
+2025-10-14T17:27:37.410Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 3
+2025-10-14T17:27:37.410Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:27:37.411Z [info] [codegenV3] Generating step 3: Every time you accelerate, pass another car, or climb a hill, you're experiencing the power of these synchronized explosions in the engine. Modern engines vary: some have more cylinders for smoother power, some use turbos for extra boost, and others are designed for better fuel economy. Understanding this basic principle helps you appreciate why different cars feel different and how innovations in engine technology keep evolving for efficiency and performance.
+2025-10-14T17:27:37.411Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:37.411Z [debug] [codegenV3] Prompt length: 1105 chars
+2025-10-14T17:27:37.411Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 3
+2025-10-14T17:27:37.411Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:27:37.411Z [info] [codegenV3] Generating step 3: Every time you accelerate, pass another car, or climb a hill, you're experiencing the power of these synchronized explosions in the engine. Modern engines vary: some have more cylinders for smoother power, some use turbos for extra boost, and others are designed for better fuel economy. Understanding this basic principle helps you appreciate why different cars feel different and how innovations in engine technology keep evolving for efficiency and performance.
+2025-10-14T17:27:37.411Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:37.411Z [debug] [codegenV3] Prompt length: 1105 chars
+2025-10-14T17:27:37.411Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 3
+2025-10-14T17:27:37.411Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:27:37.411Z [info] [codegenV3] Generating step 3: Every time you accelerate, pass another car, or climb a hill, you're experiencing the power of these synchronized explosions in the engine. Modern engines vary: some have more cylinders for smoother power, some use turbos for extra boost, and others are designed for better fuel economy. Understanding this basic principle helps you appreciate why different cars feel different and how innovations in engine technology keep evolving for efficiency and performance.
+2025-10-14T17:27:37.412Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:37.412Z [debug] [codegenV3] Prompt length: 1105 chars
+2025-10-14T17:27:37.412Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 3
+2025-10-14T17:27:37.412Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:27:37.412Z [info] [codegenV3] Generating step 3: Every time you accelerate, pass another car, or climb a hill, you're experiencing the power of these synchronized explosions in the engine. Modern engines vary: some have more cylinders for smoother power, some use turbos for extra boost, and others are designed for better fuel economy. Understanding this basic principle helps you appreciate why different cars feel different and how innovations in engine technology keep evolving for efficiency and performance.
+2025-10-14T17:27:37.412Z [info] [codegenV3] Topic: "How does a car engine work?"
+2025-10-14T17:27:37.412Z [debug] [codegenV3] Prompt length: 1105 chars
+2025-10-14T17:27:37.412Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T17:28:18.371Z [debug] Received request on /api/query {"body":{"query":"How does photosynthesis work in plants?","sessionId":"test-1760462898"}}
+2025-10-14T17:28:18.371Z [debug] [api] Stored query for session test-1760462898: "How does photosynthesis work in plants?"
+2025-10-14T17:28:18.371Z [debug] [orchestrator] Enqueuing plan for session test-1760462898
+2025-10-14T17:28:18.372Z [debug] [orchestrator] Plan job added with id 6 for session test-1760462898
+2025-10-14T17:28:18.372Z [debug] [plan] START: session=test-1760462898 query=How does photosynthesis work in plants?
+2025-10-14T17:28:18.372Z [debug] [monitor] Started tracking request test-1760462898
+2025-10-14T17:28:18.373Z [debug] [cache] MISS - No cached plan for query: "How does photosynthesis work in plants?..."
+2025-10-14T17:28:18.373Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T17:28:18.373Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T17:28:20.033Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:28:20.034Z [debug] [codegenV3] Received 3788 chars from API
+2025-10-14T17:28:20.034Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:28:20.034Z [info] [codegenV3] ✅ Generated SVG in 46.63s (3788 chars)
+2025-10-14T17:28:20.034Z [info] [codegenV3] 🎬 ANIMATIONS: 11 total (<animate>: 8, <animateMotion>: 1, <animateTransform>: 2)
+2025-10-14T17:28:20.034Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=7
+2025-10-14T17:28:20.034Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:28:20.034Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:28:20.034Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:28:20.034Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T17:28:30.896Z [debug] [planner] Received response from Gemini in 12523ms
+2025-10-14T17:28:30.896Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Photosynthesis: Powering Life with Sunlight",
+  "subtitle": "Discover how plants transform sunlight into food and oxygen, essential for nearly all life on Earth.",
+  "toc": [
+    {"minute": 1, "title": "The Plant's Kitchen", "summary": "Plants are nature's chefs, making their own food from light."},
+    {"minute": 2, "title": "The Recipe for Life", "summary": "Sunlight, water, and CO2 are combined to create sugar and oxygen."},
+    {"minute": 3, "title": "Our Shared Future"...
+2025-10-14T17:28:30.896Z [debug] [planner] Extracted JSON (length: 2751)
+2025-10-14T17:28:30.896Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T17:28:30.896Z [debug] [monitor] Plan generation for test-1760462898 took 12524ms
+2025-10-14T17:28:30.896Z [debug] [cache] Cached plan for query: "How does photosynthesis work in plants?..."
+2025-10-14T17:28:30.897Z [debug] [plan] OK: session=test-1760462898 plan received with 3 steps
+2025-10-14T17:28:30.897Z [debug] [plan] Emitted plan event to session test-1760462898
+2025-10-14T17:28:30.897Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-14T17:28:30.897Z [debug] [plan] END: session=test-1760462898
+2025-10-14T17:28:30.898Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: test-1760462898)
+2025-10-14T17:28:30.898Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-14T17:28:30.898Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T17:28:30.898Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations + narrations
+2025-10-14T17:28:30.898Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 1
+2025-10-14T17:28:30.898Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T17:28:30.898Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T17:28:30.898Z [info] [notes] 📚 Subtopic: "Imagine a tall, leafy tree standing strong under the sun. It doesn't need to go to a grocery store or hunt for food like animals do. Instead, this tree, and all plants, are incredible self-sufficient chefs! They build their entire bodies and get all their energy from just a few simple ingredients around them, powered by the most abundant energy source: our sun. This process is so fundamental, it supports almost every living thing on Earth, directly or indirectly."
+2025-10-14T17:28:30.898Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T17:28:30.898Z [info] [notes] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:28:30.898Z [info] [notes] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:30.898Z [info] [notes] Subtopic: "Imagine a tall, leafy tree standing strong under the sun. It doesn't need to go to a grocery store or hunt for food like animals do. Instead, this tree, and all plants, are incredible self-sufficient chefs! They build their entire bodies and get all their energy from just a few simple ingredients around them, powered by the most abundant energy source: our sun. This process is so fundamental, it supports almost every living thing on Earth, directly or indirectly."
+2025-10-14T17:28:30.898Z [debug] [notes] Temperature: 0.75
+2025-10-14T17:28:30.898Z [debug] [notes] Prompt length: 4526 chars
+2025-10-14T17:28:30.898Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T17:28:30.898Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:28:30.898Z [info] [codegenV3] Generating step 1: Imagine a tall, leafy tree standing strong under the sun. It doesn't need to go to a grocery store or hunt for food like animals do. Instead, this tree, and all plants, are incredible self-sufficient chefs! They build their entire bodies and get all their energy from just a few simple ingredients around them, powered by the most abundant energy source: our sun. This process is so fundamental, it supports almost every living thing on Earth, directly or indirectly.
+2025-10-14T17:28:30.898Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:30.899Z [debug] [codegenV3] Prompt length: 1120 chars
+2025-10-14T17:28:30.899Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T17:28:30.899Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:28:30.899Z [info] [codegenV3] Generating step 1: Imagine a tall, leafy tree standing strong under the sun. It doesn't need to go to a grocery store or hunt for food like animals do. Instead, this tree, and all plants, are incredible self-sufficient chefs! They build their entire bodies and get all their energy from just a few simple ingredients around them, powered by the most abundant energy source: our sun. This process is so fundamental, it supports almost every living thing on Earth, directly or indirectly.
+2025-10-14T17:28:30.899Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:30.899Z [debug] [codegenV3] Prompt length: 1120 chars
+2025-10-14T17:28:30.899Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T17:28:30.899Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:28:30.899Z [info] [codegenV3] Generating step 1: Imagine a tall, leafy tree standing strong under the sun. It doesn't need to go to a grocery store or hunt for food like animals do. Instead, this tree, and all plants, are incredible self-sufficient chefs! They build their entire bodies and get all their energy from just a few simple ingredients around them, powered by the most abundant energy source: our sun. This process is so fundamental, it supports almost every living thing on Earth, directly or indirectly.
+2025-10-14T17:28:30.899Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:30.899Z [debug] [codegenV3] Prompt length: 1120 chars
+2025-10-14T17:28:30.899Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T17:28:30.899Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:28:30.899Z [info] [codegenV3] Generating step 1: Imagine a tall, leafy tree standing strong under the sun. It doesn't need to go to a grocery store or hunt for food like animals do. Instead, this tree, and all plants, are incredible self-sufficient chefs! They build their entire bodies and get all their energy from just a few simple ingredients around them, powered by the most abundant energy source: our sun. This process is so fundamental, it supports almost every living thing on Earth, directly or indirectly.
+2025-10-14T17:28:30.899Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:30.899Z [debug] [codegenV3] Prompt length: 1120 chars
+2025-10-14T17:28:30.899Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T17:28:32.898Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-14T17:28:32.899Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-14T17:28:32.899Z [info] [parallel] 🚀 Step 2: Generating notes + 4 animations + narrations
+2025-10-14T17:28:32.899Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 2
+2025-10-14T17:28:32.899Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 2
+2025-10-14T17:28:32.899Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T17:28:32.899Z [info] [notes] 📚 Subtopic: "Now, let's peek inside a plant's 'kitchen' – its leaves! Tiny pores on the leaves, called stomata, breathe in carbon dioxide (CO2) from the air. Roots tirelessly draw up water (H2O) from the soil. But the real magic happens in tiny green powerhouses inside the leaf cells, called chloroplasts. These contain chlorophyll, the pigment that gives plants their green color and, critically, captures sunlight. Chlorophyll uses this solar energy to convert the CO2 and H2O into two vital products: glucose (a sugar, the plant's food) and oxygen (O2), which the plant releases back into the air."
+2025-10-14T17:28:32.899Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T17:28:32.899Z [info] [notes] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:28:32.899Z [info] [notes] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:32.899Z [info] [notes] Subtopic: "Now, let's peek inside a plant's 'kitchen' – its leaves! Tiny pores on the leaves, called stomata, breathe in carbon dioxide (CO2) from the air. Roots tirelessly draw up water (H2O) from the soil. But the real magic happens in tiny green powerhouses inside the leaf cells, called chloroplasts. These contain chlorophyll, the pigment that gives plants their green color and, critically, captures sunlight. Chlorophyll uses this solar energy to convert the CO2 and H2O into two vital products: glucose (a sugar, the plant's food) and oxygen (O2), which the plant releases back into the air."
+2025-10-14T17:28:32.899Z [debug] [notes] Temperature: 0.75
+2025-10-14T17:28:32.899Z [debug] [notes] Prompt length: 4647 chars
+2025-10-14T17:28:32.899Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 2
+2025-10-14T17:28:32.899Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:28:32.899Z [info] [codegenV3] Generating step 2: Now, let's peek inside a plant's 'kitchen' – its leaves! Tiny pores on the leaves, called stomata, breathe in carbon dioxide (CO2) from the air. Roots tirelessly draw up water (H2O) from the soil. But the real magic happens in tiny green powerhouses inside the leaf cells, called chloroplasts. These contain chlorophyll, the pigment that gives plants their green color and, critically, captures sunlight. Chlorophyll uses this solar energy to convert the CO2 and H2O into two vital products: glucose (a sugar, the plant's food) and oxygen (O2), which the plant releases back into the air.
+2025-10-14T17:28:32.899Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:32.900Z [debug] [codegenV3] Prompt length: 1241 chars
+2025-10-14T17:28:32.900Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 2
+2025-10-14T17:28:32.900Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:28:32.900Z [info] [codegenV3] Generating step 2: Now, let's peek inside a plant's 'kitchen' – its leaves! Tiny pores on the leaves, called stomata, breathe in carbon dioxide (CO2) from the air. Roots tirelessly draw up water (H2O) from the soil. But the real magic happens in tiny green powerhouses inside the leaf cells, called chloroplasts. These contain chlorophyll, the pigment that gives plants their green color and, critically, captures sunlight. Chlorophyll uses this solar energy to convert the CO2 and H2O into two vital products: glucose (a sugar, the plant's food) and oxygen (O2), which the plant releases back into the air.
+2025-10-14T17:28:32.900Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:32.900Z [debug] [codegenV3] Prompt length: 1241 chars
+2025-10-14T17:28:32.900Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 2
+2025-10-14T17:28:32.900Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:28:32.900Z [info] [codegenV3] Generating step 2: Now, let's peek inside a plant's 'kitchen' – its leaves! Tiny pores on the leaves, called stomata, breathe in carbon dioxide (CO2) from the air. Roots tirelessly draw up water (H2O) from the soil. But the real magic happens in tiny green powerhouses inside the leaf cells, called chloroplasts. These contain chlorophyll, the pigment that gives plants their green color and, critically, captures sunlight. Chlorophyll uses this solar energy to convert the CO2 and H2O into two vital products: glucose (a sugar, the plant's food) and oxygen (O2), which the plant releases back into the air.
+2025-10-14T17:28:32.900Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:32.900Z [debug] [codegenV3] Prompt length: 1241 chars
+2025-10-14T17:28:32.900Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 2
+2025-10-14T17:28:32.900Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:28:32.900Z [info] [codegenV3] Generating step 2: Now, let's peek inside a plant's 'kitchen' – its leaves! Tiny pores on the leaves, called stomata, breathe in carbon dioxide (CO2) from the air. Roots tirelessly draw up water (H2O) from the soil. But the real magic happens in tiny green powerhouses inside the leaf cells, called chloroplasts. These contain chlorophyll, the pigment that gives plants their green color and, critically, captures sunlight. Chlorophyll uses this solar energy to convert the CO2 and H2O into two vital products: glucose (a sugar, the plant's food) and oxygen (O2), which the plant releases back into the air.
+2025-10-14T17:28:32.900Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:32.900Z [debug] [codegenV3] Prompt length: 1241 chars
+2025-10-14T17:28:32.900Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T17:28:33.965Z [debug] [monitor] Metrics updated:
+2025-10-14T17:28:34.815Z [info] [notes] ⏱️  Generation completed in 59.41s
+2025-10-14T17:28:34.815Z [debug] [notes] Finish reason: STOP
+2025-10-14T17:28:34.815Z [info] [notes] ✅ Generated SVG keynote in 59.41s (11275 chars)
+2025-10-14T17:28:34.815Z [info] [notes] 📊 Elements: text=44, rect=12, line=8, total=64
+2025-10-14T17:28:34.815Z [info] [notes] Debug copy saved: /tmp/notes-step2-1760462914815.svg
+2025-10-14T17:28:34.816Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T17:28:34.816Z [info] [notes]    - Text elements: 44/8 ✓
+2025-10-14T17:28:34.816Z [info] [notes]    - Visual elements: 33/5 ✓
+2025-10-14T17:28:34.816Z [info] [notes]    - Total elements: 77/20 ✓
+2025-10-14T17:28:34.816Z [info] [notes]    - Content length: 11275/2000 ✓
+2025-10-14T17:28:34.816Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T17:28:34.816Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T17:28:34.816Z [info] [notes] ✅ SUCCESS on attempt 1/3 (59.41s total)
+2025-10-14T17:28:34.816Z [info] [stepVisuals] ✅ Notes generated (11275 chars)
+2025-10-14T17:28:34.898Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-14T17:28:34.898Z [info] [parallel] 🚀 Step 3: Generating notes + 4 animations + narrations
+2025-10-14T17:28:34.898Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 3
+2025-10-14T17:28:34.898Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 3
+2025-10-14T17:28:34.898Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T17:28:34.898Z [info] [notes] 📚 Subtopic: "The impact of this process is monumental. First, the glucose fuels the plant's growth, allowing it to build stems, leaves, and fruits. This plant-made food then becomes the base of nearly every food chain – from a caterpillar eating a leaf, to a bird eating the caterpillar, to us enjoying a salad or a steak from an animal that ate plants. Second, the oxygen released is what we, and most living creatures, breathe to survive. Furthermore, by drawing carbon dioxide out of the atmosphere, photosynthesis plays a crucial role in regulating Earth's climate, making it a cornerstone for a healthy planet."
+2025-10-14T17:28:34.899Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T17:28:34.899Z [info] [notes] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:28:34.899Z [info] [notes] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:34.899Z [info] [notes] Subtopic: "The impact of this process is monumental. First, the glucose fuels the plant's growth, allowing it to build stems, leaves, and fruits. This plant-made food then becomes the base of nearly every food chain – from a caterpillar eating a leaf, to a bird eating the caterpillar, to us enjoying a salad or a steak from an animal that ate plants. Second, the oxygen released is what we, and most living creatures, breathe to survive. Furthermore, by drawing carbon dioxide out of the atmosphere, photosynthesis plays a crucial role in regulating Earth's climate, making it a cornerstone for a healthy planet."
+2025-10-14T17:28:34.899Z [debug] [notes] Temperature: 0.75
+2025-10-14T17:28:34.899Z [debug] [notes] Prompt length: 4661 chars
+2025-10-14T17:28:34.899Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 3
+2025-10-14T17:28:34.899Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:28:34.899Z [info] [codegenV3] Generating step 3: The impact of this process is monumental. First, the glucose fuels the plant's growth, allowing it to build stems, leaves, and fruits. This plant-made food then becomes the base of nearly every food chain – from a caterpillar eating a leaf, to a bird eating the caterpillar, to us enjoying a salad or a steak from an animal that ate plants. Second, the oxygen released is what we, and most living creatures, breathe to survive. Furthermore, by drawing carbon dioxide out of the atmosphere, photosynthesis plays a crucial role in regulating Earth's climate, making it a cornerstone for a healthy planet.
+2025-10-14T17:28:34.899Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:34.899Z [debug] [codegenV3] Prompt length: 1255 chars
+2025-10-14T17:28:34.899Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 3
+2025-10-14T17:28:34.899Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:28:34.899Z [info] [codegenV3] Generating step 3: The impact of this process is monumental. First, the glucose fuels the plant's growth, allowing it to build stems, leaves, and fruits. This plant-made food then becomes the base of nearly every food chain – from a caterpillar eating a leaf, to a bird eating the caterpillar, to us enjoying a salad or a steak from an animal that ate plants. Second, the oxygen released is what we, and most living creatures, breathe to survive. Furthermore, by drawing carbon dioxide out of the atmosphere, photosynthesis plays a crucial role in regulating Earth's climate, making it a cornerstone for a healthy planet.
+2025-10-14T17:28:34.899Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:34.899Z [debug] [codegenV3] Prompt length: 1255 chars
+2025-10-14T17:28:34.899Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 3
+2025-10-14T17:28:34.899Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:28:34.899Z [info] [codegenV3] Generating step 3: The impact of this process is monumental. First, the glucose fuels the plant's growth, allowing it to build stems, leaves, and fruits. This plant-made food then becomes the base of nearly every food chain – from a caterpillar eating a leaf, to a bird eating the caterpillar, to us enjoying a salad or a steak from an animal that ate plants. Second, the oxygen released is what we, and most living creatures, breathe to survive. Furthermore, by drawing carbon dioxide out of the atmosphere, photosynthesis plays a crucial role in regulating Earth's climate, making it a cornerstone for a healthy planet.
+2025-10-14T17:28:34.899Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:34.899Z [debug] [codegenV3] Prompt length: 1255 chars
+2025-10-14T17:28:34.899Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 3
+2025-10-14T17:28:34.899Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:28:34.899Z [info] [codegenV3] Generating step 3: The impact of this process is monumental. First, the glucose fuels the plant's growth, allowing it to build stems, leaves, and fruits. This plant-made food then becomes the base of nearly every food chain – from a caterpillar eating a leaf, to a bird eating the caterpillar, to us enjoying a salad or a steak from an animal that ate plants. Second, the oxygen released is what we, and most living creatures, breathe to survive. Furthermore, by drawing carbon dioxide out of the atmosphere, photosynthesis plays a crucial role in regulating Earth's climate, making it a cornerstone for a healthy planet.
+2025-10-14T17:28:34.899Z [info] [codegenV3] Topic: "How does photosynthesis work in plants?"
+2025-10-14T17:28:34.899Z [debug] [codegenV3] Prompt length: 1255 chars
+2025-10-14T17:28:34.899Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T17:28:41.035Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:28:41.035Z [debug] [codegenV3] Received 6010 chars from API
+2025-10-14T17:28:41.035Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:28:41.036Z [info] [codegenV3] ✅ Generated SVG in 67.63s (6010 chars)
+2025-10-14T17:28:41.036Z [info] [codegenV3] 🎬 ANIMATIONS: 17 total (<animate>: 12, <animateMotion>: 0, <animateTransform>: 5)
+2025-10-14T17:28:41.036Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=11
+2025-10-14T17:28:41.036Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:28:41.036Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:28:41.036Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:28:41.036Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T17:28:58.198Z [info] [notes] ⏱️  Generation completed in 84.79s
+2025-10-14T17:28:58.198Z [debug] [notes] Finish reason: STOP
+2025-10-14T17:28:58.198Z [info] [notes] ✅ Generated SVG keynote in 84.79s (14401 chars)
+2025-10-14T17:28:58.198Z [info] [notes] 📊 Elements: text=52, rect=30, line=9, total=91
+2025-10-14T17:28:58.198Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760462938198.svg
+2025-10-14T17:28:58.198Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T17:28:58.198Z [info] [notes]    - Text elements: 52/8 ✓
+2025-10-14T17:28:58.198Z [info] [notes]    - Visual elements: 54/5 ✓
+2025-10-14T17:28:58.198Z [info] [notes]    - Total elements: 106/20 ✓
+2025-10-14T17:28:58.198Z [info] [notes]    - Content length: 14401/2000 ✓
+2025-10-14T17:28:58.198Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T17:28:58.198Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T17:28:58.198Z [info] [notes] ✅ SUCCESS on attempt 1/3 (84.79s total)
+2025-10-14T17:28:58.198Z [info] [stepVisuals] ✅ Notes generated (14401 chars)
+2025-10-14T17:28:59.360Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:28:59.360Z [debug] [codegenV3] Received 7593 chars from API
+2025-10-14T17:28:59.360Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:28:59.360Z [info] [codegenV3] ✅ Generated SVG in 85.95s (7593 chars)
+2025-10-14T17:28:59.360Z [info] [codegenV3] 🎬 ANIMATIONS: 18 total (<animate>: 12, <animateMotion>: 0, <animateTransform>: 6)
+2025-10-14T17:28:59.361Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=13
+2025-10-14T17:28:59.361Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:28:59.361Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:28:59.361Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:28:59.361Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T17:29:05.427Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:05.427Z [debug] [codegenV3] Received 4852 chars from API
+2025-10-14T17:29:05.427Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:05.427Z [info] [codegenV3] ✅ Generated SVG in 90.02s (4852 chars)
+2025-10-14T17:29:05.427Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 14, <animateMotion>: 3, <animateTransform>: 3)
+2025-10-14T17:29:05.427Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=13
+2025-10-14T17:29:05.427Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:05.427Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:05.427Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T17:29:07.232Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:07.232Z [debug] [codegenV3] Received 4704 chars from API
+2025-10-14T17:29:07.232Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:07.232Z [info] [codegenV3] ✅ Generated SVG in 91.83s (4704 chars)
+2025-10-14T17:29:07.232Z [info] [codegenV3] 🎬 ANIMATIONS: 12 total (<animate>: 9, <animateMotion>: 0, <animateTransform>: 3)
+2025-10-14T17:29:07.232Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=9
+2025-10-14T17:29:07.232Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:07.232Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:07.232Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T17:29:08.207Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:08.207Z [debug] [codegenV3] Received 6487 chars from API
+2025-10-14T17:29:08.207Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:08.207Z [info] [codegenV3] ✅ Generated SVG in 90.80s (6487 chars)
+2025-10-14T17:29:08.207Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 18, <animateMotion>: 2, <animateTransform>: 2)
+2025-10-14T17:29:08.207Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=16
+2025-10-14T17:29:08.207Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:08.207Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:08.207Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T17:29:09.377Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:09.377Z [debug] [codegenV3] Received 6216 chars from API
+2025-10-14T17:29:09.377Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:09.377Z [info] [codegenV3] ✅ Generated SVG in 93.97s (6216 chars)
+2025-10-14T17:29:09.377Z [info] [codegenV3] 🎬 ANIMATIONS: 19 total (<animate>: 14, <animateMotion>: 0, <animateTransform>: 5)
+2025-10-14T17:29:09.377Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=14
+2025-10-14T17:29:09.377Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:09.377Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:09.377Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T17:29:17.558Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:17.558Z [debug] [codegenV3] Received 8138 chars from API
+2025-10-14T17:29:17.558Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:17.558Z [info] [codegenV3] ✅ Generated SVG in 100.15s (8138 chars)
+2025-10-14T17:29:17.558Z [info] [codegenV3] 🎬 ANIMATIONS: 27 total (<animate>: 20, <animateMotion>: 4, <animateTransform>: 3)
+2025-10-14T17:29:17.558Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=22
+2025-10-14T17:29:17.558Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:17.558Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:17.558Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T17:29:17.723Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:17.724Z [debug] [codegenV3] Received 5219 chars from API
+2025-10-14T17:29:17.724Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:17.724Z [info] [codegenV3] ✅ Generated SVG in 46.83s (5219 chars)
+2025-10-14T17:29:17.724Z [info] [codegenV3] 🎬 ANIMATIONS: 23 total (<animate>: 14, <animateMotion>: 8, <animateTransform>: 1)
+2025-10-14T17:29:17.724Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=18
+2025-10-14T17:29:17.724Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:17.724Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:29:17.724Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:17.724Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T17:29:17.763Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:17.763Z [debug] [codegenV3] Received 6977 chars from API
+2025-10-14T17:29:17.763Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:17.763Z [info] [codegenV3] ✅ Generated SVG in 100.35s (6977 chars)
+2025-10-14T17:29:17.763Z [info] [codegenV3] 🎬 ANIMATIONS: 23 total (<animate>: 15, <animateMotion>: 2, <animateTransform>: 6)
+2025-10-14T17:29:17.763Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=14
+2025-10-14T17:29:17.763Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:17.763Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:17.763Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T17:29:18.036Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:18.036Z [debug] [codegenV3] Received 5280 chars from API
+2025-10-14T17:29:18.036Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:18.036Z [info] [codegenV3] ✅ Generated SVG in 43.14s (5280 chars)
+2025-10-14T17:29:18.036Z [info] [codegenV3] 🎬 ANIMATIONS: 23 total (<animate>: 14, <animateMotion>: 8, <animateTransform>: 1)
+2025-10-14T17:29:18.036Z [info] [codegenV3] 📊 CONTENT: labels=11, shapes=18
+2025-10-14T17:29:18.036Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:18.037Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:18.037Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T17:29:18.764Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:18.764Z [debug] [codegenV3] Received 5984 chars from API
+2025-10-14T17:29:18.765Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:18.765Z [info] [codegenV3] ✅ Generated SVG in 47.87s (5984 chars)
+2025-10-14T17:29:18.765Z [info] [codegenV3] 🎬 ANIMATIONS: 30 total (<animate>: 19, <animateMotion>: 8, <animateTransform>: 3)
+2025-10-14T17:29:18.765Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=13
+2025-10-14T17:29:18.765Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:18.765Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:29:18.765Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:18.765Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T17:29:25.468Z [info] [notes] ⏱️  Generation completed in 54.57s
+2025-10-14T17:29:25.468Z [debug] [notes] Finish reason: STOP
+2025-10-14T17:29:25.468Z [info] [notes] ✅ Generated SVG keynote in 54.57s (14361 chars)
+2025-10-14T17:29:25.468Z [info] [notes] 📊 Elements: text=70, rect=12, line=9, total=91
+2025-10-14T17:29:25.468Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760462965468.svg
+2025-10-14T17:29:25.468Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T17:29:25.468Z [info] [notes]    - Text elements: 70/8 ✓
+2025-10-14T17:29:25.468Z [info] [notes]    - Visual elements: 29/5 ✓
+2025-10-14T17:29:25.468Z [info] [notes]    - Total elements: 99/20 ✓
+2025-10-14T17:29:25.469Z [info] [notes]    - Content length: 14361/2000 ✓
+2025-10-14T17:29:25.469Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T17:29:25.469Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T17:29:25.469Z [info] [notes] ✅ SUCCESS on attempt 1/3 (54.57s total)
+2025-10-14T17:29:25.469Z [info] [stepVisuals] ✅ Notes generated (14361 chars)
+2025-10-14T17:29:27.666Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:27.666Z [debug] [codegenV3] Received 4812 chars from API
+2025-10-14T17:29:27.666Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:27.666Z [info] [codegenV3] ✅ Generated SVG in 56.77s (4812 chars)
+2025-10-14T17:29:27.666Z [info] [codegenV3] 🎬 ANIMATIONS: 16 total (<animate>: 8, <animateMotion>: 7, <animateTransform>: 1)
+2025-10-14T17:29:27.666Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=18
+2025-10-14T17:29:27.666Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:27.666Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:29:27.666Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:27.666Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T17:29:28.266Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:28.267Z [debug] [codegenV3] Received 6653 chars from API
+2025-10-14T17:29:28.267Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:28.267Z [info] [codegenV3] ✅ Generated SVG in 114.86s (6653 chars)
+2025-10-14T17:29:28.267Z [info] [codegenV3] 🎬 ANIMATIONS: 18 total (<animate>: 14, <animateMotion>: 0, <animateTransform>: 4)
+2025-10-14T17:29:28.267Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=13
+2025-10-14T17:29:28.267Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:28.267Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:29:28.267Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:28.267Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T17:29:28.267Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T17:29:28.267Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T17:29:28.267Z [info] [AudioNarration] Generating narrations with audio for step 1
+2025-10-14T17:29:28.267Z [info] [narration] Generating narrations for step 1 (5 visuals)
+2025-10-14T17:29:28.267Z [debug] [narration] Sending prompt (3993 chars) to Gemini
+2025-10-14T17:29:28.988Z [info] [notes] ⏱️  Generation completed in 111.58s
+2025-10-14T17:29:28.988Z [debug] [notes] Finish reason: STOP
+2025-10-14T17:29:28.988Z [info] [notes] ✅ Generated SVG keynote in 111.58s (14362 chars)
+2025-10-14T17:29:28.988Z [info] [notes] 📊 Elements: text=46, rect=22, line=1, total=69
+2025-10-14T17:29:28.988Z [info] [notes] Debug copy saved: /tmp/notes-step3-1760462968988.svg
+2025-10-14T17:29:28.988Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T17:29:28.988Z [info] [notes]    - Text elements: 46/8 ✓
+2025-10-14T17:29:28.988Z [info] [notes]    - Visual elements: 48/5 ✓
+2025-10-14T17:29:28.988Z [info] [notes]    - Total elements: 94/20 ✓
+2025-10-14T17:29:28.988Z [info] [notes]    - Content length: 14362/2000 ✓
+2025-10-14T17:29:28.989Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T17:29:28.989Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T17:29:28.989Z [info] [notes] ✅ SUCCESS on attempt 1/3 (111.58s total)
+2025-10-14T17:29:28.989Z [info] [stepVisuals] ✅ Notes generated (14362 chars)
+2025-10-14T17:29:30.550Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:30.550Z [debug] [codegenV3] Received 7837 chars from API
+2025-10-14T17:29:30.550Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:30.550Z [info] [codegenV3] ✅ Generated SVG in 55.65s (7837 chars)
+2025-10-14T17:29:30.550Z [info] [codegenV3] 🎬 ANIMATIONS: 39 total (<animate>: 23, <animateMotion>: 15, <animateTransform>: 1)
+2025-10-14T17:29:30.550Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=31
+2025-10-14T17:29:30.550Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:30.550Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:30.550Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T17:29:32.599Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:32.599Z [debug] [codegenV3] Received 5652 chars from API
+2025-10-14T17:29:32.599Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:32.599Z [info] [codegenV3] ✅ Generated SVG in 57.70s (5652 chars)
+2025-10-14T17:29:32.599Z [info] [codegenV3] 🎬 ANIMATIONS: 19 total (<animate>: 13, <animateMotion>: 4, <animateTransform>: 2)
+2025-10-14T17:29:32.599Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=12
+2025-10-14T17:29:32.599Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:32.599Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:32.599Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T17:29:33.968Z [debug] [monitor] Metrics updated:
+2025-10-14T17:29:34.552Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:34.552Z [debug] [codegenV3] Received 3390 chars from API
+2025-10-14T17:29:34.552Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:34.552Z [info] [codegenV3] ✅ Generated SVG in 119.14s (3390 chars)
+2025-10-14T17:29:34.552Z [info] [codegenV3] 🎬 ANIMATIONS: 10 total (<animate>: 9, <animateMotion>: 0, <animateTransform>: 1)
+2025-10-14T17:29:34.552Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=8
+2025-10-14T17:29:34.552Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:34.552Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:34.552Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T17:29:34.552Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T17:29:34.552Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T17:29:34.552Z [info] [AudioNarration] Generating narrations with audio for step 2
+2025-10-14T17:29:34.552Z [info] [narration] Generating narrations for step 2 (5 visuals)
+2025-10-14T17:29:34.552Z [debug] [narration] Sending prompt (4695 chars) to Gemini
+2025-10-14T17:29:37.562Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:37.562Z [debug] [codegenV3] Received 6114 chars from API
+2025-10-14T17:29:37.562Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:37.562Z [info] [codegenV3] ✅ Generated SVG in 66.66s (6114 chars)
+2025-10-14T17:29:37.562Z [info] [codegenV3] 🎬 ANIMATIONS: 33 total (<animate>: 18, <animateMotion>: 15, <animateTransform>: 0)
+2025-10-14T17:29:37.562Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=18
+2025-10-14T17:29:37.562Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:37.562Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:29:37.562Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:37.562Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T17:29:37.562Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T17:29:37.562Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T17:29:37.562Z [info] [AudioNarration] Generating narrations with audio for step 1
+2025-10-14T17:29:37.562Z [info] [narration] Generating narrations for step 1 (5 visuals)
+2025-10-14T17:29:37.562Z [debug] [narration] Sending prompt (4737 chars) to Gemini
+2025-10-14T17:29:38.410Z [info] [narration] ✅ Generated 5 narrations in 10.14s (104s total audio)
+2025-10-14T17:29:38.410Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T17:29:38.410Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T17:29:38.410Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T17:29:38.410Z [info] [TTS] Synthesizing text (343 chars) [MOCK MODE]...
+2025-10-14T17:29:38.410Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:38.540Z [info] [TTS] ✅ Synthesized 343 chars → 22s audio in 130ms
+2025-10-14T17:29:38.540Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-0-brutal-test-1760462839.mp3
+2025-10-14T17:29:38.540Z [debug] [AudioNarration] ✅ Audio 1 generated: 21709 bytes, 22s
+2025-10-14T17:29:38.541Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T17:29:38.541Z [info] [TTS] Synthesizing text (275 chars) [MOCK MODE]...
+2025-10-14T17:29:38.541Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:38.698Z [info] [TTS] ✅ Synthesized 275 chars → 18s audio in 157ms
+2025-10-14T17:29:38.698Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-1-brutal-test-1760462839.mp3
+2025-10-14T17:29:38.698Z [debug] [AudioNarration] ✅ Audio 2 generated: 18023 bytes, 18s
+2025-10-14T17:29:38.698Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T17:29:38.698Z [info] [TTS] Synthesizing text (271 chars) [MOCK MODE]...
+2025-10-14T17:29:38.698Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:38.962Z [info] [TTS] ✅ Synthesized 271 chars → 18s audio in 264ms
+2025-10-14T17:29:38.962Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-2-brutal-test-1760462839.mp3
+2025-10-14T17:29:38.963Z [debug] [AudioNarration] ✅ Audio 3 generated: 18023 bytes, 18s
+2025-10-14T17:29:38.963Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T17:29:38.963Z [info] [TTS] Synthesizing text (281 chars) [MOCK MODE]...
+2025-10-14T17:29:38.963Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:39.122Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:39.122Z [debug] [codegenV3] Received 9244 chars from API
+2025-10-14T17:29:39.122Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:39.122Z [info] [codegenV3] ✅ Generated SVG in 66.22s (9244 chars)
+2025-10-14T17:29:39.122Z [info] [codegenV3] 🎬 ANIMATIONS: 35 total (<animate>: 26, <animateMotion>: 8, <animateTransform>: 1)
+2025-10-14T17:29:39.122Z [info] [codegenV3] 📊 CONTENT: labels=18, shapes=19
+2025-10-14T17:29:39.122Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:39.123Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:39.123Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T17:29:39.253Z [info] [TTS] ✅ Synthesized 281 chars → 17s audio in 290ms
+2025-10-14T17:29:39.253Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-3-brutal-test-1760462839.mp3
+2025-10-14T17:29:39.253Z [debug] [AudioNarration] ✅ Audio 4 generated: 16794 bytes, 17s
+2025-10-14T17:29:39.253Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T17:29:39.253Z [info] [TTS] Synthesizing text (302 chars) [MOCK MODE]...
+2025-10-14T17:29:39.253Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:39.546Z [info] [TTS] ✅ Synthesized 302 chars → 19s audio in 293ms
+2025-10-14T17:29:39.547Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-4-brutal-test-1760462839.mp3
+2025-10-14T17:29:39.547Z [debug] [AudioNarration] ✅ Audio 5 generated: 18842 bytes, 19s
+2025-10-14T17:29:39.547Z [info] [AudioNarration] ✅ Audio generation complete in 1137ms
+2025-10-14T17:29:39.547Z [info] [AudioNarration] Total audio size: 0.09 MB
+2025-10-14T17:29:39.547Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (104s total, with audio, 0.09MB)
+2025-10-14T17:29:39.547Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T17:29:39.547Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T17:29:39.550Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T17:29:39.550Z [debug] [monitor] Step 1 generation for brutal-test-1760462839 took 126145ms
+2025-10-14T17:29:39.550Z [info] [parallel] ✅ Step 1 COMPLETE in 126145ms with 5 actions
+2025-10-14T17:29:39.551Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-14T17:29:41.023Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:41.023Z [debug] [codegenV3] Received 6601 chars from API
+2025-10-14T17:29:41.023Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:41.023Z [info] [codegenV3] ✅ Generated SVG in 68.12s (6601 chars)
+2025-10-14T17:29:41.023Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 13, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-14T17:29:41.023Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=19
+2025-10-14T17:29:41.023Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:41.023Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:41.023Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T17:29:46.744Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:46.744Z [debug] [codegenV3] Received 4289 chars from API
+2025-10-14T17:29:46.744Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:46.744Z [info] [codegenV3] ✅ Generated SVG in 129.33s (4289 chars)
+2025-10-14T17:29:46.744Z [info] [codegenV3] 🎬 ANIMATIONS: 13 total (<animate>: 10, <animateMotion>: 2, <animateTransform>: 1)
+2025-10-14T17:29:46.744Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=13
+2025-10-14T17:29:46.744Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:46.744Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:46.744Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T17:29:46.744Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T17:29:46.744Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T17:29:46.744Z [info] [AudioNarration] Generating narrations with audio for step 3
+2025-10-14T17:29:46.744Z [info] [narration] Generating narrations for step 3 (5 visuals)
+2025-10-14T17:29:46.744Z [debug] [narration] Sending prompt (4707 chars) to Gemini
+2025-10-14T17:29:47.402Z [info] [narration] ✅ Generated 5 narrations in 12.85s (99s total audio)
+2025-10-14T17:29:47.402Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T17:29:47.402Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T17:29:47.402Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T17:29:47.402Z [info] [TTS] Synthesizing text (297 chars) [MOCK MODE]...
+2025-10-14T17:29:47.402Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:47.699Z [info] [TTS] ✅ Synthesized 297 chars → 20s audio in 297ms
+2025-10-14T17:29:47.699Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-0-brutal-test-1760462839.mp3
+2025-10-14T17:29:47.699Z [debug] [AudioNarration] ✅ Audio 1 generated: 19661 bytes, 20s
+2025-10-14T17:29:47.699Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T17:29:47.699Z [info] [TTS] Synthesizing text (262 chars) [MOCK MODE]...
+2025-10-14T17:29:47.699Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:47.897Z [info] [TTS] ✅ Synthesized 262 chars → 17s audio in 198ms
+2025-10-14T17:29:47.897Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-1-brutal-test-1760462839.mp3
+2025-10-14T17:29:47.897Z [debug] [AudioNarration] ✅ Audio 2 generated: 17204 bytes, 17s
+2025-10-14T17:29:47.897Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T17:29:47.897Z [info] [TTS] Synthesizing text (260 chars) [MOCK MODE]...
+2025-10-14T17:29:47.897Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:48.000Z [info] [TTS] ✅ Synthesized 260 chars → 18s audio in 103ms
+2025-10-14T17:29:48.000Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-2-brutal-test-1760462839.mp3
+2025-10-14T17:29:48.000Z [debug] [AudioNarration] ✅ Audio 3 generated: 18023 bytes, 18s
+2025-10-14T17:29:48.000Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T17:29:48.000Z [info] [TTS] Synthesizing text (274 chars) [MOCK MODE]...
+2025-10-14T17:29:48.000Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:48.274Z [info] [TTS] ✅ Synthesized 274 chars → 17s audio in 274ms
+2025-10-14T17:29:48.274Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-3-brutal-test-1760462839.mp3
+2025-10-14T17:29:48.274Z [debug] [AudioNarration] ✅ Audio 4 generated: 16794 bytes, 17s
+2025-10-14T17:29:48.274Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T17:29:48.274Z [info] [TTS] Synthesizing text (297 chars) [MOCK MODE]...
+2025-10-14T17:29:48.274Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:48.403Z [info] [TTS] ✅ Synthesized 297 chars → 18s audio in 128ms
+2025-10-14T17:29:48.403Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-4-brutal-test-1760462839.mp3
+2025-10-14T17:29:48.403Z [debug] [AudioNarration] ✅ Audio 5 generated: 17613 bytes, 18s
+2025-10-14T17:29:48.403Z [info] [AudioNarration] ✅ Audio generation complete in 1001ms
+2025-10-14T17:29:48.403Z [info] [AudioNarration] Total audio size: 0.09 MB
+2025-10-14T17:29:48.403Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (99s total, with audio, 0.09MB)
+2025-10-14T17:29:48.403Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T17:29:48.403Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T17:29:48.405Z [debug] [cache] Cached chunk for query step 2
+2025-10-14T17:29:48.405Z [debug] [monitor] Step 2 generation for brutal-test-1760462839 took 132999ms
+2025-10-14T17:29:48.405Z [info] [parallel] ✅ Step 2 COMPLETE in 132999ms with 5 actions
+2025-10-14T17:29:48.405Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-14T17:29:50.034Z [info] [narration] ✅ Generated 5 narrations in 12.47s (96s total audio)
+2025-10-14T17:29:50.034Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T17:29:50.034Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T17:29:50.034Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T17:29:50.034Z [info] [TTS] Synthesizing text (380 chars) [MOCK MODE]...
+2025-10-14T17:29:50.034Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:50.314Z [info] [TTS] ✅ Synthesized 380 chars → 24s audio in 280ms
+2025-10-14T17:29:50.315Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-0-test-1760462898.mp3
+2025-10-14T17:29:50.315Z [debug] [AudioNarration] ✅ Audio 1 generated: 24167 bytes, 24s
+2025-10-14T17:29:50.315Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T17:29:50.315Z [info] [TTS] Synthesizing text (326 chars) [MOCK MODE]...
+2025-10-14T17:29:50.315Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:50.467Z [info] [TTS] ✅ Synthesized 326 chars → 21s audio in 152ms
+2025-10-14T17:29:50.467Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-1-test-1760462898.mp3
+2025-10-14T17:29:50.467Z [debug] [AudioNarration] ✅ Audio 2 generated: 20890 bytes, 21s
+2025-10-14T17:29:50.467Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T17:29:50.467Z [info] [TTS] Synthesizing text (316 chars) [MOCK MODE]...
+2025-10-14T17:29:50.467Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:50.596Z [info] [TTS] ✅ Synthesized 316 chars → 19s audio in 129ms
+2025-10-14T17:29:50.596Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-2-test-1760462898.mp3
+2025-10-14T17:29:50.597Z [debug] [AudioNarration] ✅ Audio 3 generated: 19252 bytes, 19s
+2025-10-14T17:29:50.597Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T17:29:50.597Z [info] [TTS] Synthesizing text (284 chars) [MOCK MODE]...
+2025-10-14T17:29:50.597Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:50.879Z [info] [TTS] ✅ Synthesized 284 chars → 18s audio in 282ms
+2025-10-14T17:29:50.880Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-3-test-1760462898.mp3
+2025-10-14T17:29:50.880Z [debug] [AudioNarration] ✅ Audio 4 generated: 18023 bytes, 18s
+2025-10-14T17:29:50.880Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T17:29:50.880Z [info] [TTS] Synthesizing text (342 chars) [MOCK MODE]...
+2025-10-14T17:29:50.880Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:29:51.155Z [info] [TTS] ✅ Synthesized 342 chars → 21s audio in 275ms
+2025-10-14T17:29:51.155Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-4-test-1760462898.mp3
+2025-10-14T17:29:51.155Z [debug] [AudioNarration] ✅ Audio 5 generated: 20890 bytes, 21s
+2025-10-14T17:29:51.155Z [info] [AudioNarration] ✅ Audio generation complete in 1121ms
+2025-10-14T17:29:51.155Z [info] [AudioNarration] Total audio size: 0.10 MB
+2025-10-14T17:29:51.155Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (96s total, with audio, 0.10MB)
+2025-10-14T17:29:51.155Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T17:29:51.155Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T17:29:51.157Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T17:29:51.157Z [debug] [monitor] Step 1 generation for test-1760462898 took 80259ms
+2025-10-14T17:29:51.157Z [info] [parallel] ✅ Step 1 COMPLETE in 80259ms with 5 actions
+2025-10-14T17:29:51.158Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-14T17:29:52.557Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:52.557Z [debug] [codegenV3] Received 7223 chars from API
+2025-10-14T17:29:52.557Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:52.557Z [info] [codegenV3] ✅ Generated SVG in 79.66s (7223 chars)
+2025-10-14T17:29:52.557Z [info] [codegenV3] 🎬 ANIMATIONS: 21 total (<animate>: 15, <animateMotion>: 4, <animateTransform>: 2)
+2025-10-14T17:29:52.557Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=23
+2025-10-14T17:29:52.557Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:52.557Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:52.557Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T17:29:56.390Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:29:56.390Z [debug] [codegenV3] Received 9528 chars from API
+2025-10-14T17:29:56.390Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:29:56.390Z [info] [codegenV3] ✅ Generated SVG in 81.49s (9528 chars)
+2025-10-14T17:29:56.390Z [info] [codegenV3] 🎬 ANIMATIONS: 48 total (<animate>: 28, <animateMotion>: 19, <animateTransform>: 1)
+2025-10-14T17:29:56.390Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=31
+2025-10-14T17:29:56.390Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:29:56.390Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:29:56.390Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T17:29:58.868Z [info] [notes] ⏱️  Generation completed in 85.97s
+2025-10-14T17:29:58.868Z [debug] [notes] Finish reason: STOP
+2025-10-14T17:29:58.868Z [info] [notes] ✅ Generated SVG keynote in 85.97s (13582 chars)
+2025-10-14T17:29:58.868Z [info] [notes] 📊 Elements: text=53, rect=9, line=2, total=64
+2025-10-14T17:29:58.868Z [info] [notes] Debug copy saved: /tmp/notes-step2-1760462998868.svg
+2025-10-14T17:29:58.868Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T17:29:58.868Z [info] [notes]    - Text elements: 53/8 ✓
+2025-10-14T17:29:58.868Z [info] [notes]    - Visual elements: 36/5 ✓
+2025-10-14T17:29:58.868Z [info] [notes]    - Total elements: 89/20 ✓
+2025-10-14T17:29:58.868Z [info] [notes]    - Content length: 13582/2000 ✓
+2025-10-14T17:29:58.868Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T17:29:58.869Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T17:29:58.869Z [info] [notes] ✅ SUCCESS on attempt 1/3 (85.97s total)
+2025-10-14T17:29:58.869Z [info] [stepVisuals] ✅ Notes generated (13582 chars)
+2025-10-14T17:30:02.946Z [info] [narration] ✅ Generated 5 narrations in 16.20s (114s total audio)
+2025-10-14T17:30:02.946Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T17:30:02.946Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T17:30:02.946Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T17:30:02.947Z [info] [TTS] Synthesizing text (353 chars) [MOCK MODE]...
+2025-10-14T17:30:02.947Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:03.078Z [info] [TTS] ✅ Synthesized 353 chars → 23s audio in 131ms
+2025-10-14T17:30:03.078Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-0-brutal-test-1760462839.mp3
+2025-10-14T17:30:03.078Z [debug] [AudioNarration] ✅ Audio 1 generated: 22938 bytes, 23s
+2025-10-14T17:30:03.078Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T17:30:03.078Z [info] [TTS] Synthesizing text (298 chars) [MOCK MODE]...
+2025-10-14T17:30:03.078Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:03.249Z [info] [TTS] ✅ Synthesized 298 chars → 19s audio in 171ms
+2025-10-14T17:30:03.249Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-1-brutal-test-1760462839.mp3
+2025-10-14T17:30:03.249Z [debug] [AudioNarration] ✅ Audio 2 generated: 18842 bytes, 19s
+2025-10-14T17:30:03.249Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T17:30:03.249Z [info] [TTS] Synthesizing text (322 chars) [MOCK MODE]...
+2025-10-14T17:30:03.249Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:03.457Z [info] [TTS] ✅ Synthesized 322 chars → 21s audio in 207ms
+2025-10-14T17:30:03.457Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-2-brutal-test-1760462839.mp3
+2025-10-14T17:30:03.457Z [debug] [AudioNarration] ✅ Audio 3 generated: 20890 bytes, 21s
+2025-10-14T17:30:03.457Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T17:30:03.457Z [info] [TTS] Synthesizing text (329 chars) [MOCK MODE]...
+2025-10-14T17:30:03.457Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:03.694Z [info] [TTS] ✅ Synthesized 329 chars → 20s audio in 237ms
+2025-10-14T17:30:03.694Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-3-brutal-test-1760462839.mp3
+2025-10-14T17:30:03.694Z [debug] [AudioNarration] ✅ Audio 4 generated: 19661 bytes, 20s
+2025-10-14T17:30:03.694Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T17:30:03.694Z [info] [TTS] Synthesizing text (374 chars) [MOCK MODE]...
+2025-10-14T17:30:03.694Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:03.833Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:30:03.833Z [debug] [codegenV3] Received 9299 chars from API
+2025-10-14T17:30:03.833Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:30:03.833Z [info] [codegenV3] ✅ Generated SVG in 90.93s (9299 chars)
+2025-10-14T17:30:03.833Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 14, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-14T17:30:03.833Z [info] [codegenV3] 📊 CONTENT: labels=20, shapes=43
+2025-10-14T17:30:03.833Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:30:03.833Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:30:03.833Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T17:30:03.833Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T17:30:03.833Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T17:30:03.833Z [info] [AudioNarration] Generating narrations with audio for step 2
+2025-10-14T17:30:03.833Z [info] [narration] Generating narrations for step 2 (5 visuals)
+2025-10-14T17:30:03.833Z [debug] [narration] Sending prompt (5463 chars) to Gemini
+2025-10-14T17:30:03.885Z [info] [TTS] ✅ Synthesized 374 chars → 22s audio in 191ms
+2025-10-14T17:30:03.885Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-4-brutal-test-1760462839.mp3
+2025-10-14T17:30:03.885Z [debug] [AudioNarration] ✅ Audio 5 generated: 21709 bytes, 22s
+2025-10-14T17:30:03.885Z [info] [AudioNarration] ✅ Audio generation complete in 939ms
+2025-10-14T17:30:03.885Z [info] [AudioNarration] Total audio size: 0.10 MB
+2025-10-14T17:30:03.885Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (114s total, with audio, 0.10MB)
+2025-10-14T17:30:03.885Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T17:30:03.885Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T17:30:03.887Z [debug] [cache] Cached chunk for query step 3
+2025-10-14T17:30:03.887Z [debug] [monitor] Step 3 generation for brutal-test-1760462839 took 146478ms
+2025-10-14T17:30:03.887Z [info] [parallel] ✅ Step 3 COMPLETE in 146478ms with 5 actions
+2025-10-14T17:30:03.889Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-14T17:30:03.889Z [debug] [parallel] Parallel generation complete: 3/3 successful in 150484ms
+2025-10-14T17:30:03.889Z [debug] [monitor] Completed request brutal-test-1760462839 in 164789ms (success: true)
+2025-10-14T17:30:03.889Z [debug] [parallel] Job complete for session brutal-test-1760462839
+2025-10-14T17:30:13.881Z [info] [narration] ✅ Generated 5 narrations in 10.05s (99s total audio)
+2025-10-14T17:30:13.881Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T17:30:13.881Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T17:30:13.881Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T17:30:13.881Z [info] [TTS] Synthesizing text (323 chars) [MOCK MODE]...
+2025-10-14T17:30:13.881Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:14.118Z [info] [TTS] ✅ Synthesized 323 chars → 20s audio in 236ms
+2025-10-14T17:30:14.118Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-0-test-1760462898.mp3
+2025-10-14T17:30:14.118Z [debug] [AudioNarration] ✅ Audio 1 generated: 20480 bytes, 20s
+2025-10-14T17:30:14.118Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T17:30:14.118Z [info] [TTS] Synthesizing text (266 chars) [MOCK MODE]...
+2025-10-14T17:30:14.118Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:14.225Z [info] [TTS] ✅ Synthesized 266 chars → 18s audio in 107ms
+2025-10-14T17:30:14.225Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-1-test-1760462898.mp3
+2025-10-14T17:30:14.225Z [debug] [AudioNarration] ✅ Audio 2 generated: 18023 bytes, 18s
+2025-10-14T17:30:14.225Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T17:30:14.225Z [info] [TTS] Synthesizing text (263 chars) [MOCK MODE]...
+2025-10-14T17:30:14.225Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:14.489Z [info] [TTS] ✅ Synthesized 263 chars → 20s audio in 264ms
+2025-10-14T17:30:14.489Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-2-test-1760462898.mp3
+2025-10-14T17:30:14.489Z [debug] [AudioNarration] ✅ Audio 3 generated: 19661 bytes, 20s
+2025-10-14T17:30:14.489Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T17:30:14.489Z [info] [TTS] Synthesizing text (297 chars) [MOCK MODE]...
+2025-10-14T17:30:14.489Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:14.635Z [info] [TTS] ✅ Synthesized 297 chars → 20s audio in 146ms
+2025-10-14T17:30:14.635Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-3-test-1760462898.mp3
+2025-10-14T17:30:14.635Z [debug] [AudioNarration] ✅ Audio 4 generated: 19661 bytes, 20s
+2025-10-14T17:30:14.635Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T17:30:14.635Z [info] [TTS] Synthesizing text (311 chars) [MOCK MODE]...
+2025-10-14T17:30:14.635Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:30:14.802Z [info] [TTS] ✅ Synthesized 311 chars → 21s audio in 167ms
+2025-10-14T17:30:14.802Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-4-test-1760462898.mp3
+2025-10-14T17:30:14.802Z [debug] [AudioNarration] ✅ Audio 5 generated: 21300 bytes, 21s
+2025-10-14T17:30:14.802Z [info] [AudioNarration] ✅ Audio generation complete in 921ms
+2025-10-14T17:30:14.802Z [info] [AudioNarration] Total audio size: 0.09 MB
+2025-10-14T17:30:14.802Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (99s total, with audio, 0.09MB)
+2025-10-14T17:30:14.802Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T17:30:14.802Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T17:30:14.805Z [debug] [cache] Cached chunk for query step 2
+2025-10-14T17:30:14.805Z [debug] [monitor] Step 2 generation for test-1760462898 took 101907ms
+2025-10-14T17:30:14.805Z [info] [parallel] ✅ Step 2 COMPLETE in 101907ms with 5 actions
+2025-10-14T17:30:14.807Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-14T17:30:16.593Z [debug] Shutting down server...
+2025-10-14T17:35:18.165Z [info] [TTS] Service initialized successfully
+2025-10-14T17:35:18.187Z [info] [TTS] Testing connection...
+2025-10-14T17:35:18.187Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T17:35:18.187Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:35:18.189Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T17:35:18.328Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 141ms
+2025-10-14T17:35:18.328Z [info] [TTS] ✅ Connection test successful
+2025-10-14T17:35:18.328Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T17:35:18.328Z [info] [TTS] Estimated duration: 5s
+2025-10-14T17:35:18.331Z [debug] NEW Plan worker created
+2025-10-14T17:35:18.331Z [debug] NEW Gen worker created
+2025-10-14T17:35:18.332Z [debug] NEW Parallel worker created
+2025-10-14T17:35:18.334Z [debug] Server listening on port 8000
+2025-10-14T17:35:50.337Z [debug] Received request on /api/query {"body":{"query":"How does a rocket engine work?","sessionId":"prod-test-1760463350"}}
+2025-10-14T17:35:50.337Z [debug] [api] Stored query for session prod-test-1760463350: "How does a rocket engine work?"
+2025-10-14T17:35:50.337Z [debug] [orchestrator] Enqueuing plan for session prod-test-1760463350
+2025-10-14T17:35:50.338Z [debug] [orchestrator] Plan job added with id 1 for session prod-test-1760463350
+2025-10-14T17:35:50.339Z [debug] [plan] START: session=prod-test-1760463350 query=How does a rocket engine work?
+2025-10-14T17:35:50.339Z [debug] [monitor] Started tracking request prod-test-1760463350
+2025-10-14T17:35:50.339Z [debug] [cache] MISS - No cached plan for query: "How does a rocket engine work?..."
+2025-10-14T17:35:50.340Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T17:35:50.348Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T17:36:10.031Z [debug] [planner] Received response from Gemini in 19691ms
+2025-10-14T17:36:10.031Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "How Rocket Engines Achieve Thrust",
+  "subtitle": "Discover the powerful principle and components that launch rockets into space.",
+  "toc": [
+    {"minute": 1, "title": "The Intuition", "summary": "Rockets push themselves forward by expelling gas backward, like a released balloon."},
+    {"minute": 2, "title": "How It Works", "summary": "Fuel and oxidizer burn in a chamber, expelling hot gas through a nozzle."},
+    {"minute": 3, "title": "Real Applications", "summary": "R...
+2025-10-14T17:36:10.031Z [debug] [planner] Extracted JSON (length: 2390)
+2025-10-14T17:36:10.031Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T17:36:10.031Z [debug] [monitor] Plan generation for prod-test-1760463350 took 19692ms
+2025-10-14T17:36:10.032Z [debug] [cache] Cached plan for query: "How does a rocket engine work?..."
+2025-10-14T17:36:10.033Z [debug] [plan] OK: session=prod-test-1760463350 plan received with 3 steps
+2025-10-14T17:36:10.034Z [debug] [plan] Emitted plan event to session prod-test-1760463350
+2025-10-14T17:36:10.034Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-14T17:36:10.035Z [debug] [plan] END: session=prod-test-1760463350
+2025-10-14T17:36:10.037Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: prod-test-1760463350)
+2025-10-14T17:36:10.037Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-14T17:36:10.038Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T17:36:10.038Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations + narrations
+2025-10-14T17:36:10.038Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 1
+2025-10-14T17:36:10.038Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T17:36:10.038Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T17:36:10.038Z [info] [notes] 📚 Subtopic: "Imagine inflating a balloon and then letting it go. It shoots forward, not because it's pushing off the air in front of it, but because it's pushing air *backward*. This same fundamental principle, Newton's Third Law of Motion, is how a rocket engine works. For every action—the hot gas blasting out—there is an equal and opposite reaction—the rocket moving forward."
+2025-10-14T17:36:10.038Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T17:36:10.038Z [info] [notes] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:36:10.038Z [info] [notes] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:10.039Z [info] [notes] Subtopic: "Imagine inflating a balloon and then letting it go. It shoots forward, not because it's pushing off the air in front of it, but because it's pushing air *backward*. This same fundamental principle, Newton's Third Law of Motion, is how a rocket engine works. For every action—the hot gas blasting out—there is an equal and opposite reaction—the rocket moving forward."
+2025-10-14T17:36:10.039Z [debug] [notes] Temperature: 0.75
+2025-10-14T17:36:10.039Z [debug] [notes] Prompt length: 4425 chars
+2025-10-14T17:36:10.039Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T17:36:10.039Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:36:10.039Z [info] [codegenV3] Generating step 1: Imagine inflating a balloon and then letting it go. It shoots forward, not because it's pushing off the air in front of it, but because it's pushing air *backward*. This same fundamental principle, Newton's Third Law of Motion, is how a rocket engine works. For every action—the hot gas blasting out—there is an equal and opposite reaction—the rocket moving forward.
+2025-10-14T17:36:10.039Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:10.039Z [debug] [codegenV3] Prompt length: 1010 chars
+2025-10-14T17:36:10.039Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T17:36:10.039Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:36:10.039Z [info] [codegenV3] Generating step 1: Imagine inflating a balloon and then letting it go. It shoots forward, not because it's pushing off the air in front of it, but because it's pushing air *backward*. This same fundamental principle, Newton's Third Law of Motion, is how a rocket engine works. For every action—the hot gas blasting out—there is an equal and opposite reaction—the rocket moving forward.
+2025-10-14T17:36:10.039Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:10.039Z [debug] [codegenV3] Prompt length: 1010 chars
+2025-10-14T17:36:10.040Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T17:36:10.040Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:36:10.040Z [info] [codegenV3] Generating step 1: Imagine inflating a balloon and then letting it go. It shoots forward, not because it's pushing off the air in front of it, but because it's pushing air *backward*. This same fundamental principle, Newton's Third Law of Motion, is how a rocket engine works. For every action—the hot gas blasting out—there is an equal and opposite reaction—the rocket moving forward.
+2025-10-14T17:36:10.040Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:10.040Z [debug] [codegenV3] Prompt length: 1010 chars
+2025-10-14T17:36:10.040Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T17:36:10.040Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T17:36:10.040Z [info] [codegenV3] Generating step 1: Imagine inflating a balloon and then letting it go. It shoots forward, not because it's pushing off the air in front of it, but because it's pushing air *backward*. This same fundamental principle, Newton's Third Law of Motion, is how a rocket engine works. For every action—the hot gas blasting out—there is an equal and opposite reaction—the rocket moving forward.
+2025-10-14T17:36:10.040Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:10.040Z [debug] [codegenV3] Prompt length: 1010 chars
+2025-10-14T17:36:10.040Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T17:36:12.039Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-14T17:36:12.039Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-14T17:36:12.039Z [info] [parallel] 🚀 Step 2: Generating notes + 4 animations + narrations
+2025-10-14T17:36:12.039Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 2
+2025-10-14T17:36:12.039Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 2
+2025-10-14T17:36:12.039Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T17:36:12.039Z [info] [notes] 📚 Subtopic: "Inside a rocket engine, two main components, the liquid 'fuel' (like kerosene or hydrogen) and 'oxidizer' (like liquid oxygen), are precisely pumped into a combustion chamber. Here, they ignite, creating incredibly hot, high-pressure gas. This superheated gas is then forced through a specially shaped cone called a 'nozzle.' The nozzle accelerates the gas to tremendous speeds, directing it backward with immense force, generating the powerful thrust that propels the rocket upwards."
+2025-10-14T17:36:12.039Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T17:36:12.039Z [info] [notes] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:36:12.039Z [info] [notes] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:12.039Z [info] [notes] Subtopic: "Inside a rocket engine, two main components, the liquid 'fuel' (like kerosene or hydrogen) and 'oxidizer' (like liquid oxygen), are precisely pumped into a combustion chamber. Here, they ignite, creating incredibly hot, high-pressure gas. This superheated gas is then forced through a specially shaped cone called a 'nozzle.' The nozzle accelerates the gas to tremendous speeds, directing it backward with immense force, generating the powerful thrust that propels the rocket upwards."
+2025-10-14T17:36:12.039Z [debug] [notes] Temperature: 0.75
+2025-10-14T17:36:12.039Z [debug] [notes] Prompt length: 4543 chars
+2025-10-14T17:36:12.039Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 2
+2025-10-14T17:36:12.039Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:36:12.039Z [info] [codegenV3] Generating step 2: Inside a rocket engine, two main components, the liquid 'fuel' (like kerosene or hydrogen) and 'oxidizer' (like liquid oxygen), are precisely pumped into a combustion chamber. Here, they ignite, creating incredibly hot, high-pressure gas. This superheated gas is then forced through a specially shaped cone called a 'nozzle.' The nozzle accelerates the gas to tremendous speeds, directing it backward with immense force, generating the powerful thrust that propels the rocket upwards.
+2025-10-14T17:36:12.039Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:12.040Z [debug] [codegenV3] Prompt length: 1128 chars
+2025-10-14T17:36:12.040Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 2
+2025-10-14T17:36:12.040Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:36:12.040Z [info] [codegenV3] Generating step 2: Inside a rocket engine, two main components, the liquid 'fuel' (like kerosene or hydrogen) and 'oxidizer' (like liquid oxygen), are precisely pumped into a combustion chamber. Here, they ignite, creating incredibly hot, high-pressure gas. This superheated gas is then forced through a specially shaped cone called a 'nozzle.' The nozzle accelerates the gas to tremendous speeds, directing it backward with immense force, generating the powerful thrust that propels the rocket upwards.
+2025-10-14T17:36:12.040Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:12.040Z [debug] [codegenV3] Prompt length: 1128 chars
+2025-10-14T17:36:12.040Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 2
+2025-10-14T17:36:12.040Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:36:12.040Z [info] [codegenV3] Generating step 2: Inside a rocket engine, two main components, the liquid 'fuel' (like kerosene or hydrogen) and 'oxidizer' (like liquid oxygen), are precisely pumped into a combustion chamber. Here, they ignite, creating incredibly hot, high-pressure gas. This superheated gas is then forced through a specially shaped cone called a 'nozzle.' The nozzle accelerates the gas to tremendous speeds, directing it backward with immense force, generating the powerful thrust that propels the rocket upwards.
+2025-10-14T17:36:12.040Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:12.040Z [debug] [codegenV3] Prompt length: 1128 chars
+2025-10-14T17:36:12.040Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 2
+2025-10-14T17:36:12.040Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T17:36:12.040Z [info] [codegenV3] Generating step 2: Inside a rocket engine, two main components, the liquid 'fuel' (like kerosene or hydrogen) and 'oxidizer' (like liquid oxygen), are precisely pumped into a combustion chamber. Here, they ignite, creating incredibly hot, high-pressure gas. This superheated gas is then forced through a specially shaped cone called a 'nozzle.' The nozzle accelerates the gas to tremendous speeds, directing it backward with immense force, generating the powerful thrust that propels the rocket upwards.
+2025-10-14T17:36:12.040Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:12.040Z [debug] [codegenV3] Prompt length: 1128 chars
+2025-10-14T17:36:12.040Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T17:36:14.041Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-14T17:36:14.041Z [info] [parallel] 🚀 Step 3: Generating notes + 4 animations + narrations
+2025-10-14T17:36:14.041Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 3
+2025-10-14T17:36:14.041Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 3
+2025-10-14T17:36:14.041Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T17:36:14.041Z [info] [notes] 📚 Subtopic: "Rocket engines are our indispensable gateway to space. They are the core technology behind launching vital communication and weather satellites that connect our world, sending astronauts to the International Space Station, and propelling probes to distant planets like Mars or Jupiter. Without the precise, controlled power of rocket engines, humanity's dreams of space exploration and understanding our universe would remain grounded."
+2025-10-14T17:36:14.041Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T17:36:14.041Z [info] [notes] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:36:14.042Z [info] [notes] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:14.042Z [info] [notes] Subtopic: "Rocket engines are our indispensable gateway to space. They are the core technology behind launching vital communication and weather satellites that connect our world, sending astronauts to the International Space Station, and propelling probes to distant planets like Mars or Jupiter. Without the precise, controlled power of rocket engines, humanity's dreams of space exploration and understanding our universe would remain grounded."
+2025-10-14T17:36:14.042Z [debug] [notes] Temperature: 0.75
+2025-10-14T17:36:14.042Z [debug] [notes] Prompt length: 4494 chars
+2025-10-14T17:36:14.042Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 3
+2025-10-14T17:36:14.042Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:36:14.042Z [info] [codegenV3] Generating step 3: Rocket engines are our indispensable gateway to space. They are the core technology behind launching vital communication and weather satellites that connect our world, sending astronauts to the International Space Station, and propelling probes to distant planets like Mars or Jupiter. Without the precise, controlled power of rocket engines, humanity's dreams of space exploration and understanding our universe would remain grounded.
+2025-10-14T17:36:14.042Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:14.042Z [debug] [codegenV3] Prompt length: 1079 chars
+2025-10-14T17:36:14.042Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 3
+2025-10-14T17:36:14.042Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:36:14.042Z [info] [codegenV3] Generating step 3: Rocket engines are our indispensable gateway to space. They are the core technology behind launching vital communication and weather satellites that connect our world, sending astronauts to the International Space Station, and propelling probes to distant planets like Mars or Jupiter. Without the precise, controlled power of rocket engines, humanity's dreams of space exploration and understanding our universe would remain grounded.
+2025-10-14T17:36:14.042Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:14.042Z [debug] [codegenV3] Prompt length: 1079 chars
+2025-10-14T17:36:14.042Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 3
+2025-10-14T17:36:14.042Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:36:14.042Z [info] [codegenV3] Generating step 3: Rocket engines are our indispensable gateway to space. They are the core technology behind launching vital communication and weather satellites that connect our world, sending astronauts to the International Space Station, and propelling probes to distant planets like Mars or Jupiter. Without the precise, controlled power of rocket engines, humanity's dreams of space exploration and understanding our universe would remain grounded.
+2025-10-14T17:36:14.042Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:14.042Z [debug] [codegenV3] Prompt length: 1079 chars
+2025-10-14T17:36:14.042Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 3
+2025-10-14T17:36:14.042Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T17:36:14.042Z [info] [codegenV3] Generating step 3: Rocket engines are our indispensable gateway to space. They are the core technology behind launching vital communication and weather satellites that connect our world, sending astronauts to the International Space Station, and propelling probes to distant planets like Mars or Jupiter. Without the precise, controlled power of rocket engines, humanity's dreams of space exploration and understanding our universe would remain grounded.
+2025-10-14T17:36:14.043Z [info] [codegenV3] Topic: "How does a rocket engine work?"
+2025-10-14T17:36:14.043Z [debug] [codegenV3] Prompt length: 1079 chars
+2025-10-14T17:36:14.043Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T17:36:18.332Z [debug] [monitor] Metrics updated:
+2025-10-14T17:36:58.642Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:36:58.642Z [debug] [codegenV3] Received 5444 chars from API
+2025-10-14T17:36:58.642Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:36:58.643Z [info] [codegenV3] ✅ Generated SVG in 44.60s (5444 chars)
+2025-10-14T17:36:58.643Z [info] [codegenV3] 🎬 ANIMATIONS: 14 total (<animate>: 9, <animateMotion>: 4, <animateTransform>: 1)
+2025-10-14T17:36:58.643Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=18
+2025-10-14T17:36:58.643Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:36:58.643Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:36:58.643Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T17:36:59.342Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:36:59.342Z [debug] [codegenV3] Received 4243 chars from API
+2025-10-14T17:36:59.342Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:36:59.343Z [info] [codegenV3] ✅ Generated SVG in 47.30s (4243 chars)
+2025-10-14T17:36:59.343Z [info] [codegenV3] 🎬 ANIMATIONS: 29 total (<animate>: 18, <animateMotion>: 7, <animateTransform>: 4)
+2025-10-14T17:36:59.343Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=13
+2025-10-14T17:36:59.343Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:36:59.343Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:36:59.343Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T17:36:59.481Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:36:59.482Z [debug] [codegenV3] Received 5958 chars from API
+2025-10-14T17:36:59.482Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:36:59.482Z [info] [codegenV3] ✅ Generated SVG in 45.44s (5958 chars)
+2025-10-14T17:36:59.482Z [info] [codegenV3] 🎬 ANIMATIONS: 30 total (<animate>: 19, <animateMotion>: 7, <animateTransform>: 4)
+2025-10-14T17:36:59.482Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=17
+2025-10-14T17:36:59.482Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:36:59.482Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:36:59.482Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T17:37:02.902Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:37:02.902Z [debug] [codegenV3] Received 5325 chars from API
+2025-10-14T17:37:02.902Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:37:02.902Z [info] [codegenV3] ✅ Generated SVG in 50.86s (5325 chars)
+2025-10-14T17:37:02.902Z [info] [codegenV3] 🎬 ANIMATIONS: 29 total (<animate>: 18, <animateMotion>: 7, <animateTransform>: 4)
+2025-10-14T17:37:02.902Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=16
+2025-10-14T17:37:02.902Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:37:02.902Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:37:02.902Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T17:37:03.244Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:37:03.244Z [debug] [codegenV3] Received 5758 chars from API
+2025-10-14T17:37:03.244Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:37:03.244Z [info] [codegenV3] ✅ Generated SVG in 49.20s (5758 chars)
+2025-10-14T17:37:03.244Z [info] [codegenV3] 🎬 ANIMATIONS: 19 total (<animate>: 14, <animateMotion>: 4, <animateTransform>: 1)
+2025-10-14T17:37:03.244Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=19
+2025-10-14T17:37:03.245Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:37:03.245Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:37:03.245Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T17:37:08.599Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:37:08.599Z [debug] [codegenV3] Received 6229 chars from API
+2025-10-14T17:37:08.599Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:37:08.599Z [info] [codegenV3] ✅ Generated SVG in 56.56s (6229 chars)
+2025-10-14T17:37:08.599Z [info] [codegenV3] 🎬 ANIMATIONS: 49 total (<animate>: 37, <animateMotion>: 12, <animateTransform>: 0)
+2025-10-14T17:37:08.599Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=21
+2025-10-14T17:37:08.599Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:37:08.599Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:37:08.599Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T17:37:13.067Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:37:13.067Z [debug] [codegenV3] Received 5478 chars from API
+2025-10-14T17:37:13.067Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:37:13.067Z [info] [codegenV3] ✅ Generated SVG in 61.03s (5478 chars)
+2025-10-14T17:37:13.067Z [info] [codegenV3] 🎬 ANIMATIONS: 29 total (<animate>: 19, <animateMotion>: 7, <animateTransform>: 3)
+2025-10-14T17:37:13.067Z [info] [codegenV3] 📊 CONTENT: labels=5, shapes=16
+2025-10-14T17:37:13.067Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:37:13.067Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:37:13.067Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T17:37:15.630Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:37:15.630Z [debug] [codegenV3] Received 5882 chars from API
+2025-10-14T17:37:15.630Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:37:15.630Z [info] [codegenV3] ✅ Generated SVG in 65.59s (5882 chars)
+2025-10-14T17:37:15.630Z [info] [codegenV3] 🎬 ANIMATIONS: 20 total (<animate>: 10, <animateMotion>: 10, <animateTransform>: 0)
+2025-10-14T17:37:15.630Z [info] [codegenV3] 📊 CONTENT: labels=14, shapes=18
+2025-10-14T17:37:15.630Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:37:15.630Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:37:15.630Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:37:15.630Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T17:37:18.334Z [debug] [monitor] Metrics updated:
+2025-10-14T17:37:22.637Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:37:22.637Z [debug] [codegenV3] Received 6420 chars from API
+2025-10-14T17:37:22.638Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:37:22.638Z [info] [codegenV3] ✅ Generated SVG in 68.60s (6420 chars)
+2025-10-14T17:37:22.638Z [info] [codegenV3] 🎬 ANIMATIONS: 34 total (<animate>: 24, <animateMotion>: 8, <animateTransform>: 2)
+2025-10-14T17:37:22.638Z [info] [codegenV3] 📊 CONTENT: labels=6, shapes=17
+2025-10-14T17:37:22.638Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:37:22.638Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:37:22.638Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T17:37:32.834Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:37:32.834Z [debug] [codegenV3] Received 8198 chars from API
+2025-10-14T17:37:32.834Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:37:32.835Z [info] [codegenV3] ✅ Generated SVG in 82.79s (8198 chars)
+2025-10-14T17:37:32.835Z [info] [codegenV3] 🎬 ANIMATIONS: 38 total (<animate>: 19, <animateMotion>: 17, <animateTransform>: 2)
+2025-10-14T17:37:32.835Z [info] [codegenV3] 📊 CONTENT: labels=12, shapes=17
+2025-10-14T17:37:32.835Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:37:32.835Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:37:32.835Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:37:32.836Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T17:37:37.299Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:37:37.300Z [debug] [codegenV3] Received 10422 chars from API
+2025-10-14T17:37:37.300Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:37:37.300Z [info] [codegenV3] ✅ Generated SVG in 87.26s (10422 chars)
+2025-10-14T17:37:37.300Z [info] [codegenV3] 🎬 ANIMATIONS: 66 total (<animate>: 43, <animateMotion>: 20, <animateTransform>: 3)
+2025-10-14T17:37:37.300Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=21
+2025-10-14T17:37:37.300Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:37:37.301Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:37:37.301Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:37:37.301Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T17:37:39.502Z [info] [notes] ⏱️  Generation completed in 87.46s
+2025-10-14T17:37:39.502Z [debug] [notes] Finish reason: STOP
+2025-10-14T17:37:39.503Z [info] [notes] ✅ Generated SVG keynote in 87.46s (12339 chars)
+2025-10-14T17:37:39.503Z [info] [notes] 📊 Elements: text=65, rect=10, line=10, total=85
+2025-10-14T17:37:39.503Z [info] [notes] Debug copy saved: /tmp/notes-step2-1760463459503.svg
+2025-10-14T17:37:39.504Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T17:37:39.504Z [info] [notes]    - Text elements: 65/8 ✓
+2025-10-14T17:37:39.504Z [info] [notes]    - Visual elements: 29/5 ✓
+2025-10-14T17:37:39.504Z [info] [notes]    - Total elements: 94/20 ✓
+2025-10-14T17:37:39.504Z [info] [notes]    - Content length: 12339/2000 ✓
+2025-10-14T17:37:39.504Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T17:37:39.504Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T17:37:39.504Z [info] [notes] ✅ SUCCESS on attempt 1/3 (87.47s total)
+2025-10-14T17:37:39.504Z [info] [stepVisuals] ✅ Notes generated (12339 chars)
+2025-10-14T17:37:39.504Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T17:37:39.504Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T17:37:39.505Z [info] [AudioNarration] Generating narrations with audio for step 2
+2025-10-14T17:37:39.506Z [info] [narration] Generating narrations for step 2 (5 visuals)
+2025-10-14T17:37:39.506Z [debug] [narration] Sending prompt (4830 chars) to Gemini
+2025-10-14T17:37:45.651Z [info] [notes] ⏱️  Generation completed in 95.61s
+2025-10-14T17:37:45.651Z [debug] [notes] Finish reason: STOP
+2025-10-14T17:37:45.652Z [info] [notes] ✅ Generated SVG keynote in 95.61s (13609 chars)
+2025-10-14T17:37:45.652Z [info] [notes] 📊 Elements: text=67, rect=7, line=13, total=87
+2025-10-14T17:37:45.652Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760463465652.svg
+2025-10-14T17:37:45.652Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T17:37:45.652Z [info] [notes]    - Text elements: 67/8 ✓
+2025-10-14T17:37:45.652Z [info] [notes]    - Visual elements: 30/5 ✓
+2025-10-14T17:37:45.652Z [info] [notes]    - Total elements: 97/20 ✓
+2025-10-14T17:37:45.652Z [info] [notes]    - Content length: 13609/2000 ✓
+2025-10-14T17:37:45.652Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T17:37:45.652Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T17:37:45.653Z [info] [notes] ✅ SUCCESS on attempt 1/3 (95.61s total)
+2025-10-14T17:37:45.653Z [info] [stepVisuals] ✅ Notes generated (13609 chars)
+2025-10-14T17:37:48.552Z [info] [notes] ⏱️  Generation completed in 94.51s
+2025-10-14T17:37:48.552Z [debug] [notes] Finish reason: STOP
+2025-10-14T17:37:48.552Z [info] [notes] ✅ Generated SVG keynote in 94.51s (17073 chars)
+2025-10-14T17:37:48.552Z [info] [notes] 📊 Elements: text=93, rect=16, line=17, total=126
+2025-10-14T17:37:48.553Z [info] [notes] Debug copy saved: /tmp/notes-step3-1760463468552.svg
+2025-10-14T17:37:48.553Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T17:37:48.553Z [info] [notes]    - Text elements: 93/8 ✓
+2025-10-14T17:37:48.553Z [info] [notes]    - Visual elements: 45/5 ✓
+2025-10-14T17:37:48.553Z [info] [notes]    - Total elements: 138/20 ✓
+2025-10-14T17:37:48.553Z [info] [notes]    - Content length: 17073/2000 ✓
+2025-10-14T17:37:48.553Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T17:37:48.553Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T17:37:48.553Z [info] [notes] ✅ SUCCESS on attempt 1/3 (94.51s total)
+2025-10-14T17:37:48.553Z [info] [stepVisuals] ✅ Notes generated (17073 chars)
+2025-10-14T17:37:48.553Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T17:37:48.553Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T17:37:48.553Z [info] [AudioNarration] Generating narrations with audio for step 3
+2025-10-14T17:37:48.553Z [info] [narration] Generating narrations for step 3 (5 visuals)
+2025-10-14T17:37:48.554Z [debug] [narration] Sending prompt (4536 chars) to Gemini
+2025-10-14T17:37:49.067Z [info] [narration] ✅ Generated 5 narrations in 9.56s (103s total audio)
+2025-10-14T17:37:49.067Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T17:37:49.067Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T17:37:49.067Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T17:37:49.067Z [info] [TTS] Synthesizing text (307 chars) [MOCK MODE]...
+2025-10-14T17:37:49.067Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:49.199Z [info] [TTS] ✅ Synthesized 307 chars → 20s audio in 132ms
+2025-10-14T17:37:49.200Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-0-prod-test-1760463350.mp3
+2025-10-14T17:37:49.200Z [debug] [AudioNarration] ✅ Audio 1 generated: 19661 bytes, 20s
+2025-10-14T17:37:49.200Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T17:37:49.200Z [info] [TTS] Synthesizing text (256 chars) [MOCK MODE]...
+2025-10-14T17:37:49.200Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:49.357Z [info] [TTS] ✅ Synthesized 256 chars → 15s audio in 157ms
+2025-10-14T17:37:49.357Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-1-prod-test-1760463350.mp3
+2025-10-14T17:37:49.357Z [debug] [AudioNarration] ✅ Audio 2 generated: 15156 bytes, 15s
+2025-10-14T17:37:49.357Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T17:37:49.357Z [info] [TTS] Synthesizing text (239 chars) [MOCK MODE]...
+2025-10-14T17:37:49.357Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:49.510Z [info] [TTS] ✅ Synthesized 239 chars → 16s audio in 153ms
+2025-10-14T17:37:49.510Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-2-prod-test-1760463350.mp3
+2025-10-14T17:37:49.510Z [debug] [AudioNarration] ✅ Audio 3 generated: 15565 bytes, 16s
+2025-10-14T17:37:49.510Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T17:37:49.510Z [info] [TTS] Synthesizing text (256 chars) [MOCK MODE]...
+2025-10-14T17:37:49.510Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:49.693Z [info] [TTS] ✅ Synthesized 256 chars → 18s audio in 183ms
+2025-10-14T17:37:49.693Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-3-prod-test-1760463350.mp3
+2025-10-14T17:37:49.693Z [debug] [AudioNarration] ✅ Audio 4 generated: 17613 bytes, 18s
+2025-10-14T17:37:49.693Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T17:37:49.693Z [info] [TTS] Synthesizing text (268 chars) [MOCK MODE]...
+2025-10-14T17:37:49.693Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:49.980Z [info] [TTS] ✅ Synthesized 268 chars → 17s audio in 287ms
+2025-10-14T17:37:49.980Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-4-prod-test-1760463350.mp3
+2025-10-14T17:37:49.980Z [debug] [AudioNarration] ✅ Audio 5 generated: 16794 bytes, 17s
+2025-10-14T17:37:49.980Z [info] [AudioNarration] ✅ Audio generation complete in 913ms
+2025-10-14T17:37:49.980Z [info] [AudioNarration] Total audio size: 0.08 MB
+2025-10-14T17:37:49.980Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (103s total, with audio, 0.08MB)
+2025-10-14T17:37:49.980Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T17:37:49.980Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T17:37:49.982Z [debug] [cache] Cached chunk for query step 2
+2025-10-14T17:37:49.982Z [debug] [monitor] Step 2 generation for prod-test-1760463350 took 97943ms
+2025-10-14T17:37:49.982Z [info] [parallel] ✅ Step 2 COMPLETE in 97943ms with 5 actions
+2025-10-14T17:37:49.983Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (0 sockets)
+2025-10-14T17:37:58.528Z [info] [narration] ✅ Generated 5 narrations in 9.97s (108s total audio)
+2025-10-14T17:37:58.528Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T17:37:58.528Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T17:37:58.528Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T17:37:58.528Z [info] [TTS] Synthesizing text (320 chars) [MOCK MODE]...
+2025-10-14T17:37:58.528Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:58.764Z [info] [TTS] ✅ Synthesized 320 chars → 18s audio in 236ms
+2025-10-14T17:37:58.764Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-0-prod-test-1760463350.mp3
+2025-10-14T17:37:58.764Z [debug] [AudioNarration] ✅ Audio 1 generated: 18023 bytes, 18s
+2025-10-14T17:37:58.764Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T17:37:58.764Z [info] [TTS] Synthesizing text (312 chars) [MOCK MODE]...
+2025-10-14T17:37:58.765Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:58.916Z [info] [TTS] ✅ Synthesized 312 chars → 20s audio in 152ms
+2025-10-14T17:37:58.917Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-1-prod-test-1760463350.mp3
+2025-10-14T17:37:58.917Z [debug] [AudioNarration] ✅ Audio 2 generated: 19661 bytes, 20s
+2025-10-14T17:37:58.917Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T17:37:58.917Z [info] [TTS] Synthesizing text (314 chars) [MOCK MODE]...
+2025-10-14T17:37:58.917Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:59.075Z [info] [TTS] ✅ Synthesized 314 chars → 19s audio in 158ms
+2025-10-14T17:37:59.075Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-2-prod-test-1760463350.mp3
+2025-10-14T17:37:59.075Z [debug] [AudioNarration] ✅ Audio 3 generated: 18842 bytes, 19s
+2025-10-14T17:37:59.075Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T17:37:59.075Z [info] [TTS] Synthesizing text (279 chars) [MOCK MODE]...
+2025-10-14T17:37:59.075Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:59.269Z [info] [TTS] ✅ Synthesized 279 chars → 18s audio in 194ms
+2025-10-14T17:37:59.269Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-3-prod-test-1760463350.mp3
+2025-10-14T17:37:59.270Z [debug] [AudioNarration] ✅ Audio 4 generated: 18432 bytes, 18s
+2025-10-14T17:37:59.270Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T17:37:59.270Z [info] [TTS] Synthesizing text (308 chars) [MOCK MODE]...
+2025-10-14T17:37:59.270Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:37:59.485Z [info] [TTS] ✅ Synthesized 308 chars → 19s audio in 215ms
+2025-10-14T17:37:59.485Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-4-prod-test-1760463350.mp3
+2025-10-14T17:37:59.485Z [debug] [AudioNarration] ✅ Audio 5 generated: 19252 bytes, 19s
+2025-10-14T17:37:59.485Z [info] [AudioNarration] ✅ Audio generation complete in 957ms
+2025-10-14T17:37:59.485Z [info] [AudioNarration] Total audio size: 0.09 MB
+2025-10-14T17:37:59.485Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (108s total, with audio, 0.09MB)
+2025-10-14T17:37:59.485Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T17:37:59.485Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T17:37:59.488Z [debug] [cache] Cached chunk for query step 3
+2025-10-14T17:37:59.488Z [debug] [monitor] Step 3 generation for prod-test-1760463350 took 105447ms
+2025-10-14T17:37:59.488Z [info] [parallel] ✅ Step 3 COMPLETE in 105447ms with 5 actions
+2025-10-14T17:37:59.488Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (0 sockets)
+2025-10-14T17:38:18.334Z [debug] [monitor] Metrics updated:
+2025-10-14T17:38:27.877Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T17:38:27.877Z [debug] [codegenV3] Received 11670 chars from API
+2025-10-14T17:38:27.877Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T17:38:27.877Z [info] [codegenV3] ✅ Generated SVG in 137.84s (11670 chars)
+2025-10-14T17:38:27.877Z [info] [codegenV3] 🎬 ANIMATIONS: 67 total (<animate>: 54, <animateMotion>: 9, <animateTransform>: 4)
+2025-10-14T17:38:27.877Z [info] [codegenV3] 📊 CONTENT: labels=10, shapes=19
+2025-10-14T17:38:27.877Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T17:38:27.878Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T17:38:27.878Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T17:38:27.878Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T17:38:27.878Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T17:38:27.878Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T17:38:27.878Z [info] [AudioNarration] Generating narrations with audio for step 1
+2025-10-14T17:38:27.878Z [info] [narration] Generating narrations for step 1 (5 visuals)
+2025-10-14T17:38:27.878Z [debug] [narration] Sending prompt (4122 chars) to Gemini
+2025-10-14T17:38:40.714Z [info] [narration] ✅ Generated 5 narrations in 12.84s (104s total audio)
+2025-10-14T17:38:40.714Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T17:38:40.714Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T17:38:40.714Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T17:38:40.714Z [info] [TTS] Synthesizing text (364 chars) [MOCK MODE]...
+2025-10-14T17:38:40.714Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:38:40.944Z [info] [TTS] ✅ Synthesized 364 chars → 24s audio in 230ms
+2025-10-14T17:38:40.945Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-0-prod-test-1760463350.mp3
+2025-10-14T17:38:40.945Z [debug] [AudioNarration] ✅ Audio 1 generated: 24167 bytes, 24s
+2025-10-14T17:38:40.945Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T17:38:40.945Z [info] [TTS] Synthesizing text (315 chars) [MOCK MODE]...
+2025-10-14T17:38:40.945Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:38:41.050Z [info] [TTS] ✅ Synthesized 315 chars → 19s audio in 105ms
+2025-10-14T17:38:41.050Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-1-prod-test-1760463350.mp3
+2025-10-14T17:38:41.050Z [debug] [AudioNarration] ✅ Audio 2 generated: 18842 bytes, 19s
+2025-10-14T17:38:41.050Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T17:38:41.050Z [info] [TTS] Synthesizing text (224 chars) [MOCK MODE]...
+2025-10-14T17:38:41.050Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:38:41.281Z [info] [TTS] ✅ Synthesized 224 chars → 16s audio in 231ms
+2025-10-14T17:38:41.281Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-2-prod-test-1760463350.mp3
+2025-10-14T17:38:41.281Z [debug] [AudioNarration] ✅ Audio 3 generated: 16384 bytes, 16s
+2025-10-14T17:38:41.281Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T17:38:41.281Z [info] [TTS] Synthesizing text (300 chars) [MOCK MODE]...
+2025-10-14T17:38:41.281Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:38:41.497Z [info] [TTS] ✅ Synthesized 300 chars → 20s audio in 216ms
+2025-10-14T17:38:41.497Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-3-prod-test-1760463350.mp3
+2025-10-14T17:38:41.497Z [debug] [AudioNarration] ✅ Audio 4 generated: 20480 bytes, 20s
+2025-10-14T17:38:41.497Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T17:38:41.497Z [info] [TTS] Synthesizing text (287 chars) [MOCK MODE]...
+2025-10-14T17:38:41.497Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:38:41.714Z [info] [TTS] ✅ Synthesized 287 chars → 18s audio in 217ms
+2025-10-14T17:38:41.714Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-4-prod-test-1760463350.mp3
+2025-10-14T17:38:41.714Z [debug] [AudioNarration] ✅ Audio 5 generated: 18432 bytes, 18s
+2025-10-14T17:38:41.714Z [info] [AudioNarration] ✅ Audio generation complete in 1000ms
+2025-10-14T17:38:41.714Z [info] [AudioNarration] Total audio size: 0.09 MB
+2025-10-14T17:38:41.714Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (104s total, with audio, 0.09MB)
+2025-10-14T17:38:41.714Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T17:38:41.714Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T17:38:41.717Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T17:38:41.718Z [debug] [monitor] Step 1 generation for prod-test-1760463350 took 151681ms
+2025-10-14T17:38:41.718Z [info] [parallel] ✅ Step 1 COMPLETE in 151681ms with 5 actions
+2025-10-14T17:38:41.719Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-14T17:38:41.719Z [debug] [parallel] Parallel generation complete: 3/3 successful in 151682ms
+2025-10-14T17:38:41.719Z [debug] [monitor] Completed request prod-test-1760463350 in 171380ms (success: true)
+2025-10-14T17:38:41.719Z [debug] [parallel] Job complete for session prod-test-1760463350
+2025-10-14T17:39:18.341Z [debug] [monitor] Metrics updated:
+2025-10-14T17:40:18.345Z [debug] [monitor] Metrics updated:
+2025-10-14T17:41:18.346Z [debug] [monitor] Metrics updated:
+2025-10-14T17:42:18.347Z [debug] [monitor] Metrics updated:
+2025-10-14T17:43:18.347Z [debug] [monitor] Metrics updated:
+2025-10-14T17:44:18.350Z [debug] [monitor] Metrics updated:
+2025-10-14T17:45:18.352Z [debug] [monitor] Metrics updated:
+2025-10-14T17:46:18.354Z [debug] [monitor] Metrics updated:
+2025-10-14T17:46:30.420Z [info] [TTS] Service initialized successfully
+2025-10-14T17:46:30.441Z [info] [TTS] Testing connection...
+2025-10-14T17:46:30.442Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T17:46:30.442Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:46:30.443Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T17:46:30.680Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 237ms
+2025-10-14T17:46:30.680Z [info] [TTS] ✅ Connection test successful
+2025-10-14T17:46:30.680Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T17:46:30.681Z [info] [TTS] Estimated duration: 5s
+2025-10-14T17:46:30.690Z [debug] NEW Plan worker created
+2025-10-14T17:46:30.691Z [debug] NEW Gen worker created
+2025-10-14T17:46:30.691Z [debug] NEW Parallel worker created
+2025-10-14T17:46:30.695Z [debug] Server listening on port 8000
+2025-10-14T17:47:30.702Z [debug] [monitor] Metrics updated:
+2025-10-14T17:48:30.714Z [debug] [monitor] Metrics updated:
+2025-10-14T17:49:30.728Z [debug] [monitor] Metrics updated:
+2025-10-14T17:50:10.710Z [info] [TTS] Service initialized successfully
+2025-10-14T17:50:10.733Z [info] [TTS] Testing connection...
+2025-10-14T17:50:10.733Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T17:50:10.733Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:50:10.735Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T17:50:10.999Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 266ms
+2025-10-14T17:50:10.999Z [info] [TTS] ✅ Connection test successful
+2025-10-14T17:50:10.999Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T17:50:10.999Z [info] [TTS] Estimated duration: 5s
+2025-10-14T17:50:11.001Z [debug] NEW Plan worker created
+2025-10-14T17:50:11.002Z [debug] NEW Gen worker created
+2025-10-14T17:50:11.002Z [debug] NEW Parallel worker created
+2025-10-14T17:50:11.013Z [debug] Shutting down server...
+2025-10-14T17:50:30.742Z [debug] [monitor] Metrics updated:
+2025-10-14T17:51:30.754Z [debug] [monitor] Metrics updated:
+2025-10-14T17:52:30.764Z [debug] [monitor] Metrics updated:
+2025-10-14T17:53:30.773Z [debug] [monitor] Metrics updated:
+2025-10-14T17:54:30.782Z [debug] [monitor] Metrics updated:
+2025-10-14T17:54:56.613Z [info] [TTS] Service initialized successfully
+2025-10-14T17:54:56.636Z [info] [TTS] Testing connection...
+2025-10-14T17:54:56.636Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T17:54:56.636Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T17:54:56.637Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T17:54:56.930Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 294ms
+2025-10-14T17:54:56.931Z [info] [TTS] ✅ Connection test successful
+2025-10-14T17:54:56.931Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T17:54:56.931Z [info] [TTS] Estimated duration: 5s
+2025-10-14T17:54:56.933Z [debug] NEW Plan worker created
+2025-10-14T17:54:56.933Z [debug] NEW Gen worker created
+2025-10-14T17:54:56.933Z [debug] NEW Parallel worker created
+2025-10-14T17:54:56.946Z [debug] Shutting down server...
+2025-10-14T17:55:30.783Z [debug] [monitor] Metrics updated:
+2025-10-14T17:56:30.788Z [debug] [monitor] Metrics updated:
+2025-10-14T17:57:30.791Z [debug] [monitor] Metrics updated:
+2025-10-14T17:58:30.793Z [debug] [monitor] Metrics updated:
+2025-10-14T17:59:30.792Z [debug] [monitor] Metrics updated:
+2025-10-14T18:00:30.795Z [debug] [monitor] Metrics updated:
+2025-10-14T18:01:30.797Z [debug] [monitor] Metrics updated:
+2025-10-14T18:02:30.798Z [debug] [monitor] Metrics updated:
+2025-10-14T18:03:30.817Z [debug] [monitor] Metrics updated:
+2025-10-14T18:04:30.834Z [debug] [monitor] Metrics updated:
+2025-10-14T18:05:30.850Z [debug] [monitor] Metrics updated:
+2025-10-14T18:06:30.864Z [debug] [monitor] Metrics updated:
+2025-10-14T18:07:30.874Z [debug] [monitor] Metrics updated:
+2025-10-14T18:08:30.885Z [debug] [monitor] Metrics updated:
+2025-10-14T18:09:30.895Z [debug] [monitor] Metrics updated:
+2025-10-14T18:10:30.903Z [debug] [monitor] Metrics updated:
+2025-10-14T18:11:30.905Z [debug] [monitor] Metrics updated:
+2025-10-14T18:12:30.909Z [debug] [monitor] Metrics updated:
+2025-10-14T18:13:30.913Z [debug] [monitor] Metrics updated:
+2025-10-14T18:14:30.915Z [debug] [monitor] Metrics updated:
+2025-10-14T18:15:30.916Z [debug] [monitor] Metrics updated:
+2025-10-14T18:16:30.920Z [debug] [monitor] Metrics updated:
+2025-10-14T18:17:30.923Z [debug] [monitor] Metrics updated:
+2025-10-14T18:18:30.924Z [debug] [monitor] Metrics updated:
+2025-10-14T18:19:30.943Z [debug] [monitor] Metrics updated:
+2025-10-14T18:20:30.961Z [debug] [monitor] Metrics updated:
+2025-10-14T18:21:30.978Z [debug] [monitor] Metrics updated:
+2025-10-14T18:22:30.993Z [debug] [monitor] Metrics updated:
+2025-10-14T18:23:18.666Z [info] [TTS] Service initialized successfully
+2025-10-14T18:23:18.688Z [info] [TTS] Testing connection...
+2025-10-14T18:23:18.688Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T18:23:18.688Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:23:18.690Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T18:23:18.913Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 225ms
+2025-10-14T18:23:18.914Z [info] [TTS] ✅ Connection test successful
+2025-10-14T18:23:18.914Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T18:23:18.914Z [info] [TTS] Estimated duration: 5s
+2025-10-14T18:23:18.919Z [debug] NEW Plan worker created
+2025-10-14T18:23:18.919Z [debug] NEW Gen worker created
+2025-10-14T18:23:18.919Z [debug] NEW Parallel worker created
+2025-10-14T18:23:18.923Z [debug] Server listening on port 8000
+2025-10-14T18:24:18.934Z [debug] [monitor] Metrics updated:
+2025-10-14T18:25:18.951Z [debug] [monitor] Metrics updated:
+2025-10-14T18:26:18.966Z [debug] [monitor] Metrics updated:
+2025-10-14T18:27:18.979Z [debug] [monitor] Metrics updated:
+2025-10-14T18:28:18.992Z [debug] [monitor] Metrics updated:
+2025-10-14T18:29:19.002Z [debug] [monitor] Metrics updated:
+2025-10-14T18:30:19.011Z [debug] [monitor] Metrics updated:
+2025-10-14T18:31:19.018Z [debug] [monitor] Metrics updated:
+2025-10-14T18:32:19.024Z [debug] [monitor] Metrics updated:
+2025-10-14T18:33:19.028Z [debug] [monitor] Metrics updated:
+2025-10-14T18:33:40.402Z [debug] [socket] New connection: aGfvG-aCPehkBY2PAAAB
+2025-10-14T18:33:40.403Z [debug] [socket] Socket aGfvG-aCPehkBY2PAAAB joined session 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:33:40.404Z [debug] [socket] Socket aGfvG-aCPehkBY2PAAAB is now in rooms: aGfvG-aCPehkBY2PAAAB, 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:33:40.405Z [debug] [socket] Socket aGfvG-aCPehkBY2PAAAB joined session 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:33:40.405Z [debug] [socket] Socket aGfvG-aCPehkBY2PAAAB is now in rooms: aGfvG-aCPehkBY2PAAAB, 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:33:40.525Z [debug] Received request on /api/query {"body":{"query":"teach me about the protein synthesis and protein structure and its chemical and molecular study","sessionId":"3221db3a-2d11-4b10-85f9-4a63ce124086"}}
+2025-10-14T18:33:40.526Z [debug] [api] Stored query for session 3221db3a-2d11-4b10-85f9-4a63ce124086: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:40.526Z [debug] [orchestrator] Enqueuing plan for session 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:33:40.527Z [debug] [orchestrator] Plan job added with id 2 for session 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:33:40.529Z [debug] [plan] START: session=3221db3a-2d11-4b10-85f9-4a63ce124086 query=teach me about the protein synthesis and protein structure and its chemical and molecular study
+2025-10-14T18:33:40.529Z [debug] [monitor] Started tracking request 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:33:40.529Z [debug] [cache] MISS - No cached plan for query: "teach me about the protein synthesis and protein s..."
+2025-10-14T18:33:40.530Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T18:33:40.540Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T18:33:56.147Z [debug] [planner] Received response from Gemini in 15617ms
+2025-10-14T18:33:56.147Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Proteins: Your Body's Tiny Builders & How They're Made",
+  "subtitle": "Discover how proteins are synthesized, how their shape determines their function, and why this molecular understanding is crucial.",
+  "toc": [
+    {"minute": 1, "title": "The Intuition", "summary": "Proteins are molecular machines; their 3D shape dictates their job."},
+    {"minute": 2, "title": "How It Works", "summary": "DNA blueprint -> RNA messenger -> amino acid chain -> specific 3D folding."},
+  ...
+2025-10-14T18:33:56.147Z [debug] [planner] Extracted JSON (length: 3185)
+2025-10-14T18:33:56.147Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T18:33:56.147Z [debug] [monitor] Plan generation for 3221db3a-2d11-4b10-85f9-4a63ce124086 took 15618ms
+2025-10-14T18:33:56.147Z [debug] [cache] Cached plan for query: "teach me about the protein synthesis and protein s..."
+2025-10-14T18:33:56.148Z [debug] [plan] OK: session=3221db3a-2d11-4b10-85f9-4a63ce124086 plan received with 3 steps
+2025-10-14T18:33:56.149Z [debug] [plan] Emitted plan event to session 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:33:56.149Z [debug] [plan] Enqueuing PARALLEL generation of all 3 steps
+2025-10-14T18:33:56.149Z [debug] [plan] END: session=3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:33:56.150Z [info] [parallel] ⚡ STARTING parallel generation for 3 steps (session: 3221db3a-2d11-4b10-85f9-4a63ce124086)
+2025-10-14T18:33:56.151Z [info] [parallel] ⏸️  Staggering 2000ms before step 2 (optimized for paid tier)
+2025-10-14T18:33:56.151Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T18:33:56.151Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations + narrations
+2025-10-14T18:33:56.151Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 1
+2025-10-14T18:33:56.151Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T18:33:56.151Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T18:33:56.151Z [info] [notes] 📚 Subtopic: "Imagine your body as a bustling city. Who are the tiny, essential workers building structures, transporting goods, defending the city, and sending messages? These are proteins! Each protein has a unique, intricate 3D shape – from long fibers to complex globular machines – which perfectly fits its specific job, whether it's powering muscles, fighting infection, or digesting food. Without the right shape, a protein can't do its job, making its structure absolutely critical for life."
+2025-10-14T18:33:56.151Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T18:33:56.151Z [info] [notes] 🔄 Attempt 1/3 for step 1
+2025-10-14T18:33:56.151Z [info] [notes] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:56.151Z [info] [notes] Subtopic: "Imagine your body as a bustling city. Who are the tiny, essential workers building structures, transporting goods, defending the city, and sending messages? These are proteins! Each protein has a unique, intricate 3D shape – from long fibers to complex globular machines – which perfectly fits its specific job, whether it's powering muscles, fighting infection, or digesting food. Without the right shape, a protein can't do its job, making its structure absolutely critical for life."
+2025-10-14T18:33:56.151Z [debug] [notes] Temperature: 0.75
+2025-10-14T18:33:56.151Z [debug] [notes] Prompt length: 4544 chars
+2025-10-14T18:33:56.152Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T18:33:56.152Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T18:33:56.152Z [info] [codegenV3] Generating step 1: Imagine your body as a bustling city. Who are the tiny, essential workers building structures, transporting goods, defending the city, and sending messages? These are proteins! Each protein has a unique, intricate 3D shape – from long fibers to complex globular machines – which perfectly fits its specific job, whether it's powering muscles, fighting infection, or digesting food. Without the right shape, a protein can't do its job, making its structure absolutely critical for life.
+2025-10-14T18:33:56.152Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:56.152Z [debug] [codegenV3] Prompt length: 1194 chars
+2025-10-14T18:33:56.152Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T18:33:56.152Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T18:33:56.152Z [info] [codegenV3] Generating step 1: Imagine your body as a bustling city. Who are the tiny, essential workers building structures, transporting goods, defending the city, and sending messages? These are proteins! Each protein has a unique, intricate 3D shape – from long fibers to complex globular machines – which perfectly fits its specific job, whether it's powering muscles, fighting infection, or digesting food. Without the right shape, a protein can't do its job, making its structure absolutely critical for life.
+2025-10-14T18:33:56.152Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:56.152Z [debug] [codegenV3] Prompt length: 1194 chars
+2025-10-14T18:33:56.152Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T18:33:56.152Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T18:33:56.152Z [info] [codegenV3] Generating step 1: Imagine your body as a bustling city. Who are the tiny, essential workers building structures, transporting goods, defending the city, and sending messages? These are proteins! Each protein has a unique, intricate 3D shape – from long fibers to complex globular machines – which perfectly fits its specific job, whether it's powering muscles, fighting infection, or digesting food. Without the right shape, a protein can't do its job, making its structure absolutely critical for life.
+2025-10-14T18:33:56.152Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:56.152Z [debug] [codegenV3] Prompt length: 1194 chars
+2025-10-14T18:33:56.152Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T18:33:56.152Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T18:33:56.152Z [info] [codegenV3] Generating step 1: Imagine your body as a bustling city. Who are the tiny, essential workers building structures, transporting goods, defending the city, and sending messages? These are proteins! Each protein has a unique, intricate 3D shape – from long fibers to complex globular machines – which perfectly fits its specific job, whether it's powering muscles, fighting infection, or digesting food. Without the right shape, a protein can't do its job, making its structure absolutely critical for life.
+2025-10-14T18:33:56.152Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:56.152Z [debug] [codegenV3] Prompt length: 1194 chars
+2025-10-14T18:33:56.152Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T18:33:58.151Z [info] [parallel] ⏸️  Staggering 2000ms before step 3 (optimized for paid tier)
+2025-10-14T18:33:58.151Z [debug] [cache] MISS - No cached chunk for step 2
+2025-10-14T18:33:58.152Z [info] [parallel] 🚀 Step 2: Generating notes + 4 animations + narrations
+2025-10-14T18:33:58.152Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 2
+2025-10-14T18:33:58.152Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 2
+2025-10-14T18:33:58.152Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T18:33:58.152Z [info] [notes] 📚 Subtopic: "So, how are these amazing protein workers built? It starts in the cell's nucleus, where DNA holds the 'master blueprints.' A specific section of DNA is copied into a messenger RNA (mRNA) molecule, like a temporary instruction scroll (Transcription). This mRNA then travels to a ribosome, the cell's 'protein factory.' Here, transfer RNA (tRNA) molecules act as delivery trucks, bringing specific amino acid 'building blocks' one by one, assembling them into a long chain (Translation). As this chain grows, driven by chemical attractions and repulsions between the amino acids, it spontaneously folds into its precise 3D structure: first into simple coils or sheets (secondary), then into complex overall globes (tertiary), and sometimes even multiple globes combine (quaternary). It's all about the precise chemical bonds and interactions!"
+2025-10-14T18:33:58.152Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T18:33:58.152Z [info] [notes] 🔄 Attempt 1/3 for step 2
+2025-10-14T18:33:58.152Z [info] [notes] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:58.152Z [info] [notes] Subtopic: "So, how are these amazing protein workers built? It starts in the cell's nucleus, where DNA holds the 'master blueprints.' A specific section of DNA is copied into a messenger RNA (mRNA) molecule, like a temporary instruction scroll (Transcription). This mRNA then travels to a ribosome, the cell's 'protein factory.' Here, transfer RNA (tRNA) molecules act as delivery trucks, bringing specific amino acid 'building blocks' one by one, assembling them into a long chain (Translation). As this chain grows, driven by chemical attractions and repulsions between the amino acids, it spontaneously folds into its precise 3D structure: first into simple coils or sheets (secondary), then into complex overall globes (tertiary), and sometimes even multiple globes combine (quaternary). It's all about the precise chemical bonds and interactions!"
+2025-10-14T18:33:58.152Z [debug] [notes] Temperature: 0.75
+2025-10-14T18:33:58.152Z [debug] [notes] Prompt length: 4899 chars
+2025-10-14T18:33:58.152Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 2
+2025-10-14T18:33:58.152Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T18:33:58.152Z [info] [codegenV3] Generating step 2: So, how are these amazing protein workers built? It starts in the cell's nucleus, where DNA holds the 'master blueprints.' A specific section of DNA is copied into a messenger RNA (mRNA) molecule, like a temporary instruction scroll (Transcription). This mRNA then travels to a ribosome, the cell's 'protein factory.' Here, transfer RNA (tRNA) molecules act as delivery trucks, bringing specific amino acid 'building blocks' one by one, assembling them into a long chain (Translation). As this chain grows, driven by chemical attractions and repulsions between the amino acids, it spontaneously folds into its precise 3D structure: first into simple coils or sheets (secondary), then into complex overall globes (tertiary), and sometimes even multiple globes combine (quaternary). It's all about the precise chemical bonds and interactions!
+2025-10-14T18:33:58.152Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:58.152Z [debug] [codegenV3] Prompt length: 1549 chars
+2025-10-14T18:33:58.152Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 2
+2025-10-14T18:33:58.152Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T18:33:58.152Z [info] [codegenV3] Generating step 2: So, how are these amazing protein workers built? It starts in the cell's nucleus, where DNA holds the 'master blueprints.' A specific section of DNA is copied into a messenger RNA (mRNA) molecule, like a temporary instruction scroll (Transcription). This mRNA then travels to a ribosome, the cell's 'protein factory.' Here, transfer RNA (tRNA) molecules act as delivery trucks, bringing specific amino acid 'building blocks' one by one, assembling them into a long chain (Translation). As this chain grows, driven by chemical attractions and repulsions between the amino acids, it spontaneously folds into its precise 3D structure: first into simple coils or sheets (secondary), then into complex overall globes (tertiary), and sometimes even multiple globes combine (quaternary). It's all about the precise chemical bonds and interactions!
+2025-10-14T18:33:58.152Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:58.153Z [debug] [codegenV3] Prompt length: 1549 chars
+2025-10-14T18:33:58.153Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 2
+2025-10-14T18:33:58.153Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T18:33:58.153Z [info] [codegenV3] Generating step 2: So, how are these amazing protein workers built? It starts in the cell's nucleus, where DNA holds the 'master blueprints.' A specific section of DNA is copied into a messenger RNA (mRNA) molecule, like a temporary instruction scroll (Transcription). This mRNA then travels to a ribosome, the cell's 'protein factory.' Here, transfer RNA (tRNA) molecules act as delivery trucks, bringing specific amino acid 'building blocks' one by one, assembling them into a long chain (Translation). As this chain grows, driven by chemical attractions and repulsions between the amino acids, it spontaneously folds into its precise 3D structure: first into simple coils or sheets (secondary), then into complex overall globes (tertiary), and sometimes even multiple globes combine (quaternary). It's all about the precise chemical bonds and interactions!
+2025-10-14T18:33:58.153Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:58.153Z [debug] [codegenV3] Prompt length: 1549 chars
+2025-10-14T18:33:58.153Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 2
+2025-10-14T18:33:58.153Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 2
+2025-10-14T18:33:58.153Z [info] [codegenV3] Generating step 2: So, how are these amazing protein workers built? It starts in the cell's nucleus, where DNA holds the 'master blueprints.' A specific section of DNA is copied into a messenger RNA (mRNA) molecule, like a temporary instruction scroll (Transcription). This mRNA then travels to a ribosome, the cell's 'protein factory.' Here, transfer RNA (tRNA) molecules act as delivery trucks, bringing specific amino acid 'building blocks' one by one, assembling them into a long chain (Translation). As this chain grows, driven by chemical attractions and repulsions between the amino acids, it spontaneously folds into its precise 3D structure: first into simple coils or sheets (secondary), then into complex overall globes (tertiary), and sometimes even multiple globes combine (quaternary). It's all about the precise chemical bonds and interactions!
+2025-10-14T18:33:58.153Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:33:58.153Z [debug] [codegenV3] Prompt length: 1549 chars
+2025-10-14T18:33:58.153Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T18:34:00.152Z [debug] [cache] MISS - No cached chunk for step 3
+2025-10-14T18:34:00.152Z [info] [parallel] 🚀 Step 3: Generating notes + 4 animations + narrations
+2025-10-14T18:34:00.152Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 3
+2025-10-14T18:34:00.152Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 3
+2025-10-14T18:34:00.152Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T18:34:00.152Z [info] [notes] 📚 Subtopic: "Understanding protein synthesis and structure is not just academic; it's vital for medicine and biotechnology. Scientists use advanced tools like X-ray crystallography or cryo-electron microscopy to 'see' these incredibly tiny 3D protein shapes at an atomic level. This detailed molecular insight allows us to design new drugs that precisely fit into a faulty protein's active site to block its harmful action, much like designing a specific key for a specific lock. It also helps us understand diseases caused by misfolded proteins (like Alzheimer's or Parkinson's), or engineer new proteins for industrial or therapeutic uses, unlocking cures and innovations by targeting proteins at their chemical core."
+2025-10-14T18:34:00.152Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T18:34:00.152Z [info] [notes] 🔄 Attempt 1/3 for step 3
+2025-10-14T18:34:00.152Z [info] [notes] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:34:00.153Z [info] [notes] Subtopic: "Understanding protein synthesis and structure is not just academic; it's vital for medicine and biotechnology. Scientists use advanced tools like X-ray crystallography or cryo-electron microscopy to 'see' these incredibly tiny 3D protein shapes at an atomic level. This detailed molecular insight allows us to design new drugs that precisely fit into a faulty protein's active site to block its harmful action, much like designing a specific key for a specific lock. It also helps us understand diseases caused by misfolded proteins (like Alzheimer's or Parkinson's), or engineer new proteins for industrial or therapeutic uses, unlocking cures and innovations by targeting proteins at their chemical core."
+2025-10-14T18:34:00.153Z [debug] [notes] Temperature: 0.75
+2025-10-14T18:34:00.153Z [debug] [notes] Prompt length: 4765 chars
+2025-10-14T18:34:00.153Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 3
+2025-10-14T18:34:00.153Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T18:34:00.153Z [info] [codegenV3] Generating step 3: Understanding protein synthesis and structure is not just academic; it's vital for medicine and biotechnology. Scientists use advanced tools like X-ray crystallography or cryo-electron microscopy to 'see' these incredibly tiny 3D protein shapes at an atomic level. This detailed molecular insight allows us to design new drugs that precisely fit into a faulty protein's active site to block its harmful action, much like designing a specific key for a specific lock. It also helps us understand diseases caused by misfolded proteins (like Alzheimer's or Parkinson's), or engineer new proteins for industrial or therapeutic uses, unlocking cures and innovations by targeting proteins at their chemical core.
+2025-10-14T18:34:00.153Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:34:00.153Z [debug] [codegenV3] Prompt length: 1415 chars
+2025-10-14T18:34:00.153Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 3
+2025-10-14T18:34:00.153Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T18:34:00.153Z [info] [codegenV3] Generating step 3: Understanding protein synthesis and structure is not just academic; it's vital for medicine and biotechnology. Scientists use advanced tools like X-ray crystallography or cryo-electron microscopy to 'see' these incredibly tiny 3D protein shapes at an atomic level. This detailed molecular insight allows us to design new drugs that precisely fit into a faulty protein's active site to block its harmful action, much like designing a specific key for a specific lock. It also helps us understand diseases caused by misfolded proteins (like Alzheimer's or Parkinson's), or engineer new proteins for industrial or therapeutic uses, unlocking cures and innovations by targeting proteins at their chemical core.
+2025-10-14T18:34:00.153Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:34:00.153Z [debug] [codegenV3] Prompt length: 1415 chars
+2025-10-14T18:34:00.153Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 3
+2025-10-14T18:34:00.153Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T18:34:00.153Z [info] [codegenV3] Generating step 3: Understanding protein synthesis and structure is not just academic; it's vital for medicine and biotechnology. Scientists use advanced tools like X-ray crystallography or cryo-electron microscopy to 'see' these incredibly tiny 3D protein shapes at an atomic level. This detailed molecular insight allows us to design new drugs that precisely fit into a faulty protein's active site to block its harmful action, much like designing a specific key for a specific lock. It also helps us understand diseases caused by misfolded proteins (like Alzheimer's or Parkinson's), or engineer new proteins for industrial or therapeutic uses, unlocking cures and innovations by targeting proteins at their chemical core.
+2025-10-14T18:34:00.153Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:34:00.153Z [debug] [codegenV3] Prompt length: 1415 chars
+2025-10-14T18:34:00.153Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 3
+2025-10-14T18:34:00.153Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 3
+2025-10-14T18:34:00.153Z [info] [codegenV3] Generating step 3: Understanding protein synthesis and structure is not just academic; it's vital for medicine and biotechnology. Scientists use advanced tools like X-ray crystallography or cryo-electron microscopy to 'see' these incredibly tiny 3D protein shapes at an atomic level. This detailed molecular insight allows us to design new drugs that precisely fit into a faulty protein's active site to block its harmful action, much like designing a specific key for a specific lock. It also helps us understand diseases caused by misfolded proteins (like Alzheimer's or Parkinson's), or engineer new proteins for industrial or therapeutic uses, unlocking cures and innovations by targeting proteins at their chemical core.
+2025-10-14T18:34:00.153Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:34:00.153Z [debug] [codegenV3] Prompt length: 1415 chars
+2025-10-14T18:34:00.153Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T18:34:19.032Z [debug] [monitor] Metrics updated:
+2025-10-14T18:34:37.236Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:34:37.236Z [debug] [codegenV3] Received 12433 chars from API
+2025-10-14T18:34:37.236Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:34:37.236Z [info] [codegenV3] ✅ Generated SVG in 39.08s (12433 chars)
+2025-10-14T18:34:37.236Z [info] [codegenV3] 🎬 ANIMATIONS: 52 total (<animate>: 44, <animateMotion>: 6, <animateTransform>: 2)
+2025-10-14T18:34:37.236Z [info] [codegenV3] 📊 CONTENT: labels=20, shapes=34
+2025-10-14T18:34:37.236Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:34:37.236Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:34:37.236Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T18:34:41.354Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:34:41.355Z [debug] [codegenV3] Received 12384 chars from API
+2025-10-14T18:34:41.355Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:34:41.355Z [info] [codegenV3] ✅ Generated SVG in 41.20s (12384 chars)
+2025-10-14T18:34:41.355Z [info] [codegenV3] 🎬 ANIMATIONS: 24 total (<animate>: 20, <animateMotion>: 3, <animateTransform>: 1)
+2025-10-14T18:34:41.355Z [info] [codegenV3] 📊 CONTENT: labels=30, shapes=41
+2025-10-14T18:34:41.355Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:34:41.355Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:34:41.356Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T18:34:48.788Z [info] [notes] ⏱️  Generation completed in 50.64s
+2025-10-14T18:34:48.789Z [debug] [notes] Finish reason: STOP
+2025-10-14T18:34:48.789Z [info] [notes] ✅ Generated SVG keynote in 50.64s (14668 chars)
+2025-10-14T18:34:48.789Z [info] [notes] 📊 Elements: text=68, rect=10, line=15, total=93
+2025-10-14T18:34:48.789Z [info] [notes] Debug copy saved: /tmp/notes-step2-1760466888789.svg
+2025-10-14T18:34:48.789Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T18:34:48.789Z [info] [notes]    - Text elements: 68/8 ✓
+2025-10-14T18:34:48.789Z [info] [notes]    - Visual elements: 41/5 ✓
+2025-10-14T18:34:48.789Z [info] [notes]    - Total elements: 109/20 ✓
+2025-10-14T18:34:48.789Z [info] [notes]    - Content length: 14668/2000 ✓
+2025-10-14T18:34:48.790Z [info] [notes]    - ViewBox present: ✗
+2025-10-14T18:34:48.790Z [info] [notes]    - Overall: ❌ FAIL
+2025-10-14T18:34:48.790Z [warn] [notes] ⚠️ Attempt 1 quality check failed - will retry
+2025-10-14T18:34:48.790Z [error] [notes] ❌ Attempt 1/3 failed: Quality validation failed: text=68, visual=41, total=109, length=14668
+2025-10-14T18:34:48.790Z [info] [notes] ⏸️  Waiting 2000ms before retry...
+2025-10-14T18:34:50.792Z [info] [notes] 🔄 Attempt 2/3 for step 2
+2025-10-14T18:34:50.792Z [info] [notes] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:34:50.792Z [info] [notes] Subtopic: "So, how are these amazing protein workers built? It starts in the cell's nucleus, where DNA holds the 'master blueprints.' A specific section of DNA is copied into a messenger RNA (mRNA) molecule, like a temporary instruction scroll (Transcription). This mRNA then travels to a ribosome, the cell's 'protein factory.' Here, transfer RNA (tRNA) molecules act as delivery trucks, bringing specific amino acid 'building blocks' one by one, assembling them into a long chain (Translation). As this chain grows, driven by chemical attractions and repulsions between the amino acids, it spontaneously folds into its precise 3D structure: first into simple coils or sheets (secondary), then into complex overall globes (tertiary), and sometimes even multiple globes combine (quaternary). It's all about the precise chemical bonds and interactions!"
+2025-10-14T18:34:50.793Z [debug] [notes] Temperature: 0.75
+2025-10-14T18:34:50.793Z [debug] [notes] Prompt length: 4899 chars
+2025-10-14T18:34:55.485Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:34:55.485Z [debug] [codegenV3] Received 10504 chars from API
+2025-10-14T18:34:55.486Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:34:55.486Z [info] [codegenV3] ✅ Generated SVG in 59.33s (10504 chars)
+2025-10-14T18:34:55.486Z [info] [codegenV3] 🎬 ANIMATIONS: 37 total (<animate>: 24, <animateMotion>: 6, <animateTransform>: 7)
+2025-10-14T18:34:55.486Z [info] [codegenV3] 📊 CONTENT: labels=22, shapes=24
+2025-10-14T18:34:55.486Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:34:55.486Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T18:34:55.486Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:34:55.486Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T18:35:02.830Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:35:02.831Z [debug] [codegenV3] Received 9499 chars from API
+2025-10-14T18:35:02.831Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:35:02.831Z [info] [codegenV3] ✅ Generated SVG in 66.68s (9499 chars)
+2025-10-14T18:35:02.831Z [info] [codegenV3] 🎬 ANIMATIONS: 50 total (<animate>: 38, <animateMotion>: 7, <animateTransform>: 5)
+2025-10-14T18:35:02.831Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=22
+2025-10-14T18:35:02.831Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:35:02.832Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T18:35:02.832Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:35:02.832Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T18:35:05.113Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:35:05.113Z [debug] [codegenV3] Received 10931 chars from API
+2025-10-14T18:35:05.113Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:35:05.113Z [info] [codegenV3] ✅ Generated SVG in 66.96s (10931 chars)
+2025-10-14T18:35:05.113Z [info] [codegenV3] 🎬 ANIMATIONS: 41 total (<animate>: 35, <animateMotion>: 6, <animateTransform>: 0)
+2025-10-14T18:35:05.113Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=21
+2025-10-14T18:35:05.113Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:35:05.113Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:35:05.114Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T18:35:09.126Z [info] [notes] ⏱️  Generation completed in 68.97s
+2025-10-14T18:35:09.126Z [debug] [notes] Finish reason: STOP
+2025-10-14T18:35:09.127Z [info] [notes] ✅ Generated SVG keynote in 68.97s (11489 chars)
+2025-10-14T18:35:09.127Z [info] [notes] 📊 Elements: text=53, rect=8, line=3, total=64
+2025-10-14T18:35:09.127Z [info] [notes] Debug copy saved: /tmp/notes-step3-1760466909127.svg
+2025-10-14T18:35:09.127Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T18:35:09.127Z [info] [notes]    - Text elements: 53/8 ✓
+2025-10-14T18:35:09.127Z [info] [notes]    - Visual elements: 29/5 ✓
+2025-10-14T18:35:09.127Z [info] [notes]    - Total elements: 82/20 ✓
+2025-10-14T18:35:09.127Z [info] [notes]    - Content length: 11489/2000 ✓
+2025-10-14T18:35:09.127Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T18:35:09.127Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T18:35:09.127Z [info] [notes] ✅ SUCCESS on attempt 1/3 (68.97s total)
+2025-10-14T18:35:09.127Z [info] [stepVisuals] ✅ Notes generated (11489 chars)
+2025-10-14T18:35:17.555Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:35:17.556Z [debug] [codegenV3] Received 12089 chars from API
+2025-10-14T18:35:17.556Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:35:17.556Z [info] [codegenV3] ✅ Generated SVG in 77.40s (12089 chars)
+2025-10-14T18:35:17.556Z [info] [codegenV3] 🎬 ANIMATIONS: 43 total (<animate>: 34, <animateMotion>: 7, <animateTransform>: 2)
+2025-10-14T18:35:17.556Z [info] [codegenV3] 📊 CONTENT: labels=21, shapes=40
+2025-10-14T18:35:17.556Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:35:17.556Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:35:17.556Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T18:35:18.624Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:35:18.624Z [debug] [codegenV3] Received 7989 chars from API
+2025-10-14T18:35:18.624Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:35:18.624Z [info] [codegenV3] ✅ Generated SVG in 78.47s (7989 chars)
+2025-10-14T18:35:18.624Z [info] [codegenV3] 🎬 ANIMATIONS: 13 total (<animate>: 10, <animateMotion>: 2, <animateTransform>: 1)
+2025-10-14T18:35:18.624Z [info] [codegenV3] 📊 CONTENT: labels=19, shapes=19
+2025-10-14T18:35:18.624Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:35:18.624Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:35:18.624Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T18:35:19.033Z [debug] [monitor] Metrics updated:
+2025-10-14T18:35:23.190Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:35:23.190Z [debug] [codegenV3] Received 10077 chars from API
+2025-10-14T18:35:23.190Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:35:23.191Z [info] [codegenV3] ✅ Generated SVG in 87.04s (10077 chars)
+2025-10-14T18:35:23.191Z [info] [codegenV3] 🎬 ANIMATIONS: 31 total (<animate>: 23, <animateMotion>: 8, <animateTransform>: 0)
+2025-10-14T18:35:23.191Z [info] [codegenV3] 📊 CONTENT: labels=19, shapes=22
+2025-10-14T18:35:23.191Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:35:23.191Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T18:35:23.191Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:35:23.191Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T18:35:28.800Z [info] [notes] ⏱️  Generation completed in 92.65s
+2025-10-14T18:35:28.800Z [debug] [notes] Finish reason: STOP
+2025-10-14T18:35:28.800Z [info] [notes] ✅ Generated SVG keynote in 92.65s (14283 chars)
+2025-10-14T18:35:28.800Z [info] [notes] 📊 Elements: text=63, rect=4, line=10, total=77
+2025-10-14T18:35:28.800Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760466928800.svg
+2025-10-14T18:35:28.800Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T18:35:28.800Z [info] [notes]    - Text elements: 63/8 ✓
+2025-10-14T18:35:28.800Z [info] [notes]    - Visual elements: 35/5 ✓
+2025-10-14T18:35:28.800Z [info] [notes]    - Total elements: 98/20 ✓
+2025-10-14T18:35:28.801Z [info] [notes]    - Content length: 14283/2000 ✓
+2025-10-14T18:35:28.801Z [info] [notes]    - ViewBox present: ✗
+2025-10-14T18:35:28.801Z [info] [notes]    - Overall: ❌ FAIL
+2025-10-14T18:35:28.801Z [warn] [notes] ⚠️ Attempt 1 quality check failed - will retry
+2025-10-14T18:35:28.801Z [error] [notes] ❌ Attempt 1/3 failed: Quality validation failed: text=63, visual=35, total=98, length=14283
+2025-10-14T18:35:28.801Z [info] [notes] ⏸️  Waiting 2000ms before retry...
+2025-10-14T18:35:30.803Z [info] [notes] 🔄 Attempt 2/3 for step 1
+2025-10-14T18:35:30.803Z [info] [notes] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:35:30.803Z [info] [notes] Subtopic: "Imagine your body as a bustling city. Who are the tiny, essential workers building structures, transporting goods, defending the city, and sending messages? These are proteins! Each protein has a unique, intricate 3D shape – from long fibers to complex globular machines – which perfectly fits its specific job, whether it's powering muscles, fighting infection, or digesting food. Without the right shape, a protein can't do its job, making its structure absolutely critical for life."
+2025-10-14T18:35:30.803Z [debug] [notes] Temperature: 0.75
+2025-10-14T18:35:30.803Z [debug] [notes] Prompt length: 4544 chars
+2025-10-14T18:35:39.137Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:35:39.138Z [debug] [codegenV3] Received 9805 chars from API
+2025-10-14T18:35:39.138Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:35:39.138Z [info] [codegenV3] ✅ Generated SVG in 100.98s (9805 chars)
+2025-10-14T18:35:39.138Z [info] [codegenV3] 🎬 ANIMATIONS: 32 total (<animate>: 28, <animateMotion>: 4, <animateTransform>: 0)
+2025-10-14T18:35:39.138Z [info] [codegenV3] 📊 CONTENT: labels=18, shapes=21
+2025-10-14T18:35:39.138Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:35:39.138Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:35:39.138Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T18:36:02.625Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:36:02.625Z [debug] [codegenV3] Received 9344 chars from API
+2025-10-14T18:36:02.625Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:36:02.625Z [info] [codegenV3] ✅ Generated SVG in 126.47s (9344 chars)
+2025-10-14T18:36:02.625Z [info] [codegenV3] 🎬 ANIMATIONS: 26 total (<animate>: 16, <animateMotion>: 6, <animateTransform>: 4)
+2025-10-14T18:36:02.625Z [info] [codegenV3] 📊 CONTENT: labels=20, shapes=23
+2025-10-14T18:36:02.625Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:36:02.626Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T18:36:02.626Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:36:02.626Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T18:36:05.853Z [info] [notes] ⏱️  Generation completed in 75.06s
+2025-10-14T18:36:05.853Z [debug] [notes] Finish reason: STOP
+2025-10-14T18:36:05.853Z [info] [notes] ✅ Generated SVG keynote in 75.06s (12257 chars)
+2025-10-14T18:36:05.853Z [info] [notes] 📊 Elements: text=54, rect=10, line=1, total=65
+2025-10-14T18:36:05.853Z [info] [notes] Debug copy saved: /tmp/notes-step2-1760466965853.svg
+2025-10-14T18:36:05.853Z [info] [notes] 📊 Quality Validation (Attempt 2):
+2025-10-14T18:36:05.853Z [info] [notes]    - Text elements: 54/8 ✓
+2025-10-14T18:36:05.853Z [info] [notes]    - Visual elements: 31/5 ✓
+2025-10-14T18:36:05.853Z [info] [notes]    - Total elements: 85/20 ✓
+2025-10-14T18:36:05.853Z [info] [notes]    - Content length: 12257/2000 ✓
+2025-10-14T18:36:05.853Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T18:36:05.853Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T18:36:05.853Z [info] [notes] ✅ SUCCESS on attempt 2/3 (127.70s total)
+2025-10-14T18:36:05.853Z [info] [stepVisuals] ✅ Notes generated (12257 chars)
+2025-10-14T18:36:12.210Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:36:12.210Z [debug] [codegenV3] Received 11851 chars from API
+2025-10-14T18:36:12.210Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:36:12.210Z [info] [codegenV3] ✅ Generated SVG in 134.06s (11851 chars)
+2025-10-14T18:36:12.210Z [info] [codegenV3] 🎬 ANIMATIONS: 49 total (<animate>: 33, <animateMotion>: 13, <animateTransform>: 3)
+2025-10-14T18:36:12.210Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=24
+2025-10-14T18:36:12.210Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:36:12.210Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:36:12.210Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T18:36:12.210Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T18:36:12.210Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T18:36:12.210Z [info] [AudioNarration] Generating narrations with audio for step 2
+2025-10-14T18:36:12.211Z [info] [narration] Generating narrations for step 2 (5 visuals)
+2025-10-14T18:36:12.211Z [debug] [narration] Sending prompt (7031 chars) to Gemini
+2025-10-14T18:36:19.036Z [debug] [monitor] Metrics updated:
+2025-10-14T18:36:25.487Z [info] [narration] ✅ Generated 5 narrations in 13.28s (107s total audio)
+2025-10-14T18:36:25.487Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T18:36:25.487Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T18:36:25.487Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T18:36:25.487Z [info] [TTS] Synthesizing text (335 chars) [MOCK MODE]...
+2025-10-14T18:36:25.487Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:36:25.716Z [info] [TTS] ✅ Synthesized 335 chars → 21s audio in 229ms
+2025-10-14T18:36:25.718Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-0-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:36:25.718Z [debug] [AudioNarration] ✅ Audio 1 generated: 20890 bytes, 21s
+2025-10-14T18:36:25.718Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T18:36:25.718Z [info] [TTS] Synthesizing text (304 chars) [MOCK MODE]...
+2025-10-14T18:36:25.718Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:36:25.918Z [info] [TTS] ✅ Synthesized 304 chars → 20s audio in 200ms
+2025-10-14T18:36:25.919Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-1-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:36:25.919Z [debug] [AudioNarration] ✅ Audio 2 generated: 20480 bytes, 20s
+2025-10-14T18:36:25.919Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T18:36:25.919Z [info] [TTS] Synthesizing text (342 chars) [MOCK MODE]...
+2025-10-14T18:36:25.919Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:36:26.153Z [info] [TTS] ✅ Synthesized 342 chars → 23s audio in 234ms
+2025-10-14T18:36:26.154Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-2-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:36:26.154Z [debug] [AudioNarration] ✅ Audio 3 generated: 22938 bytes, 23s
+2025-10-14T18:36:26.154Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T18:36:26.154Z [info] [TTS] Synthesizing text (363 chars) [MOCK MODE]...
+2025-10-14T18:36:26.154Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:36:26.277Z [info] [TTS] ✅ Synthesized 363 chars → 23s audio in 123ms
+2025-10-14T18:36:26.277Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-3-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:36:26.277Z [debug] [AudioNarration] ✅ Audio 4 generated: 23348 bytes, 23s
+2025-10-14T18:36:26.277Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T18:36:26.277Z [info] [TTS] Synthesizing text (455 chars) [MOCK MODE]...
+2025-10-14T18:36:26.277Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:36:26.382Z [info] [TTS] ✅ Synthesized 455 chars → 27s audio in 105ms
+2025-10-14T18:36:26.383Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-2-visual-4-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:36:26.383Z [debug] [AudioNarration] ✅ Audio 5 generated: 27444 bytes, 27s
+2025-10-14T18:36:26.383Z [info] [AudioNarration] ✅ Audio generation complete in 896ms
+2025-10-14T18:36:26.383Z [info] [AudioNarration] Total audio size: 0.11 MB
+2025-10-14T18:36:26.383Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (107s total, with audio, 0.11MB)
+2025-10-14T18:36:26.383Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T18:36:26.384Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T18:36:26.394Z [debug] [cache] Cached chunk for query step 2
+2025-10-14T18:36:26.394Z [debug] [monitor] Step 2 generation for 3221db3a-2d11-4b10-85f9-4a63ce124086 took 148243ms
+2025-10-14T18:36:26.394Z [info] [parallel] ✅ Step 2 COMPLETE in 148243ms with 5 actions
+2025-10-14T18:36:26.398Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 2 to frontend (1 sockets)
+2025-10-14T18:36:48.937Z [debug] [codegenV3] Finish reason: MAX_TOKENS
+2025-10-14T18:36:48.937Z [warn] [codegenV3] Response truncated - will attempt to use partial content
+2025-10-14T18:36:48.937Z [warn] [codegenV3] text() returned empty, extracting from candidate.content.parts...
+2025-10-14T18:36:48.937Z [error] [codegenV3] ❌ NO TEXT EXTRACTED from response
+2025-10-14T18:36:48.937Z [error] [codegenV3] Candidate:
+2025-10-14T18:36:48.937Z [error] [codegenV3] Generation failed: No text content in API response
+2025-10-14T18:36:48.937Z [warn] [codegenV3WithRetry] ⚠️ Null result, retrying...
+2025-10-14T18:36:48.937Z [info] [codegenV3WithRetry] Waiting 2000ms before retry...
+2025-10-14T18:36:50.938Z [info] [codegenV3WithRetry] 🔄 Attempt 2/3 for step 3
+2025-10-14T18:36:50.938Z [info] [codegenV3] Generating step 3: Understanding protein synthesis and structure is not just academic; it's vital for medicine and biotechnology. Scientists use advanced tools like X-ray crystallography or cryo-electron microscopy to 'see' these incredibly tiny 3D protein shapes at an atomic level. This detailed molecular insight allows us to design new drugs that precisely fit into a faulty protein's active site to block its harmful action, much like designing a specific key for a specific lock. It also helps us understand diseases caused by misfolded proteins (like Alzheimer's or Parkinson's), or engineer new proteins for industrial or therapeutic uses, unlocking cures and innovations by targeting proteins at their chemical core.
+2025-10-14T18:36:50.938Z [info] [codegenV3] Topic: "teach me about the protein synthesis and protein structure and its chemical and molecular study"
+2025-10-14T18:36:50.938Z [debug] [codegenV3] Prompt length: 1415 chars
+2025-10-14T18:37:01.377Z [info] [notes] ⏱️  Generation completed in 90.57s
+2025-10-14T18:37:01.377Z [debug] [notes] Finish reason: STOP
+2025-10-14T18:37:01.377Z [info] [notes] ✅ Generated SVG keynote in 90.57s (14609 chars)
+2025-10-14T18:37:01.377Z [info] [notes] 📊 Elements: text=57, rect=10, line=13, total=80
+2025-10-14T18:37:01.377Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760467021377.svg
+2025-10-14T18:37:01.377Z [info] [notes] 📊 Quality Validation (Attempt 2):
+2025-10-14T18:37:01.377Z [info] [notes]    - Text elements: 57/8 ✓
+2025-10-14T18:37:01.377Z [info] [notes]    - Visual elements: 53/5 ✓
+2025-10-14T18:37:01.377Z [info] [notes]    - Total elements: 110/20 ✓
+2025-10-14T18:37:01.377Z [info] [notes]    - Content length: 14609/2000 ✓
+2025-10-14T18:37:01.377Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T18:37:01.377Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T18:37:01.377Z [info] [notes] ✅ SUCCESS on attempt 2/3 (185.23s total)
+2025-10-14T18:37:01.377Z [info] [stepVisuals] ✅ Notes generated (14609 chars)
+2025-10-14T18:37:01.377Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T18:37:01.377Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T18:37:01.377Z [info] [AudioNarration] Generating narrations with audio for step 1
+2025-10-14T18:37:01.377Z [info] [narration] Generating narrations for step 1 (5 visuals)
+2025-10-14T18:37:01.377Z [debug] [narration] Sending prompt (4901 chars) to Gemini
+2025-10-14T18:37:16.061Z [info] [narration] ✅ Generated 5 narrations in 14.68s (107s total audio)
+2025-10-14T18:37:16.061Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T18:37:16.061Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T18:37:16.061Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T18:37:16.061Z [info] [TTS] Synthesizing text (337 chars) [MOCK MODE]...
+2025-10-14T18:37:16.061Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:37:16.221Z [info] [TTS] ✅ Synthesized 337 chars → 20s audio in 160ms
+2025-10-14T18:37:16.221Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-0-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:37:16.221Z [debug] [AudioNarration] ✅ Audio 1 generated: 20071 bytes, 20s
+2025-10-14T18:37:16.221Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T18:37:16.221Z [info] [TTS] Synthesizing text (333 chars) [MOCK MODE]...
+2025-10-14T18:37:16.222Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:37:16.488Z [info] [TTS] ✅ Synthesized 333 chars → 19s audio in 267ms
+2025-10-14T18:37:16.489Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-1-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:37:16.490Z [debug] [AudioNarration] ✅ Audio 2 generated: 19252 bytes, 19s
+2025-10-14T18:37:16.490Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T18:37:16.490Z [info] [TTS] Synthesizing text (345 chars) [MOCK MODE]...
+2025-10-14T18:37:16.490Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:37:16.764Z [info] [TTS] ✅ Synthesized 345 chars → 22s audio in 274ms
+2025-10-14T18:37:16.765Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-2-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:37:16.765Z [debug] [AudioNarration] ✅ Audio 3 generated: 21709 bytes, 22s
+2025-10-14T18:37:16.765Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T18:37:16.765Z [info] [TTS] Synthesizing text (356 chars) [MOCK MODE]...
+2025-10-14T18:37:16.765Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:37:16.896Z [info] [TTS] ✅ Synthesized 356 chars → 23s audio in 131ms
+2025-10-14T18:37:16.897Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-3-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:37:16.897Z [debug] [AudioNarration] ✅ Audio 4 generated: 22938 bytes, 23s
+2025-10-14T18:37:16.897Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T18:37:16.897Z [info] [TTS] Synthesizing text (358 chars) [MOCK MODE]...
+2025-10-14T18:37:16.898Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:37:17.144Z [info] [TTS] ✅ Synthesized 358 chars → 24s audio in 247ms
+2025-10-14T18:37:17.145Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-4-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:37:17.145Z [debug] [AudioNarration] ✅ Audio 5 generated: 24167 bytes, 24s
+2025-10-14T18:37:17.145Z [info] [AudioNarration] ✅ Audio generation complete in 1084ms
+2025-10-14T18:37:17.145Z [info] [AudioNarration] Total audio size: 0.10 MB
+2025-10-14T18:37:17.145Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (107s total, with audio, 0.10MB)
+2025-10-14T18:37:17.145Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T18:37:17.145Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T18:37:17.154Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T18:37:17.155Z [debug] [monitor] Step 1 generation for 3221db3a-2d11-4b10-85f9-4a63ce124086 took 201004ms
+2025-10-14T18:37:17.155Z [info] [parallel] ✅ Step 1 COMPLETE in 201004ms with 5 actions
+2025-10-14T18:37:17.159Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-14T18:37:19.038Z [debug] [monitor] Metrics updated:
+2025-10-14T18:37:52.898Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T18:37:52.898Z [debug] [codegenV3] Received 10465 chars from API
+2025-10-14T18:37:52.898Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T18:37:52.898Z [info] [codegenV3] ✅ Generated SVG in 61.96s (10465 chars)
+2025-10-14T18:37:52.899Z [info] [codegenV3] 🎬 ANIMATIONS: 32 total (<animate>: 22, <animateMotion>: 7, <animateTransform>: 3)
+2025-10-14T18:37:52.899Z [info] [codegenV3] 📊 CONTENT: labels=30, shapes=29
+2025-10-14T18:37:52.899Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T18:37:52.899Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T18:37:52.899Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T18:37:52.899Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T18:37:52.899Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T18:37:52.899Z [info] [AudioNarration] Generating narrations with audio for step 3
+2025-10-14T18:37:52.899Z [info] [narration] Generating narrations for step 3 (5 visuals)
+2025-10-14T18:37:52.899Z [debug] [narration] Sending prompt (6227 chars) to Gemini
+2025-10-14T18:38:04.214Z [info] [narration] ✅ Generated 5 narrations in 11.31s (106s total audio)
+2025-10-14T18:38:04.215Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T18:38:04.215Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T18:38:04.215Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T18:38:04.215Z [info] [TTS] Synthesizing text (378 chars) [MOCK MODE]...
+2025-10-14T18:38:04.215Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:38:04.450Z [info] [TTS] ✅ Synthesized 378 chars → 21s audio in 235ms
+2025-10-14T18:38:04.451Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-0-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:38:04.451Z [debug] [AudioNarration] ✅ Audio 1 generated: 21300 bytes, 21s
+2025-10-14T18:38:04.451Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T18:38:04.451Z [info] [TTS] Synthesizing text (369 chars) [MOCK MODE]...
+2025-10-14T18:38:04.451Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:38:04.560Z [info] [TTS] ✅ Synthesized 369 chars → 20s audio in 109ms
+2025-10-14T18:38:04.560Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-1-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:38:04.560Z [debug] [AudioNarration] ✅ Audio 2 generated: 20480 bytes, 20s
+2025-10-14T18:38:04.560Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T18:38:04.560Z [info] [TTS] Synthesizing text (334 chars) [MOCK MODE]...
+2025-10-14T18:38:04.560Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:38:04.758Z [info] [TTS] ✅ Synthesized 334 chars → 20s audio in 198ms
+2025-10-14T18:38:04.759Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-2-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:38:04.759Z [debug] [AudioNarration] ✅ Audio 3 generated: 19661 bytes, 20s
+2025-10-14T18:38:04.759Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T18:38:04.759Z [info] [TTS] Synthesizing text (326 chars) [MOCK MODE]...
+2025-10-14T18:38:04.759Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:38:05.034Z [info] [TTS] ✅ Synthesized 326 chars → 20s audio in 275ms
+2025-10-14T18:38:05.034Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-3-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:38:05.034Z [debug] [AudioNarration] ✅ Audio 4 generated: 20071 bytes, 20s
+2025-10-14T18:38:05.034Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T18:38:05.034Z [info] [TTS] Synthesizing text (367 chars) [MOCK MODE]...
+2025-10-14T18:38:05.034Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:38:05.162Z [info] [TTS] ✅ Synthesized 367 chars → 21s audio in 128ms
+2025-10-14T18:38:05.162Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-3-visual-4-3221db3a-2d11-4b10-85f9-4a63ce124086.mp3
+2025-10-14T18:38:05.162Z [debug] [AudioNarration] ✅ Audio 5 generated: 20890 bytes, 21s
+2025-10-14T18:38:05.162Z [info] [AudioNarration] ✅ Audio generation complete in 947ms
+2025-10-14T18:38:05.162Z [info] [AudioNarration] Total audio size: 0.10 MB
+2025-10-14T18:38:05.162Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (106s total, with audio, 0.10MB)
+2025-10-14T18:38:05.163Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T18:38:05.163Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T18:38:05.164Z [debug] [cache] Cached chunk for query step 3
+2025-10-14T18:38:05.164Z [debug] [monitor] Step 3 generation for 3221db3a-2d11-4b10-85f9-4a63ce124086 took 245012ms
+2025-10-14T18:38:05.164Z [info] [parallel] ✅ Step 3 COMPLETE in 245012ms with 5 actions
+2025-10-14T18:38:05.165Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 3 to frontend (1 sockets)
+2025-10-14T18:38:05.166Z [debug] [parallel] Parallel generation complete: 3/3 successful in 249015ms
+2025-10-14T18:38:05.166Z [debug] [monitor] Completed request 3221db3a-2d11-4b10-85f9-4a63ce124086 in 264637ms (success: true)
+2025-10-14T18:38:05.166Z [debug] [parallel] Job complete for session 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:38:19.040Z [debug] [monitor] Metrics updated:
+2025-10-14T18:39:19.040Z [debug] [monitor] Metrics updated:
+2025-10-14T18:40:19.045Z [debug] [monitor] Metrics updated:
