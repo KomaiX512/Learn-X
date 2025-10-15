@@ -31,7 +31,7 @@ function createStepPrompt(step: PlanStep, topic: string): string {
 Requirements:
 - Use <animate>, <animateMotion>, or <animateTransform> for movement.
 - Label key components with concise <text> tags (short labels only; no long narration paragraphs).
-- VISUAL CONTRAST: Background is BLACK. Use bright colors (white, cyan, yellow, red, green). Avoid dark/black for strokes/text. Do NOT add background rectangles or large fills — keep a chalkboard aesthetic.
+- VISUAL CONTRAST: Background is BLACK. Use bright colors (blue, cyan, white, pink, yellow, red, green). Avoid dark/black for strokes/text. Do NOT add background rectangles or large fills — keep a chalkboard aesthetic, and highlting title text color should must be of high contrast for which highlighting was.
 - Emphasize visuals: arrows, shapes, paths, motion. Keep text minimal and functional.
 - Pure SVG only (no HTML/CSS/JS).
 

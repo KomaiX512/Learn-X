@@ -14088,3 +14088,1703 @@
 2025-10-14T18:38:19.040Z [debug] [monitor] Metrics updated:
 2025-10-14T18:39:19.040Z [debug] [monitor] Metrics updated:
 2025-10-14T18:40:19.045Z [debug] [monitor] Metrics updated:
+2025-10-14T18:41:18.520Z [debug] [socket] Socket aGfvG-aCPehkBY2PAAAB joined session 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:41:18.520Z [debug] [socket] Socket aGfvG-aCPehkBY2PAAAB is now in rooms: aGfvG-aCPehkBY2PAAAB, 3221db3a-2d11-4b10-85f9-4a63ce124086
+2025-10-14T18:41:18.521Z [debug] [socket] Sent cached plan to newly joined socket aGfvG-aCPehkBY2PAAAB
+2025-10-14T18:41:18.522Z [debug] [socket] Sent cached step 1 to newly joined socket aGfvG-aCPehkBY2PAAAB
+2025-10-14T18:41:18.525Z [debug] [socket] Sent cached step 2 to newly joined socket aGfvG-aCPehkBY2PAAAB
+2025-10-14T18:41:18.528Z [debug] [socket] Sent cached step 3 to newly joined socket aGfvG-aCPehkBY2PAAAB
+2025-10-14T18:41:19.046Z [debug] [monitor] Metrics updated:
+2025-10-14T18:42:19.047Z [debug] [monitor] Metrics updated:
+2025-10-14T18:43:19.060Z [debug] [monitor] Metrics updated:
+2025-10-14T18:54:00.805Z [info] [TTS] Service initialized successfully
+2025-10-14T18:54:00.828Z [info] [TTS] Testing connection...
+2025-10-14T18:54:00.828Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T18:54:00.828Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T18:54:00.830Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T18:54:01.086Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 258ms
+2025-10-14T18:54:01.086Z [info] [TTS] ✅ Connection test successful
+2025-10-14T18:54:01.086Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T18:54:01.086Z [info] [TTS] Estimated duration: 5s
+2025-10-14T18:54:01.089Z [debug] NEW Plan worker created
+2025-10-14T18:54:01.089Z [debug] NEW Gen worker created
+2025-10-14T18:54:01.089Z [debug] NEW Parallel worker created
+2025-10-14T18:54:01.091Z [debug] Server listening on port 8000
+2025-10-14T18:55:01.105Z [debug] [monitor] Metrics updated:
+2025-10-14T18:56:01.122Z [debug] [monitor] Metrics updated:
+2025-10-14T18:57:01.136Z [debug] [monitor] Metrics updated:
+2025-10-14T18:58:01.150Z [debug] [monitor] Metrics updated:
+2025-10-14T18:59:01.162Z [debug] [monitor] Metrics updated:
+2025-10-14T19:00:01.173Z [debug] [monitor] Metrics updated:
+2025-10-14T19:01:01.182Z [debug] [monitor] Metrics updated:
+2025-10-14T19:02:01.190Z [debug] [monitor] Metrics updated:
+2025-10-14T19:02:46.171Z [debug] Shutting down server...
+2025-10-14T19:02:46.336Z [info] [TTS] Service initialized successfully
+2025-10-14T19:02:46.343Z [info] [TTS] Testing connection...
+2025-10-14T19:02:46.343Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:02:46.344Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:02:46.345Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:02:46.544Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 201ms
+2025-10-14T19:02:46.544Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:02:46.544Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:02:46.545Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:02:46.548Z [debug] NEW Plan worker created
+2025-10-14T19:02:46.548Z [debug] NEW Gen worker created
+2025-10-14T19:02:46.548Z [debug] NEW Parallel worker created
+2025-10-14T19:02:46.551Z [debug] Server listening on port 8000
+2025-10-14T19:03:46.565Z [debug] [monitor] Metrics updated:
+2025-10-14T19:04:29.422Z [debug] Shutting down server...
+2025-10-14T19:04:29.585Z [info] [TTS] Service initialized successfully
+2025-10-14T19:04:29.592Z [info] [TTS] Testing connection...
+2025-10-14T19:04:29.593Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:04:29.593Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:04:29.594Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:04:29.695Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 102ms
+2025-10-14T19:04:29.695Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:04:29.695Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:04:29.695Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:04:29.697Z [debug] NEW Plan worker created
+2025-10-14T19:04:29.697Z [debug] NEW Gen worker created
+2025-10-14T19:04:29.698Z [debug] NEW Parallel worker created
+2025-10-14T19:04:29.699Z [debug] Server listening on port 8000
+2025-10-14T19:04:48.772Z [debug] Shutting down server...
+2025-10-14T19:04:48.935Z [info] [TTS] Service initialized successfully
+2025-10-14T19:04:48.942Z [info] [TTS] Testing connection...
+2025-10-14T19:04:48.942Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:04:48.943Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:04:48.944Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:04:49.190Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 248ms
+2025-10-14T19:04:49.190Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:04:49.190Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:04:49.190Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:04:49.193Z [debug] NEW Plan worker created
+2025-10-14T19:04:49.193Z [debug] NEW Gen worker created
+2025-10-14T19:04:49.193Z [debug] NEW Parallel worker created
+2025-10-14T19:04:49.195Z [debug] Server listening on port 8000
+2025-10-14T19:05:07.935Z [debug] Shutting down server...
+2025-10-14T19:05:08.127Z [info] [TTS] Service initialized successfully
+2025-10-14T19:05:08.134Z [info] [TTS] Testing connection...
+2025-10-14T19:05:08.134Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:05:08.134Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:05:08.136Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:05:08.255Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 121ms
+2025-10-14T19:05:08.255Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:05:08.255Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:05:08.255Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:05:08.257Z [debug] NEW Plan worker created
+2025-10-14T19:05:08.258Z [debug] NEW Gen worker created
+2025-10-14T19:05:08.258Z [debug] NEW Parallel worker created
+2025-10-14T19:05:08.260Z [debug] Server listening on port 8000
+2025-10-14T19:05:24.453Z [debug] Shutting down server...
+2025-10-14T19:05:24.624Z [info] [TTS] Service initialized successfully
+2025-10-14T19:05:24.631Z [info] [TTS] Testing connection...
+2025-10-14T19:05:24.631Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:05:24.631Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:05:24.633Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:05:24.748Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 117ms
+2025-10-14T19:05:24.748Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:05:24.748Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:05:24.748Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:05:24.751Z [debug] NEW Plan worker created
+2025-10-14T19:05:24.752Z [debug] NEW Gen worker created
+2025-10-14T19:05:24.752Z [debug] NEW Parallel worker created
+2025-10-14T19:05:24.755Z [debug] Server listening on port 8000
+2025-10-14T19:06:24.766Z [debug] [monitor] Metrics updated:
+2025-10-14T19:07:24.782Z [debug] [monitor] Metrics updated:
+2025-10-14T19:07:59.532Z [info] [TTS] Service initialized successfully
+2025-10-14T19:07:59.553Z [info] [TTS] Testing connection...
+2025-10-14T19:07:59.554Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:07:59.554Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:07:59.555Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:07:59.760Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 206ms
+2025-10-14T19:07:59.760Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:07:59.760Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:07:59.760Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:07:59.762Z [debug] NEW Plan worker created
+2025-10-14T19:07:59.763Z [debug] NEW Gen worker created
+2025-10-14T19:07:59.763Z [debug] NEW Parallel worker created
+2025-10-14T19:07:59.764Z [debug] Server listening on port 8000
+2025-10-14T19:08:59.779Z [debug] [monitor] Metrics updated:
+2025-10-14T19:09:59.795Z [debug] [monitor] Metrics updated:
+2025-10-14T19:10:59.796Z [debug] [monitor] Metrics updated:
+2025-10-14T19:11:59.798Z [debug] [monitor] Metrics updated:
+2025-10-14T19:12:59.809Z [debug] [monitor] Metrics updated:
+2025-10-14T19:13:53.566Z [debug] Shutting down server...
+2025-10-14T19:16:24.025Z [info] [TTS] Service initialized successfully
+2025-10-14T19:16:24.049Z [info] [TTS] Testing connection...
+2025-10-14T19:16:24.049Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:16:24.049Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:16:24.051Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:17:39.822Z [info] [TTS] Service initialized successfully
+2025-10-14T19:17:39.842Z [info] [TTS] Testing connection...
+2025-10-14T19:17:39.843Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:17:39.843Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:17:39.844Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:17:40.004Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 161ms
+2025-10-14T19:17:40.004Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:17:40.004Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:17:40.004Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:17:40.007Z [debug] NEW Plan worker created
+2025-10-14T19:17:40.007Z [debug] NEW Gen worker created
+2025-10-14T19:17:40.007Z [debug] NEW Parallel worker created
+2025-10-14T19:17:40.009Z [debug] Server listening on port 8000
+2025-10-14T19:18:40.017Z [debug] [monitor] Metrics updated:
+2025-10-14T19:18:42.630Z [debug] Received request on /api/query {"body":{"query":"How does photosynthesis work?","difficulty":"easy","sessionId":"test-easy-session-001"}}
+2025-10-14T19:18:42.630Z [debug] [api] Stored query for session test-easy-session-001: "How does photosynthesis work?" (difficulty: easy)
+2025-10-14T19:18:42.631Z [debug] [orchestrator] Enqueuing plan for session test-easy-session-001 (difficulty: easy)
+2025-10-14T19:18:42.632Z [debug] [orchestrator] Plan job added with id 3 for session test-easy-session-001
+2025-10-14T19:18:42.634Z [debug] [plan] START: session=test-easy-session-001 query=How does photosynthesis work?
+2025-10-14T19:18:42.634Z [debug] [monitor] Started tracking request test-easy-session-001
+2025-10-14T19:18:42.634Z [debug] [cache] MISS - No cached plan for query: "How does photosynthesis work?..."
+2025-10-14T19:18:42.635Z [info] [Planner] Difficulty: easy, Steps: 1
+2025-10-14T19:18:42.635Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T19:18:42.646Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T19:18:52.940Z [debug] [planner] Received response from Gemini in 10305ms
+2025-10-14T19:18:52.940Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "Photosynthesis: Nature's Food Factory",
+  "subtitle": "Discover how plants convert sunlight, water, and air into the energy that sustains nearly all life on Earth.",
+  "toc": [
+    {"minute": 1, "title": "The Intuition", "summary": "Plants use sunlight to turn water and carbon dioxide into sugar and oxygen."}
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "desc": "Imagine every leaf on every plant is a miniature, green solar-powered chef! It's constantly busy, not with pots a...
+2025-10-14T19:18:52.940Z [debug] [planner] Extracted JSON (length: 1178)
+2025-10-14T19:18:52.940Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T19:18:52.955Z [error] [plan:failed] id=3 Error: Planner: steps must be exactly 3
+2025-10-14T19:19:40.021Z [debug] [monitor] Metrics updated:
+2025-10-14T19:20:40.024Z [debug] [monitor] Metrics updated:
+2025-10-14T19:21:04.913Z [debug] Shutting down server...
+2025-10-14T19:21:05.073Z [info] [TTS] Service initialized successfully
+2025-10-14T19:21:05.080Z [info] [TTS] Testing connection...
+2025-10-14T19:21:05.080Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:21:05.080Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:21:05.081Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:21:05.376Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 296ms
+2025-10-14T19:21:05.376Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:21:05.376Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:21:05.376Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:21:05.378Z [debug] NEW Plan worker created
+2025-10-14T19:21:05.379Z [debug] NEW Gen worker created
+2025-10-14T19:21:05.379Z [debug] NEW Parallel worker created
+2025-10-14T19:21:05.380Z [debug] Server listening on port 8000
+2025-10-14T19:21:27.699Z [info] [TTS] Service initialized successfully
+2025-10-14T19:21:27.721Z [info] [TTS] Testing connection...
+2025-10-14T19:21:27.721Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:21:27.721Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:21:27.723Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:21:27.878Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 157ms
+2025-10-14T19:21:27.878Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:21:27.878Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:21:27.878Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:21:27.881Z [debug] NEW Plan worker created
+2025-10-14T19:21:27.881Z [debug] NEW Gen worker created
+2025-10-14T19:21:27.881Z [debug] NEW Parallel worker created
+2025-10-14T19:21:27.883Z [debug] Server listening on port 8000
+2025-10-14T19:22:01.672Z [debug] Received request on /api/query {"body":{"query":"What is machine learning?","difficulty":"easy","sessionId":"test-easy-ml-002"}}
+2025-10-14T19:22:01.672Z [debug] [api] Stored query for session test-easy-ml-002: "What is machine learning?" (difficulty: easy)
+2025-10-14T19:22:01.672Z [debug] [orchestrator] Enqueuing plan for session test-easy-ml-002 (difficulty: easy)
+2025-10-14T19:22:01.674Z [debug] [orchestrator] Plan job added with id 4 for session test-easy-ml-002
+2025-10-14T19:22:01.675Z [debug] [plan] START: session=test-easy-ml-002 query=What is machine learning?
+2025-10-14T19:22:01.675Z [debug] [monitor] Started tracking request test-easy-ml-002
+2025-10-14T19:22:01.675Z [debug] [cache] MISS - No cached plan for query: "What is machine learning?..."
+2025-10-14T19:22:01.675Z [info] [Planner] Difficulty: easy, Steps: 1
+2025-10-14T19:22:01.675Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T19:22:01.683Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T19:22:14.332Z [debug] [planner] Received response from Gemini in 12657ms
+2025-10-14T19:22:14.332Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "What is Machine Learning?",
+  "subtitle": "Discover how computers learn from data and experience, rather than explicit rules.",
+  "toc": [
+    {"minute": 1, "title": "The Intuition", "summary": "Computers learning from data like humans learn from experience."}
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "desc": "Imagine you're teaching a child to recognize a 'cat.' You don't give them a detailed list of rules like 'pointed ears AND whiskers AND meows.' Instead, you show th...
+2025-10-14T19:22:14.332Z [debug] [planner] Extracted JSON (length: 1381)
+2025-10-14T19:22:14.332Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T19:22:14.332Z [info] [Planner] ✅ Generated 1 step(s) for difficulty: easy
+2025-10-14T19:22:14.332Z [debug] [monitor] Plan generation for test-easy-ml-002 took 12657ms
+2025-10-14T19:22:14.332Z [debug] [cache] Cached plan for query: "What is machine learning?..."
+2025-10-14T19:22:14.333Z [debug] [plan] OK: session=test-easy-ml-002 plan received with 1 steps
+2025-10-14T19:22:14.333Z [debug] [plan] Emitted plan event to session test-easy-ml-002
+2025-10-14T19:22:14.334Z [debug] [plan] Enqueuing PARALLEL generation of all 1 steps
+2025-10-14T19:22:14.334Z [debug] [plan] END: session=test-easy-ml-002
+2025-10-14T19:22:14.335Z [info] [parallel] ⚡ STARTING parallel generation for 1 steps (session: test-easy-ml-002)
+2025-10-14T19:22:14.336Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T19:22:14.336Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations + narrations
+2025-10-14T19:22:14.336Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 1
+2025-10-14T19:22:14.336Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T19:22:14.336Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T19:22:14.336Z [info] [notes] 📚 Subtopic: "Imagine you're teaching a child to recognize a 'cat.' You don't give them a detailed list of rules like 'pointed ears AND whiskers AND meows.' Instead, you show them many pictures: 'This is a cat,' 'This is not a cat.' Over time, by seeing enough examples, the child *learns* what a cat looks like and can identify a new cat they've never seen before. 
+
+Machine Learning works just like this for computers. Instead of you writing explicit, rigid instructions for every possible scenario, you feed a computer a huge amount of data—thousands of images labeled 'cat' or 'not cat.' The computer then *learns* patterns, features, and relationships within that data *on its own*. It builds an internal 'model' from experience, allowing it to predict or classify a *brand new, unseen* image with remarkable accuracy. It's teaching computers to learn from data, rather than being explicitly programmed for every single outcome."
+2025-10-14T19:22:14.336Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T19:22:14.336Z [info] [notes] 🔄 Attempt 1/3 for step 1
+2025-10-14T19:22:14.336Z [info] [notes] Topic: "What is machine learning?"
+2025-10-14T19:22:14.336Z [info] [notes] Subtopic: "Imagine you're teaching a child to recognize a 'cat.' You don't give them a detailed list of rules like 'pointed ears AND whiskers AND meows.' Instead, you show them many pictures: 'This is a cat,' 'This is not a cat.' Over time, by seeing enough examples, the child *learns* what a cat looks like and can identify a new cat they've never seen before. 
+
+Machine Learning works just like this for computers. Instead of you writing explicit, rigid instructions for every possible scenario, you feed a computer a huge amount of data—thousands of images labeled 'cat' or 'not cat.' The computer then *learns* patterns, features, and relationships within that data *on its own*. It builds an internal 'model' from experience, allowing it to predict or classify a *brand new, unseen* image with remarkable accuracy. It's teaching computers to learn from data, rather than being explicitly programmed for every single outcome."
+2025-10-14T19:22:14.336Z [debug] [notes] Temperature: 0.75
+2025-10-14T19:22:14.336Z [debug] [notes] Prompt length: 4978 chars
+2025-10-14T19:22:14.337Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T19:22:14.337Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T19:22:14.337Z [info] [codegenV3] Generating step 1: Imagine you're teaching a child to recognize a 'cat.' You don't give them a detailed list of rules like 'pointed ears AND whiskers AND meows.' Instead, you show them many pictures: 'This is a cat,' 'This is not a cat.' Over time, by seeing enough examples, the child *learns* what a cat looks like and can identify a new cat they've never seen before. 
+
+Machine Learning works just like this for computers. Instead of you writing explicit, rigid instructions for every possible scenario, you feed a computer a huge amount of data—thousands of images labeled 'cat' or 'not cat.' The computer then *learns* patterns, features, and relationships within that data *on its own*. It builds an internal 'model' from experience, allowing it to predict or classify a *brand new, unseen* image with remarkable accuracy. It's teaching computers to learn from data, rather than being explicitly programmed for every single outcome.
+2025-10-14T19:22:14.337Z [info] [codegenV3] Topic: "What is machine learning?"
+2025-10-14T19:22:14.337Z [debug] [codegenV3] Prompt length: 1661 chars
+2025-10-14T19:22:14.337Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T19:22:14.337Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T19:22:14.337Z [info] [codegenV3] Generating step 1: Imagine you're teaching a child to recognize a 'cat.' You don't give them a detailed list of rules like 'pointed ears AND whiskers AND meows.' Instead, you show them many pictures: 'This is a cat,' 'This is not a cat.' Over time, by seeing enough examples, the child *learns* what a cat looks like and can identify a new cat they've never seen before. 
+
+Machine Learning works just like this for computers. Instead of you writing explicit, rigid instructions for every possible scenario, you feed a computer a huge amount of data—thousands of images labeled 'cat' or 'not cat.' The computer then *learns* patterns, features, and relationships within that data *on its own*. It builds an internal 'model' from experience, allowing it to predict or classify a *brand new, unseen* image with remarkable accuracy. It's teaching computers to learn from data, rather than being explicitly programmed for every single outcome.
+2025-10-14T19:22:14.337Z [info] [codegenV3] Topic: "What is machine learning?"
+2025-10-14T19:22:14.337Z [debug] [codegenV3] Prompt length: 1661 chars
+2025-10-14T19:22:14.337Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T19:22:14.337Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T19:22:14.337Z [info] [codegenV3] Generating step 1: Imagine you're teaching a child to recognize a 'cat.' You don't give them a detailed list of rules like 'pointed ears AND whiskers AND meows.' Instead, you show them many pictures: 'This is a cat,' 'This is not a cat.' Over time, by seeing enough examples, the child *learns* what a cat looks like and can identify a new cat they've never seen before. 
+
+Machine Learning works just like this for computers. Instead of you writing explicit, rigid instructions for every possible scenario, you feed a computer a huge amount of data—thousands of images labeled 'cat' or 'not cat.' The computer then *learns* patterns, features, and relationships within that data *on its own*. It builds an internal 'model' from experience, allowing it to predict or classify a *brand new, unseen* image with remarkable accuracy. It's teaching computers to learn from data, rather than being explicitly programmed for every single outcome.
+2025-10-14T19:22:14.337Z [info] [codegenV3] Topic: "What is machine learning?"
+2025-10-14T19:22:14.337Z [debug] [codegenV3] Prompt length: 1661 chars
+2025-10-14T19:22:14.337Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T19:22:14.337Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T19:22:14.337Z [info] [codegenV3] Generating step 1: Imagine you're teaching a child to recognize a 'cat.' You don't give them a detailed list of rules like 'pointed ears AND whiskers AND meows.' Instead, you show them many pictures: 'This is a cat,' 'This is not a cat.' Over time, by seeing enough examples, the child *learns* what a cat looks like and can identify a new cat they've never seen before. 
+
+Machine Learning works just like this for computers. Instead of you writing explicit, rigid instructions for every possible scenario, you feed a computer a huge amount of data—thousands of images labeled 'cat' or 'not cat.' The computer then *learns* patterns, features, and relationships within that data *on its own*. It builds an internal 'model' from experience, allowing it to predict or classify a *brand new, unseen* image with remarkable accuracy. It's teaching computers to learn from data, rather than being explicitly programmed for every single outcome.
+2025-10-14T19:22:14.337Z [info] [codegenV3] Topic: "What is machine learning?"
+2025-10-14T19:22:14.337Z [debug] [codegenV3] Prompt length: 1661 chars
+2025-10-14T19:22:14.337Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T19:22:27.880Z [debug] [monitor] Metrics updated:
+2025-10-14T19:23:27.883Z [debug] [monitor] Metrics updated:
+2025-10-14T19:23:36.694Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T19:23:36.695Z [debug] [codegenV3] Received 11351 chars from API
+2025-10-14T19:23:36.695Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T19:23:36.695Z [info] [codegenV3] ✅ Generated SVG in 82.36s (11351 chars)
+2025-10-14T19:23:36.695Z [info] [codegenV3] 🎬 ANIMATIONS: 47 total (<animate>: 36, <animateMotion>: 9, <animateTransform>: 2)
+2025-10-14T19:23:36.695Z [info] [codegenV3] 📊 CONTENT: labels=13, shapes=21
+2025-10-14T19:23:36.695Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T19:23:36.695Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T19:23:36.695Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T19:23:36.695Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T19:23:37.391Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T19:23:37.391Z [debug] [codegenV3] Received 6453 chars from API
+2025-10-14T19:23:37.391Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T19:23:37.391Z [info] [codegenV3] ✅ Generated SVG in 83.05s (6453 chars)
+2025-10-14T19:23:37.391Z [info] [codegenV3] 🎬 ANIMATIONS: 22 total (<animate>: 16, <animateMotion>: 5, <animateTransform>: 1)
+2025-10-14T19:23:37.391Z [info] [codegenV3] 📊 CONTENT: labels=15, shapes=16
+2025-10-14T19:23:37.391Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T19:23:37.391Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T19:23:37.391Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T19:23:37.391Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T19:23:47.434Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T19:23:47.434Z [debug] [codegenV3] Received 12565 chars from API
+2025-10-14T19:23:47.434Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T19:23:47.434Z [info] [codegenV3] ✅ Generated SVG in 93.10s (12565 chars)
+2025-10-14T19:23:47.434Z [info] [codegenV3] 🎬 ANIMATIONS: 45 total (<animate>: 35, <animateMotion>: 9, <animateTransform>: 1)
+2025-10-14T19:23:47.434Z [info] [codegenV3] 📊 CONTENT: labels=23, shapes=24
+2025-10-14T19:23:47.435Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T19:23:47.435Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T19:23:47.435Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T19:23:47.435Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T19:23:57.980Z [info] [notes] ⏱️  Generation completed in 103.64s
+2025-10-14T19:23:57.980Z [debug] [notes] Finish reason: STOP
+2025-10-14T19:23:57.981Z [info] [notes] ✅ Generated SVG keynote in 103.64s (13858 chars)
+2025-10-14T19:23:57.981Z [info] [notes] 📊 Elements: text=64, rect=22, line=8, total=94
+2025-10-14T19:23:57.981Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760469837981.svg
+2025-10-14T19:23:57.982Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T19:23:57.982Z [info] [notes]    - Text elements: 64/8 ✓
+2025-10-14T19:23:57.982Z [info] [notes]    - Visual elements: 39/5 ✓
+2025-10-14T19:23:57.982Z [info] [notes]    - Total elements: 103/20 ✓
+2025-10-14T19:23:57.982Z [info] [notes]    - Content length: 13858/2000 ✓
+2025-10-14T19:23:57.982Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T19:23:57.982Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T19:23:57.982Z [info] [notes] ✅ SUCCESS on attempt 1/3 (103.65s total)
+2025-10-14T19:23:57.982Z [info] [stepVisuals] ✅ Notes generated (13858 chars)
+2025-10-14T19:23:58.149Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T19:23:58.149Z [debug] [codegenV3] Received 12242 chars from API
+2025-10-14T19:23:58.149Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T19:23:58.149Z [info] [codegenV3] ✅ Generated SVG in 103.81s (12242 chars)
+2025-10-14T19:23:58.149Z [info] [codegenV3] 🎬 ANIMATIONS: 42 total (<animate>: 35, <animateMotion>: 6, <animateTransform>: 1)
+2025-10-14T19:23:58.149Z [info] [codegenV3] 📊 CONTENT: labels=17, shapes=18
+2025-10-14T19:23:58.149Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T19:23:58.149Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T19:23:58.149Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T19:23:58.149Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T19:23:58.150Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T19:23:58.150Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T19:23:58.150Z [info] [AudioNarration] Generating narrations with audio for step 1
+2025-10-14T19:23:58.150Z [info] [narration] Generating narrations for step 1 (5 visuals)
+2025-10-14T19:23:58.150Z [debug] [narration] Sending prompt (7435 chars) to Gemini
+2025-10-14T19:24:09.374Z [info] [narration] ✅ Generated 5 narrations in 11.22s (106s total audio)
+2025-10-14T19:24:09.374Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T19:24:09.374Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T19:24:09.374Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T19:24:09.374Z [info] [TTS] Synthesizing text (427 chars) [MOCK MODE]...
+2025-10-14T19:24:09.374Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:24:09.633Z [info] [TTS] ✅ Synthesized 427 chars → 30s audio in 259ms
+2025-10-14T19:24:09.633Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-0-test-easy-ml-002.mp3
+2025-10-14T19:24:09.633Z [debug] [AudioNarration] ✅ Audio 1 generated: 30720 bytes, 30s
+2025-10-14T19:24:09.633Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T19:24:09.633Z [info] [TTS] Synthesizing text (365 chars) [MOCK MODE]...
+2025-10-14T19:24:09.633Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:24:09.905Z [info] [TTS] ✅ Synthesized 365 chars → 23s audio in 272ms
+2025-10-14T19:24:09.905Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-1-test-easy-ml-002.mp3
+2025-10-14T19:24:09.906Z [debug] [AudioNarration] ✅ Audio 2 generated: 23348 bytes, 23s
+2025-10-14T19:24:09.906Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T19:24:09.906Z [info] [TTS] Synthesizing text (331 chars) [MOCK MODE]...
+2025-10-14T19:24:09.906Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:24:10.024Z [info] [TTS] ✅ Synthesized 331 chars → 21s audio in 118ms
+2025-10-14T19:24:10.024Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-2-test-easy-ml-002.mp3
+2025-10-14T19:24:10.024Z [debug] [AudioNarration] ✅ Audio 3 generated: 21300 bytes, 21s
+2025-10-14T19:24:10.024Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T19:24:10.024Z [info] [TTS] Synthesizing text (323 chars) [MOCK MODE]...
+2025-10-14T19:24:10.024Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:24:10.223Z [info] [TTS] ✅ Synthesized 323 chars → 20s audio in 199ms
+2025-10-14T19:24:10.224Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-3-test-easy-ml-002.mp3
+2025-10-14T19:24:10.224Z [debug] [AudioNarration] ✅ Audio 4 generated: 20480 bytes, 20s
+2025-10-14T19:24:10.224Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T19:24:10.224Z [info] [TTS] Synthesizing text (383 chars) [MOCK MODE]...
+2025-10-14T19:24:10.224Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:24:10.429Z [info] [TTS] ✅ Synthesized 383 chars → 24s audio in 205ms
+2025-10-14T19:24:10.429Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-4-test-easy-ml-002.mp3
+2025-10-14T19:24:10.429Z [debug] [AudioNarration] ✅ Audio 5 generated: 24576 bytes, 24s
+2025-10-14T19:24:10.429Z [info] [AudioNarration] ✅ Audio generation complete in 1055ms
+2025-10-14T19:24:10.430Z [info] [AudioNarration] Total audio size: 0.11 MB
+2025-10-14T19:24:10.430Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (106s total, with audio, 0.11MB)
+2025-10-14T19:24:10.430Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T19:24:10.430Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T19:24:10.435Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T19:24:10.435Z [debug] [monitor] Step 1 generation for test-easy-ml-002 took 116099ms
+2025-10-14T19:24:10.435Z [info] [parallel] ✅ Step 1 COMPLETE in 116099ms with 5 actions
+2025-10-14T19:24:10.437Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-14T19:24:10.438Z [debug] [parallel] Parallel generation complete: 1/1 successful in 116103ms
+2025-10-14T19:24:10.438Z [debug] [monitor] Completed request test-easy-ml-002 in 128763ms (success: true)
+2025-10-14T19:24:10.438Z [debug] [parallel] Job complete for session test-easy-ml-002
+2025-10-14T19:24:27.892Z [debug] [monitor] Metrics updated:
+2025-10-14T19:25:13.289Z [info] [TTS] Service initialized successfully
+2025-10-14T19:25:13.311Z [info] [TTS] Testing connection...
+2025-10-14T19:25:13.311Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:25:13.311Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:25:13.313Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:25:13.438Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 127ms
+2025-10-14T19:25:13.439Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:25:13.439Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:25:13.440Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:25:13.449Z [debug] NEW Plan worker created
+2025-10-14T19:25:13.450Z [debug] NEW Gen worker created
+2025-10-14T19:25:13.450Z [debug] NEW Parallel worker created
+2025-10-14T19:25:13.456Z [debug] Server listening on port 8000
+2025-10-14T19:26:13.461Z [debug] [monitor] Metrics updated:
+2025-10-14T19:27:13.477Z [debug] [monitor] Metrics updated:
+2025-10-14T19:28:13.492Z [debug] [monitor] Metrics updated:
+2025-10-14T19:29:13.505Z [debug] [monitor] Metrics updated:
+2025-10-14T19:30:13.517Z [debug] [monitor] Metrics updated:
+2025-10-14T19:31:13.527Z [debug] [monitor] Metrics updated:
+2025-10-14T19:32:13.529Z [debug] [monitor] Metrics updated:
+2025-10-14T19:33:13.535Z [debug] [monitor] Metrics updated:
+2025-10-14T19:34:13.541Z [debug] [monitor] Metrics updated:
+2025-10-14T19:35:13.544Z [debug] [monitor] Metrics updated:
+2025-10-14T19:36:13.546Z [debug] [monitor] Metrics updated:
+2025-10-14T19:37:13.547Z [debug] [monitor] Metrics updated:
+2025-10-14T19:37:42.390Z [debug] Shutting down server...
+2025-10-14T19:37:47.687Z [info] [TTS] Service initialized successfully
+2025-10-14T19:37:47.708Z [info] [TTS] Testing connection...
+2025-10-14T19:37:47.708Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T19:37:47.708Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T19:37:47.710Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T19:37:47.932Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 224ms
+2025-10-14T19:37:47.932Z [info] [TTS] ✅ Connection test successful
+2025-10-14T19:37:47.932Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T19:37:47.932Z [info] [TTS] Estimated duration: 5s
+2025-10-14T19:37:47.934Z [debug] NEW Plan worker created
+2025-10-14T19:37:47.935Z [debug] NEW Gen worker created
+2025-10-14T19:37:47.935Z [debug] NEW Parallel worker created
+2025-10-14T19:37:47.936Z [debug] Server listening on port 8000
+2025-10-14T19:38:47.952Z [debug] [monitor] Metrics updated:
+2025-10-14T19:39:16.763Z [debug] Shutting down server...
+2025-10-14T20:01:46.310Z [info] [TTS] Service initialized successfully
+2025-10-14T20:01:46.331Z [info] [TTS] Testing connection...
+2025-10-14T20:01:46.331Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T20:01:46.331Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:01:46.333Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:01:46.574Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 243ms
+2025-10-14T20:01:46.574Z [info] [TTS] ✅ Connection test successful
+2025-10-14T20:01:46.574Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T20:01:46.574Z [info] [TTS] Estimated duration: 5s
+2025-10-14T20:01:46.577Z [debug] NEW Plan worker created
+2025-10-14T20:01:46.578Z [debug] NEW Gen worker created
+2025-10-14T20:01:46.578Z [debug] NEW Parallel worker created
+2025-10-14T20:01:46.581Z [debug] Server listening on port 8000
+2025-10-14T20:02:46.595Z [debug] [monitor] Metrics updated:
+2025-10-14T20:03:46.611Z [debug] [monitor] Metrics updated:
+2025-10-14T20:04:46.627Z [debug] [monitor] Metrics updated:
+2025-10-14T20:05:46.641Z [debug] [monitor] Metrics updated:
+2025-10-14T20:06:46.654Z [debug] [monitor] Metrics updated:
+2025-10-14T20:07:25.740Z [debug] [socket] New connection: kKX04RJKDJEjrP5IAAAB
+2025-10-14T20:07:25.984Z [debug] [socket] Socket kKX04RJKDJEjrP5IAAAB joined session f91028a3-d942-48bd-a646-2c9cc99d6bc9
+2025-10-14T20:07:25.984Z [debug] [socket] Socket kKX04RJKDJEjrP5IAAAB is now in rooms: kKX04RJKDJEjrP5IAAAB, f91028a3-d942-48bd-a646-2c9cc99d6bc9
+2025-10-14T20:07:25.987Z [debug] [socket] Socket kKX04RJKDJEjrP5IAAAB joined session f91028a3-d942-48bd-a646-2c9cc99d6bc9
+2025-10-14T20:07:25.987Z [debug] [socket] Socket kKX04RJKDJEjrP5IAAAB is now in rooms: kKX04RJKDJEjrP5IAAAB, f91028a3-d942-48bd-a646-2c9cc99d6bc9
+2025-10-14T20:07:26.673Z [debug] Received request on /api/query {"body":{"query":"teach me about the carnot engine","sessionId":"f91028a3-d942-48bd-a646-2c9cc99d6bc9","difficulty":"easy"}}
+2025-10-14T20:07:26.674Z [debug] [api] Stored query for session f91028a3-d942-48bd-a646-2c9cc99d6bc9: "teach me about the carnot engine" (difficulty: easy)
+2025-10-14T20:07:26.675Z [debug] [orchestrator] Enqueuing plan for session f91028a3-d942-48bd-a646-2c9cc99d6bc9 (difficulty: easy)
+2025-10-14T20:07:26.677Z [debug] [orchestrator] Plan job added with id 5 for session f91028a3-d942-48bd-a646-2c9cc99d6bc9
+2025-10-14T20:07:26.680Z [debug] [plan] START: session=f91028a3-d942-48bd-a646-2c9cc99d6bc9 query=teach me about the carnot engine
+2025-10-14T20:07:26.680Z [debug] [monitor] Started tracking request f91028a3-d942-48bd-a646-2c9cc99d6bc9
+2025-10-14T20:07:26.681Z [debug] [cache] MISS - No cached plan for query: "teach me about the carnot engine..."
+2025-10-14T20:07:26.681Z [info] [Planner] Difficulty: easy, Steps: 1
+2025-10-14T20:07:26.681Z [debug] [planner] Sending enhanced prompt to Gemini...
+2025-10-14T20:07:26.689Z [debug] [timeout] Setting 120000ms timeout for planner/gemini
+2025-10-14T20:07:34.808Z [debug] [planner] Received response from Gemini in 8127ms
+2025-10-14T20:07:34.808Z [debug] [planner] Raw response (first 500 chars): ```json
+{
+  "title": "The Carnot Engine: The Ultimate Efficiency Limit",
+  "subtitle": "Discover why the Carnot engine is the theoretical gold standard for all heat engines.",
+  "toc": [
+    {"minute": 1, "title": "The Intuition", "summary": "Understand the Carnot engine as the perfectly efficient, ideal benchmark."}
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "desc": "Imagine you're trying to build the most efficient engine possible to turn heat into useful work—like a car engine or a power pl...
+2025-10-14T20:07:34.808Z [debug] [planner] Extracted JSON (length: 1202)
+2025-10-14T20:07:34.808Z [debug] [planner] JSON parsed successfully on first attempt
+2025-10-14T20:07:34.808Z [info] [Planner] ✅ Generated 1 step(s) for difficulty: easy
+2025-10-14T20:07:34.808Z [debug] [monitor] Plan generation for f91028a3-d942-48bd-a646-2c9cc99d6bc9 took 8127ms
+2025-10-14T20:07:34.808Z [debug] [cache] Cached plan for query: "teach me about the carnot engine..."
+2025-10-14T20:07:34.809Z [debug] [plan] OK: session=f91028a3-d942-48bd-a646-2c9cc99d6bc9 plan received with 1 steps
+2025-10-14T20:07:34.810Z [debug] [plan] Emitted plan event to session f91028a3-d942-48bd-a646-2c9cc99d6bc9
+2025-10-14T20:07:34.810Z [debug] [plan] Enqueuing PARALLEL generation of all 1 steps
+2025-10-14T20:07:34.810Z [debug] [plan] END: session=f91028a3-d942-48bd-a646-2c9cc99d6bc9
+2025-10-14T20:07:34.811Z [info] [parallel] ⚡ STARTING parallel generation for 1 steps (session: f91028a3-d942-48bd-a646-2c9cc99d6bc9)
+2025-10-14T20:07:34.812Z [debug] [cache] MISS - No cached chunk for step 1
+2025-10-14T20:07:34.812Z [info] [parallel] 🚀 Step 1: Generating notes + 4 animations + narrations
+2025-10-14T20:07:34.812Z [info] [stepVisuals] 🎯 OPTIMIZED ARCHITECTURE: Notes + 4 animations + narrations for step 1
+2025-10-14T20:07:34.812Z [info] [stepVisuals] 📝 Starting NOTES generation (priority visual) for step 1
+2025-10-14T20:07:34.812Z [info] [notes] 🎯 Generating SVG keynote with 3 retry attempts
+2025-10-14T20:07:34.812Z [info] [notes] 📚 Subtopic: "Imagine you're trying to build the most efficient engine possible to turn heat into useful work—like a car engine or a power plant. No matter how clever you are, there's an absolute, theoretical speed limit to how efficient *any* heat engine can be. The Carnot engine represents this ultimate limit. Picture a perfectly frictionless, perfectly insulated, theoretical machine that flawlessly draws heat from a hot source, converts the *maximum possible* amount into mechanical work, and rejects the *absolute minimum* waste heat to a cold sink. It's an ideal benchmark, a physicist's dream machine, that tells us the absolute best efficiency you could ever hope to achieve between any two given temperatures."
+2025-10-14T20:07:34.812Z [info] [notes] 🎬 Visual Desc: "undefined..."
+2025-10-14T20:07:34.812Z [info] [notes] 🔄 Attempt 1/3 for step 1
+2025-10-14T20:07:34.812Z [info] [notes] Topic: "teach me about the carnot engine"
+2025-10-14T20:07:34.812Z [info] [notes] Subtopic: "Imagine you're trying to build the most efficient engine possible to turn heat into useful work—like a car engine or a power plant. No matter how clever you are, there's an absolute, theoretical speed limit to how efficient *any* heat engine can be. The Carnot engine represents this ultimate limit. Picture a perfectly frictionless, perfectly insulated, theoretical machine that flawlessly draws heat from a hot source, converts the *maximum possible* amount into mechanical work, and rejects the *absolute minimum* waste heat to a cold sink. It's an ideal benchmark, a physicist's dream machine, that tells us the absolute best efficiency you could ever hope to achieve between any two given temperatures."
+2025-10-14T20:07:34.812Z [debug] [notes] Temperature: 0.75
+2025-10-14T20:07:34.812Z [debug] [notes] Prompt length: 4766 chars
+2025-10-14T20:07:34.813Z [info] [stepVisuals] 🎬 Starting animation 1/4 for step 1
+2025-10-14T20:07:34.813Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T20:07:34.813Z [info] [codegenV3] Generating step 1: Imagine you're trying to build the most efficient engine possible to turn heat into useful work—like a car engine or a power plant. No matter how clever you are, there's an absolute, theoretical speed limit to how efficient *any* heat engine can be. The Carnot engine represents this ultimate limit. Picture a perfectly frictionless, perfectly insulated, theoretical machine that flawlessly draws heat from a hot source, converts the *maximum possible* amount into mechanical work, and rejects the *absolute minimum* waste heat to a cold sink. It's an ideal benchmark, a physicist's dream machine, that tells us the absolute best efficiency you could ever hope to achieve between any two given temperatures.
+2025-10-14T20:07:34.813Z [info] [codegenV3] Topic: "teach me about the carnot engine"
+2025-10-14T20:07:34.813Z [debug] [codegenV3] Prompt length: 1456 chars
+2025-10-14T20:07:34.813Z [info] [stepVisuals] 🎬 Starting animation 2/4 for step 1
+2025-10-14T20:07:34.813Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T20:07:34.813Z [info] [codegenV3] Generating step 1: Imagine you're trying to build the most efficient engine possible to turn heat into useful work—like a car engine or a power plant. No matter how clever you are, there's an absolute, theoretical speed limit to how efficient *any* heat engine can be. The Carnot engine represents this ultimate limit. Picture a perfectly frictionless, perfectly insulated, theoretical machine that flawlessly draws heat from a hot source, converts the *maximum possible* amount into mechanical work, and rejects the *absolute minimum* waste heat to a cold sink. It's an ideal benchmark, a physicist's dream machine, that tells us the absolute best efficiency you could ever hope to achieve between any two given temperatures.
+2025-10-14T20:07:34.813Z [info] [codegenV3] Topic: "teach me about the carnot engine"
+2025-10-14T20:07:34.813Z [debug] [codegenV3] Prompt length: 1456 chars
+2025-10-14T20:07:34.813Z [info] [stepVisuals] 🎬 Starting animation 3/4 for step 1
+2025-10-14T20:07:34.813Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T20:07:34.813Z [info] [codegenV3] Generating step 1: Imagine you're trying to build the most efficient engine possible to turn heat into useful work—like a car engine or a power plant. No matter how clever you are, there's an absolute, theoretical speed limit to how efficient *any* heat engine can be. The Carnot engine represents this ultimate limit. Picture a perfectly frictionless, perfectly insulated, theoretical machine that flawlessly draws heat from a hot source, converts the *maximum possible* amount into mechanical work, and rejects the *absolute minimum* waste heat to a cold sink. It's an ideal benchmark, a physicist's dream machine, that tells us the absolute best efficiency you could ever hope to achieve between any two given temperatures.
+2025-10-14T20:07:34.813Z [info] [codegenV3] Topic: "teach me about the carnot engine"
+2025-10-14T20:07:34.813Z [debug] [codegenV3] Prompt length: 1456 chars
+2025-10-14T20:07:34.813Z [info] [stepVisuals] 🎬 Starting animation 4/4 for step 1
+2025-10-14T20:07:34.813Z [info] [codegenV3WithRetry] 🔄 Attempt 1/3 for step 1
+2025-10-14T20:07:34.813Z [info] [codegenV3] Generating step 1: Imagine you're trying to build the most efficient engine possible to turn heat into useful work—like a car engine or a power plant. No matter how clever you are, there's an absolute, theoretical speed limit to how efficient *any* heat engine can be. The Carnot engine represents this ultimate limit. Picture a perfectly frictionless, perfectly insulated, theoretical machine that flawlessly draws heat from a hot source, converts the *maximum possible* amount into mechanical work, and rejects the *absolute minimum* waste heat to a cold sink. It's an ideal benchmark, a physicist's dream machine, that tells us the absolute best efficiency you could ever hope to achieve between any two given temperatures.
+2025-10-14T20:07:34.813Z [info] [codegenV3] Topic: "teach me about the carnot engine"
+2025-10-14T20:07:34.813Z [debug] [codegenV3] Prompt length: 1456 chars
+2025-10-14T20:07:34.813Z [info] [stepVisuals] ⚡ Running 5 parallel visual generations...
+2025-10-14T20:07:46.657Z [debug] [monitor] Metrics updated:
+2025-10-14T20:08:12.345Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T20:08:12.346Z [debug] [codegenV3] Received 4090 chars from API
+2025-10-14T20:08:12.346Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T20:08:12.347Z [info] [codegenV3] ✅ Generated SVG in 37.53s (4090 chars)
+2025-10-14T20:08:12.347Z [info] [codegenV3] 🎬 ANIMATIONS: 10 total (<animate>: 5, <animateMotion>: 4, <animateTransform>: 1)
+2025-10-14T20:08:12.347Z [info] [codegenV3] 📊 CONTENT: labels=8, shapes=14
+2025-10-14T20:08:12.347Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T20:08:12.348Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T20:08:12.348Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T20:08:12.348Z [info] [stepVisuals] ✅ Animation 2 complete with 1 actions
+2025-10-14T20:08:15.301Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T20:08:15.301Z [debug] [codegenV3] Received 5199 chars from API
+2025-10-14T20:08:15.301Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T20:08:15.302Z [info] [codegenV3] ✅ Generated SVG in 40.49s (5199 chars)
+2025-10-14T20:08:15.302Z [info] [codegenV3] 🎬 ANIMATIONS: 18 total (<animate>: 10, <animateMotion>: 7, <animateTransform>: 1)
+2025-10-14T20:08:15.302Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=17
+2025-10-14T20:08:15.302Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T20:08:15.302Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T20:08:15.302Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T20:08:15.303Z [info] [stepVisuals] ✅ Animation 1 complete with 1 actions
+2025-10-14T20:08:16.687Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T20:08:16.688Z [debug] [codegenV3] Received 3263 chars from API
+2025-10-14T20:08:16.688Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T20:08:16.688Z [info] [codegenV3] ✅ Generated SVG in 41.88s (3263 chars)
+2025-10-14T20:08:16.688Z [info] [codegenV3] 🎬 ANIMATIONS: 5 total (<animate>: 4, <animateMotion>: 0, <animateTransform>: 1)
+2025-10-14T20:08:16.688Z [info] [codegenV3] 📊 CONTENT: labels=7, shapes=10
+2025-10-14T20:08:16.688Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T20:08:16.688Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T20:08:16.688Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T20:08:16.688Z [info] [stepVisuals] ✅ Animation 3 complete with 1 actions
+2025-10-14T20:08:20.197Z [debug] [codegenV3] Finish reason: STOP
+2025-10-14T20:08:20.197Z [debug] [codegenV3] Received 4093 chars from API
+2025-10-14T20:08:20.198Z [debug] [codegenV3] SVG tag count: 1 open, 1 close
+2025-10-14T20:08:20.198Z [info] [codegenV3] ✅ Generated SVG in 45.38s (4093 chars)
+2025-10-14T20:08:20.198Z [info] [codegenV3] 🎬 ANIMATIONS: 8 total (<animate>: 4, <animateMotion>: 3, <animateTransform>: 1)
+2025-10-14T20:08:20.198Z [info] [codegenV3] 📊 CONTENT: labels=9, shapes=12
+2025-10-14T20:08:20.198Z [info] [codegenV3] ✅ ANIMATIONS PRESENT - Quality check passed
+2025-10-14T20:08:20.198Z [info] [codegenV3] Reference saved to: /tmp/debug-step1-WITH-ANIMATIONS.svg
+2025-10-14T20:08:20.198Z [info] [codegenV3WithRetry] ✅ SUCCESS (1 actions)
+2025-10-14T20:08:20.199Z [info] [stepVisuals] ✅ Animation 4 complete with 1 actions
+2025-10-14T20:08:46.658Z [debug] [monitor] Metrics updated:
+2025-10-14T20:08:49.389Z [info] [notes] ⏱️  Generation completed in 74.58s
+2025-10-14T20:08:49.389Z [debug] [notes] Finish reason: STOP
+2025-10-14T20:08:49.389Z [info] [notes] ✅ Generated SVG keynote in 74.58s (12953 chars)
+2025-10-14T20:08:49.389Z [info] [notes] 📊 Elements: text=61, rect=5, line=8, total=74
+2025-10-14T20:08:49.389Z [info] [notes] Debug copy saved: /tmp/notes-step1-1760472529389.svg
+2025-10-14T20:08:49.389Z [info] [notes] 📊 Quality Validation (Attempt 1):
+2025-10-14T20:08:49.389Z [info] [notes]    - Text elements: 61/8 ✓
+2025-10-14T20:08:49.389Z [info] [notes]    - Visual elements: 23/5 ✓
+2025-10-14T20:08:49.389Z [info] [notes]    - Total elements: 84/20 ✓
+2025-10-14T20:08:49.389Z [info] [notes]    - Content length: 12953/2000 ✓
+2025-10-14T20:08:49.389Z [info] [notes]    - ViewBox present: ✓
+2025-10-14T20:08:49.390Z [info] [notes]    - Overall: ✅ PASS
+2025-10-14T20:08:49.390Z [info] [notes] ✅ SUCCESS on attempt 1/3 (74.58s total)
+2025-10-14T20:08:49.390Z [info] [stepVisuals] ✅ Notes generated (12953 chars)
+2025-10-14T20:08:49.390Z [info] [stepVisuals] ✅ VISUALS COMPLETE: Notes=YES, Animations=4/4
+2025-10-14T20:08:49.390Z [info] [stepVisuals] 🎤 Starting NARRATION + AUDIO generation (single API call for all visuals)
+2025-10-14T20:08:49.390Z [info] [AudioNarration] Generating narrations with audio for step 1
+2025-10-14T20:08:49.390Z [info] [narration] Generating narrations for step 1 (5 visuals)
+2025-10-14T20:08:49.390Z [debug] [narration] Sending prompt (6170 chars) to Gemini
+2025-10-14T20:09:01.092Z [info] [narration] ✅ Generated 5 narrations in 11.70s (96s total audio)
+2025-10-14T20:09:01.093Z [info] [AudioNarration] Text narrations generated: 5
+2025-10-14T20:09:01.093Z [info] [AudioNarration] 🎤 Generating audio for 5 narrations...
+2025-10-14T20:09:01.093Z [debug] [AudioNarration] Synthesizing audio 1/5
+2025-10-14T20:09:01.093Z [info] [TTS] Synthesizing text (331 chars) [MOCK MODE]...
+2025-10-14T20:09:01.093Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:09:01.342Z [info] [TTS] ✅ Synthesized 331 chars → 22s audio in 249ms
+2025-10-14T20:09:01.342Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-0-f91028a3-d942-48bd-a646-2c9cc99d6bc9.mp3
+2025-10-14T20:09:01.342Z [debug] [AudioNarration] ✅ Audio 1 generated: 22119 bytes, 22s
+2025-10-14T20:09:01.342Z [debug] [AudioNarration] Synthesizing audio 2/5
+2025-10-14T20:09:01.342Z [info] [TTS] Synthesizing text (269 chars) [MOCK MODE]...
+2025-10-14T20:09:01.342Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:09:01.551Z [info] [TTS] ✅ Synthesized 269 chars → 18s audio in 209ms
+2025-10-14T20:09:01.551Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-1-f91028a3-d942-48bd-a646-2c9cc99d6bc9.mp3
+2025-10-14T20:09:01.551Z [debug] [AudioNarration] ✅ Audio 2 generated: 17613 bytes, 18s
+2025-10-14T20:09:01.552Z [debug] [AudioNarration] Synthesizing audio 3/5
+2025-10-14T20:09:01.552Z [info] [TTS] Synthesizing text (271 chars) [MOCK MODE]...
+2025-10-14T20:09:01.552Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:09:01.663Z [info] [TTS] ✅ Synthesized 271 chars → 18s audio in 111ms
+2025-10-14T20:09:01.664Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-2-f91028a3-d942-48bd-a646-2c9cc99d6bc9.mp3
+2025-10-14T20:09:01.664Z [debug] [AudioNarration] ✅ Audio 3 generated: 18432 bytes, 18s
+2025-10-14T20:09:01.664Z [debug] [AudioNarration] Synthesizing audio 4/5
+2025-10-14T20:09:01.664Z [info] [TTS] Synthesizing text (307 chars) [MOCK MODE]...
+2025-10-14T20:09:01.664Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:09:01.938Z [info] [TTS] ✅ Synthesized 307 chars → 20s audio in 274ms
+2025-10-14T20:09:01.938Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-3-f91028a3-d942-48bd-a646-2c9cc99d6bc9.mp3
+2025-10-14T20:09:01.938Z [debug] [AudioNarration] ✅ Audio 4 generated: 20480 bytes, 20s
+2025-10-14T20:09:01.938Z [debug] [AudioNarration] Synthesizing audio 5/5
+2025-10-14T20:09:01.938Z [info] [TTS] Synthesizing text (332 chars) [MOCK MODE]...
+2025-10-14T20:09:01.938Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:09:02.223Z [info] [TTS] ✅ Synthesized 332 chars → 19s audio in 285ms
+2025-10-14T20:09:02.223Z [info] [TTS] Audio saved to: /home/komail/LEAF/Learn-X/app/backend/audio-output/step-1-visual-4-f91028a3-d942-48bd-a646-2c9cc99d6bc9.mp3
+2025-10-14T20:09:02.223Z [debug] [AudioNarration] ✅ Audio 5 generated: 19252 bytes, 19s
+2025-10-14T20:09:02.223Z [info] [AudioNarration] ✅ Audio generation complete in 1130ms
+2025-10-14T20:09:02.223Z [info] [AudioNarration] Total audio size: 0.09 MB
+2025-10-14T20:09:02.223Z [info] [stepVisuals] ✅ NARRATIONS generated: 5 narrations (96s total, with audio, 0.09MB)
+2025-10-14T20:09:02.223Z [info] [parallel] ✅ Notes keynote included (priority 1)
+2025-10-14T20:09:02.223Z [info] [parallel] ✅ 4 animations included (priority 2+)
+2025-10-14T20:09:02.225Z [debug] [cache] Cached chunk for query step 1
+2025-10-14T20:09:02.225Z [debug] [monitor] Step 1 generation for f91028a3-d942-48bd-a646-2c9cc99d6bc9 took 87413ms
+2025-10-14T20:09:02.225Z [info] [parallel] ✅ Step 1 COMPLETE in 87413ms with 5 actions
+2025-10-14T20:09:02.226Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-14T20:09:02.226Z [debug] [parallel] Parallel generation complete: 1/1 successful in 87414ms
+2025-10-14T20:09:02.226Z [debug] [monitor] Completed request f91028a3-d942-48bd-a646-2c9cc99d6bc9 in 95546ms (success: true)
+2025-10-14T20:09:02.226Z [debug] [parallel] Job complete for session f91028a3-d942-48bd-a646-2c9cc99d6bc9
+2025-10-14T20:09:24.605Z [debug] [socket] Socket kKX04RJKDJEjrP5IAAAB disconnected: transport close
+2025-10-14T20:09:46.658Z [debug] [monitor] Metrics updated:
+2025-10-14T20:10:46.663Z [debug] [monitor] Metrics updated:
+2025-10-14T20:11:46.666Z [debug] [monitor] Metrics updated:
+2025-10-14T20:11:49.704Z [info] [TTS] Service initialized successfully
+2025-10-14T20:11:49.726Z [info] [TTS] Testing connection...
+2025-10-14T20:11:49.726Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T20:11:49.726Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:11:49.728Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:11:49.934Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 208ms
+2025-10-14T20:11:49.934Z [info] [TTS] ✅ Connection test successful
+2025-10-14T20:11:49.934Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T20:11:49.934Z [info] [TTS] Estimated duration: 5s
+2025-10-14T20:11:49.936Z [debug] NEW Plan worker created
+2025-10-14T20:11:49.936Z [debug] NEW Gen worker created
+2025-10-14T20:11:49.937Z [debug] NEW Parallel worker created
+2025-10-14T20:11:49.949Z [debug] Shutting down server...
+2025-10-14T20:12:46.667Z [debug] [monitor] Metrics updated:
+2025-10-14T20:13:01.004Z [info] [TTS] Service initialized successfully
+2025-10-14T20:13:01.026Z [info] [TTS] Testing connection...
+2025-10-14T20:13:01.026Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T20:13:01.026Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:13:01.028Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:13:01.177Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 151ms
+2025-10-14T20:13:01.177Z [info] [TTS] ✅ Connection test successful
+2025-10-14T20:13:01.177Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T20:13:01.177Z [info] [TTS] Estimated duration: 5s
+2025-10-14T20:13:01.180Z [debug] NEW Plan worker created
+2025-10-14T20:13:01.180Z [debug] NEW Gen worker created
+2025-10-14T20:13:01.180Z [debug] NEW Parallel worker created
+2025-10-14T20:13:01.183Z [debug] Server listening on port 8000
+2025-10-14T20:14:01.196Z [debug] [monitor] Metrics updated:
+2025-10-14T20:14:07.292Z [debug] [socket] New connection: 2xileWWHiZQIZnqaAAAB
+2025-10-14T20:14:07.802Z [debug] [socket] Socket 2xileWWHiZQIZnqaAAAB joined session 0e63cfd0-d64d-48eb-99fb-38222dca588f
+2025-10-14T20:14:07.802Z [debug] [socket] Socket 2xileWWHiZQIZnqaAAAB is now in rooms: 2xileWWHiZQIZnqaAAAB, 0e63cfd0-d64d-48eb-99fb-38222dca588f
+2025-10-14T20:14:07.802Z [debug] [socket] Socket 2xileWWHiZQIZnqaAAAB joined session 0e63cfd0-d64d-48eb-99fb-38222dca588f
+2025-10-14T20:14:07.802Z [debug] [socket] Socket 2xileWWHiZQIZnqaAAAB is now in rooms: 2xileWWHiZQIZnqaAAAB, 0e63cfd0-d64d-48eb-99fb-38222dca588f
+2025-10-14T20:14:09.056Z [debug] Received request on /api/query {"body":{"query":"teach me about the carnot engine","sessionId":"0e63cfd0-d64d-48eb-99fb-38222dca588f","difficulty":"easy"}}
+2025-10-14T20:14:09.056Z [debug] [api] Stored query for session 0e63cfd0-d64d-48eb-99fb-38222dca588f: "teach me about the carnot engine" (difficulty: easy)
+2025-10-14T20:14:09.056Z [debug] [orchestrator] Enqueuing plan for session 0e63cfd0-d64d-48eb-99fb-38222dca588f (difficulty: easy)
+2025-10-14T20:14:09.057Z [debug] [orchestrator] Plan job added with id 6 for session 0e63cfd0-d64d-48eb-99fb-38222dca588f
+2025-10-14T20:14:09.058Z [debug] [plan] START: session=0e63cfd0-d64d-48eb-99fb-38222dca588f query=teach me about the carnot engine
+2025-10-14T20:14:09.058Z [debug] [monitor] Started tracking request 0e63cfd0-d64d-48eb-99fb-38222dca588f
+2025-10-14T20:14:09.059Z [debug] [cache] HIT - Found cached plan for query: "teach me about the carnot engine..."
+2025-10-14T20:14:09.059Z [debug] [plan] Using cached plan for query: teach me about the carnot engine
+2025-10-14T20:14:09.059Z [debug] [monitor] Plan generation for 0e63cfd0-d64d-48eb-99fb-38222dca588f took 0ms
+2025-10-14T20:14:09.061Z [debug] [plan] OK: session=0e63cfd0-d64d-48eb-99fb-38222dca588f plan received with 1 steps
+2025-10-14T20:14:09.062Z [debug] [plan] Emitted plan event to session 0e63cfd0-d64d-48eb-99fb-38222dca588f
+2025-10-14T20:14:09.062Z [debug] [plan] Enqueuing PARALLEL generation of all 1 steps
+2025-10-14T20:14:09.063Z [debug] [plan] END: session=0e63cfd0-d64d-48eb-99fb-38222dca588f
+2025-10-14T20:14:09.065Z [info] [parallel] ⚡ STARTING parallel generation for 1 steps (session: 0e63cfd0-d64d-48eb-99fb-38222dca588f)
+2025-10-14T20:14:09.067Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-14T20:14:09.067Z [debug] [parallel] Using cached chunk for step 1
+2025-10-14T20:14:09.069Z [debug] [monitor] Step 1 generation for 0e63cfd0-d64d-48eb-99fb-38222dca588f took 3ms
+2025-10-14T20:14:09.069Z [info] [parallel] ✅ Step 1 COMPLETE in 3ms with 5 actions
+2025-10-14T20:14:09.071Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-14T20:14:09.072Z [debug] [parallel] Parallel generation complete: 1/1 successful in 6ms
+2025-10-14T20:14:09.072Z [debug] [monitor] Completed request 0e63cfd0-d64d-48eb-99fb-38222dca588f in 14ms (success: true)
+2025-10-14T20:14:09.072Z [debug] [parallel] Job complete for session 0e63cfd0-d64d-48eb-99fb-38222dca588f
+2025-10-14T20:15:01.201Z [debug] [monitor] Metrics updated:
+2025-10-14T20:16:01.204Z [debug] [monitor] Metrics updated:
+2025-10-14T20:16:52.982Z [debug] Shutting down server...
+2025-10-14T20:16:53.160Z [info] [TTS] Service initialized successfully
+2025-10-14T20:16:53.167Z [info] [TTS] Testing connection...
+2025-10-14T20:16:53.168Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T20:16:53.168Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:16:53.169Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:16:53.169Z [info] [TTS] Service initialized successfully
+2025-10-14T20:16:53.176Z [info] [TTS] Testing connection...
+2025-10-14T20:16:53.176Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T20:16:53.176Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:16:53.178Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:16:53.293Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 117ms
+2025-10-14T20:16:53.293Z [info] [TTS] ✅ Connection test successful
+2025-10-14T20:16:53.293Z [info] [TTS] Generated 10514 bytes of audio
+2025-10-14T20:16:53.293Z [info] [TTS] Estimated duration: 5s
+2025-10-14T20:16:53.295Z [debug] NEW Plan worker created
+2025-10-14T20:16:53.295Z [debug] NEW Gen worker created
+2025-10-14T20:16:53.295Z [debug] NEW Parallel worker created
+2025-10-14T20:16:53.297Z [debug] Server listening on port 8000
+2025-10-14T20:16:53.456Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 288ms
+2025-10-14T20:16:53.456Z [info] [TTS] ✅ Connection test successful
+2025-10-14T20:16:53.456Z [info] [TTS] Generated 10514 bytes of audio
+2025-10-14T20:16:53.456Z [info] [TTS] Estimated duration: 5s
+2025-10-14T20:16:53.458Z [debug] NEW Plan worker created
+2025-10-14T20:16:53.458Z [debug] NEW Gen worker created
+2025-10-14T20:16:53.459Z [debug] NEW Parallel worker created
+2025-10-14T20:16:53.467Z [debug] Shutting down server...
+2025-10-14T20:17:01.205Z [debug] [monitor] Metrics updated:
+2025-10-14T20:17:21.598Z [debug] Shutting down server...
+2025-10-14T20:17:21.757Z [info] [TTS] Service initialized successfully
+2025-10-14T20:17:21.757Z [info] [TTS] Service initialized successfully
+2025-10-14T20:17:21.764Z [info] [TTS] Testing connection...
+2025-10-14T20:17:21.764Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T20:17:21.764Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:17:21.766Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:17:21.764Z [info] [TTS] Testing connection...
+2025-10-14T20:17:21.764Z [info] [TTS] Synthesizing text (51 chars) [MOCK MODE]...
+2025-10-14T20:17:21.765Z [debug] [TTS] Using mock audio generation for testing
+2025-10-14T20:17:21.766Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:17:21.866Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 102ms
+2025-10-14T20:17:21.866Z [info] [TTS] ✅ Connection test successful
+2025-10-14T20:17:21.866Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T20:17:21.866Z [info] [TTS] Estimated duration: 5s
+2025-10-14T20:17:21.868Z [debug] NEW Plan worker created
+2025-10-14T20:17:21.868Z [debug] NEW Gen worker created
+2025-10-14T20:17:21.868Z [debug] NEW Parallel worker created
+2025-10-14T20:17:21.870Z [debug] Server listening on port 8000
+2025-10-14T20:17:22.022Z [info] [TTS] ✅ Synthesized 51 chars → 5s audio in 258ms
+2025-10-14T20:17:22.022Z [info] [TTS] ✅ Connection test successful
+2025-10-14T20:17:22.022Z [info] [TTS] Generated 4506 bytes of audio
+2025-10-14T20:17:22.022Z [info] [TTS] Estimated duration: 5s
+2025-10-14T20:17:22.025Z [debug] NEW Plan worker created
+2025-10-14T20:17:22.025Z [debug] NEW Gen worker created
+2025-10-14T20:17:22.025Z [debug] NEW Parallel worker created
+2025-10-14T20:17:22.033Z [debug] Shutting down server...
+2025-10-14T20:18:01.210Z [debug] [monitor] Metrics updated:
+2025-10-14T20:18:21.885Z [debug] [monitor] Metrics updated:
+2025-10-14T20:19:01.211Z [debug] [monitor] Metrics updated:
+2025-10-14T20:19:21.902Z [debug] [monitor] Metrics updated:
+2025-10-14T20:19:22.196Z [debug] Shutting down server...
+2025-10-14T20:19:22.373Z [info] [TTS] Service initialized successfully
+2025-10-14T20:19:22.373Z [info] [TTS] Service initialized successfully
+2025-10-14T20:19:22.380Z [info] [TTS] Testing connection...
+2025-10-14T20:19:22.381Z [info] [TTS] Synthesizing text (51 chars)...
+2025-10-14T20:19:22.396Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:19:22.381Z [info] [TTS] Testing connection...
+2025-10-14T20:19:22.381Z [info] [TTS] Synthesizing text (51 chars)...
+2025-10-14T20:19:22.396Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:19:27.613Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:19:27.613Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:19:27.616Z [debug] NEW Plan worker created
+2025-10-14T20:19:27.616Z [debug] NEW Gen worker created
+2025-10-14T20:19:27.616Z [debug] NEW Parallel worker created
+2025-10-14T20:19:27.618Z [debug] Server listening on port 8000
+2025-10-14T20:19:28.031Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:19:28.032Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:19:28.037Z [debug] NEW Plan worker created
+2025-10-14T20:19:28.037Z [debug] NEW Gen worker created
+2025-10-14T20:19:28.037Z [debug] NEW Parallel worker created
+2025-10-14T20:20:01.213Z [debug] [monitor] Metrics updated:
+2025-10-14T20:20:15.895Z [debug] Shutting down server...
+2025-10-14T20:20:16.054Z [info] [TTS] Service initialized successfully
+2025-10-14T20:20:16.061Z [info] [TTS] Testing connection...
+2025-10-14T20:20:16.062Z [info] [TTS] Synthesizing text (51 chars)...
+2025-10-14T20:20:16.076Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:20:16.058Z [info] [TTS] Service initialized successfully
+2025-10-14T20:20:16.065Z [info] [TTS] Testing connection...
+2025-10-14T20:20:16.065Z [info] [TTS] Synthesizing text (51 chars)...
+2025-10-14T20:20:16.079Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:20:16.787Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:16.790Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:16.787Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:16.789Z [debug] NEW Plan worker created
+2025-10-14T20:20:16.789Z [debug] NEW Gen worker created
+2025-10-14T20:20:16.789Z [debug] NEW Parallel worker created
+2025-10-14T20:20:16.791Z [debug] Server listening on port 8000
+2025-10-14T20:20:16.790Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:16.792Z [debug] NEW Plan worker created
+2025-10-14T20:20:16.792Z [debug] NEW Gen worker created
+2025-10-14T20:20:16.792Z [debug] NEW Parallel worker created
+2025-10-14T20:20:39.151Z [debug] Shutting down server...
+2025-10-14T20:20:39.314Z [info] [TTS] Service initialized successfully
+2025-10-14T20:20:39.322Z [info] [TTS] Testing connection...
+2025-10-14T20:20:39.322Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-14T20:20:39.322Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-14T20:20:39.337Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:20:39.342Z [info] [TTS] Service initialized successfully
+2025-10-14T20:20:39.349Z [info] [TTS] Testing connection...
+2025-10-14T20:20:39.349Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-14T20:20:39.350Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-14T20:20:39.364Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:20:39.944Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:39.944Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:39.951Z [debug] NEW Plan worker created
+2025-10-14T20:20:39.952Z [debug] NEW Gen worker created
+2025-10-14T20:20:39.952Z [debug] NEW Parallel worker created
+2025-10-14T20:20:39.956Z [debug] Server listening on port 8000
+2025-10-14T20:20:41.497Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:41.497Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:41.506Z [debug] NEW Plan worker created
+2025-10-14T20:20:41.507Z [debug] NEW Gen worker created
+2025-10-14T20:20:41.507Z [debug] NEW Parallel worker created
+2025-10-14T20:20:54.449Z [debug] Shutting down server...
+2025-10-14T20:20:54.615Z [info] [TTS] Service initialized successfully
+2025-10-14T20:20:54.622Z [info] [TTS] Testing connection...
+2025-10-14T20:20:54.622Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-14T20:20:54.622Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-14T20:20:54.636Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:20:54.620Z [info] [TTS] Service initialized successfully
+2025-10-14T20:20:54.627Z [info] [TTS] Testing connection...
+2025-10-14T20:20:54.627Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-14T20:20:54.627Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-14T20:20:54.641Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:20:56.021Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:56.021Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:56.025Z [debug] NEW Plan worker created
+2025-10-14T20:20:56.025Z [debug] NEW Gen worker created
+2025-10-14T20:20:56.026Z [debug] NEW Parallel worker created
+2025-10-14T20:20:56.030Z [debug] Server listening on port 8000
+2025-10-14T20:20:56.256Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:56.257Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:20:56.263Z [debug] NEW Plan worker created
+2025-10-14T20:20:56.263Z [debug] NEW Gen worker created
+2025-10-14T20:20:56.263Z [debug] NEW Parallel worker created
+2025-10-14T20:21:01.214Z [debug] [monitor] Metrics updated:
+2025-10-14T20:21:56.041Z [debug] [monitor] Metrics updated:
+2025-10-14T20:22:01.218Z [debug] [monitor] Metrics updated:
+2025-10-14T20:22:56.057Z [debug] [monitor] Metrics updated:
+2025-10-14T20:23:01.221Z [debug] [monitor] Metrics updated:
+2025-10-14T20:23:56.072Z [debug] [monitor] Metrics updated:
+2025-10-14T20:24:01.224Z [debug] [monitor] Metrics updated:
+2025-10-14T20:24:56.085Z [debug] [monitor] Metrics updated:
+2025-10-14T20:25:01.226Z [debug] [monitor] Metrics updated:
+2025-10-14T20:25:06.904Z [info] [TTS] Service initialized successfully
+2025-10-14T20:25:06.906Z [info] [TTS] Testing connection...
+2025-10-14T20:25:06.906Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-14T20:25:06.906Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-14T20:25:06.923Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:25:13.955Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:25:56.097Z [debug] [monitor] Metrics updated:
+2025-10-14T20:26:01.230Z [debug] [monitor] Metrics updated:
+2025-10-14T20:26:10.713Z [debug] [socket] Socket 2xileWWHiZQIZnqaAAAB disconnected: forced close
+2025-10-14T20:26:10.883Z [info] [TTS] Service initialized successfully
+2025-10-14T20:26:10.889Z [info] [TTS] Testing connection...
+2025-10-14T20:26:10.890Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-14T20:26:10.890Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-14T20:26:10.904Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-14T20:26:11.371Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:26:11.372Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-14T20:26:11.381Z [debug] NEW Plan worker created
+2025-10-14T20:26:11.381Z [debug] NEW Gen worker created
+2025-10-14T20:26:11.382Z [debug] NEW Parallel worker created
+2025-10-14T20:26:56.108Z [debug] [monitor] Metrics updated:
+2025-10-14T20:27:56.117Z [debug] [monitor] Metrics updated:
+2025-10-14T20:28:56.125Z [debug] [monitor] Metrics updated:
+2025-10-14T20:29:56.128Z [debug] [monitor] Metrics updated:
+2025-10-14T20:30:56.132Z [debug] [monitor] Metrics updated:
+2025-10-14T20:31:56.134Z [debug] [monitor] Metrics updated:
+2025-10-14T20:32:56.135Z [debug] [monitor] Metrics updated:
+2025-10-14T20:33:56.140Z [debug] [monitor] Metrics updated:
+2025-10-14T20:34:56.143Z [debug] [monitor] Metrics updated:
+2025-10-14T20:35:56.145Z [debug] [monitor] Metrics updated:
+2025-10-14T20:36:56.165Z [debug] [monitor] Metrics updated:
+2025-10-14T20:37:56.184Z [debug] [monitor] Metrics updated:
+2025-10-14T20:38:56.201Z [debug] [monitor] Metrics updated:
+2025-10-14T20:39:56.217Z [debug] [monitor] Metrics updated:
+2025-10-14T20:40:56.231Z [debug] [monitor] Metrics updated:
+2025-10-14T20:41:56.243Z [debug] [monitor] Metrics updated:
+2025-10-14T20:42:56.254Z [debug] [monitor] Metrics updated:
+2025-10-14T20:43:56.264Z [debug] [monitor] Metrics updated:
+2025-10-14T20:44:56.271Z [debug] [monitor] Metrics updated:
+2025-10-14T20:45:56.278Z [debug] [monitor] Metrics updated:
+2025-10-14T20:46:56.282Z [debug] [monitor] Metrics updated:
+2025-10-14T20:47:56.285Z [debug] [monitor] Metrics updated:
+2025-10-14T20:48:56.286Z [debug] [monitor] Metrics updated:
+2025-10-14T20:49:56.291Z [debug] [monitor] Metrics updated:
+2025-10-14T20:50:56.295Z [debug] [monitor] Metrics updated:
+2025-10-14T20:51:56.295Z [debug] [monitor] Metrics updated:
+2025-10-14T20:52:56.315Z [debug] [monitor] Metrics updated:
+2025-10-14T20:53:56.333Z [debug] [monitor] Metrics updated:
+2025-10-14T20:54:56.350Z [debug] [monitor] Metrics updated:
+2025-10-14T20:55:56.365Z [debug] [monitor] Metrics updated:
+2025-10-14T20:56:56.380Z [debug] [monitor] Metrics updated:
+2025-10-14T20:57:56.392Z [debug] [monitor] Metrics updated:
+2025-10-14T20:58:56.402Z [debug] [monitor] Metrics updated:
+2025-10-14T20:59:56.411Z [debug] [monitor] Metrics updated:
+2025-10-14T21:00:56.419Z [debug] [monitor] Metrics updated:
+2025-10-14T21:01:56.425Z [debug] [monitor] Metrics updated:
+2025-10-14T21:02:56.429Z [debug] [monitor] Metrics updated:
+2025-10-14T21:03:56.432Z [debug] [monitor] Metrics updated:
+2025-10-14T21:04:56.432Z [debug] [monitor] Metrics updated:
+2025-10-14T21:05:56.436Z [debug] [monitor] Metrics updated:
+2025-10-14T21:06:56.438Z [debug] [monitor] Metrics updated:
+2025-10-14T21:07:56.439Z [debug] [monitor] Metrics updated:
+2025-10-14T21:08:56.449Z [debug] [monitor] Metrics updated:
+2025-10-14T21:09:56.466Z [debug] [monitor] Metrics updated:
+2025-10-14T21:10:56.483Z [debug] [monitor] Metrics updated:
+2025-10-14T21:11:56.487Z [debug] [monitor] Metrics updated:
+2025-10-14T21:12:56.499Z [debug] [monitor] Metrics updated:
+2025-10-14T21:13:56.511Z [debug] [monitor] Metrics updated:
+2025-10-14T21:14:56.520Z [debug] [monitor] Metrics updated:
+2025-10-14T21:15:56.526Z [debug] [monitor] Metrics updated:
+2025-10-14T21:16:56.531Z [debug] [monitor] Metrics updated:
+2025-10-14T21:17:56.533Z [debug] [monitor] Metrics updated:
+2025-10-14T21:18:56.536Z [debug] [monitor] Metrics updated:
+2025-10-14T21:19:56.538Z [debug] [monitor] Metrics updated:
+2025-10-14T21:20:56.537Z [debug] [monitor] Metrics updated:
+2025-10-14T21:21:56.541Z [debug] [monitor] Metrics updated:
+2025-10-14T21:22:56.543Z [debug] [monitor] Metrics updated:
+2025-10-14T21:23:56.544Z [debug] [monitor] Metrics updated:
+2025-10-14T21:24:56.565Z [debug] [monitor] Metrics updated:
+2025-10-14T21:25:56.587Z [debug] [monitor] Metrics updated:
+2025-10-14T21:26:56.602Z [debug] [monitor] Metrics updated:
+2025-10-14T21:27:56.616Z [debug] [monitor] Metrics updated:
+2025-10-14T21:28:56.629Z [debug] [monitor] Metrics updated:
+2025-10-14T21:29:56.639Z [debug] [monitor] Metrics updated:
+2025-10-14T21:30:56.648Z [debug] [monitor] Metrics updated:
+2025-10-14T21:31:56.656Z [debug] [monitor] Metrics updated:
+2025-10-14T21:32:56.661Z [debug] [monitor] Metrics updated:
+2025-10-14T21:33:56.666Z [debug] [monitor] Metrics updated:
+2025-10-14T21:34:56.669Z [debug] [monitor] Metrics updated:
+2025-10-14T21:35:56.669Z [debug] [monitor] Metrics updated:
+2025-10-14T21:36:56.673Z [debug] [monitor] Metrics updated:
+2025-10-14T21:37:56.676Z [debug] [monitor] Metrics updated:
+2025-10-14T21:38:56.677Z [debug] [monitor] Metrics updated:
+2025-10-14T21:39:56.694Z [debug] [monitor] Metrics updated:
+2025-10-14T21:40:56.712Z [debug] [monitor] Metrics updated:
+2025-10-14T21:41:56.723Z [debug] [monitor] Metrics updated:
+2025-10-14T21:42:56.738Z [debug] [monitor] Metrics updated:
+2025-10-14T21:43:56.755Z [debug] [monitor] Metrics updated:
+2025-10-14T21:44:56.771Z [debug] [monitor] Metrics updated:
+2025-10-14T21:45:56.781Z [debug] [monitor] Metrics updated:
+2025-10-14T21:46:56.791Z [debug] [monitor] Metrics updated:
+2025-10-14T21:47:56.797Z [debug] [monitor] Metrics updated:
+2025-10-14T21:48:56.803Z [debug] [monitor] Metrics updated:
+2025-10-14T21:49:56.807Z [debug] [monitor] Metrics updated:
+2025-10-14T21:50:56.809Z [debug] [monitor] Metrics updated:
+2025-10-14T21:51:56.809Z [debug] [monitor] Metrics updated:
+2025-10-14T21:52:56.811Z [debug] [monitor] Metrics updated:
+2025-10-14T21:53:56.814Z [debug] [monitor] Metrics updated:
+2025-10-14T21:54:56.815Z [debug] [monitor] Metrics updated:
+2025-10-14T21:55:56.829Z [debug] [monitor] Metrics updated:
+2025-10-14T21:56:56.843Z [debug] [monitor] Metrics updated:
+2025-10-14T21:57:56.856Z [debug] [monitor] Metrics updated:
+2025-10-14T21:58:56.869Z [debug] [monitor] Metrics updated:
+2025-10-14T21:59:56.880Z [debug] [monitor] Metrics updated:
+2025-10-14T22:00:56.889Z [debug] [monitor] Metrics updated:
+2025-10-14T22:01:56.901Z [debug] [monitor] Metrics updated:
+2025-10-14T22:02:56.913Z [debug] [monitor] Metrics updated:
+2025-10-14T22:03:56.924Z [debug] [monitor] Metrics updated:
+2025-10-14T22:04:56.929Z [debug] [monitor] Metrics updated:
+2025-10-14T22:05:56.933Z [debug] [monitor] Metrics updated:
+2025-10-14T22:06:56.934Z [debug] [monitor] Metrics updated:
+2025-10-14T22:07:56.934Z [debug] [monitor] Metrics updated:
+2025-10-14T22:08:56.938Z [debug] [monitor] Metrics updated:
+2025-10-14T22:09:56.941Z [debug] [monitor] Metrics updated:
+2025-10-14T22:10:56.941Z [debug] [monitor] Metrics updated:
+2025-10-14T22:11:56.949Z [debug] [monitor] Metrics updated:
+2025-10-14T22:12:56.958Z [debug] [monitor] Metrics updated:
+2025-10-14T22:13:56.966Z [debug] [monitor] Metrics updated:
+2025-10-14T22:14:56.974Z [debug] [monitor] Metrics updated:
+2025-10-14T22:15:56.981Z [debug] [monitor] Metrics updated:
+2025-10-14T22:16:56.988Z [debug] [monitor] Metrics updated:
+2025-10-14T22:17:56.995Z [debug] [monitor] Metrics updated:
+2025-10-14T22:18:57.002Z [debug] [monitor] Metrics updated:
+2025-10-14T22:19:57.009Z [debug] [monitor] Metrics updated:
+2025-10-14T22:20:57.016Z [debug] [monitor] Metrics updated:
+2025-10-14T22:21:57.023Z [debug] [monitor] Metrics updated:
+2025-10-14T22:22:57.023Z [debug] [monitor] Metrics updated:
+2025-10-14T22:23:57.028Z [debug] [monitor] Metrics updated:
+2025-10-14T22:24:57.031Z [debug] [monitor] Metrics updated:
+2025-10-14T22:25:57.032Z [debug] [monitor] Metrics updated:
+2025-10-14T22:26:57.037Z [debug] [monitor] Metrics updated:
+2025-10-14T22:27:57.042Z [debug] [monitor] Metrics updated:
+2025-10-14T22:28:57.045Z [debug] [monitor] Metrics updated:
+2025-10-14T22:29:57.049Z [debug] [monitor] Metrics updated:
+2025-10-14T22:30:57.053Z [debug] [monitor] Metrics updated:
+2025-10-14T22:31:57.056Z [debug] [monitor] Metrics updated:
+2025-10-14T22:32:57.059Z [debug] [monitor] Metrics updated:
+2025-10-14T22:33:57.061Z [debug] [monitor] Metrics updated:
+2025-10-14T22:34:57.064Z [debug] [monitor] Metrics updated:
+2025-10-14T22:35:57.067Z [debug] [monitor] Metrics updated:
+2025-10-14T22:36:57.068Z [debug] [monitor] Metrics updated:
+2025-10-14T22:37:57.070Z [debug] [monitor] Metrics updated:
+2025-10-14T22:38:57.071Z [debug] [monitor] Metrics updated:
+2025-10-14T22:39:57.072Z [debug] [monitor] Metrics updated:
+2025-10-14T22:40:57.073Z [debug] [monitor] Metrics updated:
+2025-10-14T22:41:57.074Z [debug] [monitor] Metrics updated:
+2025-10-14T22:42:57.073Z [debug] [monitor] Metrics updated:
+2025-10-14T22:43:57.083Z [debug] [monitor] Metrics updated:
+2025-10-14T22:44:57.093Z [debug] [monitor] Metrics updated:
+2025-10-14T22:45:57.106Z [debug] [monitor] Metrics updated:
+2025-10-14T22:46:57.119Z [debug] [monitor] Metrics updated:
+2025-10-14T22:47:57.130Z [debug] [monitor] Metrics updated:
+2025-10-14T22:48:57.140Z [debug] [monitor] Metrics updated:
+2025-10-14T22:49:57.148Z [debug] [monitor] Metrics updated:
+2025-10-14T22:50:57.155Z [debug] [monitor] Metrics updated:
+2025-10-14T22:51:57.159Z [debug] [monitor] Metrics updated:
+2025-10-14T22:52:57.161Z [debug] [monitor] Metrics updated:
+2025-10-14T22:53:57.162Z [debug] [monitor] Metrics updated:
+2025-10-14T22:54:57.166Z [debug] [monitor] Metrics updated:
+2025-10-14T22:55:57.169Z [debug] [monitor] Metrics updated:
+2025-10-14T22:56:57.171Z [debug] [monitor] Metrics updated:
+2025-10-14T22:57:57.191Z [debug] [monitor] Metrics updated:
+2025-10-14T22:58:57.209Z [debug] [monitor] Metrics updated:
+2025-10-14T22:59:57.227Z [debug] [monitor] Metrics updated:
+2025-10-14T23:00:57.241Z [debug] [monitor] Metrics updated:
+2025-10-14T23:01:57.244Z [debug] [monitor] Metrics updated:
+2025-10-14T23:02:57.248Z [debug] [monitor] Metrics updated:
+2025-10-14T23:03:57.259Z [debug] [monitor] Metrics updated:
+2025-10-14T23:04:57.267Z [debug] [monitor] Metrics updated:
+2025-10-14T23:05:57.274Z [debug] [monitor] Metrics updated:
+2025-10-14T23:06:57.280Z [debug] [monitor] Metrics updated:
+2025-10-14T23:07:57.283Z [debug] [monitor] Metrics updated:
+2025-10-14T23:08:57.286Z [debug] [monitor] Metrics updated:
+2025-10-14T23:09:57.287Z [debug] [monitor] Metrics updated:
+2025-10-14T23:10:57.290Z [debug] [monitor] Metrics updated:
+2025-10-14T23:11:57.293Z [debug] [monitor] Metrics updated:
+2025-10-14T23:12:57.295Z [debug] [monitor] Metrics updated:
+2025-10-14T23:13:57.316Z [debug] [monitor] Metrics updated:
+2025-10-14T23:14:57.334Z [debug] [monitor] Metrics updated:
+2025-10-14T23:15:57.351Z [debug] [monitor] Metrics updated:
+2025-10-14T23:16:57.366Z [debug] [monitor] Metrics updated:
+2025-10-14T23:17:57.380Z [debug] [monitor] Metrics updated:
+2025-10-14T23:18:57.392Z [debug] [monitor] Metrics updated:
+2025-10-14T23:19:57.404Z [debug] [monitor] Metrics updated:
+2025-10-14T23:20:57.412Z [debug] [monitor] Metrics updated:
+2025-10-14T23:21:57.420Z [debug] [monitor] Metrics updated:
+2025-10-14T23:22:57.424Z [debug] [monitor] Metrics updated:
+2025-10-14T23:23:57.427Z [debug] [monitor] Metrics updated:
+2025-10-14T23:24:57.430Z [debug] [monitor] Metrics updated:
+2025-10-14T23:25:57.431Z [debug] [monitor] Metrics updated:
+2025-10-14T23:26:57.433Z [debug] [monitor] Metrics updated:
+2025-10-14T23:27:57.436Z [debug] [monitor] Metrics updated:
+2025-10-14T23:28:57.438Z [debug] [monitor] Metrics updated:
+2025-10-14T23:29:57.447Z [debug] [monitor] Metrics updated:
+2025-10-14T23:30:57.466Z [debug] [monitor] Metrics updated:
+2025-10-14T23:31:57.483Z [debug] [monitor] Metrics updated:
+2025-10-14T23:32:57.498Z [debug] [monitor] Metrics updated:
+2025-10-14T23:33:57.511Z [debug] [monitor] Metrics updated:
+2025-10-14T23:34:57.523Z [debug] [monitor] Metrics updated:
+2025-10-14T23:35:57.534Z [debug] [monitor] Metrics updated:
+2025-10-14T23:36:57.542Z [debug] [monitor] Metrics updated:
+2025-10-14T23:37:57.548Z [debug] [monitor] Metrics updated:
+2025-10-14T23:38:57.553Z [debug] [monitor] Metrics updated:
+2025-10-14T23:39:57.557Z [debug] [monitor] Metrics updated:
+2025-10-14T23:40:57.559Z [debug] [monitor] Metrics updated:
+2025-10-14T23:41:57.560Z [debug] [monitor] Metrics updated:
+2025-10-14T23:42:57.564Z [debug] [monitor] Metrics updated:
+2025-10-14T23:43:57.567Z [debug] [monitor] Metrics updated:
+2025-10-14T23:44:57.568Z [debug] [monitor] Metrics updated:
+2025-10-14T23:45:57.590Z [debug] [monitor] Metrics updated:
+2025-10-14T23:46:57.612Z [debug] [monitor] Metrics updated:
+2025-10-14T23:47:57.629Z [debug] [monitor] Metrics updated:
+2025-10-14T23:48:57.643Z [debug] [monitor] Metrics updated:
+2025-10-14T23:49:57.657Z [debug] [monitor] Metrics updated:
+2025-10-14T23:50:57.669Z [debug] [monitor] Metrics updated:
+2025-10-14T23:51:57.671Z [debug] [monitor] Metrics updated:
+2025-10-14T23:52:57.675Z [debug] [monitor] Metrics updated:
+2025-10-14T23:53:57.682Z [debug] [monitor] Metrics updated:
+2025-10-14T23:54:57.688Z [debug] [monitor] Metrics updated:
+2025-10-14T23:55:57.692Z [debug] [monitor] Metrics updated:
+2025-10-14T23:56:57.694Z [debug] [monitor] Metrics updated:
+2025-10-14T23:57:57.695Z [debug] [monitor] Metrics updated:
+2025-10-14T23:58:57.700Z [debug] [monitor] Metrics updated:
+2025-10-14T23:59:57.703Z [debug] [monitor] Metrics updated:
+2025-10-15T00:00:57.703Z [debug] [monitor] Metrics updated:
+2025-10-15T00:01:57.722Z [debug] [monitor] Metrics updated:
+2025-10-15T00:02:57.733Z [debug] [monitor] Metrics updated:
+2025-10-15T00:03:57.750Z [debug] [monitor] Metrics updated:
+2025-10-15T00:04:57.767Z [debug] [monitor] Metrics updated:
+2025-10-15T00:05:57.784Z [debug] [monitor] Metrics updated:
+2025-10-15T00:06:57.797Z [debug] [monitor] Metrics updated:
+2025-10-15T00:07:57.806Z [debug] [monitor] Metrics updated:
+2025-10-15T00:08:57.815Z [debug] [monitor] Metrics updated:
+2025-10-15T00:09:57.822Z [debug] [monitor] Metrics updated:
+2025-10-15T00:10:57.828Z [debug] [monitor] Metrics updated:
+2025-10-15T00:11:57.832Z [debug] [monitor] Metrics updated:
+2025-10-15T00:12:57.835Z [debug] [monitor] Metrics updated:
+2025-10-15T00:13:57.836Z [debug] [monitor] Metrics updated:
+2025-10-15T00:14:57.840Z [debug] [monitor] Metrics updated:
+2025-10-15T00:15:57.843Z [debug] [monitor] Metrics updated:
+2025-10-15T00:16:57.845Z [debug] [monitor] Metrics updated:
+2025-10-15T00:17:57.859Z [debug] [monitor] Metrics updated:
+2025-10-15T00:18:57.870Z [debug] [monitor] Metrics updated:
+2025-10-15T00:19:57.883Z [debug] [monitor] Metrics updated:
+2025-10-15T00:20:57.896Z [debug] [monitor] Metrics updated:
+2025-10-15T00:21:57.903Z [debug] [monitor] Metrics updated:
+2025-10-15T00:22:57.903Z [debug] [monitor] Metrics updated:
+2025-10-15T00:23:57.916Z [debug] [monitor] Metrics updated:
+2025-10-15T00:24:57.917Z [debug] [monitor] Metrics updated:
+2025-10-15T00:25:57.924Z [debug] [monitor] Metrics updated:
+2025-10-15T00:26:57.929Z [debug] [monitor] Metrics updated:
+2025-10-15T00:27:57.932Z [debug] [monitor] Metrics updated:
+2025-10-15T00:28:57.934Z [debug] [monitor] Metrics updated:
+2025-10-15T00:29:57.935Z [debug] [monitor] Metrics updated:
+2025-10-15T00:30:57.938Z [debug] [monitor] Metrics updated:
+2025-10-15T00:31:57.941Z [debug] [monitor] Metrics updated:
+2025-10-15T00:32:57.942Z [debug] [monitor] Metrics updated:
+2025-10-15T00:33:57.952Z [debug] [monitor] Metrics updated:
+2025-10-15T00:34:57.962Z [debug] [monitor] Metrics updated:
+2025-10-15T00:35:57.966Z [debug] [monitor] Metrics updated:
+2025-10-15T00:36:57.974Z [debug] [monitor] Metrics updated:
+2025-10-15T00:37:57.977Z [debug] [monitor] Metrics updated:
+2025-10-15T00:38:57.985Z [debug] [monitor] Metrics updated:
+2025-10-15T00:39:57.992Z [debug] [monitor] Metrics updated:
+2025-10-15T00:40:57.995Z [debug] [monitor] Metrics updated:
+2025-10-15T00:41:58.001Z [debug] [monitor] Metrics updated:
+2025-10-15T00:42:58.008Z [debug] [monitor] Metrics updated:
+2025-10-15T00:43:58.015Z [debug] [monitor] Metrics updated:
+2025-10-15T00:44:58.017Z [debug] [monitor] Metrics updated:
+2025-10-15T00:45:58.018Z [debug] [monitor] Metrics updated:
+2025-10-15T00:46:58.022Z [debug] [monitor] Metrics updated:
+2025-10-15T00:47:58.024Z [debug] [monitor] Metrics updated:
+2025-10-15T00:48:58.023Z [debug] [monitor] Metrics updated:
+2025-10-15T00:49:58.028Z [debug] [monitor] Metrics updated:
+2025-10-15T00:50:58.032Z [debug] [monitor] Metrics updated:
+2025-10-15T00:51:58.037Z [debug] [monitor] Metrics updated:
+2025-10-15T00:52:58.041Z [debug] [monitor] Metrics updated:
+2025-10-15T00:53:58.045Z [debug] [monitor] Metrics updated:
+2025-10-15T00:54:58.049Z [debug] [monitor] Metrics updated:
+2025-10-15T00:55:58.053Z [debug] [monitor] Metrics updated:
+2025-10-15T00:56:58.055Z [debug] [monitor] Metrics updated:
+2025-10-15T00:57:58.057Z [debug] [monitor] Metrics updated:
+2025-10-15T00:58:58.059Z [debug] [monitor] Metrics updated:
+2025-10-15T00:59:58.061Z [debug] [monitor] Metrics updated:
+2025-10-15T01:00:58.062Z [debug] [monitor] Metrics updated:
+2025-10-15T01:01:58.064Z [debug] [monitor] Metrics updated:
+2025-10-15T01:02:58.065Z [debug] [monitor] Metrics updated:
+2025-10-15T01:03:58.064Z [debug] [monitor] Metrics updated:
+2025-10-15T01:04:58.065Z [debug] [monitor] Metrics updated:
+2025-10-15T01:05:58.065Z [debug] [monitor] Metrics updated:
+2025-10-15T01:06:58.078Z [debug] [monitor] Metrics updated:
+2025-10-15T01:07:58.093Z [debug] [monitor] Metrics updated:
+2025-10-15T01:08:58.106Z [debug] [monitor] Metrics updated:
+2025-10-15T01:09:58.118Z [debug] [monitor] Metrics updated:
+2025-10-15T01:10:58.127Z [debug] [monitor] Metrics updated:
+2025-10-15T01:11:58.136Z [debug] [monitor] Metrics updated:
+2025-10-15T01:12:58.142Z [debug] [monitor] Metrics updated:
+2025-10-15T01:13:58.147Z [debug] [monitor] Metrics updated:
+2025-10-15T01:14:58.150Z [debug] [monitor] Metrics updated:
+2025-10-15T01:15:58.152Z [debug] [monitor] Metrics updated:
+2025-10-15T01:16:58.153Z [debug] [monitor] Metrics updated:
+2025-10-15T01:17:58.156Z [debug] [monitor] Metrics updated:
+2025-10-15T01:18:58.158Z [debug] [monitor] Metrics updated:
+2025-10-15T01:19:58.159Z [debug] [monitor] Metrics updated:
+2025-10-15T01:20:58.159Z [debug] [monitor] Metrics updated:
+2025-10-15T01:21:58.177Z [debug] [monitor] Metrics updated:
+2025-10-15T01:22:58.192Z [debug] [monitor] Metrics updated:
+2025-10-15T01:23:58.206Z [debug] [monitor] Metrics updated:
+2025-10-15T01:24:58.219Z [debug] [monitor] Metrics updated:
+2025-10-15T01:25:58.230Z [debug] [monitor] Metrics updated:
+2025-10-15T01:26:58.239Z [debug] [monitor] Metrics updated:
+2025-10-15T01:27:58.247Z [debug] [monitor] Metrics updated:
+2025-10-15T01:28:58.253Z [debug] [monitor] Metrics updated:
+2025-10-15T01:29:58.258Z [debug] [monitor] Metrics updated:
+2025-10-15T01:30:58.262Z [debug] [monitor] Metrics updated:
+2025-10-15T01:31:58.262Z [debug] [monitor] Metrics updated:
+2025-10-15T01:32:58.268Z [debug] [monitor] Metrics updated:
+2025-10-15T01:33:58.270Z [debug] [monitor] Metrics updated:
+2025-10-15T01:34:58.272Z [debug] [monitor] Metrics updated:
+2025-10-15T01:35:58.272Z [debug] [monitor] Metrics updated:
+2025-10-15T01:36:58.290Z [debug] [monitor] Metrics updated:
+2025-10-15T01:37:58.307Z [debug] [monitor] Metrics updated:
+2025-10-15T01:38:58.322Z [debug] [monitor] Metrics updated:
+2025-10-15T01:39:58.336Z [debug] [monitor] Metrics updated:
+2025-10-15T01:40:58.348Z [debug] [monitor] Metrics updated:
+2025-10-15T01:41:58.359Z [debug] [monitor] Metrics updated:
+2025-10-15T01:42:58.369Z [debug] [monitor] Metrics updated:
+2025-10-15T01:43:58.376Z [debug] [monitor] Metrics updated:
+2025-10-15T01:44:58.381Z [debug] [monitor] Metrics updated:
+2025-10-15T01:45:58.385Z [debug] [monitor] Metrics updated:
+2025-10-15T01:46:58.389Z [debug] [monitor] Metrics updated:
+2025-10-15T01:47:58.390Z [debug] [monitor] Metrics updated:
+2025-10-15T01:48:58.395Z [debug] [monitor] Metrics updated:
+2025-10-15T01:49:58.398Z [debug] [monitor] Metrics updated:
+2025-10-15T01:50:58.399Z [debug] [monitor] Metrics updated:
+2025-10-15T01:51:58.419Z [debug] [monitor] Metrics updated:
+2025-10-15T01:52:58.426Z [debug] [monitor] Metrics updated:
+2025-10-15T01:53:58.436Z [debug] [monitor] Metrics updated:
+2025-10-15T01:54:58.451Z [debug] [monitor] Metrics updated:
+2025-10-15T01:55:58.454Z [debug] [monitor] Metrics updated:
+2025-10-15T01:56:58.466Z [debug] [monitor] Metrics updated:
+2025-10-15T01:57:58.476Z [debug] [monitor] Metrics updated:
+2025-10-15T01:58:58.485Z [debug] [monitor] Metrics updated:
+2025-10-15T01:59:58.493Z [debug] [monitor] Metrics updated:
+2025-10-15T02:00:58.499Z [debug] [monitor] Metrics updated:
+2025-10-15T02:01:58.504Z [debug] [monitor] Metrics updated:
+2025-10-15T02:02:58.506Z [debug] [monitor] Metrics updated:
+2025-10-15T02:03:58.507Z [debug] [monitor] Metrics updated:
+2025-10-15T02:04:58.512Z [debug] [monitor] Metrics updated:
+2025-10-15T02:05:58.516Z [debug] [monitor] Metrics updated:
+2025-10-15T02:06:58.516Z [debug] [monitor] Metrics updated:
+2025-10-15T02:07:58.534Z [debug] [monitor] Metrics updated:
+2025-10-15T02:08:58.556Z [debug] [monitor] Metrics updated:
+2025-10-15T02:09:58.563Z [debug] [monitor] Metrics updated:
+2025-10-15T02:10:58.579Z [debug] [monitor] Metrics updated:
+2025-10-15T02:11:58.592Z [debug] [monitor] Metrics updated:
+2025-10-15T02:12:58.605Z [debug] [monitor] Metrics updated:
+2025-10-15T02:13:58.608Z [debug] [monitor] Metrics updated:
+2025-10-15T02:14:58.618Z [debug] [monitor] Metrics updated:
+2025-10-15T02:15:58.625Z [debug] [monitor] Metrics updated:
+2025-10-15T02:16:58.631Z [debug] [monitor] Metrics updated:
+2025-10-15T02:17:58.634Z [debug] [monitor] Metrics updated:
+2025-10-15T02:18:58.637Z [debug] [monitor] Metrics updated:
+2025-10-15T02:19:58.637Z [debug] [monitor] Metrics updated:
+2025-10-15T02:20:58.641Z [debug] [monitor] Metrics updated:
+2025-10-15T02:21:58.644Z [debug] [monitor] Metrics updated:
+2025-10-15T02:22:58.645Z [debug] [monitor] Metrics updated:
+2025-10-15T02:23:58.663Z [debug] [monitor] Metrics updated:
+2025-10-15T02:24:58.681Z [debug] [monitor] Metrics updated:
+2025-10-15T02:25:58.683Z [debug] [monitor] Metrics updated:
+2025-10-15T02:26:58.700Z [debug] [monitor] Metrics updated:
+2025-10-15T02:27:58.718Z [debug] [monitor] Metrics updated:
+2025-10-15T02:28:58.729Z [debug] [monitor] Metrics updated:
+2025-10-15T02:29:58.739Z [debug] [monitor] Metrics updated:
+2025-10-15T02:30:58.747Z [debug] [monitor] Metrics updated:
+2025-10-15T02:31:58.753Z [debug] [monitor] Metrics updated:
+2025-10-15T02:32:58.758Z [debug] [monitor] Metrics updated:
+2025-10-15T02:33:58.762Z [debug] [monitor] Metrics updated:
+2025-10-15T02:34:58.764Z [debug] [monitor] Metrics updated:
+2025-10-15T02:35:58.765Z [debug] [monitor] Metrics updated:
+2025-10-15T02:36:58.768Z [debug] [monitor] Metrics updated:
+2025-10-15T02:37:58.770Z [debug] [monitor] Metrics updated:
+2025-10-15T02:38:58.771Z [debug] [monitor] Metrics updated:
+2025-10-15T02:39:58.785Z [debug] [monitor] Metrics updated:
+2025-10-15T02:40:58.798Z [debug] [monitor] Metrics updated:
+2025-10-15T02:41:58.812Z [debug] [monitor] Metrics updated:
+2025-10-15T02:42:58.824Z [debug] [monitor] Metrics updated:
+2025-10-15T02:43:58.833Z [debug] [monitor] Metrics updated:
+2025-10-15T02:44:58.845Z [debug] [monitor] Metrics updated:
+2025-10-15T02:45:58.858Z [debug] [monitor] Metrics updated:
+2025-10-15T02:46:58.871Z [debug] [monitor] Metrics updated:
+2025-10-15T02:47:58.878Z [debug] [monitor] Metrics updated:
+2025-10-15T02:48:58.882Z [debug] [monitor] Metrics updated:
+2025-10-15T02:49:58.885Z [debug] [monitor] Metrics updated:
+2025-10-15T02:50:58.886Z [debug] [monitor] Metrics updated:
+2025-10-15T02:51:58.886Z [debug] [monitor] Metrics updated:
+2025-10-15T02:52:58.890Z [debug] [monitor] Metrics updated:
+2025-10-15T02:53:58.892Z [debug] [monitor] Metrics updated:
+2025-10-15T02:54:58.893Z [debug] [monitor] Metrics updated:
+2025-10-15T02:55:58.902Z [debug] [monitor] Metrics updated:
+2025-10-15T02:56:58.913Z [debug] [monitor] Metrics updated:
+2025-10-15T02:57:58.921Z [debug] [monitor] Metrics updated:
+2025-10-15T02:58:58.923Z [debug] [monitor] Metrics updated:
+2025-10-15T02:59:58.931Z [debug] [monitor] Metrics updated:
+2025-10-15T03:00:58.937Z [debug] [monitor] Metrics updated:
+2025-10-15T03:01:58.946Z [debug] [monitor] Metrics updated:
+2025-10-15T03:02:58.953Z [debug] [monitor] Metrics updated:
+2025-10-15T03:03:58.961Z [debug] [monitor] Metrics updated:
+2025-10-15T03:04:58.968Z [debug] [monitor] Metrics updated:
+2025-10-15T03:05:58.970Z [debug] [monitor] Metrics updated:
+2025-10-15T03:06:58.971Z [debug] [monitor] Metrics updated:
+2025-10-15T03:07:58.970Z [debug] [monitor] Metrics updated:
+2025-10-15T03:08:58.973Z [debug] [monitor] Metrics updated:
+2025-10-15T03:09:58.975Z [debug] [monitor] Metrics updated:
+2025-10-15T03:10:58.981Z [debug] [monitor] Metrics updated:
+2025-10-15T03:11:58.986Z [debug] [monitor] Metrics updated:
+2025-10-15T03:12:58.990Z [debug] [monitor] Metrics updated:
+2025-10-15T03:13:58.994Z [debug] [monitor] Metrics updated:
+2025-10-15T03:14:58.998Z [debug] [monitor] Metrics updated:
+2025-10-15T03:15:59.001Z [debug] [monitor] Metrics updated:
+2025-10-15T03:16:59.004Z [debug] [monitor] Metrics updated:
+2025-10-15T03:17:59.007Z [debug] [monitor] Metrics updated:
+2025-10-15T03:18:59.010Z [debug] [monitor] Metrics updated:
+2025-10-15T03:19:59.013Z [debug] [monitor] Metrics updated:
+2025-10-15T03:20:59.017Z [debug] [monitor] Metrics updated:
+2025-10-15T03:21:59.018Z [debug] [monitor] Metrics updated:
+2025-10-15T03:22:59.020Z [debug] [monitor] Metrics updated:
+2025-10-15T03:23:59.021Z [debug] [monitor] Metrics updated:
+2025-10-15T03:24:59.021Z [debug] [monitor] Metrics updated:
+2025-10-15T03:25:59.023Z [debug] [monitor] Metrics updated:
+2025-10-15T03:26:59.025Z [debug] [monitor] Metrics updated:
+2025-10-15T03:27:59.025Z [debug] [monitor] Metrics updated:
+2025-10-15T03:28:59.024Z [debug] [monitor] Metrics updated:
+2025-10-15T03:29:59.039Z [debug] [monitor] Metrics updated:
+2025-10-15T03:30:59.051Z [debug] [monitor] Metrics updated:
+2025-10-15T03:31:59.062Z [debug] [monitor] Metrics updated:
+2025-10-15T03:32:59.072Z [debug] [monitor] Metrics updated:
+2025-10-15T03:33:59.080Z [debug] [monitor] Metrics updated:
+2025-10-15T03:34:59.087Z [debug] [monitor] Metrics updated:
+2025-10-15T03:35:59.093Z [debug] [monitor] Metrics updated:
+2025-10-15T03:36:59.097Z [debug] [monitor] Metrics updated:
+2025-10-15T03:37:59.100Z [debug] [monitor] Metrics updated:
+2025-10-15T03:38:59.101Z [debug] [monitor] Metrics updated:
+2025-10-15T03:39:59.105Z [debug] [monitor] Metrics updated:
+2025-10-15T03:40:59.108Z [debug] [monitor] Metrics updated:
+2025-10-15T03:41:59.108Z [debug] [monitor] Metrics updated:
+2025-10-15T03:42:59.109Z [debug] [monitor] Metrics updated:
+2025-10-15T03:43:59.121Z [debug] [monitor] Metrics updated:
+2025-10-15T03:44:59.136Z [debug] [monitor] Metrics updated:
+2025-10-15T03:45:59.151Z [debug] [monitor] Metrics updated:
+2025-10-15T03:46:59.164Z [debug] [monitor] Metrics updated:
+2025-10-15T03:47:59.174Z [debug] [monitor] Metrics updated:
+2025-10-15T03:48:59.184Z [debug] [monitor] Metrics updated:
+2025-10-15T03:49:59.192Z [debug] [monitor] Metrics updated:
+2025-10-15T03:50:59.199Z [debug] [monitor] Metrics updated:
+2025-10-15T03:51:59.204Z [debug] [monitor] Metrics updated:
+2025-10-15T03:52:59.208Z [debug] [monitor] Metrics updated:
+2025-10-15T03:53:59.209Z [debug] [monitor] Metrics updated:
+2025-10-15T03:54:59.210Z [debug] [monitor] Metrics updated:
+2025-10-15T03:55:59.214Z [debug] [monitor] Metrics updated:
+2025-10-15T03:56:59.217Z [debug] [monitor] Metrics updated:
+2025-10-15T03:57:24.333Z [debug] [socket] New connection: VRSWdrkuWJ6J_J-qAAAB
+2025-10-15T03:57:24.607Z [debug] [socket] Socket VRSWdrkuWJ6J_J-qAAAB joined session a01e002a-1872-4e8a-90fb-67318a56c461
+2025-10-15T03:57:24.607Z [debug] [socket] Socket VRSWdrkuWJ6J_J-qAAAB is now in rooms: VRSWdrkuWJ6J_J-qAAAB, a01e002a-1872-4e8a-90fb-67318a56c461
+2025-10-15T03:57:24.608Z [debug] [socket] Socket VRSWdrkuWJ6J_J-qAAAB joined session a01e002a-1872-4e8a-90fb-67318a56c461
+2025-10-15T03:57:24.608Z [debug] [socket] Socket VRSWdrkuWJ6J_J-qAAAB is now in rooms: VRSWdrkuWJ6J_J-qAAAB, a01e002a-1872-4e8a-90fb-67318a56c461
+2025-10-15T03:57:25.092Z [debug] Received request on /api/query {"body":{"query":"teach me about the carnot engine","sessionId":"a01e002a-1872-4e8a-90fb-67318a56c461","difficulty":"easy"}}
+2025-10-15T03:57:25.093Z [debug] [api] Stored query for session a01e002a-1872-4e8a-90fb-67318a56c461: "teach me about the carnot engine" (difficulty: easy)
+2025-10-15T03:57:25.094Z [debug] [orchestrator] Enqueuing plan for session a01e002a-1872-4e8a-90fb-67318a56c461 (difficulty: easy)
+2025-10-15T03:57:25.100Z [debug] [orchestrator] Plan job added with id 7 for session a01e002a-1872-4e8a-90fb-67318a56c461
+2025-10-15T03:57:25.101Z [debug] [plan] START: session=a01e002a-1872-4e8a-90fb-67318a56c461 query=teach me about the carnot engine
+2025-10-15T03:57:25.101Z [debug] [monitor] Started tracking request a01e002a-1872-4e8a-90fb-67318a56c461
+2025-10-15T03:57:25.102Z [debug] [cache] HIT - Found cached plan for query: "teach me about the carnot engine..."
+2025-10-15T03:57:25.102Z [debug] [plan] Using cached plan for query: teach me about the carnot engine
+2025-10-15T03:57:25.102Z [debug] [monitor] Plan generation for a01e002a-1872-4e8a-90fb-67318a56c461 took 1ms
+2025-10-15T03:57:25.104Z [debug] [plan] OK: session=a01e002a-1872-4e8a-90fb-67318a56c461 plan received with 1 steps
+2025-10-15T03:57:25.106Z [debug] [plan] Emitted plan event to session a01e002a-1872-4e8a-90fb-67318a56c461
+2025-10-15T03:57:25.106Z [debug] [plan] Enqueuing PARALLEL generation of all 1 steps
+2025-10-15T03:57:25.108Z [debug] [plan] END: session=a01e002a-1872-4e8a-90fb-67318a56c461
+2025-10-15T03:57:25.110Z [info] [parallel] ⚡ STARTING parallel generation for 1 steps (session: a01e002a-1872-4e8a-90fb-67318a56c461)
+2025-10-15T03:57:25.112Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-15T03:57:25.112Z [debug] [parallel] Using cached chunk for step 1
+2025-10-15T03:57:25.114Z [debug] [monitor] Step 1 generation for a01e002a-1872-4e8a-90fb-67318a56c461 took 3ms
+2025-10-15T03:57:25.114Z [info] [parallel] ✅ Step 1 COMPLETE in 3ms with 5 actions
+2025-10-15T03:57:25.115Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-15T03:57:25.115Z [debug] [parallel] Parallel generation complete: 1/1 successful in 5ms
+2025-10-15T03:57:25.115Z [debug] [monitor] Completed request a01e002a-1872-4e8a-90fb-67318a56c461 in 14ms (success: true)
+2025-10-15T03:57:25.116Z [debug] [parallel] Job complete for session a01e002a-1872-4e8a-90fb-67318a56c461
+2025-10-15T03:57:59.217Z [debug] [monitor] Metrics updated:
+2025-10-15T03:58:59.230Z [debug] [monitor] Metrics updated:
+2025-10-15T03:59:57.523Z [debug] [socket] Socket VRSWdrkuWJ6J_J-qAAAB disconnected: transport close
+2025-10-15T03:59:59.239Z [debug] [monitor] Metrics updated:
+2025-10-15T04:00:08.933Z [debug] [socket] New connection: jw3uMDg6iA9loh03AAAD
+2025-10-15T04:00:09.213Z [debug] [socket] Socket jw3uMDg6iA9loh03AAAD joined session 6689411e-d61b-46e1-b150-e768909fbb65
+2025-10-15T04:00:09.213Z [debug] [socket] Socket jw3uMDg6iA9loh03AAAD is now in rooms: jw3uMDg6iA9loh03AAAD, 6689411e-d61b-46e1-b150-e768909fbb65
+2025-10-15T04:00:09.214Z [debug] [socket] Socket jw3uMDg6iA9loh03AAAD joined session 6689411e-d61b-46e1-b150-e768909fbb65
+2025-10-15T04:00:09.214Z [debug] [socket] Socket jw3uMDg6iA9loh03AAAD is now in rooms: jw3uMDg6iA9loh03AAAD, 6689411e-d61b-46e1-b150-e768909fbb65
+2025-10-15T04:00:09.669Z [debug] Received request on /api/query {"body":{"query":"teach me about the carnot engine","sessionId":"6689411e-d61b-46e1-b150-e768909fbb65","difficulty":"hard"}}
+2025-10-15T04:00:09.670Z [debug] [api] Stored query for session 6689411e-d61b-46e1-b150-e768909fbb65: "teach me about the carnot engine" (difficulty: hard)
+2025-10-15T04:00:09.670Z [debug] [orchestrator] Enqueuing plan for session 6689411e-d61b-46e1-b150-e768909fbb65 (difficulty: hard)
+2025-10-15T04:00:09.673Z [debug] [orchestrator] Plan job added with id 8 for session 6689411e-d61b-46e1-b150-e768909fbb65
+2025-10-15T04:00:09.674Z [debug] [plan] START: session=6689411e-d61b-46e1-b150-e768909fbb65 query=teach me about the carnot engine
+2025-10-15T04:00:09.674Z [debug] [monitor] Started tracking request 6689411e-d61b-46e1-b150-e768909fbb65
+2025-10-15T04:00:09.675Z [debug] [cache] HIT - Found cached plan for query: "teach me about the carnot engine..."
+2025-10-15T04:00:09.675Z [debug] [plan] Using cached plan for query: teach me about the carnot engine
+2025-10-15T04:00:09.675Z [debug] [monitor] Plan generation for 6689411e-d61b-46e1-b150-e768909fbb65 took 0ms
+2025-10-15T04:00:09.676Z [debug] [plan] OK: session=6689411e-d61b-46e1-b150-e768909fbb65 plan received with 1 steps
+2025-10-15T04:00:09.676Z [debug] [plan] Emitted plan event to session 6689411e-d61b-46e1-b150-e768909fbb65
+2025-10-15T04:00:09.676Z [debug] [plan] Enqueuing PARALLEL generation of all 1 steps
+2025-10-15T04:00:09.677Z [debug] [plan] END: session=6689411e-d61b-46e1-b150-e768909fbb65
+2025-10-15T04:00:09.678Z [info] [parallel] ⚡ STARTING parallel generation for 1 steps (session: 6689411e-d61b-46e1-b150-e768909fbb65)
+2025-10-15T04:00:09.679Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-15T04:00:09.679Z [debug] [parallel] Using cached chunk for step 1
+2025-10-15T04:00:09.680Z [debug] [monitor] Step 1 generation for 6689411e-d61b-46e1-b150-e768909fbb65 took 2ms
+2025-10-15T04:00:09.680Z [info] [parallel] ✅ Step 1 COMPLETE in 2ms with 5 actions
+2025-10-15T04:00:09.681Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-15T04:00:09.681Z [debug] [parallel] Parallel generation complete: 1/1 successful in 3ms
+2025-10-15T04:00:09.682Z [debug] [monitor] Completed request 6689411e-d61b-46e1-b150-e768909fbb65 in 7ms (success: true)
+2025-10-15T04:00:09.682Z [debug] [parallel] Job complete for session 6689411e-d61b-46e1-b150-e768909fbb65
+2025-10-15T04:00:59.239Z [debug] [monitor] Metrics updated:
+2025-10-15T04:01:59.254Z [debug] [monitor] Metrics updated:

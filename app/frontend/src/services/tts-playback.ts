@@ -1,16 +1,19 @@
 /**
  * TTS Playback Service
- * Handles playing narration audio synchronized with animations
+ * Uses FREE Browser Web Speech API - NO backend required
+ * NO fake audio, REAL browser synthesis
  */
+
+import { browserTTS } from './browser-tts';
 
 export interface NarrationData {
   visualNumber: number;
   type: 'notes' | 'animation';
   narration: string;
-  duration: number; // seconds
-  audioBase64?: string;
-  audioUrl?: string;
-  audioSize?: number;
+  duration: number; // seconds (estimated)
+  audioBase64?: string; // DEPRECATED: Not used with browser TTS
+  audioUrl?: string;    // DEPRECATED: Not used with browser TTS
+  audioSize?: number;   // DEPRECATED: Not used with browser TTS
 }
 
 export interface TTSConfig {
@@ -25,7 +28,7 @@ export class TTSPlaybackService {
   private narrations: Map<number, NarrationData> = new Map();
   private ttsConfig: TTSConfig = {
     enabled: false,
-    interVisualDelay: 2000,
+    interVisualDelay: 5000, // 5 seconds as per requirement
     waitForNarration: true,
     waitForAnimation: true
   };
@@ -62,8 +65,8 @@ export class TTSPlaybackService {
   }
 
   /**
-   * Play narration for a specific visual
-   * Returns a promise that resolves when audio is complete
+   * Play narration for a specific visual using FREE Browser TTS
+   * Returns a promise that resolves when speech is complete
    */
   public async playNarration(visualNumber: number): Promise<void> {
     const narration = this.narrations.get(visualNumber);
@@ -78,67 +81,39 @@ export class TTSPlaybackService {
       return Promise.resolve();
     }
 
-    if (!narration.audioBase64 && !narration.audioUrl) {
-      console.log(`[TTS] No audio data for visual ${visualNumber}, showing text only`);
-      // Could show text narration on screen here
+    if (!narration.narration || narration.narration.trim().length === 0) {
+      console.log(`[TTS] No narration text for visual ${visualNumber}`);
       return Promise.resolve();
     }
 
-    console.log(`[TTS] 🎤 Starting narration for visual ${visualNumber}...`);
-    console.log(`[TTS] Duration: ${narration.duration}s`);
-    console.log(`[TTS] Text: "${narration.narration.substring(0, 50)}..."`);
+    console.log(`[TTS] 🎤 Starting Browser TTS for visual ${visualNumber}...`);
+    console.log(`[TTS] Text: "${narration.narration.substring(0, 80)}..."`);
 
-    return new Promise((resolve, reject) => {
-      try {
-        // Stop any currently playing audio
-        this.stopCurrent();
+    try {
+      // Stop any currently playing speech
+      this.stopCurrent();
 
-        // Create audio element
-        const audio = new Audio();
-        this.currentAudio = audio;
+      // Use FREE Browser TTS (Web Speech API)
+      const result = await browserTTS.speak({
+        text: narration.narration,
+        rate: 1.0,     // Normal speed
+        pitch: 1.0,    // Normal pitch
+        volume: 1.0,   // Full volume
+        lang: 'en-US'
+      });
 
-        // Set audio source (prefer base64 for zero latency)
-        if (narration.audioBase64) {
-          audio.src = `data:audio/mp3;base64,${narration.audioBase64}`;
-          console.log(`[TTS] Using base64 audio (${(narration.audioSize || 0) / 1024}KB)`);
-        } else if (narration.audioUrl) {
-          audio.src = narration.audioUrl;
-          console.log(`[TTS] Using audio URL: ${narration.audioUrl}`);
-        }
-
-        // Handle audio events
-        audio.onended = () => {
-          console.log(`[TTS] ✅ Narration complete for visual ${visualNumber}`);
-          this.currentAudio = null;
-          resolve();
-        };
-
-        audio.onerror = (e) => {
-          console.error(`[TTS] ❌ Audio error for visual ${visualNumber}:`, e);
-          this.currentAudio = null;
-          // Don't reject - continue rendering even if audio fails
-          resolve();
-        };
-
-        // Play audio
-        const playPromise = audio.play();
-        
-        if (playPromise) {
-          playPromise.catch(err => {
-            console.error(`[TTS] Play error:`, err);
-            this.currentAudio = null;
-            resolve(); // Continue even if play fails
-          });
-        }
-
-        console.log(`[TTS] 🔊 Audio playing...`);
-
-      } catch (error) {
-        console.error(`[TTS] Error setting up audio:`, error);
-        this.currentAudio = null;
-        resolve(); // Don't block rendering on audio errors
+      if (result.success) {
+        console.log(`[TTS] ✅ Browser TTS complete for visual ${visualNumber} (${result.duration.toFixed(1)}s)`);
+      } else {
+        console.error(`[TTS] ❌ Browser TTS failed: ${result.error}`);
       }
-    });
+
+      return Promise.resolve();
+
+    } catch (error) {
+      console.error(`[TTS] Error with Browser TTS:`, error);
+      return Promise.resolve(); // Don't block rendering on TTS errors
+    }
   }
 
   /**
@@ -175,15 +150,14 @@ export class TTSPlaybackService {
   }
 
   /**
-   * Stop currently playing audio
+   * Stop currently playing Browser TTS
    */
   public stopCurrent() {
-    if (this.currentAudio) {
-      console.log('[TTS] Stopping current audio');
-      this.currentAudio.pause();
-      this.currentAudio.currentTime = 0;
-      this.currentAudio = null;
+    if (browserTTS.isSpeaking()) {
+      console.log('[TTS] Stopping current Browser TTS');
+      browserTTS.stop();
     }
+    this.currentAudio = null; // Keep for compatibility
   }
 
   /**

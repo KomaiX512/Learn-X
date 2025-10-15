@@ -165,19 +165,19 @@ async function main() {
 
   app.post('/api/query', async (req, res) => {
     logger.debug('Received request on /api/query', { body: req.body });
-    const { query, params, sessionId: clientSessionId } = req.body as { query: string; params?: SessionParams; sessionId?: string };
+    const { query, params, sessionId: clientSessionId, difficulty } = req.body as { query: string; params?: SessionParams; sessionId?: string; difficulty?: 'easy' | 'medium' | 'hard' };
     if (!query) return res.status(400).json({ error: 'Missing query' });
     const sessionId = clientSessionId || uuidv4();
     
     // Store query in Redis for clarification endpoint
     const queryKey = `session:${sessionId}:query`;
     await redis.set(queryKey, query);
-    logger.debug(`[api] Stored query for session ${sessionId}: "${query}"`);
+    logger.debug(`[api] Stored query for session ${sessionId}: "${query}" (difficulty: ${difficulty || 'hard'})`);
     
     if (params) {
       await orchestrator.setParams(sessionId, params);
     }
-    await orchestrator.enqueuePlan(query, sessionId);
+    await orchestrator.enqueuePlan(query, sessionId, difficulty);
     res.json({ sessionId });
   });
 

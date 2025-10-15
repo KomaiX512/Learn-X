@@ -10,6 +10,7 @@ import { InterruptionPanel } from './components/InterruptionPanel';
 
 export default function App() {
   const [query, setQuery] = useState('');
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('hard');
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<any>(null);
   const [currentTranscript, setCurrentTranscript] = useState<string>('');
@@ -316,10 +317,11 @@ export default function App() {
     await new Promise(resolve => setTimeout(resolve, 100));
     
     console.log('[submit] Making API call to /api/query');
-    const res = await fetch('http://localhost:8000/api/query', {
+    console.log('[submit] Difficulty level:', difficulty);
+    const res = await fetch('/api/query', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, sessionId: sid })
+      body: JSON.stringify({ query, sessionId: sid, difficulty })
     });
     const data = await res.json();
     console.log('[submit] API response:', data);
@@ -410,7 +412,7 @@ export default function App() {
         console.warn('[App] Socket join timeout, proceeding anyway:', e);
       }
       
-      const response = await fetch('http://localhost:8000/api/clarify', {
+      const response = await fetch('/api/clarify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -496,6 +498,71 @@ export default function App() {
             }} 
             placeholder="Type your topic (e.g., 'Explain binary search algorithm')" 
           />
+          
+          {/* Difficulty Level Selector */}
+          <div style={{ marginTop: 12 }}>
+            <label style={{ display: 'block', fontWeight: 600, marginBottom: 6, fontSize: 14 }}>
+              Difficulty Level
+            </label>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button
+                onClick={() => setDifficulty('easy')}
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  background: difficulty === 'easy' ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : '#f3f4f6',
+                  color: difficulty === 'easy' ? 'white' : '#374151',
+                  border: difficulty === 'easy' ? '2px solid #059669' : '2px solid #e5e7eb',
+                  borderRadius: 6,
+                  cursor: 'pointer',
+                  fontWeight: difficulty === 'easy' ? 700 : 600,
+                  fontSize: 13,
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                ⚡ Easy (1 step)
+              </button>
+              <button
+                onClick={() => setDifficulty('medium')}
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  background: difficulty === 'medium' ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' : '#f3f4f6',
+                  color: difficulty === 'medium' ? 'white' : '#374151',
+                  border: difficulty === 'medium' ? '2px solid #d97706' : '2px solid #e5e7eb',
+                  borderRadius: 6,
+                  cursor: 'pointer',
+                  fontWeight: difficulty === 'medium' ? 700 : 600,
+                  fontSize: 13,
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                🎯 Medium (2 steps)
+              </button>
+              <button
+                onClick={() => setDifficulty('hard')}
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  background: difficulty === 'hard' ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)' : '#f3f4f6',
+                  color: difficulty === 'hard' ? 'white' : '#374151',
+                  border: difficulty === 'hard' ? '2px solid #dc2626' : '2px solid #e5e7eb',
+                  borderRadius: 6,
+                  cursor: 'pointer',
+                  fontWeight: difficulty === 'hard' ? 700 : 600,
+                  fontSize: 13,
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                🔥 Hard (3 steps)
+              </button>
+            </div>
+            <div style={{ marginTop: 6, fontSize: 12, color: '#6b7280' }}>
+              {difficulty === 'easy' && '• Quick overview - 1 step with core concepts'}
+              {difficulty === 'medium' && '• Balanced learning - 2 steps with examples'}
+              {difficulty === 'hard' && '• Deep dive - 3 steps with applications'}
+            </div>
+          </div>
           
           {/* Control Buttons */}
           <div style={{ marginTop: 12, display: 'flex', gap: 8, flexWrap: 'wrap' }}>

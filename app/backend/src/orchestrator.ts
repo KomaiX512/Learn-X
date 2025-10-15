@@ -16,7 +16,7 @@ import { SessionParams, Plan, RenderChunk, PlanStep } from './types';
 import { CacheManager } from './services/cache-manager';
 import { PerformanceMonitor } from './services/performance-monitor';
 
-type PlanJobData = { query: string; sessionId: string };
+type PlanJobData = { query: string; sessionId: string; difficulty?: 'easy' | 'medium' | 'hard' };
 type GenJobData = { step: any; sessionId: string; prefetch?: boolean };
 type VisualDescription = { visualNumber: number; description: string };
 
@@ -280,7 +280,8 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
       } else {
         perfMonitor.recordCacheMiss();
         await redis.del(PLAN_KEY(sessionId));
-        plan = await plannerAgent(query); // NO TRY/CATCH - LET IT FAIL IF NEEDED
+        const difficulty = job.data.difficulty || 'hard';
+        plan = await plannerAgent(query, difficulty); // Pass difficulty to planner
         perfMonitor.endPlanGeneration(sessionId, true);
         
         // Cache the generated plan
@@ -773,10 +774,10 @@ export async function initOrchestrator(io: IOServer, redis: Redis) {
     logger.error(`[parallel:FAILED] Stack: ${err.stack}`);
   });
 
-  async function enqueuePlan(query: string, sessionId: string) {
-    logger.debug(`[orchestrator] Enqueuing plan for session ${sessionId}`);
+  async function enqueuePlan(query: string, sessionId: string, difficulty?: 'easy' | 'medium' | 'hard') {
+    logger.debug(`[orchestrator] Enqueuing plan for session ${sessionId} (difficulty: ${difficulty || 'hard'})`);
     await redis.set(QUERY_KEY(sessionId), query);
-    const job = await planQueue.add('plan', { query, sessionId }, { ...defaultJobOpts });
+    const job = await planQueue.add('plan', { query, sessionId, difficulty }, { ...defaultJobOpts });
     logger.debug(`[orchestrator] Plan job added with id ${job.id} for session ${sessionId}`);
   }
 

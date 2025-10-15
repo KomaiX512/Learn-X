@@ -9,12 +9,24 @@ export default defineConfig(({ command, mode }) => {
     server: {
       port: 5174,
       strictPort: true,
+      host: '0.0.0.0',
+      allowedHosts: [
+        '34fc5cc6bbb6.ngrok-free.app',
+        '.ngrok-free.app',
+        '.ngrok.io',
+        'localhost'
+      ],
+      hmr: {
+        clientPort: 443,
+        host: '34fc5cc6bbb6.ngrok-free.app',
+        protocol: 'wss'
+      },
       fs: {
         allow: ['..']
       },
       proxy: {
         '/api': {
-          target: 'http://localhost:3001',
+          target: 'http://localhost:8000',
           changeOrigin: true,
           configure: (proxy, _options) => {
             proxy.on('proxyReq', (proxyReq, req, _res) => {
@@ -23,8 +35,13 @@ export default defineConfig(({ command, mode }) => {
           }
         },
         '/socket.io': {
-          target: 'http://localhost:3001',
+          target: 'http://localhost:8000',
+          changeOrigin: true,
           ws: true
+        },
+        '/audio': {
+          target: 'http://localhost:8000',
+          changeOrigin: true
         }
       }
     },
