@@ -9,7 +9,8 @@ import { ttsPlayback } from './services/tts-playback';
 import { InterruptionPanel } from './components/InterruptionPanel';
 import { browserTTS } from './services/browser-tts';
 import { ThinkingAnimation } from './components/ThinkingAnimation';
-import { MindMapTree } from './components/MindMapTree';
+import { TableOfContents } from './components/TableOfContents';
+import { KeyNotesGenerator } from './components/KeyNotesGenerator';
 import { TopicDisplay } from './components/TopicDisplay';
 import { LectureHistory } from './components/LectureHistory';
 
@@ -44,7 +45,7 @@ export default function App() {
   // New UI state
   const [showThinking, setShowThinking] = useState(false);
   const [thinkingStage, setThinkingStage] = useState<'initializing' | 'planning' | 'generating' | 'rendering'>('initializing');
-  const [showMindMap, setShowMindMap] = useState(false);
+  const [showTableOfContents, setShowTableOfContents] = useState(false);
   
   // Canvas reference for control
   const canvasRef = useRef<any>(null);
@@ -294,6 +295,11 @@ export default function App() {
       
       setIsReady(true);
       setIsLoading(false);
+      
+      // Auto-show Table of Contents when first step renders
+      if (!showTableOfContents) {
+        setShowTableOfContents(true);
+      }
     };
     
     console.log('[App useEffect] Attaching "rendered" event listener');
@@ -630,13 +636,20 @@ export default function App() {
         currentStep={currentStep?.desc}
       />
       
-      {/* Mind Map Tree */}
-      <MindMapTree
-        visible={showMindMap}
-        onClose={() => setShowMindMap(false)}
+      {/* Table of Contents - Confined Right Panel */}
+      <TableOfContents
+        visible={showTableOfContents}
         planTitle={planTitle}
         steps={toc.length > 0 ? toc : []}
         currentStepIndex={currentStepIndex}
+      />
+      
+      {/* Key Notes Generator - Available anytime during lecture */}
+      <KeyNotesGenerator
+        visible={!!sessionId}
+        lectureComplete={lectureComplete}
+        sessionId={sessionId}
+        planTitle={planTitle}
       />
       
       {/* Topic Display and Lecture History removed per user request */}
@@ -815,29 +828,34 @@ export default function App() {
       </div>
     </div>
       
-      {/* Tree/Table Toggle Button */}
+      {/* Table of Contents Toggle Button */}
       {isReady && (
         <button
-          onClick={() => setShowMindMap(true)}
+          onClick={() => setShowTableOfContents(!showTableOfContents)}
           style={{
             position: 'fixed',
             top: 100,
-            right: 320,
-            padding: '8px 20px',
-            background: 'rgba(0, 255, 65, 0.1)',
+            right: showTableOfContents ? 360 : 20,
+            padding: '10px 18px',
+            background: showTableOfContents 
+              ? 'linear-gradient(135deg, #00ff41 0%, #00cc33 100%)'
+              : 'rgba(0, 255, 65, 0.1)',
             border: '2px solid #00ff41',
-            borderRadius: 6,
-            color: '#00ff41',
+            borderRadius: 8,
+            color: showTableOfContents ? '#000' : '#00ff41',
             fontFamily: 'Courier New, monospace',
             fontWeight: 'bold',
             fontSize: 12,
             cursor: 'pointer',
-            boxShadow: '0 0 15px rgba(0, 255, 65, 0.2)',
+            boxShadow: showTableOfContents 
+              ? '0 0 20px rgba(0, 255, 65, 0.4)'
+              : '0 0 15px rgba(0, 255, 65, 0.2)',
             zIndex: 101,
-            transition: 'all 0.2s'
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            letterSpacing: '1px'
           }}
         >
-          TREE / TABLE
+          {showTableOfContents ? '◀ HIDE' : 'TABLE ▶'}
         </button>
       )}
 

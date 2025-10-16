@@ -24,6 +24,9 @@ export class AnimationQueue {
   private onActionStart?: (action: any, index: number) => void;
   private onActionComplete?: (action: any, index: number) => void;
   private hasStartedOnce: boolean = false;  // Track if playback has started
+  private manualMode: boolean = false;  // Manual stepping mode
+  private waitingForNext: boolean = false;  // Waiting for user to click NEXT
+  private resumeCallback: (() => void) | null = null;  // Resume playback trigger
   
   // FAST RESPONSIVE TIMING - User can see progress immediately
   private readonly DELAYS = {
@@ -269,10 +272,44 @@ export class AnimationQueue {
   }
   
   /**
-   * Wait for specified milliseconds
+   * Wait for specified milliseconds (or manual trigger in manual mode)
    */
-  private wait(ms: number): Promise<void> {
+  private async wait(ms: number): Promise<void> {
+    // In manual mode, wait for user to click NEXT instead of auto-advancing
+    if (this.manualMode && ms > 0) {
+      console.log('[AnimationQueue] ⏸️  MANUAL MODE: Waiting for NEXT click...');
+      this.waitingForNext = true;
+      await new Promise<void>(resolve => {
+        this.resumeCallback = resolve;
+      });
+      this.waitingForNext = false;
+      this.resumeCallback = null;
+      console.log('[AnimationQueue] ▶️  MANUAL MODE: Continuing after NEXT click');
+      return;
+    }
+    
+    // Auto mode: normal delay
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
+  /**
+   * Set playback mode (auto or manual)
+   */
+  setMode(mode: 'auto' | 'manual'): void {
+    this.manualMode = (mode === 'manual');
+    console.log(`[AnimationQueue] Mode set to: ${mode}`);
+  }
+  
+  /**
+   * Trigger next step in manual mode
+   */
+  triggerNext(): void {
+    if (this.manualMode && this.waitingForNext && this.resumeCallback) {
+      console.log('[AnimationQueue] 🎯 NEXT triggered by user');
+      this.resumeCallback();
+    } else {
+      console.log('[AnimationQueue] triggerNext called but not waiting for next');
+    }
   }
   
   /**

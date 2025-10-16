@@ -50,6 +50,9 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
   const [activeTool, setActiveTool] = useState<CanvasTool>('select');
   const [isQuestionMode, setIsQuestionMode] = useState<boolean>(false);
   const [isPenEnabled, setIsPenEnabled] = useState<boolean>(false);
+  const [isPencilDrawing, setIsPencilDrawing] = useState<boolean>(false);
+  const [canUndo, setCanUndo] = useState<boolean>(false);
+  const [canRedo, setCanRedo] = useState<boolean>(false);
   const [questionInputVisible, setQuestionInputVisible] = useState<boolean>(false);
   const [questionInputPosition, setQuestionInputPosition] = useState<{ x: number; y: number }>({ x: 100, y: 100 });
   const [isSubmittingQuestion, setIsSubmittingQuestion] = useState<boolean>(false);
@@ -324,6 +327,58 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
     };
   }, []); // ← EMPTY DEPS - RUN ONCE!
 
+  // Connect playback mode to renderer
+  useEffect(() => {
+    if (sequentialRendererRef.current) {
+      console.log(`[CanvasStage] Setting playback mode to: ${playbackMode}`);
+      sequentialRendererRef.current.setMode(playbackMode);
+    }
+  }, [playbackMode]);
+
+  // Handle tool changes (pencil, select, pan)
+  useEffect(() => {
+    console.log(`[CanvasStage] Active tool changed to: ${activeTool}`);
+    if (activeTool === 'pencil') {
+      // Enable pencil drawing (different from hand-raise question mode)
+      setIsPencilDrawing(true);
+      console.log('[CanvasStage] Pencil drawing enabled');
+    } else {
+      setIsPencilDrawing(false);
+      setCanUndo(false);
+      setCanRedo(false);
+      console.log('[CanvasStage] Pencil drawing disabled');
+    }
+  }, [activeTool]);
+
+  // Keyboard shortcuts for undo/redo
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isPencilDrawing) return;
+      
+      // Ctrl+Z or Cmd+Z for Undo
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        if (canUndo) {
+          console.log('[CanvasStage] Keyboard shortcut: Undo');
+          (window as any).__undoCanvasDrawing?.();
+        }
+      }
+      
+      // Ctrl+Y or Cmd+Shift+Z for Redo
+      if (((e.ctrlKey || e.metaKey) && e.key === 'y') || 
+          ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'z')) {
+        e.preventDefault();
+        if (canRedo) {
+          console.log('[CanvasStage] Keyboard shortcut: Redo');
+          (window as any).__redoCanvasDrawing?.();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isPencilDrawing, canUndo, canRedo]);
+
   // Apply size updates to existing stage WITHOUT recreating
   useEffect(() => {
     if (stageRef.current) {
@@ -504,33 +559,42 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
   };
 
   const handleZoomIn = () => {
-    if (!stageRef.current) return;
+    console.log('[CanvasStage] Zoom In clicked');
+    if (!stageRef.current) {
+      console.warn('[CanvasStage] No stage ref for zoom');
+      return;
+    }
     const oldScale = scaleRef.current || 1;
     const newScale = Math.min(5, oldScale * 1.2);
+    console.log(`[CanvasStage] Zooming from ${oldScale} to ${newScale}`);
     stageRef.current.scale({ x: newScale, y: newScale });
     scaleRef.current = newScale;
     stageRef.current.batchDraw();
   };
 
   const handleZoomOut = () => {
-    if (!stageRef.current) return;
+    console.log('[CanvasStage] Zoom Out clicked');
+    if (!stageRef.current) {
+      console.warn('[CanvasStage] No stage ref for zoom');
+      return;
+    }
     const oldScale = scaleRef.current || 1;
     const newScale = Math.max(0.3, oldScale / 1.2);
+    console.log(`[CanvasStage] Zooming from ${oldScale} to ${newScale}`);
     stageRef.current.scale({ x: newScale, y: newScale });
     scaleRef.current = newScale;
     stageRef.current.batchDraw();
   };
 
-  // Interactive UI overlay that sticks to the viewport (not the canvas)
+  // Interactive UI overlay for controls
   const overlayStyle = useMemo(() => ({
-    position: 'sticky' as const,
+    position: 'absolute' as const,
     top: 0,
     left: 0,
     width: size.w,
     height: size.h,
     pointerEvents: 'none' as const,
-    zIndex: 100,
-    marginTop: `-${size.h}px`  // Negative margin to overlay on top of canvas
+    zIndex: 100
   }), [size.w, size.h]);
 
   return (
@@ -575,10 +639,17 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
           onModeChange={setPlaybackMode}
           activeTool={activeTool}
           onToolChange={setActiveTool}
-          onNext={() => sequentialRendererRef.current?.nextStep()}
+          onNext={() => {
+            console.log('[CanvasStage] NEXT button clicked');
+            sequentialRendererRef.current?.triggerNext();
+          }}
           onZoomIn={handleZoomIn}
           onZoomOut={handleZoomOut}
           disabled={isQuestionMode}
+          canUndo={canUndo}
+          canRedo={canRedo}
+          onUndo={() => (window as any).__undoCanvasDrawing?.()}
+          onRedo={() => (window as any).__redoCanvasDrawing?.()}
         />
         
         {/* Hand Raise Button */}
@@ -643,12 +714,28 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         )}
       </div>
       
-      {/* Pen Drawing Layer */}
+      {/* Pen Drawing Layer for Hand Raise (Question Mode) */}
       {stageRef.current && isPenEnabled && (
         <PenDrawingLayer
           stage={stageRef.current}
           enabled={isPenEnabled}
           onDrawingComplete={handleDrawingComplete}
+        />
+      )}
+      
+      {/* Pen Drawing Layer for Pencil Tool (General Drawing) */}
+      {stageRef.current && isPencilDrawing && !isPenEnabled && (
+        <PenDrawingLayer
+          stage={stageRef.current}
+          enabled={isPencilDrawing}
+          onDrawingComplete={() => {
+            console.log('[CanvasStage] Pencil drawing complete (no action required)');
+            // For general pencil tool, we just let user draw - no question submission
+          }}
+          onUndoRedoChange={(undo, redo) => {
+            setCanUndo(undo);
+            setCanRedo(redo);
+          }}
         />
       )}
     </div>

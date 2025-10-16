@@ -10,13 +10,16 @@ interface PenDrawingLayerProps {
   stage: Konva.Stage;
   enabled: boolean;
   onDrawingComplete?: (drawing: { dataUrl: string; bounds: { x: number; y: number; width: number; height: number } }) => void;
+  onUndoRedoChange?: (canUndo: boolean, canRedo: boolean) => void;
 }
 
-export function PenDrawingLayer({ stage, enabled, onDrawingComplete }: PenDrawingLayerProps) {
+export function PenDrawingLayer({ stage, enabled, onDrawingComplete, onUndoRedoChange }: PenDrawingLayerProps) {
   const drawingLayerRef = useRef<Konva.Layer | null>(null);
   const currentLineRef = useRef<Konva.Line | null>(null);
   const isDrawingRef = useRef<boolean>(false);
   const [bounds, setBounds] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
+  const drawingHistoryRef = useRef<Konva.Line[]>([]);
+  const redoStackRef = useRef<Konva.Line[]>([]);
 
   useEffect(() => {
     if (!stage || !enabled) {
@@ -85,6 +88,13 @@ export function PenDrawingLayer({ stage, enabled, onDrawingComplete }: PenDrawin
       
       isDrawingRef.current = false;
 
+      // Add completed line to history
+      if (currentLineRef.current) {
+        drawingHistoryRef.current.push(currentLineRef.current);
+        redoStackRef.current = []; // Clear redo stack on new drawing
+        updateUndoRedoState();
+      }
+
       // Calculate bounds of all drawings and trigger callback immediately
       if (drawingLayerRef.current && onDrawingComplete) {
         const children = drawingLayerRef.current.children;
@@ -105,6 +115,15 @@ export function PenDrawingLayer({ stage, enabled, onDrawingComplete }: PenDrawin
             bounds: calculatedBounds
           });
         }
+      }
+    };
+
+    const updateUndoRedoState = () => {
+      if (onUndoRedoChange) {
+        onUndoRedoChange(
+          drawingHistoryRef.current.length > 0,
+          redoStackRef.current.length > 0
+        );
       }
     };
 
@@ -146,13 +165,55 @@ export function PenDrawingLayer({ stage, enabled, onDrawingComplete }: PenDrawin
     }
   };
 
-  // CRITICAL FIX: Expose clear method with proper dependency
+  // Undo last drawing
+  const undo = () => {
+    if (drawingHistoryRef.current.length === 0) return;
+    
+    const lastLine = drawingHistoryRef.current.pop();
+    if (lastLine && drawingLayerRef.current) {
+      redoStackRef.current.push(lastLine);
+      lastLine.remove();
+      drawingLayerRef.current.batchDraw();
+      console.log('[PenDrawingLayer] Undo - History:', drawingHistoryRef.current.length, 'Redo:', redoStackRef.current.length);
+    }
+    if (onUndoRedoChange) {
+      onUndoRedoChange(
+        drawingHistoryRef.current.length > 0,
+        redoStackRef.current.length > 0
+      );
+    }
+  };
+
+  // Redo last undone drawing
+  const redo = () => {
+    if (redoStackRef.current.length === 0) return;
+    
+    const lineToRedo = redoStackRef.current.pop();
+    if (lineToRedo && drawingLayerRef.current) {
+      drawingHistoryRef.current.push(lineToRedo);
+      drawingLayerRef.current.add(lineToRedo);
+      drawingLayerRef.current.batchDraw();
+      console.log('[PenDrawingLayer] Redo - History:', drawingHistoryRef.current.length, 'Redo:', redoStackRef.current.length);
+    }
+    if (onUndoRedoChange) {
+      onUndoRedoChange(
+        drawingHistoryRef.current.length > 0,
+        redoStackRef.current.length > 0
+      );
+    }
+  };
+
+  // CRITICAL FIX: Expose methods with proper dependency
   useEffect(() => {
     (window as any).__clearCanvasDrawing = clearDrawing;
+    (window as any).__undoCanvasDrawing = undo;
+    (window as any).__redoCanvasDrawing = redo;
     return () => {
       delete (window as any).__clearCanvasDrawing;
+      delete (window as any).__undoCanvasDrawing;
+      delete (window as any).__redoCanvasDrawing;
     };
-  }, [clearDrawing]);
+  }, [clearDrawing, undo, redo]);
 
   return null; // This is a logical component, no DOM rendering
 }

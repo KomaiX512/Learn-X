@@ -20965,3 +20965,734 @@ Machine Learning works just like this for computers. Instead of you writing expl
 2025-10-16T05:16:09.840Z [debug] [monitor] Metrics updated:
 2025-10-16T05:17:09.853Z [debug] [monitor] Metrics updated:
 2025-10-16T05:18:09.864Z [debug] [monitor] Metrics updated:
+2025-10-16T05:19:09.874Z [debug] [monitor] Metrics updated:
+2025-10-16T05:20:09.879Z [debug] [monitor] Metrics updated:
+2025-10-16T05:21:09.886Z [debug] [monitor] Metrics updated:
+2025-10-16T05:22:09.891Z [debug] [monitor] Metrics updated:
+2025-10-16T05:23:09.895Z [debug] [monitor] Metrics updated:
+2025-10-16T05:24:09.897Z [debug] [monitor] Metrics updated:
+2025-10-16T05:25:09.899Z [debug] [monitor] Metrics updated:
+2025-10-16T05:26:09.901Z [debug] [monitor] Metrics updated:
+2025-10-16T05:27:09.903Z [debug] [monitor] Metrics updated:
+2025-10-16T05:28:09.904Z [debug] [monitor] Metrics updated:
+2025-10-16T05:29:09.905Z [debug] [monitor] Metrics updated:
+2025-10-16T05:30:09.923Z [debug] [monitor] Metrics updated:
+2025-10-16T05:31:09.940Z [debug] [monitor] Metrics updated:
+2025-10-16T05:32:09.956Z [debug] [monitor] Metrics updated:
+2025-10-16T05:33:09.969Z [debug] [monitor] Metrics updated:
+2025-10-16T05:34:09.982Z [debug] [monitor] Metrics updated:
+2025-10-16T05:35:09.993Z [debug] [monitor] Metrics updated:
+2025-10-16T05:36:10.002Z [debug] [monitor] Metrics updated:
+2025-10-16T05:37:10.008Z [debug] [monitor] Metrics updated:
+2025-10-16T05:38:10.014Z [debug] [monitor] Metrics updated:
+2025-10-16T05:38:15.185Z [debug] Shutting down server...
+2025-10-16T05:38:15.350Z [info] [TTS] Service initialized successfully
+2025-10-16T05:38:15.372Z [info] [TTS] Service initialized successfully
+2025-10-16T05:38:15.380Z [info] [TTS] Testing connection...
+2025-10-16T05:38:15.380Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-16T05:38:15.380Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-16T05:38:15.394Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-16T05:38:15.955Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T05:38:15.955Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T05:38:15.964Z [debug] NEW Plan worker created
+2025-10-16T05:38:15.965Z [debug] NEW Gen worker created
+2025-10-16T05:38:15.965Z [debug] NEW Parallel worker created
+2025-10-16T05:38:15.971Z [debug] Server listening on 0.0.0.0:8000 (accessible via 127.0.0.1:8000)
+2025-10-16T05:39:10.019Z [debug] [monitor] Metrics updated:
+2025-10-16T05:39:15.978Z [debug] [monitor] Metrics updated:
+2025-10-16T05:40:10.022Z [debug] [monitor] Metrics updated:
+2025-10-16T05:40:15.993Z [debug] [monitor] Metrics updated:
+2025-10-16T05:41:10.024Z [debug] [monitor] Metrics updated:
+2025-10-16T05:41:16.008Z [debug] [monitor] Metrics updated:
+2025-10-16T05:42:10.025Z [debug] [monitor] Metrics updated:
+2025-10-16T05:42:16.021Z [debug] [monitor] Metrics updated:
+2025-10-16T05:43:10.026Z [debug] [monitor] Metrics updated:
+2025-10-16T05:43:16.033Z [debug] [monitor] Metrics updated:
+2025-10-16T05:44:10.027Z [debug] [monitor] Metrics updated:
+2025-10-16T05:44:16.043Z [debug] [monitor] Metrics updated:
+2025-10-16T05:45:10.028Z [debug] [monitor] Metrics updated:
+2025-10-16T05:45:16.051Z [debug] [monitor] Metrics updated:
+2025-10-16T05:46:10.045Z [debug] [monitor] Metrics updated:
+2025-10-16T05:46:16.058Z [debug] [monitor] Metrics updated:
+2025-10-16T05:47:10.063Z [debug] [monitor] Metrics updated:
+2025-10-16T05:47:16.063Z [debug] [monitor] Metrics updated:
+2025-10-16T05:48:10.078Z [debug] [monitor] Metrics updated:
+2025-10-16T05:48:16.067Z [debug] [monitor] Metrics updated:
+2025-10-16T05:49:10.088Z [debug] [monitor] Metrics updated:
+2025-10-16T05:49:16.070Z [debug] [monitor] Metrics updated:
+2025-10-16T05:50:10.101Z [debug] [monitor] Metrics updated:
+2025-10-16T05:50:16.070Z [debug] [monitor] Metrics updated:
+2025-10-16T05:51:10.112Z [debug] [monitor] Metrics updated:
+2025-10-16T05:51:16.074Z [debug] [monitor] Metrics updated:
+2025-10-16T05:52:10.112Z [debug] [monitor] Metrics updated:
+2025-10-16T05:52:16.077Z [debug] [monitor] Metrics updated:
+2025-10-16T05:53:10.116Z [debug] [monitor] Metrics updated:
+2025-10-16T05:53:16.079Z [debug] [monitor] Metrics updated:
+2025-10-16T05:54:10.122Z [debug] [monitor] Metrics updated:
+2025-10-16T05:54:16.098Z [debug] [monitor] Metrics updated:
+2025-10-16T05:55:10.127Z [debug] [monitor] Metrics updated:
+2025-10-16T05:55:16.116Z [debug] [monitor] Metrics updated:
+2025-10-16T05:56:10.131Z [debug] [monitor] Metrics updated:
+2025-10-16T05:56:16.132Z [debug] [monitor] Metrics updated:
+2025-10-16T05:57:10.132Z [debug] [monitor] Metrics updated:
+2025-10-16T05:57:16.137Z [debug] [monitor] Metrics updated:
+2025-10-16T05:58:10.132Z [debug] [monitor] Metrics updated:
+2025-10-16T05:58:16.151Z [debug] [monitor] Metrics updated:
+2025-10-16T05:59:10.135Z [debug] [monitor] Metrics updated:
+2025-10-16T05:59:16.162Z [debug] [monitor] Metrics updated:
+2025-10-16T06:00:10.136Z [debug] [monitor] Metrics updated:
+2025-10-16T06:00:16.172Z [debug] [monitor] Metrics updated:
+2025-10-16T06:01:10.137Z [debug] [monitor] Metrics updated:
+2025-10-16T06:01:16.181Z [debug] [monitor] Metrics updated:
+2025-10-16T06:02:10.156Z [debug] [monitor] Metrics updated:
+2025-10-16T06:02:16.190Z [debug] [monitor] Metrics updated:
+2025-10-16T06:03:10.174Z [debug] [monitor] Metrics updated:
+2025-10-16T06:03:16.195Z [debug] [monitor] Metrics updated:
+2025-10-16T06:04:10.190Z [debug] [monitor] Metrics updated:
+2025-10-16T06:04:16.199Z [debug] [monitor] Metrics updated:
+2025-10-16T06:05:10.204Z [debug] [monitor] Metrics updated:
+2025-10-16T06:05:16.200Z [debug] [monitor] Metrics updated:
+2025-10-16T06:06:10.217Z [debug] [monitor] Metrics updated:
+2025-10-16T06:06:16.201Z [debug] [monitor] Metrics updated:
+2025-10-16T06:07:10.228Z [debug] [monitor] Metrics updated:
+2025-10-16T06:07:16.206Z [debug] [monitor] Metrics updated:
+2025-10-16T06:08:10.238Z [debug] [monitor] Metrics updated:
+2025-10-16T06:08:16.209Z [debug] [monitor] Metrics updated:
+2025-10-16T06:09:10.240Z [debug] [monitor] Metrics updated:
+2025-10-16T06:09:16.210Z [debug] [monitor] Metrics updated:
+2025-10-16T06:10:10.246Z [debug] [monitor] Metrics updated:
+2025-10-16T06:10:16.228Z [debug] [monitor] Metrics updated:
+2025-10-16T06:11:10.252Z [debug] [monitor] Metrics updated:
+2025-10-16T06:11:16.246Z [debug] [monitor] Metrics updated:
+2025-10-16T06:12:10.254Z [debug] [monitor] Metrics updated:
+2025-10-16T06:12:16.263Z [debug] [monitor] Metrics updated:
+2025-10-16T06:13:10.256Z [debug] [monitor] Metrics updated:
+2025-10-16T06:13:16.278Z [debug] [monitor] Metrics updated:
+2025-10-16T06:14:10.257Z [debug] [monitor] Metrics updated:
+2025-10-16T06:14:16.292Z [debug] [monitor] Metrics updated:
+2025-10-16T06:15:10.260Z [debug] [monitor] Metrics updated:
+2025-10-16T06:15:16.304Z [debug] [monitor] Metrics updated:
+2025-10-16T06:16:10.261Z [debug] [monitor] Metrics updated:
+2025-10-16T06:16:16.315Z [debug] [monitor] Metrics updated:
+2025-10-16T06:17:10.261Z [debug] [monitor] Metrics updated:
+2025-10-16T06:17:16.324Z [debug] [monitor] Metrics updated:
+2025-10-16T06:18:10.274Z [debug] [monitor] Metrics updated:
+2025-10-16T06:18:16.332Z [debug] [monitor] Metrics updated:
+2025-10-16T06:19:10.291Z [debug] [monitor] Metrics updated:
+2025-10-16T06:19:16.339Z [debug] [monitor] Metrics updated:
+2025-10-16T06:20:10.305Z [debug] [monitor] Metrics updated:
+2025-10-16T06:20:16.344Z [debug] [monitor] Metrics updated:
+2025-10-16T06:21:10.320Z [debug] [monitor] Metrics updated:
+2025-10-16T06:21:16.347Z [debug] [monitor] Metrics updated:
+2025-10-16T06:22:10.332Z [debug] [monitor] Metrics updated:
+2025-10-16T06:22:16.349Z [debug] [monitor] Metrics updated:
+2025-10-16T06:23:10.344Z [debug] [monitor] Metrics updated:
+2025-10-16T06:23:16.348Z [debug] [monitor] Metrics updated:
+2025-10-16T06:24:10.354Z [debug] [monitor] Metrics updated:
+2025-10-16T06:24:16.352Z [debug] [monitor] Metrics updated:
+2025-10-16T06:25:10.362Z [debug] [monitor] Metrics updated:
+2025-10-16T06:25:16.354Z [debug] [monitor] Metrics updated:
+2025-10-16T06:26:10.369Z [debug] [monitor] Metrics updated:
+2025-10-16T06:26:16.355Z [debug] [monitor] Metrics updated:
+2025-10-16T06:27:10.374Z [debug] [monitor] Metrics updated:
+2025-10-16T06:27:16.374Z [debug] [monitor] Metrics updated:
+2025-10-16T06:28:10.379Z [debug] [monitor] Metrics updated:
+2025-10-16T06:28:16.381Z [debug] [monitor] Metrics updated:
+2025-10-16T06:29:10.381Z [debug] [monitor] Metrics updated:
+2025-10-16T06:29:16.397Z [debug] [monitor] Metrics updated:
+2025-10-16T06:30:10.382Z [debug] [monitor] Metrics updated:
+2025-10-16T06:30:16.410Z [debug] [monitor] Metrics updated:
+2025-10-16T06:31:10.385Z [debug] [monitor] Metrics updated:
+2025-10-16T06:31:16.423Z [debug] [monitor] Metrics updated:
+2025-10-16T06:32:10.386Z [debug] [monitor] Metrics updated:
+2025-10-16T06:32:16.435Z [debug] [monitor] Metrics updated:
+2025-10-16T06:33:03.360Z [debug] Shutting down server...
+2025-10-16T06:33:03.516Z [info] [TTS] Service initialized successfully
+2025-10-16T06:33:03.523Z [info] [TTS] Testing connection...
+2025-10-16T06:33:03.523Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-16T06:33:03.523Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-16T06:33:03.537Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-16T06:33:08.177Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T06:33:08.177Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T06:33:08.179Z [debug] NEW Plan worker created
+2025-10-16T06:33:08.179Z [debug] NEW Gen worker created
+2025-10-16T06:33:08.179Z [debug] NEW Parallel worker created
+2025-10-16T06:33:08.181Z [debug] Server listening on 0.0.0.0:8000 (accessible via 127.0.0.1:8000)
+2025-10-16T06:33:10.388Z [debug] [monitor] Metrics updated:
+2025-10-16T06:34:08.195Z [debug] [monitor] Metrics updated:
+2025-10-16T06:34:10.404Z [debug] [monitor] Metrics updated:
+2025-10-16T06:35:08.212Z [debug] [monitor] Metrics updated:
+2025-10-16T06:35:10.420Z [debug] [monitor] Metrics updated:
+2025-10-16T06:36:08.228Z [debug] [monitor] Metrics updated:
+2025-10-16T06:36:10.432Z [debug] [monitor] Metrics updated:
+2025-10-16T06:37:08.242Z [debug] [monitor] Metrics updated:
+2025-10-16T06:37:10.449Z [debug] [monitor] Metrics updated:
+2025-10-16T06:38:08.254Z [debug] [monitor] Metrics updated:
+2025-10-16T06:38:10.463Z [debug] [monitor] Metrics updated:
+2025-10-16T06:39:08.255Z [debug] [monitor] Metrics updated:
+2025-10-16T06:39:10.476Z [debug] [monitor] Metrics updated:
+2025-10-16T06:40:08.264Z [debug] [monitor] Metrics updated:
+2025-10-16T06:40:10.486Z [debug] [monitor] Metrics updated:
+2025-10-16T06:41:08.272Z [debug] [monitor] Metrics updated:
+2025-10-16T06:41:10.488Z [debug] [monitor] Metrics updated:
+2025-10-16T06:42:08.278Z [debug] [monitor] Metrics updated:
+2025-10-16T06:42:10.493Z [debug] [monitor] Metrics updated:
+2025-10-16T06:43:08.283Z [debug] [monitor] Metrics updated:
+2025-10-16T06:43:10.499Z [debug] [monitor] Metrics updated:
+2025-10-16T06:44:08.286Z [debug] [monitor] Metrics updated:
+2025-10-16T06:44:10.503Z [debug] [monitor] Metrics updated:
+2025-10-16T06:45:01.123Z [debug] [socket] Socket QTkDJ5iwwC0cibCOAAAD disconnected: client namespace disconnect
+2025-10-16T06:45:01.137Z [debug] Server shut down.
+2025-10-16T06:45:01.335Z [info] [TTS] Service initialized successfully
+2025-10-16T06:45:01.341Z [info] [TTS] Testing connection...
+2025-10-16T06:45:01.342Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-16T06:45:01.342Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-16T06:45:01.356Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-16T06:45:01.939Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T06:45:01.940Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T06:45:01.945Z [debug] NEW Plan worker created
+2025-10-16T06:45:01.945Z [debug] NEW Gen worker created
+2025-10-16T06:45:01.946Z [debug] NEW Parallel worker created
+2025-10-16T06:45:01.981Z [debug] [socket] New connection: JmTWuPdG3fNRNRLzAAAB
+2025-10-16T06:45:02.242Z [debug] [socket] Socket JmTWuPdG3fNRNRLzAAAB joined session 603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:45:02.242Z [debug] [socket] Socket JmTWuPdG3fNRNRLzAAAB is now in rooms: JmTWuPdG3fNRNRLzAAAB, 603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:45:02.243Z [debug] [socket] Socket JmTWuPdG3fNRNRLzAAAB joined session 603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:45:02.243Z [debug] [socket] Socket JmTWuPdG3fNRNRLzAAAB is now in rooms: JmTWuPdG3fNRNRLzAAAB, 603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:45:02.845Z [debug] Received request on /api/query {"body":{"query":"teach me about the carnot engine","sessionId":"603505cf-7754-41c3-9eae-9611ae5e158d","difficulty":"easy"}}
+2025-10-16T06:45:02.846Z [debug] [api] Stored query for session 603505cf-7754-41c3-9eae-9611ae5e158d: "teach me about the carnot engine" (difficulty: easy)
+2025-10-16T06:45:02.846Z [debug] [orchestrator] Enqueuing plan for session 603505cf-7754-41c3-9eae-9611ae5e158d (difficulty: easy)
+2025-10-16T06:45:02.847Z [debug] [orchestrator] Plan job added with id 31 for session 603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:45:02.849Z [debug] [plan] START: session=603505cf-7754-41c3-9eae-9611ae5e158d query=teach me about the carnot engine
+2025-10-16T06:45:02.849Z [debug] [monitor] Started tracking request 603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:46:16.444Z [info] [TTS] Service initialized successfully
+2025-10-16T06:46:16.466Z [info] [TTS] Testing connection...
+2025-10-16T06:46:16.466Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-16T06:46:16.466Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-16T06:46:16.480Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-16T06:46:16.977Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T06:46:16.977Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T06:46:16.980Z [debug] NEW Plan worker created
+2025-10-16T06:46:16.981Z [debug] NEW Gen worker created
+2025-10-16T06:46:16.981Z [debug] NEW Parallel worker created
+2025-10-16T06:46:16.983Z [debug] Server listening on 0.0.0.0:8000 (accessible via 127.0.0.1:8000)
+2025-10-16T06:46:47.009Z [debug] [plan] START: session=603505cf-7754-41c3-9eae-9611ae5e158d query=teach me about the carnot engine
+2025-10-16T06:46:47.009Z [debug] [monitor] Started tracking request 603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:46:47.012Z [debug] [cache] HIT - Found cached plan for query: "teach me about the carnot engine..."
+2025-10-16T06:46:47.012Z [debug] [plan] Using cached plan for query: teach me about the carnot engine
+2025-10-16T06:46:47.013Z [debug] [monitor] Plan generation for 603505cf-7754-41c3-9eae-9611ae5e158d took 3ms
+2025-10-16T06:46:47.015Z [debug] [plan] OK: session=603505cf-7754-41c3-9eae-9611ae5e158d plan received with 1 steps
+2025-10-16T06:46:47.017Z [debug] [plan] Emitted plan event to session 603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:46:47.017Z [debug] [plan] Enqueuing PARALLEL generation of all 1 steps
+2025-10-16T06:46:47.020Z [debug] [plan] END: session=603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:46:47.025Z [info] [parallel] ⚡ STARTING parallel generation for 1 steps (session: 603505cf-7754-41c3-9eae-9611ae5e158d)
+2025-10-16T06:46:47.027Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-16T06:46:47.027Z [debug] [parallel] Using cached chunk for step 1
+2025-10-16T06:46:47.029Z [debug] [monitor] Step 1 generation for 603505cf-7754-41c3-9eae-9611ae5e158d took 3ms
+2025-10-16T06:46:47.029Z [info] [parallel] ✅ Step 1 COMPLETE in 3ms with 5 actions
+2025-10-16T06:46:47.030Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (0 sockets)
+2025-10-16T06:46:47.030Z [debug] [parallel] Parallel generation complete: 1/1 successful in 4ms
+2025-10-16T06:46:47.030Z [debug] [monitor] Completed request 603505cf-7754-41c3-9eae-9611ae5e158d in 21ms (success: true)
+2025-10-16T06:46:47.030Z [debug] [parallel] Job complete for session 603505cf-7754-41c3-9eae-9611ae5e158d
+2025-10-16T06:47:16.997Z [debug] [monitor] Metrics updated:
+2025-10-16T06:48:17.014Z [debug] [monitor] Metrics updated:
+2025-10-16T06:49:17.030Z [debug] [monitor] Metrics updated:
+2025-10-16T06:50:17.044Z [debug] [monitor] Metrics updated:
+2025-10-16T06:51:17.058Z [debug] [monitor] Metrics updated:
+2025-10-16T06:52:17.068Z [debug] [monitor] Metrics updated:
+2025-10-16T06:53:17.078Z [debug] [monitor] Metrics updated:
+2025-10-16T06:54:17.086Z [debug] [monitor] Metrics updated:
+2025-10-16T06:55:17.093Z [debug] [monitor] Metrics updated:
+2025-10-16T06:56:17.099Z [debug] [monitor] Metrics updated:
+2025-10-16T06:57:17.103Z [debug] [monitor] Metrics updated:
+2025-10-16T06:58:17.106Z [debug] [monitor] Metrics updated:
+2025-10-16T06:59:17.107Z [debug] [monitor] Metrics updated:
+2025-10-16T07:00:17.111Z [debug] [monitor] Metrics updated:
+2025-10-16T07:01:17.114Z [debug] [monitor] Metrics updated:
+2025-10-16T07:02:17.115Z [debug] [monitor] Metrics updated:
+2025-10-16T07:03:17.135Z [debug] [monitor] Metrics updated:
+2025-10-16T07:04:17.154Z [debug] [monitor] Metrics updated:
+2025-10-16T07:05:17.170Z [debug] [monitor] Metrics updated:
+2025-10-16T07:06:17.186Z [debug] [monitor] Metrics updated:
+2025-10-16T07:07:17.186Z [debug] [monitor] Metrics updated:
+2025-10-16T07:08:17.198Z [debug] [monitor] Metrics updated:
+2025-10-16T07:09:17.209Z [debug] [monitor] Metrics updated:
+2025-10-16T07:10:17.218Z [debug] [monitor] Metrics updated:
+2025-10-16T07:11:17.226Z [debug] [monitor] Metrics updated:
+2025-10-16T07:12:17.232Z [debug] [monitor] Metrics updated:
+2025-10-16T07:13:17.236Z [debug] [monitor] Metrics updated:
+2025-10-16T07:14:17.240Z [debug] [monitor] Metrics updated:
+2025-10-16T07:14:53.735Z [debug] Shutting down server...
+2025-10-16T07:14:55.662Z [info] [TTS] Service initialized successfully
+2025-10-16T07:14:55.684Z [info] [TTS] Testing connection...
+2025-10-16T07:14:55.684Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-16T07:14:55.684Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-16T07:14:55.698Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-16T07:14:56.484Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T07:14:56.484Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T07:14:56.488Z [debug] NEW Plan worker created
+2025-10-16T07:14:56.488Z [debug] NEW Gen worker created
+2025-10-16T07:14:56.488Z [debug] NEW Parallel worker created
+2025-10-16T07:14:56.492Z [debug] Server listening on 0.0.0.0:8000 (accessible via 127.0.0.1:8000)
+2025-10-16T07:15:56.487Z [debug] [monitor] Metrics updated:
+2025-10-16T07:16:13.610Z [debug] [socket] New connection: na1UCOJFlAq733V2AAAB
+2025-10-16T07:16:13.875Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB joined session 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:16:13.876Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB is now in rooms: na1UCOJFlAq733V2AAAB, 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:16:13.876Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB joined session 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:16:13.876Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB is now in rooms: na1UCOJFlAq733V2AAAB, 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:16:14.260Z [debug] Received request on /api/query {"body":{"query":"teach me about the carnot engine","sessionId":"452b2d7b-0ba1-4639-a7c5-46566e0832bf","difficulty":"hard"}}
+2025-10-16T07:16:14.260Z [debug] [api] Stored query for session 452b2d7b-0ba1-4639-a7c5-46566e0832bf: "teach me about the carnot engine" (difficulty: hard)
+2025-10-16T07:16:14.260Z [debug] [orchestrator] Enqueuing plan for session 452b2d7b-0ba1-4639-a7c5-46566e0832bf (difficulty: hard)
+2025-10-16T07:16:14.262Z [debug] [orchestrator] Plan job added with id 32 for session 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:16:14.267Z [debug] [plan] START: session=452b2d7b-0ba1-4639-a7c5-46566e0832bf query=teach me about the carnot engine
+2025-10-16T07:16:14.267Z [debug] [monitor] Started tracking request 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:16:14.268Z [debug] [cache] HIT - Found cached plan for query: "teach me about the carnot engine..."
+2025-10-16T07:16:14.268Z [debug] [plan] Using cached plan for query: teach me about the carnot engine
+2025-10-16T07:16:14.268Z [debug] [monitor] Plan generation for 452b2d7b-0ba1-4639-a7c5-46566e0832bf took 1ms
+2025-10-16T07:16:14.270Z [debug] [plan] OK: session=452b2d7b-0ba1-4639-a7c5-46566e0832bf plan received with 1 steps
+2025-10-16T07:16:14.271Z [debug] [plan] Emitted plan event to session 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:16:14.271Z [debug] [plan] Enqueuing PARALLEL generation of all 1 steps
+2025-10-16T07:16:14.272Z [debug] [plan] END: session=452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:16:14.274Z [info] [parallel] ⚡ STARTING parallel generation for 1 steps (session: 452b2d7b-0ba1-4639-a7c5-46566e0832bf)
+2025-10-16T07:16:14.275Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-16T07:16:14.275Z [debug] [parallel] Using cached chunk for step 1
+2025-10-16T07:16:14.276Z [debug] [monitor] Step 1 generation for 452b2d7b-0ba1-4639-a7c5-46566e0832bf took 1ms
+2025-10-16T07:16:14.276Z [info] [parallel] ✅ Step 1 COMPLETE in 1ms with 5 actions
+2025-10-16T07:16:14.277Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-16T07:16:14.277Z [debug] [parallel] Parallel generation complete: 1/1 successful in 3ms
+2025-10-16T07:16:14.277Z [debug] [monitor] Completed request 452b2d7b-0ba1-4639-a7c5-46566e0832bf in 10ms (success: true)
+2025-10-16T07:16:14.277Z [debug] [parallel] Job complete for session 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:16:56.490Z [debug] [monitor] Metrics updated:
+2025-10-16T07:17:56.493Z [debug] [monitor] Metrics updated:
+2025-10-16T07:18:56.494Z [debug] [monitor] Metrics updated:
+2025-10-16T07:19:56.494Z [debug] [monitor] Metrics updated:
+2025-10-16T07:20:56.497Z [debug] [monitor] Metrics updated:
+2025-10-16T07:21:56.500Z [debug] [monitor] Metrics updated:
+2025-10-16T07:22:56.500Z [debug] [monitor] Metrics updated:
+2025-10-16T07:23:56.504Z [debug] [monitor] Metrics updated:
+2025-10-16T07:23:59.733Z [info] [api] Key notes generation request for session 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:23:59.733Z [debug] [api] Gathered content from 1 steps
+2025-10-16T07:23:59.734Z [debug] [api] Total transcript length: 776 chars
+2025-10-16T07:23:59.745Z [info] [NotesGenerator] Generating key notes for: teach me about the carnot engine
+2025-10-16T07:23:59.756Z [debug] [timeout] Setting 120000ms timeout for NotesGenerator
+2025-10-16T07:24:14.105Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB joined session 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:24:14.105Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB is now in rooms: na1UCOJFlAq733V2AAAB, 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:24:14.106Z [debug] [socket] Sent cached plan to newly joined socket na1UCOJFlAq733V2AAAB
+2025-10-16T07:24:14.107Z [debug] [socket] Sent cached step 1 to newly joined socket na1UCOJFlAq733V2AAAB
+2025-10-16T07:24:32.452Z [debug] [NotesGenerator] Raw response length: 9439
+2025-10-16T07:24:32.453Z [info] [NotesGenerator] ✅ Generated 6 categories
+2025-10-16T07:24:32.453Z [info] [api] Key notes generated: 6 categories, 20 total items
+2025-10-16T07:24:34.425Z [debug] Shutting down server...
+2025-10-16T07:24:56.507Z [debug] [monitor] Metrics updated:
+2025-10-16T07:25:51.356Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB joined session 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:25:51.356Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB is now in rooms: na1UCOJFlAq733V2AAAB, 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:25:51.357Z [debug] [socket] Sent cached plan to newly joined socket na1UCOJFlAq733V2AAAB
+2025-10-16T07:25:51.358Z [debug] [socket] Sent cached step 1 to newly joined socket na1UCOJFlAq733V2AAAB
+2025-10-16T07:25:56.510Z [debug] [monitor] Metrics updated:
+2025-10-16T07:26:56.511Z [debug] [monitor] Metrics updated:
+2025-10-16T07:27:35.006Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB joined session 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:27:35.006Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB is now in rooms: na1UCOJFlAq733V2AAAB, 452b2d7b-0ba1-4639-a7c5-46566e0832bf
+2025-10-16T07:27:35.007Z [debug] [socket] Sent cached plan to newly joined socket na1UCOJFlAq733V2AAAB
+2025-10-16T07:27:35.008Z [debug] [socket] Sent cached step 1 to newly joined socket na1UCOJFlAq733V2AAAB
+2025-10-16T07:27:56.516Z [debug] [monitor] Metrics updated:
+2025-10-16T07:28:56.519Z [debug] [monitor] Metrics updated:
+2025-10-16T07:29:56.520Z [debug] [monitor] Metrics updated:
+2025-10-16T07:30:56.528Z [debug] [monitor] Metrics updated:
+2025-10-16T07:31:56.534Z [debug] [monitor] Metrics updated:
+2025-10-16T07:32:56.539Z [debug] [monitor] Metrics updated:
+2025-10-16T07:33:49.762Z [debug] Shutting down server...
+2025-10-16T07:33:49.767Z [debug] [socket] Socket na1UCOJFlAq733V2AAAB disconnected: forced close
+2025-10-16T07:33:51.730Z [info] [TTS] Service initialized successfully
+2025-10-16T07:33:51.752Z [info] [TTS] Testing connection...
+2025-10-16T07:33:51.752Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-16T07:33:51.752Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-16T07:33:51.766Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-16T07:33:52.329Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T07:33:52.329Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T07:33:52.331Z [debug] NEW Plan worker created
+2025-10-16T07:33:52.331Z [debug] NEW Gen worker created
+2025-10-16T07:33:52.331Z [debug] NEW Parallel worker created
+2025-10-16T07:33:52.333Z [debug] Server listening on 0.0.0.0:8000 (accessible via 127.0.0.1:8000)
+2025-10-16T07:33:55.307Z [info] [TTS] Service initialized successfully
+2025-10-16T07:33:55.329Z [info] [TTS] Testing connection...
+2025-10-16T07:33:55.329Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-16T07:33:55.329Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-16T07:33:55.344Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-16T07:33:55.750Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T07:33:55.750Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech",
+          "service": "texttospeech.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T07:33:55.752Z [debug] NEW Plan worker created
+2025-10-16T07:33:55.752Z [debug] NEW Gen worker created
+2025-10-16T07:33:55.753Z [debug] NEW Parallel worker created
+2025-10-16T07:36:34.256Z [info] [NotesGenerator] Generating key notes for: Carnot Engine (Context: COMPLETE)
+2025-10-16T07:36:34.264Z [debug] [timeout] Setting 120000ms timeout for NotesGenerator
+2025-10-16T07:37:12.198Z [debug] [NotesGenerator] Raw response length: 12108
+2025-10-16T07:37:12.198Z [info] [NotesGenerator] ✅ Generated 6 categories
+2025-10-16T07:37:12.199Z [info] [NotesGenerator] Generating key notes for: Carnot Engine (Context: PARTIAL - PARTIAL)
+2025-10-16T07:37:12.199Z [info] [NotesGenerator] ⚠️  Working with partial context - will fill in missing critical information
+2025-10-16T07:37:12.199Z [debug] [timeout] Setting 120000ms timeout for NotesGenerator
+2025-10-16T07:37:39.191Z [debug] [NotesGenerator] Raw response length: 11674
+2025-10-16T08:37:20.240Z [info] [TTS] Service initialized successfully
+2025-10-16T08:37:20.262Z [info] [TTS] Testing connection...
+2025-10-16T08:37:20.262Z [info] [TTS] Synthesizing text (51 chars) with REAL Google Cloud TTS...
+2025-10-16T08:37:20.262Z [debug] [TTS] Calling Google Cloud TTS API...
+2025-10-16T08:37:20.277Z [debug] [TTS] Audio output directory ready: /home/komail/LEAF/Learn-X/app/backend/audio-output
+2025-10-16T08:37:25.022Z [error] [TTS] Synthesis failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T08:37:25.023Z [error] [TTS] Connection test failed: TTS API error: 401 - {
+  "error": {
+    "code": 401,
+    "message": "API keys are not supported by this API. Expected OAuth2 access token or other authentication credentials that assert a principal. See https://cloud.google.com/docs/authentication",
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "texttospeech.googleapis.com",
+          "method": "google.cloud.texttospeech.v1.TextToSpeech.SynthesizeSpeech"
+        }
+      }
+    ]
+  }
+}
+
+2025-10-16T08:37:25.025Z [debug] NEW Plan worker created
+2025-10-16T08:37:25.026Z [debug] NEW Gen worker created
+2025-10-16T08:37:25.026Z [debug] NEW Parallel worker created
+2025-10-16T08:37:25.029Z [debug] Server listening on 0.0.0.0:8000 (accessible via 127.0.0.1:8000)
+2025-10-16T08:38:25.041Z [debug] [monitor] Metrics updated:
+2025-10-16T08:39:25.041Z [debug] [monitor] Metrics updated:
+2025-10-16T08:39:25.409Z [debug] [socket] New connection: 5KCoCMYJcci_NvWpAAAB
+2025-10-16T08:39:25.669Z [debug] [socket] Socket 5KCoCMYJcci_NvWpAAAB joined session 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:39:25.670Z [debug] [socket] Socket 5KCoCMYJcci_NvWpAAAB is now in rooms: 5KCoCMYJcci_NvWpAAAB, 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:39:25.670Z [debug] [socket] Socket 5KCoCMYJcci_NvWpAAAB joined session 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:39:25.670Z [debug] [socket] Socket 5KCoCMYJcci_NvWpAAAB is now in rooms: 5KCoCMYJcci_NvWpAAAB, 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:39:26.563Z [debug] Received request on /api/query {"body":{"query":"teach me about the carnot engine","sessionId":"1ef159da-ebce-44d7-8043-cc794d680c24","difficulty":"easy"}}
+2025-10-16T08:39:26.563Z [debug] [api] Stored query for session 1ef159da-ebce-44d7-8043-cc794d680c24: "teach me about the carnot engine" (difficulty: easy)
+2025-10-16T08:39:26.563Z [debug] [orchestrator] Enqueuing plan for session 1ef159da-ebce-44d7-8043-cc794d680c24 (difficulty: easy)
+2025-10-16T08:39:26.564Z [debug] [orchestrator] Plan job added with id 33 for session 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:39:26.565Z [debug] [plan] START: session=1ef159da-ebce-44d7-8043-cc794d680c24 query=teach me about the carnot engine
+2025-10-16T08:39:26.565Z [debug] [monitor] Started tracking request 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:39:26.566Z [debug] [cache] HIT - Found cached plan for query: "teach me about the carnot engine..."
+2025-10-16T08:39:26.566Z [debug] [plan] Using cached plan for query: teach me about the carnot engine
+2025-10-16T08:39:26.566Z [debug] [monitor] Plan generation for 1ef159da-ebce-44d7-8043-cc794d680c24 took 1ms
+2025-10-16T08:39:26.567Z [debug] [plan] OK: session=1ef159da-ebce-44d7-8043-cc794d680c24 plan received with 1 steps
+2025-10-16T08:39:26.567Z [debug] [plan] Emitted plan event to session 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:39:26.567Z [debug] [plan] Enqueuing PARALLEL generation of all 1 steps
+2025-10-16T08:39:26.568Z [debug] [plan] END: session=1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:39:26.569Z [info] [parallel] ⚡ STARTING parallel generation for 1 steps (session: 1ef159da-ebce-44d7-8043-cc794d680c24)
+2025-10-16T08:39:26.570Z [debug] [cache] HIT - Found cached chunk for step 1
+2025-10-16T08:39:26.570Z [debug] [parallel] Using cached chunk for step 1
+2025-10-16T08:39:26.570Z [debug] [monitor] Step 1 generation for 1ef159da-ebce-44d7-8043-cc794d680c24 took 1ms
+2025-10-16T08:39:26.570Z [info] [parallel] ✅ Step 1 COMPLETE in 1ms with 5 actions
+2025-10-16T08:39:26.571Z [info] [parallel] 🚀 IMMEDIATELY EMITTED step 1 to frontend (1 sockets)
+2025-10-16T08:39:26.571Z [debug] [parallel] Parallel generation complete: 1/1 successful in 2ms
+2025-10-16T08:39:26.571Z [debug] [monitor] Completed request 1ef159da-ebce-44d7-8043-cc794d680c24 in 6ms (success: true)
+2025-10-16T08:39:26.571Z [debug] [parallel] Job complete for session 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:40:08.276Z [info] [api] Key notes generation request for session 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:40:08.277Z [info] [api] Context: 1/1 steps available, 776 chars of transcript
+2025-10-16T08:40:08.286Z [info] [NotesGenerator] Generating key notes for: teach me about the carnot engine (Context: COMPLETE)
+2025-10-16T08:40:08.294Z [debug] [timeout] Setting 120000ms timeout for NotesGenerator
+2025-10-16T08:40:25.042Z [debug] [monitor] Metrics updated:
+2025-10-16T08:40:31.575Z [debug] [NotesGenerator] Raw response length: 10673
+2025-10-16T08:40:31.575Z [info] [NotesGenerator] ✅ Generated 5 categories
+2025-10-16T08:40:31.575Z [info] [api] Key notes generated: 5 categories, 23 total items (1/1 steps used)
+2025-10-16T08:41:25.056Z [debug] [monitor] Metrics updated:
+2025-10-16T08:42:25.069Z [debug] [monitor] Metrics updated:
+2025-10-16T08:43:25.081Z [debug] [monitor] Metrics updated:
+2025-10-16T08:44:05.434Z [debug] [socket] Socket 5KCoCMYJcci_NvWpAAAB joined session 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:44:05.434Z [debug] [socket] Socket 5KCoCMYJcci_NvWpAAAB is now in rooms: 5KCoCMYJcci_NvWpAAAB, 1ef159da-ebce-44d7-8043-cc794d680c24
+2025-10-16T08:44:05.434Z [debug] [socket] Sent cached plan to newly joined socket 5KCoCMYJcci_NvWpAAAB
+2025-10-16T08:44:05.435Z [debug] [socket] Sent cached step 1 to newly joined socket 5KCoCMYJcci_NvWpAAAB
+2025-10-16T08:44:05.980Z [info] [api] Clarification request for session 1ef159da-ebce-44d7-8043-cc794d680c24: "explain it"
+2025-10-16T08:44:05.980Z [debug] [api] Step context: {"stepId":1,"stepDesc":"Imagine you're an engineer trying to build the most perfect, ideal heat engine imaginable—one that squeezes every last bit of useful work out of a temperature difference, like a turbine powered by steam going from a super-hot boiler to a cold condenser. The Carnot engine is that theoretical blueprint. It's not a real engine you can build, but a mental model that tells us *no matter how clever* your design, your engine can never be more efficient than a certain limit. This ultimate 'speed limit' for converting heat into work is dictated *only* by the temperature of the hot source (like the boiler) and the cold sink (like the surrounding air or a cooling system). It's the benchmark against which all real engines, from car engines to power plants, are measured.","stepTag":"intuition","scrollY":1900}
+2025-10-16T08:44:05.992Z [info] [clarifier] Generating clarification for: "explain it"
+2025-10-16T08:44:05.992Z [debug] [clarifier] Context - Topic: teach me about the carnot engine, Step: 1 (intuition)
+2025-10-16T08:44:05.992Z [debug] [clarifier] Screenshot provided: true
+2025-10-16T08:44:05.992Z [debug] [clarifier] Attempt 1/3
+2025-10-16T08:44:05.992Z [debug] [clarifier] Added screenshot as image/jpeg image part
+2025-10-16T08:44:05.993Z [debug] [clarifier] Sending 2-part multimodal request to Gemini...
+2025-10-16T08:44:18.783Z [debug] [clarifier] Raw response length: 1773 chars
+2025-10-16T08:44:18.783Z [debug] [clarifier] Raw response preview: {"title": "The Carnot Engine: Visualizing the Limit", "explanation": "The Carnot engine is a theoretical model that defines the maximum possible efficiency for converting heat into work, based solely ...
+2025-10-16T08:44:18.783Z [debug] [clarifier] Cleaned response length: 1773 chars
+2025-10-16T08:44:18.783Z [info] [clarifier] ✅ Clarification generated in 12791ms - 15 actions (attempt 1)
+2025-10-16T08:44:18.783Z [info] [api] Clarification generated: 15 actions
+2025-10-16T08:44:18.784Z [info] [api] Emitting clarification to session 1ef159da-ebce-44d7-8043-cc794d680c24 (1 sockets)
+2025-10-16T08:44:18.784Z [info] [api] ✅ Clarification emitted successfully
+2025-10-16T08:44:18.784Z [debug] [api] Clarification data: {"stepId":"Q&A-1760604258783","actionsCount":15,"hasTitle":true}
+2025-10-16T08:44:25.089Z [debug] [monitor] Metrics updated:
+2025-10-16T08:45:25.098Z [debug] [monitor] Metrics updated:
+2025-10-16T08:46:25.105Z [debug] [monitor] Metrics updated:
+2025-10-16T08:47:25.106Z [debug] [monitor] Metrics updated:
+2025-10-16T08:48:25.106Z [debug] [monitor] Metrics updated:
+2025-10-16T08:49:25.108Z [debug] [monitor] Metrics updated:
+2025-10-16T08:50:25.109Z [debug] [monitor] Metrics updated:

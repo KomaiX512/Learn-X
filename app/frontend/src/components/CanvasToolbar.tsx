@@ -6,7 +6,7 @@
 import React from 'react';
 
 export type PlaybackMode = 'auto' | 'manual';
-export type CanvasTool = 'select' | 'pan' | 'zoom';
+export type CanvasTool = 'select' | 'pan' | 'pencil' | 'zoom';
 
 interface CanvasToolbarProps {
   mode: PlaybackMode;
@@ -17,6 +17,10 @@ interface CanvasToolbarProps {
   onZoomIn: () => void;
   onZoomOut: () => void;
   disabled?: boolean;
+  canUndo?: boolean;
+  canRedo?: boolean;
+  onUndo?: () => void;
+  onRedo?: () => void;
 }
 
 export function CanvasToolbar({
@@ -27,7 +31,11 @@ export function CanvasToolbar({
   onNext,
   onZoomIn,
   onZoomOut,
-  disabled = false
+  disabled = false,
+  canUndo = false,
+  canRedo = false,
+  onUndo,
+  onRedo
 }: CanvasToolbarProps) {
   const buttonStyle = (isActive: boolean) => ({
     padding: '6px 16px',
@@ -179,6 +187,54 @@ export function CanvasToolbar({
             <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
           </svg>
         </button>
+
+        {/* Pencil Tool */}
+        <button
+          onClick={() => !disabled && onToolChange('pencil')}
+          disabled={disabled}
+          style={toolButtonStyle(activeTool === 'pencil')}
+          title="Pencil - Draw on Canvas"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+          </svg>
+        </button>
+
+        {/* Undo/Redo (only visible when pencil is active) */}
+        {activeTool === 'pencil' && (
+          <>
+            <button
+              onClick={() => !disabled && canUndo && onUndo?.()}
+              disabled={disabled || !canUndo}
+              style={{
+                ...toolButtonStyle(false),
+                opacity: canUndo ? 1 : 0.4,
+                cursor: !disabled && canUndo ? 'pointer' : 'not-allowed'
+              }}
+              title="Undo (Ctrl+Z)"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 7v6h6"/>
+                <path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"/>
+              </svg>
+            </button>
+            <button
+              onClick={() => !disabled && canRedo && onRedo?.()}
+              disabled={disabled || !canRedo}
+              style={{
+                ...toolButtonStyle(false),
+                opacity: canRedo ? 1 : 0.4,
+                cursor: !disabled && canRedo ? 'pointer' : 'not-allowed'
+              }}
+              title="Redo (Ctrl+Y)"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 7v6h-6"/>
+                <path d="M3 17a9 9 0 019-9 9 9 0 016 2.3l3 2.7"/>
+              </svg>
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

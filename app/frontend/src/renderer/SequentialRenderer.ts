@@ -73,6 +73,20 @@ export class SequentialRenderer {
     this.animationQueue.setActionCallbacks(onStart, onComplete);
   }
   
+  /**
+   * Set playback mode (auto or manual)
+   */
+  public setMode(mode: 'auto' | 'manual'): void {
+    this.animationQueue.setMode(mode);
+  }
+  
+  /**
+   * Trigger next step in manual mode
+   */
+  public triggerNext(): void {
+    this.animationQueue.triggerNext();
+  }
+  
   private initializeStage(config: RendererConfig): void {
     // Reuse provided stage/overlay to avoid dual-stage conflicts
     if (config.stage) {

@@ -380,6 +380,96 @@ async function main() {
     }
   });
 
+  // Key Notes Generator endpoint - works with ANY amount of available context
+  app.post('/api/generate-notes', async (req, res) => {
+    try {
+      const { sessionId } = req.body;
+      
+      if (!sessionId) {
+        return res.status(400).json({ error: 'Missing sessionId' });
+      }
+
+      logger.info(`[api] Key notes generation request for session ${sessionId}`);
+
+      // Retrieve lecture context from Redis (whatever is available)
+      const planKey = `session:${sessionId}:plan`;
+      const queryKey = `session:${sessionId}:query`;
+      
+      const [planData, query] = await Promise.all([
+        redis.get(planKey),
+        redis.get(queryKey)
+      ]);
+
+      if (!planData) {
+        return res.status(404).json({ error: 'Session not found or plan not available' });
+      }
+
+      const plan = JSON.parse(planData);
+      
+      // Gather ALL AVAILABLE lecture content (may be partial if lecture is ongoing)
+      const stepContents = await Promise.all(
+        plan.steps.map(async (step: any) => {
+          const chunkKey = `session:${sessionId}:step:${step.id}:chunk`;
+          const chunkData = await redis.get(chunkKey);
+          
+          if (chunkData) {
+            const chunk = JSON.parse(chunkData);
+            return {
+              stepId: step.id,
+              title: step.desc || step.tag,
+              transcript: chunk.transcript || '',
+              actions: chunk.actions || [],
+              complexity: step.complexity || 3,
+              isAvailable: true  // Mark as rendered
+            };
+          }
+          
+          return {
+            stepId: step.id,
+            title: step.desc || step.tag,
+            transcript: '',
+            actions: [],
+            complexity: step.complexity || 3,
+            isAvailable: false  // Not rendered yet
+          };
+        })
+      );
+      
+      const availableSteps = stepContents.filter(s => s.isAvailable).length;
+      const totalSteps = stepContents.length;
+      const transcriptLength = stepContents.reduce((sum, s) => sum + (s.transcript?.length || 0), 0);
+      
+      logger.info(`[api] Context: ${availableSteps}/${totalSteps} steps available, ${transcriptLength} chars of transcript`);
+      
+      // Import notes generator agent
+      const { generateKeyNotes } = await import('./agents/notesGenerator');
+
+      // Generate key notes with AVAILABLE context + fill in missing important points
+      const notesResult = await generateKeyNotes(
+        query || 'Unknown topic',
+        plan.subtitle,
+        plan.steps,
+        stepContents,  // Pass all step contents (some may be empty)
+        availableSteps < totalSteps  // Flag if lecture is incomplete
+      );
+
+      logger.info(`[api] Key notes generated: ${notesResult.notes.length} categories, ${notesResult.notes.reduce((sum, cat) => sum + cat.items.length, 0)} total items (${availableSteps}/${totalSteps} steps used)`);
+
+      res.json({ 
+        success: true, 
+        notes: notesResult.notes,
+        metadata: {
+          stepsAvailable: availableSteps,
+          stepsTotal: totalSteps,
+          isPartial: availableSteps < totalSteps
+        }
+      });
+    } catch (err: any) {
+      logger.error(`[api] Error in key notes generation: ${err}`);
+      res.status(500).json({ error: String(err) });
+    }
+  });
+
   server.listen(PORT, '0.0.0.0', () => {
     console.log('\n' + '═'.repeat(70));
     console.log('✅ SERVER READY');

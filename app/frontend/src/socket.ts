@@ -20,11 +20,12 @@ export function getSocket(sessionId: string) {
   }
 
   console.log('[socket] Creating new socket connection with reliability enhancements');
-  // Use relative URL to connect to the same host serving the frontend
-  // This works for both localhost and ngrok deployment
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || window.location.origin;
+  // Use relative path to leverage Vite's proxy configuration
+  // This ensures WebSocket goes through the proxy to the correct backend port
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || '/';
   console.log('[socket] Connecting to backend:', backendUrl);
   socket = io(backendUrl, {
+    path: '/socket.io',
     transports: ['websocket', 'polling'],  // Allow fallback to polling
     reconnection: true,
     reconnectionAttempts: 10,
