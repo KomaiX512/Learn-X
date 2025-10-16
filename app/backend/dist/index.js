@@ -184,18 +184,18 @@ async function main() {
     });
     app.post('/api/query', async (req, res) => {
         logger_1.logger.debug('Received request on /api/query', { body: req.body });
-        const { query, params, sessionId: clientSessionId } = req.body;
+        const { query, params, sessionId: clientSessionId, difficulty } = req.body;
         if (!query)
             return res.status(400).json({ error: 'Missing query' });
         const sessionId = clientSessionId || (0, uuid_1.v4)();
         // Store query in Redis for clarification endpoint
         const queryKey = `session:${sessionId}:query`;
         await redis.set(queryKey, query);
-        logger_1.logger.debug(`[api] Stored query for session ${sessionId}: "${query}"`);
+        logger_1.logger.debug(`[api] Stored query for session ${sessionId}: "${query}" (difficulty: ${difficulty || 'hard'})`);
         if (params) {
             await orchestrator.setParams(sessionId, params);
         }
-        await orchestrator.enqueuePlan(query, sessionId);
+        await orchestrator.enqueuePlan(query, sessionId, difficulty);
         res.json({ sessionId });
     });
     app.post('/api/session/:id/params', async (req, res) => {
@@ -292,8 +292,8 @@ async function main() {
             // Use step context from frontend or fallback to first step
             const currentStep = stepContext ? {
                 id: stepContext.stepId || 0,
-                tag: stepContext.tag || 'Current Step',
-                desc: stepContext.desc || 'Learning step',
+                tag: stepContext.stepTag || 'Current Step',
+                desc: stepContext.stepDesc || 'Learning step',
                 complexity: 3
             } : plan.steps[0];
             // Import clarifier agent

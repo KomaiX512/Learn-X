@@ -225,7 +225,8 @@ async function initOrchestrator(io, redis) {
         else {
             perfMonitor.recordCacheMiss();
             await redis.del(PLAN_KEY(sessionId));
-            plan = await (0, planner_1.plannerAgent)(query); // NO TRY/CATCH - LET IT FAIL IF NEEDED
+            const difficulty = job.data.difficulty || 'hard';
+            plan = await (0, planner_1.plannerAgent)(query, difficulty); // Pass difficulty to planner
             perfMonitor.endPlanGeneration(sessionId, true);
             // Cache the generated plan
             await cacheManager.cachePlan(query, plan);
@@ -637,10 +638,10 @@ async function initOrchestrator(io, redis) {
         logger_1.logger.error(`[parallel:FAILED] Error: ${String(err)}`);
         logger_1.logger.error(`[parallel:FAILED] Stack: ${err.stack}`);
     });
-    async function enqueuePlan(query, sessionId) {
-        logger_1.logger.debug(`[orchestrator] Enqueuing plan for session ${sessionId}`);
+    async function enqueuePlan(query, sessionId, difficulty) {
+        logger_1.logger.debug(`[orchestrator] Enqueuing plan for session ${sessionId} (difficulty: ${difficulty || 'hard'})`);
         await redis.set(QUERY_KEY(sessionId), query);
-        const job = await planQueue.add('plan', { query, sessionId }, { ...defaultJobOpts });
+        const job = await planQueue.add('plan', { query, sessionId, difficulty }, { ...defaultJobOpts });
         logger_1.logger.debug(`[orchestrator] Plan job added with id ${job.id} for session ${sessionId}`);
     }
     async function setParams(sessionId, params) {

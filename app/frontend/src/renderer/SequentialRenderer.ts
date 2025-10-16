@@ -4,7 +4,6 @@
  */
 
 import Konva from 'konva';
-import { LayoutManager } from './LayoutManager';
 import { AnimationQueue } from './AnimationQueue';
 import { DomainRenderers } from './DomainRenderers';
 import { ttsPlayback } from '../services/tts-playback';
@@ -48,7 +47,7 @@ export class SequentialRenderer {
   
   // Progressive rendering state
   private progressiveRenderingEnabled: boolean = true;
-  private renderDelayPerElement: number = 30; // ms delay per SVG element
+  private renderDelayPerElement: number = 300;
   
   // Step synchronization
   private stepTransitionDelay: number = 5000; // 5 seconds between visuals
@@ -170,6 +169,7 @@ export class SequentialRenderer {
   public processChunk(chunk: any): void {
     console.log('[SequentialRenderer] processChunk called');
     console.log('[SequentialRenderer] chunk received:', chunk);
+    console.log('[SequentialRenderer] chunk.type:', chunk.type);
     console.log('[SequentialRenderer] chunk.actions exists:', !!chunk.actions);
     console.log('[SequentialRenderer] chunk.actions is array:', Array.isArray(chunk.actions));
     console.log('[SequentialRenderer] chunk.actions length:', chunk.actions?.length);
@@ -188,6 +188,47 @@ export class SequentialRenderer {
     
     console.log(`[SequentialRenderer] 🎬 Processing ${chunk.actions.length} actions for step ${chunk.stepId}`);
     console.log('[SequentialRenderer] First action:', chunk.actions[0]);
+    
+    // Handle clarifications differently - render inline without creating new step
+    if (chunk.type === 'clarification') {
+      console.log('');
+      console.log('═'.repeat(70));
+      console.log('[SequentialRenderer] 💡 CLARIFICATION DETECTED - RENDERING INLINE');
+      console.log('═'.repeat(70));
+      console.log(`[SequentialRenderer] Clarification title: "${chunk.title}"`);
+      console.log(`[SequentialRenderer] Actions count: ${chunk.actions.length}`);
+      console.log(`[SequentialRenderer] insertAfterScroll: ${chunk.insertAfterScroll}`);
+      console.log(`[SequentialRenderer] Current verticalOffset: ${this.verticalOffset}`);
+      console.log(`[SequentialRenderer] Current layer exists: ${!!this.currentLayer}`);
+      console.log(`[SequentialRenderer] Current stepId: ${this.currentStepId}`);
+      console.log(`[SequentialRenderer] Stage exists: ${!!this.stage}`);
+      console.log('═'.repeat(70));
+      
+      // CRITICAL: Use insertAfterScroll to position clarification at drawing location
+      if (typeof chunk.insertAfterScroll === 'number' && chunk.insertAfterScroll > 0) {
+        console.log(`[SequentialRenderer] 📍 Setting verticalOffset to ${chunk.insertAfterScroll}px for inline clarification`);
+        this.verticalOffset = chunk.insertAfterScroll;
+      }
+      
+      // If no current layer exists, create one
+      if (!this.currentLayer) {
+        console.warn('[SequentialRenderer] ⚠️ No current layer - creating default layer');
+        this.createNewStepLayer(0);
+      }
+      
+      // Render clarification actions IMMEDIATELY (insert into queue right after current action)
+      console.log('[SequentialRenderer] 🎬 Inserting clarification actions IMMEDIATELY...');
+      
+      // Use special insertion method for clarifications
+      this.animationQueue.insertClarificationImmediate(chunk.actions, {
+        stepId: chunk.stepId,
+        layer: this.currentLayer,
+        stage: this.stage
+      });
+      
+      console.log('[SequentialRenderer] ✅ Clarification actions inserted immediately');
+      return;
+    }
     
     // CRITICAL: Preserve previous steps; do not clear existing layers on step change
     if (this.currentStepId !== chunk.stepId) {
@@ -690,12 +731,30 @@ export class SequentialRenderer {
         await this.drawArrow(action.from, action.to, action.color, action.label);
         break;
         
+      case 'drawArrow': {
+        // Support alternate arrow format using origin (x,y) and delta (dx,dy)
+        const stageW = this.stage.width();
+        const stageH = this.stage.height();
+        const sx = typeof action.x === 'number' ? action.x : 0;
+        const sy = typeof action.y === 'number' ? action.y : 0;
+        const dx = typeof action.dx === 'number' ? action.dx : 0;
+        const dy = typeof action.dy === 'number' ? action.dy : 0;
+        // x,y may already be absolute (pixels) after transformActionCoordinates
+        // Build NORMALIZED from/to to avoid double scaling inside drawArrow()
+        const fromXNorm = sx > 1 ? (sx / stageW) : sx;
+        const fromYNorm = sy > 1 ? (sy / stageH) : sy;
+        const toXNorm = fromXNorm + (Math.abs(dx) <= 1 ? dx : dx / stageW);
+        const toYNorm = fromYNorm + (Math.abs(dy) <= 1 ? dy : dy / stageH);
+        await this.drawArrow([fromXNorm, fromYNorm], [toXNorm, toYNorm], action.color, action.label);
+        break;
+      }
+        
       case 'customPath':
         await this.drawCustomPath(action);
         break;
         
       case 'customSVG':
-        // Render the SVG visual with priority-based positioning
+        // Render all SVG visuals (including notes keynotes)
         await this.renderCompleteSVG(action.svgCode, action.visualGroup, action.isNotesKeynote);
         // Advance to next visual index for captions
         this.visualIndexInStep++;
@@ -736,7 +795,7 @@ export class SequentialRenderer {
       case 'delay':
       case 'drawDelay':
         // Duration is ALREADY in milliseconds from backend, use directly
-        const delayMs = action.duration || 1000;
+        const delayMs = (typeof action.duration === 'number' ? action.duration : action.ms) || 1000;
         console.log(`[SequentialRenderer] ⏱️  Delaying for ${delayMs}ms (${(delayMs/1000).toFixed(1)}s)`);
         await new Promise(resolve => setTimeout(resolve, delayMs));
         console.log(`[SequentialRenderer] ✅ Delay complete`);
@@ -1001,8 +1060,8 @@ export class SequentialRenderer {
         }
       };
       
-      // Safety timeout - 30ms per character + buffer
-      setTimeout(safeResolve, (text.length * 30) + 100);
+      // Safety timeout - 120ms per character + buffer (human-like)
+      setTimeout(safeResolve, (text.length * 120) + 200);
       
       let currentIndex = 0;
       const typeInterval = setInterval(() => {
@@ -1014,7 +1073,7 @@ export class SequentialRenderer {
           clearInterval(typeInterval);
           safeResolve();
         }
-      }, 30); // 30ms per character for smooth typing
+      }, 120); // 120ms per character for human-like typing
     });
   }
   
@@ -2084,62 +2143,9 @@ export class SequentialRenderer {
     container.style.position = 'relative'; // Ensure container can hold absolute children
     container.appendChild(svgWrapper);
     
-    // PROGRESSIVE RENDERING: Animate elements appearing one by one
+    // PROGRESSIVE RENDERING: Animate elements appearing one by one (preserve backend colors exactly)
     if (this.progressiveRenderingEnabled) {
-      await this.applyProgressiveRendering(svgWrapper);
-    }
-
-    // Visibility pass: brighten dark text and stroke colors for contrast on dark canvas
-    try {
-      const svgEl = svgWrapper.querySelector('svg');
-      if (svgEl) {
-        const brightenIfDark = (color: string, fallback: string): string => {
-          // Accept formats like #rgb, #rrggbb, rgb(), rgba()
-          const toRgb = (c: string): { r: number; g: number; b: number } | null => {
-            c = c.trim();
-            if (/^#([0-9a-f]{3}){1,2}$/i.test(c)) {
-              let hex = c.slice(1);
-              if (hex.length === 3) hex = hex.split('').map(h => h + h).join('');
-              const num = parseInt(hex, 16);
-              return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
-            }
-            const m = c.match(/rgba?\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
-            if (m) return { r: +m[1], g: +m[2], b: +m[3] };
-            return null;
-          };
-          const rgb = toRgb(color);
-          if (!rgb) return fallback;
-          // Perceived luminance (ITU-R BT.709)
-          const L = (0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b) / 255;
-          // If very dark (< 0.35), brighten to fallback
-          return L < 0.35 ? fallback : color;
-        };
-
-        // Brighten text labels
-        svgEl.querySelectorAll('text').forEach((t: Element) => {
-          const el = t as SVGTextElement;
-          const current = el.getAttribute('fill') || '#9aa0a6';
-          const bright = brightenIfDark(current, '#e8f0ff');
-          el.setAttribute('fill', bright);
-        });
-
-        // Brighten strokes and fills for shapes if too dark
-        svgEl.querySelectorAll('path, line, rect, circle, polyline, polygon').forEach((p: Element) => {
-          const el = p as SVGGraphicsElement;
-          const stroke = el.getAttribute('stroke');
-          if (stroke) {
-            const bright = brightenIfDark(stroke, '#8ad0ff');
-            el.setAttribute('stroke', bright);
-          }
-          const fill = el.getAttribute('fill');
-          if (fill && fill !== 'none') {
-            const brightFill = brightenIfDark(fill, '#6ee7b7');
-            el.setAttribute('fill', brightFill);
-          }
-        });
-      }
-    } catch (err) {
-      console.warn('[SequentialRenderer] Contrast normalization skipped:', err);
+      await this.applyProgressiveRendering(svgWrapper, isNotesKeynote);
     }
 
     // Auto-scroll to newest visual (scroll container is parent of stage container)
@@ -2181,7 +2187,7 @@ export class SequentialRenderer {
    * Progressive rendering: Make SVG elements appear one by one like being drawn
    * This creates a "live writing" effect for psychological impact
    */
-  private async applyProgressiveRendering(svgWrapper: HTMLElement): Promise<void> {
+  private async applyProgressiveRendering(svgWrapper: HTMLElement, isNotesKeynote: boolean = false): Promise<void> {
     const svgEl = svgWrapper.querySelector('svg');
     if (!svgEl) return;
     
@@ -2202,17 +2208,32 @@ export class SequentialRenderer {
       (el as SVGElement).style.opacity = '0';
     });
     
-    // Reveal elements one by one with fade-in effect
+    // Reveal elements with human-like pacing
     for (let i = 0; i < elements.length; i++) {
       const el = elements[i] as SVGElement;
-      
-      // Fade in with CSS transition
-      el.style.transition = 'opacity 200ms ease-in';
-      el.style.opacity = '1';
-      
-      // Delay before next element (adaptive: faster for many elements)
-      const delay = elements.length > 100 ? 10 : this.renderDelayPerElement;
-      await new Promise(resolve => setTimeout(resolve, delay));
+      const tag = el.tagName.toLowerCase();
+
+      if (tag === 'text') {
+        // Word-by-word typewriter for text nodes
+        const original = el.textContent || '';
+        const words = original.split(/(\s+)/); // keep spaces
+        el.textContent = '';
+        el.style.opacity = '1';
+
+        const perWord = isNotesKeynote ? 140 : 100; // ms per word (slower for notes)
+        for (let w = 0; w < words.length; w++) {
+          el.textContent += words[w];
+          await new Promise(res => setTimeout(res, perWord));
+        }
+      } else {
+        // Shapes/lines fade in
+        el.style.transition = 'opacity 250ms ease-in';
+        el.style.opacity = '1';
+
+        // Adaptive spacing between elements
+        const baseDelay = elements.length > 100 ? Math.max(10, Math.floor(this.renderDelayPerElement / 2)) : this.renderDelayPerElement;
+        await new Promise(res => setTimeout(res, baseDelay));
+      }
     }
     
     console.log(`[SequentialRenderer] ✅ Progressive rendering complete`);

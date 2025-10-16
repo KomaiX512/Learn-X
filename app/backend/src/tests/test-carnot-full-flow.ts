@@ -9,7 +9,7 @@ import * as path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 import { plannerAgent } from '../agents/planner';
-import { generateNarrationForStep } from '../agents/narrationGenerator';
+import { generateStepNarration } from '../agents/narrationGenerator';
 
 async function testCarnotFullFlow() {
   console.log('\n╔══════════════════════════════════════════════════════════════╗');
@@ -66,11 +66,10 @@ async function testCarnotFullFlow() {
     
     try {
       const startTime = Date.now();
-      const narration = await generateNarrationForStep(
+      const narration = await generateStepNarration(
         step,
         query,
-        i,
-        plan.steps.length
+        [] // Empty visuals array for test
       );
       const elapsed = Date.now() - startTime;
       

@@ -63,61 +63,37 @@ function fixJsonSyntax(jsonText) {
     }
     return fixed;
 }
-async function plannerAgent(query) {
+async function plannerAgent(query, difficulty = 'hard') {
     const key = process.env.GEMINI_API_KEY;
     if (!key) {
         throw new Error('Missing GEMINI_API_KEY');
     }
+    // Determine number of steps based on difficulty
+    const stepCount = difficulty === 'easy' ? 1 : difficulty === 'medium' ? 2 : 3;
+    logger_1.logger.info(`[Planner] Difficulty: ${difficulty}, Steps: ${stepCount}`);
     const genAI = new generative_ai_1.GoogleGenerativeAI(key);
     const model = genAI.getGenerativeModel({ model: MODEL });
-    const prompt = `Create a FOCUSED 3-step educational lesson for: ${query}
+    const prompt = `Create a FOCUSED ${stepCount}-step educational lesson for: ${query}
 
-🎯 GOAL: Teach core concept quickly (~2-3 minutes total)
+🎯 GOAL: Teach core concept quickly (~${stepCount} minute${stepCount > 1 ? 's' : ''} total)
 
-📚 EXACTLY 3 STEPS:
-1. HOOK & INTUITION: Start with why it matters + build intuitive understanding
-2. CORE MECHANICS: Show how it actually works with clear examples
-3. APPLICATIONS: Connect to real-world use and deeper implications
+📚 EXACTLY ${stepCount} STEP${stepCount > 1 ? 'S' : ''}:
+${stepCount >= 1 ? '1. HOOK & INTUITION: Start with why it matters + build intuitive understanding\n' : ''}${stepCount >= 2 ? '2. CORE MECHANICS: Show how it actually works with clear examples\n' : ''}${stepCount >= 3 ? '3. APPLICATIONS: Connect to real-world use and deeper implications' : ''}
 
 🎯 OUTPUT STRICT JSON:
 {
   "title": "[Clear, direct title]",
   "subtitle": "[One sentence describing what they'll learn]",
   "toc": [
-    {"minute": 1, "title": "The Intuition", "summary": "[Core idea in simple terms]"},
-    {"minute": 2, "title": "How It Works", "summary": "[The mechanism explained]"},
-    {"minute": 3, "title": "Real Applications", "summary": "[Where this matters]"}
+    ${stepCount >= 1 ? '{"minute": 1, "title": "The Intuition", "summary": "[Core idea in simple terms]"}' : ''}${stepCount >= 2 ? ',\n    {"minute": 2, "title": "How It Works", "summary": "[The mechanism explained]"}' : ''}${stepCount >= 3 ? ',\n    {"minute": 3, "title": "Real Applications", "summary": "[Where this matters]"}' : ''}
   ],
   "steps": [
-    {
-      "id": 1,
-      "desc": "[Hook with visual narrative - for visual generator]",
-      "notesSubtopic": "[Clear 2-3 word subtopic - for notes generator]",
-      "compiler": "js",
-      "complexity": 2,
-      "tag": "intuition"
-    },
-    {
-      "id": 2,
-      "desc": "[Show mechanism with visual narrative - for visual generator]",
-      "notesSubtopic": "[Clear 2-3 word subtopic - for notes generator]",
-      "compiler": "js",
-      "complexity": 3,
-      "tag": "mechanics"
-    },
-    {
-      "id": 3,
-      "desc": "[Real applications with visual narrative - for visual generator]",
-      "notesSubtopic": "[Clear 2-3 word subtopic - for notes generator]",
-      "compiler": "js",
-      "complexity": 2,
-      "tag": "applications"
-    }
+    ${stepCount >= 1 ? '{\n      "id": 1,\n      "desc": "[Hook with visual narrative - for visual generator]",\n      "notesSubtopic": "[Clear 2-3 word subtopic - for notes generator]",\n      "compiler": "js",\n      "complexity": 2,\n      "tag": "intuition"\n    }' : ''}${stepCount >= 2 ? ',\n    {\n      "id": 2,\n      "desc": "[Show mechanism with visual narrative - for visual generator]",\n      "notesSubtopic": "[Clear 2-3 word subtopic - for notes generator]",\n      "compiler": "js",\n      "complexity": 3,\n      "tag": "mechanics"\n    }' : ''}${stepCount >= 3 ? ',\n    {\n      "id": 3,\n      "desc": "[Real applications with visual narrative - for visual generator]",\n      "notesSubtopic": "[Clear 2-3 word subtopic - for notes generator]",\n      "compiler": "js",\n      "complexity": 2,\n      "tag": "applications"\n    }' : ''}
   ]
 }
 
 ⚠️ CRITICAL REQUIREMENTS:
-- EXACTLY 3 steps (not 5)
+- EXACTLY ${stepCount} step${stepCount > 1 ? 's' : ''} (not more, not less)
 - TWO DESCRIPTIONS PER STEP:
   * "desc": Narrative, visual description (for animations/visuals) - can be long, storytelling
   * "notesSubtopic": Clear, concise subtopic (for educational notes) - 2-5 words, what to teach
@@ -196,9 +172,11 @@ Topic: ${query}`;
         throw new Error('Planner: missing title/subtitle');
     if (!Array.isArray(plan.toc) || plan.toc.length < 1)
         throw new Error('Planner: missing toc');
-    if (!Array.isArray(plan.steps) || plan.steps.length !== 3)
-        throw new Error('Planner: steps must be exactly 3');
+    if (!Array.isArray(plan.steps) || plan.steps.length !== stepCount) {
+        throw new Error(`Planner: steps must be exactly ${stepCount} (got ${plan.steps?.length || 0})`);
+    }
     plan.steps.forEach((s, i) => { if (!s.id)
         s.id = i + 1; });
+    logger_1.logger.info(`[Planner] ✅ Generated ${plan.steps.length} step(s) for difficulty: ${difficulty}`);
     return plan;
 }

@@ -51,33 +51,12 @@ const TTS_VOICE_NAME = process.env.TTS_VOICE_NAME || 'en-US-Journey-D';
 const TTS_AUDIO_ENCODING = process.env.TTS_AUDIO_ENCODING || 'MP3';
 const TTS_SPEAKING_RATE = parseFloat(process.env.TTS_SPEAKING_RATE || '1.0');
 const TTS_INTER_VISUAL_DELAY = parseInt(process.env.TTS_INTER_VISUAL_DELAY || '2000', 10);
-// Use mock mode for testing (Google Cloud TTS requires OAuth2, not API keys)
-const TTS_MOCK_MODE = process.env.TTS_MOCK_MODE === 'true' || TTS_API_KEY.startsWith('AQ.');
+// NO MOCK MODE - ALWAYS USE REAL GOOGLE CLOUD TTS API
 // Audio output directory
 const AUDIO_OUTPUT_DIR = path.join(process.cwd(), 'audio-output');
 // Google Cloud TTS REST API endpoint
 const TTS_API_ENDPOINT = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${TTS_API_KEY}`;
-/**
- * Generate mock audio for testing
- * Creates realistic MP3-like binary data based on text length
- */
-function generateMockAudio(text) {
-    // Realistic MP3 size: ~1KB per second of audio
-    // Average speaking rate: 150 words/minute = 2.5 words/second
-    const words = text.split(/\s+/).length;
-    const estimatedSeconds = (words / 150) * 60;
-    const bytesPerSecond = 1024; // 1KB per second for MP3
-    const totalBytes = Math.ceil(estimatedSeconds * bytesPerSecond);
-    // Generate realistic-looking binary data (not actual MP3, but realistic size)
-    const buffer = Buffer.alloc(totalBytes);
-    // Add MP3 header signature for realism
-    buffer.write('ID3', 0);
-    // Fill with pseudo-random data
-    for (let i = 3; i < totalBytes; i++) {
-        buffer[i] = Math.floor(Math.random() * 256);
-    }
-    return buffer;
-}
+// REMOVED: No mock audio - always use real Google Cloud TTS API
 /**
  * Make HTTP POST request to Google Cloud TTS API
  */
@@ -175,36 +154,27 @@ class TTSService {
             throw new Error('TTS service is not available');
         }
         const startTime = Date.now();
-        logger_1.logger.info(`[TTS] Synthesizing text (${options.text.length} chars)${TTS_MOCK_MODE ? ' [MOCK MODE]' : ''}...`);
+        logger_1.logger.info(`[TTS] Synthesizing text (${options.text.length} chars) with REAL Google Cloud TTS...`);
         try {
-            let audioBuffer;
             const audioDuration = this.estimateAudioDuration(options.text, options.speakingRate || TTS_SPEAKING_RATE);
-            if (TTS_MOCK_MODE) {
-                // Use mock audio for testing (realistic size and format)
-                logger_1.logger.debug('[TTS] Using mock audio generation for testing');
-                audioBuffer = generateMockAudio(options.text);
-                // Simulate API delay for realism
-                await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 200));
-            }
-            else {
-                // Real API call
-                const requestBody = {
-                    input: { text: options.text },
-                    voice: {
-                        languageCode: options.languageCode || 'en-US',
-                        name: options.voiceName || TTS_VOICE_NAME
-                    },
-                    audioConfig: {
-                        audioEncoding: 'MP3',
-                        speakingRate: options.speakingRate || TTS_SPEAKING_RATE
-                    }
-                };
-                const response = await makeTTSRequest(requestBody);
-                if (!response.audioContent) {
-                    throw new Error('No audio content returned from TTS API');
+            // ALWAYS use real API - NO MOCK MODE
+            const requestBody = {
+                input: { text: options.text },
+                voice: {
+                    languageCode: options.languageCode || 'en-US',
+                    name: options.voiceName || TTS_VOICE_NAME
+                },
+                audioConfig: {
+                    audioEncoding: 'MP3',
+                    speakingRate: options.speakingRate || TTS_SPEAKING_RATE
                 }
-                audioBuffer = Buffer.from(response.audioContent, 'base64');
+            };
+            logger_1.logger.debug(`[TTS] Calling Google Cloud TTS API...`);
+            const response = await makeTTSRequest(requestBody);
+            if (!response.audioContent) {
+                throw new Error('No audio content returned from TTS API');
             }
+            const audioBuffer = Buffer.from(response.audioContent, 'base64');
             const elapsed = Date.now() - startTime;
             logger_1.logger.info(`[TTS] ✅ Synthesized ${options.text.length} chars → ${audioDuration}s audio in ${elapsed}ms`);
             return {

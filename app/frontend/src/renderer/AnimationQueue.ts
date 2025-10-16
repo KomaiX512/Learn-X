@@ -76,6 +76,32 @@ export class AnimationQueue {
   }
   
   /**
+   * Insert clarification actions immediately after current action (for inline rendering)
+   */
+  insertClarificationImmediate(actions: any[], section: any): void {
+    console.log(`[AnimationQueue] 🔥 INSERTING ${actions.length} clarification actions IMMEDIATELY after current index ${this.currentIndex}`);
+    
+    const clarificationItems = actions.map(action => ({
+      action,
+      section,
+      timestamp: Date.now()
+    }));
+    
+    // Insert right after current index (so they play next)
+    const insertPosition = this.currentIndex + 1;
+    this.queue.splice(insertPosition, 0, ...clarificationItems);
+    
+    console.log(`[AnimationQueue] ✅ Inserted at position ${insertPosition}`);
+    console.log(`[AnimationQueue] Queue now has ${this.queue.length} total actions`);
+    
+    // If not playing, start now
+    if (!this.isPlaying && !this.isPaused) {
+      console.log('[AnimationQueue] Starting playback for immediate clarification');
+      this.play();
+    }
+  }
+  
+  /**
    * Play all animations in queue sequentially
    */
   async play(): Promise<void> {

@@ -11,9 +11,26 @@ import { SessionParams } from './types';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const PORT = Number(process.env.PORT || 3001);
-const FRONTEND_URLS = (process.env.FRONTEND_URL || 'http://localhost:5173,http://localhost:5174')
+const DEFAULT_FE_URLS = 'http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174,https://2a683f5cb9a7.ngrok-free.app';
+const FRONTEND_URLS = (process.env.FRONTEND_URL || DEFAULT_FE_URLS)
   .split(',')
   .map((s) => s.trim());
+const EXPANDED_FE_URLS = Array.from(new Set(
+  FRONTEND_URLS.flatMap((u) => {
+    try {
+      const url = new URL(u);
+      const variants: string[] = [u];
+      if (url.hostname === 'localhost') {
+        variants.push(`${url.protocol}//127.0.0.1:${url.port}`);
+      } else if (url.hostname === '127.0.0.1') {
+        variants.push(`${url.protocol}//localhost:${url.port}`);
+      }
+      return variants;
+    } catch {
+      return [u];
+    }
+  })
+));
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 
 async function main() {
@@ -25,7 +42,7 @@ async function main() {
   console.log('═'.repeat(70));
   console.log('📍 Configuration:');
   console.log('   PORT:', PORT);
-  console.log('   FRONTEND_URLS:', FRONTEND_URLS.join(', '));
+  console.log('   FRONTEND_URLS:', EXPANDED_FE_URLS.join(', '));
   console.log('   REDIS_URL:', REDIS_URL);
   console.log('   GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? '✅ SET' : '❌ MISSING');
   console.log('   USE_VISUAL_VERSION:', process.env.USE_VISUAL_VERSION || 'v3 (default)');
@@ -38,12 +55,26 @@ async function main() {
   console.log('═'.repeat(70) + '\n');
   
   const app = express();
-  app.use(cors({ origin: FRONTEND_URLS, credentials: true }));
-  app.use(express.json());
+  const corsOptions: cors.CorsOptions = {
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (EXPANDED_FE_URLS.includes(origin)) return callback(null, true);
+      return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+  };
+  app.use(cors(corsOptions));
+  // Increase payload limit for screenshot uploads (default is 100kb)
+  app.use(express.json({ limit: '10mb' }));  // Allow up to 10MB for screenshots
+  app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
   const server = http.createServer(app);
   const io = new IOServer(server, {
-    cors: { origin: FRONTEND_URLS, methods: ['GET', 'POST'] },
+    cors: { origin: EXPANDED_FE_URLS, methods: ['GET', 'POST'] },
     // Keep connections alive
     pingTimeout: 60000,
     pingInterval: 25000,
@@ -154,7 +185,7 @@ async function main() {
       ok: true, 
       env: { 
         PORT, 
-        FRONTEND_URLS, 
+        FRONTEND_URLS: EXPANDED_FE_URLS, 
         REDIS_URL,
         GEMINI_API_KEY: process.env.GEMINI_API_KEY ? '***' : undefined,
         LOG_LEVEL: process.env.LOG_LEVEL,
@@ -286,8 +317,8 @@ async function main() {
       // Use step context from frontend or fallback to first step
       const currentStep = stepContext ? {
         id: stepContext.stepId || 0,
-        tag: stepContext.tag || 'Current Step',
-        desc: stepContext.desc || 'Learning step',
+        tag: stepContext.stepTag || 'Current Step',
+        desc: stepContext.stepDesc || 'Learning step',
         complexity: 3
       } : plan.steps[0];
 
@@ -308,8 +339,12 @@ async function main() {
       // Create a unique step ID for this clarification
       const clarificationStepId = `Q&A-${Date.now()}`;
 
+      // Check how many sockets are in the room
+      const socketsInRoom = await io.in(sessionId).fetchSockets();
+      logger.info(`[api] Emitting clarification to session ${sessionId} (${socketsInRoom.length} sockets)`);
+
       // Emit clarification as a special step that can be inserted inline
-      io.to(sessionId).emit('clarification', {
+      const clarificationData = {
         type: 'clarification',
         stepId: clarificationStepId,
         title: clarification.title,
@@ -318,15 +353,25 @@ async function main() {
         question,
         insertAfterScroll: stepContext?.scrollY || 0,
         timestamp: Date.now()
+      };
+      
+      io.to(sessionId).emit('clarification', clarificationData);
+      logger.info(`[api] ✅ Clarification emitted successfully`);
+      logger.debug(`[api] Clarification data:`, {
+        stepId: clarificationStepId,
+        actionsCount: clarification.actions.length,
+        hasTitle: !!clarification.title
       });
 
       res.json({ 
         success: true, 
         clarification: {
+          type: 'clarification',
           stepId: clarificationStepId,
           title: clarification.title,
           explanation: clarification.explanation,
-          actionsCount: clarification.actions.length
+          actions: clarification.actions,
+          insertAfterScroll: stepContext?.scrollY || 0
         }
       });
     } catch (err: any) {
@@ -335,15 +380,15 @@ async function main() {
     }
   });
 
-  server.listen(PORT, () => {
+  server.listen(PORT, '0.0.0.0', () => {
     console.log('\n' + '═'.repeat(70));
     console.log('✅ SERVER READY');
     console.log('═'.repeat(70));
-    console.log('🌐 Backend URL: http://localhost:' + PORT);
-    console.log('🔗 Health Check: http://localhost:' + PORT + '/health');
-    console.log('📡 WebSocket Ready: ws://localhost:' + PORT);
+    console.log('🌐 Backend URL: http://127.0.0.1:' + PORT);
+    console.log('🔗 Health Check: http://127.0.0.1:' + PORT + '/health');
+    console.log('📡 WebSocket Ready: ws://127.0.0.1:' + PORT);
     console.log('═'.repeat(70) + '\n');
-    logger.debug(`Server listening on port ${PORT}`);
+    logger.debug(`Server listening on 0.0.0.0:${PORT} (accessible via 127.0.0.1:${PORT})`);
   });
 
   const shutdown = () => {

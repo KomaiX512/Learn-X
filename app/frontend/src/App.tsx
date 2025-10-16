@@ -7,6 +7,11 @@ import type { ScreenshotResult } from './utils/canvasScreenshot';
 import { LectureStateManager } from './services/LectureStateManager';
 import { ttsPlayback } from './services/tts-playback';
 import { InterruptionPanel } from './components/InterruptionPanel';
+import { browserTTS } from './services/browser-tts';
+import { ThinkingAnimation } from './components/ThinkingAnimation';
+import { MindMapTree } from './components/MindMapTree';
+import { TopicDisplay } from './components/TopicDisplay';
+import { LectureHistory } from './components/LectureHistory';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -33,10 +38,19 @@ export default function App() {
   const [interruptionVisible, setInterruptionVisible] = useState(false);
   const [screenshot, setScreenshot] = useState<string | null>(null);
   const [isGeneratingClarification, setIsGeneratingClarification] = useState(false);
+  const [clarificationAckRequired, setClarificationAckRequired] = useState(false);
+  const [clarificationPromptVisible, setClarificationPromptVisible] = useState(false);
+  
+  // New UI state
+  const [showThinking, setShowThinking] = useState(false);
+  const [thinkingStage, setThinkingStage] = useState<'initializing' | 'planning' | 'generating' | 'rendering'>('initializing');
+  const [showMindMap, setShowMindMap] = useState(false);
   
   // Canvas reference for control
   const canvasRef = useRef<any>(null);
   const lectureStateRef = useRef<LectureStateManager | null>(null);
+  const pendingRenderedRef = useRef<any[]>([]);
+  const lastClarificationIdRef = useRef<string | null>(null);
 
   // Ensure we have a session and that the socket has joined it before enqueuing work
   function ensureSession(): string {
@@ -108,12 +122,44 @@ export default function App() {
     socket.on('generation_progress', (e) => {
       console.log('[App] Generation progress:', e);
     });
+    
+    // Test socket connection
+    socket.on('pong', () => {
+      console.log('[App] 🏓 Received pong from backend - socket is working!');
+    });
 
     // Handle clarification responses
     socket.on('clarification', (e) => {
-      console.log('[App] Received clarification:', e.title);
+      if (lastClarificationIdRef.current === e.stepId) {
+        console.warn('[App] 🔁 Duplicate clarification received, ignoring:', e.stepId);
+        return;
+      }
+      lastClarificationIdRef.current = e.stepId;
+      console.log('');
+      console.log('═'.repeat(70));
+      console.log('🧠 CLARIFICATION RECEIVED FROM BACKEND');
+      console.log('═'.repeat(70));
+      console.log('[App] Socket event "clarification" fired!');
+      console.log('[App] Timestamp:', new Date().toISOString());
+      console.log('[App] Title:', e.title);
+      console.log('[App] Actions count:', e.actions?.length);
+      console.log('[App] StepId:', e.stepId);
+      console.log('[App] Has canvasRef:', !!canvasRef.current);
+      console.log('[App] Full clarification data:', JSON.stringify(e, null, 2));
+      console.log('═'.repeat(70));
       
       if (e.actions && e.actions.length > 0 && canvasRef.current) {
+        // Auto-scroll to the selection anchor if provided
+        try {
+          const anchor = e.insertAfterScroll || 0;
+          const container = canvasRef.current.getContainer?.();
+          if (container && typeof anchor === 'number' && anchor > 0) {
+            const target = Math.max(0, anchor - 80);
+            console.log('[App] 🔽 Auto-scrolling to clarification anchor at', target);
+            container.scrollTop = target;
+          }
+        } catch {}
+        console.log('[App] ✅ Sending clarification to SequentialRenderer...');
         // Process clarification actions
         canvasRef.current.processChunk({
           type: 'clarification',
@@ -122,27 +168,32 @@ export default function App() {
           title: e.title,
           explanation: e.explanation
         });
+        console.log('[App] ✅ Clarification sent to renderer');
+      } else {
+        console.error('[App] ❌ Cannot render clarification - missing actions or canvasRef');
+        console.error('[App] Actions:', e.actions?.length);
+        console.error('[App] CanvasRef:', !!canvasRef.current);
       }
       
+      // Do NOT auto-resume. Require explicit user acknowledgement to continue.
       setIsGeneratingClarification(false);
       setInterruptionVisible(false);
-      
-      // Resume lecture after clarification
+      setClarificationAckRequired(true);
+      console.log('[App] ⏸ Lecture remains paused until user confirms clarification');
+      // Show confirmation after a short grace period to let the visual settle
       setTimeout(() => {
-        if (lectureStateRef.current) {
-          lectureStateRef.current.endClarification();
-          lectureStateRef.current.resume();
-        }
-        if (canvasRef.current) {
-          canvasRef.current.resume();
-        }
-        setIsInterrupted(false);
-        setIsPaused(false);
-        setIsPlaying(true);
-      }, 1000);
+        setClarificationPromptVisible(true);
+      }, 3000);
     });
     
     const handleRendered = (e: any) => {
+      // Interrupt priority: Buffer normal lecture while clarification is pending
+      if (isGeneratingClarification || clarificationAckRequired || interruptionVisible) {
+        console.warn('[App] ⏸ Buffering rendered event during clarification/interrupt. Step:', e.step?.id || e.stepId);
+        pendingRenderedRef.current.push(e);
+        return;
+      }
+      
       // Check if this event is for our session (handle broadcast fallback)
       if (e.targetSession && e.targetSession !== sessionId) {
         console.log('[socket] Ignoring event for different session:', e.targetSession);
@@ -264,6 +315,7 @@ export default function App() {
       socket.off('plan');
       socket.off('progress');
       socket.off('generation_progress');
+      socket.off('pong');
       socket.off('rendered', handleRendered);
       socket.off('clarification');
     };
@@ -295,6 +347,10 @@ export default function App() {
     setIsReady(false);
     setIsLoading(true);
     
+    // Show thinking animation
+    setShowThinking(true);
+    setThinkingStage('initializing');
+    
     const sid = ensureSession();
     console.log('[submit] Session ID:', sid);
     
@@ -302,9 +358,21 @@ export default function App() {
     const sock = getSocket(sid);
     console.log('[submit] Socket created:', !!sock);
     
+    // TTS: friendly acknowledgement on lecture start
+    try {
+      browserTTS.speak({
+        text: 'Thanks! Let me prepare an answer for you.',
+        rate: 1,
+        pitch: 1,
+        volume: 1,
+        lang: 'en-US'
+      });
+    } catch {}
+
     // Wait for socket to join the room
     try {
       console.log('[submit] Waiting for socket to join room...');
+      setThinkingStage('planning');
       await waitForJoin(sid, 5000); // Increased timeout
       console.log('[submit] ✅ Socket joined room successfully');
     } catch (e) {
@@ -316,6 +384,7 @@ export default function App() {
     console.log('[submit] Waiting 100ms to ensure listeners are attached...');
     await new Promise(resolve => setTimeout(resolve, 100));
     
+    setThinkingStage('generating');
     console.log('[submit] Making API call to /api/query');
     console.log('[submit] Difficulty level:', difficulty);
     const res = await fetch('/api/query', {
@@ -326,8 +395,13 @@ export default function App() {
     const data = await res.json();
     console.log('[submit] API response:', data);
     
+    setThinkingStage('rendering');
+    
     // keep existing sid if backend echoes a different one
     setSessionId((prev) => prev || data.sessionId || sid);
+    
+    // Hide thinking animation after a short delay
+    setTimeout(() => setShowThinking(false), 1000);
   }
 
   async function nextStep() {
@@ -393,6 +467,17 @@ export default function App() {
     lectureStateRef.current.startClarification();
     
     console.log('[App] Lecture interrupted for question');
+
+    // TTS: invite the user to ask (no popup)
+    try {
+      browserTTS.speak({
+        text: 'Please tell me where the confusion is. Circle the area and type your question.',
+        rate: 1,
+        pitch: 1,
+        volume: 1,
+        lang: 'en-US'
+      });
+    } catch {}
   };
 
   // Handle question submission
@@ -403,6 +488,16 @@ export default function App() {
     
     try {
       console.log('[App] Submitting question:', question);
+      // TTS: acknowledge question
+      try {
+        browserTTS.speak({
+          text: "Thank you, that's a great question. Let me make that simple for you.",
+          rate: 1,
+          pitch: 1,
+          volume: 1,
+          lang: 'en-US'
+        });
+      } catch {}
       
       // Ensure socket is connected and joined to session
       try {
@@ -412,28 +507,86 @@ export default function App() {
         console.warn('[App] Socket join timeout, proceeding anyway:', e);
       }
       
-      const response = await fetch('/api/clarify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sessionId,
-          question,
-          screenshot: screenshotData
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      console.time('clarifyRequest');
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 120000);
+      let responseObj;
+      try {
+        responseObj = await fetch('/api/clarify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId,
+            question,
+            screenshot: screenshotData
+          }),
+          signal: controller.signal
+        });
+      } catch (primaryErr) {
+        clearTimeout(timeoutId);
+        try {
+          responseObj = await fetch('http://127.0.0.1:8000/api/clarify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              sessionId,
+              question,
+              screenshot: screenshotData
+            })
+          });
+        } catch (_fallbackErr) {
+          throw primaryErr;
+        }
       }
-      
-      const data = await response.json();
+      clearTimeout(timeoutId);
+      console.timeEnd('clarifyRequest');
+      if (!responseObj.ok) {
+        const errorText = await responseObj.text();
+        throw new Error(`HTTP ${responseObj.status}: ${errorText || responseObj.statusText}`);
+      }
+      const data = await responseObj.json();
       console.log('[App] Clarification response:', data);
       
       if (!data.success) {
         throw new Error(data.error || 'Clarification request failed');
       }
       
-      // Clarification will arrive via socket.on('clarification')
+      // HTTP fallback: if actions are present, render immediately
+      if (data?.clarification?.actions && data.clarification.actions.length > 0) {
+        const c = data.clarification;
+        if (lastClarificationIdRef.current !== c.stepId) {
+          lastClarificationIdRef.current = c.stepId;
+          if (canvasRef.current) {
+            console.log('[App] 📥 Rendering clarification from HTTP response fallback');
+            // Auto-scroll to the selection anchor if provided
+            try {
+              const anchor = c.insertAfterScroll || 0;
+              const container = canvasRef.current.getContainer?.();
+              if (container && typeof anchor === 'number' && anchor > 0) {
+                const target = Math.max(0, anchor - 80);
+                console.log('[App] 🔽 Auto-scrolling (HTTP fallback) to clarification anchor at', target);
+                container.scrollTop = target;
+              }
+            } catch {}
+            canvasRef.current.processChunk({
+              type: 'clarification',
+              actions: c.actions,
+              stepId: c.stepId,
+              title: c.title,
+              explanation: c.explanation
+            });
+          }
+        } else {
+          console.log('[App] Skipping HTTP fallback render (already processed via socket)');
+        }
+        // Show confirmation prompt and keep lecture paused
+        setIsGeneratingClarification(false);
+        setInterruptionVisible(false);
+        setClarificationAckRequired(true);
+        setClarificationPromptVisible(true);
+      }
+      
+      // Clarification also arrives via socket.on('clarification')
     } catch (error: any) {
       console.error('[App] Error submitting question:', error);
       setIsGeneratingClarification(false);
@@ -463,319 +616,474 @@ export default function App() {
 
 
   return (
-    <div style={{ fontFamily: 'Inter, system-ui, Arial, sans-serif', padding: 16 }}>
-      <h2>Universal Interactive Learning Engine (MVP)</h2>
-      {planTitle && <h3 style={{ marginTop: 0 }}>{planTitle}</h3>}
-      {planSubtitle && <div style={{ marginTop: 4, color: '#555' }}>{planSubtitle}</div>}
-      {toc.length > 0 && (
-        <div style={{ marginTop: 8, padding: 8, background: '#fafafa', border: '1px solid #eee', borderRadius: 6 }}>
-          <strong>Table of Contents (5-minute plan)</strong>
-          <ol style={{ margin: '8px 0 0 20px' }}>
-            {toc.sort((a,b)=>a.minute-b.minute).map((item) => (
-              <li key={item.minute}>
-                <span style={{ fontWeight: 600 }}>Minute {item.minute}:</span> {item.title}
-                {item.summary ? <div style={{ color: '#666' }}>{item.summary}</div> : null}
-              </li>
-            ))}
-          </ol>
+    <div style={{ 
+      fontFamily: 'Courier New, monospace', 
+      background: '#000',
+      minHeight: '100vh',
+      color: '#00ff41',
+      overflow: 'hidden'
+    }}>
+      {/* Thinking Animation Overlay */}
+      <ThinkingAnimation 
+        visible={showThinking} 
+        stage={thinkingStage}
+        currentStep={currentStep?.desc}
+      />
+      
+      {/* Mind Map Tree */}
+      <MindMapTree
+        visible={showMindMap}
+        onClose={() => setShowMindMap(false)}
+        planTitle={planTitle}
+        steps={toc.length > 0 ? toc : []}
+        currentStepIndex={currentStepIndex}
+      />
+      
+      {/* Topic Display and Lecture History removed per user request */}
+      
+      {/* Main Header */}
+      <div style={{
+        padding: '20px 40px',
+        borderBottom: '1px solid rgba(0, 255, 65, 0.3)',
+        background: 'rgba(0, 0, 0, 0.95)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          {/* Logo */}
+          <div style={{
+            fontSize: 32,
+            fontWeight: 'bold',
+            color: '#00ff41',
+            textShadow: '0 0 20px rgba(0, 255, 65, 0.8)',
+            letterSpacing: 4
+          }}>
+            LEAF
+          </div>
+          
+          {/* Tagline */}
+          <div style={{
+            fontSize: 14,
+            color: 'rgba(0, 255, 65, 0.6)',
+            fontStyle: 'italic',
+            textAlign: 'center',
+            flex: 1,
+            marginLeft: 40
+          }}>
+            {'<'}Whatever you learn here, you might not forget upto death day{'>'}
+          </div>
+          
+          {/* User Icon */}
+          <div style={{
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #00ff41, #00cc33)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 20,
+            boxShadow: '0 0 15px rgba(0, 255, 65, 0.5)'
+          }}>
+            👤
+          </div>
         </div>
-      )}
-      {planSubtitle && <h4 style={{ marginTop: 0 }}>{planSubtitle}</h4>}
-      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-        <div style={{ minWidth: 320 }}>
-          <label style={{ display: 'block', fontWeight: 600, marginBottom: 4 }}>Query</label>
+      </div>
+      
+      {/* Input Section */}
+      <div style={{
+        padding: '30px 40px',
+        background: 'rgba(0, 0, 0, 0.8)'
+      }}>
+        <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', maxWidth: 1400, margin: '0 auto' }}>
+        {/* Query Input */}
+        <div style={{ flex: 1 }}>
           <textarea 
             value={query} 
             onChange={(e) => setQuery(e.target.value)} 
-            rows={3} 
+            rows={1} 
             style={{ 
               width: '100%', 
-              fontFamily: 'Inter, system-ui, sans-serif',
+              fontFamily: 'Courier New, monospace',
               fontSize: 14,
-              padding: 8,
-              borderRadius: 4,
-              border: '1px solid #ddd'
+              padding: '12px 16px',
+              borderRadius: 8,
+              border: '2px solid #00ff41',
+              background: 'rgba(0, 255, 65, 0.05)',
+              color: '#00ff41',
+              outline: 'none',
+              resize: 'none',
+              boxShadow: '0 0 15px rgba(0, 255, 65, 0.2)'
             }} 
-            placeholder="Type your topic (e.g., 'Explain binary search algorithm')" 
+            placeholder="<learn any (compleX) topic!>" 
           />
           
-          {/* Difficulty Level Selector */}
-          <div style={{ marginTop: 12 }}>
-            <label style={{ display: 'block', fontWeight: 600, marginBottom: 6, fontSize: 14 }}>
-              Difficulty Level
-            </label>
-            <div style={{ display: 'flex', gap: 8 }}>
-              <button
-                onClick={() => setDifficulty('easy')}
-                style={{
-                  flex: 1,
-                  padding: '10px',
-                  background: difficulty === 'easy' ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : '#f3f4f6',
-                  color: difficulty === 'easy' ? 'white' : '#374151',
-                  border: difficulty === 'easy' ? '2px solid #059669' : '2px solid #e5e7eb',
-                  borderRadius: 6,
-                  cursor: 'pointer',
-                  fontWeight: difficulty === 'easy' ? 700 : 600,
-                  fontSize: 13,
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                ⚡ Easy (1 step)
-              </button>
-              <button
-                onClick={() => setDifficulty('medium')}
-                style={{
-                  flex: 1,
-                  padding: '10px',
-                  background: difficulty === 'medium' ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' : '#f3f4f6',
-                  color: difficulty === 'medium' ? 'white' : '#374151',
-                  border: difficulty === 'medium' ? '2px solid #d97706' : '2px solid #e5e7eb',
-                  borderRadius: 6,
-                  cursor: 'pointer',
-                  fontWeight: difficulty === 'medium' ? 700 : 600,
-                  fontSize: 13,
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                🎯 Medium (2 steps)
-              </button>
-              <button
-                onClick={() => setDifficulty('hard')}
-                style={{
-                  flex: 1,
-                  padding: '10px',
-                  background: difficulty === 'hard' ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)' : '#f3f4f6',
-                  color: difficulty === 'hard' ? 'white' : '#374151',
-                  border: difficulty === 'hard' ? '2px solid #dc2626' : '2px solid #e5e7eb',
-                  borderRadius: 6,
-                  cursor: 'pointer',
-                  fontWeight: difficulty === 'hard' ? 700 : 600,
-                  fontSize: 13,
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                🔥 Hard (3 steps)
-              </button>
-            </div>
-            <div style={{ marginTop: 6, fontSize: 12, color: '#6b7280' }}>
-              {difficulty === 'easy' && '• Quick overview - 1 step with core concepts'}
-              {difficulty === 'medium' && '• Balanced learning - 2 steps with examples'}
-              {difficulty === 'hard' && '• Deep dive - 3 steps with applications'}
-            </div>
+        </div>
+        
+        {/* Difficulty Level Selector */}
+        <div>
+          <div style={{ 
+            fontSize: 12, 
+            marginBottom: 8, 
+            color: 'rgba(0, 255, 65, 0.7)',
+            fontWeight: 'bold',
+            letterSpacing: 1
+          }}>
+            DEFICULTY LEVEL
           </div>
-          
-          {/* Control Buttons */}
-          <div style={{ marginTop: 12, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <button 
-              onClick={submit} 
-              disabled={!query.trim() || isLoading}
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button
+              onClick={() => setDifficulty('easy')}
               style={{
-                padding: '8px 16px',
-                background: isLoading ? '#ccc' : '#3b82f6',
-                color: 'white',
-                border: 'none',
-                borderRadius: 4,
-                cursor: isLoading ? 'not-allowed' : 'pointer',
-                fontWeight: 600
+                padding: '10px 20px',
+                background: difficulty === 'easy' ? '#00ff41' : 'transparent',
+                color: difficulty === 'easy' ? '#000' : '#00ff41',
+                border: `2px solid ${difficulty === 'easy' ? '#00ff41' : 'rgba(0, 255, 65, 0.3)'}`,
+                borderRadius: 6,
+                cursor: 'pointer',
+                fontFamily: 'Courier New, monospace',
+                fontWeight: 'bold',
+                fontSize: 12,
+                transition: 'all 0.2s ease',
+                boxShadow: difficulty === 'easy' ? '0 0 15px rgba(0, 255, 65, 0.5)' : 'none'
               }}
             >
-              {isLoading ? 'Generating...' : 'Start Lecture'}
+              EASY
+            </button>
+            <button
+              onClick={() => setDifficulty('medium')}
+              style={{
+                padding: '10px 20px',
+                background: difficulty === 'medium' ? '#00ff41' : 'transparent',
+                color: difficulty === 'medium' ? '#000' : '#00ff41',
+                border: `2px solid ${difficulty === 'medium' ? '#00ff41' : 'rgba(0, 255, 65, 0.3)'}`,
+                borderRadius: 6,
+                cursor: 'pointer',
+                fontFamily: 'Courier New, monospace',
+                fontWeight: 'bold',
+                fontSize: 12,
+                transition: 'all 0.2s ease',
+                boxShadow: difficulty === 'medium' ? '0 0 15px rgba(0, 255, 65, 0.5)' : 'none'
+              }}
+            >
+              MEDIUM
+            </button>
+            <button
+              onClick={() => setDifficulty('hard')}
+              style={{
+                padding: '10px 20px',
+                background: difficulty === 'hard' ? '#00ff41' : 'transparent',
+                color: difficulty === 'hard' ? '#000' : '#00ff41',
+                border: `2px solid ${difficulty === 'hard' ? '#00ff41' : 'rgba(0, 255, 65, 0.3)'}`,
+                borderRadius: 6,
+                cursor: 'pointer',
+                fontFamily: 'Courier New, monospace',
+                fontWeight: 'bold',
+                fontSize: 12,
+                transition: 'all 0.2s ease',
+                boxShadow: difficulty === 'hard' ? '0 0 15px rgba(0, 255, 65, 0.5)' : 'none'
+              }}
+            >
+              HARD
             </button>
           </div>
+          
+          {/* Submit Button */}
+          <button
+            onClick={submit}
+            disabled={!query.trim() || isLoading}
+            style={{
+              marginTop: 12,
+              padding: '10px 24px',
+              background: !query.trim() || isLoading ? 'rgba(0, 255, 65, 0.3)' : '#00ff41',
+              color: !query.trim() || isLoading ? 'rgba(0, 0, 0, 0.5)' : '#000',
+              border: '2px solid #00ff41',
+              borderRadius: 6,
+              cursor: !query.trim() || isLoading ? 'not-allowed' : 'pointer',
+              fontFamily: 'Courier New, monospace',
+              fontWeight: 'bold',
+              fontSize: 12,
+              width: '100%',
+              boxShadow: !query.trim() || isLoading ? 'none' : '0 0 20px rgba(0, 255, 65, 0.4)',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            {isLoading ? '>>> GENERATING...' : '>>> START LECTURE'}
+          </button>
+        </div>
+      </div>
+    </div>
+      
+      {/* Tree/Table Toggle Button */}
+      {isReady && (
+        <button
+          onClick={() => setShowMindMap(true)}
+          style={{
+            position: 'fixed',
+            top: 100,
+            right: 320,
+            padding: '8px 20px',
+            background: 'rgba(0, 255, 65, 0.1)',
+            border: '2px solid #00ff41',
+            borderRadius: 6,
+            color: '#00ff41',
+            fontFamily: 'Courier New, monospace',
+            fontWeight: 'bold',
+            fontSize: 12,
+            cursor: 'pointer',
+            boxShadow: '0 0 15px rgba(0, 255, 65, 0.2)',
+            zIndex: 101,
+            transition: 'all 0.2s'
+          }}
+        >
+          TREE / TABLE
+        </button>
+      )}
 
-          {/* Navigation Controls */}
-          {isReady && (
-            <div style={{ 
-              marginTop: 16, 
-              padding: 12, 
-              background: '#f8f9fa', 
-              borderRadius: 8,
-              border: '1px solid #e0e0e0'
-            }}>
-              <h4 style={{ margin: '0 0 12px 0', color: '#333' }}>Playback Controls</h4>
               
-              <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-                <button 
-                  onClick={() => {
-                    if (lectureStateRef.current?.canNavigate()) {
-                      const prevStep = lectureStateRef.current.navigateToStep(currentStepIndex - 1);
-                      if (prevStep && canvasRef.current) {
-                        canvasRef.current.processChunk({
-                          type: 'actions',
-                          actions: prevStep.actions,
-                          stepId: prevStep.stepId,
-                          stepTitle: prevStep.stepTitle
-                        });
-                      }
+      
+      {/* Main Canvas Area */}
+      <div style={{
+        padding: '20px 40px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: 'calc(100vh - 200px)'
+      }}>
+        <CanvasStage 
+            ref={canvasRef} 
+            sessionId={sessionId}
+            onQuestionSubmit={async (question, screenshot, context) => {
+              if (!sessionId) return;
+              
+              setIsGeneratingClarification(true);
+              
+              console.log('[App] Canvas question submitted:', question);
+              console.log('[App] Context:', context);
+
+              // TTS: acknowledge question
+              try {
+                browserTTS.speak({
+                  text: "Thank you, that's a great question. Let me make that simple for you.",
+                  rate: 1,
+                  pitch: 1,
+                  volume: 1,
+                  lang: 'en-US'
+                });
+              } catch {}
+              
+              // Fire-and-forget: Send request but don't wait for HTTP response
+              // The clarification will arrive via socket.on('clarification')
+              console.log('[App] 📤 Sending clarification request via proxy /api/clarify');
+              console.log('[App] Socket ID:', socket.id);
+              console.log('[App] Socket connected:', socket.connected);
+              console.log('[App] Session ID:', sessionId);
+              
+              // Ensure we're in the room before sending request
+              socket.emit('join', { sessionId });
+              console.log('[App] Re-joined room to ensure socket is in session:', sessionId);
+              
+              // Test socket connection by emitting a ping
+              socket.emit('ping');
+              console.log('[App] Sent ping to test socket connection');
+              
+              // CRITICAL: Wait for socket to join room before sending HTTP request
+              // Otherwise backend might emit before frontend is listening
+              await new Promise(resolve => setTimeout(resolve, 100));
+              console.log('[App] ✅ Socket join delay complete, sending request now');
+              
+              // Ensure socket joined before sending (best effort)
+              try { await waitForJoin(sessionId, 2000); } catch {}
+              
+              fetch('/api/clarify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  sessionId,
+                  question,
+                  screenshot,
+                  stepContext: context
+                })
+              }).then(resp => {
+                console.log('[App] Proxy request completed, status:', resp.status);
+                if (!resp.ok) {
+                  console.error('[App] HTTP error:', resp.status, resp.statusText);
+                }
+                return resp.json();
+              }).then(data => {
+                console.log('[App] Canvas clarification response:', data);
+                // HTTP fallback path from canvas flow
+                if (data?.clarification?.actions && data.clarification.actions.length > 0) {
+                  const c = data.clarification;
+                  if (lastClarificationIdRef.current !== c.stepId) {
+                    lastClarificationIdRef.current = c.stepId;
+                    if (canvasRef.current) {
+                      console.log('[App] 📥 Rendering clarification (canvas) from HTTP response fallback');
+                      // Auto-scroll to the selection anchor if provided
+                      try {
+                        const anchor = c.insertAfterScroll || 0;
+                        const container = canvasRef.current.getContainer?.();
+                        if (container && typeof anchor === 'number' && anchor > 0) {
+                          const target = Math.max(0, anchor - 80);
+                          console.log('[App] 🔽 Auto-scrolling (canvas HTTP fallback) to clarification anchor at', target);
+                          container.scrollTop = target;
+                        }
+                      } catch {}
+                      canvasRef.current.processChunk({
+                        type: 'clarification',
+                        actions: c.actions,
+                        stepId: c.stepId,
+                        title: c.title,
+                        explanation: c.explanation
+                      });
                     }
-                  }}
-                  disabled={currentStepIndex === 0 || !lectureStateRef.current?.canNavigate()}
-                  style={{
-                    padding: '6px 12px',
-                    background: currentStepIndex === 0 || !lectureStateRef.current?.canNavigate() ? '#e0e0e0' : '#6c757d',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: 4,
-                    cursor: currentStepIndex === 0 || !lectureStateRef.current?.canNavigate() ? 'not-allowed' : 'pointer'
-                  }}
-                >
-                  ← Previous
-                </button>
-                
-                <button 
+                  }
+                  setIsGeneratingClarification(false);
+                  setInterruptionVisible(false);
+                  setClarificationAckRequired(true);
+                  // Delay popup by 3s to allow visual settle
+                  setTimeout(() => setClarificationPromptVisible(true), 3000);
+                }
+              }).catch(err => {
+                console.warn('[App] Fetch failed but backend may have received request:', err.message);
+                console.warn('[App] Waiting for socket event instead...');
+              });
+              
+              // Don't throw errors - just wait for the socket event
+              console.log('[App] ⏳ Waiting for clarification via socket...')
+              
+              // Set a timeout to clear loading state if no response after 60s
+              setTimeout(() => {
+                if (isGeneratingClarification) {
+                  console.error('[App] ⏰ Timeout: No clarification received after 60s');
+                  setIsGeneratingClarification(false);
+                  alert('Clarification request timed out. Please try again.');
+                }
+              }, 60000)
+            }}
+          />
+
+        {/* Post-clarification confirmation prompt */}
+        {clarificationPromptVisible && (
+            <div style={{
+              position: 'fixed',
+              bottom: 24,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: 'white',
+              border: '1px solid #e5e7eb',
+              borderRadius: 12,
+              padding: '14px 16px',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+              zIndex: 2001,
+              minWidth: 360
+            }}>
+              <div style={{ fontWeight: 700, marginBottom: 6 }}>Did that clarification help?</div>
+              <div style={{ fontSize: 13, color: '#555', marginBottom: 10 }}>If yes, we'll resume the lecture where we left off.</div>
+              <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+                <button
                   onClick={() => {
-                    if (isPaused) {
-                      canvasRef.current?.resume();
-                      setIsPaused(false);
-                      setIsPlaying(true);
-                    } else if (isPlaying) {
-                      canvasRef.current?.pause();
-                      setIsPaused(true);
-                      setIsPlaying(false);
-                    } else {
-                      canvasRef.current?.resume();
-                      setIsPlaying(true);
-                    }
+                    // Keep prompt open and allow another question
+                    setClarificationPromptVisible(false);
+                    setIsInterrupted(true);
+                    setIsPaused(true);
+                    setIsPlaying(false);
+                    console.log('[App] User wants to stay in question mode');
+                    try {
+                      browserTTS.speak({
+                        text: "Sure. Please tell me what's still confusing, and I will clarify further.",
+                        rate: 1,
+                        pitch: 1,
+                        volume: 1,
+                        lang: 'en-US'
+                      });
+                    } catch {}
                   }}
                   style={{
-                    padding: '6px 12px',
-                    background: '#28a745',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: 4,
+                    background: '#f3f4f6',
+                    border: '1px solid #e5e7eb',
+                    color: '#111827',
+                    padding: '8px 12px',
+                    borderRadius: 8,
+                    fontWeight: 600,
                     cursor: 'pointer'
                   }}
                 >
-                  {isPaused ? '▶ Resume' : isPlaying ? '⏸ Pause' : '▶ Play'}
+                  Ask another question
                 </button>
-                
-                <button 
+                <button
                   onClick={() => {
-                    if (lectureStateRef.current?.canNavigate()) {
-                      const nextStep = lectureStateRef.current.navigateToStep(currentStepIndex + 1);
-                      if (nextStep && canvasRef.current) {
-                        canvasRef.current.processChunk({
+                    console.log('[App] ✅ User confirmed clarification - resuming lecture');
+                    setClarificationPromptVisible(false);
+                    setClarificationAckRequired(false);
+                    setIsGeneratingClarification(false);
+                    try {
+                      browserTTS.speak({
+                        text: "Great! Thank you. Let's proceed with the lecture.",
+                        rate: 1,
+                        pitch: 1,
+                        volume: 1,
+                        lang: 'en-US'
+                      });
+                    } catch {}
+                    
+                    // Resume lecture
+                    if (lectureStateRef.current) {
+                      lectureStateRef.current.endClarification();
+                      lectureStateRef.current.resume();
+                    }
+                    if (canvasRef.current) {
+                      canvasRef.current.resume();
+                    }
+                    setIsInterrupted(false);
+                    setIsPaused(false);
+                    setIsPlaying(true);
+                    
+                    // Flush buffered 'rendered' events in order
+                    const queued = [...pendingRenderedRef.current];
+                    pendingRenderedRef.current = [];
+                    console.log(`[App] 🔄 Flushing ${queued.length} buffered lecture events`);
+                    for (const e of queued) {
+                      if (e?.actions && canvasRef.current) {
+                        const chunk = {
                           type: 'actions',
-                          actions: nextStep.actions,
-                          stepId: nextStep.stepId,
-                          stepTitle: nextStep.stepTitle
-                        });
+                          actions: e.actions,
+                          transcript: e.transcript || '',
+                          stepId: e.stepId || e.step?.id,
+                          step: e.step,
+                          plan: e.plan,
+                          meta: e.meta
+                        };
+                        canvasRef.current.processChunk(chunk);
                       }
                     }
                   }}
-                  disabled={currentStepIndex >= totalSteps - 1 || !lectureStateRef.current?.canNavigate()}
                   style={{
-                    padding: '6px 12px',
-                    background: currentStepIndex >= totalSteps - 1 || !lectureStateRef.current?.canNavigate() ? '#e0e0e0' : '#6c757d',
-                    color: 'white',
+                    background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
                     border: 'none',
-                    borderRadius: 4,
-                    cursor: currentStepIndex >= totalSteps - 1 || !lectureStateRef.current?.canNavigate() ? 'not-allowed' : 'pointer'
+                    color: 'white',
+                    padding: '8px 12px',
+                    borderRadius: 8,
+                    fontWeight: 700,
+                    cursor: 'pointer'
                   }}
                 >
-                  Next →
-                </button>
-                
-                <button 
-                  onClick={handleInterrupt}
-                  disabled={!isPlaying || isInterrupted}
-                  style={{
-                    padding: '6px 12px',
-                    background: !isPlaying || isInterrupted ? '#e0e0e0' : '#dc3545',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: 4,
-                    cursor: !isPlaying || isInterrupted ? 'not-allowed' : 'pointer',
-                    marginLeft: 'auto'
-                  }}
-                >
-                  ❓ Ask Question
+                  Continue lecture
                 </button>
               </div>
-              
-              {/* Progress Bar */}
-              <div style={{ marginBottom: 8 }}>
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  fontSize: 12, 
-                  color: '#666',
-                  marginBottom: 4
-                }}>
-                  <span>Step {currentStepIndex + 1} of {totalSteps || 5}</span>
-                  <span>{progress.toFixed(0)}%</span>
-                </div>
-                <div style={{ 
-                  width: '100%', 
-                  height: 8, 
-                  background: '#e0e0e0', 
-                  borderRadius: 4,
-                  overflow: 'hidden'
-                }}>
-                  <div style={{ 
-                    width: `${progress}%`, 
-                    height: '100%', 
-                    background: 'linear-gradient(90deg, #3b82f6, #10b981)',
-                    transition: 'width 0.3s ease'
-                  }} />
-                </div>
-              </div>
             </div>
           )}
-
-          {/* Current Step Info */}
-          {currentStep && (
-            <div style={{ 
-              marginTop: 16, 
-              padding: 12, 
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              borderRadius: 8,
-              color: 'white'
-            }}>
-              <h4 style={{ margin: '0 0 4px 0' }}>Current Step</h4>
-              <div style={{ fontSize: 14, opacity: 0.95 }}>{currentStep?.desc}</div>
-            </div>
-          )}
-          
-          {/* Transcript Display */}
-          {currentTranscript && (
-            <div style={{ 
-              marginTop: 16, 
-              padding: 16, 
-              background: '#f8f9fa',
-              borderRadius: 8,
-              border: '1px solid #e0e0e0'
-            }}>
-              <h4 style={{ margin: '0 0 8px 0', color: '#333', display: 'flex', alignItems: 'center' }}>
-                <span style={{ marginRight: 8 }}>🎙️</span>
-                Narration
-              </h4>
-              <div style={{ 
-                fontSize: 15, 
-                lineHeight: 1.6, 
-                color: '#444',
-                fontFamily: 'Georgia, serif'
-              }}>
-                {currentTranscript}
-              </div>
-            </div>
-          )}
-        </div>
         
-        {/* Canvas Container */}
-        <div style={{ flex: 1, minWidth: 600 }}>
-          <CanvasStage ref={canvasRef} />
-          
-          {/* Interruption Panel */}
-          <InterruptionPanel
-            visible={interruptionVisible}
-            currentStep={currentStep?.desc || 'Unknown step'}
-            screenshot={screenshot}
-            onSubmitQuestion={handleSubmitQuestion}
-            onCancel={handleCancelInterruption}
-            isGenerating={isGeneratingClarification}
-          />
-        </div>
+        {/* Interruption Panel */}
+        <InterruptionPanel
+          visible={interruptionVisible}
+          currentStep={currentStep?.desc || 'Unknown step'}
+          screenshot={screenshot}
+          onSubmitQuestion={handleSubmitQuestion}
+          onCancel={handleCancelInterruption}
+          isGenerating={isGeneratingClarification}
+        />
       </div>
     </div>
   );

@@ -20,8 +20,12 @@ export function getSocket(sessionId: string) {
   }
 
   console.log('[socket] Creating new socket connection with reliability enhancements');
-  socket = io({ 
-    transports: ['websocket'],
+  // Use relative URL to connect to the same host serving the frontend
+  // This works for both localhost and ngrok deployment
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || window.location.origin;
+  console.log('[socket] Connecting to backend:', backendUrl);
+  socket = io(backendUrl, {
+    transports: ['websocket', 'polling'],  // Allow fallback to polling
     reconnection: true,
     reconnectionAttempts: 10,
     reconnectionDelay: 1000,

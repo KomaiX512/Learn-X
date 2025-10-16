@@ -14,7 +14,70 @@ export interface ScreenshotResult {
 }
 
 /**
+ * Capture ONLY VISIBLE VIEWPORT area (not entire canvas)
+ * This reduces screenshot size dramatically for better performance
+ */
+export async function captureVisibleViewport(
+  stage: Konva.Stage,
+  scrollContainer: HTMLElement,
+  options: {
+    pixelRatio?: number;
+    mimeType?: string;
+    quality?: number;
+  } = {}
+): Promise<ScreenshotResult> {
+  const {
+    pixelRatio = 1.5, // Reduced from 2 for smaller file size
+    mimeType = 'image/jpeg', // JPEG is much smaller than PNG
+    quality = 0.7 // Reduced quality for smaller payload
+  } = options;
+
+  try {
+    const scrollTop = scrollContainer.scrollTop || 0;
+    const scrollLeft = scrollContainer.scrollLeft || 0;
+    const viewportWidth = scrollContainer.clientWidth;
+    const viewportHeight = scrollContainer.clientHeight;
+
+    console.log('[canvasScreenshot] Capturing visible viewport:', {
+      scrollTop,
+      scrollLeft,
+      viewportWidth,
+      viewportHeight
+    });
+
+    // Capture only the visible portion
+    const dataUrl = stage.toDataURL({
+      x: scrollLeft,
+      y: scrollTop,
+      width: viewportWidth,
+      height: viewportHeight,
+      pixelRatio,
+      mimeType,
+      quality
+    });
+
+    // Convert data URL to Blob
+    const blob = await dataUrlToBlob(dataUrl);
+    const sizeKB = (blob.size / 1024).toFixed(2);
+    
+    console.log(`[canvasScreenshot] Screenshot size: ${sizeKB}KB`);
+
+    return {
+      dataUrl,
+      blob,
+      width: viewportWidth,
+      height: viewportHeight,
+      timestamp: Date.now()
+    };
+  } catch (error) {
+    console.error('[canvasScreenshot] Error capturing viewport:', error);
+    throw error;
+  }
+}
+
+/**
  * Capture canvas screenshot with specified quality
+ * (Full canvas - use captureVisibleViewport for smaller payloads)
  */
 export async function captureCanvasScreenshot(
   stage: Konva.Stage,
@@ -25,9 +88,9 @@ export async function captureCanvasScreenshot(
   } = {}
 ): Promise<ScreenshotResult> {
   const {
-    pixelRatio = 2, // High DPI for clarity
-    mimeType = 'image/png',
-    quality = 0.95
+    pixelRatio = 1.5, // Reduced from 2
+    mimeType = 'image/jpeg', // Changed to JPEG for smaller size
+    quality = 0.7 // Reduced quality
   } = options;
 
   try {
@@ -40,6 +103,9 @@ export async function captureCanvasScreenshot(
 
     // Convert data URL to Blob for upload
     const blob = await dataUrlToBlob(dataUrl);
+    const sizeKB = (blob.size / 1024).toFixed(2);
+    
+    console.log(`[canvasScreenshot] Full canvas screenshot size: ${sizeKB}KB`);
 
     return {
       dataUrl,

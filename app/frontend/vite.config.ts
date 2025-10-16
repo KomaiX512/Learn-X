@@ -10,15 +10,10 @@ export default defineConfig(({ command, mode }) => {
       port: 5174,
       strictPort: true,
       host: '0.0.0.0',
-      allowedHosts: [
-        '34fc5cc6bbb6.ngrok-free.app',
-        '.ngrok-free.app',
-        '.ngrok.io',
-        'localhost'
-      ],
+      allowedHosts: ['2a683f5cb9a7.ngrok-free.app'],
       hmr: {
         clientPort: 443,
-        host: '34fc5cc6bbb6.ngrok-free.app',
+        host: '2a683f5cb9a7.ngrok-free.app',
         protocol: 'wss'
       },
       fs: {
@@ -26,22 +21,32 @@ export default defineConfig(({ command, mode }) => {
       },
       proxy: {
         '/api': {
-          target: 'http://localhost:8000',
+          target: 'http://127.0.0.1:8000',  // Correct backend port with IPv4
           changeOrigin: true,
+          timeout: 120000,  // 120 seconds for clarification generation
+          proxyTimeout: 120000,
           configure: (proxy, _options) => {
             proxy.on('proxyReq', (proxyReq, req, _res) => {
               console.log('Proxying request:', req.method, req.url, 'to', proxyReq.host + proxyReq.path);
             });
+            proxy.on('error', (err, _req, _res) => {
+              console.error('[Proxy] Error:', err.message);
+            });
+            proxy.on('proxyReqWs', (proxyReq, req, socket, options, head) => {
+              console.log('Proxying WebSocket:', req.url);
+            });
           }
         },
         '/socket.io': {
-          target: 'http://localhost:8000',
+          target: 'http://127.0.0.1:8000',  // Correct backend port with IPv4
           changeOrigin: true,
-          ws: true
+          ws: true,
+          timeout: 0  // No timeout for WebSocket
         },
         '/audio': {
-          target: 'http://localhost:8000',
-          changeOrigin: true
+          target: 'http://127.0.0.1:8000',  // Correct backend port with IPv4
+          changeOrigin: true,
+          timeout: 60000  // 60 seconds for audio
         }
       }
     },
