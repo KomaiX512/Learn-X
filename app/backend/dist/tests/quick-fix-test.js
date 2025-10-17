@@ -83,3 +83,4 @@ if (require.main === module) {
         process.exit(1);
     });
 }
+//# sourceMappingURL=quick-fix-test.js.map

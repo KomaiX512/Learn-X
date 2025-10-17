@@ -11,7 +11,7 @@ import { SessionParams } from './types';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const PORT = Number(process.env.PORT || 3001);
-const DEFAULT_FE_URLS = 'http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174,https://2a683f5cb9a7.ngrok-free.app';
+const DEFAULT_FE_URLS = 'http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174,https://2a683f5cb9a7.ngrok-free.app,https://f3718157294a.ngrok-free.app';
 const FRONTEND_URLS = (process.env.FRONTEND_URL || DEFAULT_FE_URLS)
   .split(',')
   .map((s) => s.trim());
@@ -57,8 +57,25 @@ async function main() {
   const app = express();
   const corsOptions: cors.CorsOptions = {
     origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, Postman, curl)
       if (!origin) return callback(null, true);
+      
+      // Check if origin is in allowed list
       if (EXPANDED_FE_URLS.includes(origin)) return callback(null, true);
+      
+      // Allow all localhost and 127.0.0.1 origins (development)
+      try {
+        const url = new URL(origin);
+        if (url.hostname === 'localhost' || url.hostname === '127.0.0.1' || url.hostname === '0.0.0.0') {
+          console.log(`[CORS] Allowing localhost origin: ${origin}`);
+          return callback(null, true);
+        }
+      } catch (e) {
+        // Invalid URL, will be rejected below
+      }
+      
+      console.error(`[CORS] Rejected origin: ${origin}`);
+      console.error(`[CORS] Allowed origins:`, EXPANDED_FE_URLS);
       return callback(new Error('Not allowed by CORS'));
     },
     credentials: true,
@@ -180,7 +197,23 @@ async function main() {
     });
   });
 
-  app.get('/health', (_req, res) => {
+  app.get('/', (req, res) => {
+    res.json({
+      name: 'Learn-X Backend API',
+      version: '1.0.0',
+      status: 'running',
+      endpoints: {
+        health: '/health',
+        query: '/api/query',
+        clarification: '/api/clarification',
+        audio: '/audio/:sessionId/:filename',
+        socket: '/socket.io'
+      },
+      documentation: 'See README.md for API documentation'
+    });
+  });
+
+  app.get('/health', (req, res) => {
     res.json({ 
       ok: true, 
       env: { 
@@ -189,7 +222,7 @@ async function main() {
         REDIS_URL,
         GEMINI_API_KEY: process.env.GEMINI_API_KEY ? '***' : undefined,
         LOG_LEVEL: process.env.LOG_LEVEL,
-        LLM_TIMEOUT_MS: process.env.LLM_TIMEOUT_MS
+        USE_VISUAL_VERSION: process.env.USE_VISUAL_VERSION || 'v3'
       } 
     });
   });
@@ -336,6 +369,30 @@ async function main() {
 
       logger.info(`[api] Clarification generated: ${clarification.actions.length} actions`);
 
+      // Generate visual-focused narration for the clarification
+      logger.info(`[api] Generating narration for clarification...`);
+      let narrationData = null;
+      try {
+        const { generateClarificationNarration } = await import('./agents/narrationGenerator');
+        const narration = await generateClarificationNarration({
+          question,
+          svgActions: clarification.actions,
+          topic: query || 'Unknown topic',
+          stepContext: currentStep.desc
+        });
+        
+        narrationData = {
+          text: narration.narration,
+          duration: narration.duration,
+          wordCount: narration.wordCount
+        };
+        
+        logger.info(`[api] ✅ Narration generated: ${narration.wordCount} words, ${narration.duration}s duration`);
+      } catch (narrationError: any) {
+        logger.warn(`[api] ⚠️ Narration generation failed (non-critical): ${narrationError.message}`);
+        // Continue without narration - it's optional
+      }
+
       // Create a unique step ID for this clarification
       const clarificationStepId = `Q&A-${Date.now()}`;
 
@@ -350,6 +407,7 @@ async function main() {
         title: clarification.title,
         explanation: clarification.explanation,
         actions: clarification.actions,
+        narration: narrationData, // NEW: Include visual-focused narration
         question,
         insertAfterScroll: stepContext?.scrollY || 0,
         timestamp: Date.now()
@@ -371,6 +429,7 @@ async function main() {
           title: clarification.title,
           explanation: clarification.explanation,
           actions: clarification.actions,
+          narration: narrationData, // Include narration in response
           insertAfterScroll: stepContext?.scrollY || 0
         }
       });

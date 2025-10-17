@@ -472,3 +472,4 @@ ${Object.keys(exports.VISUAL_TOOL_LIBRARY).map(cat => `- ${cat}`).join('\n')}
 Full tool specifications available in VISUAL_TOOL_LIBRARY object.
 `;
 }
+//# sourceMappingURL=visualTools.js.map

@@ -274,3 +274,4 @@ function calculateV2Percentage(actions) {
     const v2Ops = actions.filter(a => !['drawCircle', 'drawRect', 'drawVector', 'drawLine', 'drawLabel', 'drawTitle', 'delay'].includes(a.op)).length;
     return actions.length > 0 ? Math.round((v2Ops / actions.length) * 100) : 0;
 }
+//# sourceMappingURL=genericToV2Converter.js.map

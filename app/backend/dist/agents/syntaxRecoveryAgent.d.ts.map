@@ -1,0 +1,1 @@
+{"version":3,"file":"syntaxRecoveryAgent.d.ts","sourceRoot":"","sources":["../../src/agents/syntaxRecoveryAgent.ts"],"names":[],"mappings":"AAAA;;;;;GAKG;AAGH,OAAO,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;AAoBlC,wBAAsB,WAAW,CAAC,aAAa,EAAE,MAAM,EAAE,YAAY,EAAE,cAAc,GAAG,YAAY,GAAG,OAAO,CAAC,GAAG,CAAC,CA6FlH;AAqDD;;GAEG;AACH,wBAAgB,kBAAkB,CAAC,UAAU,EAAE,GAAG,EAAE,GAAG,MAAM,EAAE,CA4E9D"}

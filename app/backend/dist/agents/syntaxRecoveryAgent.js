@@ -229,3 +229,4 @@ function validateOperations(operations) {
     logger_1.logger.info(`[syntaxRecovery] Validation complete: ${validOps.length} valid, ${mappedCount} mapped, ${droppedCount} dropped (${operations.length} input)`);
     return validOps;
 }
+//# sourceMappingURL=syntaxRecoveryAgent.js.map

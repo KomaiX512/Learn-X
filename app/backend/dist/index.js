@@ -47,9 +47,26 @@ const logger_1 = require("./logger");
 const orchestrator_1 = require("./orchestrator");
 const generative_ai_1 = require("@google/generative-ai");
 const PORT = Number(process.env.PORT || 3001);
-const FRONTEND_URLS = (process.env.FRONTEND_URL || 'http://localhost:5173,http://localhost:5174')
+const DEFAULT_FE_URLS = 'http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174,https://2a683f5cb9a7.ngrok-free.app';
+const FRONTEND_URLS = (process.env.FRONTEND_URL || DEFAULT_FE_URLS)
     .split(',')
     .map((s) => s.trim());
+const EXPANDED_FE_URLS = Array.from(new Set(FRONTEND_URLS.flatMap((u) => {
+    try {
+        const url = new URL(u);
+        const variants = [u];
+        if (url.hostname === 'localhost') {
+            variants.push(`${url.protocol}//127.0.0.1:${url.port}`);
+        }
+        else if (url.hostname === '127.0.0.1') {
+            variants.push(`${url.protocol}//localhost:${url.port}`);
+        }
+        return variants;
+    }
+    catch {
+        return [u];
+    }
+})));
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 async function main() {
     // ═══════════════════════════════════════════════════════════
@@ -60,7 +77,7 @@ async function main() {
     console.log('═'.repeat(70));
     console.log('📍 Configuration:');
     console.log('   PORT:', PORT);
-    console.log('   FRONTEND_URLS:', FRONTEND_URLS.join(', '));
+    console.log('   FRONTEND_URLS:', EXPANDED_FE_URLS.join(', '));
     console.log('   REDIS_URL:', REDIS_URL);
     console.log('   GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? '✅ SET' : '❌ MISSING');
     console.log('   USE_VISUAL_VERSION:', process.env.USE_VISUAL_VERSION || 'v3 (default)');
@@ -72,11 +89,27 @@ async function main() {
     console.log('   TTS_INTER_VISUAL_DELAY:', process.env.TTS_INTER_VISUAL_DELAY || '2000ms');
     console.log('═'.repeat(70) + '\n');
     const app = (0, express_1.default)();
-    app.use((0, cors_1.default)({ origin: FRONTEND_URLS, credentials: true }));
-    app.use(express_1.default.json());
+    const corsOptions = {
+        origin: (origin, callback) => {
+            if (!origin)
+                return callback(null, true);
+            if (EXPANDED_FE_URLS.includes(origin))
+                return callback(null, true);
+            return callback(new Error('Not allowed by CORS'));
+        },
+        credentials: true,
+        methods: ['GET', 'POST', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        preflightContinue: false,
+        optionsSuccessStatus: 204
+    };
+    app.use((0, cors_1.default)(corsOptions));
+    // Increase payload limit for screenshot uploads (default is 100kb)
+    app.use(express_1.default.json({ limit: '10mb' })); // Allow up to 10MB for screenshots
+    app.use(express_1.default.urlencoded({ limit: '10mb', extended: true }));
     const server = http_1.default.createServer(app);
     const io = new socket_io_1.Server(server, {
-        cors: { origin: FRONTEND_URLS, methods: ['GET', 'POST'] },
+        cors: { origin: EXPANDED_FE_URLS, methods: ['GET', 'POST'] },
         // Keep connections alive
         pingTimeout: 60000,
         pingInterval: 25000,
@@ -174,7 +207,7 @@ async function main() {
             ok: true,
             env: {
                 PORT,
-                FRONTEND_URLS,
+                FRONTEND_URLS: EXPANDED_FE_URLS,
                 REDIS_URL,
                 GEMINI_API_KEY: process.env.GEMINI_API_KEY ? '***' : undefined,
                 LOG_LEVEL: process.env.LOG_LEVEL,
@@ -307,26 +340,62 @@ async function main() {
                 plan
             });
             logger_1.logger.info(`[api] Clarification generated: ${clarification.actions.length} actions`);
+            // Generate visual-focused narration for the clarification
+            logger_1.logger.info(`[api] Generating narration for clarification...`);
+            let narrationData = null;
+            try {
+                const { generateClarificationNarration } = await Promise.resolve().then(() => __importStar(require('./agents/narrationGenerator')));
+                const narration = await generateClarificationNarration({
+                    question,
+                    svgActions: clarification.actions,
+                    topic: query || 'Unknown topic',
+                    stepContext: currentStep.desc
+                });
+                narrationData = {
+                    text: narration.narration,
+                    duration: narration.duration,
+                    wordCount: narration.wordCount
+                };
+                logger_1.logger.info(`[api] ✅ Narration generated: ${narration.wordCount} words, ${narration.duration}s duration`);
+            }
+            catch (narrationError) {
+                logger_1.logger.warn(`[api] ⚠️ Narration generation failed (non-critical): ${narrationError.message}`);
+                // Continue without narration - it's optional
+            }
             // Create a unique step ID for this clarification
             const clarificationStepId = `Q&A-${Date.now()}`;
+            // Check how many sockets are in the room
+            const socketsInRoom = await io.in(sessionId).fetchSockets();
+            logger_1.logger.info(`[api] Emitting clarification to session ${sessionId} (${socketsInRoom.length} sockets)`);
             // Emit clarification as a special step that can be inserted inline
-            io.to(sessionId).emit('clarification', {
+            const clarificationData = {
                 type: 'clarification',
                 stepId: clarificationStepId,
                 title: clarification.title,
                 explanation: clarification.explanation,
                 actions: clarification.actions,
+                narration: narrationData, // NEW: Include visual-focused narration
                 question,
                 insertAfterScroll: stepContext?.scrollY || 0,
                 timestamp: Date.now()
+            };
+            io.to(sessionId).emit('clarification', clarificationData);
+            logger_1.logger.info(`[api] ✅ Clarification emitted successfully`);
+            logger_1.logger.debug(`[api] Clarification data:`, {
+                stepId: clarificationStepId,
+                actionsCount: clarification.actions.length,
+                hasTitle: !!clarification.title
             });
             res.json({
                 success: true,
                 clarification: {
+                    type: 'clarification',
                     stepId: clarificationStepId,
                     title: clarification.title,
                     explanation: clarification.explanation,
-                    actionsCount: clarification.actions.length
+                    actions: clarification.actions,
+                    narration: narrationData, // Include narration in response
+                    insertAfterScroll: stepContext?.scrollY || 0
                 }
             });
         }
@@ -335,15 +404,84 @@ async function main() {
             res.status(500).json({ error: String(err) });
         }
     });
-    server.listen(PORT, () => {
+    // Key Notes Generator endpoint - works with ANY amount of available context
+    app.post('/api/generate-notes', async (req, res) => {
+        try {
+            const { sessionId } = req.body;
+            if (!sessionId) {
+                return res.status(400).json({ error: 'Missing sessionId' });
+            }
+            logger_1.logger.info(`[api] Key notes generation request for session ${sessionId}`);
+            // Retrieve lecture context from Redis (whatever is available)
+            const planKey = `session:${sessionId}:plan`;
+            const queryKey = `session:${sessionId}:query`;
+            const [planData, query] = await Promise.all([
+                redis.get(planKey),
+                redis.get(queryKey)
+            ]);
+            if (!planData) {
+                return res.status(404).json({ error: 'Session not found or plan not available' });
+            }
+            const plan = JSON.parse(planData);
+            // Gather ALL AVAILABLE lecture content (may be partial if lecture is ongoing)
+            const stepContents = await Promise.all(plan.steps.map(async (step) => {
+                const chunkKey = `session:${sessionId}:step:${step.id}:chunk`;
+                const chunkData = await redis.get(chunkKey);
+                if (chunkData) {
+                    const chunk = JSON.parse(chunkData);
+                    return {
+                        stepId: step.id,
+                        title: step.desc || step.tag,
+                        transcript: chunk.transcript || '',
+                        actions: chunk.actions || [],
+                        complexity: step.complexity || 3,
+                        isAvailable: true // Mark as rendered
+                    };
+                }
+                return {
+                    stepId: step.id,
+                    title: step.desc || step.tag,
+                    transcript: '',
+                    actions: [],
+                    complexity: step.complexity || 3,
+                    isAvailable: false // Not rendered yet
+                };
+            }));
+            const availableSteps = stepContents.filter(s => s.isAvailable).length;
+            const totalSteps = stepContents.length;
+            const transcriptLength = stepContents.reduce((sum, s) => sum + (s.transcript?.length || 0), 0);
+            logger_1.logger.info(`[api] Context: ${availableSteps}/${totalSteps} steps available, ${transcriptLength} chars of transcript`);
+            // Import notes generator agent
+            const { generateKeyNotes } = await Promise.resolve().then(() => __importStar(require('./agents/notesGenerator')));
+            // Generate key notes with AVAILABLE context + fill in missing important points
+            const notesResult = await generateKeyNotes(query || 'Unknown topic', plan.subtitle, plan.steps, stepContents, // Pass all step contents (some may be empty)
+            availableSteps < totalSteps // Flag if lecture is incomplete
+            );
+            logger_1.logger.info(`[api] Key notes generated: ${notesResult.notes.length} categories, ${notesResult.notes.reduce((sum, cat) => sum + cat.items.length, 0)} total items (${availableSteps}/${totalSteps} steps used)`);
+            res.json({
+                success: true,
+                notes: notesResult.notes,
+                metadata: {
+                    stepsAvailable: availableSteps,
+                    stepsTotal: totalSteps,
+                    isPartial: availableSteps < totalSteps
+                }
+            });
+        }
+        catch (err) {
+            logger_1.logger.error(`[api] Error in key notes generation: ${err}`);
+            res.status(500).json({ error: String(err) });
+        }
+    });
+    server.listen(PORT, '0.0.0.0', () => {
         console.log('\n' + '═'.repeat(70));
         console.log('✅ SERVER READY');
         console.log('═'.repeat(70));
-        console.log('🌐 Backend URL: http://localhost:' + PORT);
-        console.log('🔗 Health Check: http://localhost:' + PORT + '/health');
-        console.log('📡 WebSocket Ready: ws://localhost:' + PORT);
+        console.log('🌐 Backend URL: http://127.0.0.1:' + PORT);
+        console.log('🔗 Health Check: http://127.0.0.1:' + PORT + '/health');
+        console.log('📡 WebSocket Ready: ws://127.0.0.1:' + PORT);
         console.log('═'.repeat(70) + '\n');
-        logger_1.logger.debug(`Server listening on port ${PORT}`);
+        logger_1.logger.debug(`Server listening on 0.0.0.0:${PORT} (accessible via 127.0.0.1:${PORT})`);
     });
     const shutdown = () => {
         logger_1.logger.debug('Shutting down server...');
@@ -359,3 +497,4 @@ main().catch((err) => {
     logger_1.logger.debug(`Fatal: ${String(err)}`);
     process.exit(1);
 });
+//# sourceMappingURL=index.js.map

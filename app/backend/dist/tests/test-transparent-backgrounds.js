@@ -131,3 +131,4 @@ if (require.main === module) {
         process.exit(1);
     });
 }
+//# sourceMappingURL=test-transparent-backgrounds.js.map

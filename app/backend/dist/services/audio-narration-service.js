@@ -100,3 +100,4 @@ function getInterVisualDelay() {
 function isAudioNarrationAvailable() {
     return tts_service_1.ttsService.isAvailable();
 }
+//# sourceMappingURL=audio-narration-service.js.map

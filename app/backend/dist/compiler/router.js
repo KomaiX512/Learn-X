@@ -21,3 +21,4 @@ async function compilerRouter(codeOrChunk, type) {
             throw new Error('Invalid compiler type');
     }
 }
+//# sourceMappingURL=router.js.map

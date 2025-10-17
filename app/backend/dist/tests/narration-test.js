@@ -103,3 +103,4 @@ testNarrationGeneration().catch(err => {
     console.error('Fatal error:', err);
     process.exit(1);
 });
+//# sourceMappingURL=narration-test.js.map

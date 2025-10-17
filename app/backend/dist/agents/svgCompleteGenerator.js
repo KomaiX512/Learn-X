@@ -246,3 +246,4 @@ async function generateCompleteSVGsForStep(topic, descriptions, apiKey) {
     return svgCodes;
 }
 exports.default = generateCompleteSVG;
+//# sourceMappingURL=svgCompleteGenerator.js.map

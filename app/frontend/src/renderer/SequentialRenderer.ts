@@ -512,10 +512,13 @@ export class SequentialRenderer {
 
     this.captionEl = caption;
 
-    // Auto-scroll to caption
+    // Auto-scroll to caption smoothly
     const scrollParent = container.parentElement;
     if (scrollParent) {
-      scrollParent.scrollTop = Math.max(0, caption.offsetTop - 20);
+      scrollParent.scrollTo({
+        top: Math.max(0, caption.offsetTop - 20),
+        behavior: 'smooth'
+      });
     }
 
     // Short dwell to read caption before the visual appears
@@ -2161,21 +2164,37 @@ export class SequentialRenderer {
     if (this.progressiveRenderingEnabled) {
       await this.applyProgressiveRendering(svgWrapper, isNotesKeynote);
     }
-
-    // Auto-scroll to newest visual (scroll container is parent of stage container)
-    const scrollParent = container.parentElement;
-    if (scrollParent) {
-      scrollParent.scrollTop = scrollParent.scrollHeight;
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    const measuredAfter = Math.round((svgWrapper.getBoundingClientRect().height || svgWrapper.scrollHeight || svgHeight));
+    if (measuredAfter && measuredAfter > 0) {
+      svgHeight = measuredAfter;
     }
 
-    // Update vertical offset for next visual (add height + spacing)
-    // NEW: Extra spacing between notes keynote and first animation
+    // Calculate spacing before updating offset
     let spacing = 50; // Default spacing between visuals
     if (isNotesKeynote) {
       spacing = 100; // Extra spacing after notes keynote before animations
       console.log(`[SequentialRenderer] 📝 Notes keynote complete, adding extra spacing (${spacing}px) before animations`);
     }
+
+    // Update vertical offset for next visual (add height + spacing)
     this.verticalOffset += svgHeight + spacing;
+
+    // Auto-scroll to newest visual (scroll container is parent of stage container)
+    const scrollParent = container.parentElement;
+    if (scrollParent) {
+      // Smooth scroll to show the new content (keep bottom of visual visible with margin)
+      const targetScroll = this.verticalOffset - scrollParent.clientHeight + 100;
+      const shouldScroll = targetScroll > scrollParent.scrollTop;
+      
+      if (shouldScroll) {
+        console.log(`[SequentialRenderer] 📜 Auto-scrolling from ${scrollParent.scrollTop}px to ${targetScroll}px`);
+        scrollParent.scrollTo({
+          top: targetScroll,
+          behavior: 'smooth'
+        });
+      }
+    }
 
     // Expand canvas if needed
     const currentHeight = this.stage.height();

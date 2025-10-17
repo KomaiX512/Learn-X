@@ -213,3 +213,4 @@ class PerformanceMonitor extends events_1.EventEmitter {
     }
 }
 exports.PerformanceMonitor = PerformanceMonitor;
+//# sourceMappingURL=performance-monitor.js.map

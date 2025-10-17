@@ -126,3 +126,4 @@ function printSummary(results) {
 if (require.main === module) {
     runAllTests();
 }
+//# sourceMappingURL=run-all-tests.js.map

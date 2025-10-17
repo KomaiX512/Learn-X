@@ -307,3 +307,4 @@ function expandOperations(actions, targetRange = { min: MIN_OPS, max: MAX_OPS })
 function needsExpansion(actions) {
     return actions.length < MIN_OPS;
 }
+//# sourceMappingURL=operationExpander.js.map

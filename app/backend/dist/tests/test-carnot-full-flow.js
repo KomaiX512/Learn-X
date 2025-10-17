@@ -88,7 +88,8 @@ async function testCarnotFullFlow() {
         console.log(`\n📝 Generating narration for Step ${i + 1}...`);
         try {
             const startTime = Date.now();
-            const narration = await (0, narrationGenerator_1.generateNarrationForStep)(step, query, i, plan.steps.length);
+            const narration = await (0, narrationGenerator_1.generateStepNarration)(step, query, [] // Empty visuals array for test
+            );
             const elapsed = Date.now() - startTime;
             if (!narration || !narration.text || narration.text.trim().length === 0) {
                 console.log(`⚠️  WARNING: No narration generated for step ${i + 1}`);
@@ -220,3 +221,4 @@ if (require.main === module) {
         process.exit(1);
     });
 }
+//# sourceMappingURL=test-carnot-full-flow.js.map

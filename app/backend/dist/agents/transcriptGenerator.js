@@ -524,3 +524,4 @@ async function generateNotes(step, topic, subtopic, visualDescription) {
         return null; // Legacy behavior - return null on error
     }
 }
+//# sourceMappingURL=transcriptGenerator.js.map

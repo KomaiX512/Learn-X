@@ -83,3 +83,4 @@ async function quickVerify() {
 if (require.main === module) {
     quickVerify().then(() => process.exit(0)).catch(() => process.exit(1));
 }
+//# sourceMappingURL=notes-quick-verify.js.map

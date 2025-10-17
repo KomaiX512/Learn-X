@@ -312,3 +312,4 @@ class DebugLogger extends events_1.EventEmitter {
 exports.DebugLogger = DebugLogger;
 // Export singleton instance
 exports.debugLogger = DebugLogger.getInstance();
+//# sourceMappingURL=debugLogger.js.map

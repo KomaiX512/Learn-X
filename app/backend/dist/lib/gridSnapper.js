@@ -108,3 +108,4 @@ function checkGridAlignment(actions) {
     });
     return totalPositions > 0 ? (alignedPositions / totalPositions) * 100 : 100;
 }
+//# sourceMappingURL=gridSnapper.js.map

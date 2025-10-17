@@ -205,16 +205,29 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
       if (!containerRef.current) return;
       
       try {
-        // Create stage using the container ID
+        // Create stage using the container ID - FILL ENTIRE CONTAINER
         const stage = new Konva.Stage({
           container: containerId,
           width: size.w,
-          height: size.h
+          height: size.h,
+          listening: true
         });
         
         stageRef.current = stage;
-        console.log('[CanvasStage] Stage created successfully');
+        console.log('[CanvasStage] Stage created successfully', size.w, 'x', size.h);
         console.log('[CanvasStage] Canvas element exists:', !!document.querySelector(`#${containerId} canvas`));
+        
+        // CRITICAL: Ensure canvas fills container completely (no dead zones)
+        const canvasElement = containerRef.current.querySelector('canvas');
+        if (canvasElement) {
+          (canvasElement as HTMLCanvasElement).style.display = 'block';
+          (canvasElement as HTMLCanvasElement).style.width = '100%';
+          console.log('[CanvasStage] Canvas styling applied - forcing 100% width');
+        }
+        
+        // Allow container to expand as content is added (dynamic height)
+        containerRef.current.style.minHeight = `${size.h}px`;
+        console.log('[CanvasStage] Container set with minHeight:', size.h, '(can expand)');
         
         // Ctrl+Wheel zoom (only inside canvas)
         const onWheel = (e: WheelEvent) => {
@@ -606,32 +619,36 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         borderRadius: 12, 
         width: size.w,
         height: size.h,
+        maxHeight: size.h,
         overflowY: 'auto',
         overflowX: 'hidden',
-        background: '#1a1a2e',
+        background: '#000',
         boxShadow: '0 0 30px rgba(0, 255, 65, 0.3)',
-        margin: '0 auto'
+        margin: '0 auto',
+        display: 'block'
       }}>
       <div 
         ref={containerRef} 
         style={{ 
           width: size.w,
-          height: 'auto',
           minHeight: size.h,
-          background: '#000'
+          background: '#000',
+          position: 'relative',
+          display: 'block'
         }} 
       />
+      {/* SVG Overlay for custom SVG rendering */}
       <div ref={overlayRef} style={{ 
         position: 'absolute', 
         left: 0, 
         top: 0, 
         width: size.w, 
-        height: '100%', 
+        minHeight: size.h,
         pointerEvents: 'none',
         zIndex: 10
       }} />
       
-      {/* Interactive UI Overlay - STICKY to canvas viewport */}
+      {/* Interactive UI Overlay - Controls positioned absolutely */}
       <div style={overlayStyle}>
         {/* Toolbar */}
         <CanvasToolbar

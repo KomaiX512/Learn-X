@@ -646,3 +646,4 @@ Generate ${requiresLatex ? "WITH LaTeX equations" : ""} ${requiresDiagram ? "WIT
         actions: allActions
     };
 }
+//# sourceMappingURL=visual.js.map

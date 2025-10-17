@@ -1,0 +1,1 @@
+{"version":3,"file":"genericToV2Converter.d.ts","sourceRoot":"","sources":["../../src/lib/genericToV2Converter.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AAEH,OAAO,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;AAoQlC;;GAEG;AACH,wBAAgB,kBAAkB,CAChC,OAAO,EAAE,MAAM,EAAE,EACjB,KAAK,EAAE,MAAM,GACZ,MAAM,EAAE,CA8CV;AAED;;GAEG;AACH,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,MAAM,EAAE,GAAG,MAAM,CAM/D"}

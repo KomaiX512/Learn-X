@@ -10,10 +10,10 @@ export default defineConfig(({ command, mode }) => {
       port: 5174,
       strictPort: true,
       host: '0.0.0.0',
-      allowedHosts: ['2a683f5cb9a7.ngrok-free.app'],
+      allowedHosts: ['8b3231b46e03.ngrok-free.app', 'f3718157294a.ngrok-free.app'],
       hmr: {
         clientPort: 443,
-        host: '2a683f5cb9a7.ngrok-free.app',
+        host: 'f3718157294a.ngrok-free.app',
         protocol: 'wss'
       },
       fs: {

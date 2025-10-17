@@ -141,3 +141,4 @@ async function generateAnimationsForStep(topic, descriptions, apiKey) {
     return actions;
 }
 exports.default = generateSVGAnimation;
+//# sourceMappingURL=svgAnimationGenerator.js.map

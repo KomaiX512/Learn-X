@@ -365,3 +365,4 @@ async function runCompleteBenchmarkTest(apiKey) {
     console.log('════════════════════════════════════════════════════\n');
 }
 exports.default = { stressTestWithRetry, UnitTests: exports.UnitTests, runCompleteBenchmarkTest };
+//# sourceMappingURL=svgBenchmarkTest.js.map
