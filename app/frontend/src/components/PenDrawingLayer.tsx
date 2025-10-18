@@ -45,15 +45,26 @@ export function PenDrawingLayer({ stage, enabled, onDrawingComplete, onUndoRedoC
     console.log('[PenDrawingLayer] Drawing layer created, zIndex:', drawingLayer.getZIndex());
 
     // Mouse handlers for drawing
+    const toStageCoords = (p: { x: number; y: number }) => {
+      const scaleX = stage.scaleX() || 1;
+      const scaleY = stage.scaleY() || 1;
+      const pos = stage.position();
+      return {
+        x: (p.x - pos.x) / scaleX,
+        y: (p.y - pos.y) / scaleY
+      };
+    };
+
     const handleMouseDown = (e: any) => {
       if (!enabled || !drawingLayerRef.current) return;
       
       isDrawingRef.current = true;
-      const pos = stage.getPointerPosition();
-      if (!pos) {
+      const raw = stage.getPointerPosition();
+      if (!raw) {
         console.warn('[PenDrawingLayer] No pointer position on mousedown');
         return;
       }
+      const pos = toStageCoords(raw);
       
       console.log('[PenDrawingLayer] Starting drawing at:', pos);
 
@@ -75,8 +86,9 @@ export function PenDrawingLayer({ stage, enabled, onDrawingComplete, onUndoRedoC
     const handleMouseMove = (e: any) => {
       if (!isDrawingRef.current || !currentLineRef.current || !enabled) return;
 
-      const pos = stage.getPointerPosition();
-      if (!pos) return;
+      const raw = stage.getPointerPosition();
+      if (!raw) return;
+      const pos = toStageCoords(raw);
 
       const newPoints = currentLineRef.current.points().concat([pos.x, pos.y]);
       currentLineRef.current.points(newPoints);
@@ -95,11 +107,11 @@ export function PenDrawingLayer({ stage, enabled, onDrawingComplete, onUndoRedoC
         updateUndoRedoState();
       }
 
-      // Calculate bounds of all drawings and trigger callback immediately
+      // Calculate bounds of all drawings (in stage coordinates) and trigger callback immediately
       if (drawingLayerRef.current && onDrawingComplete) {
         const children = drawingLayerRef.current.children;
         if (children.length > 0) {
-          const clientRect = drawingLayerRef.current.getClientRect();
+          const clientRect = drawingLayerRef.current.getClientRect({ skipTransform: false });
           const calculatedBounds = {
             x: clientRect.x,
             y: clientRect.y,

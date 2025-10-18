@@ -23,9 +23,8 @@ function createStepPrompt(step, topic) {
 
 Requirements:
 - Use <animate>, <animateMotion>, or <animateTransform> for movement.
-- Label key components with concise <text> tags (short labels only; no long narration paragraphs).
 - VISUAL CONTRAST: Background is BLACK. Use bright colors (blue, cyan, white, pink, yellow, red, green). Avoid dark/black for strokes/text. Do NOT add background rectangles or large fills — keep a chalkboard aesthetic, and highlting title text color should must be of high contrast for which highlighting was.
-- Emphasize visuals: arrows, shapes, paths, motion. Keep text minimal and functional.
+- Build detailed, contextually-accurate visual representations. Use complex SVG paths, proper anatomical structures, realistic molecular geometries, or precise mathematical graphs—not generic circles/rectangles. Annotate with pointers, arrows, and labels to guide understanding. Animate step-by-step so visual flow is self-explanatory to any observer.
 - Pure SVG only (no HTML/CSS/JS).
 
 Start with <?xml version="1.0"?> and output ONLY the SVG code:`;

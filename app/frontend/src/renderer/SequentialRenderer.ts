@@ -118,7 +118,7 @@ export class SequentialRenderer {
         this.overlay.style.width = '100%';
         this.overlay.style.height = '100%';
         this.overlay.style.pointerEvents = 'none';
-        this.overlay.style.zIndex = '10';
+        this.overlay.style.zIndex = '60';
         if (this.overlay.parentElement !== container) {
           try { container.appendChild(this.overlay); } catch {}
         }
@@ -170,7 +170,7 @@ export class SequentialRenderer {
     this.overlay.style.width = '100%';
     this.overlay.style.height = '100%';
     this.overlay.style.pointerEvents = 'none';
-    this.overlay.style.zIndex = '10';
+    this.overlay.style.zIndex = '60';
     container.style.position = 'relative';
     container.appendChild(this.overlay);
 
@@ -218,10 +218,25 @@ export class SequentialRenderer {
       console.log(`[SequentialRenderer] Stage exists: ${!!this.stage}`);
       console.log('═'.repeat(70));
       
-      // CRITICAL: Use insertAfterScroll to position clarification at drawing location
+      // CRITICAL: Use insertAfterScroll to position clarification near drawing location
       if (typeof chunk.insertAfterScroll === 'number' && chunk.insertAfterScroll > 0) {
-        console.log(`[SequentialRenderer] 📍 Setting verticalOffset to ${chunk.insertAfterScroll}px for inline clarification`);
-        this.verticalOffset = chunk.insertAfterScroll;
+        const targetOffset = chunk.insertAfterScroll;
+        const clamped = Math.max(this.verticalOffset, targetOffset);
+        console.log(`[SequentialRenderer] 📍 Clarification anchor=${targetOffset}px, current=${this.verticalOffset}px → using ${clamped}px`);
+        this.verticalOffset = clamped;
+        // Pre-reserve space to avoid overlap with subsequent content
+        if (this.stage) {
+          const minReserve = 700; // allocate ~one visual worth of height
+          const needed = this.verticalOffset + minReserve;
+          if (this.stage.height() < needed) {
+            console.log(`[SequentialRenderer] 📐 Pre-expanding canvas to ${needed}px for clarification insertion`);
+            this.stage.height(needed);
+            const container = this.stage.container();
+            if (container) {
+              container.style.height = `${needed}px`;
+            }
+          }
+        }
       }
       
       // If no current layer exists, create one
@@ -233,8 +248,14 @@ export class SequentialRenderer {
       // Render clarification actions IMMEDIATELY (insert into queue right after current action)
       console.log('[SequentialRenderer] 🎬 Inserting clarification actions IMMEDIATELY...');
       
+      // Annotate actions to apply vertical clarification offset during transform
+      const annotatedActions = (Array.isArray(chunk.actions) ? chunk.actions : []).map((a: any) => ({
+        ...a,
+        __clarification: true
+      }));
+      
       // Use special insertion method for clarifications
-      this.animationQueue.insertClarificationImmediate(chunk.actions, {
+      this.animationQueue.insertClarificationImmediate(annotatedActions, {
         stepId: chunk.stepId,
         layer: this.currentLayer,
         stage: this.stage
@@ -404,32 +425,34 @@ export class SequentialRenderer {
     const transformed = { ...action };
     const canvasWidth = this.stage.width();
     const canvasHeight = this.stage.height();
+    const applyYOffset = !!action.__clarification;
+    const yOffset = applyYOffset ? this.verticalOffset : 0;
     
     // Simple denormalization: 0-1 → canvas pixels (no layout manager complexity)
     if (typeof action.x === 'number') {
       transformed.x = action.x * canvasWidth;
     }
     if (typeof action.y === 'number') {
-      transformed.y = action.y * canvasHeight;
+      transformed.y = action.y * canvasHeight + yOffset;
     }
     
     // Transform line coordinates
     if (typeof action.x1 === 'number') transformed.x1 = action.x1 * canvasWidth;
-    if (typeof action.y1 === 'number') transformed.y1 = action.y1 * canvasHeight;
+    if (typeof action.y1 === 'number') transformed.y1 = action.y1 * canvasHeight + yOffset;
     if (typeof action.x2 === 'number') transformed.x2 = action.x2 * canvasWidth;
-    if (typeof action.y2 === 'number') transformed.y2 = action.y2 * canvasHeight;
+    if (typeof action.y2 === 'number') transformed.y2 = action.y2 * canvasHeight + yOffset;
     
     // Transform center coordinates
     if (action.center && Array.isArray(action.center) && action.center.length === 2) {
-      transformed.center = [action.center[0] * canvasWidth, action.center[1] * canvasHeight];
+      transformed.center = [action.center[0] * canvasWidth, action.center[1] * canvasHeight + yOffset];
     }
     
     // Transform from/to arrays
     if (action.from && Array.isArray(action.from) && action.from.length === 2) {
-      transformed.from = [action.from[0] * canvasWidth, action.from[1] * canvasHeight];
+      transformed.from = [action.from[0] * canvasWidth, action.from[1] * canvasHeight + yOffset];
     }
     if (action.to && Array.isArray(action.to) && action.to.length === 2) {
-      transformed.to = [action.to[0] * canvasWidth, action.to[1] * canvasHeight];
+      transformed.to = [action.to[0] * canvasWidth, action.to[1] * canvasHeight + yOffset];
     }
     
     return transformed;
@@ -2111,12 +2134,13 @@ export class SequentialRenderer {
     const visualType = isNotesKeynote ? '📝 NOTES KEYNOTE' : '🎬 ANIMATION';
     console.log(`[SequentialRenderer] 🎨 Rendering ${visualType} (${svgCode.length} chars) for group ${visualGroup}`);
 
-    // Get the container element
-    const container = this.stage.container();
-    if (!container) {
+    // Choose parent for DOM SVGs: prefer overlay so it transforms with stage
+    const containerEl = this.stage.container();
+    if (!containerEl) {
       console.error('[SequentialRenderer] No container for SVG rendering');
       return;
     }
+    const parentEl = this.overlay || containerEl;
 
     // Create a wrapper div for the SVG
     const svgWrapper = document.createElement('div');
@@ -2157,8 +2181,11 @@ export class SequentialRenderer {
     svgWrapper.innerHTML = cleanedSVG;
 
     // Add to container
-    container.style.position = 'relative'; // Ensure container can hold absolute children
-    container.appendChild(svgWrapper);
+    // Ensure parent can hold absolute children when using raw container
+    if (parentEl === containerEl) {
+      containerEl.style.position = 'relative';
+    }
+    parentEl.appendChild(svgWrapper);
     
     // PROGRESSIVE RENDERING: Animate elements appearing one by one (preserve backend colors exactly)
     if (this.progressiveRenderingEnabled) {
@@ -2203,8 +2230,8 @@ export class SequentialRenderer {
       this.stage.height(this.verticalOffset + 100);
       
       // Update container height
-      if (container) {
-        container.style.height = `${this.verticalOffset + 100}px`;
+      if (containerEl) {
+        containerEl.style.height = `${this.verticalOffset + 100}px`;
       }
     }
 

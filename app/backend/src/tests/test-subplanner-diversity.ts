@@ -138,7 +138,7 @@ async function runTests() {
       
       console.log('\n📊 DIVERSITY METRICS:');
       console.log(`   Unique visual types: ${metrics.uniqueTypes}/4 ${metrics.uniqueTypes === 4 ? '✅' : '⚠️'}`);
-      console.log(`   Avg description length: ${metrics.avgDescriptionLength} chars ${metrics.avgDescriptionLength > 100 ? '✅' : '⚠️'}`);
+      console.log(`   Avg description length: ${metrics.avgDescriptionLength} chars ${metrics.avgDescriptionLength > 80 && metrics.avgDescriptionLength < 250 ? '✅' : '⚠️ TARGET: 80-250'}`);
       console.log(`   Content overlap: ${metrics.overlapScore}% ${metrics.overlapScore < 30 ? '✅' : '⚠️'}`);
       console.log(`   Has structure visual: ${metrics.hasStructure ? '✅' : '❌'}`);
       console.log(`   Has mechanism visual: ${metrics.hasMechanism ? '✅' : '❌'}`);
@@ -156,11 +156,11 @@ async function runTests() {
         }
       });
       
-      // Pass/Fail criteria
+      // Pass/Fail criteria (updated for concise descriptions)
       const passed = 
         metrics.uniqueTypes === 4 &&
         metrics.overlapScore < 40 &&
-        metrics.avgDescriptionLength > 80 &&
+        metrics.avgDescriptionLength > 80 && metrics.avgDescriptionLength < 300 && // Concise but informative
         metrics.hasStructure &&
         metrics.hasMechanism &&
         metrics.hasAnalysis &&

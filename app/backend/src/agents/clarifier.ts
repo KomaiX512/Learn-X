@@ -6,6 +6,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { logger } from '../logger';
 import { Plan } from '../types';
+import { getToolDocumentation } from '../lib/visualTools';
 
 const API_KEY = process.env.GEMINI_API_KEY;
 if (!API_KEY) {
@@ -47,9 +48,9 @@ export async function clarifierAgent(request: ClarificationRequest): Promise<Cla
       const model = genAI.getGenerativeModel({
         model: 'gemini-2.5-flash', // PAID MODEL - NEVER DOWNGRADE
         generationConfig: {
-          temperature: 0.6, // Lower temperature for more reliable JSON
-          maxOutputTokens: 4000,
-          topK: 40,
+          temperature: 0.85, // Match creative setting used by visual generators
+          maxOutputTokens: 15000,
+          topK: 50,
           topP: 0.95
         },
         systemInstruction: `You are a strict JSON generator. You MUST output ONLY valid, complete JSON.
@@ -162,7 +163,9 @@ Output format:
 async function buildMultimodalPrompt(request: ClarificationRequest): Promise<any[]> {
   const { query, step, question, plan, screenshot } = request;
 
-  const textPrompt = `You are an elite AI professor creating a CONTEXTUAL CLARIFICATION for a confused student.
+  const toolsDoc = getToolDocumentation();
+
+  const textPrompt = `You are an elite AI professor creating a CONTEXTUAL CLARIFICATION for a confused student. Match the same visual quality and tool usage as our main lesson visuals.
 
 LECTURE CONTEXT:
 - Topic: ${query}
@@ -172,47 +175,55 @@ LECTURE CONTEXT:
 STUDENT'S QUESTION:
 "${question}"
 
-${screenshot ? '📸 SCREENSHOT PROVIDED: Analyze the visual content to understand what the student is confused about.' : ''}
+${screenshot ? 'SCREENSHOT PROVIDED: Analyze the visual content to understand exactly what the student circled.' : ''}
+
+REFERENCE TOOL LIBRARY (follow strictly, use correct op names):
+${toolsDoc}
 
 YOUR TASK:
-Generate a FOCUSED, SVG-BASED clarification that:
-1. Directly addresses the student's specific confusion
-2. Builds on what was shown in "${step.tag}"
-3. Uses SVG operations to create clear visual explanations
-4. Provides 10-15 visual actions maximum
-5. Makes the concept crystal clear
+Generate a focused clarification that directly answers the question with PROFESSIONAL, DOMAIN-SPECIFIC visuals.
+
+QUALITY TARGETS (same as main visuals):
+- Prefer domain-specific tools (electronics/physics/biology/chemistry/math/CS) over generic shapes
+- Use LaTeX and coordinate systems when math is involved
+- Use clear sectioning and labeling; avoid long narration text
+- All coordinates normalized (0-1)
+- Grid-aligned positions (multiples of 0.05) when reasonable
 
 OUTPUT FORMAT (JSON ONLY):
 {
-  "title": "Clear Answer Title",
-  "explanation": "One sentence summary",
+  "title": "short title",
+  "explanation": "one-sentence summary of the answer",
   "actions": [
-    {"op": "drawLabel", "text": "Let me clarify...", "x": 0.1, "y": 0.1, "fontSize": 16, "normalized": true},
-    {"op": "drawCircle", "x": 0.5, "y": 0.3, "radius": 0.05, "color": "#4CAF50", "normalized": true},
-    {"op": "drawVector", "x": 0.5, "y": 0.3, "dx": 0.2, "dy": 0.1, "color": "#2196F3", "label": "Force", "normalized": true},
-    {"op": "delay", "ms": 800}
+    // 24-40 operations total, each with exact "op" field
   ]
 }
 
-AVAILABLE OPERATIONS:
-- drawTitle, drawLabel (text with fontSize, color)
-- drawCircle, drawRect, drawLine (basic shapes)
-- drawVector, arrow (arrows with labels)
-- orbit, wave, particle (animations)
-- drawAxis, drawCurve, graph (math visualizations)
-- delay (pacing for comprehension)
+ALLOWED OPERATIONS (exact op names):
+- drawTitle, drawLabel
+- drawCircle, drawRect, drawLine
+- drawVector (use x1,y1,x2,y2), drawArrow/arrow
+- orbit, wave, particle
+- latex, drawCoordinateSystem, drawGeometry, graph (function-based)
+- drawDataStructure, drawNeuralNetwork, drawFlowchart
+- drawCircuitElement, drawSignalWaveform, drawConnection
+- drawMolecule, drawAtom, drawReaction, drawMembrane, drawOrganSystem
+- customPath, customSVG (use when returning a complete handcrafted SVG in svgCode)
+- delay (duration/ms)
 
-CRITICAL RULES:
-- Output MUST be complete, valid JSON
-- MUST close all brackets and braces
-- 10-15 actions MAXIMUM
-- ALL coordinates normalized (0-1 range)
-- Use "normalized": true for all spatial operations
-- SPECIFIC to their question, not generic
-- NO trailing commas
-- NO markdown, NO comments, NO explanations
+RANGE & FOCUS:
+- Generate 24-40 operations total (do NOT exceed 40)
+- If the question asks for notes/summary, you may return ONE high-quality customSVG (svgCode) plus 2-4 labels
+- If the question is numerical/mathematical, include latex and a coordinate system/graph as needed
+- Keep content specific to the question and the current step
+
+STRICT RULES:
+- Output MUST be complete, valid JSON with an array of actions
+- Use the exact field name "op" for operation type
+- Normalize all coordinates (0-1). Include "normalized": true when applicable
+- No markdown, no comments, no trailing commas
 - Start with { and end with }
-- If you can't finish, output at least the closing }}`;
+`;
 
   const parts: any[] = [{ text: textPrompt }];
 

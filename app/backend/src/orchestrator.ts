@@ -178,13 +178,14 @@ async function generateStepVisuals(
       });
     }
     
-    // Add animation visuals
+    // Add animation visuals WITH ACTUAL ACTIONS for detailed narration
     successfulAnimations.forEach((anim, idx) => {
       const metadata = animationMetadata.find(m => m.index === idx);
       visualInputs.push({
         type: 'animation',
         visualNumber: idx + 1,
         actionCount: metadata?.actionCount || 0,
+        actions: metadata?.result?.actions || [], // CRITICAL: Pass actual SVG operations
         description: step.desc
       });
     });

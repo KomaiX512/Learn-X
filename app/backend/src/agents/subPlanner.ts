@@ -31,102 +31,78 @@ function createSubPlanPrompt(step: PlanStep, topic: string): string {
 TOPIC: "${topic}"
 STEP: ${step.desc}
 
-⚠️ CRITICAL: Each visual MUST show a DIFFERENT aspect. NO REPETITION!
-
-Generate 4 visual scripts following this STRICT diversity framework:
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-VISUAL 1: STRUCTURE/ANATOMY - "What does it look like?"
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Focus: Physical structure, components, layout, architecture
-- Show the COMPONENTS and their RELATIONSHIPS
-- Label all parts with their names/functions
-- Use static or minimal animation
-- Example for Carnot: 4 connected reservoirs in cycle diagram
-- Example for Neuron: Dendrites, soma, axon, synapses labeled
-- Example for Algorithm: Flowchart blocks with data structures
-
-Must include: Labels, arrows showing connections, component names
+⚠️ CRITICAL REQUIREMENTS:
+1. Each visual MUST focus on ONE DISTINCT aspect - NO REPETITION
+2. Descriptions MUST be 2-3 lines MAXIMUM - compact, to-the-point, NO verbose explanations
+3. Each description should be laser-focused on what to show, not why or how
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-VISUAL 2: MECHANISM/PROCESS - "How does it work?"
+VISUAL 1: STRUCTURE - Show components and their spatial relationships
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Focus: Step-by-step process, transformation, dynamic behavior
-- Show MOTION and TRANSFORMATION over time
-- Animate the process from start to end
-- Include time labels or step numbers
-- Example for Carnot: Show gas expansion/compression stages with moving piston
-- Example for Neuron: Show action potential propagating along axon
-- Example for Algorithm: Show data moving through operations step-by-step
-
-Must include: Animation, arrows showing flow, step indicators, before/after states
+✓ Carnot: 4-reservoir cycle with hot/cold sources, piston-cylinder system
+✓ Neuron: Dendrites→soma→axon→synapses with ion channels marked
+✓ Algorithm: Flowchart blocks showing input→process→output flow
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-VISUAL 3: MATHEMATICAL/ANALYTICAL - "What are the numbers/relationships?"
+VISUAL 2: MECHANISM - Animate the core process/transformation
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Focus: Equations, graphs, plots, quantitative relationships
-- Show GRAPHS, EQUATIONS, or DATA PLOTS
-- Use coordinate systems, axes, curves
-- Display mathematical formulas with LaTeX
-- Example for Carnot: P-V diagram showing isothermal/adiabatic curves
-- Example for Neuron: Voltage-time graph of action potential with numbers
-- Example for Algorithm: Time complexity graph or performance comparison chart
-
-Must include: Axes/grid, equations/formulas, numerical values, curves/plots
+✓ Carnot: Animate piston through 4 stages (isothermal expansion→adiabatic expansion→compression)
+✓ Neuron: Animate Na⁺/K⁺ ion flow creating action potential wave
+✓ Algorithm: Animate data elements moving through each operation step
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-VISUAL 4: CONTEXT/APPLICATION - "Why does it matter? Where is it used?"
+VISUAL 3: MATHEMATICAL - Graph or equation showing quantitative relationships
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Focus: Real-world examples, applications, comparisons, implications
-- Show PRACTICAL USAGE or COMPARISON
-- Connect to everyday examples or broader context
-- Can show efficiency, performance, or trade-offs
-- Example for Carnot: Compare efficiency of Carnot vs real engines with bar chart
-- Example for Neuron: Show different neuron types or synaptic transmission in brain
-- Example for Algorithm: Show use case scenario or comparison with alternative approaches
+✓ Carnot: P-V diagram with 4 curves (2 isothermal, 2 adiabatic) and efficiency η=1-Tc/Th
+✓ Neuron: Voltage vs time graph showing -70mV→+40mV spike with threshold line
+✓ Algorithm: Time complexity graph O(n²) vs O(n log n) curves
 
-Must include: Real-world example, comparison elements, context labels, practical implications
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VISUAL 4: APPLICATION - Real-world example or comparison
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Carnot: Bar chart comparing Carnot (100%) vs real engine efficiency (30-40%)
+✓ Neuron: Show motor vs sensory vs interneuron types in spinal reflex arc
+✓ Algorithm: Side-by-side comparison with alternative approach showing trade-offs
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🚨 VALIDATION CHECKLIST (ALL 4 VISUALS MUST PASS):
-□ Visual 1 shows structure/components (NOT process or graphs)
-□ Visual 2 shows dynamic mechanism (NOT static structure)
-□ Visual 3 shows mathematical/quantitative data (NOT just diagrams)
-□ Visual 4 shows context/application (NOT repeating earlier visuals)
-□ Each visual has UNIQUE content (no overlap > 20%)
-□ Together they give COMPLETE understanding of "${topic}"
+🎯 DESCRIPTION FORMAT RULES:
+- MAX 2-3 short sentences (under 200 characters total)
+- Start with action verb: "Show...", "Animate...", "Graph...", "Compare..."
+- Be specific about what to include (components, values, labels)
+- NO explanations of why - just WHAT to visualize
+- NO verbose storytelling - pure visual instructions
 
 Output ONLY valid JSON (no markdown, no explanations):
 {
   "visualScripts": [
     {
       "type": "structure",
-      "title": "Specific title for structure visual",
-      "description": "Detailed description of what to show: components, labels, layout, relationships",
-      "focus": "What specific structural aspect this emphasizes",
-      "mustInclude": ["list", "of", "required", "elements"]
+      "title": "Concise title (max 5 words)",
+      "description": "2-3 line compact description of WHAT to show. No verbose explanation.",
+      "focus": "One specific aspect (1 short phrase)",
+      "mustInclude": ["specific", "elements", "to", "include"]
     },
     {
       "type": "mechanism",
-      "title": "Specific title for mechanism visual",
-      "description": "Detailed description of process flow: steps, transformations, animations",
-      "focus": "What specific process/mechanism this demonstrates",
-      "mustInclude": ["list", "of", "required", "elements"]
+      "title": "Concise title (max 5 words)",
+      "description": "2-3 line compact description of WHAT to animate. No verbose explanation.",
+      "focus": "One specific process (1 short phrase)",
+      "mustInclude": ["specific", "animation", "elements"]
     },
     {
       "type": "analysis",
-      "title": "Specific title for analytical visual",
-      "description": "Detailed description of graphs/equations: axes, formulas, numerical relationships",
-      "focus": "What specific quantitative relationship this reveals",
-      "mustInclude": ["list", "of", "required", "elements"]
+      "title": "Concise title (max 5 words)",
+      "description": "2-3 line compact description of WHAT to graph/calculate. No verbose explanation.",
+      "focus": "One specific relationship (1 short phrase)",
+      "mustInclude": ["axes", "equations", "values"]
     },
     {
       "type": "context",
-      "title": "Specific title for context visual",
-      "description": "Detailed description of application/comparison: real examples, use cases, implications",
-      "focus": "What specific practical context this provides",
-      "mustInclude": ["list", "of", "required", "elements"]
+      "title": "Concise title (max 5 words)",
+      "description": "2-3 line compact description of WHAT to compare/apply. No verbose explanation.",
+      "focus": "One specific application (1 short phrase)",
+      "mustInclude": ["real-world", "elements"]
     }
   ]
 }`;
@@ -146,12 +122,12 @@ export async function subPlannerAgent(step: PlanStep, topic: string): Promise<Su
     const model = genAI.getGenerativeModel({
       model: MODEL,
       generationConfig: {
-        temperature: 0.8, // Increased for more creative diversity
-        maxOutputTokens: 6000, // More space for detailed descriptions
+        temperature: 0.85, // High creativity for diverse aspects
+        maxOutputTokens: 3000, // Reduced - we want concise descriptions
         topK: 50,
         topP: 0.95
       },
-      systemInstruction: 'You are a JSON-only visual planning agent specializing in creating DIVERSE, COMPLEMENTARY visualizations. Each visual MUST cover a distinct aspect. Output ONLY valid JSON. Never include explanations, markdown, or text outside JSON.'
+      systemInstruction: 'You are a JSON-only visual planning agent. Create 4 DIVERSE visualizations, each covering ONE DISTINCT aspect. Descriptions MUST be 2-3 lines MAX (under 200 chars) - compact, focused, no verbose explanations. Output ONLY valid JSON. No markdown, no text outside JSON.'
     });
 
     const prompt = createSubPlanPrompt(step, topic);
@@ -184,12 +160,12 @@ export async function subPlannerAgent(step: PlanStep, topic: string): Promise<Su
     if (parsed.visualScripts.length < 4) {
       logger.warn(`[subPlanner] Only ${parsed.visualScripts.length} visuals planned, expected 4`);
       
-      // Pad with default visuals following the diversity framework
+      // Pad with concise default visuals following the diversity framework
       const defaults = [
-        { type: 'structure', title: 'Component Structure', description: `Show the key components of ${topic}`, focus: 'Structural overview', mustInclude: ['labels', 'components'] },
-        { type: 'mechanism', title: 'Process Flow', description: `Animate how ${topic} works`, focus: 'Dynamic behavior', mustInclude: ['animation', 'flow'] },
-        { type: 'analysis', title: 'Quantitative Analysis', description: `Graph or equation for ${topic}`, focus: 'Mathematical relationships', mustInclude: ['graph', 'equation'] },
-        { type: 'context', title: 'Real-World Application', description: `Show practical use of ${topic}`, focus: 'Applications', mustInclude: ['example', 'comparison'] }
+        { type: 'structure', title: 'Component Structure', description: `Show key components of ${topic} with labels and spatial relationships.`, focus: 'Structural layout', mustInclude: ['labels', 'components'] },
+        { type: 'mechanism', title: 'Process Animation', description: `Animate ${topic} process flow from start to end with step markers.`, focus: 'Dynamic transformation', mustInclude: ['animation', 'flow', 'steps'] },
+        { type: 'analysis', title: 'Mathematical Model', description: `Graph or equation showing quantitative relationships in ${topic}.`, focus: 'Quantitative data', mustInclude: ['graph', 'equation', 'values'] },
+        { type: 'context', title: 'Real-World Use', description: `Compare ${topic} applications or show practical example with trade-offs.`, focus: 'Practical applications', mustInclude: ['example', 'comparison'] }
       ];
       
       while (parsed.visualScripts.length < 4) {

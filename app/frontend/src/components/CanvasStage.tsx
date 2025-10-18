@@ -5,7 +5,7 @@ import { CanvasToolbar, PlaybackMode, CanvasTool } from './CanvasToolbar';
 import { HandRaiseButton } from './HandRaiseButton';
 import { PenDrawingLayer } from './PenDrawingLayer';
 import { CanvasQuestionInput } from './CanvasQuestionInput';
-import { captureVisibleViewport, captureCanvasScreenshot } from '../utils/canvasScreenshot';
+import { captureVisibleViewport, captureCanvasScreenshot, captureVisibleViewportCombined } from '../utils/canvasScreenshot';
 import type { ScreenshotResult } from '../utils/canvasScreenshot';
 import { browserTTS } from '../services/browser-tts';
 
@@ -34,6 +34,8 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<Konva.Stage | null>(null);
+  const penOverlayRef = useRef<HTMLDivElement>(null);
+  const penStageRef = useRef<Konva.Stage | null>(null);
   const sequentialRendererRef = useRef<SequentialRenderer | null>(null);
   const pendingChunksRef = useRef<any[]>([]);
   const visualCounterRef = useRef<number>(0);
@@ -42,6 +44,7 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
   const stepBufferRef = useRef<Record<number, any>>({});
   const isRenderingRef = useRef<boolean>(false);
   const scaleRef = useRef<number>(1);
+  const originalPosRef = useRef<{x:number;y:number}>({ x: 0, y: 0 });
   const currentStepRef = useRef<any>(null);
   const selectionAnchorYRef = useRef<number>(0);
   
@@ -147,6 +150,17 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
   const [size, setSize] = useState({ w: MIN_WIDTH, h: MIN_HEIGHT });
   const [canvasWidth, setCanvasWidth] = useState(MIN_WIDTH); // Dynamic width for horizontal scroll
 
+  // Helper: sync DOM overlay (HTML) to match Konva stage transform
+  const syncOverlayToStage = () => {
+    const s = stageRef.current;
+    const overlayEl = overlayRef.current;
+    if (!s || !overlayEl) return;
+    const scale = scaleRef.current || 1;
+    const pos = s.position();
+    overlayEl.style.transformOrigin = '0 0';
+    overlayEl.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${scale})`;
+  };
+
   // Window resize handler: maintains aspect ratio
   useEffect(() => {
     function handleResize() {
@@ -222,8 +236,15 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         if (canvasElement) {
           (canvasElement as HTMLCanvasElement).style.display = 'block';
           (canvasElement as HTMLCanvasElement).style.width = '100%';
-          console.log('[CanvasStage] Canvas styling applied - forcing 100% width');
+          (canvasElement as HTMLCanvasElement).style.height = '100%';
+          console.log('[CanvasStage] Canvas styling applied - forcing 100% width/height');
         }
+        // Ensure all Konva canvases sit above HTML overlays by default
+        const canvasElements = containerRef.current.querySelectorAll('canvas');
+        canvasElements.forEach((c) => {
+          (c as HTMLCanvasElement).style.position = 'relative';
+          (c as HTMLCanvasElement).style.zIndex = '50';
+        });
         
         // Allow container to expand as content is added (dynamic height)
         containerRef.current.style.minHeight = `${size.h}px`;
@@ -251,8 +272,23 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
               y: pointer.y - mousePointTo.y * newScale
             };
             s.position(newPos as any);
+            // Mirror zoom/pan to pen overlay stage if present
+            const ps = penStageRef.current;
+            if (ps) {
+              ps.scale({ x: newScale, y: newScale });
+              ps.position(newPos as any);
+              ps.batchDraw();
+            }
+            // Sync DOM overlay (custom SVG/labels)
+            syncOverlayToStage();
           } else {
             s.scale({ x: newScale, y: newScale });
+            const ps = penStageRef.current;
+            if (ps) {
+              ps.scale({ x: newScale, y: newScale });
+              ps.batchDraw();
+            }
+            syncOverlayToStage();
           }
           scaleRef.current = newScale;
           s.batchDraw();
@@ -306,6 +342,8 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         (window as any).sequentialRenderer = sequentialRendererRef.current;
         
         console.log('[CanvasStage] Sequential renderer initialized');
+        // Initial sync for overlay transform
+        syncOverlayToStage();
         if (pendingChunksRef.current.length > 0) {
           const items = pendingChunksRef.current.splice(0, pendingChunksRef.current.length);
           items.forEach((chunk) => routeChunk(chunk));
@@ -339,6 +377,92 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
       delete (window as any).sequentialRenderer;
     };
   }, []); // ← EMPTY DEPS - RUN ONCE!
+
+  // Create/destroy a dedicated Konva Stage for pen/pencil overlay (always above SVG/HTML overlays)
+  useEffect(() => {
+    const needPenStage = isPenEnabled || isPencilDrawing;
+    if (needPenStage && penOverlayRef.current && !penStageRef.current) {
+      try {
+        const ps = new Konva.Stage({
+          container: penOverlayRef.current,
+          width: size.w,
+          height: size.h,
+          listening: true
+        });
+        // Match current zoom/position
+        ps.scale({ x: scaleRef.current, y: scaleRef.current });
+        ps.position(stageRef.current ? stageRef.current.position() : { x: 0, y: 0 } as any);
+        penStageRef.current = ps;
+        console.log('[CanvasStage] Pen overlay stage created');
+        // Ensure overlay stays in sync
+        syncOverlayToStage();
+      } catch (e) {
+        console.error('[CanvasStage] Failed to create pen overlay stage:', e);
+      }
+    }
+    if (!needPenStage && penStageRef.current) {
+      try {
+        penStageRef.current.destroy();
+      } catch {}
+      penStageRef.current = null;
+      console.log('[CanvasStage] Pen overlay stage destroyed');
+    }
+  }, [isPenEnabled, isPencilDrawing, size.w, size.h]);
+
+  // Implement Pan/Grab tool: allow drag and snap back to origin on release (horizontal emphasis)
+  useEffect(() => {
+    const s = stageRef.current;
+    const ps = penStageRef.current;
+    if (!s) return;
+    const onDragEnd = () => {
+      const tween1 = new Konva.Tween({ node: s, duration: 0.2, x: originalPosRef.current.x, y: originalPosRef.current.y, easing: Konva.Easings.EaseOut });
+      tween1.play();
+      if (ps) {
+        const tween2 = new Konva.Tween({ node: ps, duration: 0.2, x: originalPosRef.current.x, y: originalPosRef.current.y, easing: Konva.Easings.EaseOut });
+        tween2.play();
+      }
+      // After snap-back, sync overlay
+      setTimeout(syncOverlayToStage, 220);
+    };
+    const onDragMove = () => {
+      // Keep pen stage and overlay in sync while dragging
+      if (ps) {
+        ps.position(s.position());
+        ps.batchDraw();
+      }
+      syncOverlayToStage();
+    };
+    if (activeTool === 'pan') {
+      originalPosRef.current = { x: s.x(), y: s.y() };
+      s.draggable(true);
+      s.dragBoundFunc((pos) => ({ x: pos.x, y: originalPosRef.current.y })); // constrain to horizontal movement
+      s.on('dragend', onDragEnd);
+      s.on('dragmove', onDragMove);
+      if (ps) {
+        ps.draggable(true);
+        ps.dragBoundFunc((pos) => ({ x: pos.x, y: originalPosRef.current.y }));
+        ps.on('dragend', onDragEnd);
+        ps.on('dragmove', onDragMove);
+      }
+    } else {
+      s.draggable(false);
+      s.off('dragend');
+      s.off('dragmove');
+      s.dragBoundFunc(undefined as any);
+      if (ps) {
+        ps.draggable(false);
+        ps.off('dragend');
+        ps.off('dragmove');
+        ps.dragBoundFunc(undefined as any);
+      }
+    }
+    return () => {
+      s.off('dragend');
+      s.off('dragmove');
+      if (ps) ps.off('dragend');
+      if (ps) ps.off('dragmove');
+    };
+  }, [activeTool]);
 
   // Connect playback mode to renderer
   useEffect(() => {
@@ -426,7 +550,7 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         if (!scrollContainerRef.current) {
           throw new Error('Scroll container not found');
         }
-        const screenshot = await captureVisibleViewport(stageRef.current, scrollContainerRef.current);
+        const screenshot = await captureVisibleViewportCombined(stageRef.current, penStageRef.current, scrollContainerRef.current);
         setCapturedScreenshot(screenshot.dataUrl);
         console.log(`[CanvasStage] Viewport screenshot captured: ${screenshot.width}x${screenshot.height}`);
       } catch (error) {
@@ -538,7 +662,7 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
       // Capture fresh screenshot with drawings - VIEWPORT ONLY
       let finalScreenshot = capturedScreenshot;
       if (stageRef.current && scrollContainerRef.current) {
-        const screenshot = await captureVisibleViewport(stageRef.current, scrollContainerRef.current);
+        const screenshot = await captureVisibleViewportCombined(stageRef.current, penStageRef.current, scrollContainerRef.current);
         finalScreenshot = screenshot.dataUrl;
         console.log(`[CanvasStage] Final screenshot captured: ${screenshot.width}x${screenshot.height}`);
       }
@@ -580,9 +704,21 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
     const oldScale = scaleRef.current || 1;
     const newScale = Math.min(5, oldScale * 1.2);
     console.log(`[CanvasStage] Zooming from ${oldScale} to ${newScale}`);
-    stageRef.current.scale({ x: newScale, y: newScale });
+    // Anchor at center of canvas
+    const s = stageRef.current;
+    const center = { x: size.w / 2, y: size.h / 2 };
+    const mousePointTo = { x: (center.x - s.x()) / oldScale, y: (center.y - s.y()) / oldScale };
+    s.scale({ x: newScale, y: newScale });
+    const newPos = { x: center.x - mousePointTo.x * newScale, y: center.y - mousePointTo.y * newScale };
+    s.position(newPos as any);
     scaleRef.current = newScale;
-    stageRef.current.batchDraw();
+    s.batchDraw();
+    if (penStageRef.current) {
+      penStageRef.current.scale({ x: newScale, y: newScale });
+      penStageRef.current.position(newPos as any);
+      penStageRef.current.batchDraw();
+    }
+    syncOverlayToStage();
   };
 
   const handleZoomOut = () => {
@@ -594,9 +730,20 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
     const oldScale = scaleRef.current || 1;
     const newScale = Math.max(0.3, oldScale / 1.2);
     console.log(`[CanvasStage] Zooming from ${oldScale} to ${newScale}`);
-    stageRef.current.scale({ x: newScale, y: newScale });
+    const s = stageRef.current;
+    const center = { x: size.w / 2, y: size.h / 2 };
+    const mousePointTo = { x: (center.x - s.x()) / oldScale, y: (center.y - s.y()) / oldScale };
+    s.scale({ x: newScale, y: newScale });
+    const newPos = { x: center.x - mousePointTo.x * newScale, y: center.y - mousePointTo.y * newScale };
+    s.position(newPos as any);
     scaleRef.current = newScale;
-    stageRef.current.batchDraw();
+    s.batchDraw();
+    if (penStageRef.current) {
+      penStageRef.current.scale({ x: newScale, y: newScale });
+      penStageRef.current.position(newPos as any);
+      penStageRef.current.batchDraw();
+    }
+    syncOverlayToStage();
   };
 
   // Interactive UI overlay for controls
@@ -606,9 +753,19 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
     left: 0,
     width: size.w,
     height: size.h,
-    pointerEvents: 'none' as const,
+    // Enable pointer events only when question input is visible (to allow typing/clicking). Otherwise keep transparent.
+    pointerEvents: (questionInputVisible ? 'auto' : 'none'),
     zIndex: 100
-  }), [size.w, size.h]);
+  }), [size.w, size.h, questionInputVisible]);
+
+  const toolbarStickyStyle = useMemo(() => ({
+    position: 'sticky' as const,
+    top: 12,
+    left: 12,
+    right: 12,
+    zIndex: 300,
+    pointerEvents: 'auto' as const
+  }), []);
 
   return (
     <div 
@@ -627,6 +784,26 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         margin: '0 auto',
         display: 'block'
       }}>
+      {/* Sticky toolbar (always visible while scrolling inside canvas) */}
+      <div style={toolbarStickyStyle}>
+        <CanvasToolbar
+          mode={playbackMode}
+          onModeChange={setPlaybackMode}
+          activeTool={activeTool}
+          onToolChange={setActiveTool}
+          onNext={() => {
+            console.log('[CanvasStage] NEXT button clicked');
+            sequentialRendererRef.current?.triggerNext();
+          }}
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+          disabled={isQuestionMode}
+          canUndo={canUndo}
+          canRedo={canRedo}
+          onUndo={() => (window as any).__undoCanvasDrawing?.()}
+          onRedo={() => (window as any).__redoCanvasDrawing?.()}
+        />
+      </div>
       <div 
         ref={containerRef} 
         style={{ 
@@ -645,30 +822,22 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
         width: size.w, 
         minHeight: size.h,
         pointerEvents: 'none',
-        zIndex: 10
+        zIndex: 60
+      }} />
+      {/* Pen overlay Konva stage (draws above everything when enabled) */}
+      <div ref={penOverlayRef} style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: size.w,
+        height: size.h,
+        // Disable pen capture while the input popup is visible so the input is fully interactive
+        pointerEvents: (isPenEnabled || isPencilDrawing) && !questionInputVisible ? 'auto' : 'none',
+        zIndex: 200
       }} />
       
       {/* Interactive UI Overlay - Controls positioned absolutely */}
       <div style={overlayStyle}>
-        {/* Toolbar */}
-        <CanvasToolbar
-          mode={playbackMode}
-          onModeChange={setPlaybackMode}
-          activeTool={activeTool}
-          onToolChange={setActiveTool}
-          onNext={() => {
-            console.log('[CanvasStage] NEXT button clicked');
-            sequentialRendererRef.current?.triggerNext();
-          }}
-          onZoomIn={handleZoomIn}
-          onZoomOut={handleZoomOut}
-          disabled={isQuestionMode}
-          canUndo={canUndo}
-          canRedo={canRedo}
-          onUndo={() => (window as any).__undoCanvasDrawing?.()}
-          onRedo={() => (window as any).__redoCanvasDrawing?.()}
-        />
-        
         {/* Hand Raise Button */}
         <HandRaiseButton
           onClick={handleHandRaise}
@@ -732,18 +901,18 @@ const CanvasStage = forwardRef<CanvasStageRef, CanvasStageProps>((props, ref) =>
       </div>
       
       {/* Pen Drawing Layer for Hand Raise (Question Mode) */}
-      {stageRef.current && isPenEnabled && (
+      {(penStageRef.current || stageRef.current) && isPenEnabled && (
         <PenDrawingLayer
-          stage={stageRef.current}
+          stage={(penStageRef.current || stageRef.current)!}
           enabled={isPenEnabled}
           onDrawingComplete={handleDrawingComplete}
         />
       )}
       
       {/* Pen Drawing Layer for Pencil Tool (General Drawing) */}
-      {stageRef.current && isPencilDrawing && !isPenEnabled && (
+      {(penStageRef.current || stageRef.current) && isPencilDrawing && !isPenEnabled && (
         <PenDrawingLayer
-          stage={stageRef.current}
+          stage={(penStageRef.current || stageRef.current)!}
           enabled={isPencilDrawing}
           onDrawingComplete={() => {
             console.log('[CanvasStage] Pencil drawing complete (no action required)');

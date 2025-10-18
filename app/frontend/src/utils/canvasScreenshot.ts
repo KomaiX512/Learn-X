@@ -121,11 +121,97 @@ export async function captureCanvasScreenshot(
 }
 
 /**
+ * Capture ONLY VISIBLE VIEWPORT area of TWO stages (base + overlay) and composite them.
+ * Ensures overlay drawings (e.g., pen/pencil on a separate stage) are included.
+ */
+export async function captureVisibleViewportCombined(
+  baseStage: Konva.Stage,
+  overlayStage: Konva.Stage | null,
+  scrollContainer: HTMLElement,
+  options: {
+    pixelRatio?: number;
+    mimeType?: string;
+    quality?: number;
+  } = {}
+): Promise<ScreenshotResult> {
+  const {
+    pixelRatio = 1.5,
+    mimeType = 'image/jpeg',
+    quality = 0.7
+  } = options;
+
+  const scrollTop = scrollContainer.scrollTop || 0;
+  const scrollLeft = scrollContainer.scrollLeft || 0;
+  const viewportWidth = scrollContainer.clientWidth;
+  const viewportHeight = scrollContainer.clientHeight;
+
+  // Render base stage portion
+  const baseUrl = baseStage.toDataURL({
+    x: scrollLeft,
+    y: scrollTop,
+    width: viewportWidth,
+    height: viewportHeight,
+    pixelRatio,
+    mimeType,
+    quality
+  });
+
+  // Render overlay stage portion if present
+  const overlayUrl = overlayStage ? overlayStage.toDataURL({
+    x: scrollLeft,
+    y: scrollTop,
+    width: viewportWidth,
+    height: viewportHeight,
+    pixelRatio,
+    mimeType,
+    quality
+  }) : null;
+
+  // Composite on an offscreen canvas
+  const off = document.createElement('canvas');
+  off.width = Math.max(1, Math.floor(viewportWidth * pixelRatio));
+  off.height = Math.max(1, Math.floor(viewportHeight * pixelRatio));
+  const ctx = off.getContext('2d');
+  if (!ctx) throw new Error('2D context unavailable');
+
+  const baseImg = await dataUrlToImage(baseUrl);
+  ctx.drawImage(baseImg, 0, 0, off.width, off.height);
+
+  if (overlayUrl) {
+    const overlayImg = await dataUrlToImage(overlayUrl);
+    ctx.drawImage(overlayImg, 0, 0, off.width, off.height);
+  }
+
+  const combinedUrl = off.toDataURL(mimeType, quality);
+  const blob = await dataUrlToBlob(combinedUrl);
+  const sizeKB = (blob.size / 1024).toFixed(2);
+  console.log(`[canvasScreenshot] Combined viewport screenshot size: ${sizeKB}KB`);
+
+  return {
+    dataUrl: combinedUrl,
+    blob,
+    width: viewportWidth,
+    height: viewportHeight,
+    timestamp: Date.now()
+  };
+}
+
+/**
  * Convert data URL to Blob
  */
 async function dataUrlToBlob(dataUrl: string): Promise<Blob> {
   const response = await fetch(dataUrl);
   return response.blob();
+}
+
+/** Load a data URL into an HTMLImageElement */
+async function dataUrlToImage(dataUrl: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = dataUrl;
+  });
 }
 
 /**

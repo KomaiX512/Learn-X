@@ -4,6 +4,7 @@
  */
 
 import { ttsPlayback } from '../services/tts-playback';
+import { progressTracker } from '../services/ProgressTrackingService';
 
 export interface QueuedAnimation {
   action: any;
@@ -64,6 +65,11 @@ export class AnimationQueue {
     
     console.log(`[AnimationQueue] Queue now has ${this.queue.length} total actions`);
     console.log(`[AnimationQueue] Current status: isPlaying=${this.isPlaying}, isPaused=${this.isPaused}, currentIndex=${this.currentIndex}`);
+    
+    // Track step actions for progress
+    if (section?.stepId !== undefined) {
+      progressTracker.setStepActions(section.stepId, actions.length);
+    }
     
     // AUTOPLAY: Start playing immediately on first enqueue
     if (!this.hasStartedOnce && !this.isPaused) {
@@ -169,9 +175,17 @@ export class AnimationQueue {
             
             console.log(`[AnimationQueue] 🎬 Full visual detected: ${item.action.visualGroup}, visual #${visualNumber}`);
             
+            // Track visual start
+            if (this.currentStepId !== null) {
+              progressTracker.startVisual(item.action.visualGroup, this.currentStepId);
+            }
+            
             // Start animation and narration in parallel, wait for BOTH
             const animationPromise = this.renderer.processAction(item.action, item.section);
             await ttsPlayback.playWithAnimation(visualNumber, animationPromise);
+            
+            // Mark visual as complete
+            progressTracker.completeVisual(item.action.visualGroup);
             
             console.log(`[AnimationQueue] ✅ Visual ${visualNumber} complete (animation + narration + delay)`);
           } else {
@@ -217,6 +231,19 @@ export class AnimationQueue {
         if (this.onProgress) {
           this.onProgress(progress);
         }
+        
+        // Update step action progress for progress tracker
+        if (this.currentStepId !== null) {
+          // Count actions in current step
+          const stepActions = this.queue.filter(q => q.section?.stepId === this.currentStepId);
+          const completedInStep = stepActions.filter((q, idx) => {
+            const queueIdx = this.queue.indexOf(q);
+            return queueIdx < this.currentIndex;
+          }).length;
+          
+          progressTracker.updateActionProgress(this.currentStepId, completedInStep, stepActions.length);
+        }
+        
         console.log(`[AnimationQueue] Progress: ${progress.toFixed(1)}% (${this.currentIndex}/${this.queue.length})`);
       } catch (loopError) {
         console.error(`[AnimationQueue] 🔥 CRITICAL ERROR in main loop:`, loopError);

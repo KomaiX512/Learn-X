@@ -26,6 +26,7 @@ export interface VisualInput {
   visualNumber: number;
   svgCode?: string;
   actionCount?: number;
+  actions?: any[]; // CRITICAL: Actual SVG operations for detailed narration analysis
   description?: string;
 }
 

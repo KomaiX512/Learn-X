@@ -9,10 +9,13 @@ import { ttsPlayback } from './services/tts-playback';
 import { InterruptionPanel } from './components/InterruptionPanel';
 import { browserTTS } from './services/browser-tts';
 import { ThinkingAnimation } from './components/ThinkingAnimation';
+import { GenerationProgress } from './components/GenerationProgress';
 import { TableOfContents } from './components/TableOfContents';
 import { KeyNotesGenerator } from './components/KeyNotesGenerator';
 import { TopicDisplay } from './components/TopicDisplay';
 import { LectureHistory } from './components/LectureHistory';
+import { LectureProgressTracker, StepProgress } from './components/LectureProgressTracker';
+import { progressTracker } from './services/ProgressTrackingService';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -47,11 +50,25 @@ export default function App() {
   const [thinkingStage, setThinkingStage] = useState<'initializing' | 'planning' | 'generating' | 'rendering'>('initializing');
   const [showTableOfContents, setShowTableOfContents] = useState(false);
   
+  // Generation progress state
+  const [showGenerationProgress, setShowGenerationProgress] = useState(false);
+  const [generationPhase, setGenerationPhase] = useState<'starting' | 'generating' | 'complete'>('starting');
+  const [generationTotalSteps, setGenerationTotalSteps] = useState(0);
+  const [generationCompletedSteps, setGenerationCompletedSteps] = useState(0);
+  const [currentStepMessage, setCurrentStepMessage] = useState<string>('');
+  
+  // Lecture progress tracking state
+  const [showProgressTracker, setShowProgressTracker] = useState(false);
+  const [progressSteps, setProgressSteps] = useState<StepProgress[]>([]);
+  const [currentStepId, setCurrentStepId] = useState<number | null>(null);
+  const [currentVisualId, setCurrentVisualId] = useState<string | null>(null);
+  
   // Canvas reference for control
   const canvasRef = useRef<any>(null);
   const lectureStateRef = useRef<LectureStateManager | null>(null);
   const pendingRenderedRef = useRef<any[]>([]);
   const lastClarificationIdRef = useRef<string | null>(null);
+  const planRef = useRef<any>(null);
 
   // Ensure we have a session and that the socket has joined it before enqueuing work
   function ensureSession(): string {
@@ -87,6 +104,17 @@ export default function App() {
     }
   }, [sessionId]);
 
+  // Subscribe to progress tracker updates
+  useEffect(() => {
+    const unsubscribe = progressTracker.subscribe((steps) => {
+      setProgressSteps(steps);
+      setCurrentStepId(progressTracker.getCurrentStepId());
+      setCurrentVisualId(progressTracker.getCurrentVisualId());
+    });
+    
+    return unsubscribe;
+  }, []);
+
   useEffect(() => {
     if (!socket) {
       console.log('[App useEffect] No socket yet, skipping listener setup');
@@ -116,12 +144,42 @@ export default function App() {
       if (e?.title) setPlanTitle(e.title);
       if (e?.subtitle) setPlanSubtitle(e.subtitle);
       if (Array.isArray(e?.toc)) setToc(e.toc);
+      
+      // Initialize progress tracker with plan steps
+      if (e?.steps && Array.isArray(e.steps)) {
+        console.log('[App] Initializing progress tracker with', e.steps.length, 'steps');
+        progressTracker.initializeSteps(e.steps);
+        setShowProgressTracker(true);
+        planRef.current = e;
+      }
     });
     socket.on('progress', (e) => {
       console.log('[App] Progress event:', e);
+      // Update current step message
+      if (e.message) {
+        setCurrentStepMessage(e.message);
+      }
     });
     socket.on('generation_progress', (e) => {
       console.log('[App] Generation progress:', e);
+      // Update generation progress UI
+      if (e.phase === 'starting') {
+        setShowGenerationProgress(true);
+        setGenerationPhase('starting');
+        setGenerationTotalSteps(e.totalSteps || 0);
+        setGenerationCompletedSteps(0);
+      } else if (e.phase === 'generating') {
+        setGenerationPhase('generating');
+        setGenerationTotalSteps(e.totalSteps || 0);
+        setGenerationCompletedSteps(e.completedSteps || 0);
+      } else if (e.phase === 'complete') {
+        setGenerationPhase('complete');
+        setGenerationCompletedSteps(e.completedSteps || e.totalSteps || 0);
+        // Hide progress after a short delay
+        setTimeout(() => {
+          setShowGenerationProgress(false);
+        }, 1500);
+      }
     });
     
     // Test socket connection
@@ -167,7 +225,8 @@ export default function App() {
           actions: e.actions,
           stepId: e.stepId,
           title: e.title,
-          explanation: e.explanation
+          explanation: e.explanation,
+          insertAfterScroll: e.insertAfterScroll
         });
         console.log('[App] ✅ Clarification sent to renderer');
       } else {
@@ -230,6 +289,14 @@ export default function App() {
       }
       if (Array.isArray(e.plan?.toc)) {
         setToc(e.plan.toc);
+      }
+      
+      // Initialize progress tracker if not already done
+      if (e.plan?.steps && Array.isArray(e.plan.steps) && !planRef.current) {
+        console.log('[App] Initializing progress tracker with', e.plan.steps.length, 'steps (from rendered event)');
+        progressTracker.initializeSteps(e.plan.steps);
+        setShowProgressTracker(true);
+        planRef.current = e.plan;
       }
       
       // Update current step and transcript
@@ -353,9 +420,13 @@ export default function App() {
     setIsReady(false);
     setIsLoading(true);
     
-    // Show thinking animation
-    setShowThinking(true);
-    setThinkingStage('initializing');
+    // Show generation progress instead of thinking animation
+    (window as any).__generationStartTime = Date.now();
+    setShowGenerationProgress(true);
+    setGenerationPhase('starting');
+    setGenerationTotalSteps(0);
+    setGenerationCompletedSteps(0);
+    setCurrentStepMessage('Initializing AI Engine...');
     
     const sid = ensureSession();
     console.log('[submit] Session ID:', sid);
@@ -378,7 +449,7 @@ export default function App() {
     // Wait for socket to join the room
     try {
       console.log('[submit] Waiting for socket to join room...');
-      setThinkingStage('planning');
+      setCurrentStepMessage('Connecting to AI Engine...');
       await waitForJoin(sid, 5000); // Increased timeout
       console.log('[submit] ✅ Socket joined room successfully');
     } catch (e) {
@@ -390,7 +461,7 @@ export default function App() {
     console.log('[submit] Waiting 100ms to ensure listeners are attached...');
     await new Promise(resolve => setTimeout(resolve, 100));
     
-    setThinkingStage('generating');
+    setCurrentStepMessage('Structuring your lecture...');
     console.log('[submit] Making API call to /api/query');
     console.log('[submit] Difficulty level:', difficulty);
     const res = await fetch('/api/query', {
@@ -401,13 +472,8 @@ export default function App() {
     const data = await res.json();
     console.log('[submit] API response:', data);
     
-    setThinkingStage('rendering');
-    
     // keep existing sid if backend echoes a different one
     setSessionId((prev) => prev || data.sessionId || sid);
-    
-    // Hide thinking animation after a short delay
-    setTimeout(() => setShowThinking(false), 1000);
   }
 
   async function nextStep() {
@@ -579,7 +645,8 @@ export default function App() {
               actions: c.actions,
               stepId: c.stepId,
               title: c.title,
-              explanation: c.explanation
+              explanation: c.explanation,
+              insertAfterScroll: c.insertAfterScroll
             });
           }
         } else {
@@ -629,11 +696,13 @@ export default function App() {
       color: '#00ff41',
       overflow: 'hidden'
     }}>
-      {/* Thinking Animation Overlay */}
-      <ThinkingAnimation 
-        visible={showThinking} 
-        stage={thinkingStage}
-        currentStep={currentStep?.desc}
+      {/* Generation Progress Overlay */}
+      <GenerationProgress
+        visible={showGenerationProgress}
+        phase={generationPhase}
+        totalSteps={generationTotalSteps}
+        completedSteps={generationCompletedSteps}
+        currentStepMessage={currentStepMessage}
       />
       
       {/* Table of Contents - Confined Right Panel */}
@@ -650,6 +719,15 @@ export default function App() {
         lectureComplete={lectureComplete}
         sessionId={sessionId}
         planTitle={planTitle}
+      />
+      
+      {/* Lecture Progress Tracker - Left Side Panel */}
+      <LectureProgressTracker
+        visible={showProgressTracker}
+        steps={progressSteps}
+        currentStepId={currentStepId}
+        currentVisualId={currentVisualId}
+        estimatedTimeRemaining={progressTracker.getEstimatedTimeRemaining()}
       />
       
       {/* Topic Display and Lecture History removed per user request */}
@@ -822,7 +900,19 @@ export default function App() {
               transition: 'all 0.2s ease'
             }}
           >
-            {isLoading ? '>>> GENERATING...' : '>>> START LECTURE'}
+            {isLoading ? (
+              <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                <span style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: '50%',
+                  background: '#000',
+                  animation: 'pulse 1.5s ease-in-out infinite',
+                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.5)'
+                }} />
+                GENERATING...
+              </span>
+            ) : '>>> START LECTURE'}
           </button>
         </div>
       </div>

@@ -47,7 +47,7 @@ const logger_1 = require("./logger");
 const orchestrator_1 = require("./orchestrator");
 const generative_ai_1 = require("@google/generative-ai");
 const PORT = Number(process.env.PORT || 3001);
-const DEFAULT_FE_URLS = 'http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174,https://2a683f5cb9a7.ngrok-free.app';
+const DEFAULT_FE_URLS = 'http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174,https://2a683f5cb9a7.ngrok-free.app,https://f3718157294a.ngrok-free.app';
 const FRONTEND_URLS = (process.env.FRONTEND_URL || DEFAULT_FE_URLS)
     .split(',')
     .map((s) => s.trim());
@@ -91,10 +91,25 @@ async function main() {
     const app = (0, express_1.default)();
     const corsOptions = {
         origin: (origin, callback) => {
+            // Allow requests with no origin (like mobile apps, Postman, curl)
             if (!origin)
                 return callback(null, true);
+            // Check if origin is in allowed list
             if (EXPANDED_FE_URLS.includes(origin))
                 return callback(null, true);
+            // Allow all localhost and 127.0.0.1 origins (development)
+            try {
+                const url = new URL(origin);
+                if (url.hostname === 'localhost' || url.hostname === '127.0.0.1' || url.hostname === '0.0.0.0') {
+                    console.log(`[CORS] Allowing localhost origin: ${origin}`);
+                    return callback(null, true);
+                }
+            }
+            catch (e) {
+                // Invalid URL, will be rejected below
+            }
+            console.error(`[CORS] Rejected origin: ${origin}`);
+            console.error(`[CORS] Allowed origins:`, EXPANDED_FE_URLS);
             return callback(new Error('Not allowed by CORS'));
         },
         credentials: true,
@@ -202,7 +217,22 @@ async function main() {
             logger_1.logger.debug(`[socket] Socket ${socket.id} disconnected: ${reason}`);
         });
     });
-    app.get('/health', (_req, res) => {
+    app.get('/', (req, res) => {
+        res.json({
+            name: 'Learn-X Backend API',
+            version: '1.0.0',
+            status: 'running',
+            endpoints: {
+                health: '/health',
+                query: '/api/query',
+                clarification: '/api/clarification',
+                audio: '/audio/:sessionId/:filename',
+                socket: '/socket.io'
+            },
+            documentation: 'See README.md for API documentation'
+        });
+    });
+    app.get('/health', (req, res) => {
         res.json({
             ok: true,
             env: {
@@ -211,7 +241,7 @@ async function main() {
                 REDIS_URL,
                 GEMINI_API_KEY: process.env.GEMINI_API_KEY ? '***' : undefined,
                 LOG_LEVEL: process.env.LOG_LEVEL,
-                LLM_TIMEOUT_MS: process.env.LLM_TIMEOUT_MS
+                USE_VISUAL_VERSION: process.env.USE_VISUAL_VERSION || 'v3'
             }
         });
     });

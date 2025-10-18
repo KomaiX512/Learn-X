@@ -26,6 +26,7 @@ export interface VisualInput {
   visualNumber: number; // 0 for notes, 1-4 for animations
   svgCode?: string; // For notes keynote
   actionCount?: number; // For animations
+  actions?: any[]; // CRITICAL: Actual SVG operations for detailed analysis
   description?: string; // Brief description
 }
 
@@ -45,59 +46,94 @@ export interface StepNarration {
 }
 
 /**
- * Enhanced prompt for batch narration generation with VISUAL FOCUS
- * Generates all narrations in one API call
- * TARGET: 2-3x longer narrations (120-240 words) with rich visual descriptions
+ * COMPLETELY REDESIGNED PROMPT - SVG OPERATION ANALYZER
+ * 
+ * This prompt guides the LLM to deeply analyze actual SVG operations and generate
+ * extremely detailed, visual-specific narrations that help "the dumbest students" understand.
+ * 
+ * TARGET: 150-300 words with surgical precision about visual elements
  */
-const NARRATION_PROMPT = `You are an educational voice-over script writer for animated educational content.
+const NARRATION_PROMPT = `You are an expert educational narrator who analyzes SVG visual code and creates detailed, student-friendly explanations.
 
-Your task: Generate DETAILED, VISUAL-FOCUSED narration scripts for multiple visuals in a learning step.
+YOUR MISSION: Generate EXTREMELY DETAILED narrations that analyze actual visual elements (shapes, colors, positions) and explain their meaning in the topic context.
 
-CRITICAL REQUIREMENTS:
-1. **One detailed paragraph per visual** (10-15 sentences, 120-240 words)
-2. **VISUAL-FIRST approach** - Actively guide the student's eye:
-   - "See this part right here..."
-   - "Notice how this element moves..."
-   - "Look at the working of this mechanism..."
-   - "Observe the relationship between these components..."
-3. **Conversational and friendly tone** - Like an enthusiastic professor pointing at the board
-4. **Rich knowledge content** - Include:
-   - Detailed explanations of what's happening
-   - WHY things work this way
-   - Key principles and relationships
-   - Practical implications
-5. **Contextual flow** - Each narration builds on previous understanding
-6. **Educational depth** - Go beyond surface description, teach the concept thoroughly
-7. **Pacing guidance** - Each paragraph should take 45-90 seconds to speak (slower, more thoughtful)
+═══════════════════════════════════════════════════════════════
+CRITICAL ANALYSIS REQUIREMENTS (NON-NEGOTIABLE):
+═══════════════════════════════════════════════════════════════
 
+1. **ANALYZE THE SVG OPERATIONS** - You will receive the actual visual code with operations like:
+   - drawCircle, drawRect, drawLine (basic shapes)
+   - drawCircuitElement, drawSignalWaveform (domain-specific)
+   - drawMolecule, drawNeuron, drawAtom (specialized)
+   Each operation has: position (x,y), size (width/height/radius), color, labels, etc.
+
+2. **DESCRIBE VISUAL ELEMENTS EXPLICITLY** (15-20 sentences, 150-300 words):
+   MUST include for EACH major visual element:
+   ✓ "See that [RED/BLUE/GREEN] [CIRCLE/RECTANGLE/GEAR] on the [LEFT/RIGHT/CENTER/TOP/BOTTOM]"
+   ✓ "Notice the [COLOR] [SHAPE] positioned at [LOCATION] - this represents [MEANING]"
+   ✓ "Look at this [ELEMENT] with [SPECIFIC FEATURE] - observe how it [BEHAVIOR/RELATIONSHIP]"
+   ✓ Position context: "in the upper left corner", "centered in the middle", "at the bottom right"
+   ✓ Color mentions: Always mention colors when present to help students locate elements
+   ✓ Size context: "larger circle", "small box", "thin line connecting"
+
+3. **EXPLAIN WHAT EACH ELEMENT MEANS**:
+   - What does this shape/component represent in the topic?
+   - Why is it this color? (if color has meaning)
+   - Why is it positioned here? (spatial relationships)
+   - How does it relate to other elements?
+   - What concept does it illustrate?
+
+4. **GUIDE THE STUDENT'S EYE SYSTEMATICALLY**:
+   - Start with overview: "See the complete setup here..."
+   - Walk through each element: "Now look at this part...", "Next, notice..."
+   - Show relationships: "See how this connects to that..."
+   - Build understanding: "This is why...", "This shows us..."
+
+5. **PROVIDE DEEP EDUCATIONAL CONTEXT**:
+   - WHY this visual is shown (purpose)
+   - WHAT principle/concept it demonstrates
+   - HOW the mechanism/process works
+   - WHAT students should understand from it
+   - CONCLUSION: Key takeaway and learning outcome
+
+6. **ASSUME STUDENT KNOWS NOTHING** - Explain like they are beginners:
+   - Don't assume prior knowledge
+   - Define terms as you go
+   - Use analogies if helpful
+   - Be extremely patient and thorough
+
+═══════════════════════════════════════════════════════════════
 OUTPUT FORMAT (JSON):
+═══════════════════════════════════════════════════════════════
 {
   "narrations": [
     {
       "visualNumber": 0,
       "type": "notes",
       "narration": "...",
-      "duration": 60
-    },
-    {
-      "visualNumber": 1,
-      "type": "animation",
-      "narration": "...",
-      "duration": 70
+      "duration": 90
     }
   ]
 }
 
-NARRATION STYLE GUIDE (VISUAL-FOCUSED):
-✓ "See this region highlighted here - this is where the action potential begins. Notice how the voltage rapidly changes from negative to positive..."
-✓ "Look at the working of this synapse. See how the neurotransmitter molecules cross this gap? This is the actual mechanism of communication between neurons..."
-✓ "Observe the relationship between voltage and ion channels. See this part right here - when voltage reaches threshold, these gates open. This is why it's called voltage-gated..."
-✓ "Notice the pattern emerging as we add more data points. See how the curve takes shape? This tells us something profound about the underlying relationship..."
-✗ "This diagram shows a neuron..." (too generic)
-✗ "The image displays..." (not visual-focused)
-✗ "As you can see..." (weak visual guidance)
+═══════════════════════════════════════════════════════════════
+EXAMPLE OF EXCELLENT NARRATION (OPERATION-AWARE):
+═══════════════════════════════════════════════════════════════
 
-IMPORTANT: Return ONLY valid JSON. No markdown, no code fences, no explanations.`;
+BAD (Generic):
+"This visual shows a circuit with components. The signal flows through the system."
+
+GOOD (Operation-Specific):
+"See the blue rectangle on the left side - this is the voltage source that powers our circuit. Notice the red circle in the center, labeled 'R1' - this represents a resistor that controls current flow. Look at the green waveform at the bottom showing the output signal - see how it oscillates? That's the AC response. Now observe the yellow arrow connecting the source to the resistor - this shows the direction of current flow. See the small orange box on the right? That's our capacitor, and notice how it's positioned after the resistor - this creates an RC filter. The positioning here matters: by placing the capacitor after the resistor, we get a low-pass filter characteristic. See how the waveform amplitude decreases at higher frequencies? This visual demonstrates the fundamental principle of RC filtering - the capacitor's impedance varies with frequency, creating frequency-dependent behavior. The key insight is that component placement affects circuit behavior, and this particular arrangement gives us predictable filtering characteristics that we use in countless applications."
+
+✓ Mentions specific shapes and colors
+✓ Describes exact positions
+✓ Explains what each element represents
+✓ Shows relationships between elements
+✓ Explains WHY things are arranged this way
+✓ Provides educational conclusion
+
+IMPORTANT: Return ONLY valid JSON. No markdown, no code fences, no explanations outside JSON.`;
 
 /**
  * Generate narrations for all visuals in a step (ONE API CALL)
@@ -134,13 +170,42 @@ export async function generateStepNarration(
         systemInstruction: 'You are an educational narration writer. Output ONLY valid JSON objects. Never include explanations, markdown formatting, or any text outside the JSON.',
       });
       
-      // Construct input summary for all visuals
+      // Construct DETAILED input summary with ACTUAL SVG OPERATIONS
       const visualsSummary = visuals.map(v => {
         if (v.type === 'notes') {
           const textElements = (v.svgCode?.match(/<text/g) || []).length;
-          return `Visual ${v.visualNumber} (Notes Keynote): Educational content with ${textElements} text elements. ${v.description || ''}`;
+          return `Visual ${v.visualNumber} (Notes Keynote): Educational SVG with ${textElements} text elements. ${v.description || ''}`;
         } else {
-          return `Visual ${v.visualNumber} (Animation): ${v.actionCount || 0} animated operations. ${v.description || ''}`;
+          // CRITICAL: Include actual SVG operations for deep analysis
+          let operationDetails = `Visual ${v.visualNumber} (Animation): ${v.actionCount || 0} operations. ${v.description || ''}\n`;
+          
+          if (v.actions && v.actions.length > 0) {
+            operationDetails += `SVG OPERATIONS (analyze these to describe visuals):\n`;
+            v.actions.slice(0, 50).forEach((action, idx) => { // Limit to first 50 to avoid token overflow
+              const op = action.op || 'unknown';
+              const details: string[] = [];
+              
+              // Extract visual properties for narration
+              if (action.x !== undefined) details.push(`x=${action.x}`);
+              if (action.y !== undefined) details.push(`y=${action.y}`);
+              if (action.color) details.push(`color=${action.color}`);
+              if (action.text) details.push(`text="${action.text}"`);
+              if (action.label) details.push(`label="${action.label}"`);
+              if (action.radius) details.push(`radius=${action.radius}`);
+              if (action.width) details.push(`width=${action.width}`);
+              if (action.height) details.push(`height=${action.height}`);
+              if (action.type) details.push(`type=${action.type}`);
+              if (action.shape) details.push(`shape=${action.shape}`);
+              if (action.element) details.push(`element=${action.element}`);
+              if (action.formula) details.push(`formula="${action.formula}"`);
+              
+              operationDetails += `  ${idx + 1}. ${op}${details.length > 0 ? ` (${details.join(', ')})` : ''}\n`;
+            });
+          } else {
+            operationDetails += `  (No operation details available - generate based on description)\n`;
+          }
+          
+          return operationDetails;
         }
       }).join('\n');
       
@@ -280,6 +345,7 @@ function estimateDuration(text: string): number {
 
 /**
  * Generate fallback narrations when API fails
+ * ENHANCED: Now operation-aware when actions are available
  */
 function generateFallbackNarrations(
   step: PlanStep,
@@ -294,7 +360,31 @@ function generateFallbackNarrations(
     if (v.type === 'notes') {
       fallbackText = `Let's dive deep into ${step.desc}. See these key concepts laid out before you - this is the foundation we'll build upon. Notice the relationships between each element. This is a fundamental concept in ${topic} that connects to many other ideas. Look at how each part contributes to the whole picture. Pay close attention to the structure here - it reveals important patterns. See this working mechanism right here? This is what makes the entire system function. The visual layout guides your understanding from basics to advanced principles. Notice how everything interconnects in this framework.`;
     } else {
-      fallbackText = `Now, see this visualization in action. Watch carefully how the elements interact and transform over time. Notice the working of each component as it contributes to the overall behavior. Look at this part right here - this is where the key mechanism operates. See how the change propagates through the system? This animation clarifies the dynamic principles we discussed. Observe the relationships forming and evolving. This visual representation helps bridge theory with actual behavior. Notice the patterns emerging as we progress through the sequence.`;
+      // Try to be operation-aware even in fallback
+      if (v.actions && v.actions.length > 0) {
+        const opTypes = [...new Set(v.actions.map(a => a.op))];
+        const hasCircuit = opTypes.some(op => op?.includes('Circuit') || op?.includes('Signal'));
+        const hasMolecule = opTypes.some(op => op?.includes('Molecule') || op?.includes('Atom'));
+        const hasGraph = opTypes.some(op => op?.includes('Graph') || op?.includes('Curve'));
+        const colors = v.actions.filter(a => a.color).map(a => a.color).slice(0, 3);
+        
+        let specificContext = '';
+        if (hasCircuit) {
+          specificContext = 'See the circuit components arranged here - notice how each element connects to form a complete system. ';
+        } else if (hasMolecule) {
+          specificContext = 'Look at the molecular structure displayed here - see how the atoms bond together to create this compound. ';
+        } else if (hasGraph) {
+          specificContext = 'Notice the graph visualization showing the mathematical relationship - see how the curve behaves across the domain. ';
+        }
+        
+        const colorText = colors.length > 0 
+          ? `Notice the color coding used here to distinguish different components. `
+          : '';
+        
+        fallbackText = `${specificContext}${colorText}Watch carefully how the elements interact and transform over time. Notice the working of each component as it contributes to the overall behavior. Look at this part right here - this is where the key mechanism operates. See how the change propagates through the system? This animation clarifies the dynamic principles we discussed in ${step.desc}. Observe the relationships forming and evolving. This visual representation helps bridge theory with actual behavior. Notice the patterns emerging as we progress through the sequence. This is fundamental to understanding ${topic}.`;
+      } else {
+        fallbackText = `Now, see this visualization in action. Watch carefully how the elements interact and transform over time. Notice the working of each component as it contributes to the overall behavior. Look at this part right here - this is where the key mechanism operates. See how the change propagates through the system? This animation clarifies the dynamic principles we discussed. Observe the relationships forming and evolving. This visual representation helps bridge theory with actual behavior. Notice the patterns emerging as we progress through the sequence.`;
+      }
     }
     
     return {
